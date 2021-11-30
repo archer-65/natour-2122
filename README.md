@@ -57,5 +57,5 @@ utenti della modifica e della data in cui è avvenuta.
     - Matricola: N86003209
   - **Mario Liguori**        
     - Matricola: N86003258
-  - **Mattia Rossi**         -
+  - **Mattia Rossi**         
     - Matricola: N86003211

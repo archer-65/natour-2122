@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-07T18:06:30.310Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="nAxe1c61vnfcnhltgwAJ" version="15.8.7" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2021-12-07T18:10:02.184Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="6GX-fP3TpFYeXOywIzjW" version="15.8.7" type="github" pages="2">
   <diagram id="SqWFwGlkPupEOphNOxqh" name="SegnalaItinerario">
     <mxGraphModel dx="1910" dy="394" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -50,7 +50,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="YHVfvykiVUKUb5ghU3nG" name="CreaItinerario">
-    <mxGraphModel dx="2704" dy="690" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3075" dy="828" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="PN0qWD7VaQw6Qfc42OEK-0" />
         <mxCell id="PN0qWD7VaQw6Qfc42OEK-1" parent="PN0qWD7VaQw6Qfc42OEK-0" />

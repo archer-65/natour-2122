@@ -1,1 +1,162 @@
-<mxfile host="app.diagrams.net" modified="2021-12-02T16:07:18.777Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="1w819WT0Mz79sKbrAb3K" version="15.8.9" type="device" pages="5"><diagram id="hA16oOmxjcb0NqXpZcEl" name="UseCase">3VfbUtswEP2azLQPzNhWZOCREEoLhRKgpe1LR3FkR1S2XFnOha/vbizfcEIvUwJlJuNIZ1e3o90jqUcO48WxZun0TE247HnOZNEjw57nue4ehT9ElgXiEwtEWkysUw1ciTtuQceiuZjwrOVolJJGpG0wUEnCA9PCmNZq3nYLlWyPmrKId4CrgMkueiMmZlqge9Sp8bdcRNNyZNexlpiVzhbIpmyi5g2IHPXIoVbKFKV4ccglklfyUrR7s8FaTUzzxPxOg2U4Opdh6u/fzkT2MZwRPbvdsb3MmMztgj8a6I8DlqgEvppHIjOaGWVXYZYlNbCgFIt5LA8Co3SPDGZcGwHkvWdjLi9UJoyAXshwrIxRccPhQIoIDUalgE5NLKHiQrG7qnKK0JIvGpBd5TFXMTd6CS6ltWR8WYaSrc/rDSQWmjb2zrcYsyETVT3XrELBEvsHJHubSX4B9PYpfVp6SYfeozDkxuSsQfAdMAWE+xJmM8hSlrTI9n/kmIaDQEkk+gAbRmP2CqYMP5iWs7b0GotIKuhKYnZCFgu5LJrHKlEwTMDbLtlK4NDBSRf1uFCKin96X0spMIHoSiiqWskMXXEDyBDLODGKZFAg9Fe+buVbxsNfdePV3RQ7UFnKIKdWS2g73MtWxS5UrYqwx2oV+FDZEProZoO/6VSEPxoxAdCySgEE3FW1Meci7n+HlcpUEVInB8X0qDz9mkBn2aCqiRfZUtlIw2SzZm13kD0VHjWGv79bq2q1ZU2wHUjWrxNxRaJAPha5UobnPY2C3uEghspgPhWGX60Cngzn0Ns/1x1C27qz31V1d3eN7uw+lu70H9IdFgQ8y7qq/pSMVZeqJ6OMdii70GoGNzyNV0SBQ+aoGpDEVrD/k0PR339mdw6/w/SxUhEKrXPG4O78vxJLnprYvQ6x7+CUqy4Y+BCBb46fVGVmI9H4EuFIM94LrqzdLS4ngUiiayRz6OLlwbBx+fbo23r15nD7BdDYH8lD8+haQskWteRLeDs6OV2wybd3d9fc36fJ+WLN0+WYZ8buQgziy6JIvFT6/W2efmvp7z5qLkXAdYCHH1CRQEpo8bzOP7K7RdJuP7tvP38bxD9O46+OPDtVg9HJGlXeKB4PcPhCYrhPt7gdUTTzbvLLnWw3GY1vrhf5zYfDhyUk1SoU8sWy72/zMmjItXfy/c25F53TO/1p4qWjizXsH4Bi5wmq9nOVkMd8dfTs26y2NV5l5Ogn</diagram><diagram id="ynwV29AEDQFCAF0MuXqC" name="Gestione messaggi">1ZZNb6MwEIZ/DcdK5jPpcZNN22y3UhWqbm4rFyYwWoORcULCr18T7ABLD9tKbVKJg+edYcw8MwYsd57tbwUt0gceA7McEu8t97vlOLbnOFZzkfjQKpNAC4nAWAd1Qog1aJFodYsxlINAyTmTWAzFiOc5RHKgUSF4NQzbcDbctaAJjIQwomys/sJYpq069Umn3wEmqdnZJtqTUROshTKlMa96kruw3LngXLarbD8H1sAzXFbffv+s/GK13Ca+4vbn5eE6vGqT3bzlllMJAnL57tTrH9Xzcv2U1VhAdhdEuL5/NKl3lG01L12rPBiAquyiWTbkQVjubMNzGWq/reyyoBHmyRMvGoEoRdIXw9rT9omx7bXCIy9RIs+VxGCjPLNUZkyn/M+CzdODkLDvtVsDuAWegRQHFaK9LvHbW/Qwe951a1fdaDie7nfaGwvPiFSPY3LK3SFXC039DR1wRh1Y5jukzQBCWdIkQd6gELijko+aozZQB0kZsypFCaFqReOp1Fn+JKIGjCE6JSOi9uQVopOPAuqOgK4wgh18VaJ+cG6i3ojoM5ZbyrCu6REeFxjx9h2u6ixprc41Xj7ZwDs3Wf/VWRVRg1V9NSXmVFJxnNfe7F461yk5N9dgxHXBMFM0/xlSuHyYE+fjYCqz+305+no/ge7iLw==</diagram><diagram id="6rKbAm856umPjdzIHia5" name="Interazione con un itinerario">1Zddb5swFIZ/DZeTAEOSXS4sTbqo6ySabutN5YIDRzO2ZZyQ8OtnwiEfotPWSW2aq9jvMcfxc95jgUOiYjPVVOU3MmXc8d1045DPju973ii0P42ybZUBQSHTkOKigxBDzVB0UV1BysqThUZKbkCdiokUgiXmRKNay+p02VLy010VzVhPiBPK++p3SE3eqqPQPegzBlne7ey5GClotxiFMqeprI4kMnFIpKU07ajYRIw38DouESGjyeJTLOZP4+sfGzH/Uj98aJNdveSR/RE0E+a/Uz8+VD/n9+FqcTe/nnhqnanHWZd6TfkKeeFZzbYDaI+tmmFDnmmHjJdSmBjjnp2XiiYgsjupGsG1iqFPHesA53vGXtAK32QJBqSwEmdLGxnnpuCY8h8P3P17pg3bHJUbAUyZLJjRW7sEo/4AzYtm3te2OljDD1DLj2wxGKFI0Y7ZPvcBuR0g9RdUwO9V4N4ODW2eMyCYphpkryg2sW0gOxlXORgW2xI0kcr28NuQJF2bIMngY5+kN3yG5PC1QJIeyJjy9aVxDIfn5hj0DQnlinKo6wamkqXZbVvKBKiB94808N4QaX07nan6islq8etrGETZjeF4Mf8RKYil1AWt7W0IF2ZXPzw322fanmWC8ktr/NHZXRr2SEZSpLC2729t30PjUHZhXIfk3FwHPa63xgBrSVrAyUV2/uDsnT/8y616BNMtV7s3eqXo+ydLXtGxdnr4YNnFjj77yOQ3</diagram><diagram id="lTys9XKKZDvqeg17OrR-" name="Interazione con un post">1ZVRb5swEIB/DY+RAEOSZ1iXduqkTkxZ15fJgwt4Mj5mTEjy62fGEYLoQzq1lSbxYH9nH/J3Z3BYXB42mlfFZ8xAOr6bHRz2wfF9L/B9p3vc7NiT1ZJArkVGi0aQiBMQdIk2IoN6stAgSiOqKUxRKUjNhHGtsZ0u26GcvrXiOcxAknI5p99EZoqerkN35Lcg8mJ4s+dSpOTDYgJ1wTNsLxC7cVisEU0/Kg8xyE7e4GWB2VLdteH31dNjEKrmF0dY9Mk+vmTL+QgalPnn1PVv2OpFctTbu8CLn/Ah+vKDtrh7LhvyRWc1x0GgPXbVDTvzoB0W7VCZhOKendcVT4XKv2LVAdcSw38OrgOanx17QQ8esBZGoLJIws5GosKUklJeeWASswdt4HBRbhKwASzB6KNdQlF/GfZbqJnPtW3H1vADYsVFW/hrgpzaMT/nHpXbAVl/QQW8WQUSyBWXvBOAtZnVw+a0d8dOorYQBhJrv4u09vq+j0Q23BCSyNhcord6RuLqrRyymcPY9ig3ppPIG4Ma/hubgfeONheiar3t/hM+RvnmPs1O97v1M9+EragbLsXp9FpNOdNzrdmrNfrh22m00/Gr/zd28e9kN38A</diagram><diagram id="ljcNCHIvoTIuV5J3r41A" name="Gestione profilo">1Zddb9owFIZ/TS4n5QsSLsdH6Zg6VWIrvavcxHGO5NiZ45DAr59NHCALqqg2SpG4sN9zcOTnvE6OLW+S1XOB8vSBx5harh3Xlje1XNfxXdfSPzveNEowNAIREJukg7CELTaibdQSYlx0EiXnVELeFSPOGI5kR0NC8KqblnDafWqOCO4JywjRvrqCWKaNGg7sg36PgaTtkx3bRDLUJhuhSFHMqyPJm1neRHAum1FWTzDV8FoueA6/HxY/xi8yfI7o48LB1fRLs9jde/6y34LATP7fpU0t14iWhpfZq9y0ANW2cz3U5LGwvHHCmVyauKPmRY4iYOQnz7VgK0Wi15a1b+Z7xo7fCI+8AAmcKYniREXGqcyoWTIGobzQRDEqdPRMBobVGguJ6yMHGCZzzDMsxUalmKjnm/JuWt+aeXVwi9vmpEdOGY6MiIxDyX7tQxXUwBTiHUXxekX5SgiUjIAmwBWOv2ukFlXnSU3GVQoSL1VFdKRSR7oL9mIUg0GHojvqU3SCExSDS0H0exBnFDJg6GYYesG1GQ7eMmLEsxwo2p3ST8/SH1yb5fANP94UyoF3bZRBD6VqWyCBCO0aBMk1B8EToPzz49w3SlfDGfZwPkFRIgrb7c2Zc/iRNJ9Fdl+Vd6v0yfm2qMlk/T0MTBN2+pyrhodhgQRoh8a3B/cjP+pOuJpMC/ZakvIXTdzVaEu2J+B2rLo/9HaORcGZvgT8I9UerXNBn03VueD7VE0P95Nd7OiW583+AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-12-07T16:28:20.816Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="kTu-EPLpgRvTLskFsQPo" version="15.8.7" type="github" pages="5">
+  <diagram id="hA16oOmxjcb0NqXpZcEl" name="UseCase">
+    <mxGraphModel dx="1271" dy="473" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yfQNlfp69jvisUfv3rvj-1" value="Utente non registrato" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="100" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yfQNlfp69jvisUfv3rvj-2" value="Utente registrato" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="455" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yfQNlfp69jvisUfv3rvj-3" value="Effettua registrazione&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Utente%20non%20registrato%22%20style%3D%22shape%3DumlActor%3BverticalLabelPosition%3Dbottom%3BverticalAlign%3Dtop%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%2260%22%20y%3D%22260%22%20width%3D%2230%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="90" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="yfQNlfp69jvisUfv3rvj-4" value="Effettua accesso" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="210" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="yfQNlfp69jvisUfv3rvj-5" value="Provider di autenticazione" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="690" y="100" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yfQNlfp69jvisUfv3rvj-6" value="Google Maps" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
+          <mxGeometry x="690" y="300" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yfQNlfp69jvisUfv3rvj-8" value="Interazione con un post" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="530" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YfjQJKxad_IzTe695nNx-1" value="Gestione messaggi" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="690" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YfjQJKxad_IzTe695nNx-2" value="Ricerca itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="370" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="jX1HX_BmqKmZ0lMKoBQJ-6" value="Interazione con un&lt;br&gt;itinerario" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="450" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ggv2WuR-s7nQbWTxuWOC-1" value="Gestione profilo" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="610" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="t3T2JkFN2gN5zrVd2pQP-1" value="Aggiungi itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="290" width="170" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ynwV29AEDQFCAF0MuXqC" name="Gestione messaggi">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="RA_Lw5pRIug5276kbM9S-0" />
+        <mxCell id="RA_Lw5pRIug5276kbM9S-1" parent="RA_Lw5pRIug5276kbM9S-0" />
+        <mxCell id="XJwVIXTmzipemH6ciXKP-1" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
+          <mxGeometry x="305" y="449" width="240" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="XJwVIXTmzipemH6ciXKP-2" value="Invia messaggio privato" style="ellipse;whiteSpace=wrap;html=1;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
+          <mxGeometry x="340" y="480" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="XJwVIXTmzipemH6ciXKP-3" value="Riceve messaggio privato" style="ellipse;whiteSpace=wrap;html=1;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
+          <mxGeometry x="340" y="560" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="XJwVIXTmzipemH6ciXKP-4" value="Visualizza storico conversazioni" style="ellipse;whiteSpace=wrap;html=1;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
+          <mxGeometry x="340" y="640" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="XJwVIXTmzipemH6ciXKP-5" value="Ricerca destinatario messaggio" style="ellipse;whiteSpace=wrap;html=1;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
+          <mxGeometry x="340" y="800" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="XJwVIXTmzipemH6ciXKP-6" value="Elimina conversazione" style="ellipse;whiteSpace=wrap;html=1;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
+          <mxGeometry x="340" y="720" width="170" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="6rKbAm856umPjdzIHia5" name="Interazione con un itinerario">
+    <mxGraphModel dx="1185" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="C338EUASnKbBIXxnKJzZ-0" />
+        <mxCell id="C338EUASnKbBIXxnKJzZ-1" parent="C338EUASnKbBIXxnKJzZ-0" />
+        <mxCell id="_ZwYKV5uUTKIE1pvgp_H-1" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="265" y="220" width="240" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="_ZwYKV5uUTKIE1pvgp_H-2" value="Valuta itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="490" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_ZwYKV5uUTKIE1pvgp_H-3" value="Salva itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="570" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="_ZwYKV5uUTKIE1pvgp_H-4" value="Visualizza post associati" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="410" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zOGHpzFeowUkN54CgMtl-0" value="Visualizza informazioni itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="250" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zOGHpzFeowUkN54CgMtl-3" value="Segnala itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="810" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zOGHpzFeowUkN54CgMtl-5" value="Condivide posizione itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="730" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zOGHpzFeowUkN54CgMtl-6" value="Ottiene indicazioni itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="650" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zOGHpzFeowUkN54CgMtl-7" value="Visualizza itinerario su mappa" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
+          <mxGeometry x="300" y="330" width="170" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="lTys9XKKZDvqeg17OrR-" name="Interazione con un post">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="-od6nIw5Y7ZX45nujaoe-0" />
+        <mxCell id="-od6nIw5Y7ZX45nujaoe-1" parent="-od6nIw5Y7ZX45nujaoe-0" />
+        <mxCell id="sqeVr-SyrVI41CZoPBQ_-0" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="-od6nIw5Y7ZX45nujaoe-1" vertex="1">
+          <mxGeometry x="265" y="220" width="240" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="sqeVr-SyrVI41CZoPBQ_-1" value="Segnala post" style="ellipse;whiteSpace=wrap;html=1;" parent="-od6nIw5Y7ZX45nujaoe-1" vertex="1">
+          <mxGeometry x="300" y="330" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="sqeVr-SyrVI41CZoPBQ_-3" value="Contatta autore post" style="ellipse;whiteSpace=wrap;html=1;" parent="-od6nIw5Y7ZX45nujaoe-1" vertex="1">
+          <mxGeometry x="300" y="410" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="-ipw1VvJoXBgGLcdzLf8-0" value="Visualizza post" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="-od6nIw5Y7ZX45nujaoe-1">
+          <mxGeometry x="300" y="250" width="170" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ljcNCHIvoTIuV5J3r41A" name="Gestione profilo">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-0" />
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-1" parent="eGiqMJNB_t8XclPJ1ewD-0" />
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-2" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;direction=east;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="340" y="100" width="240" height="690" as="geometry" />
+        </mxCell>
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-3" value="Aggiungi post" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="375" y="290" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-4" value="Elimina post" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="375" y="370" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-5" value="Aggiungi compilation" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="375" y="450" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-6" value="Elimina compilation" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="375" y="530" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-7" value="Modifica foto profilo" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="375" y="210" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="eGiqMJNB_t8XclPJ1ewD-8" value="Visualizza compilation" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="375" y="610" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="XrmHwuFWhV1IJxgCvK87-0" value="Elimina itinerario da compilation" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
+          <mxGeometry x="375" y="690" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="18WCDsnbuguUlf2W9zgz-0" value="Visualizza profilo personale" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="eGiqMJNB_t8XclPJ1ewD-1">
+          <mxGeometry x="375" y="130" width="170" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

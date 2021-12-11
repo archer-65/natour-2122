@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-12-07T16:28:20.816Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="kTu-EPLpgRvTLskFsQPo" version="15.8.7" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2021-12-11T18:43:51.704Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="wcoOqa7uEsrSphX7Z1UR" version="15.9.4" type="github" pages="5">
   <diagram id="hA16oOmxjcb0NqXpZcEl" name="UseCase">
-    <mxGraphModel dx="1271" dy="473" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -44,7 +44,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="ynwV29AEDQFCAF0MuXqC" name="Gestione messaggi">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="RA_Lw5pRIug5276kbM9S-0" />
         <mxCell id="RA_Lw5pRIug5276kbM9S-1" parent="RA_Lw5pRIug5276kbM9S-0" />
@@ -70,12 +70,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="6rKbAm856umPjdzIHia5" name="Interazione con un itinerario">
-    <mxGraphModel dx="1185" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="C338EUASnKbBIXxnKJzZ-0" />
         <mxCell id="C338EUASnKbBIXxnKJzZ-1" parent="C338EUASnKbBIXxnKJzZ-0" />
         <mxCell id="_ZwYKV5uUTKIE1pvgp_H-1" value="" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
-          <mxGeometry x="265" y="220" width="240" height="680" as="geometry" />
+          <mxGeometry x="265" y="100" width="240" height="800" as="geometry" />
         </mxCell>
         <mxCell id="_ZwYKV5uUTKIE1pvgp_H-2" value="Valuta itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
           <mxGeometry x="300" y="490" width="170" height="70" as="geometry" />
@@ -101,11 +101,14 @@
         <mxCell id="zOGHpzFeowUkN54CgMtl-7" value="Visualizza itinerario su mappa" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
           <mxGeometry x="300" y="330" width="170" height="70" as="geometry" />
         </mxCell>
+        <mxCell id="i6l3ypgMmZduuuR-hvQm-0" value="Elimina itinerario" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="C338EUASnKbBIXxnKJzZ-1">
+          <mxGeometry x="300" y="170" width="170" height="70" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="lTys9XKKZDvqeg17OrR-" name="Interazione con un post">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="-od6nIw5Y7ZX45nujaoe-0" />
         <mxCell id="-od6nIw5Y7ZX45nujaoe-1" parent="-od6nIw5Y7ZX45nujaoe-0" />
@@ -118,14 +121,14 @@
         <mxCell id="sqeVr-SyrVI41CZoPBQ_-3" value="Contatta autore post" style="ellipse;whiteSpace=wrap;html=1;" parent="-od6nIw5Y7ZX45nujaoe-1" vertex="1">
           <mxGeometry x="300" y="410" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="-ipw1VvJoXBgGLcdzLf8-0" value="Visualizza post" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="-od6nIw5Y7ZX45nujaoe-1">
+        <mxCell id="-ipw1VvJoXBgGLcdzLf8-0" value="Visualizza post" style="ellipse;whiteSpace=wrap;html=1;" parent="-od6nIw5Y7ZX45nujaoe-1" vertex="1">
           <mxGeometry x="300" y="250" width="170" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="ljcNCHIvoTIuV5J3r41A" name="Gestione profilo">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="eGiqMJNB_t8XclPJ1ewD-0" />
         <mxCell id="eGiqMJNB_t8XclPJ1ewD-1" parent="eGiqMJNB_t8XclPJ1ewD-0" />
@@ -153,7 +156,7 @@
         <mxCell id="XrmHwuFWhV1IJxgCvK87-0" value="Elimina itinerario da compilation" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
           <mxGeometry x="375" y="690" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="18WCDsnbuguUlf2W9zgz-0" value="Visualizza profilo personale" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="eGiqMJNB_t8XclPJ1ewD-1">
+        <mxCell id="18WCDsnbuguUlf2W9zgz-0" value="Visualizza profilo personale" style="ellipse;whiteSpace=wrap;html=1;" parent="eGiqMJNB_t8XclPJ1ewD-1" vertex="1">
           <mxGeometry x="375" y="130" width="170" height="70" as="geometry" />
         </mxCell>
       </root>

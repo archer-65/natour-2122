@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" pages="5">
     <diagram id="hA16oOmxjcb0NqXpZcEl" name="UseCase">
-        <mxGraphModel dx="1224" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1739" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -44,7 +44,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="ynwV29AEDQFCAF0MuXqC" name="Gestione messaggi">
-        <mxGraphModel dx="1224" dy="618" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1739" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="RA_Lw5pRIug5276kbM9S-0"/>
                 <mxCell id="RA_Lw5pRIug5276kbM9S-1" parent="RA_Lw5pRIug5276kbM9S-0"/>
@@ -70,7 +70,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="6rKbAm856umPjdzIHia5" name="Interazione con un itinerario">
-        <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1909" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="C338EUASnKbBIXxnKJzZ-0"/>
                 <mxCell id="C338EUASnKbBIXxnKJzZ-1" parent="C338EUASnKbBIXxnKJzZ-0"/>
@@ -101,14 +101,14 @@
                 <mxCell id="zOGHpzFeowUkN54CgMtl-7" value="Visualizza itinerario su mappa" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
                     <mxGeometry x="300" y="330" width="170" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="i6l3ypgMmZduuuR-hvQm-0" value="Elimina itinerario" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="C338EUASnKbBIXxnKJzZ-1">
+                <mxCell id="i6l3ypgMmZduuuR-hvQm-0" value="Elimina itinerario" style="ellipse;whiteSpace=wrap;html=1;" parent="C338EUASnKbBIXxnKJzZ-1" vertex="1">
                     <mxGeometry x="300" y="170" width="170" height="70" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="lTys9XKKZDvqeg17OrR-" name="Interazione con un post">
-        <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1909" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="-od6nIw5Y7ZX45nujaoe-0"/>
                 <mxCell id="-od6nIw5Y7ZX45nujaoe-1" parent="-od6nIw5Y7ZX45nujaoe-0"/>
@@ -124,14 +124,14 @@
                 <mxCell id="-ipw1VvJoXBgGLcdzLf8-0" value="Visualizza post" style="ellipse;whiteSpace=wrap;html=1;" parent="-od6nIw5Y7ZX45nujaoe-1" vertex="1">
                     <mxGeometry x="300" y="250" width="170" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="EDofFWPBO1ojothHKDXp-1" value="Elimina post" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="-od6nIw5Y7ZX45nujaoe-1">
+                <mxCell id="EDofFWPBO1ojothHKDXp-1" value="Elimina post" style="ellipse;whiteSpace=wrap;html=1;" parent="-od6nIw5Y7ZX45nujaoe-1" vertex="1">
                     <mxGeometry x="300" y="490" width="170" height="70" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="ljcNCHIvoTIuV5J3r41A" name="Gestione profilo">
-        <mxGraphModel dx="1046" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2246" dy="726" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="eGiqMJNB_t8XclPJ1ewD-0"/>
                 <mxCell id="eGiqMJNB_t8XclPJ1ewD-1" parent="eGiqMJNB_t8XclPJ1ewD-0"/>

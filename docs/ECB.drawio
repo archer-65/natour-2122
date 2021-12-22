@@ -10,7 +10,7 @@
                 <mxCell id="pOupk_e44RSi2f4PB36q-15" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;LoginUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- usernameEdit: EditText&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- passwordEdit: EditText&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- loginButton: Button&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- signUpButton: Button&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- facebookButton: Button&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- googleButton: Button&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickLogin(): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickSignUp(): void&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickFacebook(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickGoogle(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="1" vertex="1">
                     <mxGeometry x="-210" y="30" width="160" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="bX2uwq98PiOW5EoY_zSi-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.471;exitY=1.001;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="pOupk_e44RSi2f4PB36q-18" target="9gEdAb5SZkadYrgr-ZDN-8">
+                <mxCell id="bX2uwq98PiOW5EoY_zSi-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.471;exitY=1.001;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="pOupk_e44RSi2f4PB36q-18" target="9gEdAb5SZkadYrgr-ZDN-8" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="-140" y="430" as="sourcePoint"/>
                         <Array as="points">
@@ -45,7 +45,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="mDUjN3jJpABttFucuZcn" name="Invia messaggio + Legge messaggio">
-        <mxGraphModel dx="2711" dy="955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1589" dy="387" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="r7pbL7ReWJyVwNZFcRCn-0"/>
                 <mxCell id="r7pbL7ReWJyVwNZFcRCn-1" parent="r7pbL7ReWJyVwNZFcRCn-0"/>
@@ -64,7 +64,7 @@
                 <mxCell id="HQfTcuma7xff1RQR0MhC-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ChatUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- messageEdit: EditText&lt;br&gt;- sendButton: Button&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickSend(): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickOptions(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="r7pbL7ReWJyVwNZFcRCn-1" vertex="1">
                     <mxGeometry x="160" y="110" width="230" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="_yFO2hjkiygljimHxfsA-0" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.67;entryY=0.022;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="r7pbL7ReWJyVwNZFcRCn-1" source="gmZQUb_WhKCVl2HXROt--0" target="HQfTcuma7xff1RQR0MhC-3">
+                <mxCell id="_yFO2hjkiygljimHxfsA-0" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.67;entryY=0.022;entryDx=0;entryDy=0;entryPerimeter=0;" parent="r7pbL7ReWJyVwNZFcRCn-1" source="gmZQUb_WhKCVl2HXROt--0" target="HQfTcuma7xff1RQR0MhC-3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="704" y="520"/>
@@ -156,7 +156,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="4Tc2FN7k2sm_dTopmr3H" name="Ricerca destinatario + Visualizza storico chat">
-        <mxGraphModel dx="2161" dy="677" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2428" dy="812" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="CF5hAucA8Jl5Ir61eZon-0"/>
                 <mxCell id="CF5hAucA8Jl5Ir61eZon-1" parent="CF5hAucA8Jl5Ir61eZon-0"/>
@@ -278,13 +278,13 @@
             <root>
                 <mxCell id="l7fSSlrJic9vPKpRdTmO-0"/>
                 <mxCell id="l7fSSlrJic9vPKpRdTmO-1" parent="l7fSSlrJic9vPKpRdTmO-0"/>
-                <mxCell id="iIRLiLLvygk6inJkylBh-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="l7fSSlrJic9vPKpRdTmO-1" source="KjKfYWHabKhthG2KuxIK-0" target="jvBiO2aZQN38IQbj3MC3-0">
+                <mxCell id="iIRLiLLvygk6inJkylBh-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" parent="l7fSSlrJic9vPKpRdTmO-1" source="KjKfYWHabKhthG2KuxIK-0" target="jvBiO2aZQN38IQbj3MC3-0" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="KjKfYWHabKhthG2KuxIK-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;+ addItinerary(itinerary: Itinerary): void&amp;nbsp;&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="l7fSSlrJic9vPKpRdTmO-1">
+                <mxCell id="KjKfYWHabKhthG2KuxIK-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;+ addItinerary(itinerary: Itinerary): void&amp;nbsp;&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" parent="l7fSSlrJic9vPKpRdTmO-1" vertex="1">
                     <mxGeometry x="680" y="360" width="680" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="f29DoWi56BqMAhl9s5D_-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.429;exitY=0.989;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.36;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-0" target="KjKfYWHabKhthG2KuxIK-0">
+                <mxCell id="f29DoWi56BqMAhl9s5D_-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.429;exitY=0.989;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.36;entryDx=0;entryDy=0;entryPerimeter=0;" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-0" target="KjKfYWHabKhthG2KuxIK-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="650" y="400"/>
@@ -292,18 +292,18 @@
                         <mxPoint x="681" y="400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8muOaH_lfBv_WosSSUso-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryInfoUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- itineraryNameEdit: EditText&lt;br&gt;&lt;span&gt;&amp;nbsp;- itineraryTimeEdit: EditText&lt;br&gt;&lt;/span&gt;&amp;nbsp;- difficultyRadioGroup: RadioGroup&lt;br&gt;&amp;nbsp;- disabledFriendlySwitch: Switch&lt;br&gt;&amp;nbsp;- startPointEdit: EditText&lt;br&gt;&amp;nbsp;- descriptionEdit: EditText&lt;br&gt;&amp;nbsp;- nextButton: FloatingActionButton&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickNext(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="l7fSSlrJic9vPKpRdTmO-1">
+                <mxCell id="8muOaH_lfBv_WosSSUso-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryInfoUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- itineraryNameEdit: EditText&lt;br&gt;&lt;span&gt;&amp;nbsp;- itineraryTimeEdit: EditText&lt;br&gt;&lt;/span&gt;&amp;nbsp;- difficultyRadioGroup: RadioGroup&lt;br&gt;&amp;nbsp;- disabledFriendlySwitch: Switch&lt;br&gt;&amp;nbsp;- startPointEdit: EditText&lt;br&gt;&amp;nbsp;- descriptionEdit: EditText&lt;br&gt;&amp;nbsp;- nextButton: FloatingActionButton&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickNext(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="l7fSSlrJic9vPKpRdTmO-1" vertex="1">
                     <mxGeometry x="530" y="80" width="280" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="rabJTmFvmu6RnmZfkKjS-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-1" target="KjKfYWHabKhthG2KuxIK-0">
+                <mxCell id="rabJTmFvmu6RnmZfkKjS-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-1" target="KjKfYWHabKhthG2KuxIK-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="920" y="361" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8muOaH_lfBv_WosSSUso-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryPhotosUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;br&gt;&amp;nbsp;- nextButton: FloatingActionButton&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickNext(): void&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="l7fSSlrJic9vPKpRdTmO-1">
+                <mxCell id="8muOaH_lfBv_WosSSUso-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryPhotosUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- nextButton: FloatingActionButton&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickNext(): void&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="l7fSSlrJic9vPKpRdTmO-1" vertex="1">
                     <mxGeometry x="900" y="80" width="240" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="iIRLiLLvygk6inJkylBh-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.856;exitY=0.991;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-2">
+                <mxCell id="iIRLiLLvygk6inJkylBh-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.856;exitY=0.991;exitDx=0;exitDy=0;exitPerimeter=0;" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-2" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1360" y="401" as="targetPoint"/>
                         <Array as="points">
@@ -313,39 +313,39 @@
                         <mxPoint x="1360" y="280" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8muOaH_lfBv_WosSSUso-2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryMapUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- startPointEdit: EditText&lt;br&gt;&amp;nbsp;- firstStopEdit: EditText&lt;br&gt;&amp;nbsp;- secondStopEdit: EditText&lt;br&gt;&amp;nbsp;- thirdStopEdit: EditText&lt;br&gt;&amp;nbsp;- optionsButton: Button&lt;br&gt;&amp;nbsp;- confirmItineraryButton: FloatingActionButton&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickConfirmItinerary(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="l7fSSlrJic9vPKpRdTmO-1">
+                <mxCell id="8muOaH_lfBv_WosSSUso-2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AddItineraryMapUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- startPointEdit: EditText&lt;br&gt;&amp;nbsp;- firstStopEdit: EditText&lt;br&gt;&amp;nbsp;- secondStopEdit: EditText&lt;br&gt;&amp;nbsp;- thirdStopEdit: EditText&lt;br&gt;&amp;nbsp;- optionsButton: Button&lt;br&gt;&amp;nbsp;- confirmItineraryButton: FloatingActionButton&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickConfirmItinerary(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="l7fSSlrJic9vPKpRdTmO-1" vertex="1">
                     <mxGeometry x="1230" y="80" width="280" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="jvBiO2aZQN38IQbj3MC3-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Itinerary&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- time: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- difficulty: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- disabledFriendly: boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- stopsList: List&amp;lt;Location&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ addItinerary(itinerary: Itinerary): void&lt;br&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="l7fSSlrJic9vPKpRdTmO-1">
+                <mxCell id="jvBiO2aZQN38IQbj3MC3-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Itinerary&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- time: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- difficulty: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- disabledFriendly: boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- stopsList: List&amp;lt;Location&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ addItinerary(itinerary: Itinerary): void&lt;br&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" parent="l7fSSlrJic9vPKpRdTmO-1" vertex="1">
                     <mxGeometry x="680" y="560" width="680" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="6XIkvLOYR-N89uGQYu_o-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: String&lt;br&gt;- email: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- password: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+&amp;nbsp;checkLogin(username: String, password: String): boolean&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ signUp(username: String, email: String, password: String): boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ contactAuthor(author: User): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="l7fSSlrJic9vPKpRdTmO-1">
+                <mxCell id="6XIkvLOYR-N89uGQYu_o-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: String&lt;br&gt;- email: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- password: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+&amp;nbsp;checkLogin(username: String, password: String): boolean&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ signUp(username: String, email: String, password: String): boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ contactAuthor(author: User): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" parent="l7fSSlrJic9vPKpRdTmO-1" vertex="1">
                     <mxGeometry x="200" y="570" width="398.5" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="RI-nLbw1DDQ4FyHbwaac-3" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="l7fSSlrJic9vPKpRdTmO-1" source="6XIkvLOYR-N89uGQYu_o-0">
+                <mxCell id="RI-nLbw1DDQ4FyHbwaac-3" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="l7fSSlrJic9vPKpRdTmO-1" source="6XIkvLOYR-N89uGQYu_o-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="590" y="640" as="sourcePoint"/>
                         <mxPoint x="680" y="640" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="RI-nLbw1DDQ4FyHbwaac-4" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="RI-nLbw1DDQ4FyHbwaac-3">
+                <mxCell id="RI-nLbw1DDQ4FyHbwaac-4" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" parent="RI-nLbw1DDQ4FyHbwaac-3" connectable="0" vertex="1">
                     <mxGeometry x="-1" relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="RI-nLbw1DDQ4FyHbwaac-5" value="*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="RI-nLbw1DDQ4FyHbwaac-3">
+                <mxCell id="RI-nLbw1DDQ4FyHbwaac-5" value="*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" parent="RI-nLbw1DDQ4FyHbwaac-3" connectable="0" vertex="1">
                     <mxGeometry x="0.9" relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="b9aUjIxJnvNbKq2YBAoB-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;MapMenu&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- addStopButton: Button&lt;br&gt;&amp;nbsp;- addGPXButton: Button&lt;br&gt;&amp;nbsp;- closeButton: Button&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickAddStop(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickAddGPX(): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickClose(): void&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="l7fSSlrJic9vPKpRdTmO-1">
+                <mxCell id="b9aUjIxJnvNbKq2YBAoB-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;MapMenu&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- addStopButton: Button&lt;br&gt;&amp;nbsp;- addGPXButton: Button&lt;br&gt;&amp;nbsp;- closeButton: Button&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickAddStop(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickAddGPX(): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickClose(): void&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="l7fSSlrJic9vPKpRdTmO-1" vertex="1">
                     <mxGeometry x="1590" y="80" width="280" height="200" as="geometry"/>
                 </mxCell>
-                <mxCell id="gCK9Ckp706msZQUKWOWs-0" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.385;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.385;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-2" target="b9aUjIxJnvNbKq2YBAoB-0">
+                <mxCell id="gCK9Ckp706msZQUKWOWs-0" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.385;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.385;entryDx=0;entryDy=0;entryPerimeter=0;" parent="l7fSSlrJic9vPKpRdTmO-1" source="8muOaH_lfBv_WosSSUso-2" target="b9aUjIxJnvNbKq2YBAoB-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1400" y="160" as="sourcePoint"/>
                         <mxPoint x="1491" y="157" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="gCK9Ckp706msZQUKWOWs-1" value="" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="gCK9Ckp706msZQUKWOWs-0">
+                <mxCell id="gCK9Ckp706msZQUKWOWs-1" value="" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" parent="gCK9Ckp706msZQUKWOWs-0" connectable="0" vertex="1">
                     <mxGeometry x="-1" relative="1" as="geometry">
                         <mxPoint y="-7" as="offset"/>
                     </mxGeometry>
@@ -358,13 +358,13 @@
             <root>
                 <mxCell id="Jd6Wa6hQi47JgSjzW5ev-0"/>
                 <mxCell id="Jd6Wa6hQi47JgSjzW5ev-1" parent="Jd6Wa6hQi47JgSjzW5ev-0"/>
-                <mxCell id="cSTnXYEX9ffR8ImGJTMs-0" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="VQ6w7pRNljZFK-aOhzb1-0" target="B_TtSPAPYYqASVfr78Y7-0">
+                <mxCell id="cSTnXYEX9ffR8ImGJTMs-0" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="VQ6w7pRNljZFK-aOhzb1-0" target="B_TtSPAPYYqASVfr78Y7-0" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="VQ6w7pRNljZFK-aOhzb1-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ItineraryCard&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- itineraryTextView: TextView&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- photoImageView: ImageView&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- addToCollectionButton: Button&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickAddToCollection(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="Jd6Wa6hQi47JgSjzW5ev-1" vertex="1">
                     <mxGeometry x="490" y="40" width="230" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="VQ6w7pRNljZFK-aOhzb1-1" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" edge="1" target="VQ6w7pRNljZFK-aOhzb1-4" source="VQ6w7pRNljZFK-aOhzb1-0">
+                <mxCell id="VQ6w7pRNljZFK-aOhzb1-1" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="VQ6w7pRNljZFK-aOhzb1-0" target="VQ6w7pRNljZFK-aOhzb1-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="340" y="130" as="sourcePoint"/>
                         <mxPoint x="449" y="129.5" as="targetPoint"/>
@@ -379,7 +379,7 @@
                 <mxCell id="VQ6w7pRNljZFK-aOhzb1-3" value="*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" parent="VQ6w7pRNljZFK-aOhzb1-1" connectable="0" vertex="1">
                     <mxGeometry x="0.9" relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="B_TtSPAPYYqASVfr78Y7-6" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.835;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="VQ6w7pRNljZFK-aOhzb1-4" target="bAvLrB9AhVCMy0HY6Cbk-0">
+                <mxCell id="B_TtSPAPYYqASVfr78Y7-6" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.835;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="VQ6w7pRNljZFK-aOhzb1-4" target="bAvLrB9AhVCMy0HY6Cbk-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="940" y="300" as="targetPoint"/>
                         <Array as="points"/>
@@ -388,42 +388,42 @@
                 <mxCell id="VQ6w7pRNljZFK-aOhzb1-4" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ExploreUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- newItineraryButton: FloatingActionButton&lt;br&gt;&lt;span&gt;&amp;nbsp;- searchItineraryEdit: EditText&lt;br&gt;&lt;/span&gt;&amp;nbsp;- sendPMButton: Button&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickNewItinerary(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickSendPM(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="Jd6Wa6hQi47JgSjzW5ev-1" vertex="1">
                     <mxGeometry x="800" y="40" width="280" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="B_TtSPAPYYqASVfr78Y7-9" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="bAvLrB9AhVCMy0HY6Cbk-0" target="L65L3uGAGlRpNn0rvQE8-0">
+                <mxCell id="B_TtSPAPYYqASVfr78Y7-9" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="bAvLrB9AhVCMy0HY6Cbk-0" target="L65L3uGAGlRpNn0rvQE8-0" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="bAvLrB9AhVCMy0HY6Cbk-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SearchItineraryControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void&lt;br&gt;&amp;nbsp;+ openChatUI(): void&amp;nbsp;&lt;br&gt;&amp;nbsp;&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="Jd6Wa6hQi47JgSjzW5ev-1">
+                <mxCell id="bAvLrB9AhVCMy0HY6Cbk-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SearchItineraryControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void&lt;br&gt;&amp;nbsp;+ openChatUI(): void&amp;nbsp;&lt;br&gt;&amp;nbsp;&lt;span&gt;&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" parent="Jd6Wa6hQi47JgSjzW5ev-1" vertex="1">
                     <mxGeometry x="490" y="280" width="540" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="L65L3uGAGlRpNn0rvQE8-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Itinerary&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- time: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- difficulty: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- disabledFriendly: boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- stopsList: List&amp;lt;Location&amp;gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ addItinerary(Itinerary): void&lt;br&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="Jd6Wa6hQi47JgSjzW5ev-1">
+                <mxCell id="L65L3uGAGlRpNn0rvQE8-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Itinerary&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- time: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- difficulty: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- disabledFriendly: boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- stopsList: List&amp;lt;Location&amp;gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ addItinerary(Itinerary): void&lt;br&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" parent="Jd6Wa6hQi47JgSjzW5ev-1" vertex="1">
                     <mxGeometry x="440" y="480" width="640" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="L65L3uGAGlRpNn0rvQE8-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: String&lt;br&gt;- email: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- password: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+&amp;nbsp;checkLogin(username: String, password: String): boolean&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ signUp(username: String, email: String, password: String): boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ contactAuthor(author: User): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="Jd6Wa6hQi47JgSjzW5ev-1">
+                <mxCell id="L65L3uGAGlRpNn0rvQE8-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: String&lt;br&gt;- email: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- password: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+&amp;nbsp;checkLogin(username: String, password: String): boolean&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ signUp(username: String, email: String, password: String): boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ contactAuthor(author: User): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" parent="Jd6Wa6hQi47JgSjzW5ev-1" vertex="1">
                     <mxGeometry x="-70" y="490" width="398.5" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="L65L3uGAGlRpNn0rvQE8-2" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.003;entryY=0.444;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" source="L65L3uGAGlRpNn0rvQE8-1" parent="Jd6Wa6hQi47JgSjzW5ev-1" target="L65L3uGAGlRpNn0rvQE8-0">
+                <mxCell id="L65L3uGAGlRpNn0rvQE8-2" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.003;entryY=0.444;entryDx=0;entryDy=0;entryPerimeter=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="L65L3uGAGlRpNn0rvQE8-1" target="L65L3uGAGlRpNn0rvQE8-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="320" y="560" as="sourcePoint"/>
                         <mxPoint x="410" y="560" as="targetPoint"/>
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="L65L3uGAGlRpNn0rvQE8-3" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="L65L3uGAGlRpNn0rvQE8-2">
+                <mxCell id="L65L3uGAGlRpNn0rvQE8-3" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" parent="L65L3uGAGlRpNn0rvQE8-2" connectable="0" vertex="1">
                     <mxGeometry x="-1" relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="L65L3uGAGlRpNn0rvQE8-4" value="*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="L65L3uGAGlRpNn0rvQE8-2">
+                <mxCell id="L65L3uGAGlRpNn0rvQE8-4" value="*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" parent="L65L3uGAGlRpNn0rvQE8-2" connectable="0" vertex="1">
                     <mxGeometry x="0.9" relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="B_TtSPAPYYqASVfr78Y7-7" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=-0.006;entryY=0.326;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="B_TtSPAPYYqASVfr78Y7-0" target="bAvLrB9AhVCMy0HY6Cbk-0">
+                <mxCell id="B_TtSPAPYYqASVfr78Y7-7" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=-0.006;entryY=0.326;entryDx=0;entryDy=0;entryPerimeter=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="B_TtSPAPYYqASVfr78Y7-0" target="bAvLrB9AhVCMy0HY6Cbk-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="270" y="320"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="B_TtSPAPYYqASVfr78Y7-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SearchUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- searchItineraryEdit: EditText&lt;br&gt;&amp;nbsp;- filterSearchButton: Button&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickFilterSearch(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="Jd6Wa6hQi47JgSjzW5ev-1">
+                <mxCell id="B_TtSPAPYYqASVfr78Y7-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SearchUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- searchItineraryEdit: EditText&lt;br&gt;&amp;nbsp;- filterSearchButton: Button&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickFilterSearch(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="Jd6Wa6hQi47JgSjzW5ev-1" vertex="1">
                     <mxGeometry x="130" y="40" width="280" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="B_TtSPAPYYqASVfr78Y7-8" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="B_TtSPAPYYqASVfr78Y7-1">
+                <mxCell id="B_TtSPAPYYqASVfr78Y7-8" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" parent="Jd6Wa6hQi47JgSjzW5ev-1" source="B_TtSPAPYYqASVfr78Y7-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1030" y="320" as="targetPoint"/>
                         <Array as="points">
@@ -431,18 +431,18 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="B_TtSPAPYYqASVfr78Y7-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;FilterSearchUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- areaEdit: EditText&lt;br&gt;&lt;span&gt;&amp;nbsp;- timeEdit: EditText&lt;br&gt;&lt;/span&gt;&amp;nbsp;- difficultyRadioGroup: RadioGroup&lt;br&gt;&amp;nbsp;- disabledFriendlySwitch: Switch&lt;br&gt;&amp;nbsp;- saveChangesButton: Button&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickSaveChanges(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="Jd6Wa6hQi47JgSjzW5ev-1">
+                <mxCell id="B_TtSPAPYYqASVfr78Y7-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;FilterSearchUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- areaEdit: EditText&lt;br&gt;&lt;span&gt;&amp;nbsp;- timeEdit: EditText&lt;br&gt;&lt;/span&gt;&amp;nbsp;- difficultyRadioGroup: RadioGroup&lt;br&gt;&amp;nbsp;- disabledFriendlySwitch: Switch&lt;br&gt;&amp;nbsp;- saveChangesButton: Button&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickSaveChanges(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="Jd6Wa6hQi47JgSjzW5ev-1" vertex="1">
                     <mxGeometry x="1160" y="40" width="280" height="160" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="rTR8zrII_A-Rg28mQGWu" name="Interazione con un post">
-        <mxGraphModel dx="1742" dy="464" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2428" dy="812" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="zzbllTO3JNg3WmbpsbBa-0"/>
                 <mxCell id="zzbllTO3JNg3WmbpsbBa-1" parent="zzbllTO3JNg3WmbpsbBa-0"/>
-                <mxCell id="uYa2Bi4td2kp9TcsWlpL-1" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=1.016;entryY=0.326;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="zzbllTO3JNg3WmbpsbBa-1" target="IL2DD8LcGssk7BMgA7Gi-1">
+                <mxCell id="uYa2Bi4td2kp9TcsWlpL-1" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=1.016;entryY=0.326;entryDx=0;entryDy=0;entryPerimeter=0;" parent="zzbllTO3JNg3WmbpsbBa-1" target="IL2DD8LcGssk7BMgA7Gi-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1043" y="200" as="sourcePoint"/>
                         <Array as="points">
@@ -451,14 +451,14 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="uYa2Bi4td2kp9TcsWlpL-2" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=0.01;exitY=0.943;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="zzbllTO3JNg3WmbpsbBa-1" source="YkETGB57o0P96eCVfLjZ-0" target="IL2DD8LcGssk7BMgA7Gi-2">
+                <mxCell id="uYa2Bi4td2kp9TcsWlpL-2" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=0.01;exitY=0.943;exitDx=0;exitDy=0;exitPerimeter=0;" parent="zzbllTO3JNg3WmbpsbBa-1" source="YkETGB57o0P96eCVfLjZ-0" target="IL2DD8LcGssk7BMgA7Gi-2" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="740" y="280"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="uYa2Bi4td2kp9TcsWlpL-4" style="edgeStyle=none;html=1;entryX=0.819;entryY=0.019;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;exitX=0.001;exitY=0.713;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="zzbllTO3JNg3WmbpsbBa-1" source="YkETGB57o0P96eCVfLjZ-0" target="IL2DD8LcGssk7BMgA7Gi-0">
+                <mxCell id="uYa2Bi4td2kp9TcsWlpL-4" style="edgeStyle=none;html=1;entryX=0.819;entryY=0.019;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;exitX=0.001;exitY=0.713;exitDx=0;exitDy=0;exitPerimeter=0;" parent="zzbllTO3JNg3WmbpsbBa-1" source="YkETGB57o0P96eCVfLjZ-0" target="IL2DD8LcGssk7BMgA7Gi-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="520" y="241"/>
@@ -468,7 +468,7 @@
                 <mxCell id="YkETGB57o0P96eCVfLjZ-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;PostUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- authorTextView: TextView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- itineraryTextView: TextView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- descriptionTextView: TextView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- contactAuthorButton: Button&lt;br&gt;- reportButton: Button&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickViewItinerary(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickContactAuthor(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickReport(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="zzbllTO3JNg3WmbpsbBa-1" vertex="1">
                     <mxGeometry x="840" y="120" width="200" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="8YrmZBh8rFz55BEFdJkW-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;PostImage&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- photoImageView: ImageView&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="zzbllTO3JNg3WmbpsbBa-1" vertex="1">
+                <mxCell id="8YrmZBh8rFz55BEFdJkW-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;PostImageItem&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- photoImageView: ImageView&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="zzbllTO3JNg3WmbpsbBa-1" vertex="1">
                     <mxGeometry x="560" y="120" width="200" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="YH1cIOufvQFCXJl97Gqa-0" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=0.997;exitY=0.449;exitDx=0;exitDy=0;entryX=0.002;entryY=0.237;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" parent="zzbllTO3JNg3WmbpsbBa-1" source="8YrmZBh8rFz55BEFdJkW-0" target="YkETGB57o0P96eCVfLjZ-0" edge="1">
@@ -504,14 +504,14 @@
                         <mxPoint x="560" y="159" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="uYa2Bi4td2kp9TcsWlpL-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.554;entryY=-0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="zzbllTO3JNg3WmbpsbBa-1" source="IL2DD8LcGssk7BMgA7Gi-4" target="IL2DD8LcGssk7BMgA7Gi-3">
+                <mxCell id="uYa2Bi4td2kp9TcsWlpL-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.554;entryY=-0.017;entryDx=0;entryDy=0;entryPerimeter=0;" parent="zzbllTO3JNg3WmbpsbBa-1" source="IL2DD8LcGssk7BMgA7Gi-4" target="IL2DD8LcGssk7BMgA7Gi-3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="160" y="200"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="uYa2Bi4td2kp9TcsWlpL-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.287;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.655;exitY=1.002;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="zzbllTO3JNg3WmbpsbBa-1" source="IL2DD8LcGssk7BMgA7Gi-4" target="IL2DD8LcGssk7BMgA7Gi-0">
+                <mxCell id="uYa2Bi4td2kp9TcsWlpL-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.287;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.655;exitY=1.002;exitDx=0;exitDy=0;exitPerimeter=0;" parent="zzbllTO3JNg3WmbpsbBa-1" source="IL2DD8LcGssk7BMgA7Gi-4" target="IL2DD8LcGssk7BMgA7Gi-0" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="403" y="284" as="sourcePoint"/>
                         <mxPoint x="395" y="360" as="targetPoint"/>
@@ -539,33 +539,429 @@
                 <mxCell id="shdT05DfpK_LIFb-KfH7-4" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: String&lt;br&gt;- email: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- password: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+&amp;nbsp;checkLogin(username: String, password: String): boolean&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ signUp(username: String, email: String, password: String): boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ contactAuthor(author: User): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" parent="zzbllTO3JNg3WmbpsbBa-1" vertex="1">
                     <mxGeometry x="270" y="560" width="398.5" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="VZITH8XEVS48LCP6ibsf-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=1.001;exitY=0.42;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="zzbllTO3JNg3WmbpsbBa-1" source="VZITH8XEVS48LCP6ibsf-0" target="shdT05DfpK_LIFb-KfH7-4">
+                <mxCell id="VZITH8XEVS48LCP6ibsf-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=1.001;exitY=0.42;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="zzbllTO3JNg3WmbpsbBa-1" source="VZITH8XEVS48LCP6ibsf-0" target="shdT05DfpK_LIFb-KfH7-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="268" y="639" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="VZITH8XEVS48LCP6ibsf-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Post&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: User&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- photos: List &amp;lt;ImageView&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- place: Itinerary&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrievePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deletePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ reportPost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="zzbllTO3JNg3WmbpsbBa-1">
+                <mxCell id="VZITH8XEVS48LCP6ibsf-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Post&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: User&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- photos: List &amp;lt;ImageView&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- place: Itinerary&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrievePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deletePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ reportPost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" parent="zzbllTO3JNg3WmbpsbBa-1" vertex="1">
                     <mxGeometry x="-50" y="560" width="238.5" height="190" as="geometry"/>
                 </mxCell>
-                <mxCell id="VZITH8XEVS48LCP6ibsf-6" value="*" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="zzbllTO3JNg3WmbpsbBa-1">
+                <mxCell id="VZITH8XEVS48LCP6ibsf-6" value="*" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" parent="zzbllTO3JNg3WmbpsbBa-1" connectable="0" vertex="1">
                     <mxGeometry x="508.5" y="640" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
-    <diagram id="ybgvJPNdNLpvudq82tLR" name="Visualizza dettagli post">
-        <mxGraphModel dx="1601" dy="812" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <diagram id="VrjMPzXylmtGTaQqlqJK" name="Gestione profilo">
+        <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" page="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
-                <mxCell id="2vr8rXG8RB0E_o903cnM-0"/>
-                <mxCell id="2vr8rXG8RB0E_o903cnM-1" parent="2vr8rXG8RB0E_o903cnM-0"/>
-                <mxCell id="yjVOhLR75HCVOgqZFt21-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SchermataHome&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- postRecycle: RecyclerView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- newPostButton: FloatingActionButton&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickPost(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickPostOptions(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickSendPM(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickReportPost(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickItineraryName(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickNewPost(): void&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="2vr8rXG8RB0E_o903cnM-1" vertex="1">
-                    <mxGeometry x="160" y="30" width="220" height="175" as="geometry"/>
+                <mxCell id="hkIVsdKKsdIbwRgoKfNS-0"/>
+                <mxCell id="hkIVsdKKsdIbwRgoKfNS-1" parent="hkIVsdKKsdIbwRgoKfNS-0"/>
+                <mxCell id="0lyd4q3WzM4mWWNKBQKN-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="SYLbYqoh0Sk6y_Exie8g-0" target="_bXHbitS9XYUOa1UWmsO-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                    </mxGeometry>
                 </mxCell>
-                <mxCell id="rofBta4tKJHgqpnJ0HM_-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;SchermataPost&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- imageRecycle: RecyclerView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- postBody: TextView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- reportButton: Button&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;+ onClickSendPM(): void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickReportPost(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ onClickItineraryName(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="2vr8rXG8RB0E_o903cnM-1" vertex="1">
-                    <mxGeometry x="440" y="42.5" width="220" height="150" as="geometry"/>
+                <mxCell id="0lyd4q3WzM4mWWNKBQKN-1" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="SYLbYqoh0Sk6y_Exie8g-0" target="_bXHbitS9XYUOa1UWmsO-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="69" y="-127"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
-                <mxCell id="bTIX7zle8u1YZqcs8sOI-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;VisualizzaPostController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ openSchermataPost()&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="2vr8rXG8RB0E_o903cnM-1" vertex="1">
-                    <mxGeometry x="230" y="260" width="390" height="90" as="geometry"/>
+                <mxCell id="qWDY-yeRqj6HBc7Y8Az1-6" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="SYLbYqoh0Sk6y_Exie8g-0" target="_bXHbitS9XYUOa1UWmsO-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="760" y="-127"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yukBMD5Wi2X3Ua52KHz1-2" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.378;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="SYLbYqoh0Sk6y_Exie8g-0" target="yukBMD5Wi2X3Ua52KHz1-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="yukBMD5Wi2X3Ua52KHz1-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.368;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" target="lZtr0hWiZAL2wx1nG9ia-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="320" y="-40" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="100" y="-40"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yukBMD5Wi2X3Ua52KHz1-4" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.346;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" target="yukBMD5Wi2X3Ua52KHz1-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="520" y="-40" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="760" y="-40"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-1" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="SYLbYqoh0Sk6y_Exie8g-0" target="2D2-K1ZCMF_BPhYq0w93-0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="SYLbYqoh0Sk6y_Exie8g-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ProfileUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- profilePhoto: ImageView&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- changePhotoButton: Button&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- settingsButton: Button&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- sendPMButton: Button&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- tab: TabLayout&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickChangePhoto(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickSettings(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickSendPM(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" parent="hkIVsdKKsdIbwRgoKfNS-1" vertex="1">
+                    <mxGeometry x="320" y="-170" width="200" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="lZtr0hWiZAL2wx1nG9ia-1" style="edgeStyle=none;html=1;endArrow=none;endFill=0;startArrow=none;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="RTKsVH9P2pcN3gzLizcy-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="760" y="-590" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="_bXHbitS9XYUOa1UWmsO-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ItinerariesTab&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- newItineraryButton: FloatingActionButton&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickNewItinerary(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="630" y="-440" width="260" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="_bXHbitS9XYUOa1UWmsO-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;PostsTab&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- newPostButton: FloatingActionButton&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickNewPost(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="310" y="-440" width="220" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="_bXHbitS9XYUOa1UWmsO-2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;CompilationTab&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- newCollectionButton: FloatingActionButton&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickNewCollection(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-51.5" y="-440" width="240" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="g8dMYuhmcxQ7yekKyJqA-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;PostImageItem&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- photoImageView: ImageView&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="320" y="-655" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="_bXHbitS9XYUOa1UWmsO-3" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;CompilationCard&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- authorPhoto: ImageView&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- titleTextView: TextView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- descriptionTextView: TextView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- previewPhoto: ImageView&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-51.5" y="-700" width="240" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="YHcmOBUvdW9TpACX0pRc-0" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="g8dMYuhmcxQ7yekKyJqA-0" target="_bXHbitS9XYUOa1UWmsO-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="220" y="-397" as="sourcePoint"/>
+                        <mxPoint x="290" y="-400" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="YHcmOBUvdW9TpACX0pRc-1" value="*" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="YHcmOBUvdW9TpACX0pRc-0">
+                    <mxGeometry x="-1" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YHcmOBUvdW9TpACX0pRc-2" value="1" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="YHcmOBUvdW9TpACX0pRc-0">
+                    <mxGeometry x="0.9" relative="1" as="geometry">
+                        <mxPoint x="10" y="-14" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="qWDY-yeRqj6HBc7Y8Az1-1" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="_bXHbitS9XYUOa1UWmsO-2" target="_bXHbitS9XYUOa1UWmsO-3">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="78.5" y="-160" as="sourcePoint"/>
+                        <mxPoint x="328.5" y="-160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="qWDY-yeRqj6HBc7Y8Az1-2" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="qWDY-yeRqj6HBc7Y8Az1-1">
+                    <mxGeometry x="-1" relative="1" as="geometry">
+                        <mxPoint y="-20" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="qWDY-yeRqj6HBc7Y8Az1-3" value="" style="resizable=0;html=1;align=left;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="qWDY-yeRqj6HBc7Y8Az1-1">
+                    <mxGeometry x="-1" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="qWDY-yeRqj6HBc7Y8Az1-4" value="0..*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="qWDY-yeRqj6HBc7Y8Az1-1">
+                    <mxGeometry x="0.9" relative="1" as="geometry">
+                        <mxPoint x="20" y="-6" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="qWDY-yeRqj6HBc7Y8Az1-5" value="" style="resizable=0;html=1;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="qWDY-yeRqj6HBc7Y8Az1-1">
+                    <mxGeometry x="0.9" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c04zflbBbfgStH_EupUq-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.781;entryY=0.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="lZtr0hWiZAL2wx1nG9ia-0" target="9hTtpic63DjPWRyDN4Gu-6">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                        <mxPoint x="130" y="310" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lZtr0hWiZAL2wx1nG9ia-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ViewPostsControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ retrievePosts(user: User): List&amp;lt;Post&amp;gt;&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="20" y="80" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="RTKsVH9P2pcN3gzLizcy-2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ItineraryImageItem&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&amp;nbsp;- itineraryImageView: ImageView&lt;br&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="660" y="-655" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="RTKsVH9P2pcN3gzLizcy-12" value="" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="_bXHbitS9XYUOa1UWmsO-0" target="RTKsVH9P2pcN3gzLizcy-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="760" y="-590" as="targetPoint"/>
+                        <mxPoint x="760" y="-440" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RTKsVH9P2pcN3gzLizcy-13" value="0..*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="780" y="-565.0041176470588" as="geometry"/>
+                </mxCell>
+                <mxCell id="RTKsVH9P2pcN3gzLizcy-14" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="760" y="-460" as="geometry"/>
+                </mxCell>
+                <mxCell id="c04zflbBbfgStH_EupUq-2" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="yukBMD5Wi2X3Ua52KHz1-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="260"/>
+                        </Array>
+                        <mxPoint x="800" y="314" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yukBMD5Wi2X3Ua52KHz1-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ViewItinerariesControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ retrieveItineraries(user: User): List&amp;lt;Itinerary&amp;gt;&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="670" y="80" width="260" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="c04zflbBbfgStH_EupUq-1" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=0.536;exitY=1.022;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="yukBMD5Wi2X3Ua52KHz1-1" target="Y50bjU6dc0bckXtvpoDd-0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="yukBMD5Wi2X3Ua52KHz1-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ViewCompilationControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ retrieveCompilations(user: User): List&amp;lt;Compilation&amp;gt;&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="311.25" y="80" width="290" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="xn0XDHjMmM-j0uKWjwok-0" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="9hTtpic63DjPWRyDN4Gu-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="190" y="630" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="270" y="415"/>
+                            <mxPoint x="270" y="630"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Itinerary&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- time: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- difficulty: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- disabledFriendly: boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- stopsList: List&amp;lt;Location&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ addItinerary(itinerary: Itinerary): void&lt;br&gt;&amp;nbsp;+ deleteItinerary (itinerary: Itinerary): void&lt;br&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrieveItineraries(user: User): List&amp;lt;Itinerary&amp;gt;&lt;/p&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="730" y="315" width="530" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-1" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="9hTtpic63DjPWRyDN4Gu-4" target="Y50bjU6dc0bckXtvpoDd-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="647" y="390" as="sourcePoint"/>
+                        <mxPoint x="250" y="800" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-2" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="9hTtpic63DjPWRyDN4Gu-1">
+                    <mxGeometry x="-1" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-3" value="*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="9hTtpic63DjPWRyDN4Gu-1">
+                    <mxGeometry x="0.9" relative="1" as="geometry">
+                        <mxPoint x="6" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-4" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: String&lt;br&gt;- email: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- password: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+&amp;nbsp;checkLogin(username: String, password: String): boolean&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ signUp(username: String, email: String, password: String): boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ contactAuthor(author: User): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;+ modifyPhoto(User: user): User&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deletePhoto(User: user): User&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-200" y="600" width="398.5" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-5" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.637;entryY=-0.005;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" source="9hTtpic63DjPWRyDN4Gu-6" target="9hTtpic63DjPWRyDN4Gu-4" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="53" y="599" as="targetPoint"/>
+                        <mxPoint x="189" y="390" as="sourcePoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-6" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Post&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: User&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- photos: List &amp;lt;ImageView&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- place: Itinerary&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrievePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deletePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ reportPost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrievePosts(user: User): List&amp;lt;Post&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-80" y="315" width="268.5" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="9hTtpic63DjPWRyDN4Gu-7" value="0..*" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="60" y="510" as="geometry"/>
+                </mxCell>
+                <mxCell id="Y50bjU6dc0bckXtvpoDd-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Compilation&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- title: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- photo: ImageView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrieveCompilations(user: User): List&amp;lt;Compilation&amp;gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deleteCompilation(compilation: Compilation): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="320" y="615" width="300" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="6a8rxGx1Jg2vSL2se9mZ-1" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="Y50bjU6dc0bckXtvpoDd-0" target="9hTtpic63DjPWRyDN4Gu-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="665.4999999999995" y="400" as="sourcePoint"/>
+                        <mxPoint x="747" y="400" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6a8rxGx1Jg2vSL2se9mZ-2" value="0..*" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="6a8rxGx1Jg2vSL2se9mZ-1">
+                    <mxGeometry x="-1" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6a8rxGx1Jg2vSL2se9mZ-3" value="0..*" style="resizable=0;html=1;align=right;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="6a8rxGx1Jg2vSL2se9mZ-1">
+                    <mxGeometry x="0.9" relative="1" as="geometry">
+                        <mxPoint x="-4" y="-29" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ChangePhotoBottomSheet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- modifyButton(): Button&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- removeButton(): Button&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickModify(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickDelete(): void&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-140" y="-143.75" width="190" height="117.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-4" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.571;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="2D2-K1ZCMF_BPhYq0w93-2" target="9hTtpic63DjPWRyDN4Gu-4">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="292" y="312" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-320" y="140"/>
+                            <mxPoint x="-320" y="580"/>
+                            <mxPoint x="-320" y="720"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ChangePhotoControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ modifyPhoto(User: user): User&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deletePhoto(User: user): User&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-270" y="80" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-5" value="1" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="60" y="580" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fc4Dbox6GDuW9q6zyOdZ-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=1;exitY=0.405;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="Fc4Dbox6GDuW9q6zyOdZ-1" target="_bXHbitS9XYUOa1UWmsO-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-51" y="-397" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="Fc4Dbox6GDuW9q6zyOdZ-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DeleteCompilationBottomSheet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- deleteCompilationButton: Button&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickDeleteCompilation(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-370" y="-440" width="230" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fc4Dbox6GDuW9q6zyOdZ-4" style="edgeStyle=none;html=1;entryX=1;entryY=0.311;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="Fc4Dbox6GDuW9q6zyOdZ-2" target="_bXHbitS9XYUOa1UWmsO-0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-12" style="edgeStyle=none;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="Fc4Dbox6GDuW9q6zyOdZ-2" target="2D2-K1ZCMF_BPhYq0w93-8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fc4Dbox6GDuW9q6zyOdZ-2" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DeleteItineraryBottomSheet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- deleteItineraryButton: Button&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickDeleteItinerary(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="950" y="-440" width="230" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-11" style="edgeStyle=none;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="2D2-K1ZCMF_BPhYq0w93-8" target="9hTtpic63DjPWRyDN4Gu-0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-8" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DeleteItineraryControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ deleteItinerary (itinerary: Itinerary): void&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="1010" y="80" width="230" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="zzocXj8CoJTaFhCsXbYc-0" style="edgeStyle=none;html=1;entryX=0.318;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;entryPerimeter=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" target="2D2-K1ZCMF_BPhYq0w93-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-200" y="-80"/>
+                        </Array>
+                        <mxPoint x="-140" y="-80" as="sourcePoint"/>
+                        <mxPoint x="-195" y="-39.75" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-14" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="hkIVsdKKsdIbwRgoKfNS-1" source="2D2-K1ZCMF_BPhYq0w93-13" target="Y50bjU6dc0bckXtvpoDd-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-510" y="880"/>
+                            <mxPoint x="470" y="880"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2D2-K1ZCMF_BPhYq0w93-13" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DeleteCompilationControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ deleteCompilation(compilation: Compilation): void&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="hkIVsdKKsdIbwRgoKfNS-1">
+                    <mxGeometry x="-650" y="80" width="280" height="120" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="9-guZwZMAmDQac818m9V" name="Aggiungi post + compilation">
+        <mxGraphModel dx="2711" dy="955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="5ysv_Hn7KlhjHzZxIB-0-0"/>
+                <mxCell id="5ysv_Hn7KlhjHzZxIB-0-1" parent="5ysv_Hn7KlhjHzZxIB-0-0"/>
+                <mxCell id="GGcYgPpMFmH6-cD8v8Qu-4" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.397;exitY=0.996;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.001;entryY=0.335;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="aBqSp2tgNrqCk2pnXBJ8-0" target="-t-HEBdvVzJKSTu7RVG3-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="280" y="400"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="aBqSp2tgNrqCk2pnXBJ8-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;NewPostPhotosUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- nextButton: Button&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickNext(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="200" y="120" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="GGcYgPpMFmH6-cD8v8Qu-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.858;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.401;exitY=1.006;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="aBqSp2tgNrqCk2pnXBJ8-1" target="-t-HEBdvVzJKSTu7RVG3-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="560" y="281" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="aBqSp2tgNrqCk2pnXBJ8-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;NewPostInfoUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- itineraryEdit: EditText&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- descriptionEdit: EditText&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- confirmPostButton: Button&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;span&gt;- onClickConfirmPost(): void&lt;/span&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="480" y="120" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-3" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.001;entryY=0.207;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="-t-HEBdvVzJKSTu7RVG3-0" target="St8rvClLQ-kzPRH4T7Qz-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="650" y="420"/>
+                            <mxPoint x="650" y="600"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="-t-HEBdvVzJKSTu7RVG3-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;NewPostControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ addPost(post: Post): void&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="320" y="360" width="280" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-4" style="edgeStyle=none;html=1;endArrow=none;endFill=0;exitX=0.424;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="jrSeXYTTi0kbBJuX4pH--0" target="LTh0CWudmJGDYxR_EbhY-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="800" y="650"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="jrSeXYTTi0kbBJuX4pH--0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;NewCompilationControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ addCompilation(compilation: Compilation): void&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="680" y="360" width="280" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="GGcYgPpMFmH6-cD8v8Qu-5" style="edgeStyle=none;html=1;entryX=0.646;entryY=0.018;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="jrSeXYTTi0kbBJuX4pH--1" target="jrSeXYTTi0kbBJuX4pH--0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="jrSeXYTTi0kbBJuX4pH--1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;NewCompilationUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- titleEdit: EditText&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- descriptionEdit: EditText&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- addPhotoButon: Button&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- confirmItineraryButton: Button&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickNext(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickConfirmPost(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="760" y="120" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="3DotSWvoe6-E4CoyvJX_-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;NewCompilationBottomSheet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- editPhotoButton: Button&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickEditPhoto(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="1061" y="120" width="180" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="GGcYgPpMFmH6-cD8v8Qu-0" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.328;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="jrSeXYTTi0kbBJuX4pH--1" target="3DotSWvoe6-E4CoyvJX_-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="970" y="172.26" as="sourcePoint"/>
+                        <mxPoint x="1050" y="172.26" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="GGcYgPpMFmH6-cD8v8Qu-1" value="" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="GGcYgPpMFmH6-cD8v8Qu-0">
+                    <mxGeometry x="-1" relative="1" as="geometry">
+                        <mxPoint y="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-1" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.924;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.392;exitY=1.015;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="gVuSqZzzzk58h2msrZ4u-0" target="tjVhvNievz2jWxJk5GB3-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-80" y="557" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-2" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=-0.002;entryY=0.433;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" target="LTh0CWudmJGDYxR_EbhY-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="120" y="640"/>
+                        </Array>
+                        <mxPoint x="120" y="480" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="gVuSqZzzzk58h2msrZ4u-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;control&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DeleteItineraryFromCompilationControl&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&lt;span&gt;&amp;nbsp;+ deleteItineraryFromCompilation(compilation: Compilation, itinerary: Itinerary): void&lt;br&gt;&lt;/span&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#B48EAD;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="-220" y="360" width="460" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="FUaacL1vKUrV1jubpusP-1" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="gVuSqZzzzk58h2msrZ4u-1" target="gVuSqZzzzk58h2msrZ4u-0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gVuSqZzzzk58h2msrZ4u-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;CompilationItemsUI&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- deleteCompilationButton: Button&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ onClickDeleteCompilation(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="-100" y="120" width="220" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="FUaacL1vKUrV1jubpusP-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;boundary&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;CompilationCard&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- previewPhoto: ImageView&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- titleTextView: TextView&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- deleteItineraryFromCompilationButton: Button&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;- onClickDeleteItineraryFromCompilation(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#A3BE8C;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="-450" y="120" width="260" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="kAmLVq_I0qdCfD89Y5iL-0" value="" style="verticalAlign=bottom;html=1;endArrow=none;edgeStyle=orthogonalEdgeStyle;exitX=1.004;exitY=0.371;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="FUaacL1vKUrV1jubpusP-0" target="gVuSqZzzzk58h2msrZ4u-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-190" y="70" as="sourcePoint"/>
+                        <mxPoint x="-89" y="70.01999999999998" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="kAmLVq_I0qdCfD89Y5iL-1" value="" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="kAmLVq_I0qdCfD89Y5iL-0">
+                    <mxGeometry x="-1" relative="1" as="geometry">
+                        <mxPoint y="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="EzsGQnnCGWHcNNOxyHjD-0" value="*" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="-110" y="172.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="EzsGQnnCGWHcNNOxyHjD-1" value="*" style="resizable=0;html=1;align=left;verticalAlign=top;labelBackgroundColor=none;fontSize=10" connectable="0" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="-190" y="172.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-6" style="edgeStyle=none;html=1;endArrow=none;endFill=0;entryX=0.004;entryY=0.6;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="tjVhvNievz2jWxJk5GB3-0" target="jHBiYhbUFeIh6DM42Izq-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-270" y="960"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="tjVhvNievz2jWxJk5GB3-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Itinerary&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- time: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- difficulty: int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- disabledFriendly: boolean&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- stopsList: List&amp;lt;Location&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;&amp;nbsp;+ addItinerary(itinerary: Itinerary): void&lt;br&gt;&amp;nbsp;+ deleteItinerary (itinerary: Itinerary): void&lt;br&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrieveItineraries(user: User): List&amp;lt;Itinerary&amp;gt;&lt;/p&gt;&amp;nbsp;+ searchItinerary(name: String, time: int, difficulty: int, disabledFriendly: boolean, area: String): void" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="-530" y="560" width="530" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-5" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="LTh0CWudmJGDYxR_EbhY-0" target="jHBiYhbUFeIh6DM42Izq-0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="LTh0CWudmJGDYxR_EbhY-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Compilation&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- title: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- photo: ImageView&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrieveCompilations(user: User): List&amp;lt;Compilation&amp;gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="330.75" y="560" width="300" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-7" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="5ysv_Hn7KlhjHzZxIB-0-1" source="St8rvClLQ-kzPRH4T7Qz-0" target="jHBiYhbUFeIh6DM42Izq-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1094" y="940"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="St8rvClLQ-kzPRH4T7Qz-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Post&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: User&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- photos: List &amp;lt;ImageView&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- description: String&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- place: Itinerary&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrievePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deletePost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ reportPost(post: Post): void&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ retrievePosts(user: User): List&amp;lt;Post&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="960" y="560" width="268.5" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="jHBiYhbUFeIh6DM42Izq-0" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;entity&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- username: String&lt;br&gt;- email: String&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- password: String&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+&amp;nbsp;checkLogin(username: String, password: String): boolean&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ signUp(username: String, email: String, password: String): boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ contactAuthor(author: User): void&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;+ modifyPhoto(User: user): User&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px&quot;&gt;+ deletePhoto(User: user): User&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;fillColor=#EBCB8B;" vertex="1" parent="5ysv_Hn7KlhjHzZxIB-0-1">
+                    <mxGeometry x="281.5" y="840" width="398.5" height="200" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

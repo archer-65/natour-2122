@@ -1,4 +1,4 @@
-æ\LoadClass[a4paper,12pt]{article} % Classe documento
+\LoadClass[a4paper,12pt]{article} % Classe documento
 
 %--------------------- Packages ------------------------
 
@@ -11,7 +11,9 @@
 \RequirePackage{graphicx} %Per inserire le immaginid
 \RequirePackage[justification=centering]{caption} %Per le legende centrate
 \RequirePackage{subcaption}
-%\RequirePackage{wallpaper}
+\RequirePackage[table, dvipsnames]{xcolor}
+%\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{wallpaper}
 \RequirePackage{nomencl}
 %\makenomenclature
 \RequirePackage{fancyhdr}

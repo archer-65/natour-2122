@@ -1,5 +1,7 @@
 \documentclass{natourDoc}
 \usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
 \title{Documentazione IngSW} %Titolo
 
 \begin{document}
@@ -64,5 +66,41 @@
 
 % Pour écrire des variables dans le texte, il suffit de mettre le symbole \$ entre le texte souhaité comme : constante $\rho$. 
 
+\section{Descrizione del Progetto}
+	NaTour21 è un sistema complesso e distribuito finalizzato ad offrire un moderno social network multipiattaforma per appassionati di escursioni.\\
+
+	Il sistema consiste in:
+	\begin{itemize}
+		\item un Back-End sicuro, performante e scalabile;
+		\item un client mobile attraverso cui gli
+		utenti possono fruire delle funzionalità del sistema in modo intuitivo, rapido e piacevole;
+		\item un client mobile attraverso cui gli amministratori possono gestire i contenuti inseriti in piattaforma.\\
+	\end{itemize}
+
+	NaTour21 ha lo scopo di creare una community sicura e affidabile dove condividere la propria passione per l'escursionismo.\\
+
+	In questo scenario, l'utente si configura come protagonista: oltre alla possibilità di inserire itinerari (dettagliati da informazioni), compilation e post personali sulla piattaforma,
+	è lasciato ampio spazio all'individualità personale.\\
+
+	Tutto ciò si concretizza con la possibilità di interagire con gli altri utenti, in modo da poter avere un contatto più diretto con
+	la realtà dell'escursionismo, e di lasciare valutazioni personali su qualunque itinerario si desideri.\\
+
+	Il sistema valuta essenziale la sicurezza degli utenti: questi potranno segnalare informazioni inesatte o contenuti inappropriati, al fine 
+	di rendere la permanenza nella community piacevole.
+
+\section{Documento dei Requisiti Software}
+	\subsection{Requisiti funzionali}
+	In questa sezione saranno esposti i requisiti funzionali dell'applicazione NaTour21, cioè le funzionalità richieste dai commissionanti.
+
+	\begin{center}
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
+		 \hline
+		 \rowcolor{gray!30}
+		 \textbf{Nome} & \textbf{Descrizione} \\
+		 \hline
+		  Registrazione & Il sistema deve consentire ad un utente di potersi registrare indicando e-mail e password, oppure utilizzando account di terze parti (Google o Facebook).\\ 
+		 \hline
+		\end{tabular}
+		\end{center}
 
 \end{document}

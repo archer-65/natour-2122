@@ -32,6 +32,9 @@
 \newcommand{\professors}[1]{\renewcommand{\professors}{#1}}
 \newcommand{\students}[1]{\renewcommand{\students}{#1}}
 
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+
 \newcommand{\marginscreate}{
 	\makenomenclature
 	\pagestyle{fancy}
@@ -39,9 +42,9 @@
 	\setlength{\headheight}{2cm}
 	\lhead{\includegraphics[scale=0.5]{logos/unina-extended.jpg}} %Logo vicino l'header di ogni pagina
 	\rhead{\nouppercase{\leftmark}}
-	\rfoot{\thepage}
-	\cfoot{\textbf{titolo}}
-	%\lfoot{\UE}
+	% \rfoot{\thepage}
+	% \cfoot{\textbf{\titolo}}
+	% \lfoot{Progettazione}
 }
 
 \newcommand{\cover}{

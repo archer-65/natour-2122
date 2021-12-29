@@ -2,6 +2,13 @@
 \usepackage{lipsum}
 \usepackage{tabularx}
 \usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{float} 
+
+%\newcolumntype{a}{>{\columncolor{PineGreen!70}}l}
+
+\def\arraystretch{1.5}
+
 \title{Documentazione IngSW} %Titolo
 
 \begin{document}
@@ -90,7 +97,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	
 	\section{Documento dei Requisiti Software}
 	\subsection{Requisiti funzionali}
-	In questa sezione saranno esposti i requisiti funzionali dell'applicazione NaTour21, cioè le funzionalità richieste dai commissionanti.
+	In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazione NaTour21, cioè le funzionalità richieste dai commissionanti.
 	
 	\begin{table}[H]
 		\centering
@@ -102,7 +109,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			Registrazione & Il sistema deve consentire ad un utente di potersi registrare indicando e-mail e password, oppure utilizzando account di terze parti (Google o Facebook).\\ 
 			\hline
 		\end{tabular}
-		\caption{RQF.1}
+		\caption{RF.1}
 		\label{table:1}
 	\end{table}
 	
@@ -116,7 +123,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			Accesso & Il sistema deve consentire ad un utente di poter effettuare l'accesso alla piattaforma.\\ 
 			\hline
 		\end{tabular}
-		\caption{RQF.2}
+		\caption{RF.2}
 		\label{table:2}
 	\end{table}
 	
@@ -131,7 +138,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			dettagli degli itinerari pubblicati e i post ad essi associati. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.3}
+		\caption{RF.3}
 		\label{table:3}
 	\end{table}
 
@@ -149,7 +156,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			tramite file in formato standard GPX.\\ 
 			\hline
 		\end{tabular}
-		\caption{RQF.4}
+		\caption{RF.4}
 		\label{table:4}
 	\end{table}
 	
@@ -164,7 +171,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			per area geografica, per livello di difficoltà, per durata, e per accessibilità a disabili.\\ 
 			\hline
 		\end{tabular}
-		\caption{RQF.5}
+		\caption{RF.5}
 		\label{table:5}
 	\end{table}
 	
@@ -181,7 +188,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			delle difficoltà/dei tempi indicati.\\ 
 			\hline
 		\end{tabular}
-		\caption{RQF.6}
+		\caption{RF.6}
 		\label{table:6}
 	\end{table}
 	
@@ -196,7 +203,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			nelle proprie compilation personalizzate. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.7}
+		\caption{RF.7}
 		\label{table:7}
 	\end{table}
 
@@ -211,7 +218,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			per un tracciato geografico (se presente). \\
 			\hline
 		\end{tabular}
-		\caption{RQF.8}
+		\caption{RF.8}
 		\label{table:8}
 	\end{table}
 
@@ -226,7 +233,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			le quali informazioni potrebbero non essere corrette e/o aggiornate. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.9}
+		\caption{RF.9}
 		\label{table:9}
 	\end{table}
 
@@ -237,11 +244,11 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Elimina itinerario & Il sistema deve consentire a un utente autenticato di eliminare itinerari di cui
+			Rimozione itinerario & Il sistema deve consentire a un utente autenticato di eliminare itinerari di cui
 			è l'autore. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.10}
+		\caption{RF.10}
 		\label{table:10}
 	\end{table}
 	
@@ -256,7 +263,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			i dettagli di un post. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.11}
+		\caption{RF.11}
 		\label{table:11}
 	\end{table}
 
@@ -271,7 +278,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			caratterizzato da foto (max 5), una descrizione (opzionale) e un itinerario associato. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.12}
+		\caption{RF.12}
 		\label{table:12}
 	\end{table}
 	
@@ -287,7 +294,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			inappropriate. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.13}
+		\caption{RF.13}
 		\label{table:13}
 	\end{table}
 
@@ -298,11 +305,11 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Elimina post & Il sistema deve consentire a un utente autenticato di eliminare post di cui
-			è l'autore \\
+			Rimozione post & Il sistema deve consentire a un utente autenticato di eliminare post di cui
+			è l'autore. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.14}
+		\caption{RF.14}
 		\label{table:14}
 	\end{table}
 
@@ -317,7 +324,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			egli potrà visitare i contenuti inseriti e modificarli. Inoltre potrà cambiare la foto profilo. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.15}
+		\caption{RF.15}
 		\label{table:15}
 	\end{table}
 	
@@ -333,7 +340,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			delle proprie compilation.  \\
 			\hline
 		\end{tabular}
-		\caption{RQF.16}
+		\caption{RF.16}
 		\label{table:16}
 	\end{table}
 
@@ -348,7 +355,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			caratterizzate da un titolo e da una descrizione. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.17}
+		\caption{RF.17}
 		\label{table:17}
 	\end{table}
 
@@ -363,7 +370,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			compilation personalizzate \\
 			\hline
 		\end{tabular}
-		\caption{RQF.18}
+		\caption{RF.18}
 		\label{table:18}
 	\end{table}
 	
@@ -378,7 +385,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			che compongono le proprie compilation personalizzate \\
 			\hline
 		\end{tabular}
-		\caption{RQF.19}
+		\caption{RF.19}
 		\label{table:19}
 	\end{table}
 
@@ -390,11 +397,126 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
 			Conversazioni private & Il sistema deve permettere all'utente autenticato lo scambio di informazioni con altri utenti.
-			È possibile avviare la conversazione a partire dai contenuti pubblicati. \\
+			È possibile avviare la conversazione a partire dai contenuti pubblicati. Inoltre è possibile ricercare un destinatario. \\
 			\hline
 		\end{tabular}
-		\caption{RQF.20}
+		\caption{RF20}
 		\label{table:20}
+	\end{table}
+
+	\newpage
+
+	\subsection{Requisiti non Funzionali}
+	Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applicazione, ovvero tutti i vincoli sui servizi offerti dal sistema.
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Back-End scalabile & Il sistema deve essere scalabile e performante rispetto ai cambiamenti del Back-End,
+			in modo da garantire un'agile manutenibilità nel tempo. \\
+			\hline
+		\end{tabular}
+		\caption{RNF1}
+		\label{table:21}
+	\end{table}
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Sicurezza password & Il sistema non consente di inserire password che non contengano 
+			almeno 6 caratteri, di cui un carattere maiuscolo e un numero.\\
+			\hline
+		\end{tabular}
+		\caption{RNF2}
+		\label{table:22}
+	\end{table}
+
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Singola valutazione per itinerario & Il sistema non consente di inserire più di una valutazione
+			per itinerario. \\
+			\hline
+		\end{tabular}
+		\caption{RNF3}
+		\label{table:23}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Segnalazione unica per un post & Il sistema non consente di inviare più di una segnalazione per un post. \\
+			\hline
+		\end{tabular}
+		\caption{RNF4}
+		\label{table:24}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Numero massimo di foto & Il sistema non consente di inserire più di 5 foto per itinerario o post. \\
+			\hline
+		\end{tabular}
+		\caption{RNF5}
+		\label{table:25}
+	\end{table}
+
+	\newpage
+
+	\subsection{Requisiti di Dominio}
+	Infine, questa sezione conterrà i requisiti \textit{di dominio} dell'applicazione, ovvero tutti i vincoli generali a cui l'applicativo
+	deve attenersi. \\
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			ISO/IEC 27018:2019 & Il sistema deve essere conforme allo standard ISO/IEC 27018:2019, 
+			incentrato sulla protezione dei dati personali nel cloud. \\
+			\hline
+		\end{tabular}
+		\caption{RD1}
+		\label{table:26}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			GDPR & Il sistema deve essere conforme al GDPR (Regolamento Generale sulla Protezione dei Dati), 
+			incentrato sul trattamento dei dati personali e sulla privacy dell’utente.  \\
+			\hline
+		\end{tabular}
+		\caption{RD2}
+		\label{table:27}
 	\end{table}
 
 \end{document}	

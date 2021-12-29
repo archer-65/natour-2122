@@ -95,3 +95,39 @@
 	\label{fig: #4}
 	\end{figure}
 }
+
+%%% Cockburn Template %%%
+	% \centering
+	% \begin{tabularx}{\linewidth}{|l|X|X|X|}
+		
+	% 	\hline 
+	% 	\rowcolor{PineGreen!70}
+	% 	Use Case \#N & \multicolumn{3} {l|}{Name} \\ \hline Goal in
+	% 	Context & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
+	% 	  This is a very long line. Lorem ipsum dolor sit amet, consectetur
+	% 	  adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+	% 	  dolore magna aliqua.  } \\
+	%    \hline Preconditions &
+	% 	\multicolumn{3}{l|}{} \\
+	%    \hline Success End Conditions &
+	% 	\multicolumn{3}{l|}{} \\
+	%    \hline Failed End Conditions &
+	% 	\multicolumn{3}{l|}{} \\
+	%    \hline Primary Actor &
+	% 	\multicolumn{3}{l|}{} \\
+	%    \hline Trigger & \multicolumn{3}{l|}{} \\
+	  
+	% 	\hline \multirow{2}{*}{Description} & Step & User Action & System \\
+	  
+	% 	\cline{2-4} & & & \\
+	%    \hline \multirow{2}{*}{Extensions} & Step &
+	% 	User Action & System \\
+	%    \cline{2-4} & & & \\
+	%    \hline
+	% 	\multirow{2}{*}{Subvariations} & Step & User Action & System \\
+	  
+	% 	\cline{2-4} & & & \\
+	%    \hline Notes & \multicolumn{3}{l|}{} \\
+	%    \hline
+	  
+	%   \end{tabularx}

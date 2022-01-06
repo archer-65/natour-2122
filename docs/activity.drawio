@@ -1184,7 +1184,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="5RV4ifVO0iKVDFfkzTlO" name="Interazione con un itinerario">
-        <mxGraphModel dx="3209" dy="922" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2508" dy="651" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="FMA_D36bvQWmhanH8rQe-0"/>
                 <mxCell id="FMA_D36bvQWmhanH8rQe-1" parent="FMA_D36bvQWmhanH8rQe-0"/>
@@ -1375,7 +1375,7 @@
                 <mxCell id="lOsy_8owEbQRagDqq3DD-0" value="Preme sull'icona di segnalazione" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
                     <mxGeometry x="760" y="520" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="lOsy_8owEbQRagDqq3DD-1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="lOsy_8owEbQRagDqq3DD-0" parent="FMA_D36bvQWmhanH8rQe-1" target="lOsy_8owEbQRagDqq3DD-3">
+                <mxCell id="lOsy_8owEbQRagDqq3DD-1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="lOsy_8owEbQRagDqq3DD-0" parent="FMA_D36bvQWmhanH8rQe-1" target="lOsy_8owEbQRagDqq3DD-17">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="930" y="540" as="targetPoint"/>
                     </mxGeometry>
@@ -1405,10 +1405,37 @@
                 <mxCell id="oCmGEfN2BQdtiuWtU1hT-32" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
                     <mxGeometry x="-215" y="820" width="30" height="30" as="geometry"/>
                 </mxCell>
+                <mxCell id="lOsy_8owEbQRagDqq3DD-17" value="Riempe i campi &quot;Titolo&quot; e &quot;Descrizione&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
+                    <mxGeometry x="940" y="520" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="lOsy_8owEbQRagDqq3DD-18" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" source="lOsy_8owEbQRagDqq3DD-17" parent="FMA_D36bvQWmhanH8rQe-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1000" y="620" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lOsy_8owEbQRagDqq3DD-19" value="Preme il pulsante &quot;Fatto&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
+                    <mxGeometry x="940" y="620" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="lOsy_8owEbQRagDqq3DD-20" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" source="lOsy_8owEbQRagDqq3DD-19" parent="FMA_D36bvQWmhanH8rQe-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1000" y="720" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lOsy_8owEbQRagDqq3DD-21" value="Visualizza messaggio di avvenuta segnalazione" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
+                    <mxGeometry x="940" y="720" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="lOsy_8owEbQRagDqq3DD-22" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" source="lOsy_8owEbQRagDqq3DD-21" parent="FMA_D36bvQWmhanH8rQe-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1000" y="820" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="lOsy_8owEbQRagDqq3DD-23" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
+                    <mxGeometry x="985" y="820" width="30" height="30" as="geometry"/>
+                </mxCell>
                 <mxCell id="lOsy_8owEbQRagDqq3DD-3" value="Riempe i campi &quot;Titolo&quot; e &quot;Descrizione&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
                     <mxGeometry x="940" y="520" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="lOsy_8owEbQRagDqq3DD-4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" source="lOsy_8owEbQRagDqq3DD-3" parent="FMA_D36bvQWmhanH8rQe-1">
+                <mxCell id="lOsy_8owEbQRagDqq3DD-4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" parent="FMA_D36bvQWmhanH8rQe-1" source="lOsy_8owEbQRagDqq3DD-3">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1000" y="620" as="targetPoint"/>
                     </mxGeometry>
@@ -1416,7 +1443,7 @@
                 <mxCell id="lOsy_8owEbQRagDqq3DD-5" value="Preme il pulsante &quot;Fatto&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
                     <mxGeometry x="940" y="620" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="lOsy_8owEbQRagDqq3DD-6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" source="lOsy_8owEbQRagDqq3DD-5" parent="FMA_D36bvQWmhanH8rQe-1">
+                <mxCell id="lOsy_8owEbQRagDqq3DD-6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" parent="FMA_D36bvQWmhanH8rQe-1" source="lOsy_8owEbQRagDqq3DD-5">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1000" y="720" as="targetPoint"/>
                     </mxGeometry>
@@ -1424,7 +1451,7 @@
                 <mxCell id="lOsy_8owEbQRagDqq3DD-7" value="Visualizza messaggio di avvenuta segnalazione" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="FMA_D36bvQWmhanH8rQe-1">
                     <mxGeometry x="940" y="720" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="lOsy_8owEbQRagDqq3DD-8" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" source="lOsy_8owEbQRagDqq3DD-7" parent="FMA_D36bvQWmhanH8rQe-1">
+                <mxCell id="lOsy_8owEbQRagDqq3DD-8" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;" edge="1" parent="FMA_D36bvQWmhanH8rQe-1" source="lOsy_8owEbQRagDqq3DD-7">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1000" y="820" as="targetPoint"/>
                     </mxGeometry>

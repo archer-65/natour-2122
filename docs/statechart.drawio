@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" pages="2">
     <diagram id="SqWFwGlkPupEOphNOxqh" name="SegnalaItinerario">
-        <mxGraphModel dx="1654" dy="519" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1990" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -50,7 +50,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="YHVfvykiVUKUb5ghU3nG" name="CreaItinerario">
-        <mxGraphModel dx="1259" dy="264" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" page="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="PN0qWD7VaQw6Qfc42OEK-0"/>
                 <mxCell id="PN0qWD7VaQw6Qfc42OEK-1" parent="PN0qWD7VaQw6Qfc42OEK-0"/>
@@ -99,7 +99,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="RJv6F9HYFyBM5nJx5Jfc-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;align=right;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="dVftqXZDu1YxiCLwtgYp-4" target="AFWNUuEa0bjdK_go1RRJ-2">
+                <mxCell id="RJv6F9HYFyBM5nJx5Jfc-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;align=right;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="dVftqXZDu1YxiCLwtgYp-4" target="AFWNUuEa0bjdK_go1RRJ-2" edge="1">
                     <mxGeometry x="0.1111" y="35" relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="-60" y="955"/>

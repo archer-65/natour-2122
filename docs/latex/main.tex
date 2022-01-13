@@ -4,6 +4,8 @@
 \usepackage[table]{xcolor}
 \usepackage{multirow}
 \usepackage{float} 
+\usepackage{svg}
+\usepackage{amsmath}
 
 %\newcolumntype{a}{>{\columncolor{PineGreen!70}}l}
 
@@ -418,6 +420,34 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\label{table:20}
 	\end{table}
 
+	\subsection{Modellazione dei Casi d'Uso}
+	In questa sezione sarà riportato il diagramma Use Case per l'applicazione.\\
+	Per garantire una maggiore leggibilità e data la molteplicità di funzioni garantite
+	dal sistema, si è fatta la scelta di raggruppare le funzioni logicamente legate 
+	tra loro in packages.
+
+	\begin{figure}[htbp]
+		\centering
+		\includesvg{./diagrams/useCase.svg}
+	\end{figure}
+
+	\subsection{Tabelle di Cockburn dei casi d'uso}
+	Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dell'UCD.
+
+	%TODO
+
+	\subsubsection{Inserisce un itinerario}
+
+	%TODO
+
+	\subsubsection{Segnala un itinerario}
+
+	%TODO
+
+	\subsection{Mock-Up dell'applicazione}
+	Vengono ora mostrati i Mock-Up dei casi d'uso significativi dettagliati nella sottosezione precedente.\\
+	Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente.
+
 	\newpage
 
 	\subsection{Requisiti non Funzionali}
@@ -532,5 +562,10 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\caption{RD2}
 		\label{table:27}
 	\end{table}
+
+	\newpage
+
+
+
 
 \end{document}	

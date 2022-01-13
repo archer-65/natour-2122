@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" pages="5">
     <diagram id="hA16oOmxjcb0NqXpZcEl" name="UseCase">
-        <mxGraphModel dx="1429" dy="553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1088" dy="1775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -8,7 +8,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="yfQNlfp69jvisUfv3rvj-1" value="Utente non registrato" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFCCCC;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="130" y="75" width="30" height="60" as="geometry"/>
+                    <mxGeometry x="275" y="58" width="30" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-4" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;" parent="1" target="yfQNlfp69jvisUfv3rvj-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -19,29 +19,29 @@
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-7" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=1;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;fontColor=#191C1C;strokeColor=#6F7978;" parent="1" target="yfQNlfp69jvisUfv3rvj-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="160" y="600" as="sourcePoint"/>
+                        <mxPoint x="305" y="583" as="sourcePoint"/>
                         <Array as="points">
-                            <mxPoint x="260" y="600"/>
-                            <mxPoint x="260" y="450"/>
+                            <mxPoint x="405" y="583"/>
+                            <mxPoint x="405" y="433"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-30" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0;entryDx=0;entryDy=42;entryPerimeter=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;fontColor=#191C1C;strokeColor=#6F7978;" parent="1" source="yfQNlfp69jvisUfv3rvj-2" target="jX1HX_BmqKmZ0lMKoBQJ-6" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="260" y="600"/>
-                            <mxPoint x="260" y="522"/>
+                            <mxPoint x="405" y="583"/>
+                            <mxPoint x="405" y="505"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-31" style="edgeStyle=orthogonalEdgeStyle;html=1;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;exitX=0;exitY=0;exitDx=0;exitDy=42;exitPerimeter=0;fontColor=#191C1C;strokeColor=#6F7978;" parent="1" source="yfQNlfp69jvisUfv3rvj-8" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="360" y="600"/>
-                            <mxPoint x="240" y="600"/>
+                            <mxPoint x="505" y="583"/>
+                            <mxPoint x="385" y="583"/>
                         </Array>
-                        <mxPoint x="330" y="599.9200000000001" as="sourcePoint"/>
-                        <mxPoint x="350.02" y="600.09" as="targetPoint"/>
+                        <mxPoint x="475" y="582.9200000000001" as="sourcePoint"/>
+                        <mxPoint x="495.02" y="583.09" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-32" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0;entryDx=0;entryDy=42;entryPerimeter=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;fontColor=#191C1C;strokeColor=#6F7978;" parent="1" source="yfQNlfp69jvisUfv3rvj-2" target="ggv2WuR-s7nQbWTxuWOC-1" edge="1">
@@ -50,83 +50,83 @@
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-33" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0;entryDx=0;entryDy=42;entryPerimeter=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;fontColor=#191C1C;strokeColor=#6F7978;" parent="1" source="yfQNlfp69jvisUfv3rvj-2" target="YfjQJKxad_IzTe695nNx-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="260" y="600"/>
-                            <mxPoint x="260" y="762"/>
+                            <mxPoint x="405" y="583"/>
+                            <mxPoint x="405" y="745"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="yfQNlfp69jvisUfv3rvj-2" value="Utente registrato" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFCCCC;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="130" y="570" width="30" height="60" as="geometry"/>
+                    <mxGeometry x="275" y="553" width="30" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="yfQNlfp69jvisUfv3rvj-3" value="Effettua registrazione&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-size: 0px;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Utente%20non%20registrato%22%20style%3D%22shape%3DumlActor%3BverticalLabelPosition%3Dbottom%3BverticalAlign%3Dtop%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%2260%22%20y%3D%22260%22%20width%3D%2230%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#006A6A;fillColor=#CCE8E7;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="70" width="170" height="70" as="geometry"/>
+                    <mxGeometry x="505" y="53" width="170" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="yfQNlfp69jvisUfv3rvj-4" value="Effettua accesso" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="390" width="170" height="70" as="geometry"/>
+                    <mxGeometry x="505" y="373" width="170" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-14" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;fontColor=#191C1C;strokeColor=#6F7978;" parent="1" source="yfQNlfp69jvisUfv3rvj-5" target="yfQNlfp69jvisUfv3rvj-3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-15" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;fontColor=#191C1C;strokeColor=#6F7978;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="yfQNlfp69jvisUfv3rvj-5" target="yfQNlfp69jvisUfv3rvj-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="720" y="380" as="sourcePoint"/>
+                        <mxPoint x="865" y="363" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="yfQNlfp69jvisUfv3rvj-5" value="Provider di autenticazione" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFCCCC;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="720" y="210" width="30" height="60" as="geometry"/>
+                    <mxGeometry x="865" y="193" width="30" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="R7bt2Uf316R3_vRWJTQQ-24" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0;entryDx=170;entryDy=42;entryPerimeter=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;fontColor=#191C1C;strokeColor=#6F7978;" parent="1" source="yfQNlfp69jvisUfv3rvj-6" target="jX1HX_BmqKmZ0lMKoBQJ-6" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="700" y="522"/>
-                            <mxPoint x="700" y="522"/>
+                            <mxPoint x="845" y="505"/>
+                            <mxPoint x="845" y="505"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="yfQNlfp69jvisUfv3rvj-6" value="Google Maps" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFCCCC;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="720" y="490" width="30" height="60" as="geometry"/>
+                    <mxGeometry x="865" y="473" width="30" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="yfQNlfp69jvisUfv3rvj-8" value="Interazione con un post" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;fillColor=#B3C8E8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="560" width="170" height="70" as="geometry"/>
+                    <mxGeometry x="505" y="543" width="170" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="YfjQJKxad_IzTe695nNx-1" value="Gestione messaggi" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;fillColor=#B3C8E8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="720" width="170" height="70" as="geometry"/>
+                    <mxGeometry x="505" y="703" width="170" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="jX1HX_BmqKmZ0lMKoBQJ-6" value="Interazione con un&lt;br&gt;itinerario" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;fillColor=#B3C8E8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="480" width="170" height="70" as="geometry"/>
+                    <mxGeometry x="505" y="463" width="170" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="ggv2WuR-s7nQbWTxuWOC-1" value="Gestione profilo" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;fillColor=#B3C8E8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="640" width="170" height="70" as="geometry"/>
+                    <mxGeometry x="505" y="623" width="170" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="1iZ4ESmycFL-4nwnKJNf-3" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;strokeColor=#6F7978;endArrow=none;endFill=0;" edge="1" parent="1" target="yfQNlfp69jvisUfv3rvj-4">
+                <mxCell id="1iZ4ESmycFL-4nwnKJNf-3" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;strokeColor=#6F7978;endArrow=none;endFill=0;" parent="1" target="yfQNlfp69jvisUfv3rvj-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="160" y="305" as="sourcePoint"/>
+                        <mxPoint x="305" y="288" as="sourcePoint"/>
                         <Array as="points">
-                            <mxPoint x="260" y="305"/>
-                            <mxPoint x="260" y="400"/>
+                            <mxPoint x="405" y="288"/>
+                            <mxPoint x="405" y="383"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="1iZ4ESmycFL-4nwnKJNf-4" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeColor=#6F7978;" edge="1" parent="1" source="wZ_p2HvpNCdP5GBpue21-2" target="wZ_p2HvpNCdP5GBpue21-4">
+                <mxCell id="1iZ4ESmycFL-4nwnKJNf-4" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeColor=#6F7978;" parent="1" source="wZ_p2HvpNCdP5GBpue21-2" target="wZ_p2HvpNCdP5GBpue21-4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="1iZ4ESmycFL-4nwnKJNf-5" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeColor=#6F7978;" edge="1" parent="1" source="wZ_p2HvpNCdP5GBpue21-2" target="wZ_p2HvpNCdP5GBpue21-3">
+                <mxCell id="1iZ4ESmycFL-4nwnKJNf-5" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;strokeColor=#6F7978;" parent="1" source="wZ_p2HvpNCdP5GBpue21-2" target="wZ_p2HvpNCdP5GBpue21-3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="wZ_p2HvpNCdP5GBpue21-2" value="Amministratore" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFCCCC;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="1">
-                    <mxGeometry x="130" y="275" width="30" height="60" as="geometry"/>
+                <mxCell id="wZ_p2HvpNCdP5GBpue21-2" value="Amministratore" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFCCCC;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
+                    <mxGeometry x="275" y="258" width="30" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="wZ_p2HvpNCdP5GBpue21-3" value="Rimuove itinerario" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#006A6A;fillColor=#CCE8E7;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="1">
-                    <mxGeometry x="360" y="190" width="170" height="70" as="geometry"/>
+                <mxCell id="wZ_p2HvpNCdP5GBpue21-3" value="Rimuove itinerario" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#006A6A;fillColor=#CCE8E7;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="173" width="170" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="wZ_p2HvpNCdP5GBpue21-4" value="Modifica itinerario" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#006A6A;fillColor=#CCE8E7;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="1">
-                    <mxGeometry x="360" y="270" width="170" height="70" as="geometry"/>
+                <mxCell id="wZ_p2HvpNCdP5GBpue21-4" value="Modifica itinerario" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#006A6A;fillColor=#CCE8E7;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="253" width="170" height="70" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="ynwV29AEDQFCAF0MuXqC" name="Gestione messaggi">
-        <mxGraphModel dx="1429" dy="553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1624" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="RA_Lw5pRIug5276kbM9S-0"/>
                 <mxCell id="RA_Lw5pRIug5276kbM9S-1" parent="RA_Lw5pRIug5276kbM9S-0"/>

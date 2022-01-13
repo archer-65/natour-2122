@@ -23,7 +23,8 @@
 \RequirePackage{url}
 \RequirePackage[hidelinks]{hyperref}%Per l'inserimento di legende sotto le immagini
 \RequirePackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry} %Configurazione pagina
-
+\addtolength{\wpXoffset}{0cm}
+\addtolength{\wpYoffset}{-12.25cm}
 
 %-------------------- Info progetto ----------------------
 
@@ -50,7 +51,7 @@
 \newcommand{\cover}{
 	\begin{titlepage}
 
-	\ThisLRCornerWallPaper{0.6}{logos/ECL.png}
+	\ThisCenterWallPaper{0.35}{logos/undraw_scrum_board_re_wk7v 1.png}
 		\centering %Centra il contenuto
 		\includegraphics[width=0.2\textwidth]{logos/unina-logo.png}\par\vspace{1cm} %Inserimento logo
 		{\scshape\LARGE Università degli Studi di Napoli \\ Federico II \par} %Nome Università
@@ -60,7 +61,7 @@
 		\rule{\linewidth}{0.2 mm} \\[0.4 cm]
 		{\huge\bfseries \titolo \par} \
 		\rule{\linewidth}{0.2 mm} \\[1.5 cm]
-		\vspace{1cm}
+		% \vspace{1cm}
 		
 		\begin{minipage}{0.5\textwidth} %Minipage per gli studenti
 			\begin{flushleft} \large
@@ -76,8 +77,8 @@
 			\end{flushright}
 		\end{minipage}\\[4cm]
 		
-		\vfill
-		{\large A.A. 2021/2022\par}
+		% \vfill
+		% {\large A.A. 2021/2022\par}
 
 	\end{titlepage}
 }

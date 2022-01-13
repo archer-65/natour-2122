@@ -50,7 +50,7 @@
 \newcommand{\cover}{
 	\begin{titlepage}
 
-	\ThisLRCornerWallPaper{0.6}{logos/SteinECL.jpg}
+	\ThisLRCornerWallPaper{0.6}{logos/ECL.png}
 		\centering %Centra il contenuto
 		\includegraphics[width=0.2\textwidth]{logos/unina-logo.png}\par\vspace{1cm} %Inserimento logo
 		{\scshape\LARGE Università degli Studi di Napoli \\ Federico II \par} %Nome Università

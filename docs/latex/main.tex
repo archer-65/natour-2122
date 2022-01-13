@@ -6,6 +6,8 @@
 \usepackage{float} 
 \usepackage{svg}
 \usepackage{amsmath}
+\usepackage{pdfpages}
+\usepackage{placeins}
 
 %\newcolumntype{a}{>{\columncolor{PineGreen!70}}l}
 
@@ -420,17 +422,57 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\label{table:20}
 	\end{table}
 
+	\newpage
 	\subsection{Modellazione dei Casi d'Uso}
 	In questa sezione sarà riportato il diagramma Use Case per l'applicazione.\\
 	Per garantire una maggiore leggibilità e data la molteplicità di funzioni garantite
 	dal sistema, si è fatta la scelta di raggruppare le funzioni logicamente legate 
 	tra loro in packages.
 
-	\begin{figure}[htbp]
+	\begin{figure}[!htbp]
 		\centering
-		\includesvg{./diagrams/useCase.svg}
+		\includegraphics[width=\textwidth, page=1]{./diagrams/useCase.pdf}
+		\caption{Use Case Diagram}
 	\end{figure}
+	\FloatBarrier
 
+	\newpage
+	\subsubsection{Interazione con un Itinerario}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=3]{./diagrams/useCase.pdf}
+		\caption{Package 1 - Interazione con un Itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Interazione con un Post}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=4]{./diagrams/useCase.pdf}
+		\caption{Package 2 - Interazione con un Post}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Gestione Profilo}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=5]{./diagrams/useCase.pdf}
+		\caption{Package 3 - Gestione Profilo}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Gestione messaggi}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=2]{./diagrams/useCase.pdf}
+		\caption{Package 4 - Gestione messaggi}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
 	\subsection{Tabelle di Cockburn dei casi d'uso}
 	Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dell'UCD.
 

@@ -8,6 +8,13 @@
 \usepackage{amsmath}
 \usepackage{pdfpages}
 \usepackage{placeins}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+    }
 
 %\newcolumntype{a}{>{\columncolor{PineGreen!70}}l}
 
@@ -77,7 +84,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	
 	% Pour écrire des variables dans le texte, il suffit de mettre le symbole \$ entre le texte souhaité comme : constante $\rho$. 
 	
-	\section{Descrizione del Progetto}
+	\section{Descrizione del progetto}
 	NaTour21 è un sistema complesso e distribuito finalizzato ad offrire un moderno social network multipiattaforma per appassionati di escursioni.\\
 	
 	Il sistema consiste in:
@@ -112,7 +119,26 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	la visualizzazione di una homepage con post riguardanti gli itinerari consigliati.\\
 	Particolare attenzione è riservata alla sicurezza degli utenti, i quali possono segnalare contenuti inappropriati o informazioni inesatte.
 	
-	
+	\section{Individuazione del target degli utenti}
+	NaTour21 si configura come community in cui chiunque può intraprendere la passione per l'escursionismo o condividerla.\\\\
+	Cionostante, si individua come target degli utenti la popolazione italiana di escursionisti, caratterizzata da un 
+	numero di circa pari entità di uomini e di donne, nella fascia di età \texttt{35-64}. La maggior parte della 
+	platea considerata risulta essere appartenente alla condizione lavorativa di \textit{dirigente, quadro o impiegato}.\\\\
+	L'Istat, Istituto Nazionale di Statistica, ha conteggiato nell'anno 2020\footnote{Fonte: \href{http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI}{sito ufficiale Istat}.}
+	circa \texttt{41194} escursioni giornaliere,
+	di cui il \texttt{42.7\%} situate temporalmente nel terzo trimestre dell'anno. Da questa informazione si deduce che il periodo
+	preferito per attività escursionistiche sia quello dei mesi estivi.\\\\
+	Il motivo prevalente per queste escursioni risulta essere \textit{piacere personale, svago e tempo libero}, con un numero
+	di escursioni così orientate pari a \texttt{23223}: questo dato risulta particolarmente significativo, pari a un ordine
+	di grandezza in più rispetto agli altri motivi registrati. È importante anche notare quanto il numero di escursioni in paesi 
+	esteri sia di gran lunga minore rispetto a quelle nelle regioni italiane.\\\\
+	Le regioni del Nord Italia sembrano essere state le preferite per visite giornaliere (la più visitata è stata il Veneto, con una media di
+	\texttt{6200}), seguite immediatamente da quelle del centro-Sud. Il Molise, invece, non risulta aver raggiunto 
+	la minima cifra considerata nella raccolta dati.\\
+
+	\subsection{Definizione delle personas}
+
+
 	\section{Documento dei Requisiti Software}
 	\subsection{Requisiti funzionali}
 	In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazione NaTour21, cioè le funzionalità richieste dai commissionanti.
@@ -437,7 +463,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	\FloatBarrier
 
 	\newpage
-	\subsubsection{Interazione con un Itinerario}
+	\subsubsection{Interazione con un itinerario}
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=\textwidth, page=3]{./diagrams/useCase.pdf}
@@ -446,7 +472,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	\FloatBarrier
 
 	\newpage
-	\subsubsection{Interazione con un Post}
+	\subsubsection{Interazione con un post}
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=\textwidth, page=4]{./diagrams/useCase.pdf}
@@ -455,7 +481,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	\FloatBarrier
 
 	\newpage
-	\subsubsection{Gestione Profilo}
+	\subsubsection{Gestione profilo}
 	\begin{figure}[!htbp]
 		\centering
 		\includegraphics[width=\textwidth, page=5]{./diagrams/useCase.pdf}
@@ -492,7 +518,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 
 	\newpage
 
-	\subsection{Requisiti non Funzionali}
+	\subsection{Requisiti non funzionali}
 	Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applicazione, ovvero tutti i vincoli sui servizi offerti dal sistema.
 
 	\begin{table}[H]
@@ -571,7 +597,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 
 	\newpage
 
-	\subsection{Requisiti di Dominio}
+	\subsection{Requisiti di dominio}
 	Infine, questa sezione conterrà i requisiti \textit{di dominio} dell'applicazione, ovvero tutti i vincoli generali a cui l'applicativo
 	deve attenersi. \\
 

@@ -40,27 +40,27 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Testing Purposes !!!
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
-        );
-
-        AuthSignUpOptions options = AuthSignUpOptions.builder()
-                .userAttribute(AuthUserAttributeKey.email(), "example@try.com")
-                .build();
-        Amplify.Auth.signUp("Saahiti.Joshi@EasyMailer.live", "Prova123", options,
-                result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
-                error -> Log.e("AuthQuickStart", "Sign up failed", error)
-        );
-
-        Amplify.Auth.confirmSignUp(
-                "example@try.com",
-                "414113",
-                result -> Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete"),
-                error -> Log.e("AuthQuickstart", error.toString())
-        );
-        // End Testing !!!
+//        // Testing Purposes !!!
+//        Amplify.Auth.fetchAuthSession(
+//                result -> Log.i("AmplifyQuickstart", result.toString()),
+//                error -> Log.e("AmplifyQuickstart", error.toString())
+//        );
+//
+//        AuthSignUpOptions options = AuthSignUpOptions.builder()
+//                .userAttribute(AuthUserAttributeKey.email(), "example@try.com")
+//                .build();
+//        Amplify.Auth.signUp("Saahiti.Joshi@EasyMailer.live", "Prova123", options,
+//                result -> Log.i("AuthQuickStart", "Result: " + result.toString()),
+//                error -> Log.e("AuthQuickStart", "Sign up failed", error)
+//        );
+//
+//        Amplify.Auth.confirmSignUp(
+//                "example@try.com",
+//                "414113",
+//                result -> Log.i("AuthQuickstart", result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete"),
+//                error -> Log.e("AuthQuickstart", error.toString())
+//        );
+//        // End Testing !!!
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

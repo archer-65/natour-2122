@@ -14,4 +14,13 @@
     <string name="title_explore">Itinerari</string>
     <string name="title_profile">Profilo</string>
     <string name="title_activity_root">RootActivity</string>
+    <string name="button_signup_text">Registrati</string>
+    <string name="button_login_text">Accedi</string>
+    <string name="text_social_login">Accedi con</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="cover_login">Cover login</string>
+    <string name="logo_app">Logo App</string>
+    <string name="logo_google">Logo Google</string>
+    <string name="logo_facebook">Logo Facebook</string>
 </resources>

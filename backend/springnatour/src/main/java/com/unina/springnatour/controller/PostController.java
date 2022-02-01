@@ -23,8 +23,17 @@ public class PostController {
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
 
+    @GetMapping("/posts/search")
+    public ResponseEntity<List<PostDto>> getAllPostsByUserId(@RequestParam Long userId) {
+
+        List<PostDto> postDtoList = postService.getAllPostsByUserId(userId);
+
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
+    }
+
     @GetMapping("/posts")
     public ResponseEntity<List<PostDto>> getAllPosts() {
+
         List<PostDto> posts = postService.getAllPosts();
 
         if (!posts.isEmpty()) {
@@ -51,4 +60,11 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/posts/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable Long id) {
+
+        postService.deletePost(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

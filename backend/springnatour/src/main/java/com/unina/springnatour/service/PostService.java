@@ -29,6 +29,12 @@ public class PostService {
                 .toList());
     }
 
+    public List<PostDto> getAllPostsByUserId(Long userId) {
+        return postMapper.toDto(postRepository.findByUser_id(userId)
+                .stream()
+                .toList());
+    }
+
     public void addPost(PostDto post) {
         postRepository.save(postMapper.toEntity(post));
     }
@@ -38,5 +44,9 @@ public class PostService {
                 .orElseThrow(() -> new PostNotFoundException(id));
 
         postRepository.save(postMapper.toEntity(postDto));
+    }
+
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
     }
 }

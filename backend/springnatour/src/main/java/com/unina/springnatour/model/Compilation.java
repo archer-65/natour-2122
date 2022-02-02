@@ -39,6 +39,6 @@ public class Compilation implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Route> routes;
 }

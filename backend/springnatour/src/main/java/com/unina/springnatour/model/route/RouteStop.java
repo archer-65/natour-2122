@@ -22,12 +22,16 @@ public class RouteStop implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "route_id", referencedColumnName = "id")
+    @JoinColumn(name = "route_id", referencedColumnName = "id", nullable = false)
     private Route route;
 
-    @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id")
-    private Location location;
+    @NotNull
+    @Column(name = "latitude", nullable = false)
+    private Double latitude;
+
+    @NotNull
+    @Column(name = "longitude", nullable = false)
+    private Double longitude;
 
     @NotNull
     @Column(name = "stop_number")

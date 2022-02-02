@@ -15,40 +15,73 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Get an user
+     * @param id the identifier of the user
+     * @return UserDTO
+     */
     @GetMapping("/users/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
 
-        UserDto user = userService.getUserById(id);
+        UserDto userDto = userService.getUserById(id);
 
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
+    /**
+     * Get all the users
+     * @return List of UserDTO
+     */
     @GetMapping("/users")
     public ResponseEntity<List<UserDto>> getAllUsers() {
 
-        List<UserDto> users = userService.getAllUsers();
+        List<UserDto> userDtoList = userService.getAllUsers();
 
-        if (!users.isEmpty()) {
-            return new ResponseEntity<>(users, HttpStatus.OK);
+        if (!userDtoList.isEmpty()) {
+            return new ResponseEntity<>(userDtoList, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @PostMapping("/users")
-    public ResponseEntity<?> addUser(@RequestBody UserDto user) {
+    /**
+     * Create a new user
+     * @param userDto the UserDTO Object containing the required fields
+     * @return HTTP Status CREATED after insertion
+     */
+    @PostMapping("/users/add")
+    public ResponseEntity<?> addUser(@RequestBody UserDto userDto) {
 
-        userService.addUser(user);
+        userService.addUser(userDto);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/users/{id}")
+    /**
+     * Update existing user
+     * @param id the identifier of the user
+     * @param userDto the UserDTO Object containing updated user
+     * @return HTTP Status CREATED after update
+     */
+    @PutMapping("/users/{id}/update")
     public ResponseEntity<?> updateUser(@PathVariable Long id,
-                                        @RequestBody UserDto user) {
+                                        @RequestBody UserDto userDto) {
 
-        userService.updateUser(id, user);
+        userService.updateUser(id, userDto);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Delete existing user
+     * @param id the identifier of the user
+     * @return HTTP Status OK after deletion
+     */
+    @DeleteMapping("/users/{id}/delete")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+
+        userService.deleteUser(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

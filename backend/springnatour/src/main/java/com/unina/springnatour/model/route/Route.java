@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -35,7 +36,7 @@ public class Route implements Serializable{
     private String description;
 
     @NotNull
-    @Size(min = 1, max = 3, message = "Difficulty must be between 1 and 3")
+    @Range(min = 1, max = 3, message = "Difficulty must be between 1 and 3")
     @Column(name = "avg_difficulty", nullable = false)
     private Integer avgDifficulty;
 
@@ -53,7 +54,7 @@ public class Route implements Serializable{
 
     @OneToMany(
             mappedBy = "route",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             orphanRemoval = true
     )
     private List<RoutePhoto> photos;
@@ -70,21 +71,21 @@ public class Route implements Serializable{
 
     @OneToMany(
             mappedBy = "route",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             orphanRemoval = true
     )
     private List<Rating> ratings;
 
     @OneToMany(
             mappedBy = "route",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             orphanRemoval = true
     )
     private List<Post> posts;
 
     @OneToMany(
             mappedBy = "route",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             orphanRemoval = true
     )
     private List<Report> reports;

@@ -12,12 +12,12 @@ import java.util.List;
 public interface RouteStopMapper extends BaseMapper<RouteStop, RouteStopDto> {
 
     @Override
-    @Mapping(target = "longitude", source = "location.longitude")
-    @Mapping(target = "latitude", source = "location.latitude")
+    //@Mapping(target = "longitude", source = "location.longitude")
+    //@Mapping(target = "latitude", source = "location.latitude")
     RouteStopDto toDto(RouteStop routeStop);
 
     @Override
-    @Mapping(target = "location.longitude", source = "longitude")
-    @Mapping(target = "location.latitude", source = "latitude")
+    //@Mapping(target = "location.longitude", source = "longitude")
+    //@Mapping(target = "location.latitude", source = "latitude")
     RouteStop toEntity(RouteStopDto routeStopDto);
 }

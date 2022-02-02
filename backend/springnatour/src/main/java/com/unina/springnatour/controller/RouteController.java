@@ -61,6 +61,18 @@ public class RouteController {
         }
     }
 
+    @GetMapping("/routes/filter")
+    public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(@RequestBody RouteDto routeDto) {
+
+        List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(routeDto);
+
+        if(!routeDtoList.isEmpty()) {
+            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     /**
      * Create a new route
      * @param routeDto the RouteDTO Object containing the required fields

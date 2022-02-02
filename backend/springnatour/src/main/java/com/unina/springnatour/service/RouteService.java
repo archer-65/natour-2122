@@ -6,9 +6,13 @@ import com.unina.springnatour.exception.RouteNotFoundException;
 import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 
 @Service
 public class RouteService {
@@ -45,6 +49,17 @@ public class RouteService {
         return routeMapper.toDto(routeRepository.findAll()
                 .stream()
                 .toList());
+    }
+
+    public List<RouteDto> getAllRoutesByFilter(RouteDto routeDto) {
+
+        Route example = routeMapper.toEntity(routeDto);
+
+        ExampleMatcher matcher = ExampleMatcher
+                .matchingAll()
+                .withMatcher("title", contains().ignoreCase());
+
+        return routeMapper.toDto(routeRepository.findAll(Example.of(example, matcher)));
     }
 
     /**

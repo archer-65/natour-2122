@@ -1,8 +1,6 @@
 package com.unina.springnatour.controller;
 
 import com.unina.springnatour.dto.route.RouteDto;
-import com.unina.springnatour.dto.user.UserDto;
-import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +40,24 @@ public class RouteController {
         if (!routeDtoList.isEmpty()) {
             return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Get all the routes for a certain user
+     * @param userId the identifier of the user
+     * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
+     */
+    @GetMapping("/routes/search")
+    public ResponseEntity<List<RouteDto>> getAllRoutesByUserId(@RequestParam Long userId) {
+
+        List<RouteDto> routeDtoList = routeService.getAllRoutesByUserId(userId);
+
+        if (!routeDtoList.isEmpty()) {
+            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -51,11 +66,39 @@ public class RouteController {
      * @param routeDto the RouteDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
-    @PostMapping("/routes")
+    @PostMapping("/routes/add")
     public ResponseEntity<?> addRoute(@RequestBody RouteDto routeDto) {
 
         routeService.addRoute(routeDto);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Update an existing route
+     * @param id the identifier of the route
+     * @param routeDto the RouteDTO Object with updated values
+     * @return HTTP Status CREATED after update
+     */
+    @PutMapping("/routes/{id}/update")
+    public ResponseEntity<?> updateRoute(@PathVariable Long id,
+                                         @RequestBody RouteDto routeDto) {
+
+        routeService.updateRoute(id, routeDto);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Delete a route
+     * @param id the identifier of the route
+     * @return HTTP Status OK
+     */
+    @DeleteMapping("/routes/{id}/delete")
+    public ResponseEntity<?> deleteRoute(@PathVariable Long id) {
+
+        routeService.deleteRoute(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

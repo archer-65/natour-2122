@@ -1,5 +1,7 @@
 package com.unina.springnatour.model;
 
+import com.unina.springnatour.model.chat.Chat;
+import com.unina.springnatour.model.chat.Message;
 import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.model.route.Route;
 import lombok.AllArgsConstructor;

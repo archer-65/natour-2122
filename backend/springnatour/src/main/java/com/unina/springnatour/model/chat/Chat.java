@@ -1,5 +1,7 @@
-package com.unina.springnatour.model;
+package com.unina.springnatour.model.chat;
 
+import com.unina.springnatour.model.User;
+import com.unina.springnatour.model.chat.Message;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

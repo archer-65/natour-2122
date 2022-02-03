@@ -2,6 +2,7 @@ package com.unina.springnatour.controller;
 
 import com.unina.springnatour.dto.route.RouteDto;
 import com.unina.springnatour.service.RouteService;
+import com.unina.springnatour.specification.RouteFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,9 +63,9 @@ public class RouteController {
     }
 
     @GetMapping("/routes/filter")
-    public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(@RequestBody RouteDto routeDto) {
+    public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(@RequestBody RouteFilter filter) {
 
-        List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(routeDto);
+        List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(filter);
 
         if(!routeDtoList.isEmpty()) {
             return new ResponseEntity<>(routeDtoList, HttpStatus.OK);

@@ -5,14 +5,13 @@ import com.unina.springnatour.dto.route.RouteMapper;
 import com.unina.springnatour.exception.RouteNotFoundException;
 import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.repository.RouteRepository;
+import com.unina.springnatour.specification.RouteFilter;
+import com.unina.springnatour.specification.RouteSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 
 @Service
 public class RouteService {
@@ -51,15 +50,11 @@ public class RouteService {
                 .toList());
     }
 
-    public List<RouteDto> getAllRoutesByFilter(RouteDto routeDto) {
+    public List<RouteDto> getAllRoutesByFilter(RouteFilter filter) {
 
-        Route example = routeMapper.toEntity(routeDto);
+        Specification<Route> filterCriteria = RouteSpecifications.createRouteQuery(filter);
 
-        ExampleMatcher matcher = ExampleMatcher
-                .matchingAll()
-                .withMatcher("title", contains().ignoreCase());
-
-        return routeMapper.toDto(routeRepository.findAll(Example.of(example, matcher)));
+        return routeMapper.toDto(routeRepository.findAll(filterCriteria));
     }
 
     /**

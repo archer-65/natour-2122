@@ -1,8 +1,14 @@
 package com.unina.springnatour.model.route;
 
-import com.unina.springnatour.model.*;
+import com.unina.springnatour.model.Compilation;
+import com.unina.springnatour.model.Rating;
+import com.unina.springnatour.model.Report;
+import com.unina.springnatour.model.User;
 import com.unina.springnatour.model.post.Post;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -13,7 +19,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-//@Builder
 @Table(name = "route")
 @Getter
 @Setter

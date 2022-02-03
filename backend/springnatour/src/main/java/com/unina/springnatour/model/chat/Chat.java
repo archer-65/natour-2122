@@ -2,10 +2,7 @@ package com.unina.springnatour.model.chat;
 
 import com.unina.springnatour.model.User;
 import com.unina.springnatour.model.chat.Message;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Builder
 @Table(name = "chat")
 @Getter
 @Setter

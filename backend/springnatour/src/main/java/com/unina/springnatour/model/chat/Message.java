@@ -31,14 +31,11 @@ public class Message implements Serializable {
     @Column(name = "sent_on", nullable = false)
     private LocalDateTime sentOn;
 
-//    @Column(
-//            name = "sender",
-//            columnDefinition = " char NOT NULL CHECK (sender IN ('1', '2'))"
-//    )
-//    private String sender;
+    @ManyToOne
+    private User sender;
 
     @ManyToOne
-    private User user;
+    private User recipient;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Chat chat;

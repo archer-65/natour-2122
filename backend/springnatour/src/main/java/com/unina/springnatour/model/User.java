@@ -4,10 +4,7 @@ import com.unina.springnatour.model.chat.Chat;
 import com.unina.springnatour.model.chat.Message;
 import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.model.route.Route;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -17,6 +14,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Builder
 @Table(name = "user")
 @Getter
 @Setter
@@ -82,7 +80,6 @@ public class User implements Serializable {
     private List<Chat> chats;
 
     @OneToMany(
-            mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )

@@ -23,10 +23,10 @@ public class RouteService {
     private RouteMapper routeMapper;
 
     /**
-     * Get a route
+     * Gets a route
      *
      * @param id the identifier of the route
-     * @return RouteDTO Object, mapped from Entity, or throw Exception
+     * @return RouteDTO Object, mapped from Entity, or throws Exception
      */
     public RouteDto getRouteById(Long id) {
         return routeMapper.toDto(routeRepository.findById(id)
@@ -34,8 +34,7 @@ public class RouteService {
     }
 
     /**
-     * Get all routes
-     *
+     * Gets all routes
      * @return List of RouteDTO Objects, mapped from Entity
      */
     public List<RouteDto> getAllRoutes() {
@@ -50,6 +49,11 @@ public class RouteService {
                 .toList());
     }
 
+    /**
+     * Get all routes by filter
+     * @param filter the search criteria
+     * @return List of RouteDTO Objects, mapped from Entity
+     */
     public List<RouteDto> getAllRoutesByFilter(RouteFilter filter) {
 
         Specification<Route> filterCriteria = RouteSpecifications.createRouteQuery(filter);
@@ -58,7 +62,7 @@ public class RouteService {
     }
 
     /**
-     * Add a route
+     * Adds a route
      * @param routeDto RouteDTO Object with required fields
      */
     public void addRoute(RouteDto routeDto) {
@@ -68,7 +72,7 @@ public class RouteService {
     }
 
     /**
-     * Update a route
+     * Updates a route
      * @param id the identifier of the route
      * @param routeDto RouteDTO Object updated
      */
@@ -80,7 +84,7 @@ public class RouteService {
     }
 
     /**
-     * Delete a route
+     * Deletes a route
      * @param id the identifier of the route
      */
     public void deleteRoute(Long id) {

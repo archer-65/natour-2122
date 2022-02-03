@@ -19,9 +19,9 @@ public class ReportService {
     private ReportMapper reportMapper;
 
     /**
-     * Get a report
+     * Gets a report
      * @param id the identifier of the report
-     * @return ReportDTO Object after mapping from Entity, or throw Exception
+     * @return ReportDTO Object after mapping from Entity, or throws Exception
      */
     public ReportDto getReportById(Long id) {
         return reportMapper.toDto(reportRepository.findById(id)
@@ -29,8 +29,8 @@ public class ReportService {
     }
 
     /**
-     * Get all the reports
-     * @return a List of ReportDTO Objects after mapping from Entity, or throw Exception
+     * Gets all the reports
+     * @return a List of ReportDTO Objects after mapping from Entity, or throws Exception
      */
     public List<ReportDto> getAllReports() {
         return reportMapper.toDto(reportRepository.findAll()
@@ -39,7 +39,7 @@ public class ReportService {
     }
 
     /**
-     * Add a report
+     * Adds a report
      * @param reportDto ReportDTO Object with required fields, mapped to Entity and saved
      */
     public void addReport(ReportDto reportDto) {
@@ -47,9 +47,9 @@ public class ReportService {
     }
 
     /**
-     * Update a report
+     * Updates a report
      * @param id the identifier of the report
-     * @param reportDto ReportDTO Object, mapped to Entity, or throw Exception
+     * @param reportDto ReportDTO Object, mapped to Entity, or throws Exception
      */
     public void updateReport(Long id, ReportDto reportDto) {
         reportRepository.findById(id)
@@ -57,7 +57,7 @@ public class ReportService {
     }
 
     /**
-     * Delete a report
+     * Deletes a report
      * @param id the identifier of the report
      */
     public void deleteReport(Long id) {

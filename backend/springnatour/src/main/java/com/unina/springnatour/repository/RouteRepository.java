@@ -4,17 +4,24 @@ import com.unina.springnatour.model.route.Route;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RouteRepository extends JpaRepository<Route, Long> {
 
     /**
-     * Find routes by author
+     * Finds routes by author
      * @param userId identifier of the user
      * @return List of Routes
      */
-    public List<Route> findByUser_id(Long userId);
+    List<Route> findByUser_id(Long userId);
 
-    public List<Route> findAll(@Nullable Specification<Route> filter);
+    /**
+     * Finds routes by filter
+     * @param filter the search criteria
+     * @return List of Routes
+     */
+    List<Route> findAll(@Nullable Specification<Route> filter);
 }

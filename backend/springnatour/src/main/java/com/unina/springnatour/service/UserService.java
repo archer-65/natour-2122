@@ -19,9 +19,9 @@ public class UserService {
     private UserMapper userMapper;
 
     /**
-     * Get an user
+     * Gets a user
      * @param id the identifier of the user
-     * @return UserDTO Object after mapping from Entity, or throw Exception
+     * @return UserDTO Object after mapping from Entity, or throws Exception
      */
     public UserDto getUserById(Long id) {
         return userMapper.toDto(userRepository.findById(id)
@@ -29,7 +29,7 @@ public class UserService {
     }
 
     /**
-     * Get all the users
+     * Gets all the users
      * @return List of UserDTO Objects mapped from Entity
      */
     public List<UserDto> getAllUsers() {
@@ -39,7 +39,7 @@ public class UserService {
     }
 
     /**
-     * Add an user
+     * Adds a user
      * @param userDto UserDTO Object with required fields, mapped to Entity and saved
      */
     public void addUser(UserDto userDto) {
@@ -47,7 +47,7 @@ public class UserService {
     }
 
     /**
-     * Update an user
+     * Updates a user
      * @param id the identifier of the user
      * @param userDto UserDTO Object, mapped to Entity, or throw Exception
      */
@@ -59,7 +59,7 @@ public class UserService {
     }
 
     /**
-     * Delete an user
+     * Deletes a user
      * @param id the identifier of the user
      */
     public void deleteUser(Long id) {

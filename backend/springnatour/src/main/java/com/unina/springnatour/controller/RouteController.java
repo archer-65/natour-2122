@@ -17,7 +17,7 @@ public class RouteController {
     private RouteService routeService;
 
     /**
-     * Get a route
+     * Gets a route
      * @param id the identifier of the route
      * @return RouteDTO
      */
@@ -30,7 +30,7 @@ public class RouteController {
     }
 
     /**
-     * Get all the routes
+     * Gets all the routes
      * @return List of RouteDTO
      */
     @GetMapping("/routes")
@@ -46,7 +46,7 @@ public class RouteController {
     }
 
     /**
-     * Get all the routes for a certain user
+     * Gets all the routes for a certain user
      * @param userId the identifier of the user
      * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
      */
@@ -62,6 +62,13 @@ public class RouteController {
         }
     }
 
+    /**
+     * Searches all routes by filter
+     * @see RouteFilter
+     * @see com.unina.springnatour.specification.RouteSpecifications
+     * @param filter the RouteFilter Object containing criteria filters
+     * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
+     */
     @GetMapping("/routes/filter")
     public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(@RequestBody RouteFilter filter) {
 
@@ -75,7 +82,7 @@ public class RouteController {
     }
 
     /**
-     * Create a new route
+     * Creates a new route
      * @param routeDto the RouteDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
@@ -88,9 +95,9 @@ public class RouteController {
     }
 
     /**
-     * Update an existing route
+     * Updates an existing route
      * @param id the identifier of the route
-     * @param routeDto the RouteDTO Object with updated values
+     * @param routeDto the RouteDTO Object with the updated route
      * @return HTTP Status CREATED after update
      */
     @PutMapping("/routes/{id}/update")
@@ -103,7 +110,7 @@ public class RouteController {
     }
 
     /**
-     * Delete a route
+     * Deletes an existing route
      * @param id the identifier of the route
      * @return HTTP Status OK
      */

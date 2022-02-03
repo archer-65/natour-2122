@@ -18,28 +18,49 @@ public class CompilationService {
     @Autowired
     private CompilationMapper compilationMapper;
 
+    /**
+     * Gets a compilation
+     * @param id the identifier of the compilation
+     * @return CompilationDTO Object after mapping from Entity, or throws Exception
+     */
     public CompilationDto getCompilationById(Long id) {
         return compilationMapper.toDto(compilationRepository.findById(id)
                 .orElseThrow(() -> new CompilationNotFoundException(id)));
     }
 
+    /**
+     * Gets all the compilations for a certain user
+     * @param userId the identifier of the user
+     * @return a List of CompilationDTO Objects after mapping from Entity, or throws Exception
+     */
     public List<CompilationDto> getAllCompilationsByUserId(Long userId) {
         return compilationMapper.toDto(compilationRepository.findByUser_id(userId)
                 .stream()
                 .toList());
     }
 
+    /**
+     * Adds a compilation
+     * @param compilationDto CompilationDTO Object with required fields, mapped to Entity and saved
+     */
     public void addCompilation(CompilationDto compilationDto) {
         compilationRepository.save(compilationMapper.toEntity(compilationDto));
     }
 
-
+    /**
+     * Updates a compilation
+     * @param id the identifier of the compilation
+     * @param compilationDto CompilationDTO Object, mapped to Entity, or throws Exception
+     */
     public void updateCompilation(Long id, CompilationDto compilationDto) {
         compilationRepository.findById(id)
                 .orElseThrow(() -> new CompilationNotFoundException(id));
     }
 
-
+    /**
+     * Deletes a compilation
+     * @param id the identifier of the compilation
+     */
     public void deleteCompilation(Long id) {
         compilationRepository.deleteById(id);
     }

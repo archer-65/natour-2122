@@ -16,7 +16,7 @@ public class PostController {
     private PostService postService;
 
     /**
-     * Get a post
+     * Gets a post
      * @param id the identifier of the post
      * @return PostDTO
      */
@@ -29,7 +29,7 @@ public class PostController {
     }
 
     /**
-     * Get all the posts
+     * Gets all the posts
      * @return List of PostDTO
      */
     @GetMapping("/posts")
@@ -45,9 +45,9 @@ public class PostController {
     }
 
     /**
-     * Get all the posts for a certain User
-     * @param userId the identifier of the User (Author)
-     * @return List of PostDTO
+     * Gets all the posts for a certain user
+     * @param userId the identifier of the user (Author)
+     * @return List of PostDTO Objects with HTTP Status OK if the list is not empty
      */
     @GetMapping("/posts/search")
     public ResponseEntity<List<PostDto>> getAllPostsByUserId(@RequestParam Long userId) {
@@ -62,7 +62,7 @@ public class PostController {
     }
 
     /**
-     * Create a new post
+     * Creates a new post
      * @param postDto the PostDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
@@ -75,9 +75,9 @@ public class PostController {
     }
 
     /**
-     * Update existing post
+     * Updates an existing post
      * @param id the identifier of the post
-     * @param postDto the PostDTO Obejct containing updated post
+     * @param postDto the PostDTO Object containing the updated post
      * @return HTTP Status CREATED after update
      */
     @PutMapping("/posts/{id}/update")
@@ -90,7 +90,7 @@ public class PostController {
     }
 
     /**
-     * Delete existing post
+     * Deletes an existing post
      * @param id the identifier of the post
      * @return HTTP Status OK after deletion
      */

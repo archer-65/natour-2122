@@ -13,7 +13,7 @@ public class RouteDto implements Serializable {
     private String description;
     private Integer avgDifficulty;
     private Float avgDuration;
-    private Boolean disabilitySafe;
+    private Boolean disabledFriendly;
     private LocalDate modifiedDate;
     private List<RoutePhotoDto> photos;
     private List<RouteStopDto> stops;

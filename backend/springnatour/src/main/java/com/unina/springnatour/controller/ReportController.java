@@ -17,7 +17,7 @@ public class ReportController {
     private ReportService reportService;
 
     /**
-     * Get a report
+     * Gets a report
      * @param id the identifier of the report
      * @return ReportDTO
      */
@@ -30,7 +30,7 @@ public class ReportController {
     }
 
     /**
-     * Get all the reports
+     * Gets all the reports
      * @return List of ReportDTO
      */
     @GetMapping("/reports")
@@ -46,7 +46,7 @@ public class ReportController {
     }
 
     /**
-     * Create a new post
+     * Creates a new report
      * @param reportDto the ReportDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
@@ -59,9 +59,9 @@ public class ReportController {
     }
 
     /**
-     * Update existing report
+     * Updates an existing report
      * @param id the identifier of the report
-     * @param reportDto the ReportDTO Obejct containing updated report
+     * @param reportDto the ReportDTO Object containing the updated report
      * @return HTTP Status CREATED after update
      */
     @PutMapping("/reports/{id}/update")
@@ -74,7 +74,7 @@ public class ReportController {
     }
 
     /**
-     * Delete existing report
+     * Deletes an existing report
      * @param id the identifier of the report
      * @return HTTP Status OK after deletion
      */

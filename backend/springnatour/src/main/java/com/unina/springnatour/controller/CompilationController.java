@@ -17,6 +17,11 @@ public class CompilationController {
     @Autowired
     private CompilationService compilationService;
 
+    /**
+     * Gets a compilation
+     * @param id the identifier of the compilation
+     * @return CompilationDto
+     */
     @GetMapping("/compilations/{id}")
     public ResponseEntity<CompilationDto> getCompilationById(@PathVariable Long id) {
 
@@ -25,6 +30,10 @@ public class CompilationController {
         return new ResponseEntity<CompilationDto>(compilationDto, HttpStatus.OK);
     }
 
+    /**
+     * Gets all the compilations
+     * @return List of CompilationDTO Objects with HTTP Status OK if the list is not empty
+     */
     @GetMapping("/compilations/search")
     public ResponseEntity<List<CompilationDto>> getAllCompilationsByUserId(@RequestParam Long userId) {
 
@@ -37,6 +46,11 @@ public class CompilationController {
         }
     }
 
+    /**
+     * Creates a new compilation
+     * @param compilationDto the CompilationDTO Object containing the required fields
+     * @return HTTP Status CREATED after insertion
+     */
     @PostMapping("/compilations/add")
     public ResponseEntity<?> addCompilation(@RequestBody CompilationDto compilationDto) {
 
@@ -45,6 +59,12 @@ public class CompilationController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Updates an existing compilation
+     * @param id the identifier of the compilation
+     * @param compilationDto the CompilationDTO Object containing the updated compilation
+     * @return HTTP Status CREATED after update
+     */
     @PutMapping("/compilations/{id}/update")
     public ResponseEntity<?> updateCompilation(@PathVariable Long id,
                                                @RequestBody CompilationDto compilationDto) {
@@ -54,6 +74,11 @@ public class CompilationController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * Delete an existing compilation
+     * @param id the identifier of the compilation
+     * @return HTTP Status OK after deletion
+     */
     @DeleteMapping("/compilations/{id}/delete")
     public ResponseEntity<?> deleteCompilation(@PathVariable Long id) {
 

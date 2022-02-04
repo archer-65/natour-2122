@@ -2,6 +2,7 @@ package com.unina.springnatour.service;
 
 import com.unina.springnatour.dto.chat.ChatDto;
 import com.unina.springnatour.dto.chat.ChatMapper;
+import com.unina.springnatour.dto.chat.MessageDto;
 import com.unina.springnatour.dto.user.UserMapper;
 import com.unina.springnatour.model.User;
 import com.unina.springnatour.model.chat.Chat;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ChatService {
@@ -61,5 +63,11 @@ public class ChatService {
         }
 
         return chatMapper.toDto(chat);
+    }
+
+    public List<ChatDto> getAllChatsByUserId(Long userId) {
+        return chatMapper.toDto(chatRepository.getAllChatsByUser(userId)
+                .stream()
+                .toList());
     }
 }

@@ -10,10 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ChatController {
@@ -58,4 +57,40 @@ public class ChatController {
 
         return new ResponseEntity<>(chatDto, HttpStatus.OK);
     }
+
+    /**
+     * Gets all the chats for a certain user
+     * @param userId the identifier of the user
+     * @return a List of ChatDTO Objects after mapping from Entity, or throws Exception
+     */
+    @GetMapping("/chats/search")
+    public ResponseEntity<List<ChatDto>> getAllChatsByUserId(@RequestParam Long userId) {
+
+        List<ChatDto> chatDtoList = chatService.getAllChatsByUserId(userId);
+
+        if (!chatDtoList.isEmpty()) {
+            return new ResponseEntity<>(chatDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Gets all messages from a certain chat
+     * @param chatId the identifier of the chat
+     * @return a List of MessageDto Objects after mapping from Entity, or throws Exception
+     */
+    @GetMapping("/chats/{id}/messages")
+    public ResponseEntity<List<MessageDto>> getAllMessagesByChatId(@PathVariable Long chatId) {
+
+        List<MessageDto> messageDtoList = messageService.getAllMessagesByChatId(chatId);
+
+        if(!messageDtoList.isEmpty()) {
+            return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
+

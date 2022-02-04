@@ -6,6 +6,8 @@ import com.unina.springnatour.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MessageService {
 
@@ -21,5 +23,16 @@ public class MessageService {
      */
     public void saveMessage(MessageDto messageDto) {
         messageRepository.save(messageMapper.toEntity(messageDto));
+    }
+
+    /**
+     * Get all messages by chat
+     * @param chatId the identifier of the chat
+     * @return List of MessageDTO
+     */
+    public List<MessageDto> getAllMessagesByChatId(Long chatId) {
+        return messageMapper.toDto(messageRepository.findByChat_id(chatId)
+                .stream()
+                .toList());
     }
 }

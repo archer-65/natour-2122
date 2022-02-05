@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">NaTour</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_explore">Itinerari</string>
+    <string name="title_profile">Profilo</string>
+    <string name="title_activity_root">RootActivity</string>
+    <string name="button_signup_text">Registrati</string>
+    <string name="button_login_text">Accedi</string>
+    <string name="text_social_login">Accedi con</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="cover_login">Cover login</string>
+    <string name="logo_app">Logo App</string>
+    <string name="logo_google">Logo Google</string>
+    <string name="logo_facebook">Logo Facebook</string>
+</resources>

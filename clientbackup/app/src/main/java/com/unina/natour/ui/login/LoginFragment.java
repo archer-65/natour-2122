@@ -88,7 +88,7 @@ public class LoginFragment extends Fragment {
                 String username = usernameInput.getText().toString();
                 String password = passwordInput.getText().toString();
 
-                loginViewModel.loginAttempt(username, password);
+                //loginViewModel.loginAttempt(username, password);
             }
         });
 

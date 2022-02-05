@@ -7,17 +7,23 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.unina.natour.R;
-import com.unina.natour.domain.LoginUseCase;
+import com.unina.natour.common.Resource;
+import com.unina.natour.domain.model.User;
+import com.unina.natour.domain.usecase.LoginUseCase;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @HiltViewModel
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<Boolean> loginSuccess = new MutableLiveData<>();
+
+    private MutableLiveData<User> userState = new MutableLiveData<>();
 
     private final LoginUseCase loginUseCase;
 
@@ -30,13 +36,28 @@ public class LoginViewModel extends ViewModel {
         return loginFormState;
     }
 
-    LiveData<Boolean> getLoginSuccess() {
-        return loginSuccess;
+    public LiveData<User> getUserState() {
+        return userState;
     }
 
-    public void loginAttempt(String username, String password) {
-        loginSuccess = loginUseCase.login(username, password);
-    }
+//    public void login(String username, String password) {
+//
+//        loginUseCase.login(username, password)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        userResource -> {
+//                            if (userResource instanceof Resource.Success) {
+//                                userState.setValue(((Resource.Success<User>) userResource).data);
+//                            } else {
+//                                // TODO
+//                            }
+//                        },
+//                        throwable -> {
+//                            userState.setValue();
+//                        }
+//                );
+//    }
 
     public void loginDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {

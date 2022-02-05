@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/image_app_logo">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/username"
+            android:id="@+id/textinput_username"
             android:layout_width="250dp"
             android:layout_height="56dp"
             tools:ignore="TextContrastCheck" />
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textfield_username">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
+            android:id="@+id/textinput_password"
             android:layout_width="250dp"
             android:layout_height="56dp"
             android:inputType="textPassword"
@@ -89,6 +89,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="27dp"
         android:layout_marginEnd="80dp"
+        android:enabled="false"
         android:text="@string/button_login_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_signup"

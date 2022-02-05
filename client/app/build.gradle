@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+    //id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -53,4 +55,9 @@ dependencies {
 
     // Cognito
     implementation 'com.amplifyframework:aws-auth-cognito:1.31.1'
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
+    annotationProcessor "com.google.dagger:hilt-compiler:2.38.1"
 }

@@ -51,4 +51,5 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
 team-provider-info.json
+**.sample
 #amplify-do-not-edit-end

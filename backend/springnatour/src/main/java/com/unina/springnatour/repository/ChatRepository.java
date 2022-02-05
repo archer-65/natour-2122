@@ -18,6 +18,6 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
 
     @Query("SELECT c " +
             "FROM Chat c " +
-            "WHERE (c.user1.id = ?1 OR c.user2.id= ?1")
+            "WHERE (c.user1.id = ?1 OR c.user2.id= ?1)")
     List<Chat> getAllChatsByUser(Long userId);
 }

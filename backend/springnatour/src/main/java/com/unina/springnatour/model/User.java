@@ -12,6 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Builder
@@ -26,13 +27,12 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(name = "cognito_id", unique = true)
+    private UUID cognitoId;
+
     @NotNull
     @Column(name = "username", nullable = false)
     private String username;
-
-    @Email(message = "Email should be valid!")
-    @Column(name = "email", nullable = false)
-    private String email;
 
     @URL
     @Column(name = "photo_url")

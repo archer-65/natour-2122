@@ -26,9 +26,13 @@
     <string name="logo_facebook">Logo Facebook</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< Updated upstream
     <string name="username">Username</string>
     <string name="email_hint">Email</string>
     <string name="confirm_password_hint">Conferma password</string>
     <string name="sign_up">Registrazione</string>
+=======
+    <string name="confirmation_code_hint">Inserisci il codice di verifica</string>
+>>>>>>> Stashed changes
 
 </resources>

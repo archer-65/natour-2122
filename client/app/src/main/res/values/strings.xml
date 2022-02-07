@@ -20,9 +20,15 @@
     <string name="text_social_login">Accedi con</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
-    <string name="cover_login">Cover login</string>
+    <string name="cover_authentication">Cover login</string>
     <string name="logo_app">Logo App</string>
     <string name="logo_google">Logo Google</string>
     <string name="logo_facebook">Logo Facebook</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="email_hint">Email</string>
+    <string name="confirm_password_hint">Conferma password</string>
+    <string name="sign_up">Registrazione</string>
 
 </resources>

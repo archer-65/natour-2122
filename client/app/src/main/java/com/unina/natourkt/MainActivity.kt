@@ -2,8 +2,13 @@ package com.unina.natourkt
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -12,6 +17,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.unina.natourkt.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import dev.chrisbanes.insetter.applyInsetter
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //var instance = MainActivity()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val navView: BottomNavigationView = binding.navView
 

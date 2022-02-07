@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.unina.natourkt.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
@@ -33,6 +37,12 @@ class LoginFragment() : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.linearlayoutSocial.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
+
         return root
     }
 
@@ -41,7 +51,7 @@ class LoginFragment() : Fragment() {
 
         val activity = requireActivity()
 
-       
+
     }
 
     override fun onDestroyView() {

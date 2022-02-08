@@ -2,13 +2,14 @@ package com.unina.natourkt.domain.usecase
 
 import com.amplifyframework.auth.AuthException
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.data.remote.repository.data.AmplifyAuth
+import com.unina.natourkt.data.repository.AuthRepositoryImpl
+import com.unina.natourkt.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class ConfirmationUseCase @Inject constructor(
-    private val amplify: AmplifyAuth
+    private val authRepository: AuthRepository
 ) {
 
     operator fun invoke(
@@ -18,7 +19,7 @@ class ConfirmationUseCase @Inject constructor(
 
         try {
             emit(DataState.Loading())
-            val isSignUpComplete = amplify.confirmRegistration(username, code)
+            val isSignUpComplete = authRepository.confirmRegistration(username, code)
 
             if (isSignUpComplete) {
                 emit(DataState.Success(isSignUpComplete))
@@ -26,7 +27,17 @@ class ConfirmationUseCase @Inject constructor(
                 emit(DataState.Error("Something went wrong, retry."))
             }
         } catch (e: AuthException) {
-            emit(DataState.Error(e.localizedMessage ?: "Confirmation code step failed."))
+            val message: String = when (e) {
+                is AuthException.CodeDeliveryFailureException -> "Error in delivering the confirmation code, require another code."
+
+                is AuthException.CodeMismatchException -> "Confirmation code is not correct, retry."
+
+                is AuthException.CodeExpiredException -> "Confirmation code has expired"
+
+                else -> e.localizedMessage ?: "Unknown error, retry later."
+            }
+
+            emit(DataState.Error(message))
         }
     }
 }

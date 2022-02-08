@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,6 +18,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentLoginBinding
@@ -30,17 +32,21 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    private var _binding: FragmentLoginBinding? = null
-
     // This property is only valid between OnCreateView and
     // onDestroyView.
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
+    // Buttons
     private lateinit var loginButton: Button
     private lateinit var registerButton: Button
 
+    // TextFields
     private lateinit var usernameField: TextInputLayout
     private lateinit var passwordField: TextInputLayout
+
+    // ProgressBar
+    private lateinit var progressBar: ProgressBar
 
     private val loginViewModel: LoginViewModel by viewModels()
 
@@ -53,6 +59,28 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        setupUi()
+
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        collectState()
+
+        setListeners()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    /**
+     * Basic settings for UI
+     */
+    fun setupUi() {
         binding.linearlayoutSocial.applyInsetter {
             type(navigationBars = true) {
                 padding()
@@ -71,32 +99,7 @@ class LoginFragment : Fragment() {
         usernameField = binding.textfieldUsername
         passwordField = binding.textfieldPassword
 
-        return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // For Social Login (required by Amplify)
-        val activity = requireActivity()
-
-        collectState()
-
-        loginButton.setOnClickListener {
-            loginViewModel.login(
-                usernameField.editText?.text.toString(),
-                passwordField.editText?.text.toString()
-            )
-        }
-
-        registerButton.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_login_to_navigation_registration)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        progressBar = binding.progressBar
     }
 
     /**
@@ -107,24 +110,38 @@ class LoginFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 loginViewModel.uiState.collect { uiState ->
                     if (uiState.isUserLoggedIn) {
+                        progressBar.visibility = View.GONE
                         findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
                     }
                     if (uiState.isLoading) {
-                        Toast.makeText(
-                            this@LoginFragment.activity,
-                            "Aspe amo",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        progressBar.visibility = View.VISIBLE
                     }
                     if (uiState.errorMessage != null) {
-                        Toast.makeText(
-                            this@LoginFragment.activity,
-                            "Aspe error",
-                            Toast.LENGTH_SHORT
+                        progressBar.visibility = View.GONE
+                        Snackbar.make(
+                            this@LoginFragment.requireView(),
+                            uiState.errorMessage,
+                            Snackbar.LENGTH_SHORT
                         ).show()
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Function to set listeners for views
+     */
+    fun setListeners() {
+        loginButton.setOnClickListener {
+            loginViewModel.login(
+                usernameField.editText?.text.toString(),
+                passwordField.editText?.text.toString()
+            )
+        }
+
+        registerButton.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_login_to_navigation_registration)
         }
     }
 }

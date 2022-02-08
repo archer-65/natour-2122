@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.unina.natourkt.databinding.FragmentRoutesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RoutesFragment : Fragment() {
 
     private var _binding: FragmentRoutesBinding? = null

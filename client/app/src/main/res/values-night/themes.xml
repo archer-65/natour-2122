@@ -1,16 +1,5 @@
 <resources>
     <style name="Theme.NaTour" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="android:navigationBarColor">
-            @android:color/transparent
-        </item>
-
-        <!-- Optional, if your app is drawing behind the status bar also. -->
-        <item name="android:statusBarColor">
-            @android:color/transparent
-        </item>
-
-        <item name="android:windowLightStatusBar">false</item>
-
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -37,5 +26,18 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
+
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <item name="android:navigationBarColor">
+            @android:color/transparent
+        </item>
+
+        <!-- Optional, if your app is drawing behind the status bar also. -->
+        <item name="android:statusBarColor">
+            @android:color/transparent
+        </item>
+
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 </resources>

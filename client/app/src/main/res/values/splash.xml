@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NaTour.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/md_theme_light_inverseOnSurface</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_natour_logo_icon</item>
+
+        <item name="postSplashScreenTheme">@style/Theme.NaTour</item>
+    </style>
+</resources>

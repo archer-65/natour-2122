@@ -2,19 +2,20 @@ package com.unina.natourkt.domain.usecase
 
 import com.amplifyframework.auth.AuthException
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.data.remote.repository.data.AmplifyAuth
+import com.unina.natourkt.data.repository.AuthRepositoryImpl
+import com.unina.natourkt.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
-    private val amplify: AmplifyAuth
+    private val authRepository: AuthRepository
 ) {
 
     operator fun invoke(username: String, password: String): Flow<DataState<Boolean>> = flow {
         try {
             emit(DataState.Loading())
-            val isSignInComplete = amplify.login(username, password)
+            val isSignInComplete = authRepository.login(username, password)
 
             if (isSignInComplete) {
                 emit(DataState.Success(isSignInComplete))
@@ -22,7 +23,17 @@ class LoginUseCase @Inject constructor(
                 emit(DataState.Error("Credentials wrong"))
             }
         } catch (e: AuthException) {
-            emit(DataState.Error(e.localizedMessage ?: "Authentication error, retry."))
+            val message: String = when (e) {
+                is AuthException.UserNotFoundException -> "User not found, enter the correct username."
+
+                is AuthException.UserNotConfirmedException -> "User not confirmed, please contact assistance."
+
+                is AuthException.InvalidPasswordException -> "Given password invalid, enter the correct password"
+
+                else -> e.localizedMessage ?: "Unknown error, retry later."
+            }
+
+            emit(DataState.Error(message))
         }
     }
 }

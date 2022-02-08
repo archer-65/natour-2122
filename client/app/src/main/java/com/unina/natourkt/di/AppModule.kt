@@ -1,6 +1,7 @@
 package com.unina.natourkt.di
 
-import com.unina.natourkt.data.remote.repository.data.AmplifyAuth
+import com.unina.natourkt.data.repository.AuthRepositoryImpl
+import com.unina.natourkt.domain.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,11 +10,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AmplifyModule {
+object AppModule {
 
     @Provides
     @Singleton
-    fun provideAmplify(): AmplifyAuth {
-        return AmplifyAuth()
+    fun provideAuthRepository(): AuthRepository {
+        return AuthRepositoryImpl()
     }
 }

@@ -66,4 +66,7 @@ dependencies {
 
     // Insetter
     implementation "dev.chrisbanes.insetter:insetter:0.6.1"
+
+    // Splash screen
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
 }

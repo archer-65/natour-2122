@@ -37,7 +37,7 @@
     "resourceName": "natourd60c9a65",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
-    "hostedUI": false,
+    "hostedUI": true,
     "triggers": {
       "PostConfirmation": [
         "custom"
@@ -79,6 +79,13 @@
     "thirdPartyAuth": false,
     "userPoolGroups": false,
     "adminQueries": false,
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"natourd60c9a65PostConfirmation\"\n  }\n]"
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"natourd60c9a65PostConfirmation\"\n  }\n]",
+    "hostedUIDomainName": "natourd60c9a65-d60c9a65",
+    "authProvidersUserPool": [
+      "Facebook",
+      "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://MainActivity/\"],\"LogoutURLs\":[\"myapp://MainActivity/\"]}"
   }
 }

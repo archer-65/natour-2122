@@ -27,5 +27,32 @@
         android:id="@+id/navigation_login"
         android:name="com.unina.natourkt.presentation.login.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_login_to_navigation_registration"
+            app:destination="@id/navigation_registration" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_registration"
+        android:name="com.unina.natourkt.presentation.registration.RegistrationFragment"
+        android:label="Registrazione"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_navigation_registration_to_navigation_confirmation"
+            app:destination="@id/navigation_confirmation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_confirmation"
+        android:name="com.unina.natourkt.presentation.registration.ConfirmationFragment"
+        android:label="Conferma codice"
+        tools:layout="@layout/fragment_confirmation" >
+        <action
+            android:id="@+id/action_navigation_confirmation_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

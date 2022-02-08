@@ -14,7 +14,7 @@ import com.unina.natourkt.MainActivity
  * This is a remote utility class built on
  * Amplify Auth methods
  */
-class AmplifyAuthDataSource() {
+class AmplifyAuth() {
 
     suspend fun fetchCurrentSession(): Boolean? {
 
@@ -32,53 +32,50 @@ class AmplifyAuthDataSource() {
         return isSignedIn
     }
 
-    suspend fun registerUser(username: String, email: String, password: String): Boolean? {
+    suspend fun register(username: String, email: String, password: String): Boolean {
 
         val options = AuthSignUpOptions.builder()
             .userAttribute(AuthUserAttributeKey.email(), email)
             .build();
 
-        val isSignUpComplete: Boolean? = try {
-            val result = Amplify.Auth.signUp(username, password, options)
-            Log.i("Amplify Sign Up: ", "$result")
+        val result = Amplify.Auth.signUp(username, password, options)
 
-            result.isSignUpComplete
-        } catch (error: AuthException) {
-            Log.e("Auth Sign Up: ", "Failed to Sign Up", error)
-
-            null
+        val isSignUpComplete: Boolean = if (result.isSignUpComplete) {
+            Log.i("Amplify Sign Up: ", "Sign up successful!")
+            true
+        } else {
+            Log.i("Amplify Sign Up: ", "Sign up failed!")
+            false
         }
 
         return isSignUpComplete
     }
 
-    suspend fun confirmUser(username: String, code: String): Boolean? {
+    suspend fun confirmRegistration(username: String, code: String): Boolean {
 
-        val isSignUpConfirmed: Boolean? = try {
-            val result = Amplify.Auth.confirmSignUp(username, code)
-            Log.i("Amplify Confirmation: ", "$result")
+        val result = Amplify.Auth.confirmSignUp(username, code)
 
-            result.isSignUpComplete
-        } catch (error: AuthException) {
-            Log.e("Amplify Confirmation", "Failed to confirm Sign Up", error)
-
-            null
+        val isSignUpConfirmed: Boolean = if (result.isSignUpComplete) {
+            Log.i("Amplify Confirmation: ", "Sign Up confirmed!")
+            true
+        } else {
+            Log.i("Amplify Confirmation", "Failed to confirm Sign Up.")
+            false
         }
 
         return isSignUpConfirmed
     }
 
-    suspend fun login(username: String, password: String): Boolean? {
+    suspend fun login(username: String, password: String): Boolean {
 
-        val isSignInComplete: Boolean? = try {
-            val result = Amplify.Auth.signIn(username, password)
-            Log.i("Amplify Login: ", "$result")
+        val result = Amplify.Auth.signIn(username, password)
 
-            result.isSignInComplete
-        } catch (error: AuthException) {
-            Log.e("Amplify Login: ", "Login failed", error)
-
-            null
+        val isSignInComplete: Boolean = if (result.isSignInComplete) {
+            Log.i("Amplify Login: ", "Login successful!")
+            true
+        } else {
+            Log.i("Amplify Login: ", "Login failed!")
+            false
         }
 
         return isSignInComplete

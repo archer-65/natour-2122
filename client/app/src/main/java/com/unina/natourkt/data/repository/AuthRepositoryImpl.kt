@@ -10,6 +10,7 @@ import com.unina.natourkt.common.Constants.AMPLIFY
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.domain.repository.AuthRepository
+import java.util.*
 
 /**
  * This is a remote utility class built on
@@ -34,6 +35,17 @@ class AuthRepositoryImpl : AuthRepository {
         }
 
         return isSignedIn
+    }
+
+    /**
+     * Fetch User Sub (Amplify UUID), will be used to query
+     * user from REST API
+     */
+    override suspend fun fetchUserSub(): String {
+
+        val currentUser = Amplify.Auth.getCurrentUser()
+
+        return currentUser!!.userId
     }
 
     /**

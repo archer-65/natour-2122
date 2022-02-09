@@ -11,6 +11,12 @@ interface AuthRepository {
     suspend fun fetchCurrentSession(): Boolean
 
     /**
+     * Fetch User Sub (Amplify UUID), will be used to query
+     * user from REST API
+     */
+    suspend fun fetchUserSub(): String
+
+    /**
      * Provides user registration
      */
     suspend fun register(username: String, email: String, password: String): Boolean

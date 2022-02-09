@@ -6,5 +6,6 @@ object Constants {
     const val GOOGLE = "GOOGLE"
     const val FACEBOOK = "FACEBOOK"
 
-    const val AMPLIFY = "Amplify status"
+    const val AMPLIFY = "Amplify Status"
+    const val PREFERENCES = "DATASTORE_PREF"
 }

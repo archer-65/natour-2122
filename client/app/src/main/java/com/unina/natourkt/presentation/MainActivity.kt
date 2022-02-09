@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //var instance = MainActivity()
-        //WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val navView: BottomNavigationView = binding.navView
 

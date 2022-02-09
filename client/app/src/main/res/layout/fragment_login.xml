@@ -11,6 +11,7 @@
         android:id="@+id/image_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/cover_authentication"
         android:src="@drawable/ic_undraw_authentication"
         app:layout_constraintBottom_toTopOf="@+id/image_app_logo"

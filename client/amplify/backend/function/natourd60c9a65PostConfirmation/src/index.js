@@ -1,39 +1,36 @@
-/**
- * @fileoverview
- *
- * This CloudFormation Trigger creates a handler which awaits the other handlers
- * specified in the `MODULES` env var, located at `./${MODULE}`.
- */
+const mysql = require('mysql');
 
-/**
- * The names of modules to load are stored as a comma-delimited string in the
- * `MODULES` env var.
- */
-const moduleNames = process.env.MODULES.split(',');
-/**
- * The array of imported modules.
- */
-const modules = moduleNames.map(name => require(`./${name}`));
+const connection = mysql.createConnection({
+  host: process.env.HOST,
+  user: process.env.USERNAME,
+  password: process.env.PASSWORD,
+  database: process.env.DB_NAME
+});
 
-/**
- * This async handler iterates over the given modules and awaits them.
- *
- * @see https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html#nodejs-handler-async
- *
- * @param {object} event
- *
- * The event that triggered this Lambda.
- *
- * @returns
- *
- * The handler response.
- */
-exports.handler = async event => {
-  /**
-   * Instead of naively iterating over all handlers, run them concurrently with
-   * `await Promise.all(...)`. This would otherwise just be determined by the
-   * order of names in the `MODULES` var.
-   */
-  await Promise.all(modules.map(module => module.handler(event)));
-  return event;
+exports.handler = (event, context, callback) => {
+
+  context.callbackWaitsForEmptyEventLoop = false;
+
+  try {
+    // Get the sub of the Cognito user
+    if (!event.request.userAttributes.sub || !event.userName) {
+      // No UUID or username
+      throw "No UUID or username available";
+    }
+    
+    const sub = event.request.userAttributes.sub;
+    const username = event.userName;
+  
+    const sql = `INSERT INTO user (cognito_id, username) VALUES ('${sub}', '${username}')`;
+
+    connection.query(sql, function (err, result) {
+      if(err) throw err;
+      callback(null, result);
+    });
+    
+  } catch (error) {
+    console.log(error);
+  }
+
+  context.done(null, event);
 };

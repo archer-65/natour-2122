@@ -1,6 +1,8 @@
 package com.unina.natourkt.domain.usecase
 
+import android.util.Log
 import com.amplifyframework.auth.AuthException
+import com.unina.natourkt.common.Constants.AMPLIFY
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.data.repository.AuthRepositoryImpl
 import com.unina.natourkt.domain.repository.AuthRepository
@@ -27,6 +29,7 @@ class ConfirmationUseCase @Inject constructor(
                 emit(DataState.Error("Something went wrong, retry."))
             }
         } catch (e: AuthException) {
+            Log.e(AMPLIFY, "Error is ", e)
             val message: String = when (e) {
                 is AuthException.CodeDeliveryFailureException -> "Error in delivering the confirmation code, require another code."
 

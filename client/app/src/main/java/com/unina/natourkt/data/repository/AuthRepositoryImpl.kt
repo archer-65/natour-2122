@@ -10,6 +10,8 @@ import com.unina.natourkt.common.Constants.AMPLIFY
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.domain.repository.AuthRepository
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 /**
@@ -109,7 +111,7 @@ class AuthRepositoryImpl : AuthRepository {
     /**
      * Provides user login with socials, could be better
      */
-    override suspend fun loginSocial(provider: String, activity: FragmentActivity?): Boolean {
+    override suspend fun loginSocial(provider: String, activity: FragmentActivity): Boolean {
 
         val authProvider: AuthProvider =
             when (provider) {
@@ -118,10 +120,9 @@ class AuthRepositoryImpl : AuthRepository {
                 else -> throw IllegalArgumentException("Illegal provider!")
             }
 
-        val result =
-            activity?.let { Amplify.Auth.signInWithSocialWebUI(authProvider, it) }
+        val result = Amplify.Auth.signInWithSocialWebUI(authProvider, activity)
 
-        val isSignInComplete: Boolean = if (result!!.isSignInComplete) {
+        val isSignInComplete: Boolean = if (result.isSignInComplete) {
             Log.i(AMPLIFY, "$result")
             true
         } else {

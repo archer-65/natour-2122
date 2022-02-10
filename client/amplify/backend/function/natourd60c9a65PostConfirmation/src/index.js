@@ -21,7 +21,7 @@ function dbQuery(sql) {
         resolve(query);
       }
     });
-    connection.e;
+    connection.end();
   });
 }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.ViewCompat
@@ -21,6 +22,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
+import com.unina.natourkt.common.Constants.FACEBOOK
+import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -40,6 +43,8 @@ class LoginFragment : Fragment() {
     // Buttons
     private lateinit var loginButton: Button
     private lateinit var registerButton: Button
+    private lateinit var googleButton: ImageButton
+    private lateinit var facebookButton: ImageButton
 
     // TextFields
     private lateinit var usernameField: TextInputLayout
@@ -95,6 +100,8 @@ class LoginFragment : Fragment() {
 
         loginButton = binding.buttonLogin
         registerButton = binding.buttonSignup
+        googleButton = binding.buttonGoogle
+        facebookButton = binding.buttonFacebook
 
         usernameField = binding.textfieldUsername
         passwordField = binding.textfieldPassword
@@ -136,12 +143,26 @@ class LoginFragment : Fragment() {
         loginButton.setOnClickListener {
             loginViewModel.login(
                 usernameField.editText?.text.toString(),
-                passwordField.editText?.text.toString()
+                passwordField.editText?.text.toString(),
             )
         }
 
         registerButton.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_login_to_navigation_registration)
+        }
+
+        googleButton.setOnClickListener{
+            loginViewModel.loginSocial(
+                GOOGLE,
+                this@LoginFragment.requireActivity(),
+            )
+        }
+
+        facebookButton.setOnClickListener{
+            loginViewModel.loginSocial(
+                FACEBOOK,
+                this@LoginFragment.requireActivity(),
+            )
         }
     }
 }

@@ -1,11 +1,10 @@
 package com.unina.natourkt.domain.usecase
 
-import android.util.Log
+import androidx.datastore.core.CorruptionException
+import androidx.fragment.app.FragmentActivity
 import com.amplifyframework.auth.AuthException
-import com.unina.natourkt.common.Constants.AMPLIFY
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.data.remote.dto.toUser
-import com.unina.natourkt.data.repository.AuthRepositoryImpl
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.domain.repository.DataStoreRepository
 import com.unina.natourkt.domain.repository.UserRepository
@@ -15,42 +14,44 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class ConfirmationUseCase @Inject constructor(
+class LoginSocialUseCase @Inject constructor(
     private val authRepository: AuthRepository,
     private val dataStoreRepository: DataStoreRepository,
     private val userRepository: UserRepository,
 ) {
 
     operator fun invoke(
-        username: String,
-        code: String
+        provider: String,
+        activity: FragmentActivity
     ): Flow<DataState<Boolean>> = flow {
 
         try {
             emit(DataState.Loading())
-            val isSignUpComplete = authRepository.confirmRegistration(username, code)
 
-            if (isSignUpComplete) {
+            val isSignInComplete = authRepository.loginSocial(provider, activity)
+
+            if (isSignInComplete) {
                 val user = userRepository.getUserByCognitoId(authRepository.fetchUserSub()).toUser()
                 dataStoreRepository.saveUserToDataStore(user);
 
-                emit(DataState.Success(isSignUpComplete))
+                emit(DataState.Success(isSignInComplete))
             } else {
-                emit(DataState.Error("Something went wrong, retry."))
+                emit(DataState.Error("Credentials wrong"))
             }
         } catch (e: AuthException) {
-            Log.e(AMPLIFY, "Error is ", e)
             val message: String = when (e) {
-                is AuthException.CodeDeliveryFailureException -> "Error in delivering the confirmation code, require another code."
+                is AuthException.UserNotFoundException -> "User not found, enter the correct username."
 
-                is AuthException.CodeMismatchException -> "Confirmation code is not correct, retry."
+                is AuthException.UserNotConfirmedException -> "User not confirmed, please contact assistance."
 
-                is AuthException.CodeExpiredException -> "Confirmation code has expired"
+                is AuthException.InvalidPasswordException -> "Given password invalid, enter the correct password"
 
                 else -> e.localizedMessage ?: "Unknown error, retry later."
             }
 
             emit(DataState.Error(message))
+        } catch (e: CorruptionException) {
+            emit(DataState.Error("Try to reinstall app, data may be corrupted"))
         } catch (e: HttpException) {
             emit(DataState.Error("Unexpected error, retry"))
         } catch (e: IOException) {

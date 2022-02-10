@@ -34,5 +34,5 @@ interface AuthRepository {
     /**
      * Provides user login with socials, could be better
      */
-    suspend fun loginSocial(provider: String, activity: FragmentActivity?): Boolean
+    suspend fun loginSocial(provider: String, activity: FragmentActivity): Boolean
 }

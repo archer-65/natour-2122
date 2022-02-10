@@ -10,13 +10,13 @@ import com.unina.natourkt.common.Constants.AMPLIFY
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.domain.repository.AuthRepository
+import com.unina.natourkt.presentation.MainActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
 /**
- * This is a remote utility class built on
- * Amplify Auth methods
+ * This is a remote utility class built on [Amplify] methods
  */
 class AuthRepositoryImpl : AuthRepository {
 
@@ -27,16 +27,9 @@ class AuthRepositoryImpl : AuthRepository {
     override suspend fun fetchCurrentSession(): Boolean {
 
         val session = Amplify.Auth.fetchAuthSession()
+        Log.i(AMPLIFY, "$session")
 
-        val isSignedIn: Boolean = if (session.isSignedIn) {
-            Log.i(AMPLIFY, "$session")
-            true
-        } else {
-            Log.e(AMPLIFY, "Failed to fetch session")
-            false
-        }
-
-        return isSignedIn
+        return session.isSignedIn
     }
 
     /**
@@ -46,6 +39,7 @@ class AuthRepositoryImpl : AuthRepository {
     override suspend fun fetchUserSub(): String {
 
         val currentUser = Amplify.Auth.getCurrentUser()
+        Log.i(AMPLIFY, "$currentUser")
 
         return currentUser!!.userId
     }
@@ -60,16 +54,9 @@ class AuthRepositoryImpl : AuthRepository {
             .build()
 
         val result = Amplify.Auth.signUp(username, password, options)
+        Log.i(AMPLIFY, "$result")
 
-        val isSignUpComplete: Boolean = if (result.isSignUpComplete) {
-            Log.i(AMPLIFY, "$result")
-            true
-        } else {
-            Log.i(AMPLIFY, "Sign up failed!")
-            false
-        }
-
-        return isSignUpComplete
+        return result.isSignUpComplete
     }
 
     /**
@@ -78,16 +65,9 @@ class AuthRepositoryImpl : AuthRepository {
     override suspend fun confirmRegistration(username: String, code: String): Boolean {
 
         val result = Amplify.Auth.confirmSignUp(username, code)
+        Log.i(AMPLIFY, "$result")
 
-        val isSignUpConfirmed: Boolean = if (result.isSignUpComplete) {
-            Log.i(AMPLIFY, "$result")
-            true
-        } else {
-            Log.i(AMPLIFY, "Failed to confirm Sign Up.")
-            false
-        }
-
-        return isSignUpConfirmed
+        return result.isSignUpComplete
     }
 
     /**
@@ -96,22 +76,15 @@ class AuthRepositoryImpl : AuthRepository {
     override suspend fun login(username: String, password: String): Boolean {
 
         val result = Amplify.Auth.signIn(username, password)
+        Log.i(AMPLIFY, "$result")
 
-        val isSignInComplete: Boolean = if (result.isSignInComplete) {
-            Log.i(AMPLIFY, "$result")
-            true
-        } else {
-            Log.i(AMPLIFY, "Login failed!")
-            false
-        }
-
-        return isSignInComplete
+        return result.isSignInComplete
     }
 
     /**
-     * Provides user login with socials, could be better
+     * Provides user login with socials
      */
-    override suspend fun loginSocial(provider: String, activity: FragmentActivity): Boolean {
+    override suspend fun login(provider: String): Boolean {
 
         val authProvider: AuthProvider =
             when (provider) {
@@ -120,16 +93,9 @@ class AuthRepositoryImpl : AuthRepository {
                 else -> throw IllegalArgumentException("Illegal provider!")
             }
 
-        val result = Amplify.Auth.signInWithSocialWebUI(authProvider, activity)
+        val result = Amplify.Auth.signInWithSocialWebUI(authProvider, MainActivity.instance)
+        Log.i(AMPLIFY, "$result")
 
-        val isSignInComplete: Boolean = if (result.isSignInComplete) {
-            Log.i(AMPLIFY, "$result")
-            true
-        } else {
-            Log.e(AMPLIFY, "Login failed")
-            false
-        }
-
-        return isSignInComplete
+        return result.isSignInComplete
     }
 }

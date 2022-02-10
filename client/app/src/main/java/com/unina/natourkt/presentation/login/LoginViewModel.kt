@@ -1,6 +1,5 @@
 package com.unina.natourkt.presentation.login
 
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
@@ -11,6 +10,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel used by [LoginFragment]
+ */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
@@ -22,6 +24,7 @@ class LoginViewModel @Inject constructor(
 
     /**
      * Login function /w Flows
+     * @see [LoginUseCase]
      */
     fun login(username: String, password: String) {
 
@@ -44,11 +47,12 @@ class LoginViewModel @Inject constructor(
 
     /**
      * Login social function /w Flows
+     * @see [LoginSocialUseCase]
      */
-    fun loginSocial(provider: String, activity: FragmentActivity) {
+    fun login(provider: String) {
 
         viewModelScope.launch {
-            loginSocialUseCase(provider, activity).onEach { result ->
+            loginSocialUseCase(provider).onEach { result ->
                 when (result) {
                     is DataState.Success -> {
                         _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)

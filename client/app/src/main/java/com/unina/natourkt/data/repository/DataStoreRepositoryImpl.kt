@@ -18,6 +18,9 @@ class DataStoreRepositoryImpl @Inject constructor(
     private val Context.dataStore: DataStore<Preferences>
             by preferencesDataStore(name = PREFERENCES)
 
+    /**
+     * Companion object to simulate an object User in preferences
+     */
     companion object {
 
         val ID = longPreferencesKey("USER_ID")
@@ -27,6 +30,9 @@ class DataStoreRepositoryImpl @Inject constructor(
 
     }
 
+    /**
+     * Only edit the datastore with given user
+     */
     override suspend fun saveUserToDataStore(user: User) {
         context.dataStore.edit {
             it[ID] = user.id
@@ -36,7 +42,10 @@ class DataStoreRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserFromDataStore(): User {
+    /**
+     * Retrieve the logged user
+     */
+    override suspend fun getUserFromDataStore(): User? {
         var user: User? = null
 
         context.dataStore.data.map {
@@ -50,6 +59,6 @@ class DataStoreRepositoryImpl @Inject constructor(
             user = userStored
         }
 
-        return user!!
+        return user
     }
 }

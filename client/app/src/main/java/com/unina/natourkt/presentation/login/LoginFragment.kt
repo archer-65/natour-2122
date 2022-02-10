@@ -1,18 +1,12 @@
 package com.unina.natourkt.presentation.login
 
-import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
-import android.widget.Toast
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -27,11 +21,12 @@ import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ * This Fragment represents the Login Screen
+ */
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
@@ -117,13 +112,18 @@ class LoginFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 loginViewModel.uiState.collect { uiState ->
                     if (uiState.isUserLoggedIn) {
+                        // When the user becomes logged in, then the progress bar disappears and
+                        // we can navigate to Home screen
                         progressBar.visibility = View.GONE
                         findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
                     }
                     if (uiState.isLoading) {
+                        // While loading display progress
                         progressBar.visibility = View.VISIBLE
                     }
                     if (uiState.errorMessage != null) {
+                        // When there's an error the progress bar disappears and
+                        // a message is displayed
                         progressBar.visibility = View.GONE
                         Snackbar.make(
                             this@LoginFragment.requireView(),
@@ -151,18 +151,12 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_navigation_login_to_navigation_registration)
         }
 
-        googleButton.setOnClickListener{
-            loginViewModel.loginSocial(
-                GOOGLE,
-                this@LoginFragment.requireActivity(),
-            )
+        googleButton.setOnClickListener {
+            loginViewModel.login(GOOGLE)
         }
 
-        facebookButton.setOnClickListener{
-            loginViewModel.loginSocial(
-                FACEBOOK,
-                this@LoginFragment.requireActivity(),
-            )
+        facebookButton.setOnClickListener {
+            loginViewModel.login(FACEBOOK)
         }
     }
 }

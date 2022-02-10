@@ -7,6 +7,7 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
+
             <data android:scheme="https" />
         </intent>
         <intent>
@@ -23,7 +24,9 @@
         android:roundIcon="@drawable/ic_natour_logo_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.NaTour.Starting">
-
+        <activity
+            android:name=".presentation.Prova"
+            android:exported="false" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
@@ -33,7 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity"
             android:exported="true">

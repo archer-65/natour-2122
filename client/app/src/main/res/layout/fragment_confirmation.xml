@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="@string/confirmation_code_hint"
+        android:hint="@string/hint_confirmation_code"
         android:minWidth="250dp"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@id/button_confirmation"

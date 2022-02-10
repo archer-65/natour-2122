@@ -32,7 +32,7 @@ interface AuthRepository {
     suspend fun login(username: String, password: String): Boolean
 
     /**
-     * Provides user login with socials, could be better
+     * Provides user login with socials
      */
-    suspend fun loginSocial(provider: String, activity: FragmentActivity): Boolean
+    suspend fun login(provider: String): Boolean
 }

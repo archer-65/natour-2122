@@ -1,5 +1,9 @@
 package com.unina.natourkt.common
 
+/**
+ * This file contains all the possible constants used for
+ * non-localized strings and tags
+ */
 object Constants {
     const val BASE_URL = "http://10.0.2.2:8080/"
 

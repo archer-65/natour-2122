@@ -5,23 +5,37 @@ import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.usecase.ConfirmationUseCase
 import com.unina.natourkt.domain.usecase.RegistrationUseCase
+import com.unina.natourkt.presentation.login.LoginFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * SharedViewModel used by [RegistrationFragment] and [ConfirmationFragment]
+ */
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
     private val confirmationUseCase: ConfirmationUseCase
 ) : ViewModel() {
 
+    /**
+     * [RegistrationUiState] wrapped by StateFlow used by [RegistrationFragment]
+     */
     private val _uiRegistrationState = MutableStateFlow(RegistrationUiState())
     val uiRegistrationState: StateFlow<RegistrationUiState> = _uiRegistrationState.asStateFlow()
 
+    /**
+     * [ConfirmationUiState] wrapped by StateFlow, used by [ConfirmationFragment]
+     */
     private val _uiConfirmationState = MutableStateFlow(ConfirmationUiState())
     val uiConfirmationState: StateFlow<ConfirmationUiState> = _uiConfirmationState.asStateFlow()
 
+    /**
+     * Registration function
+     * @see [RegistrationUseCase]
+     */
     fun registration(username: String, email: String, password: String) {
 
         viewModelScope.launch {
@@ -46,6 +60,10 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Confirmation function
+     * @see [ConfirmationUseCase]
+     */
     fun confirmation(code: String) {
 
         viewModelScope.launch {

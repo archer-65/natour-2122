@@ -22,6 +22,9 @@ import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ * This Fragment represents the SignUp Screen
+ */
 @AndroidEntryPoint
 class RegistrationFragment : Fragment() {
 
@@ -105,13 +108,18 @@ class RegistrationFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registrationViewModel.uiRegistrationState.collect { uiState ->
                     if (uiState.isSignUpComplete) {
+                        // When the user signs up, then the progress bar disappears and
+                        // we can navigate to Confirmation screen
                         progressBar.visibility = View.GONE
                         findNavController().navigate(R.id.action_navigation_registration_to_navigation_confirmation)
                     }
                     if (uiState.isLoading) {
+                        // While loading display progress
                         progressBar.visibility = View.GONE
                     }
                     if (uiState.errorMessage != null) {
+                        // When there's an error the progress bar disappears and
+                        // a message is displayed
                         progressBar.visibility = View.GONE
                         Snackbar.make(
                             this@RegistrationFragment.requireView(),

@@ -23,7 +23,9 @@ import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-
+/**
+ * This Fragment represents the Confirmation after Sign Up Screen
+ */
 @AndroidEntryPoint
 class ConfirmationFragment : Fragment() {
 
@@ -95,13 +97,18 @@ class ConfirmationFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registrationViewModel.uiConfirmationState.collect { uiState ->
                     if (uiState.isConfirmationComplete) {
+                        // When the user confirms sign up, then the progress bar disappears and
+                        // we can navigate to Home screen
                         progressBar.visibility = View.GONE
                         findNavController().navigate(R.id.action_navigation_confirmation_to_navigation_home)
                     }
                     if (uiState.isLoading) {
+                        // While loading display progress
                         progressBar.visibility = View.VISIBLE
                     }
                     if (uiState.errorMessage != null) {
+                        // When there's an error the progress bar disappears and
+                        // a message is displayed
                         progressBar.visibility = View.GONE
                         Snackbar.make(
                             this@ConfirmationFragment.requireView(),

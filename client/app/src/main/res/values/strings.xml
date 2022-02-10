@@ -2,33 +2,49 @@
     <string name="app_name">NaTour</string>
     <string name="title_activity_main">MainActivity</string>
 
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="title_activity_bottom">BottomActivity</string>
+    <!-- TITLES -->
     <string name="title_home">Home</string>
     <string name="title_routes">Itinerari</string>
     <string name="title_profile">Profilo</string>
+
+    <!-- AUTHENTICATION -->
+    <!-- Hints -->
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_confirm_password">Conferma password</string>
+    <string name="hint_confirmation_code">Inserisci il codice di verifica</string>
+    <!-- Actions -->
     <string name="button_signup_text">Registrati</string>
     <string name="button_login_text">Accedi</string>
     <string name="text_social_login">Accedi con</string>
-    <string name="hint_username">Username</string>
-    <string name="hint_password">Password</string>
+    <string name="button_signup_send_text">Registrazione</string>
+    <string name="forgot_password"><u>Password dimenticata?</u></string>
+    <string name="resend_confirmation_code"><u>Inviami di nuovo il codice</u></string>
+    <!-- Form validation -->
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <!-- Errors -->
+    <string name="auth_failed_generic">Errore sconosciuto, riprova più tardi.</string>
+    <string name="auth_failed_exception">Errore sconosciuto, contatta l'assistenza.</string>
+    <string name="user_not_found">Utente non trovato, inserisci un username corretto.</string>
+    <string name="user_not_confirmed">Utente non confermato, contattare l'assistenza.</string>
+    <string name="username_exists">Username già esistente.</string>
+    <string name="password_not_valid_for_user">Password non valida, riprova.</string>
+    <string name="credentials_already_taken">Esiste già un utente con queste credenziali, riprova.</string>
+    <string name="incorrect_parameters">Uno o più campi non sono corretti, riprova.</string>
+    <string name="error_confirmation_code_deliver">C'è stato un errore nella consegna del codice, richiedine un altro.</string>
+    <string name="wrong_confirmation_code">Codice di conferma non valido, riprova.</string>
+    <string name="expired_confirmation_code">Il codice di conferma è scaduto, richiedine un altro.</string>
+
+    <!-- STUFF -->
     <string name="cover_authentication">Cover login</string>
     <string name="logo_app">Logo App</string>
     <string name="logo_google">Logo Google</string>
     <string name="logo_facebook">Logo Facebook</string>
-    <string name="username">Username</string>
-    <string name="email_hint">Email</string>
-    <string name="confirm_password_hint">Conferma password</string>
-    <string name="sign_up">Registrazione</string>
-    <string name="confirmation_code_hint">Inserisci il codice di verifica</string>
-    <string name="forgot_password"><u>Password dimenticata?</u></string>
-    <string name="resend_confirmation_code"> <u> Rimanda codice di verifica </u> </string>
+
+    <!-- ERRORS RELATED TO NETWORK OR STORAGE -->
+    <string name="data_corrupted">Try to reinstall app, data may be corrupted</string>
+    <string name="retrofit_http_error">Unexpected error, retry</string>
+    <string name="internet_error">Check your internet connection</string>
 </resources>

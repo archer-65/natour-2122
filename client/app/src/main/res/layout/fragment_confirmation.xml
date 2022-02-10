@@ -56,14 +56,15 @@
         android:id="@+id/button_confirmation"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="315dp"
         android:enabled="true"
         android:text="@string/button_signup_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textfield_confirm_code" />
+        app:layout_constraintTop_toBottomOf="@id/textfield_confirm_code" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -75,5 +76,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resend_confirmation_code"
+        android:layout_width="174dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="14dp"
+        android:text="@string/resend_confirmation_code"
+        android:textColor="@color/md_theme_light_primary"
+        app:layout_constraintBottom_toTopOf="@+id/button_confirmation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textfield_confirm_code"
+        app:layout_constraintVertical_bias="0.888" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

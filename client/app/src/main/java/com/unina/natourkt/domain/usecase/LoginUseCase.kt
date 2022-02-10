@@ -4,17 +4,20 @@ import com.amplifyframework.auth.AuthException
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.data.repository.AuthRepositoryImpl
 import com.unina.natourkt.domain.repository.AuthRepository
+import com.unina.natourkt.domain.repository.DataStoreRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val dataStoreRepository: DataStoreRepository,
 ) {
 
     operator fun invoke(username: String, password: String): Flow<DataState<Boolean>> = flow {
         try {
             emit(DataState.Loading())
+
             val isSignInComplete = authRepository.login(username, password)
 
             if (isSignInComplete) {

@@ -3,11 +3,13 @@ package com.unina.springnatour.service;
 import com.unina.springnatour.dto.user.UserDto;
 import com.unina.springnatour.dto.user.UserMapper;
 import com.unina.springnatour.exception.UserNotFoundException;
+import com.unina.springnatour.model.User;
 import com.unina.springnatour.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -26,6 +28,14 @@ public class UserService {
     public UserDto getUserById(Long id) {
         return userMapper.toDto(userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id)));
+    }
+
+    public UserDto getUserByUUID(String uuid) {
+        User prova = userRepository.findByCognitoId(uuid);
+
+        System.out.println(prova.getUsername());
+
+        return userMapper.toDto(prova);
     }
 
     /**

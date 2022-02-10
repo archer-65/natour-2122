@@ -7,30 +7,32 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME
 });
 
-exports.handler = (event, context, callback) => {
-
-  context.callbackWaitsForEmptyEventLoop = false;
-
-  try {
-    // Get the sub of the Cognito user
-    if (!event.request.userAttributes.sub || !event.userName) {
-      // No UUID or username
-      throw "No UUID or username available";
-    }
+// DATABASE QUERY
+function dbQuery(sql) {
+  return new Promise((resolve) => {
     
-    const sub = event.request.userAttributes.sub;
-    const username = event.userName;
-  
-    const sql = `INSERT INTO user (cognito_id, username) VALUES ('${sub}', '${username}')`;
-
-    connection.query(sql, function (err, result) {
-      if(err) throw err;
-      callback(null, result);
+    connection.query(sql, (error, rows) => {
+      if(error) {
+        throw error;
+      } else {
+        console.log('Connection OK, query = ');
+        var query;
+        query = rows[0];
+        resolve(query);
+      }
     });
-    
-  } catch (error) {
-    console.log(error);
-  }
+    connection.e;
+  });
+}
 
-  context.done(null, event);
+exports.handler = async (event, context) => {
+
+  let sub = event.request.userAttributes.sub;
+  let username = event.userName;
+  
+  let sql = `INSERT INTO user (cognito_id, username) VALUES ('${sub}', '${username}')`;
+
+  await dbQuery(sql);
+  
+  return event;
 };

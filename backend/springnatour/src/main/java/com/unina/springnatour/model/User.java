@@ -27,8 +27,8 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "cognito_id", unique = true)
-    private UUID cognitoId;
+    @Column(name = "cognito_id", unique = true, columnDefinition = "char(36)")
+    private String cognitoId;
 
     @NotNull
     @Column(name = "username", nullable = false)

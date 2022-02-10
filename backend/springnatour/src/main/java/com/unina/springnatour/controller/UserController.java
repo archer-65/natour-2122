@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -24,6 +25,14 @@ public class UserController {
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
 
         UserDto userDto = userService.getUserById(id);
+
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/search")
+    public ResponseEntity<UserDto> getUserByUUID(@RequestParam String uuid) {
+
+        UserDto userDto = userService.getUserByUUID(uuid);
 
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }

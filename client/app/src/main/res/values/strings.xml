@@ -29,6 +29,10 @@
     <string name="confirm_password_hint">Conferma password</string>
     <string name="sign_up">Registrazione</string>
     <string name="confirmation_code_hint">Inserisci il codice di verifica</string>
+<<<<<<< Updated upstream
     <string name="forgot_password"><u>Password dimenticata?</u></string>
+=======
+    <string name="resend_confirmation_code"> <u> Rimanda codice di verifica </u> </string>
+>>>>>>> Stashed changes
 
 </resources>

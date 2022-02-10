@@ -29,5 +29,6 @@
     <string name="confirm_password_hint">Conferma password</string>
     <string name="sign_up">Registrazione</string>
     <string name="confirmation_code_hint">Inserisci il codice di verifica</string>
+    <string name="forgot_password"><u>Password dimenticata?</u></string>
 
 </resources>

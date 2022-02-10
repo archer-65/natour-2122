@@ -56,7 +56,7 @@
         android:id="@+id/textfield_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:hint="@string/hint_password"
         android:minWidth="250dp"
         app:endIconMode="password_toggle"
@@ -79,24 +79,24 @@
         android:layout_width="114dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/button_signup_text"
         app:layout_constraintEnd_toStartOf="@id/button_login"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textfield_password" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_forgot_password" />
 
     <Button
         android:id="@+id/button_login"
         android:layout_width="114dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="80dp"
         android:enabled="true"
         android:text="@string/button_login_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_signup"
-        app:layout_constraintTop_toBottomOf="@+id/textfield_password" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_forgot_password" />
 
     <LinearLayout
         android:id="@+id/linearlayout_social"
@@ -181,5 +181,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textview_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:minWidth="250dp"
+        android:textSize="13sp"
+        android:textColor="@color/md_theme_light_tertiary"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textfield_password"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

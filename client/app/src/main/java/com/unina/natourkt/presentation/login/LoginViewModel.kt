@@ -35,7 +35,7 @@ class LoginViewModel @Inject constructor(
                         _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)
                     }
                     is DataState.Error -> {
-                        _uiState.value = LoginUiState(errorMessage = result.message)
+                        _uiState.value = LoginUiState(errorMessage = result.error)
                     }
                     is DataState.Loading -> {
                         _uiState.value = LoginUiState(isLoading = true)
@@ -58,7 +58,7 @@ class LoginViewModel @Inject constructor(
                         _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)
                     }
                     is DataState.Error -> {
-                        _uiState.value = LoginUiState(errorMessage = result.message)
+                        _uiState.value = LoginUiState(errorMessage = result.error)
                     }
                     is DataState.Loading -> {
                         _uiState.value = LoginUiState(isLoading = true)

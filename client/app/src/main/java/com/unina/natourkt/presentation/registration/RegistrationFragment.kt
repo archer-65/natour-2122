@@ -16,6 +16,9 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
+import com.unina.natourkt.common.DataState
+import com.unina.natourkt.common.inVisible
+import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentRegistrationBinding
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -110,20 +113,27 @@ class RegistrationFragment : Fragment() {
                     if (uiState.isSignUpComplete) {
                         // When the user signs up, then the progress bar disappears and
                         // we can navigate to Confirmation screen
-                        progressBar.visibility = View.GONE
+                        progressBar.inVisible()
                         findNavController().navigate(R.id.action_navigation_registration_to_navigation_confirmation)
                     }
                     if (uiState.isLoading) {
                         // While loading display progress
-                        progressBar.visibility = View.GONE
+                        progressBar.visible()
                     }
                     if (uiState.errorMessage != null) {
                         // When there's an error the progress bar disappears and
                         // a message is displayed
-                        progressBar.visibility = View.GONE
+                        val message = when (uiState.errorMessage) {
+                            DataState.CustomMessages.UsernameExists -> getString(R.string.username_exists)
+                            DataState.CustomMessages.AliasExists -> getString(R.string.credentials_already_taken)
+                            DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
+                            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
+                            else -> getString(R.string.auth_failed_generic)
+                        }
+                        progressBar.inVisible()
                         Snackbar.make(
                             this@RegistrationFragment.requireView(),
-                            uiState.errorMessage,
+                            message,
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }

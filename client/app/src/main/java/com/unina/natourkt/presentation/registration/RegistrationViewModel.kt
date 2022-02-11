@@ -50,7 +50,7 @@ class RegistrationViewModel @Inject constructor(
                     }
                     is DataState.Error -> {
                         _uiRegistrationState.value =
-                            RegistrationUiState(errorMessage = result.message)
+                            RegistrationUiState(errorMessage = result.error)
                     }
                     is DataState.Loading -> {
                         _uiRegistrationState.value = RegistrationUiState(isLoading = true)
@@ -75,7 +75,7 @@ class RegistrationViewModel @Inject constructor(
                     }
                     is DataState.Error -> {
                         _uiConfirmationState.value =
-                            ConfirmationUiState(errorMessage = result.message)
+                            ConfirmationUiState(errorMessage = result.error)
                     }
                     is DataState.Loading -> {
                         _uiConfirmationState.value =

@@ -4,6 +4,7 @@ import android.content.Context
 import com.amplifyframework.auth.AuthException
 import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.data.repository.AuthRepositoryImpl
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.domain.repository.DataStoreRepository
@@ -11,6 +12,7 @@ import com.unina.natourkt.domain.repository.UserRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.lang.Exception
 import java.security.InvalidParameterException
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ import javax.inject.Inject
  */
 class RegistrationUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-    @ApplicationContext private val context: Context,
+    private val errorHandler: ErrorHandler,
 ) {
 
     operator fun invoke(
@@ -36,20 +38,10 @@ class RegistrationUseCase @Inject constructor(
             if (isSignUpComplete) {
                 emit(DataState.Success(isSignUpComplete))
             } else {
-                emit(DataState.Error(context.getString(R.string.auth_failed_generic)))
+                emit(DataState.Error(DataState.CustomMessages.SomethingWentWrong("Unknown Error")))
             }
-        } catch (e: AuthException) {
-            val message: String = when (e) {
-                is AuthException.UsernameExistsException -> context.getString(R.string.username_exists)
-
-                is AuthException.AliasExistsException -> context.getString(R.string.credentials_already_taken)
-
-                is AuthException.InvalidParameterException -> context.getString(R.string.incorrect_parameters)
-
-                else -> context.getString(R.string.auth_failed_exception)
-            }
-
-            emit(DataState.Error(message))
+        } catch (e: Exception) {
+            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.unina.natourkt.presentation.registration
 
+import com.unina.natourkt.common.DataState
 import com.unina.natourkt.presentation.login.LoginViewModel
 
 /**
@@ -7,6 +8,6 @@ import com.unina.natourkt.presentation.login.LoginViewModel
  */
 data class ConfirmationUiState(
     val isLoading: Boolean = false,
-    val errorMessage: String? = null,
+    val errorMessage: DataState.CustomMessages? = null,
     val isConfirmationComplete: Boolean = false,
 )

@@ -26,14 +26,14 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <!-- Errors -->
     <string name="auth_failed_generic">Errore sconosciuto, riprova più tardi.</string>
-    <string name="auth_failed_exception">Errore sconosciuto, contatta l'assistenza.</string>
+    <string name="auth_failed_exception">Errore sconosciuto, contatta l\'assistenza.</string>
     <string name="user_not_found">Utente non trovato, inserisci un username corretto.</string>
-    <string name="user_not_confirmed">Utente non confermato, contattare l'assistenza.</string>
+    <string name="user_not_confirmed">Utente non confermato, contattare l\'assistenza.</string>
     <string name="username_exists">Username già esistente.</string>
     <string name="password_not_valid_for_user">Password non valida, riprova.</string>
     <string name="credentials_already_taken">Esiste già un utente con queste credenziali, riprova.</string>
     <string name="incorrect_parameters">Uno o più campi non sono corretti, riprova.</string>
-    <string name="error_confirmation_code_deliver">C'è stato un errore nella consegna del codice, richiedine un altro.</string>
+    <string name="error_confirmation_code_deliver">C\'è stato un errore nella consegna del codice, richiedine un altro.</string>
     <string name="wrong_confirmation_code">Codice di conferma non valido, riprova.</string>
     <string name="expired_confirmation_code">Il codice di conferma è scaduto, richiedine un altro.</string>
 

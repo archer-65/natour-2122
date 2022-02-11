@@ -18,6 +18,9 @@ import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
+import com.unina.natourkt.common.DataState
+import com.unina.natourkt.common.inVisible
+import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -114,20 +117,28 @@ class LoginFragment : Fragment() {
                     if (uiState.isUserLoggedIn) {
                         // When the user becomes logged in, then the progress bar disappears and
                         // we can navigate to Home screen
-                        progressBar.visibility = View.GONE
+                        progressBar.inVisible()
                         findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
                     }
                     if (uiState.isLoading) {
                         // While loading display progress
-                        progressBar.visibility = View.VISIBLE
+                        progressBar.visible()
                     }
                     if (uiState.errorMessage != null) {
+                        val message = when (uiState.errorMessage) {
+                            is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
+                            is DataState.CustomMessages.UserNotConfirmed -> getString(R.string.user_not_confirmed)
+                            is DataState.CustomMessages.InvalidPassword -> getString(R.string.invalid_password)
+                            is DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
+                            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
+                            else -> getString(R.string.auth_failed_generic)
+                        }
                         // When there's an error the progress bar disappears and
                         // a message is displayed
-                        progressBar.visibility = View.GONE
+                        progressBar.inVisible()
                         Snackbar.make(
                             this@LoginFragment.requireView(),
-                            uiState.errorMessage,
+                            message,
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }

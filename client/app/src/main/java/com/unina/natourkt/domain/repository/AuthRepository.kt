@@ -35,4 +35,14 @@ interface AuthRepository {
      * Provides user login with socials
      */
     suspend fun login(provider: String): Boolean
+
+    /**
+     * Resend confirmation code
+     */
+    suspend fun resendCode(username: String): Boolean
+
+    /**
+     * Reset password request
+     */
+    suspend fun resetPasswordRequest(username: String): Boolean
 }

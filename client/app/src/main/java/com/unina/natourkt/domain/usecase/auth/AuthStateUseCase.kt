@@ -1,4 +1,4 @@
-package com.unina.natourkt.domain.usecase
+package com.unina.natourkt.domain.usecase.auth
 
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.domain.repository.DataStoreRepository

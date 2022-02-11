@@ -3,9 +3,8 @@ package com.unina.natourkt.presentation.registration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.usecase.ConfirmationUseCase
-import com.unina.natourkt.domain.usecase.RegistrationUseCase
-import com.unina.natourkt.presentation.login.LoginFragment
+import com.unina.natourkt.domain.usecase.auth.ConfirmationUseCase
+import com.unina.natourkt.domain.usecase.auth.RegistrationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

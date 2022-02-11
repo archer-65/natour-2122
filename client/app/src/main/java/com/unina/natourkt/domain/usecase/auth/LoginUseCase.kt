@@ -1,21 +1,14 @@
-package com.unina.natourkt.domain.usecase
+package com.unina.natourkt.domain.usecase.auth
 
-import android.content.Context
-import android.util.Log
-import androidx.datastore.core.CorruptionException
-import com.amplifyframework.auth.AuthException
-import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.domain.repository.DataStoreRepository
 import com.unina.natourkt.domain.repository.UserRepository
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.unina.natourkt.domain.usecase.datastore.SaveUserToStoreUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import java.io.IOException
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -27,8 +20,8 @@ import javax.inject.Inject
  */
 class LoginUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-    private val dataStoreRepository: DataStoreRepository,
     private val userRepository: UserRepository,
+    private val saveUserToStoreUseCase: SaveUserToStoreUseCase,
     private val errorHandler: ErrorHandler,
 ) {
 
@@ -39,8 +32,10 @@ class LoginUseCase @Inject constructor(
             val isSignInComplete = authRepository.login(username, password)
 
             if (isSignInComplete) {
-                val user = userRepository.getUserByCognitoId(authRepository.fetchUserSub()).toUser()
-                dataStoreRepository.saveUserToDataStore(user);
+                val cognitoId = authRepository.fetchUserSub()
+                val user = userRepository.getUserByCognitoId(cognitoId).toUser()
+
+                saveUserToStoreUseCase(user)
 
                 emit(DataState.Success(isSignInComplete))
             } else {

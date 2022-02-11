@@ -98,4 +98,26 @@ class AuthRepositoryImpl : AuthRepository {
 
         return result.isSignInComplete
     }
+
+    /**
+     * Resend confirmation code
+     */
+    override suspend fun resendCode(username: String): Boolean {
+
+        val result = Amplify.Auth.resendSignUpCode(username)
+        Log.i(AMPLIFY, "$result")
+
+        return result.isSignUpComplete
+    }
+
+    /**
+     * Reset password request
+     */
+    override suspend fun resetPasswordRequest(username: String): Boolean {
+
+        val result = Amplify.Auth.resetPassword(username)
+        Log.i(AMPLIFY, "$result")
+
+        return result.isPasswordReset
+    }
 }

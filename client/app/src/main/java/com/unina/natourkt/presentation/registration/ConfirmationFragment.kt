@@ -21,6 +21,7 @@ import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentConfirmationBinding
+import com.unina.natourkt.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
  * This Fragment represents the Confirmation after Sign Up Screen
  */
 @AndroidEntryPoint
-class ConfirmationFragment : Fragment() {
+class ConfirmationFragment : BaseFragment() {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
@@ -103,7 +104,13 @@ class ConfirmationFragment : Fragment() {
                         // When the user confirms sign up, then the progress bar disappears and
                         // we can navigate to Home screen
                         progressBar.inVisible()
-                        findNavController().navigate(R.id.action_navigation_confirmation_to_navigation_home)
+                        val message = "Account confermato, effettua l'accesso!"
+                        Snackbar.make(
+                            this@ConfirmationFragment.requireView(),
+                            message,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        findNavController().navigate(R.id.action_navigation_confirmation_to_navigation_login)
                     }
                     if (uiState.isLoading) {
                         // While loading display progress

@@ -41,4 +41,13 @@
 
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <style name="BackgroundAlternative">
+        <item name="android:background">@color/md_theme_light_inverseOnSurface</item>
+    </style>
+
+    <style name="Widget.NaTour.TextWithAction" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/md_theme_light_tertiary</item>
+    </style>
+
 </resources>

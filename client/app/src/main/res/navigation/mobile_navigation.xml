@@ -52,7 +52,7 @@
         android:label="Conferma codice"
         tools:layout="@layout/fragment_confirmation" >
         <action
-            android:id="@+id/action_navigation_confirmation_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_navigation_confirmation_to_navigation_login"
+            app:destination="@id/navigation_login" />
     </fragment>
 </navigation>

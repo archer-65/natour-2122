@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.ActivityMainBinding
+import com.unina.natourkt.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.Internal.instance
 
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() {
     // NavView and NavController
     private lateinit var navView: BottomNavigationView
     private lateinit var navController: NavController
+
+    private var isUserAuthenticated: Boolean = false
+    private var loggedUser: User? = null
 
     private val mainViewModel: MainViewModel by viewModels()
 
@@ -68,7 +72,10 @@ class MainActivity : AppCompatActivity() {
      * Check if user is authenticated, if not, then go to Login Fragment
      */
     private fun checkAuthState() {
-        if (!mainViewModel.isUserAuthenticated) {
+        isUserAuthenticated = mainViewModel.isUserAuthenticated
+        loggedUser = mainViewModel.loggedUser
+
+        if (!isUserAuthenticated || loggedUser == null) {
             navController.navigate(R.id.navigation_login)
         }
     }

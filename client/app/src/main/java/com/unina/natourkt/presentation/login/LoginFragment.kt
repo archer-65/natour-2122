@@ -22,6 +22,7 @@ import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentLoginBinding
+import com.unina.natourkt.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
@@ -31,7 +32,7 @@ import kotlinx.coroutines.launch
  * This Fragment represents the Login Screen
  */
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
@@ -84,6 +85,7 @@ class LoginFragment : Fragment() {
      * Basic settings for UI
      */
     fun setupUi() {
+
         binding.linearlayoutSocial.applyInsetter {
             type(navigationBars = true) {
                 padding()
@@ -111,6 +113,7 @@ class LoginFragment : Fragment() {
      * Start to collect LoginState, action based on Success/Loading/Error
      */
     fun collectState() {
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 loginViewModel.uiState.collect { uiState ->

@@ -1,4 +1,4 @@
-package com.unina.natourkt.domain.usecase
+package com.unina.natourkt.domain.usecase.auth
 
 import android.content.Context
 import com.amplifyframework.auth.AuthException

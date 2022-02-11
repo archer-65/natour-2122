@@ -29,8 +29,8 @@ public class User implements Serializable {
 
     @Column(name = "cognito_id", unique = true, columnDefinition = "char(36)")
     private String cognitoId;
-
-    @NotNull
+sasadasdasdasdasdasdasdsadasd
+    @NotNullsasdrarr
     @Column(name = "username", nullable = false)
     private String username;
 

@@ -1,4 +1,4 @@
-package com.unina.natourkt.domain.usecase.auth
+package com.unina.natourkt.domain.use_case.auth
 
 import android.util.Log
 import com.unina.natourkt.common.DataState
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 import javax.inject.Inject
 
-class ResetPasswordRequestUseCase @Inject constructor(
+class ResendCodeUseCase @Inject constructor(
     private val authRepository: AuthRepository,
     private val errorHandler: ErrorHandler,
 ) {
@@ -19,19 +19,16 @@ class ResetPasswordRequestUseCase @Inject constructor(
         try {
             emit(DataState.Loading())
 
-            val isPasswordReset = authRepository.resetPasswordRequest(username)
+            val isCodeSent = authRepository.resendCode(username)
 
-            if (isPasswordReset) {
-                emit(DataState.Success(isPasswordReset))
+            if (isCodeSent) {
+                // If the code is resent successfully emit
+                emit(DataState.Success(isCodeSent))
             } else {
-                emit(DataState.Error(DataState.CustomMessages.SomethingWentWrong("Unknown Error resetting password")))
+                emit(DataState.Error(DataState.CustomMessages.SomethingWentWrong("Unknown Error resending code")))
             }
         } catch (e: Exception) {
-            Log.e(
-                "RESET PASSWORD STATE",
-                e.localizedMessage ?: "Resetting password failed due to exception",
-                e
-            )
+            Log.e("RESEND CODE STATE", e.localizedMessage ?: "Resend failed due to exception", e)
             emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
         }
     }

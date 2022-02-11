@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.registration
+package com.unina.natourkt.presentation.registration.confirmation
 
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.presentation.login.LoginViewModel
@@ -10,4 +10,5 @@ data class ConfirmationUiState(
     val isLoading: Boolean = false,
     val errorMessage: DataState.CustomMessages? = null,
     val isConfirmationComplete: Boolean = false,
+    val isCodeResent: Boolean = false,
 )

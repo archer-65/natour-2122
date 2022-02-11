@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.registration
+package com.unina.natourkt.presentation.login.forgot_password
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -16,7 +16,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
-import com.unina.natourkt.databinding.FragmentRegistrationBinding
+import com.unina.natourkt.databinding.FragmentForgotPasswordBinding
 import com.unina.natourkt.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -24,29 +24,27 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
- * This Fragment represents the SignUp Screen
+ * This Fragment represents the first screen
+ * of a password recover operations
  */
 @AndroidEntryPoint
-class RegistrationFragment : BaseFragment() {
+class ForgotPasswordFragment : BaseFragment() {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
-    private var _binding: FragmentRegistrationBinding? = null
+    private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
 
     // Buttons
-    private lateinit var registerButton: Button
+    private lateinit var sendCodeButton: Button
 
     // TextFields
     private lateinit var usernameField: TextInputLayout
-    private lateinit var emailField: TextInputLayout
-    private lateinit var passwordField: TextInputLayout
-    private lateinit var passwordConfirmField: TextInputLayout
 
     // ProgressBar
     private lateinit var progressBar: ProgressBar
 
-    private val registrationViewModel: RegistrationViewModel by activityViewModels()
+    private val forgotPasswordViewModel: ForgotPasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +52,7 @@ class RegistrationFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
+        _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         setupUi()
@@ -75,59 +73,44 @@ class RegistrationFragment : BaseFragment() {
         _binding = null
     }
 
-    /**
-     * Basic settings for UI
-     */
     fun setupUi() {
-        binding.buttonSignup.applyInsetter {
-            type(navigationBars = true) {
-                margin()
-            }
-        }
-
-        binding.imageRegistration.applyInsetter {
+        binding.imageForgotPassword.applyInsetter {
             type(statusBars = true) {
                 margin()
             }
         }
 
-        registerButton = binding.buttonSignup
+        sendCodeButton = binding.buttonSendCode
 
         usernameField = binding.textfieldUsername
-        emailField = binding.textfieldEmail
-        passwordField = binding.textfieldPassword
-        passwordConfirmField = binding.textfieldConfirmPassword
 
         progressBar = binding.progressBar
     }
 
-    /**
-     * Start to collect LoginState, action based on Success/Loading/Error
-     */
     fun collectState() {
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                registrationViewModel.uiRegistrationState.collect { uiState ->
-                    if (uiState.isSignUpComplete) {
-                        // When the user signs up, then the progress bar disappears and
-                        // we can navigate to Confirmation screen
+                forgotPasswordViewModel.uiForgotPasswordState.collect { uiState ->
+                    if (uiState.isCodeSent) {
+                        // When the code for reset is sent, then the progress bar disappears and
+                        // we can navigate to new password insertion screen
                         progressBar.inVisible()
-                        findNavController().navigate(R.id.navigation_registration_to_navigation_confirmation)
+                        val message = "Il codice per il reset della password è stato inviato!"
+                        showSnackbar(message)
+                        findNavController().navigate(R.id.navigation_forgot_password_to_navigation_new_password)
                     }
                     if (uiState.isLoading) {
                         // While loading display progress
                         progressBar.visible()
                     }
                     if (uiState.errorMessage != null) {
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
                         val message = when (uiState.errorMessage) {
-                            DataState.CustomMessages.UsernameExists -> getString(R.string.username_exists)
-                            DataState.CustomMessages.AliasExists -> getString(R.string.credentials_already_taken)
-                            DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
-                            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
+                            is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
                             else -> getString(R.string.auth_failed_generic)
                         }
+                        // When there's an error the progress bar disappears and
+                        // a message is displayed
                         progressBar.inVisible()
                         showSnackbar(message)
                     }
@@ -136,16 +119,9 @@ class RegistrationFragment : BaseFragment() {
         }
     }
 
-    /**
-     * Function to set listeners for views
-     */
     fun setListeners() {
-        registerButton.setOnClickListener {
-            registrationViewModel.registration(
-                usernameField.editText?.text.toString(),
-                emailField.editText?.text.toString(),
-                passwordField.editText?.text.toString()
-            )
+        sendCodeButton.setOnClickListener {
+            forgotPasswordViewModel.resetRequest(usernameField.editText?.text.toString())
         }
     }
 }

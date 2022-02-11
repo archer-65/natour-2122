@@ -14,7 +14,6 @@ import com.unina.natourkt.R
 import com.unina.natourkt.databinding.ActivityMainBinding
 import com.unina.natourkt.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.Internal.instance
 
 /**
  * Container activity for all fragments
@@ -76,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         loggedUser = mainViewModel.loggedUser
 
         if (!isUserAuthenticated || loggedUser == null) {
-            navController.navigate(R.id.navigation_login)
+            navController.navigate(R.id.navigation_home_to_navigation_auth_flow)
         }
     }
 

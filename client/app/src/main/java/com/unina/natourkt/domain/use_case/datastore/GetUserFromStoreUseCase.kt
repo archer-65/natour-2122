@@ -1,4 +1,4 @@
-package com.unina.natourkt.domain.usecase.datastore
+package com.unina.natourkt.domain.use_case.datastore
 
 import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.domain.repository.DataStoreRepository

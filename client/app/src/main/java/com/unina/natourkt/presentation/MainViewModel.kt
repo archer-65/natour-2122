@@ -1,8 +1,8 @@
 package com.unina.natourkt.presentation
 
 import androidx.lifecycle.ViewModel
-import com.unina.natourkt.domain.usecase.auth.AuthStateUseCase
-import com.unina.natourkt.domain.usecase.datastore.GetUserFromStoreUseCase
+import com.unina.natourkt.domain.use_case.auth.AuthStateUseCase
+import com.unina.natourkt.domain.use_case.datastore.GetUserFromStoreUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject

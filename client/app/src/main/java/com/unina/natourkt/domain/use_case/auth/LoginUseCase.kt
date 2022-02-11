@@ -1,4 +1,4 @@
-package com.unina.natourkt.domain.usecase.auth
+package com.unina.natourkt.domain.use_case.auth
 
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
@@ -6,7 +6,7 @@ import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.domain.repository.DataStoreRepository
 import com.unina.natourkt.domain.repository.UserRepository
-import com.unina.natourkt.domain.usecase.datastore.SaveUserToStoreUseCase
+import com.unina.natourkt.domain.use_case.datastore.SaveUserToStoreUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception

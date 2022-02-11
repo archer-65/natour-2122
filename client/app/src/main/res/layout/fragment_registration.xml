@@ -34,11 +34,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textfield_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="56dp"
         android:layout_marginTop="15dp"
         android:hint="@string/hint_username"
-        android:minWidth="250dp"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@id/textfield_email"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,11 +56,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textfield_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:hint="@string/hint_email"
-        android:minWidth="250dp"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@+id/textfield_password"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,11 +77,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textfield_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:hint="@string/hint_password"
-        android:minWidth="250dp"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@id/textfield_confirm_password"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,11 +98,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textfield_confirm_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="56dp"
         android:layout_marginTop="10dp"
         android:hint="@string/hint_confirm_password"
-        android:minWidth="250dp"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/button_signup"
         app:layout_constraintEnd_toEndOf="parent"

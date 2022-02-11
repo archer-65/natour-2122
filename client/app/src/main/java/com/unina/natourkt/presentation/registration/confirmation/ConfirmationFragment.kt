@@ -1,20 +1,17 @@
-package com.unina.natourkt.presentation.registration
+package com.unina.natourkt.presentation.registration.confirmation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
@@ -22,6 +19,7 @@ import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentConfirmationBinding
 import com.unina.natourkt.presentation.base.BaseFragment
+import com.unina.natourkt.presentation.registration.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
@@ -40,6 +38,9 @@ class ConfirmationFragment : BaseFragment() {
 
     // Buttons
     private lateinit var confirmationButton: Button
+
+    // TextViews
+    private lateinit var resendCodeText: TextView
 
     // TextFields
     private lateinit var codeField: TextInputLayout
@@ -88,6 +89,8 @@ class ConfirmationFragment : BaseFragment() {
 
         confirmationButton = binding.buttonConfirmation
 
+        resendCodeText = binding.textviewResendCode
+
         codeField = binding.textfieldConfirmCode
 
         progressBar = binding.progressBar
@@ -104,13 +107,14 @@ class ConfirmationFragment : BaseFragment() {
                         // When the user confirms sign up, then the progress bar disappears and
                         // we can navigate to Home screen
                         progressBar.inVisible()
-                        val message = "Account confermato, effettua l'accesso!"
-                        Snackbar.make(
-                            this@ConfirmationFragment.requireView(),
-                            message,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        findNavController().navigate(R.id.action_navigation_confirmation_to_navigation_login)
+                        val message = getString(R.string.confirmed_account)
+                        showSnackbar(message)
+                        findNavController().navigate(R.id.navigation_confirmation_to_navigation_login)
+                    }
+                    if (uiState.isCodeResent) {
+                        progressBar.inVisible()
+                        val message = getString(R.string.code_resent)
+                        showSnackbar(message)
                     }
                     if (uiState.isLoading) {
                         // While loading display progress
@@ -127,11 +131,7 @@ class ConfirmationFragment : BaseFragment() {
                             else -> getString(R.string.auth_failed_generic)
                         }
                         progressBar.inVisible()
-                        Snackbar.make(
-                            this@ConfirmationFragment.requireView(),
-                            message,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        showSnackbar(message)
                     }
                 }
             }
@@ -142,6 +142,10 @@ class ConfirmationFragment : BaseFragment() {
      * Function to set listeners for views
      */
     fun setListeners() {
+        resendCodeText.setOnClickListener {
+            registrationViewModel.resendCode()
+        }
+
         confirmationButton.setOnClickListener {
             registrationViewModel.confirmation(codeField.editText?.text.toString())
         }

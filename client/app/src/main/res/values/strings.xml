@@ -27,7 +27,7 @@
     <!-- Errors -->
     <string name="auth_failed_generic">Errore sconosciuto, riprova più tardi.</string>
     <string name="auth_failed_exception">Errore sconosciuto, contatta l\'assistenza.</string>
-    <string name="user_not_found">Utente non trovato, inserisci un username corretto.</string>
+    <string name="user_not_found">Utente non trovato.</string>
     <string name="user_not_confirmed">Utente non confermato, contattare l\'assistenza.</string>
     <string name="username_exists">Username già esistente.</string>
     <string name="password_not_valid_for_user">Password non valida, riprova.</string>
@@ -47,4 +47,10 @@
     <string name="data_corrupted">Try to reinstall app, data may be corrupted</string>
     <string name="retrofit_http_error">Unexpected error, retry</string>
     <string name="internet_error">Check your internet connection</string>
+
+    <string name="confirmed_account">Account confermato, effettua l\'accesso!</string>
+    <string name="code_resent">Il codice è stato inviato di nuovo.</string>
+    <string name="button_confirm_text">Conferma registrazione</string>
+    <string name="cover_password">Cover password dimenticata</string>
+    <string name="button_forgot_password_text">Inviami il codice di reset</string>
 </resources>

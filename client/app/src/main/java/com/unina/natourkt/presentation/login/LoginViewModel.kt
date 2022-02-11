@@ -3,8 +3,8 @@ package com.unina.natourkt.presentation.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.usecase.auth.LoginSocialUseCase
-import com.unina.natourkt.domain.usecase.auth.LoginUseCase
+import com.unina.natourkt.domain.use_case.auth.LoginSocialUseCase
+import com.unina.natourkt.domain.use_case.auth.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

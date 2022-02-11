@@ -1,7 +1,6 @@
-package com.unina.natourkt.domain.usecase.auth
+package com.unina.natourkt.domain.use_case.auth
 
 import com.unina.natourkt.domain.repository.AuthRepository
-import com.unina.natourkt.domain.repository.DataStoreRepository
 import javax.inject.Inject
 
 /**

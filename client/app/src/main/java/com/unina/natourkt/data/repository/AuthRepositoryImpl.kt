@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import com.amplifyframework.auth.AuthProvider
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
+import com.amplifyframework.auth.result.step.AuthResetPasswordStep
 import com.amplifyframework.kotlin.core.Amplify
 import com.unina.natourkt.common.Constants.AMPLIFY
 import com.unina.natourkt.common.Constants.FACEBOOK
@@ -118,6 +119,6 @@ class AuthRepositoryImpl : AuthRepository {
         val result = Amplify.Auth.resetPassword(username)
         Log.i(AMPLIFY, "$result")
 
-        return result.isPasswordReset
+        return result.nextStep.resetPasswordStep == AuthResetPasswordStep.CONFIRM_RESET_PASSWORD_WITH_CODE
     }
 }

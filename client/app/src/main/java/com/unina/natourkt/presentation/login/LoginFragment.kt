@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
-import androidx.fragment.app.Fragment
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants.FACEBOOK
@@ -48,6 +47,9 @@ class LoginFragment : BaseFragment() {
     // TextFields
     private lateinit var usernameField: TextInputLayout
     private lateinit var passwordField: TextInputLayout
+
+    // TextViews
+    private lateinit var forgotPasswordText: TextView
 
     // ProgressBar
     private lateinit var progressBar: ProgressBar
@@ -103,6 +105,8 @@ class LoginFragment : BaseFragment() {
         googleButton = binding.buttonGoogle
         facebookButton = binding.buttonFacebook
 
+        forgotPasswordText = binding.textviewForgotPassword
+
         usernameField = binding.textfieldUsername
         passwordField = binding.textfieldPassword
 
@@ -121,7 +125,7 @@ class LoginFragment : BaseFragment() {
                         // When the user becomes logged in, then the progress bar disappears and
                         // we can navigate to Home screen
                         progressBar.inVisible()
-                        findNavController().navigate(R.id.action_navigation_login_to_navigation_home)
+                        findNavController().navigate(R.id.navigation_login_to_navigation_home)
                     }
                     if (uiState.isLoading) {
                         // While loading display progress
@@ -139,11 +143,7 @@ class LoginFragment : BaseFragment() {
                         // When there's an error the progress bar disappears and
                         // a message is displayed
                         progressBar.inVisible()
-                        Snackbar.make(
-                            this@LoginFragment.requireView(),
-                            message,
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        showSnackbar(message)
                     }
                 }
             }
@@ -161,8 +161,12 @@ class LoginFragment : BaseFragment() {
             )
         }
 
+        forgotPasswordText.setOnClickListener {
+            findNavController().navigate(R.id.navigation_login_to_navigation_forgot_password)
+        }
+
         registerButton.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_login_to_navigation_registration)
+            findNavController().navigate(R.id.navigation_login_to_navigation_registration)
         }
 
         googleButton.setOnClickListener {

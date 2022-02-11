@@ -3,8 +3,10 @@ package com.unina.natourkt.presentation.registration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.usecase.auth.ConfirmationUseCase
-import com.unina.natourkt.domain.usecase.auth.RegistrationUseCase
+import com.unina.natourkt.domain.use_case.auth.ConfirmationUseCase
+import com.unina.natourkt.domain.use_case.auth.RegistrationUseCase
+import com.unina.natourkt.domain.use_case.auth.ResendCodeUseCase
+import com.unina.natourkt.presentation.registration.confirmation.ConfirmationUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -16,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
-    private val confirmationUseCase: ConfirmationUseCase
+    private val confirmationUseCase: ConfirmationUseCase,
+    private val resendCodeUseCase: ResendCodeUseCase,
 ) : ViewModel() {
 
     /**
@@ -71,6 +74,32 @@ class RegistrationViewModel @Inject constructor(
                     is DataState.Success -> {
                         _uiConfirmationState.value =
                             ConfirmationUiState(isConfirmationComplete = result.data ?: false)
+                    }
+                    is DataState.Error -> {
+                        _uiConfirmationState.value =
+                            ConfirmationUiState(errorMessage = result.error)
+                    }
+                    is DataState.Loading -> {
+                        _uiConfirmationState.value =
+                            ConfirmationUiState(isLoading = true)
+                    }
+                }
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    /**
+     * Resend code funciont
+     * @see [ResendCodeUseCase]
+     */
+    fun resendCode() {
+
+        viewModelScope.launch {
+            resendCodeUseCase(uiRegistrationState.value.username!!).onEach { result ->
+                when (result) {
+                    is DataState.Success -> {
+                        _uiConfirmationState.value =
+                            ConfirmationUiState(isCodeResent = result.data ?: false)
                     }
                     is DataState.Error -> {
                         _uiConfirmationState.value =

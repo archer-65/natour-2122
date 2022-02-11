@@ -1,39 +1,37 @@
-package com.unina.natourkt.domain.usecase.auth
+package com.unina.natourkt.domain.use_case.auth
 
-import android.content.Context
-import com.amplifyframework.auth.AuthException
-import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
-import com.unina.natourkt.data.repository.AuthRepositoryImpl
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.domain.repository.DataStoreRepository
 import com.unina.natourkt.domain.repository.UserRepository
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.unina.natourkt.domain.use_case.datastore.SaveUserToStoreUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception
-import java.security.InvalidParameterException
 import javax.inject.Inject
 
 /**
- * This UseCase make use of [AuthRepository] to register a user
+ * This UseCase make use of
+ * - [AuthRepository] to confirm the user registration through code
+ * - [DataStoreRepository] to persist the user on DataStore Preferences
+ * - [UserRepository] to retrieve the user through REST Service
  */
-class RegistrationUseCase @Inject constructor(
+class ConfirmationUseCase @Inject constructor(
     private val authRepository: AuthRepository,
+    private val userRepository: UserRepository,
+    private val saveUserToStoreUseCase: SaveUserToStoreUseCase,
     private val errorHandler: ErrorHandler,
 ) {
 
     operator fun invoke(
         username: String,
-        email: String,
-        password: String
+        code: String
     ): Flow<DataState<Boolean>> = flow {
 
         try {
             emit(DataState.Loading())
-
-            val isSignUpComplete = authRepository.register(username, email, password)
+            val isSignUpComplete = authRepository.confirmRegistration(username, code)
 
             if (isSignUpComplete) {
                 emit(DataState.Success(isSignUpComplete))

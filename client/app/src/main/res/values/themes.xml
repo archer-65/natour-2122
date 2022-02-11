@@ -42,12 +42,14 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <!-- Alternative background for certain screens -->
     <style name="BackgroundAlternative">
         <item name="android:background">@color/md_theme_light_inverseOnSurface</item>
     </style>
 
+    <!-- Linked actions color (Forgot password and Resend code) -->
     <style name="Widget.NaTour.TextWithAction" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/md_theme_light_tertiary</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2</item>
     </style>
-
 </resources>

@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.unina.natourkt.presentation.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/navigation_home_to_navigation_auth_flow"
+            app:destination="@id/navigation_auth_flow" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_routes"
@@ -23,36 +27,66 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/navigation_login"
-        android:name="com.unina.natourkt.presentation.login.LoginFragment"
-        android:label="Login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_navigation_login_to_navigation_home"
-            app:destination="@id/navigation_home" />
-        <action
-            android:id="@+id/action_navigation_login_to_navigation_registration"
-            app:destination="@id/navigation_registration" />
-    </fragment>
+    <navigation
+        android:id="@+id/navigation_auth_flow"
+        app:startDestination="@id/navigation_login">
 
-    <fragment
-        android:id="@+id/navigation_registration"
-        android:name="com.unina.natourkt.presentation.registration.RegistrationFragment"
-        android:label="Registrazione"
-        tools:layout="@layout/fragment_registration" >
-        <action
-            android:id="@+id/action_navigation_registration_to_navigation_confirmation"
-            app:destination="@id/navigation_confirmation" />
-    </fragment>
+        <fragment
+            android:id="@+id/navigation_login"
+            android:name="com.unina.natourkt.presentation.login.LoginFragment"
+            android:label="Login"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/navigation_login_to_navigation_home"
+                app:destination="@id/navigation_home" />
+            <action
+                android:id="@+id/navigation_login_to_navigation_registration"
+                app:destination="@id/navigation_registration" />
+            <action
+                android:id="@+id/navigation_login_to_navigation_forgot_password"
+                app:destination="@id/navigation_forgot_password" />
+        </fragment>
 
-    <fragment
-        android:id="@+id/navigation_confirmation"
-        android:name="com.unina.natourkt.presentation.registration.ConfirmationFragment"
-        android:label="Conferma codice"
-        tools:layout="@layout/fragment_confirmation" >
-        <action
-            android:id="@+id/action_navigation_confirmation_to_navigation_login"
-            app:destination="@id/navigation_login" />
-    </fragment>
+        <fragment
+            android:id="@+id/navigation_forgot_password"
+            android:name="com.unina.natourkt.presentation.login.forgot_password.ForgotPasswordFragment"
+            android:label="Reset password"
+            tools:layout="@layout/fragment_forgot_password" >
+            <action
+                android:id="@+id/navigation_forgot_password_to_navigation_new_password"
+                app:destination="@id/navigation_new_password" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_new_password"
+            android:name="com.unina.natourkt.presentation.login.forgot_password.NewPasswordFragment"
+            android:label="Nuova password"
+            tools:layout="@layout/fragment_new_password" >
+            <action
+                android:id="@+id/navigation_new_password_to_navigation_login"
+                app:destination="@id/navigation_login" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_registration"
+            android:name="com.unina.natourkt.presentation.registration.RegistrationFragment"
+            android:label="Registrazione"
+            tools:layout="@layout/fragment_registration">
+            <action
+                android:id="@+id/navigation_registration_to_navigation_confirmation"
+                app:destination="@id/navigation_confirmation" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/navigation_confirmation"
+            android:name="com.unina.natourkt.presentation.registration.confirmation.ConfirmationFragment"
+            android:label="Conferma codice"
+            tools:layout="@layout/fragment_confirmation">
+            <action
+                android:id="@+id/navigation_confirmation_to_navigation_login"
+                app:destination="@id/navigation_login" />
+        </fragment>
+
+    </navigation>
+
 </navigation>

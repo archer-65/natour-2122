@@ -49,7 +49,7 @@
 
     <!-- Linked actions color (Forgot password and Resend code) -->
     <style name="Widget.NaTour.TextWithAction" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/md_theme_light_tertiary</item>
+        <item name="android:textColor">@color/md_theme_light_primary</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2</item>
     </style>
 </resources>

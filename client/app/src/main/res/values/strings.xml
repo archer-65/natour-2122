@@ -17,7 +17,7 @@
     <!-- Actions -->
     <string name="button_signup_text">Registrati</string>
     <string name="button_login_text">Accedi</string>
-    <string name="text_social_login">Accedi con</string>
+    <string name="text_social_login">Oppure</string>
     <string name="button_signup_send_text">Registrazione</string>
     <string name="forgot_password"><u>Password dimenticata?</u></string>
     <string name="resend_confirmation_code"><u>Inviami di nuovo il codice</u></string>
@@ -53,4 +53,8 @@
     <string name="button_confirm_text">Conferma registrazione</string>
     <string name="cover_password">Cover password dimenticata</string>
     <string name="button_forgot_password_text">Inviami il codice di reset</string>
+    <string name="login_with_google">Accedi con Google</string>
+    <string name="login_with_facebook">Accedi con Facebook</string>
+    <string name="sign_up_text"> <u>Registrati</u></string>
+    <string name="no_account_question">Non hai un account?</string>
 </resources>

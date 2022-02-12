@@ -40,9 +40,8 @@ class LoginFragment : BaseFragment() {
 
     // Buttons
     private lateinit var loginButton: Button
-    private lateinit var registerButton: Button
-    private lateinit var googleButton: ImageButton
-    private lateinit var facebookButton: ImageButton
+    private lateinit var googleButton: Button
+    private lateinit var facebookButton: Button
 
     // TextFields
     private lateinit var usernameField: TextInputLayout
@@ -50,6 +49,7 @@ class LoginFragment : BaseFragment() {
 
     // TextViews
     private lateinit var forgotPasswordText: TextView
+    private lateinit var registerTextButton: TextView
 
     // ProgressBar
     private lateinit var progressBar: ProgressBar
@@ -88,9 +88,9 @@ class LoginFragment : BaseFragment() {
      */
     fun setupUi() {
 
-        binding.linearlayoutSocial.applyInsetter {
+        binding.buttonFacebook.applyInsetter {
             type(navigationBars = true) {
-                padding()
+                margin()
             }
         }
 
@@ -101,7 +101,7 @@ class LoginFragment : BaseFragment() {
         }
 
         loginButton = binding.buttonLogin
-        registerButton = binding.buttonSignup
+        registerTextButton = binding.textviewSignup
         googleButton = binding.buttonGoogle
         facebookButton = binding.buttonFacebook
 
@@ -165,7 +165,7 @@ class LoginFragment : BaseFragment() {
             findNavController().navigate(R.id.navigation_login_to_navigation_forgot_password)
         }
 
-        registerButton.setOnClickListener {
+        registerTextButton.setOnClickListener {
             findNavController().navigate(R.id.navigation_login_to_navigation_registration)
         }
 

@@ -137,7 +137,7 @@ class LoginFragment : BaseFragment() {
                             is DataState.CustomMessages.UserNotConfirmed -> getString(R.string.user_not_confirmed)
                             is DataState.CustomMessages.InvalidPassword -> getString(R.string.invalid_password)
                             is DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
-                            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
+                            is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
                         // When there's an error the progress bar disappears and

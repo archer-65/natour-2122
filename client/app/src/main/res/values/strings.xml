@@ -57,4 +57,5 @@
     <string name="login_with_facebook">Accedi con Facebook</string>
     <string name="sign_up_text"> <u>Registrati</u></string>
     <string name="no_account_question">Non hai un account?</string>
+    <string name="button_confirm_reset_text">Conferma il reset</string>
 </resources>

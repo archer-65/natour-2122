@@ -1,7 +1,6 @@
 package com.unina.natourkt.data.repository
 
 import android.util.Log
-import androidx.fragment.app.FragmentActivity
 import com.amplifyframework.auth.AuthProvider
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
@@ -12,9 +11,6 @@ import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.presentation.MainActivity
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.util.*
 
 /**
  * This is a remote utility class built on [Amplify] methods
@@ -120,5 +116,14 @@ class AuthRepositoryImpl : AuthRepository {
         Log.i(AMPLIFY, "$result")
 
         return result.nextStep.resetPasswordStep == AuthResetPasswordStep.CONFIRM_RESET_PASSWORD_WITH_CODE
+    }
+
+    /**
+     * Reset password confirmation
+     */
+    override suspend fun resetPasswordConfirm(password: String, code: String) {
+
+        Amplify.Auth.confirmResetPassword(password, code)
+        Log.i(AMPLIFY, "Trying to reset password...")
     }
 }

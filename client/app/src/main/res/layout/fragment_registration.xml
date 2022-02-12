@@ -45,7 +45,6 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textinput_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -68,7 +67,6 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textinput_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -90,7 +88,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textfield_email">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textinput_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -113,7 +110,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textfield_password">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textinput_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -130,7 +126,7 @@
         android:text="@string/button_signup_send_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textfield_confirm_password"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textfield_confirm_password"
         app:layout_constraintTop_toBottomOf="@id/textfield_confirm_password"
         app:layout_constraintVertical_bias="0.0" />

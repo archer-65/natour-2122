@@ -45,4 +45,9 @@ interface AuthRepository {
      * Reset password request
      */
     suspend fun resetPasswordRequest(username: String): Boolean
+
+    /**
+     * Reset password confirmation
+     */
+    suspend fun resetPasswordConfirm(password: String, code: String)
 }

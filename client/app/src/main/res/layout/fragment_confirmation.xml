@@ -14,7 +14,6 @@
         android:layout_marginTop="30dp"
         android:contentDescription="@string/cover_authentication"
         android:src="@drawable/ic_undraw_confirm_code"
-        app:layout_constraintBottom_toTopOf="@+id/image_app_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,19 +25,20 @@
         android:layout_marginTop="15dp"
         android:contentDescription="@string/logo_app"
         android:src="@drawable/ic_natour_logo"
-        app:layout_constraintBottom_toTopOf="@id/textfield_confirm_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_confirmation" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textfield_confirm_code"
-        android:layout_width="250dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:hint="@string/hint_confirmation_code"
+        android:maxWidth="250dp"
+        android:minWidth="250dp"
         app:endIconMode="clear_text"
-        app:layout_constraintBottom_toTopOf="@id/button_confirmation"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_app_logo">
@@ -46,37 +46,33 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
-    <TextView
-        android:id="@+id/textview_resend_code"
-        style="@style/Widget.NaTour.TextWithAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:minWidth="250dp"
-        android:text="@string/resend_confirmation_code"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_confirmation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textfield_confirm_code" />
 
     <Button
         android:id="@+id/button_confirmation"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="315dp"
         android:enabled="true"
         android:text="@string/button_confirm_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_resend_code" />
+        app:layout_constraintEnd_toEndOf="@+id/textfield_confirm_code"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textfield_confirm_code"
+        app:layout_constraintTop_toBottomOf="@+id/textfield_confirm_code" />
+
+    <TextView
+        android:id="@+id/textview_resend_code"
+        style="@style/Widget.NaTour.TextWithAction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/resend_confirmation_code"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/button_confirmation"
+        app:layout_constraintStart_toStartOf="@+id/button_confirmation"
+        app:layout_constraintTop_toBottomOf="@+id/button_confirmation" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

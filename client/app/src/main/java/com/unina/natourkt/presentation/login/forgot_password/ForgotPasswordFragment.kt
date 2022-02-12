@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -44,7 +45,7 @@ class ForgotPasswordFragment : BaseFragment() {
     // ProgressBar
     private lateinit var progressBar: ProgressBar
 
-    private val forgotPasswordViewModel: ForgotPasswordViewModel by viewModels()
+    private val forgotPasswordViewModel: ForgotPasswordViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,6 +108,7 @@ class ForgotPasswordFragment : BaseFragment() {
                     if (uiState.errorMessage != null) {
                         val message = when (uiState.errorMessage) {
                             is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
+                            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
                         // When there's an error the progress bar disappears and

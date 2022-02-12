@@ -37,7 +37,6 @@
         android:minWidth="250dp"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/textfield_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_app_logo">

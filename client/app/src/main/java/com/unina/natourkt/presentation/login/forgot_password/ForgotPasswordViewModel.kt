@@ -3,6 +3,7 @@ package com.unina.natourkt.presentation.login.forgot_password
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.domain.use_case.auth.ResetPasswordConfirmUseCase
 import com.unina.natourkt.domain.use_case.auth.ResetPasswordRequestUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ForgotPasswordViewModel @Inject constructor(
     private val resetPasswordRequestUseCase: ResetPasswordRequestUseCase,
+    private val resetPasswordConfirmUseCase: ResetPasswordConfirmUseCase,
 ) : ViewModel() {
 
     /**
@@ -29,8 +31,8 @@ class ForgotPasswordViewModel @Inject constructor(
     /**
      * [NewPasswordUiState] wrapped by StateFlow used by [NewPasswordFragment]
      */
-    private val _uiNewPasswordState = MutableStateFlow(ForgotPasswordUiState())
-    val uiNewPasswordState = _uiForgotPasswordState.asStateFlow()
+    private val _uiNewPasswordState = MutableStateFlow(NewPasswordUiState())
+    val uiNewPasswordState = _uiNewPasswordState.asStateFlow()
 
     fun resetRequest(username: String) {
 
@@ -38,10 +40,8 @@ class ForgotPasswordViewModel @Inject constructor(
             resetPasswordRequestUseCase(username).onEach { result ->
                 when (result) {
                     is DataState.Success -> {
-                        _uiForgotPasswordState.value = ForgotPasswordUiState(
-                            isCodeSent = result.data ?: false,
-                            username = username
-                        )
+                        _uiForgotPasswordState.value =
+                            ForgotPasswordUiState(isCodeSent = result.data ?: false)
                     }
                     is DataState.Error -> {
                         _uiForgotPasswordState.value =
@@ -49,6 +49,27 @@ class ForgotPasswordViewModel @Inject constructor(
                     }
                     is DataState.Loading -> {
                         _uiForgotPasswordState.value = ForgotPasswordUiState(isLoading = true)
+                    }
+                }
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    fun resetConfirm(password: String, code: String) {
+
+        viewModelScope.launch {
+            resetPasswordConfirmUseCase(password, code).onEach { result ->
+                when (result) {
+                    is DataState.Success -> {
+                        _uiNewPasswordState.value =
+                            NewPasswordUiState(isPasswordReset = result.data ?: false)
+                    }
+                    is DataState.Error -> {
+                        _uiNewPasswordState.value =
+                            NewPasswordUiState(errorMessage = result.error)
+                    }
+                    is DataState.Loading -> {
+                        _uiNewPasswordState.value = NewPasswordUiState(isLoading = true)
                     }
                 }
             }.launchIn(viewModelScope)

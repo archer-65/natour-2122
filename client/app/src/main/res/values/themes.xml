@@ -1,6 +1,12 @@
 <resources>
 
     <style name="Theme.NaTour" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!--Colors-->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -27,19 +33,6 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_primaryInverse</item>
-
-        <item name="android:windowTranslucentNavigation">true</item>
-
-        <item name="android:navigationBarColor">
-            @android:color/transparent
-        </item>
-
-        <!-- Optional, if your app is drawing behind the status bar also. -->
-        <item name="android:statusBarColor">
-            @android:color/transparent
-        </item>
-
-        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <!-- Alternative background for certain screens -->
@@ -50,6 +43,7 @@
     <!-- Linked actions color (Forgot password and Resend code) -->
     <style name="Widget.NaTour.TextWithAction" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/md_theme_light_primary</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2
+        </item>
     </style>
 </resources>

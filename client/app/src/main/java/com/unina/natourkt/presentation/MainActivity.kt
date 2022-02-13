@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
      * Basic settings for UI
      */
     private fun setupUi() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        //WindowCompat.setDecorFitsSystemWindows(window, false)
 
         navView = binding.navView
 

@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,11 +17,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
+import com.unina.natourkt.common.*
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
-import com.unina.natourkt.common.DataState
-import com.unina.natourkt.common.inVisible
-import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentLoginBinding
 import com.unina.natourkt.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,6 +76,7 @@ class LoginFragment : BaseFragment() {
         collectState()
 
         setListeners()
+        setTextChangedListeners()
     }
 
     override fun onDestroyView() {
@@ -155,10 +156,12 @@ class LoginFragment : BaseFragment() {
      */
     fun setListeners() {
         loginButton.setOnClickListener {
-            loginViewModel.login(
-                usernameField.editText?.text.toString(),
-                passwordField.editText?.text.toString(),
-            )
+            if (validateForm()) {
+                loginViewModel.login(
+                    usernameField.editText?.text.toString(),
+                    passwordField.editText?.text.toString(),
+                )
+            }
         }
 
         forgotPasswordText.setOnClickListener {
@@ -175,6 +178,63 @@ class LoginFragment : BaseFragment() {
 
         facebookButton.setOnClickListener {
             loginViewModel.login(FACEBOOK)
+        }
+    }
+
+    /**
+     * Function to set TextListeners
+     */
+    fun setTextChangedListeners() {
+        usernameField.editText?.doAfterTextChanged {
+            validateForButton()
+        }
+
+        passwordField.editText?.doAfterTextChanged {
+            validateForButton()
+        }
+    }
+
+    /**
+     * Validate form to enable button
+     */
+    fun validateForButton() {
+        loginButton.isEnabled =
+            usernameField.editText?.text!!.isNotBlank() && passwordField.editText?.text!!.isNotBlank()
+    }
+
+    /**
+     * Form validation based on other functions
+     */
+    fun validateForm(): Boolean {
+        val isUsernameValid = validUsername()
+        val isPasswordValid = validPassword()
+
+        return isUsernameValid && isPasswordValid
+    }
+
+    fun validUsername(): Boolean {
+
+        val username = usernameField.editText?.text!!.trim().toString()
+
+        if (username.contains(" ")) {
+            usernameField.error = "L'username non può contenere spazi."
+            return false
+        } else {
+            usernameField.error = null
+            return true
+        }
+    }
+
+    fun validPassword(): Boolean {
+
+        val password = passwordField.editText?.text!!.trim().toString()
+
+        if (password.length < 7) {
+            passwordField.error = "La password deve contenere almeno 7 caratteri."
+            return false
+        } else {
+            passwordField.error = null
+            return true
         }
     }
 }

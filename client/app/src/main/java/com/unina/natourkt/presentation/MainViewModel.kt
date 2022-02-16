@@ -1,7 +1,7 @@
 package com.unina.natourkt.presentation
 
 import androidx.lifecycle.ViewModel
-import com.unina.natourkt.domain.use_case.auth.AuthStateUseCase
+import com.unina.natourkt.domain.use_case.auth.GetAuthStateUseCase
 import com.unina.natourkt.domain.use_case.datastore.GetUserFromStoreUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val authStateUseCase: AuthStateUseCase,
+    private val getAuthStateUseCase: GetAuthStateUseCase,
     private val getUserFromStoreUseCase: GetUserFromStoreUseCase,
 ) : ViewModel() {
 
@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(
      */
     val isUserAuthenticated
         get() = runBlocking {
-            authStateUseCase()
+            getAuthStateUseCase()
         }
 
     val loggedUser

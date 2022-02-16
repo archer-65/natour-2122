@@ -17,7 +17,7 @@ import javax.inject.Inject
  * - [DataStoreRepository] to persist the user on DataStore Preferences
  * - [UserRepository] to retrieve the user through REST Service
  */
-class ConfirmationUseCase @Inject constructor(
+class RegistrationConfirmationUseCase @Inject constructor(
     private val authRepository: AuthRepository,
     private val userRepository: UserRepository,
     private val saveUserToStoreUseCase: SaveUserToStoreUseCase,

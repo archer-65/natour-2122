@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.login.forgot_password
+package com.unina.natourkt.presentation.forgot_password
 
 import com.unina.natourkt.common.DataState
 

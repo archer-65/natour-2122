@@ -6,7 +6,7 @@ import javax.inject.Inject
 /**
  * This UseCase provides a fast way to check if an user is authenticated or not
  */
-class AuthStateUseCase @Inject constructor(
+class GetAuthStateUseCase @Inject constructor(
     private val authRepository: AuthRepository,
 ) {
 

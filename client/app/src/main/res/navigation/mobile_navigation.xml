@@ -49,7 +49,7 @@
 
         <fragment
             android:id="@+id/navigation_forgot_password"
-            android:name="com.unina.natourkt.presentation.login.forgot_password.ForgotPasswordFragment"
+            android:name="com.unina.natourkt.presentation.forgot_password.ForgotPasswordFragment"
             android:label="Reset password"
             tools:layout="@layout/fragment_forgot_password" >
             <action
@@ -59,7 +59,7 @@
 
         <fragment
             android:id="@+id/navigation_new_password"
-            android:name="com.unina.natourkt.presentation.login.forgot_password.NewPasswordFragment"
+            android:name="com.unina.natourkt.presentation.forgot_password.NewPasswordFragment"
             android:label="Nuova password"
             tools:layout="@layout/fragment_new_password" >
             <action
@@ -79,7 +79,7 @@
 
         <fragment
             android:id="@+id/navigation_confirmation"
-            android:name="com.unina.natourkt.presentation.registration.confirmation.ConfirmationFragment"
+            android:name="com.unina.natourkt.presentation.registration.ConfirmationFragment"
             android:label="Conferma codice"
             tools:layout="@layout/fragment_confirmation">
             <action

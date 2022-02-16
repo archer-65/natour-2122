@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.login.forgot_password
+package com.unina.natourkt.presentation.registration
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,7 +17,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
-import com.unina.natourkt.databinding.FragmentForgotPasswordBinding
+import com.unina.natourkt.databinding.FragmentConfirmationBinding
 import com.unina.natourkt.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -25,27 +25,29 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
- * This Fragment represents the first screen
- * of a password recover operations
+ * This Fragment represents the Confirmation after Sign Up Screen
  */
 @AndroidEntryPoint
-class ForgotPasswordFragment : BaseFragment() {
+class ConfirmationFragment : BaseFragment() {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
-    private var _binding: FragmentForgotPasswordBinding? = null
+    private var _binding: FragmentConfirmationBinding? = null
     private val binding get() = _binding!!
 
     // Buttons
-    private lateinit var sendCodeButton: Button
+    private lateinit var confirmationButton: Button
+
+    // TextViews
+    private lateinit var resendCodeText: TextView
 
     // TextFields
-    private lateinit var usernameField: TextInputLayout
+    private lateinit var codeField: TextInputLayout
 
-    // ProgressBar
+    // Progress Bar
     private lateinit var progressBar: ProgressBar
 
-    private val forgotPasswordViewModel: ForgotPasswordViewModel by activityViewModels()
+    private val registrationViewModel: RegistrationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +55,7 @@ class ForgotPasswordFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
+        _binding = FragmentConfirmationBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         setupUi()
@@ -74,45 +76,59 @@ class ForgotPasswordFragment : BaseFragment() {
         _binding = null
     }
 
+    /**
+     * Basic settings for UI
+     */
     fun setupUi() {
-        binding.imageForgotPassword.applyInsetter {
+        binding.imageConfirmation.applyInsetter {
             type(statusBars = true) {
                 margin()
             }
         }
 
-        sendCodeButton = binding.buttonSendCode
+        confirmationButton = binding.buttonConfirmation
 
-        usernameField = binding.textfieldUsername
+        resendCodeText = binding.textviewResendCode
+
+        codeField = binding.textfieldConfirmCode
 
         progressBar = binding.progressBar
     }
 
+    /**
+     * Start to collect LoginState, action based on Success/Loading/Error
+     */
     fun collectState() {
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                forgotPasswordViewModel.uiForgotPasswordState.collect { uiState ->
-                    if (uiState.isCodeSent) {
-                        // When the code for reset is sent, then the progress bar disappears and
-                        // we can navigate to new password insertion screen
+                registrationViewModel.uiConfirmationState.collect { uiState ->
+                    if (uiState.isConfirmationComplete) {
+                        // When the user confirms sign up, then the progress bar disappears and
+                        // we can navigate to Home screen
                         progressBar.inVisible()
-                        val message = "Il codice per il reset della password è stato inviato!"
+                        val message = getString(R.string.confirmed_account)
                         showSnackbar(message)
-                        findNavController().navigate(R.id.navigation_forgot_password_to_navigation_new_password)
+                        findNavController().navigate(R.id.navigation_confirmation_to_navigation_login)
+                    }
+                    if (uiState.isCodeResent) {
+                        progressBar.inVisible()
+                        val message = getString(R.string.code_resent)
+                        showSnackbar(message)
                     }
                     if (uiState.isLoading) {
                         // While loading display progress
                         progressBar.visible()
                     }
                     if (uiState.errorMessage != null) {
+                        // When there's an error the progress bar disappears and
+                        // a message is displayed
                         val message = when (uiState.errorMessage) {
-                            is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
+                            DataState.CustomMessages.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
+                            DataState.CustomMessages.CodeMismatch -> getString(R.string.wrong_confirmation_code)
+                            DataState.CustomMessages.CodeExpired -> getString(R.string.expired_confirmation_code)
                             DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
                         progressBar.inVisible()
                         showSnackbar(message)
                     }
@@ -121,9 +137,16 @@ class ForgotPasswordFragment : BaseFragment() {
         }
     }
 
+    /**
+     * Function to set listeners for views
+     */
     fun setListeners() {
-        sendCodeButton.setOnClickListener {
-            forgotPasswordViewModel.resetRequest(usernameField.editText?.text.toString())
+        resendCodeText.setOnClickListener {
+            registrationViewModel.resendCode()
+        }
+
+        confirmationButton.setOnClickListener {
+            registrationViewModel.confirmation(codeField.editText?.text.toString())
         }
     }
 }

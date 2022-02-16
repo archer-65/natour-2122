@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.registration.confirmation
+package com.unina.natourkt.presentation.registration
 
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.presentation.login.LoginViewModel

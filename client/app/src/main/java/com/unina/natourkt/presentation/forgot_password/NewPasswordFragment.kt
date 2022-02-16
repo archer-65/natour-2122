@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.login.forgot_password
+package com.unina.natourkt.presentation.forgot_password
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -42,7 +42,7 @@ class NewPasswordFragment : BaseFragment() {
     // ProgressBar
     private lateinit var progressBar: ProgressBar
 
-    private val forgotPasswordViewModel: ForgotPasswordViewModel by activityViewModels()
+    private val newPasswordViewModel: NewPasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -100,7 +100,7 @@ class NewPasswordFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                forgotPasswordViewModel.uiNewPasswordState.collect { uiState ->
+                newPasswordViewModel.uiState.collect { uiState ->
                     if (uiState.isPasswordReset) {
                         // When the password is resetted, navigate to login
                         progressBar.inVisible()
@@ -140,7 +140,7 @@ class NewPasswordFragment : BaseFragment() {
      */
     fun setListeners() {
         resetPasswordButton.setOnClickListener {
-            forgotPasswordViewModel.resetConfirm(
+            newPasswordViewModel.resetConfirm(
                 passwordField.editText?.text.toString(),
                 confirmCodeField.editText?.text.toString()
             )

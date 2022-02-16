@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 import javax.inject.Inject
 
-class ResendCodeUseCase @Inject constructor(
+class ResendConfirmationCodeUseCase @Inject constructor(
     private val authRepository: AuthRepository,
     private val errorHandler: ErrorHandler,
 ) {

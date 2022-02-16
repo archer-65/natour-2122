@@ -3,10 +3,9 @@ package com.unina.natourkt.presentation.registration
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.use_case.auth.ConfirmationUseCase
+import com.unina.natourkt.domain.use_case.auth.RegistrationConfirmationUseCase
 import com.unina.natourkt.domain.use_case.auth.RegistrationUseCase
-import com.unina.natourkt.domain.use_case.auth.ResendCodeUseCase
-import com.unina.natourkt.presentation.registration.confirmation.ConfirmationUiState
+import com.unina.natourkt.domain.use_case.auth.ResendConfirmationCodeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
-    private val confirmationUseCase: ConfirmationUseCase,
-    private val resendCodeUseCase: ResendCodeUseCase,
+    private val registrationConfirmationUseCase: RegistrationConfirmationUseCase,
+    private val resendConfirmationCodeUseCase: ResendConfirmationCodeUseCase,
 ) : ViewModel() {
 
     /**
@@ -64,12 +63,12 @@ class RegistrationViewModel @Inject constructor(
 
     /**
      * Confirmation function
-     * @see [ConfirmationUseCase]
+     * @see [RegistrationConfirmationUseCase]
      */
     fun confirmation(code: String) {
 
         viewModelScope.launch {
-            confirmationUseCase(uiRegistrationState.value.username!!, code).onEach { result ->
+            registrationConfirmationUseCase(uiRegistrationState.value.username!!, code).onEach { result ->
                 when (result) {
                     is DataState.Success -> {
                         _uiConfirmationState.value =
@@ -90,12 +89,12 @@ class RegistrationViewModel @Inject constructor(
 
     /**
      * Resend code funciont
-     * @see [ResendCodeUseCase]
+     * @see [ResendConfirmationCodeUseCase]
      */
     fun resendCode() {
 
         viewModelScope.launch {
-            resendCodeUseCase(uiRegistrationState.value.username!!).onEach { result ->
+            resendConfirmationCodeUseCase(uiRegistrationState.value.username!!).onEach { result ->
                 when (result) {
                     is DataState.Success -> {
                         _uiConfirmationState.value =

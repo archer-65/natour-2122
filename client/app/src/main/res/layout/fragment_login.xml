@@ -79,7 +79,7 @@
         android:id="@+id/button_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:enabled="true"
+        android:enabled="false"
         android:text="@string/button_login_text"
         app:layout_constraintBottom_toTopOf="@+id/textview_forgot_password"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"

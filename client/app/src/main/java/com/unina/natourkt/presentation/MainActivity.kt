@@ -63,8 +63,6 @@ class MainActivity : AppCompatActivity() {
      * Basic settings for UI
      */
     private fun setupUi() {
-        //WindowCompat.setDecorFitsSystemWindows(window, false)
-
         navView = binding.navView
 
         navController = findNavController(R.id.nav_host_fragment_activity_main)

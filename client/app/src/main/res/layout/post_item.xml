@@ -2,6 +2,7 @@
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -20,9 +21,11 @@
             android:paddingVertical="13dp">
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/author_photo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                 android:layout_marginEnd="16dp"/>
 
             <LinearLayout
@@ -32,12 +35,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/author_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nome"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
 
                 <TextView
+                    android:id="@+id/route_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -47,10 +52,12 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/options"
                 style="@style/Widget.AppCompat.ActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_more_vert_24"/>
+                android:src="@drawable/ic_more_vert_24"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -58,8 +65,7 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
-            android:layout_height="279dp"
-            app:iss_placeholder="@drawable/placeholder"/>
+            android:layout_height="279dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,9 +75,11 @@
 
             <!-- Title, secondary and supporting text -->
             <TextView
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Descrizione"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
 
         </LinearLayout>

@@ -54,7 +54,7 @@ class DataStoreRepositoryImpl @Inject constructor(
                     id = it[ID]!!,
                     username = it[USERNAME]!!,
                     isAdmin = it[IS_ADMIN] ?: false,
-                    photo = it[PHOTO] ?: ""
+                    photo = it[PHOTO]
                 )
             }.first()
         } catch (e: Exception) {

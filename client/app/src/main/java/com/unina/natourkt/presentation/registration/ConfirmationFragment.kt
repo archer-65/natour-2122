@@ -167,7 +167,7 @@ class ConfirmationFragment : BaseFragment() {
         confirmationButton.isEnabled = codeField.editText?.text!!.isNotBlank()
     }
 
-    private fun isFormValid() {
+    private fun isFormValid(): Boolean {
         val isCodeValid = isCodeValid()
 
         return isCodeValid

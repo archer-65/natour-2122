@@ -1,11 +1,13 @@
 package com.unina.natourkt.presentation.registration
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -68,6 +70,7 @@ class RegistrationFragment : BaseFragment() {
         collectState()
 
         setListeners()
+        setTextChangedListeners()
     }
 
     override fun onDestroyView() {
@@ -141,11 +144,101 @@ class RegistrationFragment : BaseFragment() {
      */
     fun setListeners() {
         registerButton.setOnClickListener {
-            registrationViewModel.registration(
-                usernameField.editText?.text.toString(),
-                emailField.editText?.text.toString(),
-                passwordField.editText?.text.toString()
-            )
+            if (isFormValid()) {
+                registrationViewModel.registration(
+                    usernameField.editText?.text.toString(),
+                    emailField.editText?.text.toString(),
+                    passwordField.editText?.text.toString()
+                )
+            }
+        }
+    }
+
+    /**
+     * Function to set TextListeners
+     */
+    fun setTextChangedListeners() {
+        usernameField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+
+        emailField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+
+        passwordField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+
+        passwordConfirmField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+    }
+
+    /**
+     * Validate form to enable button
+     */
+    fun isFormValidForButton() {
+        registerButton.isEnabled = usernameField.editText?.text!!.isNotBlank()
+                && emailField.editText?.text!!.isNotBlank()
+                && passwordField.editText?.text!!.isNotBlank()
+                && passwordConfirmField.editText?.text!!.isNotBlank()
+    }
+
+    /**
+     * Form validation based on other functions
+     */
+    fun isFormValid(): Boolean {
+        val isUsernameValid = isValidUsername()
+        val isEmailValid = isEmailValid()
+        val isPasswordValid = isValidPassword()
+
+        return isUsernameValid && isPasswordValid && isEmailValid
+    }
+
+    fun isValidUsername(): Boolean {
+
+        val username = usernameField.editText?.text!!.trim().toString()
+
+        if (username.contains(" ")) {
+            usernameField.error = "L'username non può contenere spazi."
+            return false
+        } else {
+            usernameField.error = null
+            return true
+        }
+    }
+
+    fun isEmailValid(): Boolean {
+
+        val email = emailField.editText?.text!!.trim().toString()
+        val match = Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+        if (!match) {
+            emailField.error = "Email non valida."
+            return false
+        } else {
+            emailField.error = null
+            return true
+        }
+    }
+
+    fun isValidPassword(): Boolean {
+
+        val password = passwordField.editText?.text!!.trim().toString()
+        val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
+
+        if (password.length < 7) {
+            passwordField.error = "La password deve contenere almeno 7 caratteri."
+            return false
+        } else if (password != confirmPassword) {
+            passwordConfirmField.error = "La password non corrisponde."
+            passwordField.error = null
+            return false
+        } else {
+            passwordField.error = null
+            passwordConfirmField.error = null
+            return true
         }
     }
 }

@@ -37,9 +37,10 @@ class ConfirmationFragment : BaseFragment() {
 
     // Buttons
     private lateinit var confirmationButton: Button
+    private lateinit var resendCodeButton: Button
 
     // TextViews
-    private lateinit var resendCodeText: TextView
+    //private lateinit var resendCodeText: TextView
 
     // TextFields
     private lateinit var codeField: TextInputLayout
@@ -87,8 +88,9 @@ class ConfirmationFragment : BaseFragment() {
         }
 
         confirmationButton = binding.buttonConfirmation
+        resendCodeButton = binding.buttonResendCode
 
-        resendCodeText = binding.textviewResendCode
+        //resendCodeText = binding.textviewResendCode
 
         codeField = binding.textfieldConfirmCode
 
@@ -141,7 +143,7 @@ class ConfirmationFragment : BaseFragment() {
      * Function to set listeners for views
      */
     fun setListeners() {
-        resendCodeText.setOnClickListener {
+        resendCodeButton.setOnClickListener {
             registrationViewModel.resendCode()
         }
 

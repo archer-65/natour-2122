@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -42,13 +40,14 @@ class LoginFragment : BaseFragment() {
     private lateinit var loginButton: Button
     private lateinit var googleButton: Button
     private lateinit var facebookButton: Button
+    private lateinit var forgotPasswordButton: Button
 
     // TextFields
     private lateinit var usernameField: TextInputLayout
     private lateinit var passwordField: TextInputLayout
 
     // TextViews
-    private lateinit var forgotPasswordText: TextView
+    //private lateinit var forgotPasswordText: Button
     private lateinit var registerTextButton: TextView
 
     // ProgressBar
@@ -106,7 +105,8 @@ class LoginFragment : BaseFragment() {
         googleButton = binding.buttonGoogle
         facebookButton = binding.buttonFacebook
 
-        forgotPasswordText = binding.textviewForgotPassword
+        //forgotPasswordText = binding.textviewForgotPassword
+        forgotPasswordButton = binding.buttonForgotPassword
 
         usernameField = binding.textfieldUsername
         passwordField = binding.textfieldPassword
@@ -156,7 +156,7 @@ class LoginFragment : BaseFragment() {
      */
     fun setListeners() {
         loginButton.setOnClickListener {
-            if (validateForm()) {
+            if (isFormValid()) {
                 loginViewModel.login(
                     usernameField.editText?.text.toString(),
                     passwordField.editText?.text.toString(),
@@ -164,7 +164,7 @@ class LoginFragment : BaseFragment() {
             }
         }
 
-        forgotPasswordText.setOnClickListener {
+        forgotPasswordButton.setOnClickListener {
             findNavController().navigate(R.id.navigation_login_to_navigation_forgot_password)
         }
 
@@ -186,18 +186,18 @@ class LoginFragment : BaseFragment() {
      */
     fun setTextChangedListeners() {
         usernameField.editText?.doAfterTextChanged {
-            validateForButton()
+            isFormValidForButton()
         }
 
         passwordField.editText?.doAfterTextChanged {
-            validateForButton()
+            isFormValidForButton()
         }
     }
 
     /**
      * Validate form to enable button
      */
-    fun validateForButton() {
+    fun isFormValidForButton() {
         loginButton.isEnabled =
             usernameField.editText?.text!!.isNotBlank() && passwordField.editText?.text!!.isNotBlank()
     }
@@ -205,14 +205,14 @@ class LoginFragment : BaseFragment() {
     /**
      * Form validation based on other functions
      */
-    fun validateForm(): Boolean {
-        val isUsernameValid = validUsername()
-        val isPasswordValid = validPassword()
+    fun isFormValid(): Boolean {
+        val isUsernameValid = isValidUsername()
+        val isPasswordValid = isValidPassword()
 
         return isUsernameValid && isPasswordValid
     }
 
-    fun validUsername(): Boolean {
+    fun isValidUsername(): Boolean {
 
         val username = usernameField.editText?.text!!.trim().toString()
 
@@ -225,7 +225,7 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    fun validPassword(): Boolean {
+    fun isValidPassword(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
 

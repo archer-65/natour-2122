@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".presentation.login.LoginFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.41" />
+
     <ImageView
         android:id="@+id/image_login"
         android:layout_width="0dp"
@@ -14,6 +21,7 @@
         android:src="@drawable/ic_undraw_authentication"
         app:layout_constraintBottom_toTopOf="@+id/image_app_logo"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -42,7 +50,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline15"
         app:layout_constraintVertical_chainStyle="spread">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -81,15 +89,15 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:text="@string/button_login_text"
-        app:layout_constraintBottom_toTopOf="@+id/textview_forgot_password"
+        app:layout_constraintBottom_toTopOf="@+id/button_forgot_password"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/textfield_password" />
 
-    <TextView
-        android:id="@+id/textview_forgot_password"
-        style="@style/Widget.NaTour.TextWithAction"
+    <Button
+        android:id="@+id/button_forgot_password"
+        style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
@@ -230,7 +238,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.69" />
+        app:layout_constraintGuide_percent="0.72" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"

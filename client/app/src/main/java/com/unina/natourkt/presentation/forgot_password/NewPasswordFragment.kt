@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -138,12 +139,84 @@ class NewPasswordFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    fun setListeners() {
+    private fun setListeners() {
         resetPasswordButton.setOnClickListener {
             newPasswordViewModel.resetConfirm(
                 passwordField.editText?.text.toString(),
                 confirmCodeField.editText?.text.toString()
             )
+        }
+    }
+
+    /**
+     * Function to set TextListeners
+     */
+    private fun setTextChangedListeners() {
+        confirmCodeField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+
+        passwordField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+
+        passwordConfirmField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+    }
+
+    /**
+     * Validate form to enable button
+     */
+    private fun isFormValidForButton() {
+        resetPasswordButton.isEnabled = confirmCodeField.editText?.text!!.isNotBlank()
+                && passwordField.editText?.text!!.isNotBlank()
+                && passwordConfirmField.editText?.text!!.isNotBlank()
+    }
+
+    /**
+     * Form validation based on other functions
+     */
+    private fun isFormValid(): Boolean {
+        val isCodeValid = isCodeValid()
+        val isPasswordValid = isPasswordValid()
+
+        return isCodeValid && isPasswordValid
+    }
+
+    private fun isCodeValid(): Boolean {
+        val code =
+            confirmCodeField.editText?.text!!.trim().toString()
+
+        return if (code.length != 6) {
+            confirmCodeField.error = "Il codice deve contenere 6 cifre"
+            false
+        } else {
+            confirmCodeField.error = null
+            true
+        }
+    }
+
+    private fun isPasswordValid(): Boolean {
+
+        val password = passwordField.editText?.text!!.trim().toString()
+        val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
+
+        return when {
+            password.length < 7 -> {
+                passwordField.error = "La password deve contenere almeno 7 caratteri."
+                false
+            }
+            password != confirmPassword -> {
+                passwordConfirmField.error = "La password non corrisponde."
+                passwordField.error = null
+                false
+            }
+            else -> {
+                passwordField.error = null
+                passwordConfirmField.error = null
+                true
+            }
         }
     }
 }

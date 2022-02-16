@@ -206,26 +206,26 @@ class LoginFragment : BaseFragment() {
      * Form validation based on other functions
      */
     private fun isFormValid(): Boolean {
-        val isUsernameValid = isValidUsername()
-        val isPasswordValid = isValidPassword()
+        val isUsernameValid = isUsernameValid()
+        val isPasswordValid = isPasswordValid()
 
         return isUsernameValid && isPasswordValid
     }
 
-    private fun isValidUsername(): Boolean {
+    private fun isUsernameValid(): Boolean {
 
         val username = usernameField.editText?.text!!.trim().toString()
 
-        if (username.contains(" ")) {
+        return if (username.contains(" ")) {
             usernameField.error = "L'username non può contenere spazi."
-            return false
+            false
         } else {
             usernameField.error = null
-            return true
+            true
         }
     }
 
-    private fun isValidPassword(): Boolean {
+    private fun isPasswordValid(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
 

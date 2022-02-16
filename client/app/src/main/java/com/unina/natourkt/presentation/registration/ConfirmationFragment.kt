@@ -167,9 +167,15 @@ class ConfirmationFragment : BaseFragment() {
         confirmationButton.isEnabled = codeField.editText?.text!!.isNotBlank()
     }
 
+    private fun isFormValid() {
+        val isCodeValid = isCodeValid()
 
-    private fun isFormValid(): Boolean {
-        val code = codeField.editText?.text!!.trim().toString()
+        return isCodeValid
+    }
+
+    private fun isCodeValid(): Boolean {
+        val code =
+            codeField.editText?.text!!.trim().toString()
 
         return if (code.length != 6) {
             codeField.error = "Il codice deve contenere 6 cifre"

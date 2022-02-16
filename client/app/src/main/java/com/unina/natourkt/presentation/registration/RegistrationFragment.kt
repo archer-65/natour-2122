@@ -191,7 +191,7 @@ class RegistrationFragment : BaseFragment() {
     private fun isFormValid(): Boolean {
         val isUsernameValid = isValidUsername()
         val isEmailValid = isEmailValid()
-        val isPasswordValid = isValidPassword()
+        val isPasswordValid = isPasswordValid()
 
         return isUsernameValid && isPasswordValid && isEmailValid
     }
@@ -223,22 +223,26 @@ class RegistrationFragment : BaseFragment() {
         }
     }
 
-    private fun isValidPassword(): Boolean {
+    private fun isPasswordValid(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
         val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
 
-        return if (password.length < 7) {
-            passwordField.error = "La password deve contenere almeno 7 caratteri."
-            false
-        } else if (password != confirmPassword) {
-            passwordConfirmField.error = "La password non corrisponde."
-            passwordField.error = null
-            false
-        } else {
-            passwordField.error = null
-            passwordConfirmField.error = null
-            true
+        return when {
+            password.length < 7 -> {
+                passwordField.error = "La password deve contenere almeno 7 caratteri."
+                false
+            }
+            password != confirmPassword -> {
+                passwordConfirmField.error = "La password non corrisponde."
+                passwordField.error = null
+                false
+            }
+            else -> {
+                passwordField.error = null
+                passwordConfirmField.error = null
+                true
+            }
         }
     }
 }

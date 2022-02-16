@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -66,6 +67,9 @@ class ForgotPasswordFragment : BaseFragment() {
         collectState()
 
         setListeners()
+
+        setTextChangedListeners()
+
     }
 
     override fun onDestroyView() {
@@ -73,7 +77,7 @@ class ForgotPasswordFragment : BaseFragment() {
         _binding = null
     }
 
-    fun setupUi() {
+    private fun setupUi() {
         binding.imageForgotPassword.applyInsetter {
             type(statusBars = true) {
                 margin()
@@ -87,7 +91,7 @@ class ForgotPasswordFragment : BaseFragment() {
         progressBar = binding.progressBar
     }
 
-    fun collectState() {
+    private fun collectState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -120,9 +124,49 @@ class ForgotPasswordFragment : BaseFragment() {
         }
     }
 
-    fun setListeners() {
+
+    private fun setListeners() {
         sendCodeButton.setOnClickListener {
-            forgotPasswordViewModel.resetRequest(usernameField.editText?.text.toString())
+            if (isFormValid()) {
+                forgotPasswordViewModel.resetRequest(usernameField.editText?.text.toString())
+            }
+        }
+    }
+
+    /**
+     * Function to set TextListeners
+     */
+    private fun setTextChangedListeners() {
+        usernameField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+    }
+
+    /**
+     * Validate form to enable button
+     */
+
+    private fun isFormValidForButton() {
+        sendCodeButton.isEnabled = usernameField.editText?.text!!.isNotBlank()
+    }
+
+
+    private fun isFormValid(): Boolean {
+        val isUsernameValid = isValidUsername()
+
+        return isUsernameValid
+    }
+
+    private fun isValidUsername(): Boolean {
+
+        val username = usernameField.editText?.text!!.trim().toString()
+
+        return if (username.contains(" ")) {
+            usernameField.error = "L'username non può contenere spazi."
+            false
+        } else {
+            usernameField.error = null
+            true
         }
     }
 }

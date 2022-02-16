@@ -86,7 +86,7 @@ class LoginFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    fun setupUi() {
+    private fun setupUi() {
 
         binding.buttonFacebook.applyInsetter {
             type(navigationBars = true) {
@@ -117,7 +117,7 @@ class LoginFragment : BaseFragment() {
     /**
      * Start to collect LoginState, action based on Success/Loading/Error
      */
-    fun collectState() {
+    private fun collectState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -154,7 +154,7 @@ class LoginFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    fun setListeners() {
+    private fun setListeners() {
         loginButton.setOnClickListener {
             if (isFormValid()) {
                 loginViewModel.login(
@@ -184,7 +184,7 @@ class LoginFragment : BaseFragment() {
     /**
      * Function to set TextListeners
      */
-    fun setTextChangedListeners() {
+    private fun setTextChangedListeners() {
         usernameField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
@@ -197,7 +197,7 @@ class LoginFragment : BaseFragment() {
     /**
      * Validate form to enable button
      */
-    fun isFormValidForButton() {
+    private fun isFormValidForButton() {
         loginButton.isEnabled =
             usernameField.editText?.text!!.isNotBlank() && passwordField.editText?.text!!.isNotBlank()
     }
@@ -205,14 +205,14 @@ class LoginFragment : BaseFragment() {
     /**
      * Form validation based on other functions
      */
-    fun isFormValid(): Boolean {
+    private fun isFormValid(): Boolean {
         val isUsernameValid = isValidUsername()
         val isPasswordValid = isValidPassword()
 
         return isUsernameValid && isPasswordValid
     }
 
-    fun isValidUsername(): Boolean {
+    private fun isValidUsername(): Boolean {
 
         val username = usernameField.editText?.text!!.trim().toString()
 
@@ -225,16 +225,16 @@ class LoginFragment : BaseFragment() {
         }
     }
 
-    fun isValidPassword(): Boolean {
+    private fun isValidPassword(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
 
-        if (password.length < 7) {
+        return if (password.length < 7) {
             passwordField.error = "La password deve contenere almeno 7 caratteri."
-            return false
+            false
         } else {
             passwordField.error = null
-            return true
+            true
         }
     }
 }

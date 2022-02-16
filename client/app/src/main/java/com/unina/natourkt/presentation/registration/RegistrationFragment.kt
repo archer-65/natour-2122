@@ -81,7 +81,7 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    fun setupUi() {
+    private fun setupUi() {
         binding.buttonSignup.applyInsetter {
             type(navigationBars = true) {
                 margin()
@@ -107,7 +107,7 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Start to collect LoginState, action based on Success/Loading/Error
      */
-    fun collectState() {
+    private fun collectState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registrationViewModel.uiRegistrationState.collect { uiState ->
@@ -142,7 +142,7 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    fun setListeners() {
+    private fun setListeners() {
         registerButton.setOnClickListener {
             if (isFormValid()) {
                 registrationViewModel.registration(
@@ -157,7 +157,7 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Function to set TextListeners
      */
-    fun setTextChangedListeners() {
+    private fun setTextChangedListeners() {
         usernameField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
@@ -178,7 +178,7 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Validate form to enable button
      */
-    fun isFormValidForButton() {
+    private fun isFormValidForButton() {
         registerButton.isEnabled = usernameField.editText?.text!!.isNotBlank()
                 && emailField.editText?.text!!.isNotBlank()
                 && passwordField.editText?.text!!.isNotBlank()
@@ -188,7 +188,7 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Form validation based on other functions
      */
-    fun isFormValid(): Boolean {
+    private fun isFormValid(): Boolean {
         val isUsernameValid = isValidUsername()
         val isEmailValid = isEmailValid()
         val isPasswordValid = isValidPassword()
@@ -196,49 +196,49 @@ class RegistrationFragment : BaseFragment() {
         return isUsernameValid && isPasswordValid && isEmailValid
     }
 
-    fun isValidUsername(): Boolean {
+    private fun isValidUsername(): Boolean {
 
         val username = usernameField.editText?.text!!.trim().toString()
 
-        if (username.contains(" ")) {
+        return if (username.contains(" ")) {
             usernameField.error = "L'username non può contenere spazi."
-            return false
+            false
         } else {
             usernameField.error = null
-            return true
+            true
         }
     }
 
-    fun isEmailValid(): Boolean {
+    private fun isEmailValid(): Boolean {
 
         val email = emailField.editText?.text!!.trim().toString()
         val match = Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
-        if (!match) {
+        return if (!match) {
             emailField.error = "Email non valida."
-            return false
+            false
         } else {
             emailField.error = null
-            return true
+            true
         }
     }
 
-    fun isValidPassword(): Boolean {
+    private fun isValidPassword(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
         val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
 
-        if (password.length < 7) {
+        return if (password.length < 7) {
             passwordField.error = "La password deve contenere almeno 7 caratteri."
-            return false
+            false
         } else if (password != confirmPassword) {
             passwordConfirmField.error = "La password non corrisponde."
             passwordField.error = null
-            return false
+            false
         } else {
             passwordField.error = null
             passwordConfirmField.error = null
-            return true
+            true
         }
     }
 }

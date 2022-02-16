@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -70,6 +71,8 @@ class ConfirmationFragment : BaseFragment() {
         collectState()
 
         setListeners()
+
+        setTextChangedListeners()
     }
 
     override fun onDestroyView() {
@@ -80,7 +83,7 @@ class ConfirmationFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    fun setupUi() {
+    private fun setupUi() {
         binding.imageConfirmation.applyInsetter {
             type(statusBars = true) {
                 margin()
@@ -100,7 +103,7 @@ class ConfirmationFragment : BaseFragment() {
     /**
      * Start to collect LoginState, action based on Success/Loading/Error
      */
-    fun collectState() {
+    private fun collectState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registrationViewModel.uiConfirmationState.collect { uiState ->
@@ -142,13 +145,38 @@ class ConfirmationFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    fun setListeners() {
+    private fun setListeners() {
         resendCodeButton.setOnClickListener {
             registrationViewModel.resendCode()
         }
 
         confirmationButton.setOnClickListener {
-            registrationViewModel.confirmation(codeField.editText?.text.toString())
+            if (isFormValid()) {
+                registrationViewModel.confirmation(codeField.editText?.text.toString())
+            }
+        }
+    }
+
+    private fun setTextChangedListeners() {
+        codeField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+    }
+
+    private fun isFormValidForButton() {
+        confirmationButton.isEnabled = codeField.editText?.text!!.isNotBlank()
+    }
+
+
+    private fun isFormValid(): Boolean {
+        val code = codeField.editText?.text!!.trim().toString()
+
+        return if (code.length != 6) {
+            codeField.error = "Il codice deve contenere 6 cifre"
+            false
+        } else {
+            codeField.error = null
+            true
         }
     }
 }

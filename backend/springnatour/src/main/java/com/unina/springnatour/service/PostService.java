@@ -5,8 +5,11 @@ import com.unina.springnatour.dto.post.PostMapper;
 import com.unina.springnatour.exception.PostNotFoundException;
 import com.unina.springnatour.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,6 +37,12 @@ public class PostService {
      */
     public List<PostDto> getAllPosts() {
         return postMapper.toDto(postRepository.findAll()
+                .stream()
+                .toList());
+    }
+
+    public List<PostDto> getAllPosts(Integer pageNo, Integer pageSize) {
+        return postMapper.toDto(postRepository.findAll(PageRequest.of(pageNo, pageSize))
                 .stream()
                 .toList());
     }

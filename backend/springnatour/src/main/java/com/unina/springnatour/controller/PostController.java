@@ -1,6 +1,7 @@
 package com.unina.springnatour.controller;
 
 import com.unina.springnatour.dto.post.PostDto;
+import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ public class PostController {
 
     /**
      * Gets a post
+     *
      * @param id the identifier of the post
      * @return PostDTO
      */
@@ -30,9 +32,10 @@ public class PostController {
 
     /**
      * Gets all the posts
+     *
      * @return List of PostDTO
      */
-    @GetMapping("/posts")
+    @GetMapping("/posts/all")
     public ResponseEntity<List<PostDto>> getAllPosts() {
 
         List<PostDto> postDtoList = postService.getAllPosts();
@@ -45,7 +48,25 @@ public class PostController {
     }
 
     /**
+     *
+     */
+    @GetMapping("/posts")
+    public ResponseEntity<List<PostDto>> getAllPosts(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+
+        List<PostDto> postDtoList = postService.getAllPosts(pageNo, pageSize);
+
+        if (!postDtoList.isEmpty()) {
+            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
      * Gets all the posts for a certain user
+     *
      * @param userId the identifier of the user (Author)
      * @return List of PostDTO Objects with HTTP Status OK if the list is not empty
      */
@@ -63,6 +84,7 @@ public class PostController {
 
     /**
      * Creates a new post
+     *
      * @param postDto the PostDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
@@ -76,7 +98,8 @@ public class PostController {
 
     /**
      * Updates an existing post
-     * @param id the identifier of the post
+     *
+     * @param id      the identifier of the post
      * @param postDto the PostDTO Object containing the updated post
      * @return HTTP Status CREATED after update
      */
@@ -91,6 +114,7 @@ public class PostController {
 
     /**
      * Deletes an existing post
+     *
      * @param id the identifier of the post
      * @return HTTP Status OK after deletion
      */

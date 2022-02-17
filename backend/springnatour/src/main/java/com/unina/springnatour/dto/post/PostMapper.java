@@ -11,13 +11,15 @@ import java.util.List;
 public interface PostMapper extends BaseMapper<Post, PostDto> {
 
     @Override
-    @Mapping(target = "userId", source = "user.id")
+    //@Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "routeTitle", source = "route.title")
     @Mapping(target = "routeId", source = "route.id")
     @Mapping(target = "photos", source = "photos")
     PostDto toDto(Post post);
 
     @Override
-    @Mapping(target = "user.id", source = "userId")
+    //@Mapping(target = "user.id", source = "userId")
+    @Mapping(target = "route.title", source = "routeTitle")
     @Mapping(target = "route.id", source = "routeId")
     @Mapping(target = "photos", source = "photos")
     Post toEntity(PostDto postDto);

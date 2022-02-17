@@ -1,6 +1,7 @@
 package com.unina.natourkt.di
 
 import com.unina.natourkt.common.Constants.BASE_URL
+import com.unina.natourkt.data.remote.PostRetrofitDataSource
 import com.unina.natourkt.data.remote.UserRetrofitDataSource
 import dagger.Module
 import dagger.Provides
@@ -22,5 +23,15 @@ object RetrofitModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserRetrofitDataSource::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providePostRetrofit(): PostRetrofitDataSource {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(PostRetrofitDataSource::class.java)
     }
 }

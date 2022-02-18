@@ -123,7 +123,7 @@ class AuthRepositoryImpl : AuthRepository {
      */
     override suspend fun resetPasswordConfirm(password: String, code: String) {
 
-        val result = Amplify.Auth.confirmResetPassword(password, code)
-        Log.i(AMPLIFY, "$result")
+        Amplify.Auth.confirmResetPassword(password, code)
+        Log.i(AMPLIFY, "Password changed")
     }
 }

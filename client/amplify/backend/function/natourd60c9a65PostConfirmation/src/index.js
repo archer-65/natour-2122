@@ -30,9 +30,10 @@ exports.handler = async (event, context) => {
   let sub = event.request.userAttributes.sub;
   let username = event.userName;
   
-  let sql = `INSERT INTO user (cognito_id, username) VALUES ('${sub}', '${username}')`;
-
-  await dbQuery(sql);
+  if (event.triggerSource === "PostConfirmation_ConfirmSignUp") {
+    let sql = `INSERT INTO user (cognito_id, username) VALUES ('${sub}', '${username}')`;
+    await dbQuery(sql);
+  }
   
   return event;
 };

@@ -13,6 +13,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.databinding.ActivityMainBinding
 import com.unina.natourkt.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
+import dev.chrisbanes.insetter.applyInsetter
 
 /**
  * Container activity for all fragments
@@ -62,6 +63,12 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
+
+        navView.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
     }
 
     /**

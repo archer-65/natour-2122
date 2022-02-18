@@ -28,12 +28,12 @@ output.json
 google-services.json
 
 # Android Profiling
-*.hprof
+.hprof
 #android-studio-do-not-edit-end
 
 #amplify-do-not-edit-begin
-amplify/\#current-cloud-backend
-amplify/.config/local-*
+amplify/#current-cloud-backend
+amplify/.config/local-
 amplify/logs
 amplify/mock-data
 amplify/backend/amplify-meta.json

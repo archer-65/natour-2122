@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 class GetPostsUseCase @Inject constructor(
     private val postRepository: PostRepository,
-    private val errorHandler: ErrorHandler,
 ) {
 
     operator fun invoke(): Flow<PagingData<Post>> =

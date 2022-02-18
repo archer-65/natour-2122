@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation
+package com.unina.natourkt.presentation.main
 
 import androidx.lifecycle.ViewModel
 import com.unina.natourkt.domain.use_case.auth.GetAuthStateUseCase

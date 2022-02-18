@@ -19,7 +19,7 @@ import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentRegistrationBinding
-import com.unina.natourkt.presentation.base.BaseFragment
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect

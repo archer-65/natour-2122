@@ -14,9 +14,9 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.databinding.FragmentHomeBinding
-import com.unina.natourkt.presentation.adapter.PostAdapter
-import com.unina.natourkt.presentation.adapter.PostLoadStateAdapter
-import com.unina.natourkt.presentation.base.BaseFragment
+import com.unina.natourkt.presentation.base.adapter.PostAdapter
+import com.unina.natourkt.presentation.base.adapter.PostLoadStateAdapter
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.Job

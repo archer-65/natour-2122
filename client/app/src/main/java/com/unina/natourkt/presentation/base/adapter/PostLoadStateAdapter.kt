@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.adapter
+package com.unina.natourkt.presentation.base.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

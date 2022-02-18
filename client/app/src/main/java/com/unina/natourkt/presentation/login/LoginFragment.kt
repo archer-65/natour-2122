@@ -19,7 +19,7 @@ import com.unina.natourkt.common.*
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.databinding.FragmentLoginBinding
-import com.unina.natourkt.presentation.base.BaseFragment
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect

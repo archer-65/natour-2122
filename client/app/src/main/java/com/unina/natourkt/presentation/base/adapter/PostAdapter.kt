@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.adapter
+package com.unina.natourkt.presentation.base.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,6 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.PostItemBinding
-import com.unina.natourkt.domain.model.post.Post
 import com.unina.natourkt.presentation.home.PostItemUiState
 
 class PostAdapter : PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolder>(DiffUtilCallback()) {

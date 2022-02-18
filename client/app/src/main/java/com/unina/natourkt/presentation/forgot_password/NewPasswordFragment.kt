@@ -18,7 +18,7 @@ import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentNewPasswordBinding
-import com.unina.natourkt.presentation.base.BaseFragment
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
@@ -65,6 +65,7 @@ class NewPasswordFragment : BaseFragment() {
         collectState()
 
         setListeners()
+        setTextChangedListeners()
     }
 
     override fun onDestroyView() {
@@ -141,10 +142,12 @@ class NewPasswordFragment : BaseFragment() {
      */
     private fun setListeners() {
         resetPasswordButton.setOnClickListener {
-            newPasswordViewModel.resetConfirm(
-                passwordField.editText?.text.toString(),
-                confirmCodeField.editText?.text.toString()
-            )
+            if (isFormValid()) {
+                newPasswordViewModel.resetConfirm(
+                    passwordField.editText?.text.toString(),
+                    confirmCodeField.editText?.text.toString()
+                )
+            }
         }
     }
 

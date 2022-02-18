@@ -10,7 +10,7 @@ import com.unina.natourkt.common.Constants.AMPLIFY
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
 import com.unina.natourkt.domain.repository.AuthRepository
-import com.unina.natourkt.presentation.MainActivity
+import com.unina.natourkt.presentation.main.MainActivity
 
 /**
  * This is a remote utility class built on [Amplify] methods
@@ -123,7 +123,7 @@ class AuthRepositoryImpl : AuthRepository {
      */
     override suspend fun resetPasswordConfirm(password: String, code: String) {
 
-        Amplify.Auth.confirmResetPassword(password, code)
-        Log.i(AMPLIFY, "Trying to reset password...")
+        val result = Amplify.Auth.confirmResetPassword(password, code)
+        Log.i(AMPLIFY, "$result")
     }
 }

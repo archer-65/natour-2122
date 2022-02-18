@@ -87,4 +87,7 @@ dependencies {
     // Pagination
     def paging_version = "3.1.0"
     implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // ViewPager2
+    implementation 'com.google.android.material:material:1.2.0-alpha04'
 }

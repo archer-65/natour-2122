@@ -1,12 +1,10 @@
 package com.unina.natourkt.presentation.home
 
+import androidx.paging.PagingData
 import com.unina.natourkt.common.DataState
 
 data class HomeUiState(
-    val isLoading: Boolean = false,
-    val errorMessage: DataState.CustomMessages? = null,
-    val postItems: MutableList<PostItemUiState> = mutableListOf(),
-    val currentPage: Int = 0,
+    val postItems: PagingData<PostItemUiState>? = null,
 )
 
 data class PostItemUiState(

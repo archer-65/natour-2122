@@ -4,19 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.databinding.FragmentHomeBinding
-import com.unina.natourkt.domain.model.User
-import com.unina.natourkt.domain.model.post.Post
-import com.unina.natourkt.domain.model.post.PostPhoto
 import com.unina.natourkt.presentation.adapter.PostAdapter
+import com.unina.natourkt.presentation.adapter.PostLoadStateAdapter
 import com.unina.natourkt.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment() {
@@ -27,45 +32,79 @@ class HomeFragment : BaseFragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    // Recycler
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerAdapter: PostAdapter
+
+    // ProgressBar
+    private lateinit var progressBar: ProgressBar
+
+    private val homeViewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        setupUi()
+        initRecycler()
+
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        collectState()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setupUi() {
         binding.topAppBar.applyInsetter {
             type(statusBars = true) {
                 margin()
             }
         }
 
-        // TEST
-//        val postPhotos = mutableListOf(
-//            PostPhoto(1, "https://www.chiccheinformatiche.com/wp-content/uploads/2016/07/android.jpg"),
-//            PostPhoto(2, "https://cdn.mos.cms.futurecdn.net/5NyzBxijspGUiFyCiz9F4-1200-80.jpg")
-//        )
-//
-//        val user = User(2, "Marietto")
-//
-//        val postList = mutableListOf(
-//            Post(1, "Try description this time" , false, postPhotos, user)
-//        )
-//
-//        val adapter = PostAdapter(postList)
-//        binding.recyclerHome.adapter = adapter
-//        binding.recyclerHome.layoutManager = LinearLayoutManager(this.requireContext())
-        // FINE TEST
+        recyclerView = binding.recyclerHome
 
-        return root
+        progressBar = binding.progressBar
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun initRecycler() {
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
+            recyclerAdapter = PostAdapter()
+            adapter = recyclerAdapter.withLoadStateHeaderAndFooter(
+                header = PostLoadStateAdapter(),
+                footer = PostLoadStateAdapter()
+            )
+        }
+        recyclerAdapter.addLoadStateListener { loadState ->
+            recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
+            progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+        }
+    }
+
+    private var searchJob: Job? = null
+
+    private fun collectState() {
+
+        searchJob?.cancel()
+        searchJob = viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.uiState.collectLatest { uiState ->
+                    uiState.postItems?.let { recyclerAdapter.submitData(it) }
+                }
+            }
+        }
     }
 }

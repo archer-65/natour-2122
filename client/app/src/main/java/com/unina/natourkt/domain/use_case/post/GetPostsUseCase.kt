@@ -1,10 +1,14 @@
 package com.unina.natourkt.domain.use_case.post
 
+import android.util.Log
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.domain.model.post.Post
 import com.unina.natourkt.domain.repository.PostRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
 import java.lang.Exception
@@ -15,14 +19,6 @@ class GetPostsUseCase @Inject constructor(
     private val errorHandler: ErrorHandler,
 ) {
 
-    operator fun invoke(pageNo: Int): Flow<DataState<List<Post>>> = flow {
-        try {
-            emit(DataState.Loading())
-
-            val posts = postRepository.getPosts(pageNo)
-            emit(DataState.Success(posts))
-        } catch (e: Exception) {
-            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
-        }
-    }
+    operator fun invoke(): Flow<PagingData<Post>> =
+        postRepository.getPosts()
 }

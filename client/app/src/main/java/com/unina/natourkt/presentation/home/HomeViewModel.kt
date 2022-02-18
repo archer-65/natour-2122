@@ -1,10 +1,9 @@
 package com.unina.natourkt.presentation.home
 
-import android.provider.ContactsContract
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.post.toUi
 import com.unina.natourkt.domain.use_case.post.GetPostsUseCase
@@ -21,31 +20,21 @@ class HomeViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
-    fun getPosts(pageNo: Int = 0) {
+    init {
+        getPosts()
+    }
+
+    fun getPosts() {
 
         viewModelScope.launch {
-            getPostsUseCase(pageNo).onEach { result ->
-                when (result) {
-                    is DataState.Success -> {
-                        val currentPosts = _uiState.value.postItems
-                        val upcomingPosts = result.data?.map { post -> post.toUi() } ?: emptyList()
-                        currentPosts.addAll(upcomingPosts)
-                        _uiState.update {
-                            it.copy(postItems = currentPosts, isLoading = false, errorMessage = null)
-                        }
-                    }
-                    is DataState.Error -> {
-                        _uiState.update {
-                            it.copy(errorMessage = result.error, isLoading = false)
-                        }
-                    }
-                    is DataState.Loading -> {
-                        _uiState.update {
-                            it.copy(isLoading = true, errorMessage = null)
-                        }
-                    }
-                }
-            }.launchIn(viewModelScope)
+            val posts = getPostsUseCase()
+                .cachedIn(viewModelScope)
+                .first()
+                .map { it.toUi() }
+
+            _uiState.update {
+                it.copy(postItems = posts)
+            }
         }
     }
 }

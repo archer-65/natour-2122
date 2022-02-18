@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         setupUi()
         setListeners()
 
-        checkAuthState()
+        //checkAuthState()
     }
 
     /**

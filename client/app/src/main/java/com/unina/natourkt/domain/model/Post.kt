@@ -1,25 +1,25 @@
-package com.unina.natourkt.domain.model.post
+package com.unina.natourkt.domain.model
 
-import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.presentation.home.PostItemUiState
 
 data class Post(
     val id: Long,
     val description: String,
     val isReported: Boolean = false,
-    val photos: List<PostPhoto>,
+    val photos: List<String>,
     val user: User,
+    val route: Route,
 )
 
 fun Post.toUi(): PostItemUiState {
     return PostItemUiState(
         id = id,
         description = description,
-        photos = photos.map { photo -> photo.photo },
+        photos = photos,
         authorId = user.id,
         authorUsername = user.username,
         authorPhoto = user.photo,
-        //routeId =
-        //routeTitle =
+        routeId = route.id,
+        routeTitle = route.title
     )
 }

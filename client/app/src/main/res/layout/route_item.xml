@@ -9,92 +9,72 @@
     android:layout_margin="8dp">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/route_photo"
-                android:layout_width="119dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                 />
+        <ImageView
+            android:id="@+id/route_photo"
+            android:layout_width="119dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/route_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/route_placeholder_text"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                >
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/icon_difficulty"
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/difficulty_label"
+                    tools:ignore="ContentDescription" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="15dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="0dp">
-
-                    <TextView
-                        android:id="@+id/author_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nome"
-                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
-
-                    <LinearLayout
-                        android:layout_marginTop="2dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-
-                        <ImageView
-                            android:id="@+id/difficulty"
-                            style="@style/Widget.AppCompat.ActionButton"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:src="@drawable/difficulty_label"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageView
-
-                            android:id="@+id/disabled"
-                            style="@style/Widget.AppCompat.ActionButton"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:src="@drawable/ic_accessible_22"
-                            tools:ignore="ContentDescription" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip_1"
-                        style="@style/Widget.Material3.Chip.Assist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="Salva"
-                        app:chipIcon="@drawable/ic_outline_bookmark_24"
-                        app:ensureMinTouchTargetSize="true" />
-
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/icon_disabled"
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_accessible_22"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_save"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:text="@string/chip_save_text"
+                app:chipIcon="@drawable/ic_outline_bookmark_24"
+                app:ensureMinTouchTargetSize="true"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
 
-
+    </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

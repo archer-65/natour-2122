@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         navView.applyInsetter {
             type(navigationBars = true) {
-                padding()
+                margin()
             }
         }
     }

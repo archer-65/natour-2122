@@ -14,13 +14,13 @@ import java.util.List;
 public interface RouteMapper extends BaseMapper<Route, RouteDto> {
 
     @Override
-    @Mapping(target = "userId", source = "user.id")
+    //@Mapping(target = "userId", source = "user.id")
     @Mapping(target = "stops", source = "stops")
     @Mapping(target = "photos", source = "photos")
     RouteDto toDto(Route route);
 
     @Override
-    @Mapping(target = "user.id", source = "userId")
+    //@Mapping(target = "user.id", source = "userId")
     @Mapping(target = "stops", source = "stops")
     @Mapping(target = "photos", source = "photos")
     Route toEntity(RouteDto routeDto);

@@ -1,5 +1,6 @@
 package com.unina.springnatour.dto.route;
 
+import com.unina.springnatour.dto.user.UserDto;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,9 +14,9 @@ public class RouteDto implements Serializable {
     private String description;
     private Integer avgDifficulty;
     private Float avgDuration;
-    private Boolean disabledFriendly;
+    private Boolean disabledFriendly = false;
     private LocalDate modifiedDate;
     private List<RoutePhotoDto> photos;
     private List<RouteStopDto> stops;
-    private Long userId;
+    private UserDto user;
 }

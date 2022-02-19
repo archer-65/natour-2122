@@ -14,7 +14,6 @@ data class PostItemUiState(
     val authorId: Long,
     val authorUsername: String,
     val authorPhoto: String?,
-    // Da modificare perchè manca Route
-    val routeId: Long? = null,
-    val routeTitle: String? = null,
+    val routeId: Long,
+    val routeTitle: String,
 )

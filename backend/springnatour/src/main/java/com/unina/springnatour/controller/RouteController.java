@@ -1,6 +1,8 @@
 package com.unina.springnatour.controller;
 
+import com.unina.springnatour.dto.post.PostDto;
 import com.unina.springnatour.dto.route.RouteDto;
+import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.service.RouteService;
 import com.unina.springnatour.specification.RouteFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +35,27 @@ public class RouteController {
      * Gets all the routes
      * @return List of RouteDTO
      */
-    @GetMapping("/routes")
+    @GetMapping("/routes/all")
     public ResponseEntity<List<RouteDto>> getAllRoutes() {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutes();
+
+        if (!routeDtoList.isEmpty()) {
+            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     *
+     */
+    @GetMapping("/routes")
+    public ResponseEntity<List<RouteDto>> getAllRoutes(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+
+        List<RouteDto> routeDtoList = routeService.getAllRoutes(pageNo, pageSize);
 
         if (!routeDtoList.isEmpty()) {
             return new ResponseEntity<>(routeDtoList, HttpStatus.OK);

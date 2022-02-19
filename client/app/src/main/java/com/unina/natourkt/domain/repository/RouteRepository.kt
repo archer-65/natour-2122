@@ -1,10 +1,10 @@
 package com.unina.natourkt.domain.repository
 
 import androidx.paging.PagingData
-import com.unina.natourkt.domain.model.Post
+import com.unina.natourkt.domain.model.Route
 import kotlinx.coroutines.flow.Flow
 
-interface PostRepository {
+interface RouteRepository {
 
-    fun getPosts(): Flow<PagingData<Post>>
+    fun getRoutes(): Flow<PagingData<Route>>
 }

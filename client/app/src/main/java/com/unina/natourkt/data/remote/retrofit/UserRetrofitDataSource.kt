@@ -1,4 +1,4 @@
-package com.unina.natourkt.data.remote
+package com.unina.natourkt.data.remote.retrofit
 
 import com.unina.natourkt.data.remote.dto.UserDto
 import retrofit2.http.GET

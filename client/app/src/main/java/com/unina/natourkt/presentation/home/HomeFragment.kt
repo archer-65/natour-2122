@@ -41,6 +41,9 @@ class HomeFragment : BaseFragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
+    // Coroutines
+    private var searchJob: Job? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,7 +54,6 @@ class HomeFragment : BaseFragment() {
         val root: View = binding.root
 
         setupUi()
-        initRecycler()
 
         return root
     }
@@ -59,6 +61,7 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initRecycler()
         collectState()
     }
 
@@ -93,8 +96,6 @@ class HomeFragment : BaseFragment() {
             progressBar.isVisible = loadState.source.refresh is LoadState.Loading
         }
     }
-
-    private var searchJob: Job? = null
 
     private fun collectState() {
 

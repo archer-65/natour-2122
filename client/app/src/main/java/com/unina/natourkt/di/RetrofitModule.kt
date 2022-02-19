@@ -1,8 +1,9 @@
 package com.unina.natourkt.di
 
 import com.unina.natourkt.common.Constants.BASE_URL
-import com.unina.natourkt.data.remote.PostRetrofitDataSource
-import com.unina.natourkt.data.remote.UserRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.RouteRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.UserRetrofitDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,21 +18,28 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideUserRetrofit(): UserRetrofitDataSource {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(UserRetrofitDataSource::class.java)
     }
 
     @Provides
     @Singleton
-    fun providePostRetrofit(): PostRetrofitDataSource {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(PostRetrofitDataSource::class.java)
+    fun provideUserRetrofit(retrofit: Retrofit): UserRetrofitDataSource {
+        return retrofit.create(UserRetrofitDataSource::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providePostRetrofit(retrofit: Retrofit): PostRetrofitDataSource {
+        return retrofit.create(PostRetrofitDataSource::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRouteRetrofit(retrofit: Retrofit): RouteRetrofitDataSource {
+        return retrofit.create(RouteRetrofitDataSource::class.java)
     }
 }

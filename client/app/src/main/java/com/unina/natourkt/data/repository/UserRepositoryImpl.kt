@@ -1,6 +1,6 @@
 package com.unina.natourkt.data.repository
 
-import com.unina.natourkt.data.remote.UserRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.UserRetrofitDataSource
 import com.unina.natourkt.data.remote.dto.UserDto
 import com.unina.natourkt.domain.repository.UserRepository
 import javax.inject.Inject

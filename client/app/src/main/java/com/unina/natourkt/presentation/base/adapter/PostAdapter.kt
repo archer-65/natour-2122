@@ -33,6 +33,7 @@ class PostAdapter : PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolde
             binding.apply {
 
                 authorName.text = post.authorUsername
+                routeName.text = post.routeTitle
                 description.text = post.description
 
                 // If the user photo is present, then load with Glide

@@ -1,6 +1,6 @@
-package com.unina.natourkt.data.remote
+package com.unina.natourkt.data.remote.retrofit
 
-import com.unina.natourkt.data.remote.dto.PostDto
+import com.unina.natourkt.data.remote.dto.post.PostDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

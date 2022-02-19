@@ -15,6 +15,7 @@ sealed class DataState<T>(
         object UserNotFound : CustomMessages()
         object UserNotConfirmed : CustomMessages()
         object InvalidPassword : CustomMessages()
+        object InvalidCredentials: CustomMessages()
         object UsernameExists : CustomMessages()
         object AliasExists : CustomMessages()
         object InvalidParameter : CustomMessages()

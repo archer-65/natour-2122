@@ -28,6 +28,7 @@ open class ErrorHandler {
                     is AuthException.UserNotFoundException -> DataState.CustomMessages.UserNotFound
                     is AuthException.UserNotConfirmedException -> DataState.CustomMessages.UserNotConfirmed
                     is AuthException.InvalidPasswordException -> DataState.CustomMessages.InvalidPassword
+                    is AuthException.NotAuthorizedException -> DataState.CustomMessages.InvalidCredentials
                     is AuthException.UsernameExistsException -> DataState.CustomMessages.UsernameExists
                     is AuthException.AliasExistsException -> DataState.CustomMessages.AliasExists
                     is AuthException.InvalidParameterException -> DataState.CustomMessages.InvalidParameter

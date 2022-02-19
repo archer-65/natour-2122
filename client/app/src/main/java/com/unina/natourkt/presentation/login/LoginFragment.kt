@@ -137,6 +137,7 @@ class LoginFragment : BaseFragment() {
                             is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
                             is DataState.CustomMessages.UserNotConfirmed -> getString(R.string.user_not_confirmed)
                             is DataState.CustomMessages.InvalidPassword -> getString(R.string.invalid_password)
+                            is DataState.CustomMessages.InvalidCredentials -> "Username o password non corretti, riprova."
                             is DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
                             is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)

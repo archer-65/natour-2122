@@ -18,6 +18,15 @@ object Constants {
     // TAGS
     const val AMPLIFY = "Amplify Status"
 
+    const val LOGIN_STATE = "Login Process"
+    const val REGISTRATION_STATE = "Sign Up Process"
+    const val PASSWORD_RESET = "Password Reset Process"
+
+    const val DATASTORE_STATE = "Datastore Status"
+
+    const val POST_MODEL = "Post Request Status"
+    const val ROUTE_MODEL = "Route Request Status"
+
     // DATASTORE NAME(S)
     const val PREFERENCES = "DATASTORE_PREF"
 

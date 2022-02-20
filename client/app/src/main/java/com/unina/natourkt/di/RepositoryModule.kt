@@ -17,6 +17,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Core module to obtain an effective Dependency Inversion.
+ * Repository classes are interfaces injected into UseCase classes, in this way
+ * we can provide methods to the Domain layer but also avoid implementation's details.
+ * This module makes testing easier.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {

@@ -12,10 +12,20 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+/**
+ * This module is only for [Retrofit], but requires generation of implementation
+ * through Builder pattern.
+ * @see [Retrofit.Builder]
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
+    /**
+     * Retrofit object is pretty much the same, so we define URL and Converter here, only one time
+     * @see [BASE_URL]
+     * @see [GsonConverterFactory]
+     */
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {

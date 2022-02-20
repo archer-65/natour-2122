@@ -1,7 +1,8 @@
 package com.unina.natourkt.domain.repository
 
-import androidx.fragment.app.FragmentActivity
-
+/**
+ * Interface for authentication functions
+ */
 interface AuthRepository {
 
     /**
@@ -11,7 +12,7 @@ interface AuthRepository {
     suspend fun fetchCurrentSession(): Boolean
 
     /**
-     * Fetch User Sub (Amplify UUID), will be used to query
+     * Fetch User UUID, will be used to query
      * user from REST API
      */
     suspend fun fetchUserSub(): String

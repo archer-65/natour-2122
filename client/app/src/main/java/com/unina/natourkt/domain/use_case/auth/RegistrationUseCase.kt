@@ -1,5 +1,8 @@
 package com.unina.natourkt.domain.use_case.auth
 
+import android.util.Log
+import com.unina.natourkt.common.Constants
+import com.unina.natourkt.common.Constants.REGISTRATION_STATE
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.domain.repository.AuthRepository
@@ -16,6 +19,9 @@ class RegistrationUseCase @Inject constructor(
     private val errorHandler: ErrorHandler,
 ) {
 
+    /**
+     * Sign up user
+     */
     operator fun invoke(
         username: String,
         email: String,
@@ -25,14 +31,19 @@ class RegistrationUseCase @Inject constructor(
         try {
             emit(DataState.Loading())
 
-            val isSignUpComplete = authRepository.register(username, email, password)
+            Log.i(REGISTRATION_STATE, "Processing sign up request...")
 
+            val isSignUpComplete = authRepository.register(username, email, password)
             if (isSignUpComplete) {
+                // If sign up is successful emit true
+                Log.i(REGISTRATION_STATE, "Account creation successful!")
                 emit(DataState.Success(isSignUpComplete))
             } else {
-                emit(DataState.Error(DataState.CustomMessages.SomethingWentWrong("Unknown Error")))
+                Log.e(REGISTRATION_STATE, "Whoops, something went wrong with sign up, retry!")
+                emit(DataState.Error(DataState.CustomMessages.AuthGeneric))
             }
         } catch (e: Exception) {
+            Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Sign up failed", e)
             emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
         }
     }

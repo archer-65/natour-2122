@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentProfileBinding
+import com.unina.natourkt.di.GlideApp
 import com.unina.natourkt.presentation.base.adapter.ViewPagerAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.profile.compilations.CompilationsFragment
@@ -106,7 +107,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     fun setupUserInfo() {
-        Glide.with(this)
+        GlideApp.with(this)
             .load(mainViewModel.loggedUser?.photo)
             .error(R.drawable.ic_avatar_svgrepo_com)
             .into(binding.profilePhoto)

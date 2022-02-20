@@ -12,6 +12,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * This module provides injection for [ApplicationContext].
+ * Injecting Context avoids possible leaks.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {

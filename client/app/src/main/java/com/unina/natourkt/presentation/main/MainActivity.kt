@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: BottomNavigationView
     private lateinit var navController: NavController
 
+    // ViewModel
+    private val mainViewModel: MainViewModel by viewModels()
     private var isUserAuthenticated: Boolean = false
     private var loggedUser: User? = null
-
-    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

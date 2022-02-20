@@ -3,7 +3,6 @@ package com.unina.natourkt.presentation.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.use_case.auth.LoginSocialUseCase
 import com.unina.natourkt.domain.use_case.auth.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -16,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val loginSocialUseCase: LoginSocialUseCase
+    //private val loginSocialUseCase: LoginSocialUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -39,13 +38,13 @@ class LoginViewModel @Inject constructor(
 
     /**
      * Login social function
-     * @see [LoginSocialUseCase]
+     * @see [LoginUseCase]
      */
     fun login(provider: String) {
 
         viewModelScope.launch {
             // On every value emitted by the flow
-            loginSocialUseCase(provider).onEach { result ->
+            loginUseCase(provider).onEach { result ->
                 // Util function
                 resultManager(result)
             }.launchIn(viewModelScope)

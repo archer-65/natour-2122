@@ -12,6 +12,9 @@ import com.unina.natourkt.R
 import com.unina.natourkt.databinding.PostItemBinding
 import com.unina.natourkt.presentation.home.PostItemUiState
 
+/**
+ * Implementation of PagingDataAdapter for [PostItemUiState] (posts on home screen)
+ */
 class PostAdapter : PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolder>(DiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -29,9 +32,13 @@ class PostAdapter : PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolde
     inner class PostViewHolder(val binding: PostItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        /**
+         * Binder function, relies on [Glide] and [SlideModel]
+         */
         fun bind(post: PostItemUiState) {
             binding.apply {
 
+                // Set basic details
                 authorName.text = post.authorUsername
                 routeName.text = post.routeTitle
                 description.text = post.description

@@ -22,6 +22,38 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/recycler_routes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/route_item_shimmer" />
+
+            <include layout="@layout/route_item_shimmer" />
+
+            <include layout="@layout/route_item_shimmer" />
+
+            <include layout="@layout/route_item_shimmer" />
+
+            <include layout="@layout/route_item_shimmer" />
+
+            <include layout="@layout/route_item_shimmer" />
+
+            <include layout="@layout/route_item_shimmer" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_routes"
         android:layout_width="0dp"

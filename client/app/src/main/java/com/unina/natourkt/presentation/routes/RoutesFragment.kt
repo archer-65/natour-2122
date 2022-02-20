@@ -16,31 +16,36 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.unina.natourkt.databinding.FragmentRoutesBinding
+import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
+import com.unina.natourkt.presentation.home.HomeUiState
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+/**
+ * This Fragment represents the home screen
+ * filled of paginated routes
+ */
 @AndroidEntryPoint
 class RoutesFragment : Fragment() {
 
-    private var _binding: FragmentRoutesBinding? = null
-
     // This property is only valid between onCreateView and
     // onDestroyView.
+    private var _binding: FragmentRoutesBinding? = null
     private val binding get() = _binding!!
 
-    // Recycler
+    // Recycler elements
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: RouteAdapter
+    private lateinit var shimmerFrame: ShimmerFrameLayout
 
-    // ProgressBar
-    private lateinit var progressBar: ProgressBar
-
+    // ViewModel
     private val routesViewModel: RoutesViewModel by viewModels()
 
     // Coroutines
@@ -64,6 +69,7 @@ class RoutesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecycler()
+
         collectState()
     }
 
@@ -72,6 +78,9 @@ class RoutesFragment : Fragment() {
         _binding = null
     }
 
+    /**
+     * Basic settings for UI
+     */
     private fun setupUi() {
         binding.topAppBar.applyInsetter {
             type(statusBars = true) {
@@ -81,28 +90,49 @@ class RoutesFragment : Fragment() {
 
         recyclerView = binding.recyclerRoutes
 
-        progressBar = binding.progressBar
+        shimmerFrame = binding.shimmerContainer
     }
 
+    /**
+     * Recycler View init function
+     */
     private fun initRecycler() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@RoutesFragment.requireContext())
             recyclerAdapter = RouteAdapter()
-            // ADD HEADER AND FOOTER
-            adapter = recyclerAdapter
+            adapter = recyclerAdapter.withLoadStateHeaderAndFooter(
+                header = ItemLoadStateAdapter(),
+                footer = ItemLoadStateAdapter()
+            )
         }
         recyclerAdapter.addLoadStateListener { loadState ->
-            recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
-            progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            when (loadState.source.refresh) {
+                // If loading, start the shimmer animation and mark as GONE the Recycler
+                is LoadState.Loading -> {
+                    shimmerFrame.startShimmer()
+                    shimmerFrame.isVisible = true
+                    recyclerView.isVisible = false
+                }
+                // If not loading, stop the shimmer animation and mark as VISIBLE the Recycler
+                else -> {
+                    shimmerFrame.stopShimmer()
+                    shimmerFrame.isVisible = false
+                    recyclerView.isVisible = true
+                }
+            }
         }
     }
 
+    /**
+     * Start to collect [RouteUiState], action based on Success/Loading/Error
+     */
     private fun collectState() {
 
         searchJob?.cancel()
         searchJob = viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 routesViewModel.uiState.collectLatest { uiState ->
+                    // Send data to adapter
                     uiState.routeItems?.let { recyclerAdapter.submitData(it) }
                 }
             }

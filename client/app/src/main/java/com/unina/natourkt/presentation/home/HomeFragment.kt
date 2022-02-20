@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,32 +12,36 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
-import com.unina.natourkt.presentation.base.adapter.PostLoadStateAdapter
+import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.forgot_password.ForgotPasswordUiState
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+/**
+ * This Fragment represents the home screen
+ * filled of paginated posts
+ */
 @AndroidEntryPoint
 class HomeFragment : BaseFragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
     // This property is only valid between onCreateView and
     // onDestroyView.
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    // Recycler
+    // Recycler elements
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: PostAdapter
+    private lateinit var shimmerFrame: ShimmerFrameLayout
 
-    // ProgressBar
-    private lateinit var progressBar: ProgressBar
-
+    // ViewModel
     private val homeViewModel: HomeViewModel by viewModels()
 
     // Coroutines
@@ -62,6 +65,7 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecycler()
+
         collectState()
     }
 
@@ -70,6 +74,9 @@ class HomeFragment : BaseFragment() {
         _binding = null
     }
 
+    /**
+     * Basic settings for UI
+     */
     private fun setupUi() {
         binding.topAppBar.applyInsetter {
             type(statusBars = true) {
@@ -79,30 +86,50 @@ class HomeFragment : BaseFragment() {
 
         recyclerView = binding.recyclerHome
 
-        progressBar = binding.progressBar
+        shimmerFrame = binding.shimmerContainer
     }
 
+    /**
+     * Recycler View init function
+     */
     private fun initRecycler() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
             recyclerAdapter = PostAdapter()
             adapter = recyclerAdapter.withLoadStateHeaderAndFooter(
-                header = PostLoadStateAdapter(),
-                footer = PostLoadStateAdapter()
+                header = ItemLoadStateAdapter(),
+                footer = ItemLoadStateAdapter()
             )
         }
         recyclerAdapter.addLoadStateListener { loadState ->
-            recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
-            progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            when (loadState.source.refresh) {
+                // If loading, start the shimmer animation and mark as GONE the Recycler
+                is LoadState.Loading -> {
+                    shimmerFrame.startShimmer()
+                    shimmerFrame.isVisible = true
+                    recyclerView.isVisible = false
+                }
+                // If not loading, stop the shimmer animation and mark as VISIBLE the Recycler
+                else -> {
+                    shimmerFrame.stopShimmer()
+                    shimmerFrame.isVisible = false
+                    recyclerView.isVisible = true
+                }
+            }
         }
     }
 
+    /**
+     * Start to collect [HomeUiState], action based on Success/Loading/Error
+     */
     private fun collectState() {
 
+        // Make sure to cancel any previous job
         searchJob?.cancel()
         searchJob = viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uiState.collectLatest { uiState ->
+                    // Send data to adapter
                     uiState.postItems?.let { recyclerAdapter.submitData(it) }
                 }
             }

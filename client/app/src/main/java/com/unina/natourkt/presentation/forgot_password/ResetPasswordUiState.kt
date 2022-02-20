@@ -2,7 +2,10 @@ package com.unina.natourkt.presentation.forgot_password
 
 import com.unina.natourkt.common.DataState
 
-data class NewPasswordUiState (
+/**
+ * UiState used for presentation by [ResetPasswordViewModel]
+ */
+data class ResetPasswordUiState (
     val isLoading: Boolean = false,
     val errorMessage: DataState.CustomMessages? = null,
     val isPasswordReset: Boolean = false,

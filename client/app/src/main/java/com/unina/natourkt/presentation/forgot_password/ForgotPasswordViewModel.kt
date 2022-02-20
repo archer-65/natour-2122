@@ -29,16 +29,21 @@ class ForgotPasswordViewModel @Inject constructor(
     fun resetRequest(username: String) {
 
         viewModelScope.launch {
+
+            // On every value emitted by the flow
             resetPasswordRequestUseCase(username).onEach { result ->
                 when (result) {
+                    // In case of success, update the isCodeSent value
                     is DataState.Success -> {
                         _uiState.value =
                             ForgotPasswordUiState(isCodeSent = result.data ?: false)
                     }
+                    // In case of error, update the error message
                     is DataState.Error -> {
                         _uiState.value =
                             ForgotPasswordUiState(errorMessage = result.error)
                     }
+                    // In case of loading state, isLoading is true
                     is DataState.Loading -> {
                         _uiState.value = ForgotPasswordUiState(isLoading = true)
                     }

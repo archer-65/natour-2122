@@ -45,6 +45,7 @@ class ForgotPasswordFragment : BaseFragment() {
     // ProgressBar
     private lateinit var progressBar: ProgressBar
 
+    // ViewModel
     private val forgotPasswordViewModel: ForgotPasswordViewModel by viewModels()
 
     override fun onCreateView(
@@ -67,9 +68,7 @@ class ForgotPasswordFragment : BaseFragment() {
         collectState()
 
         setListeners()
-
         setTextChangedListeners()
-
     }
 
     override fun onDestroyView() {
@@ -77,6 +76,9 @@ class ForgotPasswordFragment : BaseFragment() {
         _binding = null
     }
 
+    /**
+     * Basic settings for UI
+     */
     private fun setupUi() {
         binding.imageForgotPassword.applyInsetter {
             type(statusBars = true) {
@@ -91,32 +93,46 @@ class ForgotPasswordFragment : BaseFragment() {
         progressBar = binding.progressBar
     }
 
+    /**
+     * Start to collect [ForgotPasswordUiState], action based on Success/Loading/Error
+     */
     private fun collectState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 forgotPasswordViewModel.uiState.collect { uiState ->
+                    // When the code is sent
                     if (uiState.isCodeSent) {
-                        // When the code for reset is sent, then the progress bar disappears and
-                        // we can navigate to new password insertion screen
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Show a message
                         val message = "Il codice per il reset della password è stato inviato!"
                         showSnackbar(message)
+
+                        // We navigate to new password insertion screen
                         findNavController().navigate(R.id.navigation_forgot_password_to_navigation_new_password)
                     }
+
+                    // When the state loading
                     if (uiState.isLoading) {
-                        // While loading display progress
+                        // Progress bar appears
                         progressBar.visible()
                     }
+
+                    // When an error is present
                     if (uiState.errorMessage != null) {
+                        // Get the right message
                         val message = when (uiState.errorMessage) {
                             is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
                             DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
+
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Show a message
                         showSnackbar(message)
                     }
                 }
@@ -124,7 +140,9 @@ class ForgotPasswordFragment : BaseFragment() {
         }
     }
 
-
+    /**
+     * Function to set listeners for views
+     */
     private fun setListeners() {
         sendCodeButton.setOnClickListener {
             if (isFormValid()) {
@@ -145,24 +163,29 @@ class ForgotPasswordFragment : BaseFragment() {
     /**
      * Validate form to enable button
      */
-
     private fun isFormValidForButton() {
         sendCodeButton.isEnabled = usernameField.editText?.text!!.isNotBlank()
     }
 
 
+    /**
+     *  Check if the form is Valid
+     */
     private fun isFormValid(): Boolean {
         val isUsernameValid = isValidUsername()
 
         return isUsernameValid
     }
 
+    /**
+     * Check if the username is valid and manage TextField errors
+     */
     private fun isValidUsername(): Boolean {
 
         val username = usernameField.editText?.text!!.trim().toString()
 
         return if (username.contains(" ")) {
-            usernameField.error = "L'username non può contenere spazi."
+            usernameField.error = "Lo username non può contenere spazi."
             false
         } else {
             usernameField.error = null

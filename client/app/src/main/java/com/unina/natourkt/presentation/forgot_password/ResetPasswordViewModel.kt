@@ -13,34 +13,39 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel used by [NewPasswordFragment]
+ * ViewModel used by [ResetPasswordFragment]
  */
 @HiltViewModel
-class NewPasswordViewModel @Inject constructor(
+class ResetPasswordViewModel @Inject constructor(
     private val resetPasswordConfirmUseCase: ResetPasswordConfirmUseCase,
 ) : ViewModel() {
 
     /**
-     * [NewPasswordUiState] wrapped by StateFlow used by [NewPasswordFragment]
+     * [ResetPasswordUiState] wrapped by StateFlow used by [ResetPasswordFragment]
      */
-    private val _uiState = MutableStateFlow(NewPasswordUiState())
+    private val _uiState = MutableStateFlow(ResetPasswordUiState())
     val uiState = _uiState.asStateFlow()
 
     fun resetConfirm(password: String, code: String) {
 
         viewModelScope.launch {
+
+            // On every value emitted by the flow
             resetPasswordConfirmUseCase(password, code).onEach { result ->
                 when (result) {
+                    // In case of success, update the isPasswordReset value
                     is DataState.Success -> {
                         _uiState.value =
-                            NewPasswordUiState(isPasswordReset = result.data ?: false)
+                            ResetPasswordUiState(isPasswordReset = result.data ?: false)
                     }
+                    // In case of error, update the error message
                     is DataState.Error -> {
                         _uiState.value =
-                            NewPasswordUiState(errorMessage = result.error)
+                            ResetPasswordUiState(errorMessage = result.error)
                     }
+                    // In case of loading state, isLoading is true
                     is DataState.Loading -> {
-                        _uiState.value = NewPasswordUiState(isLoading = true)
+                        _uiState.value = ResetPasswordUiState(isLoading = true)
                     }
                 }
             }.launchIn(viewModelScope)

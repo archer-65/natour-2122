@@ -7,10 +7,15 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.RouteItemBinding
+import com.unina.natourkt.presentation.home.PostItemUiState
 import com.unina.natourkt.presentation.routes.RouteItemUiState
 
+/**
+ * Implementation of PagingDataAdapter for [PostItemUiState] (posts on routes screen)
+ */
 class RouteAdapter :
     PagingDataAdapter<RouteItemUiState, RouteAdapter.RouteViewHolder>(DiffUtilCallback()) {
 
@@ -29,16 +34,21 @@ class RouteAdapter :
     inner class RouteViewHolder(val binding: RouteItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        /**
+         * Binder function, relies on [Glide] to display only one preview photo
+         */
         fun bind(route: RouteItemUiState) {
             binding.apply {
 
                 routeTitle.text = route.title
 
+                // Load the preview photo
                 Glide.with(this.root)
                     .load(route.previewPhoto)
-                    .fallback(R.drawable.ic_accessible_22)
+                    .error(R.drawable.media_placeholder)
                     .into(routePhoto)
 
+                // Select the correct difficulty drawable, then set it
                 val difficulty = when (route.avgDifficulty) {
                     1 -> {
                         R.drawable.difficulty_easy
@@ -53,9 +63,9 @@ class RouteAdapter :
                         R.drawable.difficulty_label
                     }
                 }
-
                 iconDifficulty.setImageResource(difficulty)
 
+                // Accessibility icon visibility based on route's boolean attribute
                 iconDisabled.isVisible = route.disabledFriendly
             }
         }

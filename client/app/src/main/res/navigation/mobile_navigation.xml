@@ -59,9 +59,9 @@
 
         <fragment
             android:id="@+id/navigation_new_password"
-            android:name="com.unina.natourkt.presentation.forgot_password.NewPasswordFragment"
+            android:name="com.unina.natourkt.presentation.forgot_password.ResetPasswordFragment"
             android:label="Nuova password"
-            tools:layout="@layout/fragment_new_password" >
+            tools:layout="@layout/fragment_reset_password" >
             <action
                 android:id="@+id/navigation_new_password_to_navigation_login"
                 app:destination="@id/navigation_login" />

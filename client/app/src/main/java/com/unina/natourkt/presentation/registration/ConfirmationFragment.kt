@@ -92,8 +92,6 @@ class ConfirmationFragment : BaseFragment() {
         confirmationButton = binding.buttonConfirmation
         resendCodeButton = binding.buttonResendCode
 
-        //resendCodeText = binding.textviewResendCode
-
         codeField = binding.textfieldConfirmCode
 
         progressBar = binding.progressBar
@@ -106,26 +104,38 @@ class ConfirmationFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registrationViewModel.uiConfirmationState.collect { uiState ->
+                    // When the user is confirmed
                     if (uiState.isConfirmationComplete) {
-                        // When the user confirms sign up, then the progress bar disappears and
-                        // we can navigate to Home screen
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Message is shown
                         val message = getString(R.string.confirmed_account)
                         showSnackbar(message)
+
+                        // We navigate to the login screen
                         findNavController().navigate(R.id.navigation_confirmation_to_navigation_login)
                     }
+
+                    // When the code is resent
                     if (uiState.isCodeResent) {
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Message is shown
                         val message = getString(R.string.code_resent)
                         showSnackbar(message)
                     }
+
+                    // When the state loading
                     if (uiState.isLoading) {
-                        // While loading display progress
+                        // Progress bar appears
                         progressBar.visible()
                     }
+
+                    // When an error is present
                     if (uiState.errorMessage != null) {
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
+                        // Get the right message
                         val message = when (uiState.errorMessage) {
                             DataState.CustomMessages.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
                             DataState.CustomMessages.CodeMismatch -> getString(R.string.wrong_confirmation_code)
@@ -133,7 +143,11 @@ class ConfirmationFragment : BaseFragment() {
                             DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
+
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Show a message
                         showSnackbar(message)
                     }
                 }
@@ -156,22 +170,34 @@ class ConfirmationFragment : BaseFragment() {
         }
     }
 
+    /**
+     * Function to set TextListeners
+     */
     private fun setTextChangedListeners() {
         codeField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
     }
 
+    /**
+     * Validate form to enable button
+     */
     private fun isFormValidForButton() {
         confirmationButton.isEnabled = codeField.editText?.text!!.isNotBlank()
     }
 
+    /**
+     * Form validation based on other functions
+     */
     private fun isFormValid(): Boolean {
         val isCodeValid = isCodeValid()
 
         return isCodeValid
     }
 
+    /**
+     * Check if the code is valid and manage TextField errors
+     */
     private fun isCodeValid(): Boolean {
         val code =
             codeField.editText?.text!!.trim().toString()

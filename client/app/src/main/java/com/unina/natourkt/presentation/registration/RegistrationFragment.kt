@@ -15,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
+import com.unina.natourkt.common.Constants.PASSWORD_LENGTH
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
@@ -48,6 +49,7 @@ class RegistrationFragment : BaseFragment() {
     // ProgressBar
     private lateinit var progressBar: ProgressBar
 
+    // ViewModel
     private val registrationViewModel: RegistrationViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -105,25 +107,30 @@ class RegistrationFragment : BaseFragment() {
     }
 
     /**
-     * Start to collect LoginState, action based on Success/Loading/Error
+     * Start to collect [RegistrationUiState], action based on Success/Loading/Error
      */
     private fun collectState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registrationViewModel.uiRegistrationState.collect { uiState ->
+                    // When the sign up is complete
                     if (uiState.isSignUpComplete) {
-                        // When the user signs up, then the progress bar disappears and
-                        // we can navigate to Confirmation screen
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // We navigate to the home screen
                         findNavController().navigate(R.id.navigation_registration_to_navigation_confirmation)
                     }
+
+                    // When the state loading
                     if (uiState.isLoading) {
-                        // While loading display progress
+                        // Progress bar appears
                         progressBar.visible()
                     }
+
+                    // When an error is present
                     if (uiState.errorMessage != null) {
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
+                        // Get the right message
                         val message = when (uiState.errorMessage) {
                             DataState.CustomMessages.UsernameExists -> getString(R.string.username_exists)
                             DataState.CustomMessages.AliasExists -> getString(R.string.credentials_already_taken)
@@ -131,7 +138,11 @@ class RegistrationFragment : BaseFragment() {
                             DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
+
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Show a message
                         showSnackbar(message)
                     }
                 }
@@ -189,14 +200,17 @@ class RegistrationFragment : BaseFragment() {
      * Form validation based on other functions
      */
     private fun isFormValid(): Boolean {
-        val isUsernameValid = isValidUsername()
+        val isUsernameValid = isUsernameValid()
         val isEmailValid = isEmailValid()
         val isPasswordValid = isPasswordValid()
 
         return isUsernameValid && isPasswordValid && isEmailValid
     }
 
-    private fun isValidUsername(): Boolean {
+    /**
+     * Check if the username is valid and manage TextField errors
+     */
+    private fun isUsernameValid(): Boolean {
 
         val username = usernameField.editText?.text!!.trim().toString()
 
@@ -209,6 +223,9 @@ class RegistrationFragment : BaseFragment() {
         }
     }
 
+    /**
+     * Check if the email is valid and manage TextField errors
+     */
     private fun isEmailValid(): Boolean {
 
         val email = emailField.editText?.text!!.trim().toString()
@@ -223,14 +240,17 @@ class RegistrationFragment : BaseFragment() {
         }
     }
 
+    /**
+     * Check if the password is valid and manage TextField errors
+     */
     private fun isPasswordValid(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
         val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
 
         return when {
-            password.length < 7 -> {
-                passwordField.error = "La password deve contenere almeno 7 caratteri."
+            password.length < PASSWORD_LENGTH -> {
+                passwordField.error = "La password deve contenere almeno 8 caratteri."
                 false
             }
             password != confirmPassword -> {

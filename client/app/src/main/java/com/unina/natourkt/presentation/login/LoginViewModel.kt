@@ -23,48 +23,52 @@ class LoginViewModel @Inject constructor(
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
 
     /**
-     * Login function /w Flows
+     * Login function
      * @see [LoginUseCase]
      */
     fun login(username: String, password: String) {
 
         viewModelScope.launch {
+            // On every value emitted by the flow
             loginUseCase(username, password).onEach { result ->
-                when (result) {
-                    is DataState.Success -> {
-                        _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)
-                    }
-                    is DataState.Error -> {
-                        _uiState.value = LoginUiState(errorMessage = result.error)
-                    }
-                    is DataState.Loading -> {
-                        _uiState.value = LoginUiState(isLoading = true)
-                    }
-                }
+                // Util function
+                resultManager(result)
             }.launchIn(viewModelScope)
         }
     }
 
     /**
-     * Login social function /w Flows
+     * Login social function
      * @see [LoginSocialUseCase]
      */
     fun login(provider: String) {
 
         viewModelScope.launch {
+            // On every value emitted by the flow
             loginSocialUseCase(provider).onEach { result ->
-                when (result) {
-                    is DataState.Success -> {
-                        _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)
-                    }
-                    is DataState.Error -> {
-                        _uiState.value = LoginUiState(errorMessage = result.error)
-                    }
-                    is DataState.Loading -> {
-                        _uiState.value = LoginUiState(isLoading = true)
-                    }
-                }
+                // Util function
+                resultManager(result)
             }.launchIn(viewModelScope)
+        }
+    }
+
+    /**
+     * Manager for same logic in the above functions
+     */
+    private fun resultManager(result: DataState<Boolean>) {
+        when (result) {
+            // In case of success, update the isUserLoggedIn value
+            is DataState.Success -> {
+                _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)
+            }
+            // In case of error, update the error message
+            is DataState.Error -> {
+                _uiState.value = LoginUiState(errorMessage = result.error)
+            }
+            // In case of loading state, isLoading is true
+            is DataState.Loading -> {
+                _uiState.value = LoginUiState(isLoading = true)
+            }
         }
     }
 }

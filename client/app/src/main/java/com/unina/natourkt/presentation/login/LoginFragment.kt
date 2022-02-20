@@ -18,6 +18,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.common.*
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
+import com.unina.natourkt.common.Constants.PASSWORD_LENGTH
 import com.unina.natourkt.databinding.FragmentLoginBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,12 +48,12 @@ class LoginFragment : BaseFragment() {
     private lateinit var passwordField: TextInputLayout
 
     // TextViews
-    //private lateinit var forgotPasswordText: Button
     private lateinit var registerTextButton: TextView
 
     // ProgressBar
     private lateinit var progressBar: ProgressBar
 
+    // ViewModel
     private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
@@ -105,7 +106,6 @@ class LoginFragment : BaseFragment() {
         googleButton = binding.buttonGoogle
         facebookButton = binding.buttonFacebook
 
-        //forgotPasswordText = binding.textviewForgotPassword
         forgotPasswordButton = binding.buttonForgotPassword
 
         usernameField = binding.textfieldUsername
@@ -115,24 +115,31 @@ class LoginFragment : BaseFragment() {
     }
 
     /**
-     * Start to collect LoginState, action based on Success/Loading/Error
+     * Start to collect [LoginUiState], action based on Success/Loading/Error
      */
     private fun collectState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 loginViewModel.uiState.collect { uiState ->
+                    // When the user is logged in
                     if (uiState.isUserLoggedIn) {
-                        // When the user becomes logged in, then the progress bar disappears and
-                        // we can navigate to Home screen
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // We navigate to the home screen
                         findNavController().navigate(R.id.navigation_login_to_navigation_home)
                     }
+
+                    // When the state loading
                     if (uiState.isLoading) {
-                        // While loading display progress
+                        // Progress bar appears
                         progressBar.visible()
                     }
+
+                    // When an error is present
                     if (uiState.errorMessage != null) {
+                        // Get the right message
                         val message = when (uiState.errorMessage) {
                             is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
                             is DataState.CustomMessages.UserNotConfirmed -> getString(R.string.user_not_confirmed)
@@ -142,9 +149,11 @@ class LoginFragment : BaseFragment() {
                             is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
+
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Show a message
                         showSnackbar(message)
                     }
                 }
@@ -213,6 +222,9 @@ class LoginFragment : BaseFragment() {
         return isUsernameValid && isPasswordValid
     }
 
+    /**
+     * Check if the username is valid and manage TextField errors
+     */
     private fun isUsernameValid(): Boolean {
 
         val username = usernameField.editText?.text!!.trim().toString()
@@ -226,11 +238,14 @@ class LoginFragment : BaseFragment() {
         }
     }
 
+    /**
+     * Check if the password is valid and manage TextField errors
+     */
     private fun isPasswordValid(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
 
-        return if (password.length < 7) {
+        return if (password.length < PASSWORD_LENGTH) {
             passwordField.error = "La password deve contenere almeno 7 caratteri."
             false
         } else {

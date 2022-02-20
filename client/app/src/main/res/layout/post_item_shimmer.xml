@@ -25,6 +25,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:background="#dddddd"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                 android:layout_marginEnd="16dp"/>
 
@@ -39,6 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_username"
+                    android:textColor="#dddddd"
+                    android:background="#dddddd"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
 
                 <TextView
@@ -46,26 +49,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@string/itinerary_placeholder"
+                    android:text="@string/route_placeholder_text"
+                    android:background="#dddddd"
+                    android:textColor="#dddddd"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/options"
-                style="@style/Widget.AppCompat.ActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_more_vert_24"
-                tools:ignore="ContentDescription" />
-
         </LinearLayout>
 
         <!-- Media -->
-        <com.denzcoskun.imageslider.ImageSlider
+        <ImageView
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
-            android:layout_height="279dp"/>
+            android:background="#dddddd"
+            android:layout_height="279dp"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,7 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/description_placeholder"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="#dddddd"
+                android:background="#dddddd"
                 android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
 
         </LinearLayout>

@@ -9,11 +9,10 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/profile_photo"
+        app:layout_constraintBottom_toTopOf="@id/profile_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -26,21 +25,40 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_photo"
-        android:layout_width="155dp"
-        android:layout_height="156.08dp"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="14dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_avatar_svgrepo_com"
         app:layout_constraintBottom_toTopOf="@+id/textview_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline36"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/change_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorTertiary"
+        android:src="@drawable/ic_outline_photo_camera_24"
+        android:tint="?attr/colorTertiaryContainer"
+        app:contentPadding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_photo"
+        app:layout_constraintEnd_toEndOf="@+id/profile_photo"
+        app:layout_constraintStart_toStartOf="@+id/profile_photo"
+        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        tools:ignore="PrivateResource" />
 
     <TextView
         android:id="@+id/textview_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="\@username"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/placeholder_username"
         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintBottom_toTopOf="@id/settings_chip"
         app:layout_constraintEnd_toEndOf="@id/profile_photo"
@@ -54,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="Impostazioni"
+        android:text="@string/chip_text_settings"
         app:chipIcon="@drawable/ic_baseline_settings_24"
         app:ensureMinTouchTargetSize="true"
         app:layout_constraintBottom_toTopOf="@id/linear_tab"
@@ -76,26 +94,11 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_chip">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/ic_baseline_portrait_24" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/ic_baseline_favorite_24" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/ic_baseline_location_on_24" />
-
-        </com.google.android.material.tabs.TabLayout>
+            app:layout_constraintTop_toBottomOf="@+id/settings_chip"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
@@ -104,12 +107,5 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline36"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,10 +14,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
+import com.unina.natourkt.common.Constants.PASSWORD_LENGTH
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.inVisible
 import com.unina.natourkt.common.visible
-import com.unina.natourkt.databinding.FragmentNewPasswordBinding
+import com.unina.natourkt.databinding.FragmentResetPasswordBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -25,11 +26,11 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NewPasswordFragment : BaseFragment() {
+class ResetPasswordFragment : BaseFragment() {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
-    private var _binding: FragmentNewPasswordBinding? = null
+    private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
 
     // Buttons
@@ -43,7 +44,8 @@ class NewPasswordFragment : BaseFragment() {
     // ProgressBar
     private lateinit var progressBar: ProgressBar
 
-    private val newPasswordViewModel: NewPasswordViewModel by viewModels()
+    // ViewModel
+    private val resetPasswordViewModel: ResetPasswordViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +53,7 @@ class NewPasswordFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentNewPasswordBinding.inflate(inflater, container, false)
+        _binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         setupUi()
@@ -98,26 +100,37 @@ class NewPasswordFragment : BaseFragment() {
         progressBar = binding.progressBar
     }
 
+    /**
+     * Start to collect [ResetPasswordUiState], action based on Success/Loading/Error
+     */
     fun collectState() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                newPasswordViewModel.uiState.collect { uiState ->
+                resetPasswordViewModel.uiState.collect { uiState ->
+                    // When the password is resetted
                     if (uiState.isPasswordReset) {
-                        // When the password is resetted, navigate to login
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // The progress bar disappears
                         val message =
                             "La password è stata aggiornata con successo! Effettua l'accesso."
                         showSnackbar(message)
+
+                        // We navigate to login screen
                         findNavController().navigate(R.id.navigation_new_password_to_navigation_login)
                     }
+
+                    // When the state loading
                     if (uiState.isLoading) {
-                        // While loading display progress
+                        // Progress bar appears
                         progressBar.visible()
                     }
+
+                    // When an error is present
                     if (uiState.errorMessage != null) {
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
+                        // Get the right message
                         val message = when (uiState.errorMessage) {
                             is DataState.CustomMessages.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
                             is DataState.CustomMessages.CodeMismatch -> getString(R.string.wrong_confirmation_code)
@@ -127,9 +140,11 @@ class NewPasswordFragment : BaseFragment() {
                             is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
                             else -> getString(R.string.auth_failed_generic)
                         }
-                        // When there's an error the progress bar disappears and
-                        // a message is displayed
+
+                        // The progress bar disappears
                         progressBar.inVisible()
+
+                        // Show a message
                         showSnackbar(message)
                     }
                 }
@@ -143,7 +158,7 @@ class NewPasswordFragment : BaseFragment() {
     private fun setListeners() {
         resetPasswordButton.setOnClickListener {
             if (isFormValid()) {
-                newPasswordViewModel.resetConfirm(
+                resetPasswordViewModel.resetConfirm(
                     passwordField.editText?.text.toString(),
                     confirmCodeField.editText?.text.toString()
                 )
@@ -187,6 +202,9 @@ class NewPasswordFragment : BaseFragment() {
         return isCodeValid && isPasswordValid
     }
 
+    /**
+     * Check if the code is valid and manage TextField errors
+     */
     private fun isCodeValid(): Boolean {
         val code =
             confirmCodeField.editText?.text!!.trim().toString()
@@ -200,14 +218,15 @@ class NewPasswordFragment : BaseFragment() {
         }
     }
 
+    // Check if the password is valid and manage TextField errors
     private fun isPasswordValid(): Boolean {
 
         val password = passwordField.editText?.text!!.trim().toString()
         val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
 
         return when {
-            password.length < 7 -> {
-                passwordField.error = "La password deve contenere almeno 7 caratteri."
+            password.length < PASSWORD_LENGTH -> {
+                passwordField.error = "La password deve contenere almeno 8 caratteri."
                 false
             }
             password != confirmPassword -> {

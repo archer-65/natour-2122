@@ -7,8 +7,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
+import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.databinding.RouteItemBinding
 import com.unina.natourkt.presentation.home.PostItemUiState
 import com.unina.natourkt.presentation.routes.RouteItemUiState
@@ -43,7 +43,7 @@ class RouteAdapter :
                 routeTitle.text = route.title
 
                 // Load the preview photo
-                Glide.with(this.root)
+                GlideApp.with(this.root)
                     .load(route.previewPhoto)
                     .error(R.drawable.media_placeholder)
                     .into(routePhoto)

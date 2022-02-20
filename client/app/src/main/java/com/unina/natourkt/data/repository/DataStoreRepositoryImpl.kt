@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import com.unina.natourkt.common.Constants.DATASTORE_STATE
 import com.unina.natourkt.common.Constants.PREFERENCES
 import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.domain.repository.DataStoreRepository
@@ -12,6 +13,10 @@ import kotlinx.coroutines.flow.*
 import java.lang.Exception
 import javax.inject.Inject
 
+/**
+ * This is the [DataStoreRepository] class implementation, containing
+ * all user preferences (and logged user basic data)
+ */
 class DataStoreRepositoryImpl @Inject constructor(
     private val context: Context
 ) : DataStoreRepository {
@@ -23,19 +28,17 @@ class DataStoreRepositoryImpl @Inject constructor(
      * Companion object to simulate an object User in preferences
      */
     companion object {
-
         val ID = longPreferencesKey("USER_ID")
         val USERNAME = stringPreferencesKey("USERNAME")
         val IS_ADMIN = booleanPreferencesKey("IS_ADMIN")
         val PHOTO = stringPreferencesKey("PHOTO")
-
     }
 
     /**
      * Only edit the datastore with given user
      */
     override suspend fun saveUserToDataStore(user: User) {
-        Log.i("DATASTORE", "$user")
+        Log.i(DATASTORE_STATE, "$user")
         context.dataStore.edit {
             it[ID] = user.id
             it[USERNAME] = user.username
@@ -58,7 +61,7 @@ class DataStoreRepositoryImpl @Inject constructor(
                 )
             }.first()
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e(DATASTORE_STATE, e.localizedMessage ?: "Error retrieving local user data", e)
             null
         }
     }

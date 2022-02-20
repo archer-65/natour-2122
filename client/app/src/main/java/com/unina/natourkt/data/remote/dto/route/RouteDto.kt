@@ -2,9 +2,12 @@ package com.unina.natourkt.data.remote.dto.route
 
 import com.unina.natourkt.data.remote.dto.UserDto
 import com.unina.natourkt.data.remote.dto.toUser
-import com.unina.natourkt.domain.model.Route
+import com.unina.natourkt.domain.model.route.Route
 import java.time.LocalDate
 
+/**
+ * This class represents the response from API for [Route]
+ */
 data class RouteDto(
     val id: Long,
     val title: String,
@@ -18,6 +21,9 @@ data class RouteDto(
     val user: UserDto,
 )
 
+/**
+ * Function to map [RouteDto] to [Route]
+ */
 fun RouteDto.toRoute(): Route {
     return Route(
         id = id,

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
+import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.databinding.PostItemBinding
 import com.unina.natourkt.presentation.home.PostItemUiState
 
@@ -44,7 +45,7 @@ class PostAdapter : PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolde
                 description.text = post.description
 
                 // If the user photo is present, then load with Glide
-                Glide.with(this.root)
+                GlideApp.with(this.root)
                     .load(post.authorPhoto)
                     .fallback(R.drawable.ic_avatar_svgrepo_com)
                     .into(authorPhoto)

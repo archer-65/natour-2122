@@ -3,8 +3,11 @@ package com.unina.natourkt.data.remote.dto.post
 import com.unina.natourkt.data.remote.dto.UserDto
 import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.domain.model.Post
-import com.unina.natourkt.domain.model.Route
+import com.unina.natourkt.domain.model.route.Route
 
+/**
+ * This class represents the response from API for [Post]
+ */
 data class PostDto(
     val description: String,
     val id: Long,
@@ -15,6 +18,9 @@ data class PostDto(
     val routeTitle: String,
 )
 
+/**
+ * Function to map [PostDto] to [Post]
+ */
 fun PostDto.toPost(): Post {
     return Post(
         id = id,

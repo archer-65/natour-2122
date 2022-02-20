@@ -6,7 +6,6 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.post.GetPostsUseCase
-import com.unina.natourkt.presentation.forgot_password.ForgotPasswordFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

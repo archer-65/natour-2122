@@ -3,7 +3,7 @@ package com.unina.natourkt.data.remote.dto
 import com.unina.natourkt.domain.model.User
 
 /**
- * UserDto coming from API
+ * Response coming from API for [User]
  */
 data class UserDto(
     val id: Long,
@@ -12,7 +12,7 @@ data class UserDto(
 )
 
 /**
- * Map to [User]
+ * Map [UserDto] to [User]
  */
 fun UserDto.toUser(): User {
     return User(

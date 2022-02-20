@@ -17,7 +17,6 @@ import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.forgot_password.ForgotPasswordUiState
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.Job

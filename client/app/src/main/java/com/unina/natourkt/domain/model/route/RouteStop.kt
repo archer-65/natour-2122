@@ -1,5 +1,8 @@
-package com.unina.natourkt.domain.model
+package com.unina.natourkt.domain.model.route
 
+/**
+ * RouteStop represents each Stop for a [Route]
+ */
 data class RouteStop(
     val stopNumber: Int,
     val latitude: Double,

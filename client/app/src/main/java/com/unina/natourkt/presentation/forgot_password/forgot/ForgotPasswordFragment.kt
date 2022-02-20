@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.forgot_password
+package com.unina.natourkt.presentation.forgot_password.forgot
 
 import android.os.Bundle
 import android.view.LayoutInflater

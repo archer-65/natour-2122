@@ -22,6 +22,7 @@ public class UserService {
 
     /**
      * Gets a user
+     *
      * @param id the identifier of the user
      * @return UserDTO Object after mapping from Entity, or throws Exception
      */
@@ -31,15 +32,12 @@ public class UserService {
     }
 
     public UserDto getUserByUUID(String uuid) {
-        User prova = userRepository.findByCognitoId(uuid);
-
-        System.out.println(prova.getUsername());
-
-        return userMapper.toDto(prova);
+        return userMapper.toDto(userRepository.findByCognitoId(uuid));
     }
 
     /**
      * Gets all the users
+     *
      * @return List of UserDTO Objects mapped from Entity
      */
     public List<UserDto> getAllUsers() {
@@ -50,6 +48,7 @@ public class UserService {
 
     /**
      * Adds a user
+     *
      * @param userDto UserDTO Object with required fields, mapped to Entity and saved
      */
     public void addUser(UserDto userDto) {
@@ -58,7 +57,8 @@ public class UserService {
 
     /**
      * Updates a user
-     * @param id the identifier of the user
+     *
+     * @param id      the identifier of the user
      * @param userDto UserDTO Object, mapped to Entity, or throw Exception
      */
     public void updateUser(Long id, UserDto userDto) {
@@ -70,6 +70,7 @@ public class UserService {
 
     /**
      * Deletes a user
+     *
      * @param id the identifier of the user
      */
     public void deleteUser(Long id) {

@@ -1,7 +1,7 @@
 package com.unina.natourkt.domain.model
 
 /**
- * User model (to improve)
+ * User domain model (to improve)
  */
 data class User(
     val id: Long,

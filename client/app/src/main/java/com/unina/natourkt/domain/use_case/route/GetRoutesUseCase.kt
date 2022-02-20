@@ -2,11 +2,8 @@ package com.unina.natourkt.domain.use_case.route
 
 import android.util.Log
 import androidx.paging.PagingData
-import com.unina.natourkt.common.Constants
 import com.unina.natourkt.common.Constants.ROUTE_MODEL
-import com.unina.natourkt.domain.model.Post
-import com.unina.natourkt.domain.model.Route
-import com.unina.natourkt.domain.repository.PostRepository
+import com.unina.natourkt.domain.model.route.Route
 import com.unina.natourkt.domain.repository.RouteRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

@@ -9,10 +9,12 @@
         android:id="@+id/navigation_home"
         android:name="com.unina.natourkt.presentation.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/navigation_home_to_navigation_auth_flow"
-            app:destination="@id/navigation_auth_flow" />
+            app:destination="@id/navigation_auth_flow"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -38,7 +40,9 @@
             tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/navigation_login_to_navigation_home"
-                app:destination="@id/navigation_home" />
+                app:destination="@id/navigation_home"
+                app:popUpTo="@id/navigation_auth_flow"
+                app:popUpToInclusive="true" />
             <action
                 android:id="@+id/navigation_login_to_navigation_registration"
                 app:destination="@id/navigation_registration" />
@@ -49,9 +53,9 @@
 
         <fragment
             android:id="@+id/navigation_forgot_password"
-            android:name="com.unina.natourkt.presentation.forgot_password.ForgotPasswordFragment"
+            android:name="com.unina.natourkt.presentation.forgot_password.forgot.ForgotPasswordFragment"
             android:label="Reset password"
-            tools:layout="@layout/fragment_forgot_password" >
+            tools:layout="@layout/fragment_forgot_password">
             <action
                 android:id="@+id/navigation_forgot_password_to_navigation_new_password"
                 app:destination="@id/navigation_new_password" />
@@ -59,12 +63,14 @@
 
         <fragment
             android:id="@+id/navigation_new_password"
-            android:name="com.unina.natourkt.presentation.forgot_password.ResetPasswordFragment"
+            android:name="com.unina.natourkt.presentation.forgot_password.reset.ResetPasswordFragment"
             android:label="Nuova password"
-            tools:layout="@layout/fragment_reset_password" >
+            tools:layout="@layout/fragment_reset_password">
             <action
                 android:id="@+id/navigation_new_password_to_navigation_login"
-                app:destination="@id/navigation_login" />
+                app:destination="@id/navigation_login"
+                app:popUpTo="@id/navigation_login"
+                app:popUpToInclusive="true" />
         </fragment>
 
         <fragment
@@ -84,7 +90,9 @@
             tools:layout="@layout/fragment_confirmation">
             <action
                 android:id="@+id/navigation_confirmation_to_navigation_login"
-                app:destination="@id/navigation_login" />
+                app:destination="@id/navigation_login"
+                app:popUpTo="@id/navigation_login"
+                app:popUpToInclusive="true" />
         </fragment>
 
     </navigation>

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.domain.model.route.toUi
 import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.route.GetRoutesUseCase
 import com.unina.natourkt.presentation.home.HomeFragment

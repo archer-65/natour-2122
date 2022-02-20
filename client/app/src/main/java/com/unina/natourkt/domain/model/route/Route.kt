@@ -1,8 +1,12 @@
-package com.unina.natourkt.domain.model
+package com.unina.natourkt.domain.model.route
 
+import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.presentation.routes.RouteItemUiState
 import java.time.LocalDate
 
+/**
+ * Route model (to improve)
+ */
 data class Route(
     val id: Long,
     val title: String,
@@ -16,6 +20,9 @@ data class Route(
     val user: User? = null
 )
 
+/**
+ * Function to map Route to [RouteItemUiState]
+ */
 fun Route.toUi(): RouteItemUiState {
     return RouteItemUiState(
         id = id,

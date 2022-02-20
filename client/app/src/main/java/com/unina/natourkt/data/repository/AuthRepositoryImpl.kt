@@ -13,7 +13,7 @@ import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.presentation.main.MainActivity
 
 /**
- * This is a remote utility class built on [Amplify] methods
+ * This is an [AuthRepository] class built on [Amplify] methods
  */
 class AuthRepositoryImpl : AuthRepository {
 

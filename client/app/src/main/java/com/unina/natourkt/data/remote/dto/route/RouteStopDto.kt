@@ -1,6 +1,6 @@
 package com.unina.natourkt.data.remote.dto.route
 
-import com.unina.natourkt.domain.model.RouteStop
+import com.unina.natourkt.domain.model.route.RouteStop
 
 data class RouteStopDto(
     val id: Long,

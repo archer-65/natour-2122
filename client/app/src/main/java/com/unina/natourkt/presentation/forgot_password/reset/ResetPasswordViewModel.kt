@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.forgot_password
+package com.unina.natourkt.presentation.forgot_password.reset
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

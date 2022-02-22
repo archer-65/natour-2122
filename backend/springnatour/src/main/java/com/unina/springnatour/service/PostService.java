@@ -59,6 +59,17 @@ public class PostService {
     }
 
     /**
+     * Gets all the posts for a certain user
+     * @param userId the identifier of the user
+     * @return a List of PostDTO Objects after mapping from Entity, or throws Exception
+     */
+    public List<PostDto> getAllPostsByUserId(Long userId, Integer pageNo, Integer pageSize) {
+        return postMapper.toDto(postRepository.findByUser_id(userId, PageRequest.of(pageNo, pageSize))
+                .stream()
+                .toList());
+    }
+
+    /**
      * Adds a post
      * @param postDto PostDTO Object with required fields, mapped to Entity and saved
      */

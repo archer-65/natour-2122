@@ -3,6 +3,7 @@ package com.unina.natourkt.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.unina.natourkt.data.remote.paging.PersonalRoutePagingSource
 import com.unina.natourkt.data.remote.paging.RoutePagingSource
 import com.unina.natourkt.data.remote.retrofit.RouteRetrofitDataSource
 import com.unina.natourkt.domain.model.route.Route
@@ -37,6 +38,16 @@ class RouteRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { RoutePagingSource(retrofitDataSource) }
+        ).flow
+    }
+
+    override fun getPersonalRoutes(userId: Long): Flow<PagingData<Route>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { PersonalRoutePagingSource(retrofitDataSource, userId) }
         ).flow
     }
 }

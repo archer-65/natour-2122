@@ -52,10 +52,17 @@ public class RouteService {
     }
 
     public List<RouteDto> getAllRoutesByUserId(Long userId) {
-        return routeMapper.toDto(routeRepository.findAll()
+        return routeMapper.toDto(routeRepository.findByUser_id(userId)
                 .stream()
                 .toList());
     }
+
+    public List<RouteDto> getAllRoutesByUserId(Long userId, Integer pageNo, Integer pageSize) {
+        return routeMapper.toDto(routeRepository.findByUser_id(userId, PageRequest.of(pageNo, pageSize))
+                .stream()
+                .toList());
+    }
+
 
     /**
      * Get all routes by filter

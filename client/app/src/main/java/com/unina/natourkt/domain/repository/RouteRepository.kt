@@ -13,4 +13,9 @@ interface RouteRepository {
      * Get paginated routes
      */
     fun getRoutes(): Flow<PagingData<Route>>
+
+    /**
+     * Get paginated routes for logged user
+     */
+    fun getPersonalRoutes(userId: Long): Flow<PagingData<Route>>
 }

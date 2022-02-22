@@ -9,7 +9,6 @@ import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.route.GetRoutesUseCase
 import com.unina.natourkt.presentation.home.HomeFragment
 import com.unina.natourkt.presentation.home.HomeUiState
-import com.unina.natourkt.presentation.home.PostItemUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -24,7 +23,7 @@ class RoutesViewModel @Inject constructor(
 ): ViewModel() {
 
     /**
-     * [RouteUiState] with a set of [RouteItemUiState]
+     * [RouteUiState] with set of RouteItemUiState
      */
     private val _uiState = MutableStateFlow(RouteUiState())
     val uiState: StateFlow<RouteUiState> = _uiState.asStateFlow()

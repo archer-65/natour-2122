@@ -11,12 +11,13 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.databinding.PostItemBinding
-import com.unina.natourkt.presentation.home.PostItemUiState
+import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
 
 /**
  * Implementation of PagingDataAdapter for [PostItemUiState] (posts on home screen)
  */
-class PostAdapter : PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolder>(DiffUtilCallback()) {
+class PostAdapter :
+    PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolder>(DiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
 
@@ -63,7 +64,7 @@ class PostAdapter : PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolde
         }
     }
 
-    class DiffUtilCallback: DiffUtil.ItemCallback<PostItemUiState>() {
+    class DiffUtilCallback : DiffUtil.ItemCallback<PostItemUiState>() {
         override fun areItemsTheSame(oldItem: PostItemUiState, newItem: PostItemUiState): Boolean {
             return oldItem.id == newItem.id
         }

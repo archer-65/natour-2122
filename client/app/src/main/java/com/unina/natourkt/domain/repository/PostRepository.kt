@@ -13,4 +13,9 @@ interface PostRepository {
      * Get paginated posts
      */
     fun getPosts(): Flow<PagingData<Post>>
+
+    /**
+     * Get paginated posts for logged user
+     */
+    fun getPersonalPosts(userId: Long): Flow<PagingData<Post>>
 }

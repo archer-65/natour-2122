@@ -82,6 +82,26 @@ public class RouteController {
     }
 
     /**
+     * Gets all the routes for a certain user
+     * @param userId the identifier of the user
+     * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
+     */
+    @GetMapping("/routes/search_page")
+    public ResponseEntity<List<RouteDto>> getAllRoutesByUserId(
+            @RequestParam Long userId,
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+
+        List<RouteDto> routeDtoList = routeService.getAllRoutesByUserId(userId, pageNo, pageSize);
+
+        if (!routeDtoList.isEmpty()) {
+            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
      * Searches all routes by filter
      * @see RouteFilter
      * @see com.unina.springnatour.specification.RouteSpecifications

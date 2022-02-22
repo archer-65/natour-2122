@@ -32,4 +32,8 @@ object Constants {
 
     // OTHER
     const val PASSWORD_LENGTH = 8
+
+    // GRID LAYOUT
+    const val COLUMN_COUNT = 4
+    const val COLUMN_SPACING = 5
 }

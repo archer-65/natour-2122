@@ -10,11 +10,10 @@ import com.bumptech.glide.Glide
 import com.unina.natourkt.R
 import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.databinding.RouteItemBinding
-import com.unina.natourkt.presentation.home.PostItemUiState
-import com.unina.natourkt.presentation.routes.RouteItemUiState
+import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
 
 /**
- * Implementation of PagingDataAdapter for [PostItemUiState] (posts on routes screen)
+ * Implementation of PagingDataAdapter for [RouteItemUiState] (posts on routes screen)
  */
 class RouteAdapter :
     PagingDataAdapter<RouteItemUiState, RouteAdapter.RouteViewHolder>(DiffUtilCallback()) {

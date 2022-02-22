@@ -1,8 +1,8 @@
-package com.unina.natourkt.presentation.routes
+package com.unina.natourkt.presentation.profile.routes
 
 import androidx.paging.PagingData
 import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
 
-data class RouteUiState(
+data class PersonalRoutesUiState(
     val routeItems: PagingData<RouteItemUiState>? = null,
 )

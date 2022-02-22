@@ -29,7 +29,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
- * This Fragment represents the home screen
+ * This Fragment represents the routes screen
  * filled of paginated routes
  */
 @AndroidEntryPoint

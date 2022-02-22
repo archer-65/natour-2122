@@ -4,6 +4,7 @@ import com.unina.springnatour.dto.post.PostDto;
 import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -74,6 +75,27 @@ public class PostController {
     public ResponseEntity<List<PostDto>> getAllPostsByUserId(@RequestParam Long userId) {
 
         List<PostDto> postDtoList = postService.getAllPostsByUserId(userId);
+
+        if (!postDtoList.isEmpty()) {
+            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Gets all the posts for a certain user (paginated)
+     *
+     * @param userId the identifier of the user (Author)
+     * @return List of PostDTO Objects with HTTP Status OK if the list is not empty
+     */
+    @GetMapping("/posts/search_page")
+    public ResponseEntity<List<PostDto>> getAllPostsByUserId(
+            @RequestParam Long userId,
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+
+        List<PostDto> postDtoList = postService.getAllPostsByUserId(userId, pageNo, pageSize);
 
         if (!postDtoList.isEmpty()) {
             return new ResponseEntity<>(postDtoList, HttpStatus.OK);

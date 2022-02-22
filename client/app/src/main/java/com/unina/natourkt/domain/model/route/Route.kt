@@ -1,7 +1,7 @@
 package com.unina.natourkt.domain.model.route
 
 import com.unina.natourkt.domain.model.User
-import com.unina.natourkt.presentation.routes.RouteItemUiState
+import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
 import java.time.LocalDate
 
 /**

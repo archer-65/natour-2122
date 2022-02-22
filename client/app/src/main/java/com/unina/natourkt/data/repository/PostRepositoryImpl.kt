@@ -3,6 +3,7 @@ package com.unina.natourkt.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.unina.natourkt.data.remote.paging.PersonalPostPagingSource
 import com.unina.natourkt.data.remote.paging.PostPagingSource
 import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
 import com.unina.natourkt.domain.model.Post
@@ -37,6 +38,16 @@ class PostRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { PostPagingSource(retrofitDataSource) }
+        ).flow
+    }
+
+    override fun getPersonalPosts(userId: Long): Flow<PagingData<Post>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { PersonalPostPagingSource(retrofitDataSource, userId) }
         ).flow
     }
 }

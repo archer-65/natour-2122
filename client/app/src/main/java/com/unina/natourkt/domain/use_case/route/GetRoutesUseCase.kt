@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
- * Get Paginated [Route] from [RouteRepository]
+ * Get Paginated [Post] from [RouteRepository]
  */
 class GetRoutesUseCase @Inject constructor(
     private val routeRepository: RouteRepository,
 ) {
 
     /**
-     * Get [Flow] of [PagingData] for [Route] model
+     * Get [Flow] of [PagingData] for [Post] model
      */
     operator fun invoke(): Flow<PagingData<Route>> {
         Log.i(ROUTE_MODEL, "Getting paginated routes...")

@@ -17,4 +17,14 @@ interface RouteRetrofitDataSource {
         @Query("pageNo") pageNo: Int,
         @Query("pageSize") pageSize: Int
     ): List<RouteDto>
+
+    /**
+     * Get all routes by user id (paginated)
+     */
+    @GET("/routes/search_page")
+    suspend fun getRoutesByUser(
+        @Query("userId") userId: Long,
+        @Query("pageNo") pageNo: Int,
+        @Query("pageSize") pageSize: Int
+    ) : List<RouteDto>
 }

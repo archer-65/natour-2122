@@ -11,10 +11,10 @@ import org.mapstruct.ReportingPolicy;
 public interface CompilationMapper extends BaseMapper<Compilation, CompilationDto> {
 
     @Override
-    @Mapping(target = "userId", source = "user.id")
+    //@Mapping(target = "userId", source = "user.id")
     CompilationDto toDto(Compilation compilation);
 
     @Override
-    @Mapping(target = "user.id", source = "userId")
+    //@Mapping(target = "user.id", source = "userId")
     Compilation toEntity(CompilationDto compilationDto);
 }

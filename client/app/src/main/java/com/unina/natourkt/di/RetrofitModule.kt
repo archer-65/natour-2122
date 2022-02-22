@@ -1,6 +1,7 @@
 package com.unina.natourkt.di
 
 import com.unina.natourkt.common.Constants.BASE_URL
+import com.unina.natourkt.data.remote.retrofit.CompilationRetrofitDataSource
 import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
 import com.unina.natourkt.data.remote.retrofit.RouteRetrofitDataSource
 import com.unina.natourkt.data.remote.retrofit.UserRetrofitDataSource
@@ -52,4 +53,11 @@ object RetrofitModule {
     fun provideRouteRetrofit(retrofit: Retrofit): RouteRetrofitDataSource {
         return retrofit.create(RouteRetrofitDataSource::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideCompilationRetrofit(retrofit: Retrofit): CompilationRetrofitDataSource {
+        return retrofit.create(CompilationRetrofitDataSource::class.java)
+    }
+
 }

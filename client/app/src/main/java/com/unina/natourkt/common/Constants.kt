@@ -26,6 +26,8 @@ object Constants {
 
     const val POST_MODEL = "Post Request Status"
     const val ROUTE_MODEL = "Route Request Status"
+    const val COMPILATION_MODEL = "Compilation Request Status"
+
 
     // DATASTORE NAME(S)
     const val PREFERENCES = "DATASTORE_PREF"

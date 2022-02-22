@@ -47,6 +47,25 @@ public class CompilationController {
     }
 
     /**
+     * Gets all the compilations
+     * @return List of CompilationDTO Objects with HTTP Status OK if the list is not empty
+     */
+    @GetMapping("/compilations/search_page")
+    public ResponseEntity<List<CompilationDto>> getAllCompilationsByUserId(
+            @RequestParam Long userId,
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+
+        List<CompilationDto> compilationDtoList = compilationService.getAllCompilationsByUserId(userId, pageNo, pageSize);
+
+        if (!compilationDtoList.isEmpty()) {
+            return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
      * Creates a new compilation
      * @param compilationDto the CompilationDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion

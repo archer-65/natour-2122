@@ -5,6 +5,7 @@ import com.unina.springnatour.dto.compilation.CompilationMapper;
 import com.unina.springnatour.exception.CompilationNotFoundException;
 import com.unina.springnatour.repository.CompilationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +36,17 @@ public class CompilationService {
      */
     public List<CompilationDto> getAllCompilationsByUserId(Long userId) {
         return compilationMapper.toDto(compilationRepository.findByUser_id(userId)
+                .stream()
+                .toList());
+    }
+
+    /**
+     * Gets all the compilations for a certain user
+     * @param userId the identifier of the user
+     * @return a List of CompilationDTO Objects after mapping from Entity, or throws Exception
+     */
+    public List<CompilationDto> getAllCompilationsByUserId(Long userId, Integer pageNo, Integer pageSize) {
+        return compilationMapper.toDto(compilationRepository.findByUser_id(userId, PageRequest.of(pageNo, pageSize))
                 .stream()
                 .toList());
     }

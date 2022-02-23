@@ -9,4 +9,5 @@ data class LoginUiState(
     val isLoading: Boolean = false,
     val errorMessage: DataState.CustomMessages? = null,
     val isUserLoggedIn: Boolean = false,
+
 )

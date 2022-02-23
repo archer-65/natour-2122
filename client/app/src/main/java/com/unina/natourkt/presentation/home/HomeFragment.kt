@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.Job
@@ -31,7 +33,7 @@ import kotlinx.coroutines.launch
  * filled of paginated posts
  */
 @AndroidEntryPoint
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -101,7 +103,7 @@ class HomeFragment : BaseFragment() {
     private fun initRecycler() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
-            recyclerAdapter = PostAdapter()
+            recyclerAdapter = PostAdapter(this@HomeFragment)
 
             adapter = recyclerAdapter.withLoadStateHeaderAndFooter(
                 header = ItemLoadStateAdapter(),
@@ -153,5 +155,11 @@ class HomeFragment : BaseFragment() {
                 }
             }
         }
+    }
+
+    override fun onItemClick(post: PostItemUiState) {
+
+        val action = HomeFragmentDirections.actionNavigationHomeToNavigationViewerPost(post.id)
+        findNavController().navigate(action)
     }
 }

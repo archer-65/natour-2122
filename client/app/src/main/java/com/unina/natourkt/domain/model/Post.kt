@@ -3,6 +3,8 @@ package com.unina.natourkt.domain.model
 import com.unina.natourkt.domain.model.route.Route
 import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
+import com.unina.natourkt.presentation.post_details.PostDetailsUiState
+import com.unina.natourkt.presentation.post_details.PostUiState
 
 /**
  * Post model (to improve)
@@ -39,5 +41,21 @@ fun Post.toGridUi(): PostGridItemUiState {
     return PostGridItemUiState(
         id = id,
         previewPhoto = photos.firstOrNull()
+    )
+}
+
+/**
+ * Function to map Post to [PostItemUiState]
+ */
+fun Post.toDetailUi(): PostUiState {
+    return PostUiState(
+        id = id,
+        description = description,
+        photos = photos,
+        authorId = user.id,
+        authorUsername = user.username,
+        authorPhoto = user.photo,
+        routeId = route.id,
+        routeTitle = route.title
     )
 }

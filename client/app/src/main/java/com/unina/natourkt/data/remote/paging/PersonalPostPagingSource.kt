@@ -6,8 +6,8 @@ import androidx.paging.PagingState
 import com.unina.natourkt.common.Constants.POST_MODEL
 import com.unina.natourkt.data.remote.dto.post.toPost
 import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
+
 import com.unina.natourkt.data.repository.PostRepositoryImpl.Companion.NETWORK_PAGE_SIZE
-import com.unina.natourkt.data.repository.RouteRepositoryImpl
 import com.unina.natourkt.domain.model.Post
 import retrofit2.HttpException
 import java.io.IOException

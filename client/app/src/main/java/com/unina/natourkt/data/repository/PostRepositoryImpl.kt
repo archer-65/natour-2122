@@ -3,6 +3,8 @@ package com.unina.natourkt.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.unina.natourkt.common.DataState
+import com.unina.natourkt.data.remote.dto.post.toPost
 import com.unina.natourkt.data.remote.paging.PersonalPostPagingSource
 import com.unina.natourkt.data.remote.paging.PostPagingSource
 import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
@@ -49,5 +51,9 @@ class PostRepositoryImpl @Inject constructor(
             ),
             pagingSourceFactory = { PersonalPostPagingSource(retrofitDataSource, userId) }
         ).flow
+    }
+
+    override suspend fun getPostDetails(id: Long): Post {
+        return retrofitDataSource.getPostById(id).toPost()
     }
 }

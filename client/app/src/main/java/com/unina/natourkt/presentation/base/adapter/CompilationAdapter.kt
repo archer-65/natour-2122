@@ -72,6 +72,5 @@ class CompilationAdapter :
         ): Boolean {
             return oldItem == newItem
         }
-
     }
 }

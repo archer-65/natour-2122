@@ -11,7 +11,6 @@ data class Compilation(
 )
 
 fun Compilation.toUi(): CompilationItemUiState{
-
     return CompilationItemUiState(
         id = id,
         title = title,

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
@@ -14,7 +13,7 @@ import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.presentation.base.adapter.ViewPagerAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.profile.compilations.CompilationsFragment
+import com.unina.natourkt.presentation.profile.compilations.PersonalCompilationsFragment
 import com.unina.natourkt.presentation.profile.posts.PersonalPostsFragment
 import com.unina.natourkt.presentation.profile.routes.PersonalRoutesFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,7 +72,7 @@ class ProfileFragment : BaseFragment() {
 
         val fragmentList = arrayListOf(
             PersonalPostsFragment(),
-            CompilationsFragment(),
+            PersonalCompilationsFragment(),
             PersonalRoutesFragment()
         )
 

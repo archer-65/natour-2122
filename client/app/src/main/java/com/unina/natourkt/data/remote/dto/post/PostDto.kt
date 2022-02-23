@@ -4,15 +4,17 @@ import com.unina.natourkt.data.remote.dto.UserDto
 import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.domain.model.Post
 import com.unina.natourkt.domain.model.route.Route
+import java.time.LocalDateTime
 
 /**
  * This class represents the response from API for [Post]
  */
 data class PostDto(
-    val description: String,
     val id: Long,
-    val photos: List<PostPhotoDto>,
+    val description: String,
     val reported: Boolean,
+    val creationDate: String,
+    val photos: List<PostPhotoDto>,
     val user: UserDto,
     val routeId: Long,
     val routeTitle: String,

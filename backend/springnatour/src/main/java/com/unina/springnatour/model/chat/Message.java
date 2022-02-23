@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,7 @@ public class Message implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @CreationTimestamp
     @NotNull
     @Column(name = "sent_on", nullable = false)
     private LocalDateTime sentOn;

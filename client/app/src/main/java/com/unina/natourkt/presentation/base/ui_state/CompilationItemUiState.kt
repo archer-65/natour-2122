@@ -6,7 +6,7 @@ data class CompilationItemUiState (
     val id: Long,
     val title: String,
     val description: String,
-    val photoUrl: String,
-    val userId: Long,
-    val userPhotoUrl: String?
+    val photo: String,
+    val authorId: Long,
+    val authorPhoto: String?
 )

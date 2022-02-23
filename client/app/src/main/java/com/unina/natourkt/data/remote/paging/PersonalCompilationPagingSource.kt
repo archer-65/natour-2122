@@ -7,6 +7,7 @@ import com.unina.natourkt.common.Constants
 import com.unina.natourkt.common.Constants.COMPILATION_MODEL
 import com.unina.natourkt.data.remote.dto.toCompilation
 import com.unina.natourkt.data.remote.retrofit.CompilationRetrofitDataSource
+import com.unina.natourkt.data.repository.CompilationRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.data.repository.RouteRepositoryImpl
 import com.unina.natourkt.domain.model.Compilation
 import com.unina.natourkt.domain.model.Post
@@ -34,12 +35,12 @@ class PersonalCompilationPagingSource @Inject constructor(
                 data = response.map { compilationDto -> compilationDto.toCompilation() },
                 prevKey = if (position == INITIAL_PAGE) null else position - 1,
                 // Avoids duplicates
-                nextKey = if (response.isEmpty()) null else position + (params.loadSize / CompilationRepositoryImpl.NETWORK_PAGE_SIZE)
+                nextKey = if (response.isEmpty()) null else position + (params.loadSize / NETWORK_PAGE_SIZE)
             )
         } catch (e: IOException) {
             // IOException for network failures.
             Log.e(
-                Constants.COMPILATION_MODEL,
+                COMPILATION_MODEL,
                 e.localizedMessage ?: "Network error retrieving Posts",
                 e
             )
@@ -47,7 +48,7 @@ class PersonalCompilationPagingSource @Inject constructor(
         } catch (e: HttpException) {
             // HttpException for any non-2xx HTTP status codes.
             Log.e(
-                Constants.COMPILATION_MODEL,
+                COMPILATION_MODEL,
                 e.localizedMessage ?: "HTTP error retrieving Posts",
                 e
             )

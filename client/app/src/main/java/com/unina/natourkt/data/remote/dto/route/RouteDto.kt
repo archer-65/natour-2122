@@ -4,6 +4,7 @@ import com.unina.natourkt.data.remote.dto.UserDto
 import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.domain.model.route.Route
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 /**
  * This class represents the response from API for [Route]
@@ -15,7 +16,8 @@ data class RouteDto(
     val avgDifficulty: Int,
     val avgDuration: Double,
     val disabledFriendly: Boolean,
-    val modifiedDate: LocalDate,
+    val creationDate: String,
+    val modifiedDate: String,
     val photos: List<RoutePhotoDto>,
     val stops: List<RouteStopDto>,
     val user: UserDto,

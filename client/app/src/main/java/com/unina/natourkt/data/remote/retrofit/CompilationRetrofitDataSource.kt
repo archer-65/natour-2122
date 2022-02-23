@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface CompilationRetrofitDataSource {
 
-    @GET("/compilations")
+    @GET("/compilations/search_page")
     suspend fun getCompilationsByUser(
         @Query("userId") userId: Long,
         @Query("pageNo") pageNo: Int,

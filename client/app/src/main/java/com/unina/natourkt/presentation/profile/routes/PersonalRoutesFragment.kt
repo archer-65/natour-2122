@@ -109,7 +109,7 @@ class PersonalRoutesFragment : BaseFragment() {
     }
 
     /**
-     * Start to collect [RouteUiState], action based on Success/Loading/Error
+     * Start to collect [PersonalRoutesUiState], action based on Success/Loading/Error
      */
     private fun collectState() {
 
@@ -118,7 +118,7 @@ class PersonalRoutesFragment : BaseFragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 personalRoutesViewModel.uiState.collectLatest { uiState ->
                     // Send data to adapter
-                    uiState.routeItems?.let { recyclerAdapter.submitData(it) }
+                    recyclerAdapter.submitData(uiState.routeItems)
                 }
             }
         }

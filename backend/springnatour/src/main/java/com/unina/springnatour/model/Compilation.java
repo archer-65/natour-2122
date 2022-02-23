@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -31,6 +33,10 @@ public class Compilation implements Serializable {
     @NotNull
     @Column(name = "description", nullable = false)
     private String description;
+
+    @CreationTimestamp
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
 
     @URL
     @Column(name = "photo_url")

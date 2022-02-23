@@ -16,8 +16,8 @@ fun Compilation.toUi(): CompilationItemUiState{
         id = id,
         title = title,
         description = description,
-        photoUrl = photoUrl,
-        userId = user.id,
-        userPhotoUrl = user.photo
+        photo = photoUrl,
+        authorId = user.id,
+        authorPhoto = user.photo
     )
 }

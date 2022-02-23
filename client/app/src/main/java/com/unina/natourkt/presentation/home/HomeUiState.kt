@@ -7,6 +7,6 @@ import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
  * Contains only paginated data of [PostItemUiState]
  */
 data class HomeUiState(
-    val postItems: PagingData<PostItemUiState>? = null,
+    val postItems: PagingData<PostItemUiState> = PagingData.empty()
 )
 

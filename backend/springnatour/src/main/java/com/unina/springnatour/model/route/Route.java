@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -51,8 +53,12 @@ public class Route implements Serializable{
     @Column(name = "disabled_friendly", nullable = false)
     private Boolean disabledFriendly = false;
 
+    @CreationTimestamp
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
+
     @Column(name = "modified_date")
-    private LocalDate modifiedDate;
+    private LocalDateTime modifiedDate;
 
     @OneToMany(
             mappedBy = "route",

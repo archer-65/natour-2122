@@ -1,6 +1,7 @@
 package com.unina.natourkt.data.remote.paging
 
 import android.util.Log
+import androidx.paging.LoadType
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.unina.natourkt.common.Constants.POST_MODEL
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 private const val INITIAL_PAGE = 0
 
-class PostPagingSource @Inject constructor(
+class PostPagingSource(
     private val retrofitDataSource: PostRetrofitDataSource,
 ) : PagingSource<Int, Post>() {
 

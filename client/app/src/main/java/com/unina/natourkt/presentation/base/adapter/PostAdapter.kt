@@ -16,7 +16,7 @@ import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
 /**
  * Implementation of PagingDataAdapter for [PostItemUiState] (posts on home screen)
  */
-class PostAdapter :
+class PostAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<PostItemUiState, PostAdapter.PostViewHolder>(DiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -33,6 +33,18 @@ class PostAdapter :
 
     inner class PostViewHolder(val binding: PostItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onItemClick(item)
+                    }
+                }
+            }
+        }
 
         /**
          * Binder function, relies on [Glide] and [SlideModel]
@@ -62,6 +74,10 @@ class PostAdapter :
                 imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(post: PostItemUiState)
     }
 
     class DiffUtilCallback : DiffUtil.ItemCallback<PostItemUiState>() {

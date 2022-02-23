@@ -15,6 +15,22 @@
             app:destination="@id/navigation_auth_flow"
             app:popUpTo="@id/mobile_navigation"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_viewer_post"
+            app:destination="@id/navigation_viewer_post" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_viewer_post"
+        android:label="Dettaglio post"
+        android:name="com.unina.natourkt.presentation.post_details.ViewerPostDetailsFragment"
+        tools:layout="@layout/fragment_viewer_post_details">
+
+        <argument
+            android:name="postId"
+            app:argType="long"
+
+            />
     </fragment>
 
     <fragment

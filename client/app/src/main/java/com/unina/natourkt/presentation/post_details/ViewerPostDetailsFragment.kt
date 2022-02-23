@@ -18,4 +18,6 @@ class ViewerPostDetailsFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_viewer_post_details, container, false)
     }
 
+
+
 }

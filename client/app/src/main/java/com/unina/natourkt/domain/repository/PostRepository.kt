@@ -1,6 +1,7 @@
 package com.unina.natourkt.domain.repository
 
 import androidx.paging.PagingData
+import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.Post
 import kotlinx.coroutines.flow.Flow
 
@@ -18,4 +19,7 @@ interface PostRepository {
      * Get paginated posts for logged user
      */
     fun getPersonalPosts(userId: Long): Flow<PagingData<Post>>
+
+
+    suspend fun getPostDetails(id: Long) : Post
 }

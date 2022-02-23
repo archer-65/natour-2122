@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -158,5 +159,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
 
     override fun onItemClick(post: PostItemUiState) {
 
+        val action = HomeFragmentDirections.actionNavigationHomeToNavigationViewerPost(post.id)
+        findNavController().navigate(action)
     }
 }

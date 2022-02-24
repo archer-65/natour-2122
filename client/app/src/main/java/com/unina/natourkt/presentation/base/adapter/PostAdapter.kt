@@ -63,14 +63,8 @@ class PostAdapter(private val listener: OnItemClickListener) :
                     .fallback(R.drawable.ic_avatar_svgrepo_com)
                     .into(authorPhoto)
 
-
-                // Map post photos to SlideModel type
-                val imageList = ArrayList<SlideModel>()
-                post.photos.mapTo(imageList) {
-                    SlideModel(it)
-                }
-
                 // Load photos in the slider
+                val imageList = post.photos.map { SlideModel(it) }
                 imageSlider.setImageList(imageList, ScaleTypes.CENTER_CROP)
             }
         }

@@ -15,7 +15,7 @@ import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 /**
  * Implementation of PagingDataAdapter for [PostGridItemUiState] (posts on profile and route detail screen)
  */
-class PostGridAdapter :
+class PostGridAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<PostGridItemUiState, PostGridAdapter.PostGridViewHolder>(DiffUtilCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostGridViewHolder {
@@ -33,6 +33,18 @@ class PostGridAdapter :
     inner class PostGridViewHolder(val binding: PostGridItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onItemClick(item)
+                    }
+                }
+            }
+        }
+
         /**
          * Binder function, relies on [Glide] and [SlideModel]
          */
@@ -47,6 +59,10 @@ class PostGridAdapter :
 
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(post: PostGridItemUiState)
     }
 
     class DiffUtilCallback : DiffUtil.ItemCallback<PostGridItemUiState>() {

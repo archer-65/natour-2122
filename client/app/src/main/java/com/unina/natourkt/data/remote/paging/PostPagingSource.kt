@@ -20,7 +20,6 @@ class PostPagingSource(
 ) : PagingSource<Int, Post>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Post> {
-
         return try {
             val position = params.key ?: INITIAL_PAGE
 

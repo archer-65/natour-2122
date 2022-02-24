@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: PostAdapter
     private lateinit var shimmerFrame: ShimmerFrameLayout
-    //private lateinit var refresh: SwipeRefreshLayout
+    private lateinit var refresh: SwipeRefreshLayout
 
     // ViewModel
     private val homeViewModel: HomeViewModel by viewModels()
@@ -90,7 +90,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
             }
         }
 
-        //refresh = binding.swipeRefresh
+        refresh = binding.swipeRefresh
 
         recyclerView = binding.recyclerHome
 
@@ -115,7 +115,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
 
         recyclerAdapter.addLoadStateListener { loadState ->
 
-            //refresh.isRefreshing = loadState.refresh is LoadState.Loading
+            refresh.isRefreshing = loadState.source.refresh is LoadState.Loading
 
             when (loadState.source.refresh) {
                 // If loading, start the shimmer animation and mark as GONE the Recycler
@@ -135,9 +135,9 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     }
 
     fun setListeners() {
-//        refresh.setOnRefreshListener {
-//            recyclerAdapter.refresh()
-//        }
+        refresh.setOnRefreshListener {
+            recyclerAdapter.refresh()
+        }
     }
 
     /**
@@ -153,13 +153,17 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
                     // Send data to adapter
                     recyclerAdapter.submitData(uiState.postItems)
                 }
+
+                recyclerAdapter.loadStateFlow.collectLatest { }
             }
         }
     }
 
     override fun onItemClick(post: PostItemUiState) {
-
-        val action = HomeFragmentDirections.actionNavigationHomeToNavigationViewerPost(post.id)
+        val action = HomeFragmentDirections.actionNavigationHomeToNavigationViewerPost(
+            post.id,
+            post.authorId
+        )
         findNavController().navigate(action)
     }
 }

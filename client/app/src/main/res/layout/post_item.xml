@@ -24,10 +24,10 @@
                 android:id="@+id/author_photo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="16dp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_username"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"/>
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <TextView
                     android:id="@+id/route_name"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/itinerary_placeholder"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
             </LinearLayout>
 
@@ -66,7 +66,10 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
-            android:layout_height="279dp"/>
+            android:layout_height="279dp"
+            app:iss_placeholder="@android:color/transparent"
+            app:iss_selected_dot="@drawable/selected_dot"
+            app:iss_unselected_dot="@drawable/unselected_dot" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,8 +83,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/description_placeholder"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"/>
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="?android:attr/textColorSecondary" />
 
         </LinearLayout>
 

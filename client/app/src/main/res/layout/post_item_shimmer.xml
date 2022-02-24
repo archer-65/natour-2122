@@ -61,6 +61,7 @@
         <!-- Media -->
         <ImageView
             android:id="@+id/image_slider"
+            app:iss_placeholder="@android:color/transparent"
             android:layout_width="match_parent"
             android:background="#dddddd"
             android:layout_height="279dp"

@@ -6,4 +6,5 @@ package com.unina.natourkt.presentation.base.ui_state
 data class PostGridItemUiState(
     val id: Long,
     val previewPhoto: String?,
+    val authorId: Long,
 )

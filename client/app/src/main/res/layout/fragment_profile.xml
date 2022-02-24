@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:logo="@drawable/ic_natour_logo"
-            app:menu="@menu/top_bar_main" />
+            app:menu="@menu/top_bar_main_menu" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

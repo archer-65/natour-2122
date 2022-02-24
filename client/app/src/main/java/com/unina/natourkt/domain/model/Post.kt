@@ -40,7 +40,8 @@ fun Post.toUi(): PostItemUiState {
 fun Post.toGridUi(): PostGridItemUiState {
     return PostGridItemUiState(
         id = id,
-        previewPhoto = photos.firstOrNull()
+        previewPhoto = photos.firstOrNull(),
+        authorId = user.id
     )
 }
 

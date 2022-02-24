@@ -23,14 +23,17 @@
     <fragment
         android:id="@+id/navigation_viewer_post"
         android:label="Dettaglio post"
-        android:name="com.unina.natourkt.presentation.post_details.ViewerPostDetailsFragment"
-        tools:layout="@layout/fragment_viewer_post_details">
+        android:name="com.unina.natourkt.presentation.post_details.PostDetailsFragment"
+        tools:layout="@layout/fragment_post_details">
 
         <argument
             android:name="postId"
             app:argType="long"
 
             />
+        <argument
+            android:name="authorId"
+            app:argType="long" />
     </fragment>
 
     <fragment
@@ -43,7 +46,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.unina.natourkt.presentation.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_viewer_post"
+            app:destination="@id/navigation_viewer_post" />
+    </fragment>
 
     <navigation
         android:id="@+id/navigation_auth_flow"

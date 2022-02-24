@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,9 @@ import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.PostGridAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 import com.unina.natourkt.presentation.home.HomeUiState
+import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.Job
@@ -37,7 +40,7 @@ import kotlinx.coroutines.launch
  * filled of paginated posts
  */
 @AndroidEntryPoint
-class PersonalPostsFragment : BaseFragment() {
+class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListener {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -96,7 +99,7 @@ class PersonalPostsFragment : BaseFragment() {
             // Grid declaration with Columns count
             val grid = GridLayoutManager(this@PersonalPostsFragment.requireContext(), COLUMN_COUNT)
 
-            recyclerAdapter = PostGridAdapter()
+            recyclerAdapter = PostGridAdapter(this@PersonalPostsFragment)
             addItemDecoration(GridItemDecoration(COLUMN_COUNT, COLUMN_SPACING, false))
 
             val header = ItemLoadStateAdapter()
@@ -147,5 +150,13 @@ class PersonalPostsFragment : BaseFragment() {
                 }
             }
         }
+    }
+
+    override fun onItemClick(post: PostGridItemUiState) {
+        val action = ProfileFragmentDirections.actionNavigationProfileToNavigationViewerPost(
+            post.id,
+            post.authorId
+        )
+        findNavController().navigate(action)
     }
 }

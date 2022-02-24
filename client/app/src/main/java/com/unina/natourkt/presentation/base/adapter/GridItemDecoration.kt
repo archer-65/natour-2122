@@ -31,7 +31,7 @@ class GridItemDecoration(
             outRect.left = column * spacing / spanCount
             outRect.right = spacing - (column + 1) * spacing / spanCount
             if (position >= spanCount) {
-                outRect.top = spacing
+                //outRect.top = spacing
             }
         }
     }

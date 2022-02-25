@@ -3,6 +3,8 @@
     package="com.unina.natourkt">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <queries>
 
@@ -27,6 +29,14 @@
         android:roundIcon="@drawable/ic_natour_logo_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.NaTour.Starting">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".presentation.main.MainActivity"

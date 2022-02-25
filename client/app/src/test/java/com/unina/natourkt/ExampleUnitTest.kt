@@ -1,4 +1,4 @@
-package com.example.natourkt
+package .natourkt
 
 import org.junit.Test
 

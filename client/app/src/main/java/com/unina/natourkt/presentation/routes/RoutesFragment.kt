@@ -13,11 +13,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
@@ -74,6 +76,8 @@ class RoutesFragment : Fragment() {
         setListeners()
 
         collectState()
+
+        findNavController().navigate(R.id.action_navigation_routes_to_routeDetailsFragment)
     }
 
     override fun onDestroyView() {

@@ -41,6 +41,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textfield_username"
+        style="?attr/textInputOutlinedDenseStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/hint_username"
@@ -65,6 +66,7 @@
         android:id="@+id/textfield_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        style="?attr/textInputOutlinedDenseStyle"
         android:hint="@string/hint_password"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"

@@ -8,6 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.libraries.places.api.Places
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.ActivityMainBinding
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initPlaces()
         setupUi()
         setListeners()
 
@@ -95,5 +97,12 @@ class MainActivity : AppCompatActivity() {
                 else -> navView.visibility = View.GONE
             }
         }
+    }
+
+    private fun initPlaces() {
+        val apiKey = resources.getString(R.string.MAPS_API_KEY)
+        Places.initialize(applicationContext, apiKey)
+
+        val placesClient = Places.createClient(this)
     }
 }

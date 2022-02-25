@@ -4,27 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
+import com.unina.natourkt.presentation.base.contracts.PlacesContract
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 
 @AndroidEntryPoint
-class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback {
+class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback{
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
     private var _binding: FragmentRouteDetailsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
     private lateinit var googleMap: GoogleMap
 
     override fun onCreateView(
@@ -52,6 +54,7 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback {
                 onMapReady(googleMap)
             }
         }
+        initPlacesSearch()
 
         setupUi()
     }
@@ -66,9 +69,24 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback {
             }
         }
 
-        binding.topAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.search_place ->
+        binding.topAppBar.apply {
+            applyInsetter {
+                type(statusBars = true) {
+                    margin()
+                }
+            }
+
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.search_place -> {
+                        val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
+                        launcherPlaces.launch(fields)
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
             }
         }
     }
@@ -86,6 +104,17 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback {
         )
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
+
+    /**
+     * Function to initialize [launcherPlaces] with [registerForActivityResult], replacing
+     * [startActivityForResult] and [onActivityResult] (deprecated)
+     * @see [PlacesContract]
+     */
+    private fun initPlacesSearch() {
+        launcherPlaces = registerForActivityResult(PlacesContract()) { result ->
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(result.latLng!!, 15f))
+        }
     }
 
     // Here we are overriding lifecycle functions to manage MapView's lifecycle
@@ -124,9 +153,4 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback {
         binding.mapView.onSaveInstanceState(outState)
     }
     // End of lifecycle management for MapView
-
-    val getContent = registerForActivityResult(GetContent()) { uri: Uri? ->
-        // Handle the returned Uri
-    }
-
 }

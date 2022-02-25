@@ -23,6 +23,7 @@ android {
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         manifestPlaceholders = [MAPS_API_KEY: "${properties.getProperty('MAPS_API_KEY')}"]
+        resValue "string", "MAPS_API_KEY", properties.getProperty('MAPS_API_KEY', "")
     }
 
     buildTypes {
@@ -104,4 +105,5 @@ dependencies {
 
     // Maps
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.libraries.places:places:2.5.0'
 }

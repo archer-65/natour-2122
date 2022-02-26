@@ -7,19 +7,19 @@
     tools:context=".presentation.registration.ConfirmationFragment">
 
     <ImageView
-        android:id="@+id/image_confirmation"
+        android:id="@+id/confirmationImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/cover_authentication"
         android:src="@drawable/ic_undraw_confirm_code"
-        app:layout_constraintBottom_toTopOf="@+id/image_app_logo"
+        app:layout_constraintBottom_toTopOf="@+id/logoImage"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline17"
         app:layout_constraintTop_toTopOf="@+id/guideline16" />
 
     <ImageView
-        android:id="@+id/image_app_logo"
+        android:id="@+id/logoImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/logo_app"
@@ -28,10 +28,10 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline17"
-        app:layout_constraintTop_toBottomOf="@+id/image_confirmation" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmationImage" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textfield_confirm_code"
+        android:id="@+id/confirmCodeTextField"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/hint_confirmation_code"
@@ -55,19 +55,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button_confirmation"
+        android:id="@+id/confirmationButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:enabled="false"
         android:text="@string/button_confirm_text"
-        app:layout_constraintBottom_toTopOf="@+id/button_resend_code"
+        app:layout_constraintBottom_toTopOf="@+id/resendCodeButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline17"
-        app:layout_constraintTop_toBottomOf="@+id/textfield_confirm_code" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmCodeTextField" />
 
     <Button
-        android:id="@+id/button_resend_code"
+        android:id="@+id/resendCodeButton"
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -77,10 +77,11 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline17"
-        app:layout_constraintTop_toBottomOf="@+id/button_confirmation" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmationButton" />
 
+    <!-- Gone components for states -->
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
@@ -90,7 +91,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
+    <!-- Guidelines -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline21"
         android:layout_width="wrap_content"

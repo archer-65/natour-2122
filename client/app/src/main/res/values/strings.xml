@@ -66,4 +66,10 @@
     <string name="chip_text_settings">Impostazioni</string>
     <string name="itinerary_placeholder">Itinerario</string>
     <string name="description_placeholder">Descrizione</string>
+    <string name="wrong_credentials">Username o password non corretti, riprova.</string>
+    <string name="password_length">La password deve contenere almeno 8 caratteri.</string>
+    <string name="username_check">L\'username non può contenere spazi.</string>
+    <string name="email_check">Email non valida.</string>
+    <string name="passwords_matching">La password non corrisponde.</string>
+    <string name="code_check">Il codice deve contenere 6 cifre</string>
 </resources>

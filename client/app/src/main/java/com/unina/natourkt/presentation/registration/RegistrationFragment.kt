@@ -5,20 +5,16 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants.PASSWORD_LENGTH
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.common.inVisible
-import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentRegistrationBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,18 +33,6 @@ class RegistrationFragment : BaseFragment() {
     private var _binding: FragmentRegistrationBinding? = null
     private val binding get() = _binding!!
 
-    // Buttons
-    private lateinit var registerButton: Button
-
-    // TextFields
-    private lateinit var usernameField: TextInputLayout
-    private lateinit var emailField: TextInputLayout
-    private lateinit var passwordField: TextInputLayout
-    private lateinit var passwordConfirmField: TextInputLayout
-
-    // ProgressBar
-    private lateinit var progressBar: ProgressBar
-
     // ViewModel
     private val registrationViewModel: RegistrationViewModel by activityViewModels()
 
@@ -59,20 +43,16 @@ class RegistrationFragment : BaseFragment() {
     ): View {
 
         _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        setupUi()
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        collectState()
-
+        setupUi()
         setListeners()
         setTextChangedListeners()
+        collectState()
     }
 
     override fun onDestroyView() {
@@ -81,69 +61,26 @@ class RegistrationFragment : BaseFragment() {
     }
 
     /**
-     * Basic settings for UI
-     */
-    private fun setupUi() {
-        binding.buttonSignup.applyInsetter {
-            type(navigationBars = true) {
-                margin()
-            }
-        }
-
-        binding.imageRegistration.applyInsetter {
-            type(statusBars = true) {
-                margin()
-            }
-        }
-
-        registerButton = binding.buttonSignup
-
-        usernameField = binding.textfieldUsername
-        emailField = binding.textfieldEmail
-        passwordField = binding.textfieldPassword
-        passwordConfirmField = binding.textfieldConfirmPassword
-
-        progressBar = binding.progressBar
-    }
-
-    /**
      * Start to collect [RegistrationUiState], action based on Success/Loading/Error
      */
-    private fun collectState() {
+    private fun collectState() = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 registrationViewModel.uiRegistrationState.collect { uiState ->
-                    // When the sign up is complete
-                    if (uiState.isSignUpComplete) {
-                        // The progress bar disappears
-                        progressBar.inVisible()
+                    uiState.apply {
+                        // Bind the progress bar visibility
+                        progressBar.isVisible = isLoading
 
-                        // We navigate to the home screen
-                        findNavController().navigate(R.id.navigation_registration_to_navigation_confirmation)
-                    }
-
-                    // When the state loading
-                    if (uiState.isLoading) {
-                        // Progress bar appears
-                        progressBar.visible()
-                    }
-
-                    // When an error is present
-                    if (uiState.errorMessage != null) {
-                        // Get the right message
-                        val message = when (uiState.errorMessage) {
-                            DataState.CustomMessages.UsernameExists -> getString(R.string.username_exists)
-                            DataState.CustomMessages.AliasExists -> getString(R.string.credentials_already_taken)
-                            DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
-                            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
-                            else -> getString(R.string.auth_failed_generic)
+                        // When the sign up is complete
+                        if (isSignUpComplete) {
+                            // We navigate to the home screen
+                            findNavController().navigate(R.id.navigation_registration_to_navigation_confirmation)
                         }
 
-                        // The progress bar disappears
-                        progressBar.inVisible()
-
-                        // Show a message
-                        showSnackbar(message)
+                        // When an error is present
+                        errorMessage?.run {
+                            manageMessage(this)
+                        }
                     }
                 }
             }
@@ -151,15 +88,32 @@ class RegistrationFragment : BaseFragment() {
     }
 
     /**
+     * Basic settings for UI
+     */
+    private fun setupUi() = with(binding) {
+        signUpButton.applyInsetter {
+            type(navigationBars = true) {
+                margin()
+            }
+        }
+
+        registrationImage.applyInsetter {
+            type(statusBars = true) {
+                margin()
+            }
+        }
+    }
+
+    /**
      * Function to set listeners for views
      */
-    private fun setListeners() {
-        registerButton.setOnClickListener {
+    private fun setListeners() = with(binding) {
+        signUpButton.setOnClickListener {
             if (isFormValid()) {
                 registrationViewModel.registration(
-                    usernameField.editText?.text.toString(),
-                    emailField.editText?.text.toString(),
-                    passwordField.editText?.text.toString()
+                    usernameTextField.editText?.text.toString(),
+                    emailTextField.editText?.text.toString(),
+                    passwordTextField.editText?.text.toString()
                 )
             }
         }
@@ -168,20 +122,20 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Function to set TextListeners
      */
-    private fun setTextChangedListeners() {
-        usernameField.editText?.doAfterTextChanged {
+    private fun setTextChangedListeners() = with(binding) {
+        usernameTextField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
 
-        emailField.editText?.doAfterTextChanged {
+        emailTextField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
 
-        passwordField.editText?.doAfterTextChanged {
+        passwordTextField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
 
-        passwordConfirmField.editText?.doAfterTextChanged {
+        confirmPasswordTextField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
     }
@@ -189,11 +143,11 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Validate form to enable button
      */
-    private fun isFormValidForButton() {
-        registerButton.isEnabled = usernameField.editText?.text!!.isNotBlank()
-                && emailField.editText?.text!!.isNotBlank()
-                && passwordField.editText?.text!!.isNotBlank()
-                && passwordConfirmField.editText?.text!!.isNotBlank()
+    private fun isFormValidForButton() = with(binding) {
+        signUpButton.isEnabled = usernameTextField.editText?.text!!.isNotBlank()
+                && emailTextField.editText?.text!!.isNotBlank()
+                && passwordTextField.editText?.text!!.isNotBlank()
+                && confirmPasswordTextField.editText?.text!!.isNotBlank()
     }
 
     /**
@@ -210,15 +164,15 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Check if the username is valid and manage TextField errors
      */
-    private fun isUsernameValid(): Boolean {
+    private fun isUsernameValid(): Boolean = with(binding) {
 
-        val username = usernameField.editText?.text!!.trim().toString()
+        val username = usernameTextField.editText?.text!!.trim().toString()
 
         return if (username.contains(" ")) {
-            usernameField.error = "L'username non può contenere spazi."
+            usernameTextField.error = getString(R.string.username_check)
             false
         } else {
-            usernameField.error = null
+            usernameTextField.error = null
             true
         }
     }
@@ -226,16 +180,16 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Check if the email is valid and manage TextField errors
      */
-    private fun isEmailValid(): Boolean {
+    private fun isEmailValid(): Boolean = with(binding) {
 
-        val email = emailField.editText?.text!!.trim().toString()
+        val email = emailTextField.editText?.text!!.trim().toString()
         val match = Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
         return if (!match) {
-            emailField.error = "Email non valida."
+            emailTextField.error = getString(R.string.email_check)
             false
         } else {
-            emailField.error = null
+            emailTextField.error = null
             true
         }
     }
@@ -243,26 +197,39 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Check if the password is valid and manage TextField errors
      */
-    private fun isPasswordValid(): Boolean {
+    private fun isPasswordValid(): Boolean = with(binding) {
 
-        val password = passwordField.editText?.text!!.trim().toString()
-        val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
+        val password = passwordTextField.editText?.text!!.trim().toString()
+        val confirmPassword = confirmPasswordTextField.editText?.text!!.trim().toString()
 
         return when {
             password.length < PASSWORD_LENGTH -> {
-                passwordField.error = "La password deve contenere almeno 8 caratteri."
+                passwordTextField.error = getString(R.string.password_length)
                 false
             }
             password != confirmPassword -> {
-                passwordConfirmField.error = "La password non corrisponde."
-                passwordField.error = null
+                confirmPasswordTextField.error = getString(R.string.passwords_matching)
+                passwordTextField.error = null
                 false
             }
             else -> {
-                passwordField.error = null
-                passwordConfirmField.error = null
+                passwordTextField.error = null
+                confirmPasswordTextField.error = null
                 true
             }
         }
+    }
+
+    private fun manageMessage(customMessage: DataState.CustomMessages) {
+        // Get the right message
+        val message = when (customMessage) {
+            DataState.CustomMessages.UsernameExists -> getString(R.string.username_exists)
+            DataState.CustomMessages.AliasExists -> getString(R.string.credentials_already_taken)
+            DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
+            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
+            else -> getString(R.string.auth_failed_generic)
+        }
+
+        showSnackbar(message)
     }
 }

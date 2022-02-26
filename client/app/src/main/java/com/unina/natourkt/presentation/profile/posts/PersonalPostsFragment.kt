@@ -1,7 +1,6 @@
 package com.unina.natourkt.presentation.profile.posts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,24 +12,17 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.shimmer.ShimmerFrameLayout
-import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants.COLUMN_COUNT
 import com.unina.natourkt.common.Constants.COLUMN_SPACING
-import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.databinding.FragmentPersonalPostsBinding
-import com.unina.natourkt.presentation.base.adapter.GridItemDecoration
+import com.unina.natourkt.presentation.base.decoration.GridItemDecoration
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
-import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.PostGridAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
-import com.unina.natourkt.presentation.home.HomeUiState
 import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

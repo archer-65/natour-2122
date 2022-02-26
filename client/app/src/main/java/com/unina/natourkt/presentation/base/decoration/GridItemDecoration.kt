@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.base.adapter
+package com.unina.natourkt.presentation.base.decoration
 
 import android.graphics.Rect
 import android.view.View

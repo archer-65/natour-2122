@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -33,17 +34,6 @@ class ResetPasswordFragment : BaseFragment() {
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
 
-    // Buttons
-    private lateinit var resetPasswordButton: Button
-
-    // TextFields
-    private lateinit var confirmCodeField: TextInputLayout
-    private lateinit var passwordField: TextInputLayout
-    private lateinit var passwordConfirmField: TextInputLayout
-
-    // ProgressBar
-    private lateinit var progressBar: ProgressBar
-
     // ViewModel
     private val resetPasswordViewModel: ResetPasswordViewModel by viewModels()
 
@@ -56,14 +46,13 @@ class ResetPasswordFragment : BaseFragment() {
         _binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        setupUi()
-
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUi()
         collectState()
 
         setListeners()
@@ -78,74 +67,49 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    fun setupUi() {
-        binding.buttonResetPassword.applyInsetter {
+    fun setupUi() = with(binding)   {
+       passwordResetButton.applyInsetter {
             type(navigationBars = true) {
                 margin()
             }
         }
 
-        binding.imageForgotPassword.applyInsetter {
+       forgotPasswordImage.applyInsetter {
             type(statusBars = true) {
                 margin()
             }
         }
-
-        resetPasswordButton = binding.buttonResetPassword
-
-        confirmCodeField = binding.textfieldConfirmCodeReset
-        passwordField = binding.textfieldPassword
-        passwordConfirmField = binding.textfieldConfirmPassword
-
-        progressBar = binding.progressBar
     }
 
     /**
      * Start to collect [ResetPasswordUiState], action based on Success/Loading/Error
      */
-    fun collectState() {
+    fun collectState() = with(binding) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 resetPasswordViewModel.uiState.collect { uiState ->
-                    // When the password is resetted
-                    if (uiState.isPasswordReset) {
-                        // The progress bar disappears
-                        progressBar.inVisible()
+                    uiState.apply {
+                        progressBar.isVisible = isLoading
 
-                        // The progress bar disappears
-                        val message =
-                            "La password è stata aggiornata con successo! Effettua l'accesso."
-                        showSnackbar(message)
+                        // When the password is resetted
+                        if (isPasswordReset) {
 
-                        // We navigate to login screen
-                        findNavController().navigate(R.id.navigation_new_password_to_navigation_login)
-                    }
+                            // The progress bar disappears
+                            val message =
+                                "La password è stata aggiornata con successo! Effettua l'accesso."
+                            showSnackbar(message)
 
-                    // When the state loading
-                    if (uiState.isLoading) {
-                        // Progress bar appears
-                        progressBar.visible()
-                    }
-
-                    // When an error is present
-                    if (uiState.errorMessage != null) {
-                        // Get the right message
-                        val message = when (uiState.errorMessage) {
-                            is DataState.CustomMessages.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
-                            is DataState.CustomMessages.CodeMismatch -> getString(R.string.wrong_confirmation_code)
-                            is DataState.CustomMessages.CodeExpired -> getString(R.string.expired_confirmation_code)
-                            is DataState.CustomMessages.InvalidPassword -> getString(R.string.invalid_password)
-                            is DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
-                            is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
-                            else -> getString(R.string.auth_failed_generic)
+                            // We navigate to login screen
+                            findNavController().navigate(R.id.navigation_new_password_to_navigation_login)
                         }
 
-                        // The progress bar disappears
-                        progressBar.inVisible()
+                        // When an error is present
+                        errorMessage?.run {
+                            manageMessage(this)
+                        }
 
-                        // Show a message
-                        showSnackbar(message)
+
                     }
                 }
             }
@@ -155,12 +119,12 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    private fun setListeners() {
-        resetPasswordButton.setOnClickListener {
+    private fun setListeners() = with(binding) {
+        passwordResetButton.setOnClickListener {
             if (isFormValid()) {
                 resetPasswordViewModel.resetConfirm(
-                    passwordField.editText?.text.toString(),
-                    confirmCodeField.editText?.text.toString()
+                    passwordTextField.editText?.text.toString(),
+                    confirmCodeTextField.editText?.text.toString()
                 )
             }
         }
@@ -169,16 +133,16 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Function to set TextListeners
      */
-    private fun setTextChangedListeners() {
-        confirmCodeField.editText?.doAfterTextChanged {
+    private fun setTextChangedListeners() = with(binding) {
+        confirmCodeTextField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
 
-        passwordField.editText?.doAfterTextChanged {
+        passwordTextField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
 
-        passwordConfirmField.editText?.doAfterTextChanged {
+        confirmPasswordTextField.editText?.doAfterTextChanged {
             isFormValidForButton()
         }
     }
@@ -186,10 +150,10 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Validate form to enable button
      */
-    private fun isFormValidForButton() {
-        resetPasswordButton.isEnabled = confirmCodeField.editText?.text!!.isNotBlank()
-                && passwordField.editText?.text!!.isNotBlank()
-                && passwordConfirmField.editText?.text!!.isNotBlank()
+    private fun isFormValidForButton() = with(binding) {
+        passwordResetButton.isEnabled = confirmCodeTextField.editText?.text!!.isNotBlank()
+                && passwordTextField.editText?.text!!.isNotBlank()
+                && confirmPasswordTextField.editText?.text!!.isNotBlank()
     }
 
     /**
@@ -205,40 +169,57 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Check if the code is valid and manage TextField errors
      */
-    private fun isCodeValid(): Boolean {
+    private fun isCodeValid(): Boolean = with(binding){
         val code =
-            confirmCodeField.editText?.text!!.trim().toString()
+            confirmCodeTextField.editText?.text!!.trim().toString()
 
         return if (code.length != 6) {
-            confirmCodeField.error = "Il codice deve contenere 6 cifre"
+            confirmCodeTextField.error = getString(R.string.code_check)
             false
         } else {
-            confirmCodeField.error = null
+            confirmCodeTextField.error = null
             true
         }
     }
 
     // Check if the password is valid and manage TextField errors
-    private fun isPasswordValid(): Boolean {
+    private fun isPasswordValid(): Boolean = with(binding){
 
-        val password = passwordField.editText?.text!!.trim().toString()
-        val confirmPassword = passwordConfirmField.editText?.text!!.trim().toString()
+        val password = passwordTextField.editText?.text!!.trim().toString()
+        val confirmPassword = confirmPasswordTextField.editText?.text!!.trim().toString()
 
         return when {
             password.length < PASSWORD_LENGTH -> {
-                passwordField.error = "La password deve contenere almeno 8 caratteri."
+                passwordTextField.error = getString(R.string.password_length)
                 false
             }
             password != confirmPassword -> {
-                passwordConfirmField.error = "La password non corrisponde."
-                passwordField.error = null
+                confirmPasswordTextField.error = getString(R.string.passwords_matching)
+                passwordTextField.error = null
                 false
             }
             else -> {
-                passwordField.error = null
-                passwordConfirmField.error = null
+                passwordTextField.error = null
+                confirmPasswordTextField.error = null
                 true
             }
         }
+    }
+
+    private fun manageMessage(customMessages: DataState.CustomMessages) {
+        // Get the right message
+        val message = when (customMessages) {
+            is DataState.CustomMessages.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
+            is DataState.CustomMessages.CodeMismatch -> getString(R.string.wrong_confirmation_code)
+            is DataState.CustomMessages.CodeExpired -> getString(R.string.expired_confirmation_code)
+            is DataState.CustomMessages.InvalidPassword -> getString(R.string.invalid_password)
+            is DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
+            is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
+            else -> getString(R.string.auth_failed_generic)
+        }
+
+        // Show a message
+        showSnackbar(message)
+
     }
 }

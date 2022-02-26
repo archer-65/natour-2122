@@ -59,11 +59,8 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        setupUi()
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,6 +70,8 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
         setListeners()
 
         collectState()
+
+        setupUi()
     }
 
     override fun onDestroyView() {
@@ -83,18 +82,18 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     /**
      * Basic settings for UI
      */
-    private fun setupUi() {
-        binding.topAppBar.applyInsetter {
+    private fun setupUi() = with(binding) {
+        topAppBar.applyInsetter {
             type(statusBars = true) {
                 margin()
             }
         }
 
-        refresh = binding.swipeRefresh
+        refresh = swipeRefresh
 
-        recyclerView = binding.recyclerHome
+        recyclerView = recyclerHome
 
-        shimmerFrame = binding.shimmerContainer
+        shimmerFrame = shimmerContainer
     }
 
     /**
@@ -143,7 +142,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     /**
      * Start to collect [HomeUiState], action based on Success/Loading/Error
      */
-    private fun collectState() {
+    private fun collectState() = with(binding){
 
         // Make sure to cancel any previous job
         searchJob?.cancel()

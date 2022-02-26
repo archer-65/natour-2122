@@ -72,4 +72,14 @@
     <string name="email_check">Email non valida.</string>
     <string name="passwords_matching">La password non corrisponde.</string>
     <string name="code_check">Il codice deve contenere 6 cifre</string>
+    <string name="next_fab">Avanti</string>
+    <string name="disability_friendly_info">Non accessibile a persone con disabilità</string>
+    <string name="disability_friendly">Accessibilità</string>
+    <string name="easy_difficulty">Facile</string>
+    <string name="intermediate_difficulty">Intermedio</string>
+    <string name="difficult_difficulty">Difficile</string>
+    <string name="difficulty_level_info">Livello di difficoltà</string>
+    <string name="duration_hint">Durata</string>
+    <string name="description_hint">Descrizione (opzionale)</string>
+    <string name="title_info">Nome itinerario</string>
 </resources>

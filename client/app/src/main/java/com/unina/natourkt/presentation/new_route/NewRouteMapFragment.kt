@@ -52,6 +52,8 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
         initPlacesSearch()
 
         setupUi()
+
+        setListeners()
     }
 
     /**
@@ -76,20 +78,23 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
                     margin()
                 }
             }
+        }
+    }
 
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.search_place -> {
-                        val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
-                        launcherPlaces.launch(fields)
-                        true
-                    }
-                    else -> {
-                        false
-                    }
+    private fun setListeners() = with(binding) {
+        topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.search_place -> {
+                    val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
+                    launcherPlaces.launch(fields)
+                    true
+                }
+                else -> {
+                    false
                 }
             }
         }
+
     }
 
     override fun onMapReady(p0: GoogleMap) {

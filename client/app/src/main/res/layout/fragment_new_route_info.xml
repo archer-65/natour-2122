@@ -40,7 +40,7 @@
                 style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Nome itinerario"
+                android:hint="@string/title_info"
                 app:errorEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/descriptionTextField"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
@@ -61,7 +61,7 @@
                 style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Descrizione (opzionale)"
+                android:hint="@string/description_hint"
                 app:errorEnabled="true"
                 app:layout_constraintBottom_toBottomOf="@id/barrier4"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
@@ -87,7 +87,7 @@
                 style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Durata"
+                android:hint="@string/duration_hint"
                 app:errorEnabled="true"
                 app:helperText="Durata da 1 a 16 ore "
                 app:layout_constraintBottom_toTopOf="@id/barrier8"
@@ -106,21 +106,21 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/difficulty_textview"
+                android:id="@+id/difficultyTextview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Livello di difficoltà"
+                android:text="@string/difficulty_level_info"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?android:attr/textColorSecondary"
-                app:layout_constraintBottom_toTopOf="@+id/difficulty_chipgroup"
+                app:layout_constraintBottom_toTopOf="@+id/difficultyChipgroup"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/barrier8" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/difficulty_chipgroup"
+                android:id="@+id/difficultyChipgroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -128,7 +128,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toBottomOf="@+id/difficulty_textview"
+                app:layout_constraintTop_toBottomOf="@+id/difficultyTextview"
                 app:selectionRequired="true"
                 app:singleSelection="true">
 
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Facile"
+                    android:text="@string/easy_difficulty"
                     app:chipIcon="@drawable/difficulty_easy"
                     app:chipIconVisible="true" />
 
@@ -145,7 +145,7 @@
                     style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Intermedio"
+                    android:text="@string/intermediate_difficulty"
                     app:chipIcon="@drawable/difficulty_medium"
                     app:chipIconVisible="true" />
 
@@ -153,7 +153,7 @@
                     style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Difficile"
+                    android:text="@string/difficult_difficulty"
                     app:chipIcon="@drawable/difficulty_hard"
                     app:chipIconVisible="true" />
 
@@ -161,24 +161,24 @@
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
-                android:id="@+id/disability_friendly_textview"
+                android:id="@+id/disabilityFriendlyTextview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Accessibilità"
+                android:text="@string/disability_friendly"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintBottom_toTopOf="@+id/disability_friendly_switch"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/difficulty_chipgroup" />
+                app:layout_constraintTop_toBottomOf="@+id/difficultyChipgroup" />
 
             <TextView
                 android:id="@+id/disability_friendly_textview_sub"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Non accessibile a persone con disabilità"
+                android:text="@string/disability_friendly_info"
                 android:textAppearance="?attr/textAppearanceBodyLarge"
                 android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintBottom_toTopOf="@id/barrier7"
@@ -186,7 +186,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toBottomOf="@+id/disability_friendly_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/disabilityFriendlyTextview" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/disability_friendly_switch"
@@ -197,7 +197,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintHorizontal_weight="0.2"
                 app:layout_constraintStart_toEndOf="@id/disability_friendly_textview_sub"
-                app:layout_constraintTop_toBottomOf="@id/disability_friendly_textview" />
+                app:layout_constraintTop_toBottomOf="@id/disabilityFriendlyTextview" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline34"
@@ -219,7 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="difficulty_chipgroup"
+                app:constraint_referenced_ids="difficultyChipgroup"
                 tools:layout_editor_absoluteY="457dp" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -256,21 +256,23 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_accessible_24"
                 app:layout_constraintBottom_toTopOf="@+id/disability_friendly_textview_sub"
-                app:layout_constraintEnd_toStartOf="@+id/disability_friendly_textview"
+                app:layout_constraintEnd_toStartOf="@+id/disabilityFriendlyTextview"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@+id/barrier5"
-                app:layout_constraintVertical_bias="0.606" />
+                app:layout_constraintVertical_bias="0.606"
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/difficulty_label"
-                app:layout_constraintBottom_toTopOf="@+id/difficulty_chipgroup"
-                app:layout_constraintEnd_toStartOf="@+id/difficulty_textview"
+                app:layout_constraintBottom_toTopOf="@+id/difficultyChipgroup"
+                app:layout_constraintEnd_toStartOf="@+id/difficultyTextview"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@id/barrier8"
-                app:layout_constraintVertical_bias="0.592" />
+                app:layout_constraintVertical_bias="0.592"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -286,6 +288,7 @@
         android:layout_margin="12dp"
         android:enabled="false"
         android:src="@drawable/ic_baseline_arrow_forward_24"
-        app:fabSize="normal" />
+        app:fabSize="normal"
+        android:contentDescription="@string/next_fab"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

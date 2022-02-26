@@ -52,7 +52,6 @@ class NewRouteInfoFragment : Fragment() {
             }
         }
 
-
         nextFab.applyInsetter {
             type(navigationBars = true) {
                 margin()
@@ -62,6 +61,12 @@ class NewRouteInfoFragment : Fragment() {
         durationTextField.editText?.apply {
             filters = arrayOf<InputFilter>(DurationFilter(1, 16))
         }
+    }
+
+    private fun setListeners() = with(binding) {
+        nextFab.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_new_route_info_to_navigation_new_route_map)
+        }
 
         disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
             when (state) {
@@ -70,12 +75,6 @@ class NewRouteInfoFragment : Fragment() {
                 else -> disabilityFriendlyTextviewSub.text =
                     "Non accessibile a persone con disabilità"
             }
-        }
-    }
-
-    private fun setListeners() = with(binding) {
-        nextFab.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_new_route_info_to_navigation_new_route_map)
         }
     }
 
@@ -92,5 +91,4 @@ class NewRouteInfoFragment : Fragment() {
         nextFab.isEnabled =
             routeTitleTextField.editText?.text!!.isNotBlank() && durationTextField.editText?.text!!.isNotBlank()
     }
-
 }

@@ -1,6 +1,7 @@
-package com.unina.natourkt.presentation.route_details
+package com.unina.natourkt.presentation.new_route
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,30 +13,25 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
+import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
 import com.unina.natourkt.presentation.base.contracts.PlacesContract
-import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 
-@AndroidEntryPoint
-class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback{
+class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
-    private var _binding: FragmentRouteDetailsBinding? = null
+    private var _binding: FragmentNewRouteMapBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
     private lateinit var googleMap: GoogleMap
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        _binding = FragmentRouteDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentNewRouteMapBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -68,6 +64,12 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback{
             }
         }
 
+        binding.nextFab.applyInsetter {
+            type(navigationBars = true) {
+                margin()
+            }
+        }
+
         binding.topAppBar.apply {
             applyInsetter {
                 type(statusBars = true) {
@@ -90,11 +92,7 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback{
         }
     }
 
-    /**
-     * Callback used when the map is ready, could be useful to
-     * set listeners or other map-related functions
-     */
-    override fun onMapReady(googleMap: GoogleMap) {
+    override fun onMapReady(p0: GoogleMap) {
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(
             MarkerOptions()

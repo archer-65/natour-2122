@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
+import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
 import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
@@ -29,35 +31,66 @@ class NewRouteInfoFragment : Fragment() {
     ): View {
 
         _binding = FragmentNewRouteInfoBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupUi()
 
-        return root
+        setListeners()
+
+        setTextChangedListeners()
     }
 
-    private fun setupUi() {
-        binding.apply {
-            topAppBar.apply {
-                applyInsetter {
-                    type(statusBars = true) {
-                        margin()
-                    }
-                }
+    private fun setupUi() = with(binding) {
+        topAppBar.applyInsetter {
+            type(statusBars = true) {
+                margin()
             }
+        }
 
-            textfieldDuration.editText?.apply {
-                filters = arrayOf<InputFilter>(DurationFilter(1, 16))
+
+        nextFab.applyInsetter {
+            type(navigationBars = true) {
+                margin()
             }
+        }
 
-            disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
-                when (state) {
-                    true -> disabilityFriendlyTextviewSub.text =
-                        "Accessibile a persone con disabilità"
-                    else -> disabilityFriendlyTextviewSub.text =
-                        "Non accessibile a persone con disabilità"
-                }
+        durationTextField.editText?.apply {
+            filters = arrayOf<InputFilter>(DurationFilter(1, 16))
+        }
+
+        disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
+            when (state) {
+                true -> disabilityFriendlyTextviewSub.text =
+                    "Accessibile a persone con disabilità"
+                else -> disabilityFriendlyTextviewSub.text =
+                    "Non accessibile a persone con disabilità"
             }
         }
     }
+
+    private fun setListeners() = with(binding) {
+        nextFab.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_new_route_info_to_navigation_new_route_map)
+        }
+    }
+
+    private fun setTextChangedListeners() = with(binding) {
+        routeTitleTextField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+        durationTextField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+    }
+
+    private fun isFormValidForButton() = with(binding) {
+        nextFab.isEnabled =
+            routeTitleTextField.editText?.text!!.isNotBlank() && durationTextField.editText?.text!!.isNotBlank()
+    }
+
 }

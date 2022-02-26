@@ -136,6 +136,15 @@
     <fragment
         android:id="@+id/navigation_new_route_info"
         android:name="com.unina.natourkt.presentation.new_route.NewRouteInfoFragment"
-        android:label="NewRouteInfoFragment" />
+        android:label="NewRouteInfoFragment" >
+        <action
+            android:id="@+id/action_navigation_new_route_info_to_navigation_new_route_map"
+            app:destination="@id/navigation_new_route_map" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_new_route_map"
+        android:name="com.unina.natourkt.presentation.new_route.NewRouteMapFragment"
+        android:label="fragment_new_route_map"
+        tools:layout="@layout/fragment_new_route_map" />
 
 </navigation>

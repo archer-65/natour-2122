@@ -77,7 +77,7 @@ class RoutesFragment : Fragment() {
 
         collectState()
 
-        findNavController().navigate(R.id.action_navigation_routes_to_routeDetailsFragment)
+        findNavController().navigate(R.id.action_navigation_routes_to_navigation_new_route_info)
     }
 
     override fun onDestroyView() {

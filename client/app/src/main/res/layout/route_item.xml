@@ -56,7 +56,7 @@
                     style="@style/Widget.AppCompat.ActionButton"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:src="@drawable/ic_accessible_22"
+                    android:src="@drawable/ic_accessible_24"
                     tools:ignore="ContentDescription" />
 
             </LinearLayout>

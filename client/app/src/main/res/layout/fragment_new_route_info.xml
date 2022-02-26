@@ -134,6 +134,7 @@
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.Material3.Chip.Suggestion"
+                    android:id="@+id/easyChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -143,6 +144,7 @@
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.Material3.Chip.Suggestion"
+                    android:id="@+id/mediumChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/intermediate_difficulty"
@@ -151,6 +153,7 @@
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.Material3.Chip.Suggestion"
+                    android:id="@+id/hardChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/difficult_difficulty"

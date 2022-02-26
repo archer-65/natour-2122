@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
@@ -23,6 +24,8 @@ class NewRouteInfoFragment : Fragment() {
     // onDestroyView.
     private var _binding: FragmentNewRouteInfoBinding? = null
     private val binding get() = _binding!!
+
+    private val newRouteViewModel: NewRouteViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +68,9 @@ class NewRouteInfoFragment : Fragment() {
 
     private fun setListeners() = with(binding) {
         nextFab.setOnClickListener {
+
+            prepareInfo()
+
             findNavController().navigate(R.id.action_navigation_new_route_info_to_navigation_new_route_map)
         }
 
@@ -77,6 +83,32 @@ class NewRouteInfoFragment : Fragment() {
             }
         }
     }
+
+    private fun prepareInfo() = with(binding) {
+        val title = routeTitleTextField.editText?.text.toString().trim()
+        val description = descriptionTextField.editText?.text.toString().trim()
+        val duration = durationTextField.editText?.text.toString().trim()
+        val disabilityFriendly = disabilityFriendlySwitch.isChecked
+        val difficulty = difficultyChipgroup.run {
+            when (checkedChipId) {
+                R.id.easyChip -> 1
+                R.id.mediumChip -> 2
+                R.id.hardChip -> 3
+                else -> 0
+            }
+        }
+
+        val routeInfo = NewRoute(
+            routeTitle = title,
+            routeDescription = description,
+            duration = duration.toInt(),
+            disabilityFriendly = disabilityFriendly,
+            difficulty = difficulty,
+        )
+        newRouteViewModel.setInfo(routeInfo)
+    }
+
+
 
     private fun setTextChangedListeners() = with(binding) {
         routeTitleTextField.editText?.doAfterTextChanged {

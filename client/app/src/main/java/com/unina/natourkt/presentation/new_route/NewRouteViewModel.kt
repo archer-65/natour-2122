@@ -6,21 +6,31 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
 @HiltViewModel
-class NewRouteViewModel: ViewModel() {
+class NewRouteViewModel @Inject constructor(
 
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(NewRouteUiState())
-
     val uiState: StateFlow<NewRouteUiState> = _uiState.asStateFlow()
 
-    fun setInfo(routeInfo: NewRoute) {
-
-        _uiState.update {
-            it.copy(route = routeInfo)
+    fun setInfo(routeInfo: NewRouteInfo) {
+        _uiState.update { currentState ->
+            currentState.copy(routeInfo = routeInfo)
         }
+    }
 
+    fun addStop(latitude: Double, longitude: Double) {
+        _uiState.update { currentState ->
+            val newStops = currentState.routeStops + NewRouteStop(
+                stopNumber = currentState.routeStops.size + 1,
+                latitude,
+                longitude
+            )
+            currentState.copy(routeStops = newStops)
+        }
     }
 }
 

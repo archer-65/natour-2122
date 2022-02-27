@@ -82,4 +82,6 @@
     <string name="duration_hint">Durata</string>
     <string name="description_hint">Descrizione (opzionale)</string>
     <string name="title_info">Nome itinerario</string>
+    <string name="disability_access">Accessibile a persone con disabilità</string>
+    <string name="disability_access_denied">Non accessibile a persone con disabilità</string>
 </resources>

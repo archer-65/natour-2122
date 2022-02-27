@@ -11,6 +11,8 @@ object Constants {
     // LOCAL IP
     //const val BASE_URL = "http://192.168.1.47:8080/"
 
+    const val MAPS_URL = "https://maps.googleapis.com/"
+
     // String used for Auth Providers
     const val GOOGLE = "GOOGLE"
     const val FACEBOOK = "FACEBOOK"

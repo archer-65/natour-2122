@@ -66,12 +66,10 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecycler()
-        setListeners()
-
-        collectState()
-
         setupUi()
+        setListeners()
+        initRecycler()
+        collectState()
     }
 
     override fun onDestroyView() {

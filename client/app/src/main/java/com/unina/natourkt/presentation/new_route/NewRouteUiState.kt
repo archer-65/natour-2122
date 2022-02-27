@@ -6,22 +6,29 @@ import com.unina.natourkt.common.DataState
 data class NewRouteUiState(
     val isLoading: Boolean = false,
     val errorMessages: DataState.CustomMessages? = null,
-    val route: NewRoute? = null
+    val routeInfo: NewRouteInfo = NewRouteInfo(),
+    val routeStops: List<NewRouteStop> = emptyList(),
+    val routePhotos: List<Bitmap> = emptyList()
 )
 
-data class NewRoute(
-    val routeTitle: String,
-    val routeDescription: String,
-    val duration: Int,
+data class NewRouteInfo(
+    val routeTitle: String = "",
+    val routeDescription: String = "",
+    val duration: Int = 1,
     val disabilityFriendly: Boolean = false,
-    val difficulty: Int,
-    val stops: MutableList<NewRouteStops> = mutableListOf(),
-    val photos: MutableList<Bitmap> = mutableListOf()
+    val difficulty: Difficulty = Difficulty.EASY,
+//    val stops: List<NewRouteStop> = emptyList(),
+//    val photos: List<Bitmap> = emptyList()
 )
 
-data class NewRouteStops(
+data class NewRouteStop(
     val stopNumber: Int,
     val latitude: Double,
     val longitude: Double,
 )
 
+enum class Difficulty(val difficultyValue: Int) {
+    EASY(1),
+    MEDIUM(2),
+    HARD(3),
+}

@@ -1,11 +1,14 @@
 package com.unina.natourkt.presentation.new_route
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -16,6 +19,8 @@ import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
 import com.unina.natourkt.presentation.base.contracts.PlacesContract
 import dev.chrisbanes.insetter.applyInsetter
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
 
@@ -25,14 +30,17 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
     private val binding get() = _binding!!
 
     private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
-    private lateinit var googleMap: GoogleMap
+    private lateinit var map: GoogleMap
+
+    private val newRouteViewModel: NewRouteViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewRouteMapBinding.inflate(inflater, container, false)
 
+        _binding = FragmentNewRouteMapBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,35 +52,45 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
         // Here we are creating our MapView and calling onMapReady callback.
         binding.mapView.apply {
             onCreate(savedInstanceState)
-            getMapAsync {
-                googleMap = it
-                onMapReady(googleMap)
+            getMapAsync() {
+                map = it
+                onMapReady(map)
             }
         }
         initPlacesSearch()
 
         setupUi()
-
         setListeners()
+    }
+
+    /**
+     * Function to initialize [launcherPlaces] with [registerForActivityResult], replacing
+     * [startActivityForResult] and [onActivityResult] (deprecated)
+     * @see [PlacesContract]
+     */
+    private fun initPlacesSearch() {
+        launcherPlaces = registerForActivityResult(PlacesContract()) { result ->
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(result.latLng!!, 15f))
+        }
     }
 
     /**
      * Basic settings for UI
      */
-    fun setupUi() {
-        binding.mapView.applyInsetter {
+    private fun setupUi() = with(binding) {
+        mapView.applyInsetter {
             type(navigationBars = true) {
                 margin()
             }
         }
 
-        binding.nextFab.applyInsetter {
+        nextFab.applyInsetter {
             type(navigationBars = true) {
                 margin()
             }
         }
 
-        binding.topAppBar.apply {
+        topAppBar.apply {
             applyInsetter {
                 type(statusBars = true) {
                     margin()
@@ -94,29 +112,56 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
                 }
             }
         }
-
     }
 
-    override fun onMapReady(p0: GoogleMap) {
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(sydney)
-                .title("This is Sydney :)")
-        )
+    override fun onMapReady(googleMap: GoogleMap) = with(newRouteViewModel) {
+        initMap()
+        collectState()
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
-
-    /**
-     * Function to initialize [launcherPlaces] with [registerForActivityResult], replacing
-     * [startActivityForResult] and [onActivityResult] (deprecated)
-     * @see [PlacesContract]
-     */
-    private fun initPlacesSearch() {
-        launcherPlaces = registerForActivityResult(PlacesContract()) { result ->
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(result.latLng!!, 15f))
+        googleMap.setOnMapClickListener {
+            addStop(it.latitude, it.longitude)
+            Log.i("AGGIUNTA STOP", it.toString())
         }
+    }
+
+    private fun collectState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                newRouteViewModel.uiState.collect { uiState ->
+                    uiState.apply {
+                        if (routeStops.isNotEmpty()) {
+                            bindStops(routeStops)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun bindStops(stops: List<NewRouteStop>) {
+        stops.map { stop ->
+            val position = LatLng(stop.latitude, stop.longitude)
+
+            Log.i("Aggiunta marker", position.toString())
+            map.addMarker(
+                MarkerOptions()
+                    .position(position)
+                    .title("${stop.stopNumber}")
+                    .draggable(true)
+            )
+        }
+    }
+
+    private fun initMap() {
+        val firstStop = newRouteViewModel.uiState.value.routeStops.firstOrNull()
+
+        val position = if (firstStop != null) {
+            LatLng(firstStop.latitude, firstStop.longitude)
+        } else {
+            LatLng(40.82806233458257, 14.19321142133755)
+        }
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15f))
     }
 
     // Here we are overriding lifecycle functions to manage MapView's lifecycle

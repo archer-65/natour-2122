@@ -2,21 +2,22 @@ package com.unina.natourkt.presentation.new_route
 
 import android.os.Bundle
 import android.text.InputFilter
-import android.text.Spanned
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
-import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
 import com.unina.natourkt.presentation.base.input_filter.DurationFilter
 import dev.chrisbanes.insetter.applyInsetter
-import java.lang.NumberFormatException
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class NewRouteInfoFragment : Fragment() {
 
@@ -25,6 +26,7 @@ class NewRouteInfoFragment : Fragment() {
     private var _binding: FragmentNewRouteInfoBinding? = null
     private val binding get() = _binding!!
 
+    // ViewModel
     private val newRouteViewModel: NewRouteViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -34,7 +36,6 @@ class NewRouteInfoFragment : Fragment() {
     ): View {
 
         _binding = FragmentNewRouteInfoBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -42,10 +43,60 @@ class NewRouteInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUi()
-
         setListeners()
-
         setTextChangedListeners()
+        collectState()
+    }
+
+    private fun collectState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                newRouteViewModel.uiState.collect() { uiState ->
+                    uiState.apply {
+                        bindInfo(routeInfo)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun prepareInfo(route: NewRouteInfo) = with(binding) {
+        val title = routeTitleTextField.editText?.text.toString().trim()
+        val description = descriptionTextField.editText?.text.toString().trim()
+        val duration = durationTextField.editText?.text.toString().trim()
+        val disabilityFriendly = disabilityFriendlySwitch.isChecked
+        val difficulty = difficultyChipgroup.run {
+            when (checkedChipId) {
+                easyChip.id -> Difficulty.EASY
+                mediumChip.id -> Difficulty.MEDIUM
+                hardChip.id -> Difficulty.HARD
+                else -> Difficulty.EASY
+            }
+        }
+
+        val newRoute = route.copy(
+            routeTitle = title,
+            routeDescription = description,
+            duration = duration.toInt(),
+            disabilityFriendly = disabilityFriendly,
+            difficulty = difficulty,
+        )
+
+        newRouteViewModel.setInfo(newRoute)
+    }
+
+    private fun bindInfo(route: NewRouteInfo) = with(binding) {
+        routeTitleTextField.editText?.setText(route.routeTitle)
+        descriptionTextField.editText?.setText(route.routeDescription)
+        difficultyChipgroup.check(
+            when (route.difficulty) {
+                Difficulty.EASY -> easyChip.id
+                Difficulty.MEDIUM -> mediumChip.id
+                Difficulty.HARD -> hardChip.id
+            }
+        )
+        durationTextField.editText?.setText(route.duration.toString())
+        disabilityFriendlySwitch.isChecked = route.disabilityFriendly
     }
 
     private fun setupUi() = with(binding) {
@@ -68,47 +119,20 @@ class NewRouteInfoFragment : Fragment() {
 
     private fun setListeners() = with(binding) {
         nextFab.setOnClickListener {
-
-            prepareInfo()
-
+            // Prepare information before next screen
+            prepareInfo(newRouteViewModel.uiState.value.routeInfo)
             findNavController().navigate(R.id.action_navigation_new_route_info_to_navigation_new_route_map)
         }
 
         disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
             when (state) {
                 true -> disabilityFriendlyTextviewSub.text =
-                    "Accessibile a persone con disabilità"
+                    getString(R.string.disability_access)
                 else -> disabilityFriendlyTextviewSub.text =
-                    "Non accessibile a persone con disabilità"
+                    getString(R.string.disability_access_denied)
             }
         }
     }
-
-    private fun prepareInfo() = with(binding) {
-        val title = routeTitleTextField.editText?.text.toString().trim()
-        val description = descriptionTextField.editText?.text.toString().trim()
-        val duration = durationTextField.editText?.text.toString().trim()
-        val disabilityFriendly = disabilityFriendlySwitch.isChecked
-        val difficulty = difficultyChipgroup.run {
-            when (checkedChipId) {
-                R.id.easyChip -> 1
-                R.id.mediumChip -> 2
-                R.id.hardChip -> 3
-                else -> 0
-            }
-        }
-
-        val routeInfo = NewRoute(
-            routeTitle = title,
-            routeDescription = description,
-            duration = duration.toInt(),
-            disabilityFriendly = disabilityFriendly,
-            difficulty = difficulty,
-        )
-        newRouteViewModel.setInfo(routeInfo)
-    }
-
-
 
     private fun setTextChangedListeners() = with(binding) {
         routeTitleTextField.editText?.doAfterTextChanged {

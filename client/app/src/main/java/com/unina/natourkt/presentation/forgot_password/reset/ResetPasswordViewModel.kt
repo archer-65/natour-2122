@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.use_case.auth.ResetPasswordConfirmUseCase
+import com.unina.natourkt.presentation.base.validation.isCodeValid
+import com.unina.natourkt.presentation.base.validation.isPasswordValid
+import com.unina.natourkt.presentation.registration.RegistrationFormUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,29 +26,50 @@ class ResetPasswordViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ResetPasswordUiState())
     val uiState = _uiState.asStateFlow()
 
+    private val _formState = MutableStateFlow(ResetPasswordFormUiState())
+    val formState = _formState.asStateFlow()
+
+
     fun resetConfirm(password: String, code: String) {
-
-        viewModelScope.launch {
-
-            // On every value emitted by the flow
-            resetPasswordConfirmUseCase(password, code).onEach { result ->
-                when (result) {
-                    // In case of success, update the isPasswordReset value
-                    is DataState.Success -> {
-                        _uiState.value =
-                            ResetPasswordUiState(isPasswordReset = result.data ?: false)
-                    }
-                    // In case of error, update the error message
-                    is DataState.Error -> {
-                        _uiState.value =
-                            ResetPasswordUiState(errorMessage = result.error)
-                    }
-                    // In case of loading state, isLoading is true
-                    is DataState.Loading -> {
-                        _uiState.value = ResetPasswordUiState(isLoading = true)
-                    }
+        // On every value emitted by the flow
+        resetPasswordConfirmUseCase(password, code).onEach { result ->
+            when (result) {
+                // In case of success, update the isPasswordReset value
+                is DataState.Success -> {
+                    _uiState.value =
+                        ResetPasswordUiState(isPasswordReset = result.data ?: false)
                 }
-            }.launchIn(viewModelScope)
+                // In case of error, update the error message
+                is DataState.Error -> {
+                    _uiState.value =
+                        ResetPasswordUiState(errorMessage = result.error)
+                }
+                // In case of loading state, isLoading is true
+                is DataState.Loading -> {
+                    _uiState.value = ResetPasswordUiState(isLoading = true)
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setCode(code: String) {
+        _formState.update {
+            it.copy(code = code, isCodeValid = code.isCodeValid())
+        }
+    }
+
+    fun setPassword(password: String) {
+        _formState.update {
+            it.copy(password = password, isPasswordValid = password.isPasswordValid())
+        }
+    }
+
+    fun setConfirmPassword(confirmPassword: String) {
+        _formState.update {
+            it.copy(
+                confirmPassword = confirmPassword,
+                isConfirmPasswordValid = confirmPassword.equals(it.password)
+            )
         }
     }
 }

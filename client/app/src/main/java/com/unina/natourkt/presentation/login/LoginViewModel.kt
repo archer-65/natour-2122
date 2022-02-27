@@ -4,9 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.use_case.auth.LoginUseCase
+import com.unina.natourkt.presentation.base.validation.isPasswordValid
+import com.unina.natourkt.presentation.base.validation.isUsernameValid
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -19,21 +20,21 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
-    val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
+    val uiState = _uiState.asStateFlow()
+
+    private val _formState = MutableStateFlow(LoginFormUiState())
+    val formState = _formState.asStateFlow()
 
     /**
      * Login function
      * @see [LoginUseCase]
      */
     fun login(username: String, password: String) {
-
-        viewModelScope.launch {
-            // On every value emitted by the flow
-            loginUseCase(username, password).onEach { result ->
-                // Util function
-                resultManager(result)
-            }.launchIn(viewModelScope)
-        }
+        // On every value emitted by the flow
+        loginUseCase(username, password).onEach { result ->
+            // Util function
+            resultManager(result)
+        }.launchIn(viewModelScope)
     }
 
     /**
@@ -41,14 +42,11 @@ class LoginViewModel @Inject constructor(
      * @see [LoginUseCase]
      */
     fun login(provider: String) {
-
-        viewModelScope.launch {
-            // On every value emitted by the flow
-            loginUseCase(provider).onEach { result ->
-                // Util function
-                resultManager(result)
-            }.launchIn(viewModelScope)
-        }
+        // On every value emitted by the flow
+        loginUseCase(provider).onEach { result ->
+            // Util function
+            resultManager(result)
+        }.launchIn(viewModelScope)
     }
 
     /**
@@ -68,6 +66,18 @@ class LoginViewModel @Inject constructor(
             is DataState.Loading -> {
                 _uiState.value = LoginUiState(isLoading = true)
             }
+        }
+    }
+
+    fun setUsername(username: String) {
+        _formState.update {
+            it.copy(username = username, isUsernameValid = username.isUsernameValid())
+        }
+    }
+
+    fun setPassword(password: String) {
+        _formState.update {
+            it.copy(password = password, isPasswordValid = password.isPasswordValid())
         }
     }
 }

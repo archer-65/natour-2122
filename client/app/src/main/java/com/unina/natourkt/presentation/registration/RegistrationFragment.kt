@@ -1,26 +1,20 @@
 package com.unina.natourkt.presentation.registration
 
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
-import com.unina.natourkt.common.Constants.PASSWORD_LENGTH
-import com.unina.natourkt.common.DataState
 import com.unina.natourkt.databinding.FragmentRegistrationBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 
 /**
  * This Fragment represents the SignUp Screen
@@ -41,7 +35,6 @@ class RegistrationFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -64,24 +57,33 @@ class RegistrationFragment : BaseFragment() {
      * Start to collect [RegistrationUiState], action based on Success/Loading/Error
      */
     private fun collectState() = with(binding) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                registrationViewModel.uiRegistrationState.collect { uiState ->
-                    uiState.apply {
-                        // Bind the progress bar visibility
-                        progressBar.isVisible = isLoading
-
-                        // When the sign up is complete
-                        if (isSignUpComplete) {
-                            // We navigate to the home screen
-                            findNavController().navigate(R.id.navigation_registration_to_navigation_confirmation)
-                        }
-
-                        // When an error is present
-                        errorMessage?.run {
-                            manageMessage(this)
-                        }
+        with(registrationViewModel) {
+            launchOnLifecycleScope {
+                uiRegistrationState.collect {
+                    // When the sign up is complete
+                    if (it.isSignUpComplete) {
+                        // We navigate to the home screen
+                        findNavController().navigate(R.id.navigation_registration_to_navigation_confirmation)
                     }
+
+                    // Bind the progress bar visibility
+                    progressBar.isVisible = it.isLoading
+
+                    // When an error is present
+                    it.errorMessage?.run {
+                        manageMessage(this)
+                    }
+                }
+            }
+
+            launchOnLifecycleScope {
+                uiRegistrationFormState.collectLatest {
+                    // Bind the button visibility
+                    signUpButton.isEnabled =
+                            it.username.isNotBlank() &&
+                            it.password.isNotBlank() &&
+                            it.password.isNotBlank() &&
+                            it.confirmPassword.isNotBlank()
                 }
             }
         }
@@ -123,113 +125,57 @@ class RegistrationFragment : BaseFragment() {
      * Function to set TextListeners
      */
     private fun setTextChangedListeners() = with(binding) {
-        usernameTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
-        }
+        with(registrationViewModel) {
+            usernameTextField.editText?.doAfterTextChanged {
+                val username = it.toString().trim()
+                setUsername(username)
+            }
 
-        emailTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
-        }
+            emailTextField.editText?.doAfterTextChanged {
+                val email = it.toString().trim()
+                setEmail(email)
+            }
 
-        passwordTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
-        }
+            passwordTextField.editText?.doAfterTextChanged {
+                val password = it.toString().trim()
+                setPassword(password)
+            }
 
-        confirmPasswordTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
+            confirmPasswordTextField.editText?.doAfterTextChanged {
+                val password = it.toString().trim()
+                setConfirmPassword(password)
+            }
         }
-    }
-
-    /**
-     * Validate form to enable button
-     */
-    private fun isFormValidForButton() = with(binding) {
-        signUpButton.isEnabled = usernameTextField.editText?.text!!.isNotBlank()
-                && emailTextField.editText?.text!!.isNotBlank()
-                && passwordTextField.editText?.text!!.isNotBlank()
-                && confirmPasswordTextField.editText?.text!!.isNotBlank()
     }
 
     /**
      * Form validation based on other functions
      */
-    private fun isFormValid(): Boolean {
-        val isUsernameValid = isUsernameValid()
-        val isEmailValid = isEmailValid()
-        val isPasswordValid = isPasswordValid()
-
-        return isUsernameValid && isPasswordValid && isEmailValid
-    }
-
-    /**
-     * Check if the username is valid and manage TextField errors
-     */
-    private fun isUsernameValid(): Boolean = with(binding) {
-
-        val username = usernameTextField.editText?.text!!.trim().toString()
-
-        return if (username.contains(" ")) {
-            usernameTextField.error = getString(R.string.username_check)
-            false
-        } else {
-            usernameTextField.error = null
-            true
-        }
-    }
-
-    /**
-     * Check if the email is valid and manage TextField errors
-     */
-    private fun isEmailValid(): Boolean = with(binding) {
-
-        val email = emailTextField.editText?.text!!.trim().toString()
-        val match = Patterns.EMAIL_ADDRESS.matcher(email).matches()
-
-        return if (!match) {
-            emailTextField.error = getString(R.string.email_check)
-            false
-        } else {
-            emailTextField.error = null
-            true
-        }
-    }
-
-    /**
-     * Check if the password is valid and manage TextField errors
-     */
-    private fun isPasswordValid(): Boolean = with(binding) {
-
-        val password = passwordTextField.editText?.text!!.trim().toString()
-        val confirmPassword = confirmPasswordTextField.editText?.text!!.trim().toString()
-
-        return when {
-            password.length < PASSWORD_LENGTH -> {
-                passwordTextField.error = getString(R.string.password_length)
-                false
+    private fun isFormValid(): Boolean = with(binding) {
+        val isUsernameValid =
+            registrationViewModel.uiRegistrationFormState.value.isUsernameValid.also { valid ->
+                val error = if (!valid) getString(R.string.username_check) else null
+                usernameTextField.error = error
             }
-            password != confirmPassword -> {
-                confirmPasswordTextField.error = getString(R.string.passwords_matching)
-                passwordTextField.error = null
-                false
-            }
-            else -> {
-                passwordTextField.error = null
-                confirmPasswordTextField.error = null
-                true
-            }
-        }
-    }
 
-    private fun manageMessage(customMessage: DataState.CustomMessages) {
-        // Get the right message
-        val message = when (customMessage) {
-            DataState.CustomMessages.UsernameExists -> getString(R.string.username_exists)
-            DataState.CustomMessages.AliasExists -> getString(R.string.credentials_already_taken)
-            DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
-            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
-            else -> getString(R.string.auth_failed_generic)
-        }
+        val isEmailValid =
+            registrationViewModel.uiRegistrationFormState.value.isEmailValid.also { valid ->
+                val error = if (!valid) getString(R.string.email_check) else null
+                emailTextField.error = error
+            }
 
-        showSnackbar(message)
+        val isPasswordValid =
+            registrationViewModel.uiRegistrationFormState.value.isPasswordValid.also { valid ->
+                val error = if (!valid) getString(R.string.password_length) else null
+                passwordTextField.error = error
+            }
+
+        val isConfirmPasswordValid =
+            registrationViewModel.uiRegistrationFormState.value.isConfirmPasswordValid.also { valid ->
+                val error = if (!valid) getString(R.string.passwords_matching) else null
+                confirmPasswordTextField.error = error
+            }
+
+        return isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid
     }
 }

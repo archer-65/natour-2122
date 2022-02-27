@@ -10,3 +10,12 @@ data class ResetPasswordUiState (
     val errorMessage: DataState.CustomMessages? = null,
     val isPasswordReset: Boolean = false,
 )
+
+data class ResetPasswordFormUiState(
+    val code: String = "",
+    val password: String = "",
+    val confirmPassword: String = "",
+    val isCodeValid: Boolean = false,
+    val isPasswordValid: Boolean = false,
+    val isConfirmPasswordValid: Boolean = false,
+)

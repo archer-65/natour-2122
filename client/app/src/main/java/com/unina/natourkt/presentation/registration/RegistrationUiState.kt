@@ -11,5 +11,15 @@ data class RegistrationUiState(
     val errorMessage: DataState.CustomMessages? = null,
     val isSignUpComplete: Boolean = false,
     val isConfirmationComplete: Boolean = false,
-    val username: String? = null,
+)
+
+data class RegistrationFormUiState(
+    val username: String = "",
+    val email: String = "",
+    val password: String = "",
+    val confirmPassword: String = "",
+    val isUsernameValid: Boolean = false,
+    val isEmailValid: Boolean = false,
+    val isPasswordValid: Boolean = false,
+    val isConfirmPasswordValid: Boolean = false,
 )

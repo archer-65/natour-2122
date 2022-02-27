@@ -10,3 +10,8 @@ data class ForgotPasswordUiState(
     val errorMessage: DataState.CustomMessages? = null,
     val isCodeSent: Boolean = false,
 )
+
+data class ForgotPasswordFormUiState(
+    val username: String = "",
+    val isUsernameValid: Boolean = false,
+)

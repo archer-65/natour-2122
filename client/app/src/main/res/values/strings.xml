@@ -84,4 +84,6 @@
     <string name="title_info">Nome itinerario</string>
     <string name="disability_access">Accessibile a persone con disabilità</string>
     <string name="disability_access_denied">Non accessibile a persone con disabilità</string>
+    <string name="code_resent_password">Il codice per il reset della password è stato inviato!</string>
+    <string name="password_reset_success">La password è stata aggiornata con successo! Effettua l\'accesso.</string>
 </resources>

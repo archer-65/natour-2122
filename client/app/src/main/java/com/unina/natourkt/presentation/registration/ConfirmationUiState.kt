@@ -12,3 +12,8 @@ data class ConfirmationUiState(
     val isConfirmationComplete: Boolean = false,
     val isCodeResent: Boolean = false,
 )
+
+data class ConfirmationFormUiState(
+    val code: String = "",
+    val isCodeValid: Boolean = false,
+)

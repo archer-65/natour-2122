@@ -7,21 +7,16 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
-import com.unina.natourkt.common.*
 import com.unina.natourkt.common.Constants.FACEBOOK
 import com.unina.natourkt.common.Constants.GOOGLE
-import com.unina.natourkt.common.Constants.PASSWORD_LENGTH
 import com.unina.natourkt.databinding.FragmentLoginBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 
 /**
  * This Fragment represents the Login Screen
@@ -42,7 +37,6 @@ class LoginFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -65,25 +59,29 @@ class LoginFragment : BaseFragment() {
      * Start to collect [LoginUiState], action based on Success/Loading/Error
      */
     private fun collectState() = with(binding) {
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                loginViewModel.uiState.collect { uiState ->
-                    uiState.apply {
-                        // Bind the progress bar visibility
-                        progressBar.isVisible = isLoading
-
-                        // When the user is logged in
-                        if (isUserLoggedIn) {
-                            // We navigate to the home screen
-                            findNavController().navigate(R.id.navigation_login_to_navigation_home)
-                        }
-
-                        // When an error is present
-                        errorMessage?.run {
-                            manageMessage(this)
-                        }
+        with(loginViewModel) {
+            launchOnLifecycleScope {
+                uiState.collect {
+                    // When the user is logged in
+                    if (it.isUserLoggedIn) {
+                        // We navigate to the home screen
+                        findNavController().navigate(R.id.navigation_login_to_navigation_home)
                     }
+
+                    // Bind the progress bar visibility
+                    progressBar.isVisible = it.isLoading
+
+                    // When an error is present
+                    it.errorMessage?.run {
+                        manageMessage(this)
+                    }
+                }
+            }
+
+            launchOnLifecycleScope {
+                formState.collectLatest {
+                    // Bind the button visibility
+                    loginButton.isEnabled = it.username.isNotBlank() && it.password.isNotBlank()
                 }
             }
         }
@@ -93,7 +91,6 @@ class LoginFragment : BaseFragment() {
      * Basic settings for UI
      */
     private fun setupUi() = with(binding) {
-
         facebookButton.applyInsetter {
             type(navigationBars = true) {
                 margin()
@@ -111,29 +108,31 @@ class LoginFragment : BaseFragment() {
      * Function to set listeners for views
      */
     private fun setListeners() = with(binding) {
-        loginButton.setOnClickListener {
-            if (isFormValid()) {
-                loginViewModel.login(
-                    usernameTextField.editText?.text.toString(),
-                    passwordTextField.editText?.text.toString(),
-                )
+        with(loginViewModel) {
+            loginButton.setOnClickListener {
+                if (isFormValid()) {
+                    login(
+                        usernameTextField.editText?.text.toString(),
+                        passwordTextField.editText?.text.toString(),
+                    )
+                }
             }
-        }
 
-        forgotPasswordButton.setOnClickListener {
-            findNavController().navigate(R.id.navigation_login_to_navigation_forgot_password)
-        }
+            forgotPasswordButton.setOnClickListener {
+                findNavController().navigate(R.id.navigation_login_to_navigation_forgot_password)
+            }
 
-        signUpTextView.setOnClickListener {
-            findNavController().navigate(R.id.navigation_login_to_navigation_registration)
-        }
+            signUpTextView.setOnClickListener {
+                findNavController().navigate(R.id.navigation_login_to_navigation_registration)
+            }
 
-        googleButton.setOnClickListener {
-            loginViewModel.login(GOOGLE)
-        }
+            googleButton.setOnClickListener {
+                login(GOOGLE)
+            }
 
-        facebookButton.setOnClickListener {
-            loginViewModel.login(FACEBOOK)
+            facebookButton.setOnClickListener {
+                login(FACEBOOK)
+            }
         }
     }
 
@@ -141,80 +140,32 @@ class LoginFragment : BaseFragment() {
      * Function to set TextListeners
      */
     private fun setTextChangedListeners() = with(binding) {
-        usernameTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
-        }
+        with(loginViewModel) {
+            usernameTextField.editText?.doAfterTextChanged {
+                val username = it.toString().trim()
+                setUsername(username)
+            }
 
-        passwordTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
+            passwordTextField.editText?.doAfterTextChanged {
+                val password = it.toString().trim()
+                setPassword(password)
+            }
         }
-    }
-
-    /**
-     * Validate form to enable button
-     */
-    private fun isFormValidForButton() = with(binding) {
-        loginButton.isEnabled =
-            usernameTextField.editText?.text!!.isNotBlank() && passwordTextField.editText?.text!!.isNotBlank()
     }
 
     /**
      * Form validation based on other functions
      */
-    private fun isFormValid(): Boolean {
-        val isUsernameValid = isUsernameValid()
-        val isPasswordValid = isPasswordValid()
+    private fun isFormValid(): Boolean = with(binding) {
+        val isUsernameValid = loginViewModel.formState.value.isUsernameValid.also { valid ->
+            val error = if (!valid) getString(R.string.username_check) else null
+            usernameTextField.error = error
+        }
+        val isPasswordValid = loginViewModel.formState.value.isPasswordValid.also { valid ->
+            val error = if (!valid) getString(R.string.password_length) else null
+            passwordTextField.error = error
+        }
 
         return isUsernameValid && isPasswordValid
-    }
-
-    /**
-     * Check if the username is valid and manage TextField errors
-     */
-    private fun isUsernameValid(): Boolean = with(binding) {
-
-        val username = usernameTextField.editText?.text!!.trim().toString()
-
-        return if (username.contains(" ")) {
-            usernameTextField.error = getString(R.string.username_check)
-            false
-        } else {
-            usernameTextField.error = null
-            true
-        }
-    }
-
-    /**
-     * Check if the password is valid and manage TextField errors
-     */
-    private fun isPasswordValid(): Boolean = with(binding) {
-
-        val password = passwordTextField.editText?.text!!.trim().toString()
-
-        return if (password.length < PASSWORD_LENGTH) {
-            passwordTextField.error = getString(R.string.password_length)
-            false
-        } else {
-            passwordTextField.error = null
-            true
-        }
-    }
-
-    /**
-     * Just an message-based function
-     */
-    private fun manageMessage(customMessage: DataState.CustomMessages) {
-        // Get the right message
-        val message = when (customMessage) {
-            is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
-            is DataState.CustomMessages.UserNotConfirmed -> getString(R.string.user_not_confirmed)
-            is DataState.CustomMessages.InvalidPassword -> getString(R.string.invalid_password)
-            is DataState.CustomMessages.InvalidCredentials -> getString(R.string.wrong_credentials)
-            is DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
-            is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
-            else -> getString(R.string.auth_failed_generic)
-        }
-
-        showSnackbar(message)
     }
 }

@@ -4,26 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
-import com.unina.natourkt.common.DataState
-import com.unina.natourkt.common.inVisible
-import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentForgotPasswordBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 
 /**
  * This Fragment represents the first screen
@@ -68,29 +59,34 @@ class ForgotPasswordFragment : BaseFragment() {
      * Start to collect [ForgotPasswordUiState], action based on Success/Loading/Error
      */
     private fun collectState() = with(binding) {
+        with(forgotPasswordViewModel) {
+            launchOnLifecycleScope {
+                uiState.collect {
+                    // When the code is sent
+                    if (it.isCodeSent) {
+                        // Show a message
+                        val message = getString(R.string.code_resent_password)
+                        showSnackbar(message)
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                forgotPasswordViewModel.uiState.collect { uiState ->
-                    uiState.apply {
-                        // Bind the progress bar visibility
-                        progressBar.isVisible = isLoading
-
-                        // When the code is sent
-                        if (uiState.isCodeSent) {
-                            // Show a message
-                            val message = "Il codice per il reset della password è stato inviato!"
-                            showSnackbar(message)
-
-                            // We navigate to new password insertion screen
-                            findNavController().navigate(R.id.navigation_forgot_password_to_navigation_new_password)
-                        }
-
-                        // When an error is present
-                        errorMessage?.run {
-                            manageMessage(this)
-                        }
+                        // We navigate to new password insertion screen
+                        findNavController().navigate(R.id.navigation_forgot_password_to_navigation_new_password)
                     }
+
+                    // Bind the progress bar visibility
+                    progressBar.isVisible = it.isLoading
+
+                    // When an error is present
+                    it.errorMessage?.run {
+                        manageMessage(this)
+                    }
+
+                }
+            }
+
+            launchOnLifecycleScope {
+                formState.collectLatest {
+                    // Bind the button visibility
+                    sendCodeButton.isEnabled = it.username.isNotBlank()
                 }
             }
         }
@@ -123,50 +119,21 @@ class ForgotPasswordFragment : BaseFragment() {
      */
     private fun setTextChangedListeners() = with(binding) {
         usernameTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
+            val username = it.toString().trim()
+            forgotPasswordViewModel.setUsername(username)
         }
     }
 
     /**
-     * Validate form to enable button
+     * Form validation based on other functions
      */
-    private fun isFormValidForButton() = with(binding) {
-        sendCodeButton.isEnabled = usernameTextField.editText?.text!!.isNotBlank()
-    }
+    private fun isFormValid(): Boolean = with(binding) {
+        val isUsernameValid =
+            forgotPasswordViewModel.formState.value.isUsernameValid.also { valid ->
+                val error = if (!valid) getString(R.string.username_check) else null
+                usernameTextField.error = error
+            }
 
-
-    /**
-     *  Check if the form is Valid
-     */
-    private fun isFormValid(): Boolean = isValidUsername()
-
-    /**
-     * Check if the username is valid and manage TextField errors
-     */
-    private fun isValidUsername(): Boolean = with(binding) {
-
-        val username = usernameTextField.editText?.text!!.trim().toString()
-
-        return if (username.contains(" ")) {
-            usernameTextField.error = getString(R.string.username_check)
-            false
-        } else {
-            usernameTextField.error = null
-            true
-        }
-    }
-
-    /**
-     * Just an message-based function
-     */
-    private fun manageMessage(customMessage: DataState.CustomMessages) {
-        // Get the right message
-        val message = when (customMessage) {
-            is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
-            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
-            else -> getString(R.string.auth_failed_generic)
-        }
-
-        showSnackbar(message)
+        return isUsernameValid
     }
 }

@@ -23,6 +23,7 @@ import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
@@ -66,39 +67,45 @@ class ConfirmationFragment : BaseFragment() {
      * Start to collect LoginState, action based on Success/Loading/Error
      */
     private fun collectState() = with(binding) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                registrationViewModel.uiConfirmationState.collect { uiState ->
-                    uiState.apply {
-                        // Bind the progress bar visibility
-                        progressBar.isVisible = isLoading
+        with(registrationViewModel) {
+            launchOnLifecycleScope {
+                uiConfirmationState.collect {
+                    // When the user is confirmed
+                    if (it.isConfirmationComplete) {
+                        // Message is shown
+                        val message = getString(R.string.confirmed_account)
+                        showSnackbar(message)
 
-                        // When the user is confirmed
-                        if (isConfirmationComplete) {
-                            // Message is shown
-                            val message = getString(R.string.confirmed_account)
-                            showSnackbar(message)
-
-                            // We navigate to the login screen
-                            findNavController().navigate(R.id.navigation_confirmation_to_navigation_login)
-                        }
-
-                        // When the code is resent
-                        if (isCodeResent) {
-                            // Message is shown
-                            val message = getString(R.string.code_resent)
-                            showSnackbar(message)
-                        }
-
-                        // When an error is present
-                        errorMessage?.run {
-                            manageMessage(this)
-                        }
+                        // We navigate to the login screen
+                        findNavController().navigate(R.id.navigation_confirmation_to_navigation_login)
                     }
+
+                    // When the code is resent
+                    if (it.isCodeResent) {
+                        // Message is shown
+                        val message = getString(R.string.code_resent)
+                        showSnackbar(message)
+                    }
+
+                    // Bind the progress bar visibility
+                    progressBar.isVisible = it.isLoading
+
+                    // When an error is present
+                    it.errorMessage?.run {
+                        manageMessage(this)
+                    }
+                }
+            }
+
+            launchOnLifecycleScope {
+                uiConfirmationFormState.collectLatest {
+                    // Bind the button visibility
+                    confirmationButton.isEnabled = it.code.isNotBlank()
                 }
             }
         }
     }
+
 
     /**
      * Basic settings for UI
@@ -115,13 +122,15 @@ class ConfirmationFragment : BaseFragment() {
      * Function to set listeners for views
      */
     private fun setListeners() = with(binding) {
-        resendCodeButton.setOnClickListener {
-            registrationViewModel.resendCode()
-        }
+        with(registrationViewModel) {
+            confirmationButton.setOnClickListener {
+                if (isFormValid()) {
+                    confirmation(confirmCodeTextField.editText?.text.toString())
+                }
+            }
 
-        confirmationButton.setOnClickListener {
-            if (isFormValid()) {
-                registrationViewModel.confirmation(confirmCodeTextField.editText?.text.toString())
+            resendCodeButton.setOnClickListener {
+                resendCode()
             }
         }
     }
@@ -131,47 +140,21 @@ class ConfirmationFragment : BaseFragment() {
      */
     private fun setTextChangedListeners() = with(binding) {
         confirmCodeTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
+            val code = it.toString().trim()
+            registrationViewModel.setCode(code)
         }
-    }
-
-    /**
-     * Validate form to enable button
-     */
-    private fun isFormValidForButton() = with(binding) {
-        confirmationButton.isEnabled = confirmCodeTextField.editText?.text!!.isNotBlank()
     }
 
     /**
      * Form validation based on other functions
      */
-    private fun isFormValid(): Boolean = isCodeValid()
+    private fun isFormValid(): Boolean = with(binding) {
+        val isCodeValid =
+            registrationViewModel.uiConfirmationFormState.value.isCodeValid.also { valid ->
+                val error = if (!valid) getString(R.string.code_check) else null
+                confirmCodeTextField.error = error
+            }
 
-    /**
-     * Check if the code is valid and manage TextField errors
-     */
-    private fun isCodeValid(): Boolean = with(binding) {
-        val code = confirmCodeTextField.editText?.text!!.trim().toString()
-
-        return if (code.length != 6) {
-            confirmCodeTextField.error = getString(R.string.code_check)
-            false
-        } else {
-            confirmCodeTextField.error = null
-            true
-        }
-    }
-
-    private fun manageMessage(customMessage: DataState.CustomMessages) {
-        // Get the right message
-        val message = when (customMessage) {
-            DataState.CustomMessages.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
-            DataState.CustomMessages.CodeMismatch -> getString(R.string.wrong_confirmation_code)
-            DataState.CustomMessages.CodeExpired -> getString(R.string.expired_confirmation_code)
-            DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
-            else -> getString(R.string.auth_failed_generic)
-        }
-
-        showSnackbar(message)
+        return isCodeValid
     }
 }

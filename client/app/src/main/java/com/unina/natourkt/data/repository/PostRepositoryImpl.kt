@@ -27,7 +27,7 @@ class PostRepositoryImpl @Inject constructor(
      * NOTE: The first page defaults to pageSize * 3!
      */
     companion object {
-        const val NETWORK_PAGE_SIZE = 3
+        const val NETWORK_PAGE_SIZE = 5
     }
 
     /**

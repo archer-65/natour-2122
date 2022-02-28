@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,24 +61,18 @@ class RoutesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentRoutesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        setupUi()
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecycler()
+        setupUi()
         setListeners()
-
+        initRecycler()
+        handleFab()
         collectState()
-
-        findNavController().navigate(R.id.action_navigation_routes_to_navigation_new_route_info)
     }
 
     override fun onDestroyView() {
@@ -132,11 +127,28 @@ class RoutesFragment : Fragment() {
         }
     }
 
-    private fun setListeners() {
+    private fun handleFab() = with(binding) {
+        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                newRouteFab.hide()
+            } else if (scrollX == scrollY) {
+                newRouteFab.show()
+            } else {
+                newRouteFab.show()
+            }
+        }
+    }
+
+    private fun setListeners() = with(binding) {
 //        refresh.setOnRefreshListener {
 //            recyclerAdapter.refresh()
 //            refresh.isRefreshing = false
 //        }
+
+        newRouteFab.setOnClickListener {
+            val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
+            findNavController().navigate(R.id.action_navigation_routes_to_navigation_new_route_flow, null, null, extras)
+        }
     }
 
     /**

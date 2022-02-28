@@ -54,20 +54,16 @@ class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListene
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentPersonalPostsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        setupUi()
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUi()
         initRecycler()
-
+        handleFab()
         collectState()
     }
 
@@ -123,6 +119,18 @@ class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListene
                 else -> {
                     recyclerView.isVisible = true
                 }
+            }
+        }
+    }
+
+    private fun handleFab() = with(binding) {
+        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                newPostFab.hide()
+            } else if (scrollX == scrollY) {
+                newPostFab.show()
+            } else {
+                newPostFab.show()
             }
         }
     }

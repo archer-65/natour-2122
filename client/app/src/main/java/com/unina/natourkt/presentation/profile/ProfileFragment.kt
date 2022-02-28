@@ -85,7 +85,8 @@ class ProfileFragment : BaseFragment() {
 
         val adapter = ViewPagerAdapter(
             fragmentList,
-            requireActivity().supportFragmentManager,
+            childFragmentManager,
+            //requireActivity().supportFragmentManager,
             lifecycle
         )
 

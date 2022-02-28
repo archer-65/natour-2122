@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:transitionName="transitionNewRouteFab">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -133,8 +135,8 @@
                 app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:id="@+id/easyChip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -143,8 +145,8 @@
                     app:chipIconVisible="true" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:id="@+id/mediumChip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/intermediate_difficulty"
@@ -152,8 +154,8 @@
                     app:chipIconVisible="true" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:id="@+id/hardChip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/difficult_difficulty"
@@ -289,9 +291,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="12dp"
+        android:contentDescription="@string/next_fab"
         android:enabled="false"
         android:src="@drawable/ic_baseline_arrow_forward_24"
-        app:fabSize="normal"
-        android:contentDescription="@string/next_fab"/>
+        app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

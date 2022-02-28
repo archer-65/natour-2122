@@ -5,10 +5,10 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.activity.result.ActivityResultLauncher
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.navGraphViewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
-import com.unina.natourkt.presentation.base.contracts.PlacesContract
+import com.unina.natourkt.presentation.base.contract.PlacesContract
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -32,7 +32,7 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
     private lateinit var map: GoogleMap
 
-    private val newRouteViewModel: NewRouteViewModel by activityViewModels()
+    private val newRouteViewModel: NewRouteViewModel by navGraphViewModels(R.id.navigation_new_route_flow)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +52,7 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
         // Here we are creating our MapView and calling onMapReady callback.
         binding.mapView.apply {
             onCreate(savedInstanceState)
-            getMapAsync() {
+            getMapAsync {
                 map = it
                 onMapReady(map)
             }
@@ -70,7 +70,9 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
      */
     private fun initPlacesSearch() {
         launcherPlaces = registerForActivityResult(PlacesContract()) { result ->
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(result.latLng!!, 15f))
+            result?.let {
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(it.latLng!!, 15f))
+            }
         }
     }
 

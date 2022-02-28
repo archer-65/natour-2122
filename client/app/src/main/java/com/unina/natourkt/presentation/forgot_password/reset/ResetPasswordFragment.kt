@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentResetPasswordBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
@@ -25,7 +26,7 @@ class ResetPasswordFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     // ViewModel
-    private val resetPasswordViewModel: ResetPasswordViewModel by viewModels()
+    private val resetPasswordViewModel: ResetPasswordViewModel by navGraphViewModels(R.id.navigation_auth_flow)
 
     override fun onCreateView(
         inflater: LayoutInflater,

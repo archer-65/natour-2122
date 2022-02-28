@@ -1,18 +1,15 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.profile.ProfileFragment">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/profile_photo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:elevation="0dp"
+        app:liftOnScroll="false">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -23,89 +20,90 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profile_photo"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="14dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_avatar_svgrepo_com"
-        app:layout_constraintBottom_toTopOf="@+id/textview_username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/change_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorTertiary"
-        android:src="@drawable/ic_outline_photo_camera_24"
-        android:tint="?attr/colorTertiaryContainer"
-        app:contentPadding="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_photo"
-        app:layout_constraintEnd_toEndOf="@+id/profile_photo"
-        app:layout_constraintStart_toStartOf="@+id/profile_photo"
-        app:layout_constraintTop_toBottomOf="@+id/profile_photo"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-        tools:ignore="PrivateResource" />
-
-    <TextView
-        android:id="@+id/textview_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/placeholder_username"
-        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-        app:layout_constraintBottom_toTopOf="@id/settings_chip"
-        app:layout_constraintEnd_toEndOf="@id/profile_photo"
-        app:layout_constraintStart_toStartOf="@id/profile_photo"
-        app:layout_constraintTop_toBottomOf="@id/profile_photo" />
-
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/settings_chip"
-        style="@style/Widget.Material3.Chip.Assist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="@string/chip_text_settings"
-        app:chipIcon="@drawable/ic_baseline_settings_24"
-        app:ensureMinTouchTargetSize="true"
-        app:layout_constraintBottom_toTopOf="@id/linear_tab"
-        app:layout_constraintEnd_toEndOf="@id/textview_username"
-        app:layout_constraintStart_toStartOf="@id/textview_username"
-        app:layout_constraintTop_toBottomOf="@id/textview_username" />
-
-    <LinearLayout
-        android:id="@+id/linear_tab"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/settings_chip">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".presentation.profile.ProfileFragment">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_photo"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="14dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_avatar_svgrepo_com"
+            app:layout_constraintBottom_toTopOf="@+id/textview_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/change_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorTertiary"
+            android:src="@drawable/ic_outline_photo_camera_24"
+            android:tint="?attr/colorTertiaryContainer"
+            app:contentPadding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_photo"
+            app:layout_constraintEnd_toEndOf="@+id/profile_photo"
+            app:layout_constraintStart_toStartOf="@+id/profile_photo"
+            app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            tools:ignore="PrivateResource" />
+
+        <TextView
+            android:id="@+id/textview_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/placeholder_username"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            app:layout_constraintBottom_toTopOf="@id/settings_chip"
+            app:layout_constraintEnd_toEndOf="@id/profile_photo"
+            app:layout_constraintStart_toStartOf="@id/profile_photo"
+            app:layout_constraintTop_toBottomOf="@id/profile_photo" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/settings_chip"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/chip_text_settings"
+            app:chipIcon="@drawable/ic_baseline_settings_24"
+            app:ensureMinTouchTargetSize="true"
+            app:layout_constraintBottom_toTopOf="@+id/tab_layout"
+            app:layout_constraintEnd_toEndOf="@id/textview_username"
+            app:layout_constraintStart_toStartOf="@id/textview_username"
+            app:layout_constraintTop_toBottomOf="@id/textview_username" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="6dp"
+            app:layout_constraintBottom_toTopOf="@id/viewPager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_chip"
+            app:layout_constraintTop_toBottomOf="@id/settings_chip"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

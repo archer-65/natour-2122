@@ -45,8 +45,8 @@
             android:id="@+id/action_navigation_routes_to_route_details"
             app:destination="@id/navigation_route_details" />
         <action
-            android:id="@+id/action_navigation_routes_to_navigation_new_route_info"
-            app:destination="@id/navigation_new_route_info" />
+            android:id="@+id/action_navigation_routes_to_navigation_new_route_flow"
+            app:destination="@id/navigation_new_route_flow" />
     </fragment>
 
     <fragment
@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_navigation_viewer_post"
             app:destination="@id/navigation_viewer_post" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_new_route_flow"
+            app:destination="@id/navigation_new_route_flow" />
     </fragment>
 
     <navigation
@@ -133,18 +136,21 @@
         android:label="fragment_route_details"
         tools:layout="@layout/fragment_route_details" />
 
-    <fragment
-        android:id="@+id/navigation_new_route_info"
-        android:name="com.unina.natourkt.presentation.new_route.NewRouteInfoFragment"
-        android:label="NewRouteInfoFragment" >
-        <action
-            android:id="@+id/action_navigation_new_route_info_to_navigation_new_route_map"
-            app:destination="@id/navigation_new_route_map" />
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_new_route_map"
-        android:name="com.unina.natourkt.presentation.new_route.NewRouteMapFragment"
-        android:label="fragment_new_route_map"
-        tools:layout="@layout/fragment_new_route_map" />
+    <navigation android:id="@+id/navigation_new_route_flow"
+        app:startDestination="@id/navigation_new_route_info">
+        <fragment
+            android:id="@+id/navigation_new_route_map"
+            android:name="com.unina.natourkt.presentation.new_route.NewRouteMapFragment"
+            android:label="fragment_new_route_map"
+            tools:layout="@layout/fragment_new_route_map" />
+        <fragment
+            android:id="@+id/navigation_new_route_info"
+            android:name="com.unina.natourkt.presentation.new_route.NewRouteInfoFragment"
+            android:label="NewRouteInfoFragment">
+            <action
+                android:id="@+id/action_navigation_new_route_info_to_navigation_new_route_map"
+                app:destination="@id/navigation_new_route_map" />
+        </fragment>
+    </navigation>
 
 </navigation>

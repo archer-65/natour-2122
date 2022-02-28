@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,21 +54,18 @@ class PersonalRoutesFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         _binding = FragmentPersonalRoutesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        setupUi()
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUi()
         initRecycler()
-
+        handleFab()
+        setListeners()
         collectState()
     }
 
@@ -105,6 +104,26 @@ class PersonalRoutesFragment : BaseFragment() {
                     recyclerView.isVisible = true
                 }
             }
+        }
+    }
+
+
+    private fun handleFab() = with(binding) {
+        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                newRouteFab.hide()
+            } else if (scrollX == scrollY) {
+                newRouteFab.show()
+            } else {
+                newRouteFab.show()
+            }
+        }
+    }
+
+    private fun setListeners() = with(binding) {
+        newRouteFab.setOnClickListener {
+            val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
+            findNavController().navigate(R.id.action_navigation_profile_to_navigation_new_route_flow, null, null, extras)
         }
     }
 

@@ -54,20 +54,16 @@ class PersonalCompilationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentPersonalCompilationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        setupUi()
-
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUi()
         initRecycler()
-
+        handleFab()
         collectState()
     }
 
@@ -105,6 +101,18 @@ class PersonalCompilationsFragment : Fragment() {
                 else -> {
                     recyclerView.isVisible = true
                 }
+            }
+        }
+    }
+
+    private fun handleFab() = with(binding) {
+        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                newCompilationFab.hide()
+            } else if (scrollX == scrollY) {
+                newCompilationFab.show()
+            } else {
+                newCompilationFab.show()
             }
         }
     }

@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentRegistrationBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
@@ -28,7 +29,7 @@ class RegistrationFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     // ViewModel
-    private val registrationViewModel: RegistrationViewModel by activityViewModels()
+    private val registrationViewModel: RegistrationViewModel by navGraphViewModels(R.id.navigation_auth_flow)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,10 +81,10 @@ class RegistrationFragment : BaseFragment() {
                 uiRegistrationFormState.collectLatest {
                     // Bind the button visibility
                     signUpButton.isEnabled =
-                            it.username.isNotBlank() &&
-                            it.password.isNotBlank() &&
-                            it.password.isNotBlank() &&
-                            it.confirmPassword.isNotBlank()
+                        it.username.isNotBlank() &&
+                                it.password.isNotBlank() &&
+                                it.password.isNotBlank() &&
+                                it.confirmPassword.isNotBlank()
                 }
             }
         }

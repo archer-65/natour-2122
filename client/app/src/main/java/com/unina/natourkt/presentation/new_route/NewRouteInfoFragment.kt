@@ -12,6 +12,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
+import com.google.android.material.transition.MaterialContainerTransform
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
 import com.unina.natourkt.presentation.base.input_filter.DurationFilter
@@ -27,7 +29,12 @@ class NewRouteInfoFragment : Fragment() {
     private val binding get() = _binding!!
 
     // ViewModel
-    private val newRouteViewModel: NewRouteViewModel by activityViewModels()
+    private val newRouteViewModel: NewRouteViewModel by navGraphViewModels(R.id.navigation_new_route_flow)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -131,6 +138,10 @@ class NewRouteInfoFragment : Fragment() {
                 else -> disabilityFriendlyTextviewSub.text =
                     getString(R.string.disability_access_denied)
             }
+        }
+
+        topAppBar.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
     }
 

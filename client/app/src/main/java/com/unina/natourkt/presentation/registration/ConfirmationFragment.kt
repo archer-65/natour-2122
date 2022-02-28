@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
@@ -37,7 +38,7 @@ class ConfirmationFragment : BaseFragment() {
     private var _binding: FragmentConfirmationBinding? = null
     private val binding get() = _binding!!
 
-    private val registrationViewModel: RegistrationViewModel by activityViewModels()
+    private val registrationViewModel: RegistrationViewModel by navGraphViewModels(R.id.navigation_auth_flow)
 
     override fun onCreateView(
         inflater: LayoutInflater,

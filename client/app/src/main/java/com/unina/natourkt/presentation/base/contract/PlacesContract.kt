@@ -1,13 +1,10 @@
-package com.unina.natourkt.presentation.base.contracts
+package com.unina.natourkt.presentation.base.contract
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity

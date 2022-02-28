@@ -1,4 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,9 +9,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:elevation="0dp"
+        app:liftOnScroll="false">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -24,13 +23,9 @@
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer_container"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/recycler_routes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,41 +50,51 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--        android:id="@+id/swipe_refresh"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/shimmer_container">-->
+    <!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+    <!--        android:id="@+id/swipe_refresh"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_routes"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content" />-->
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/recycler_routes"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
 
-<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+    <!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_routes"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shimmer_container" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        app:layout_anchor="@id/shimmer_container"
+        app:layout_anchorGravity="bottom"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        style="?android:attr/progressBarStyle"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:foregroundGravity="center"-->
-<!--        android:visibility="gone"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />-->
+    <!--    <ProgressBar-->
+    <!--        android:id="@+id/progressBar"-->
+    <!--        style="?android:attr/progressBarStyle"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:foregroundGravity="center"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/newRouteFab"
+        style="?attr/floatingActionButtonSecondaryStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="12dp"
+        android:contentDescription="Nuovo itinerario"
+        android:enabled="true"
+        android:src="@drawable/ic_outline_add_location_24"
+        android:transitionName="transitionNewRouteFab"
+        app:fabSize="normal" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

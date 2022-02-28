@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentForgotPasswordBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
@@ -29,7 +30,7 @@ class ForgotPasswordFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     // ViewModel
-    private val forgotPasswordViewModel: ForgotPasswordViewModel by viewModels()
+    private val forgotPasswordViewModel: ForgotPasswordViewModel by navGraphViewModels(R.id.navigation_auth_flow)
 
     override fun onCreateView(
         inflater: LayoutInflater,

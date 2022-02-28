@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
-import com.unina.natourkt.presentation.base.contracts.PlacesContract
+import com.unina.natourkt.presentation.base.contract.PlacesContract
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter

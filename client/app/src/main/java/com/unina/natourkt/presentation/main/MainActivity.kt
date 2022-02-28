@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.libraries.places.api.Places
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     // NavView and NavController
+    private lateinit var navHostFragment: NavHostFragment
     private lateinit var navView: BottomNavigationView
     private lateinit var navController: NavController
 
@@ -52,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         initPlaces()
         setupUi()
         setListeners()
-
         checkAuthState()
     }
 
@@ -60,10 +61,13 @@ class MainActivity : AppCompatActivity() {
      * Basic settings for UI
      */
     private fun setupUi() {
+        navHostFragment =
+            supportFragmentManager.findFragmentById(binding.navHostFragmentActivityMain.id) as NavHostFragment
+
+        //navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navController = navHostFragment.navController
+
         navView = binding.navView
-
-        navController = findNavController(R.id.nav_host_fragment_activity_main)
-
         navView.setupWithNavController(navController)
 
         navView.applyInsetter {
@@ -102,7 +106,6 @@ class MainActivity : AppCompatActivity() {
     private fun initPlaces() {
         val apiKey = resources.getString(R.string.MAPS_API_KEY)
         Places.initialize(applicationContext, apiKey)
-
-        val placesClient = Places.createClient(this)
+        Places.createClient(this)
     }
 }

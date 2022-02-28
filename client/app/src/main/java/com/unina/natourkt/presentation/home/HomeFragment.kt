@@ -1,6 +1,7 @@
 package com.unina.natourkt.presentation.home
 
 import android.os.Bundle
+import android.transition.Fade
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -57,9 +58,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -69,6 +68,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
         setupUi()
         setListeners()
         initRecycler()
+        handleFab()
         collectState()
     }
 
@@ -131,7 +131,19 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
         }
     }
 
-    fun setListeners() {
+    private fun handleFab() = with(binding) {
+        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                newPostFab.hide()
+            } else if (scrollX == scrollY) {
+                newPostFab.show()
+            } else {
+                newPostFab.show()
+            }
+        }
+    }
+
+    private fun setListeners() {
         refresh.setOnRefreshListener {
             recyclerAdapter.refresh()
         }
@@ -140,15 +152,15 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     /**
      * Start to collect [HomeUiState], action based on Success/Loading/Error
      */
-    private fun collectState() = with(binding){
+    private fun collectState() = with(binding) {
 
         // Make sure to cancel any previous job
         searchJob?.cancel()
         searchJob = viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.uiState.collectLatest { uiState ->
+                homeViewModel.pagingPostsFlow.collectLatest {
                     // Send data to adapter
-                    recyclerAdapter.submitData(uiState.postItems)
+                    recyclerAdapter.submitData(it)
                 }
 
                 recyclerAdapter.loadStateFlow.collectLatest { }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.activity.result.ActivityResultLauncher
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -32,7 +33,7 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
     private lateinit var map: GoogleMap
 
-    private val newRouteViewModel: NewRouteViewModel by navGraphViewModels(R.id.navigation_new_route_flow)
+    private val newRouteViewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
 
     override fun onCreateView(
         inflater: LayoutInflater,

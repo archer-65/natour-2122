@@ -50,27 +50,27 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-    <!--        android:id="@+id/swipe_refresh"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
-
-    <!--        <androidx.recyclerview.widget.RecyclerView-->
-    <!--            android:id="@+id/recycler_routes"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent" />-->
-
-    <!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_routes"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        app:layout_anchor="@id/shimmer_container"
-        app:layout_anchorGravity="bottom"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_routes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recycler_routes"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        app:layout_anchor="@id/shimmer_container"-->
+    <!--        app:layout_anchorGravity="bottom"-->
+    <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
     <!--    <ProgressBar-->
     <!--        android:id="@+id/progressBar"-->

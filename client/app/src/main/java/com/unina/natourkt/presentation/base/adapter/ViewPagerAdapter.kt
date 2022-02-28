@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 
 /**
  * Generic ViewPagerAdapter, accepts three values:
@@ -12,7 +13,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
  * - [Lifecycle] related to Fragment
  */
 class ViewPagerAdapter(
-    val fragmentList: ArrayList<Fragment>,
+    val fragmentList: ArrayList<BaseFragment>,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ): FragmentStateAdapter(fragmentManager, lifecycle) {

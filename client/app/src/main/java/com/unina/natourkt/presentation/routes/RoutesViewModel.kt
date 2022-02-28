@@ -2,11 +2,14 @@ package com.unina.natourkt.presentation.routes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.unina.natourkt.domain.model.route.toUi
 import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.route.GetRoutesUseCase
+import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
+import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
 import com.unina.natourkt.presentation.home.HomeFragment
 import com.unina.natourkt.presentation.home.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,27 +28,22 @@ class RoutesViewModel @Inject constructor(
     /**
      * [RouteUiState] with set of RouteItemUiState
      */
-    private val _uiState = MutableStateFlow(RouteUiState())
-    val uiState: StateFlow<RouteUiState> = _uiState.asStateFlow()
+     // private val _uiState = MutableStateFlow(RouteUiState())
+     // val uiState: StateFlow<RouteUiState> = _uiState.asStateFlow()
+
+    private lateinit var _routesFlow: Flow<PagingData<RouteItemUiState>>
+    val routesFlow: Flow<PagingData<RouteItemUiState>>
+        get() = _routesFlow
 
     init {
         getRoutes()
     }
 
     fun getRoutes() {
-
         viewModelScope.launch {
-
-            // Get routes and map to ItemUiState
-            val routes = getRoutesUseCase()
+            _routesFlow = getRoutesUseCase()
+                .map { pagingData -> pagingData.map { route -> route.toUi() } }
                 .cachedIn(viewModelScope)
-                .first()
-                .map { it.toUi() }
-
-            // Update the General UiState
-            _uiState.update {
-                it.copy(routeItems = routes)
-            }
         }
     }
 }

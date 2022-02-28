@@ -24,25 +24,22 @@ class HomeViewModel @Inject constructor(
     /**
      * [HomeUiState], useless, reserved for future usage
      */
-    private val _uiState = MutableStateFlow(HomeUiState())
-    val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+    // private val _uiState = MutableStateFlow(HomeUiState())
+    // val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
-
-    private val _pagingPostsFlow: Flow<PagingData<PostItemUiState>>
-    val pagingPostsFlow: Flow<PagingData<PostItemUiState>>
-        get() = _pagingPostsFlow
+    private lateinit var _postsFlow: Flow<PagingData<PostItemUiState>>
+    val postsFlow: Flow<PagingData<PostItemUiState>>
+        get() = _postsFlow
 
     init {
-        _pagingPostsFlow = getPosts()
+        getPosts()
     }
 
-    private fun getPosts(): Flow<PagingData<PostItemUiState>> {
-        return getPostsUseCase()
-            .map { pagingData ->
-                pagingData.map { post ->
-                    post.toUi()
-                }
-            }
-            .cachedIn(viewModelScope)
+    private fun getPosts() {
+        viewModelScope.launch {
+            _postsFlow = getPostsUseCase()
+                .map { pagingData -> pagingData.map { compilation -> compilation.toUi() } }
+                .cachedIn(viewModelScope)
+        }
     }
 }

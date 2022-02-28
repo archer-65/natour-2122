@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.presentation.main.MainViewModel
+import kotlinx.coroutines.launch
 
 /**
  * This open class extending [Fragment] provides basic functionality
@@ -46,7 +47,7 @@ open class BaseFragment : Fragment() {
     }
 
     fun launchOnLifecycleScope(execute: suspend () -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 execute()
             }

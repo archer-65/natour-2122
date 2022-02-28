@@ -45,10 +45,7 @@ class PersonalRoutePagingSource @Inject constructor(
 
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Route>): Int? {
-        return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
-        }
+    override fun getRefreshKey(state: PagingState<Int, Route>): Int {
+        return INITIAL_PAGE
     }
 }

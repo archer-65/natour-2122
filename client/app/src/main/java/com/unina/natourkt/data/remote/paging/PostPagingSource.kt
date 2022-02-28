@@ -44,7 +44,7 @@ class PostPagingSource(
 
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Post>): Int? {
-        return 0
+    override fun getRefreshKey(state: PagingState<Int, Post>): Int {
+        return INITIAL_PAGE
     }
 }

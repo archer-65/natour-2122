@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,16 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.common.Constants.COLUMN_COUNT
 import com.unina.natourkt.common.Constants.COLUMN_SPACING
 import com.unina.natourkt.databinding.FragmentPersonalPostsBinding
-import com.unina.natourkt.presentation.base.decoration.GridItemDecoration
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostGridAdapter
+import com.unina.natourkt.presentation.base.decoration.GridItemDecoration
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 /**
  * This Fragment represents the profile posts screen
@@ -45,9 +40,6 @@ class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListene
 
     // ViewModel
     private val personalPostsViewModel: PersonalPostsViewModel by viewModels()
-
-    // Coroutines
-    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -138,16 +130,11 @@ class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListene
     /**
      * Start to collect [PersonalPostsUiState], action based on Success/Loading/Error
      */
-    private fun collectState() {
-
-        // Make sure to cancel any previous job
-        searchJob?.cancel()
-        searchJob = viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                personalPostsViewModel.uiState.collectLatest { uiState ->
-                    // Send data to adapter
-                    recyclerAdapter.submitData(uiState.postItems)
-                }
+    private fun collectState() = with(personalPostsViewModel) {
+        launchOnLifecycleScope {
+            postsFlow.collectLatest {
+                // Send data to adapter
+                recyclerAdapter.submitData(it)
             }
         }
     }

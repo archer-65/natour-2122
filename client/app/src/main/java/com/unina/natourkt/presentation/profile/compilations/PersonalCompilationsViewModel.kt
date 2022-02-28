@@ -2,15 +2,15 @@ package com.unina.natourkt.presentation.profile.compilations
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.unina.natourkt.domain.model.toGridUi
 import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.compilation.GetPersonalCompilationsUseCase
-import com.unina.natourkt.presentation.profile.posts.PersonalPostsFragment
-import com.unina.natourkt.presentation.profile.posts.PersonalPostsUiState
+import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,26 +25,22 @@ class PersonalCompilationsViewModel @Inject constructor(
     /**
      * [PersonalCompilationsUiState] with a set of RouteItemUiState
      */
-    private val _uiState = MutableStateFlow(PersonalCompilationsUiState())
-    val uiState: StateFlow<PersonalCompilationsUiState> = _uiState.asStateFlow()
+    // private val _uiState = MutableStateFlow(PersonalCompilationsUiState())
+    // val uiState: StateFlow<PersonalCompilationsUiState> = _uiState.asStateFlow()
+
+    private lateinit var _compilationsFlow: Flow<PagingData<CompilationItemUiState>>
+    val compilationsFlow: Flow<PagingData<CompilationItemUiState>>
+        get() = _compilationsFlow
 
     init {
-        getPersonalPosts()
+        getPersonalCompilations()
     }
 
-    fun getPersonalPosts() {
-
+    private fun getPersonalCompilations() {
         viewModelScope.launch {
-
-            // Get routes and map to ItemUiState
-            val compilations = getPersonalCompilationsUseCase()
+            _compilationsFlow = getPersonalCompilationsUseCase()
+                .map { pagingData -> pagingData.map { compilation -> compilation.toUi() } }
                 .cachedIn(viewModelScope)
-                .first()
-                .map { it.toUi() }
-
-            _uiState.update {
-                it.copy(compilationItems = compilations)
-            }
         }
     }
 }

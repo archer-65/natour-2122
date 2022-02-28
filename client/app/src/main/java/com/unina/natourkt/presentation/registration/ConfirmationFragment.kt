@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -38,7 +39,7 @@ class ConfirmationFragment : BaseFragment() {
     private var _binding: FragmentConfirmationBinding? = null
     private val binding get() = _binding!!
 
-    private val registrationViewModel: RegistrationViewModel by navGraphViewModels(R.id.navigation_auth_flow)
+    private val registrationViewModel: RegistrationViewModel by hiltNavGraphViewModels(R.id.navigation_auth_flow)
 
     override fun onCreateView(
         inflater: LayoutInflater,

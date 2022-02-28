@@ -20,6 +20,7 @@ import com.unina.natourkt.presentation.base.adapter.CompilationAdapter
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostGridAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.profile.posts.PersonalPostsViewModel
 import com.unina.natourkt.presentation.routes.RouteUiState
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,7 @@ import kotlinx.coroutines.launch
  * filled of paginated compilations
  */
 @AndroidEntryPoint
-class PersonalCompilationsFragment : Fragment() {
+class PersonalCompilationsFragment : BaseFragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -45,9 +46,6 @@ class PersonalCompilationsFragment : Fragment() {
 
     // ViewModel
     private val personalCompilationsViewModel: PersonalCompilationsViewModel by viewModels()
-
-    // Coroutines
-    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -121,13 +119,11 @@ class PersonalCompilationsFragment : Fragment() {
      * Start to collect [PersonalCompilationsUiState], action based on Success/Loading/Error
      */
     private fun collectState() {
-
-        searchJob?.cancel()
-        searchJob = viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                personalCompilationsViewModel.uiState.collectLatest { uiState ->
+        with(personalCompilationsViewModel) {
+            launchOnLifecycleScope {
+                compilationsFlow.collectLatest {
                     // Send data to adapter
-                    recyclerAdapter.submitData(uiState.compilationItems)
+                    recyclerAdapter.submitData(it)
                 }
             }
         }

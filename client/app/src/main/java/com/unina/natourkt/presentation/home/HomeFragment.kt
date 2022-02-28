@@ -50,9 +50,6 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     // ViewModel
     private val homeViewModel: HomeViewModel by viewModels()
 
-    // Coroutines
-    private var searchJob: Job? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -108,8 +105,6 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
             )
         }
 
-
-
         recyclerAdapter.addLoadStateListener { loadState ->
 
             refresh.isRefreshing = loadState.source.refresh is LoadState.Loading
@@ -153,17 +148,13 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
      * Start to collect [HomeUiState], action based on Success/Loading/Error
      */
     private fun collectState() = with(binding) {
-
-        // Make sure to cancel any previous job
-        searchJob?.cancel()
-        searchJob = viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.pagingPostsFlow.collectLatest {
+        with(homeViewModel) {
+            launchOnLifecycleScope {
+                postsFlow.collectLatest {
                     // Send data to adapter
                     recyclerAdapter.submitData(it)
                 }
-
-                recyclerAdapter.loadStateFlow.collectLatest { }
+                //recyclerAdapter.loadStateFlow.collectLatest { }
             }
         }
     }

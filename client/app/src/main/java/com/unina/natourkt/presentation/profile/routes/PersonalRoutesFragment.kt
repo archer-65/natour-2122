@@ -123,22 +123,23 @@ class PersonalRoutesFragment : BaseFragment() {
     private fun setListeners() = with(binding) {
         newRouteFab.setOnClickListener {
             val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
-            findNavController().navigate(R.id.action_navigation_profile_to_navigation_new_route_flow, null, null, extras)
+            findNavController().navigate(
+                R.id.action_navigation_profile_to_navigation_new_route_flow,
+                null,
+                null,
+                extras
+            )
         }
     }
 
     /**
      * Start to collect [PersonalRoutesUiState], action based on Success/Loading/Error
      */
-    private fun collectState() {
-
-        searchJob?.cancel()
-        searchJob = viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                personalRoutesViewModel.uiState.collectLatest { uiState ->
-                    // Send data to adapter
-                    recyclerAdapter.submitData(uiState.routeItems)
-                }
+    private fun collectState() = with(personalRoutesViewModel) {
+        launchOnLifecycleScope {
+            routesFlow.collectLatest {
+                // Send data to adapter
+                recyclerAdapter.submitData(it)
             }
         }
     }

@@ -25,6 +25,7 @@ import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.home.HomeUiState
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -37,7 +38,7 @@ import kotlinx.coroutines.launch
  * filled of paginated routes
  */
 @AndroidEntryPoint
-class RoutesFragment : Fragment() {
+class RoutesFragment : BaseFragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,13 +49,10 @@ class RoutesFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: RouteAdapter
     private lateinit var shimmerFrame: ShimmerFrameLayout
-    //private lateinit var refresh: SwipeRefreshLayout
+    private lateinit var refresh: SwipeRefreshLayout
 
     // ViewModel
     private val routesViewModel: RoutesViewModel by viewModels()
-
-    // Coroutines
-    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -94,7 +92,7 @@ class RoutesFragment : Fragment() {
 
         shimmerFrame = binding.shimmerContainer
 
-        //refresh = binding.swipeRefresh
+        refresh = binding.swipeRefresh
     }
 
     /**
@@ -110,6 +108,9 @@ class RoutesFragment : Fragment() {
             )
         }
         recyclerAdapter.addLoadStateListener { loadState ->
+
+            refresh.isRefreshing = loadState.source.refresh is LoadState.Loading
+
             when (loadState.source.refresh) {
                 // If loading, start the shimmer animation and mark as GONE the Recycler
                 is LoadState.Loading -> {
@@ -140,29 +141,29 @@ class RoutesFragment : Fragment() {
     }
 
     private fun setListeners() = with(binding) {
-//        refresh.setOnRefreshListener {
-//            recyclerAdapter.refresh()
-//            refresh.isRefreshing = false
-//        }
+        refresh.setOnRefreshListener {
+            recyclerAdapter.refresh()
+        }
 
         newRouteFab.setOnClickListener {
             val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
-            findNavController().navigate(R.id.action_navigation_routes_to_navigation_new_route_flow, null, null, extras)
+            findNavController().navigate(
+                R.id.action_navigation_routes_to_navigation_new_route_flow,
+                null,
+                null,
+                extras
+            )
         }
     }
 
     /**
      * Start to collect [RouteUiState], action based on Success/Loading/Error
      */
-    private fun collectState() {
-
-        searchJob?.cancel()
-        searchJob = viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                routesViewModel.uiState.collectLatest { uiState ->
-                    // Send data to adapter
-                    recyclerAdapter.submitData(uiState.routeItems)
-                }
+    private fun collectState() = with(routesViewModel) {
+        launchOnLifecycleScope {
+            routesFlow.collectLatest {
+                // Send data to adapter
+                recyclerAdapter.submitData(it)
             }
         }
     }

@@ -7,22 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.activityViewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.google.android.material.transition.MaterialContainerTransform
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.input_filter.DurationFilter
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class NewRouteInfoFragment : Fragment() {
+class NewRouteInfoFragment : BaseFragment() {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
@@ -56,16 +55,59 @@ class NewRouteInfoFragment : Fragment() {
         collectState()
     }
 
-    private fun collectState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                newRouteViewModel.uiState.collect() { uiState ->
-                    uiState.apply {
-                        bindInfo(routeInfo)
-                    }
+    override fun setupUi() {
+        with(binding) {
+            topAppBar.applyInsetter {
+                type(statusBars = true) {
+                    margin()
                 }
             }
+
+            nextFab.applyInsetter {
+                type(navigationBars = true) {
+                    margin()
+                }
+            }
+
+            durationTextField.editText?.apply {
+                filters = arrayOf<InputFilter>(DurationFilter(1, 16))
+            }
         }
+    }
+
+    override fun setListeners() = with(binding) {
+        nextFab.setOnClickListener {
+            // Prepare information before next screen
+            prepareInfo(newRouteViewModel.uiState.value.routeInfo)
+            findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
+        }
+
+        disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
+            when (state) {
+                true -> disabilityFriendlyTextviewSub.text =
+                    getString(R.string.disability_access)
+                else -> disabilityFriendlyTextviewSub.text =
+                    getString(R.string.disability_access_denied)
+            }
+        }
+
+        topAppBar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun setTextChangedListeners() = with(binding) {
+        routeTitleTextField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+        durationTextField.editText?.doAfterTextChanged {
+            isFormValidForButton()
+        }
+    }
+
+    private fun isFormValidForButton() = with(binding) {
+        nextFab.isEnabled =
+            routeTitleTextField.editText?.text!!.isNotBlank() && durationTextField.editText?.text!!.isNotBlank()
     }
 
     private fun prepareInfo(route: NewRouteInfo) = with(binding) {
@@ -107,56 +149,15 @@ class NewRouteInfoFragment : Fragment() {
         disabilityFriendlySwitch.isChecked = route.disabilityFriendly
     }
 
-    private fun setupUi() = with(binding) {
-        topAppBar.applyInsetter {
-            type(statusBars = true) {
-                margin()
+    override fun collectState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                newRouteViewModel.uiState.collect() { uiState ->
+                    uiState.apply {
+                        bindInfo(routeInfo)
+                    }
+                }
             }
         }
-
-        nextFab.applyInsetter {
-            type(navigationBars = true) {
-                margin()
-            }
-        }
-
-        durationTextField.editText?.apply {
-            filters = arrayOf<InputFilter>(DurationFilter(1, 16))
-        }
-    }
-
-    private fun setListeners() = with(binding) {
-        nextFab.setOnClickListener {
-            // Prepare information before next screen
-            prepareInfo(newRouteViewModel.uiState.value.routeInfo)
-            findNavController().navigate(R.id.action_navigation_new_route_info_to_navigation_new_route_map)
-        }
-
-        disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
-            when (state) {
-                true -> disabilityFriendlyTextviewSub.text =
-                    getString(R.string.disability_access)
-                else -> disabilityFriendlyTextviewSub.text =
-                    getString(R.string.disability_access_denied)
-            }
-        }
-
-        topAppBar.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }
-    }
-
-    private fun setTextChangedListeners() = with(binding) {
-        routeTitleTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
-        }
-        durationTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
-        }
-    }
-
-    private fun isFormValidForButton() = with(binding) {
-        nextFab.isEnabled =
-            routeTitleTextField.editText?.text!!.isNotBlank() && durationTextField.editText?.text!!.isNotBlank()
     }
 }

@@ -56,50 +56,20 @@ class LoginFragment : BaseFragment() {
     }
 
     /**
-     * Start to collect [LoginUiState], action based on Success/Loading/Error
-     */
-    private fun collectState() = with(binding) {
-        with(loginViewModel) {
-            launchOnLifecycleScope {
-                uiState.collect {
-                    // When the user is logged in
-                    if (it.isUserLoggedIn) {
-                        // We navigate to the home screen
-                        findNavController().navigate(R.id.navigation_login_to_navigation_home)
-                    }
-
-                    // Bind the progress bar visibility
-                    progressBar.isVisible = it.isLoading
-
-                    // When an error is present
-                    it.errorMessage?.run {
-                        manageMessage(this)
-                    }
-                }
-            }
-
-            launchOnLifecycleScope {
-                formState.collectLatest {
-                    // Bind the button visibility
-                    loginButton.isEnabled = it.username.isNotBlank() && it.password.isNotBlank()
-                }
-            }
-        }
-    }
-
-    /**
      * Basic settings for UI
      */
-    private fun setupUi() = with(binding) {
-        facebookButton.applyInsetter {
-            type(navigationBars = true) {
-                margin()
+    override fun setupUi() {
+        with(binding) {
+            facebookButton.applyInsetter {
+                type(navigationBars = true) {
+                    margin()
+                }
             }
-        }
 
-        loginImage.applyInsetter {
-            type(statusBars = true) {
-                margin()
+            loginImage.applyInsetter {
+                type(statusBars = true) {
+                    margin()
+                }
             }
         }
     }
@@ -107,7 +77,7 @@ class LoginFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    private fun setListeners() = with(binding) {
+    override fun setListeners() = with(binding) {
         with(loginViewModel) {
             loginButton.setOnClickListener {
                 if (isFormValid()) {
@@ -119,11 +89,11 @@ class LoginFragment : BaseFragment() {
             }
 
             forgotPasswordButton.setOnClickListener {
-                findNavController().navigate(R.id.navigation_login_to_navigation_forgot_password)
+                findNavController().navigate(R.id.action_login_to_forgot_password)
             }
 
             signUpTextView.setOnClickListener {
-                findNavController().navigate(R.id.navigation_login_to_navigation_registration)
+                findNavController().navigate(R.id.action_login_to_registration)
             }
 
             googleButton.setOnClickListener {
@@ -167,5 +137,34 @@ class LoginFragment : BaseFragment() {
         }
 
         return isUsernameValid && isPasswordValid
+    }
+
+    override fun collectState() = with(binding) {
+        with(loginViewModel) {
+            launchOnLifecycleScope {
+                uiState.collect {
+                    // When the user is logged in
+                    if (it.isUserLoggedIn) {
+                        // We navigate to the home screen
+                        findNavController().navigate(R.id.navigation_login_to_navigation_home)
+                    }
+
+                    // Bind the progress bar visibility
+                    progressBar.isVisible = it.isLoading
+
+                    // When an error is present
+                    it.errorMessage?.run {
+                        manageMessage(this)
+                    }
+                }
+            }
+
+            launchOnLifecycleScope {
+                formState.collectLatest {
+                    // Bind the button visibility
+                    loginButton.isEnabled = it.username.isNotBlank() && it.password.isNotBlank()
+                }
+            }
+        }
     }
 }

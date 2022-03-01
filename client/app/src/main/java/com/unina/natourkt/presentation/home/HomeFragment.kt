@@ -1,24 +1,16 @@
 package com.unina.natourkt.presentation.home
 
 import android.os.Bundle
-import android.transition.Fade
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.facebook.shimmer.ShimmerFrameLayout
+import com.unina.natourkt.common.scrollBehavior
 import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
@@ -26,9 +18,7 @@ import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 /**
  * This Fragment represents the home screen
@@ -37,15 +27,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    // Recycler elements
-    private lateinit var recyclerAdapter: PostAdapter
+    private val recyclerAdapter = PostAdapter(this@HomeFragment)
 
-    // ViewModel
     private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -63,7 +49,6 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
         setupUi()
         setListeners()
         initRecycler()
-        handleFab()
         collectState()
     }
 
@@ -72,22 +57,27 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
         _binding = null
     }
 
-    /**
-     * Basic settings for UI
-     */
-    private fun setupUi() = with(binding) {
-        topAppBar.applyInsetter {
-            type(statusBars = true) {
-                margin()
+    override fun setupUi() {
+        with(binding) {
+            topAppBar.applyInsetter {
+                type(statusBars = true) {
+                    margin()
+                }
             }
         }
     }
 
-    /**
-     * Recycler View init function
-     */
-    private fun initRecycler() = with(binding) {
-        recyclerAdapter = PostAdapter(this@HomeFragment)
+    override fun initRecycler() {
+        with(binding) {
+            recyclerHome.apply {
+                layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
+                adapter = initConcatAdapter()
+                scrollBehavior(newPostFab)
+            }
+        }
+    }
+
+    override fun initConcatAdapter(): ConcatAdapter = with(binding) {
         val footerLoadStateAdapter = ItemLoadStateAdapter()
         val headerLoadStateAdapter = ItemLoadStateAdapter()
 
@@ -103,45 +93,25 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
 
         val concatAdapter =
             ConcatAdapter(headerLoadStateAdapter, recyclerAdapter, footerLoadStateAdapter)
-
-        recyclerHome.apply {
-            layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
-            adapter = concatAdapter
-        }
+        return concatAdapter
     }
 
-    private fun handleFab() = with(binding) {
-        recyclerHome.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (scrollY > oldScrollY) {
-                newPostFab.hide()
-            } else if (scrollX == scrollY) {
-                newPostFab.show()
-            } else {
-                newPostFab.show()
-            }
-        }
-    }
-
-    private fun setListeners() = with(binding) {
+    override fun setListeners() = with(binding) {
         swipeRefresh.setOnRefreshListener {
             recyclerAdapter.refresh()
         }
     }
 
-    /**
-     * Start to collect [HomeUiState], action based on Success/Loading/Error
-     */
-    private fun collectState() = with(homeViewModel) {
+    override fun collectState() = with(homeViewModel) {
         launchOnLifecycleScope {
             postsFlow.collectLatest {
-                // Send data to adapter
                 recyclerAdapter.submitData(it)
             }
         }
     }
 
     override fun onItemClick(post: PostItemUiState) {
-        val action = HomeFragmentDirections.actionNavigationHomeToNavigationViewerPost(
+        val action = HomeFragmentDirections.actionHomeToPostDetails(
             post.id,
             post.authorId
         )

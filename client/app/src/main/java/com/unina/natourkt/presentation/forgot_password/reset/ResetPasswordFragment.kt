@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentResetPasswordBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
@@ -55,34 +53,36 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Start to collect [ResetPasswordUiState], action based on Success/Loading/Error
      */
-    fun collectState() = with(binding) {
-        with(resetPasswordViewModel) {
-            launchOnLifecycleScope {
-                uiState.collect {
-                    // When the password is reset
-                    if (it.isPasswordReset) {
-                        val message = getString(R.string.password_reset_success)
-                        showSnackbar(message)
+    override fun collectState() {
+        with(binding) {
+            with(resetPasswordViewModel) {
+                launchOnLifecycleScope {
+                    uiState.collect {
+                        // When the password is reset
+                        if (it.isPasswordReset) {
+                            val message = getString(R.string.password_reset_success)
+                            showSnackbar(message)
 
-                        // We navigate to login screen
-                        findNavController().navigate(R.id.navigation_new_password_to_navigation_login)
-                    }
+                            // We navigate to login screen
+                            findNavController().navigate(R.id.action_new_password_to_login)
+                        }
 
-                    // Bind the progress bar visibility
-                    progressBar.isVisible = it.isLoading
+                        // Bind the progress bar visibility
+                        progressBar.isVisible = it.isLoading
 
-                    // When an error is present
-                    it.errorMessage?.run {
-                        manageMessage(this)
+                        // When an error is present
+                        it.errorMessage?.run {
+                            manageMessage(this)
+                        }
                     }
                 }
-            }
 
-            launchOnLifecycleScope {
-                formState.collectLatest {
-                    // Bind the button visibility
-                    passwordResetButton.isEnabled =
-                        it.code.isNotBlank() && it.password.isNotBlank() && it.confirmPassword.isNotBlank()
+                launchOnLifecycleScope {
+                    formState.collectLatest {
+                        // Bind the button visibility
+                        passwordResetButton.isEnabled =
+                            it.code.isNotBlank() && it.password.isNotBlank() && it.confirmPassword.isNotBlank()
+                    }
                 }
             }
         }
@@ -91,16 +91,18 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    fun setupUi() = with(binding) {
-        passwordResetButton.applyInsetter {
-            type(navigationBars = true) {
-                margin()
+    override fun setupUi() {
+        with(binding) {
+            passwordResetButton.applyInsetter {
+                type(navigationBars = true) {
+                    margin()
+                }
             }
-        }
 
-        forgotPasswordImage.applyInsetter {
-            type(statusBars = true) {
-                margin()
+            forgotPasswordImage.applyInsetter {
+                type(statusBars = true) {
+                    margin()
+                }
             }
         }
     }
@@ -108,13 +110,15 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    private fun setListeners() = with(binding) {
-        passwordResetButton.setOnClickListener {
-            if (isFormValid()) {
-                resetPasswordViewModel.resetConfirm(
-                    passwordTextField.editText?.text.toString(),
-                    confirmCodeTextField.editText?.text.toString()
-                )
+    override fun setListeners() {
+        with(binding) {
+            passwordResetButton.setOnClickListener {
+                if (isFormValid()) {
+                    resetPasswordViewModel.resetConfirm(
+                        passwordTextField.editText?.text.toString(),
+                        confirmCodeTextField.editText?.text.toString()
+                    )
+                }
             }
         }
     }

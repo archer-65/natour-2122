@@ -1,32 +1,24 @@
 package com.unina.natourkt.presentation.profile.routes
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.shimmer.ShimmerFrameLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentPersonalRoutesBinding
-import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.routes.RouteUiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 /**
  * This Fragment represents the personal routes part of the profile screen
@@ -77,14 +69,14 @@ class PersonalRoutesFragment : BaseFragment() {
     /**
      * Basic settings for Ui
      */
-    private fun setupUi() {
+    override fun setupUi() {
         recyclerView = binding.recyclerRoutes
     }
 
     /**
      * Recycler View init function
      */
-    private fun initRecycler() {
+    override fun initRecycler() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@PersonalRoutesFragment.requireContext())
             recyclerAdapter = RouteAdapter()
@@ -120,11 +112,11 @@ class PersonalRoutesFragment : BaseFragment() {
         }
     }
 
-    private fun setListeners() = with(binding) {
+    override fun setListeners() = with(binding) {
         newRouteFab.setOnClickListener {
             val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
             findNavController().navigate(
-                R.id.action_navigation_profile_to_navigation_new_route_flow,
+                R.id.action_profile_to_new_route_flow,
                 null,
                 null,
                 extras
@@ -135,7 +127,7 @@ class PersonalRoutesFragment : BaseFragment() {
     /**
      * Start to collect [PersonalRoutesUiState], action based on Success/Loading/Error
      */
-    private fun collectState() = with(personalRoutesViewModel) {
+    override fun collectState() = with(personalRoutesViewModel) {
         launchOnLifecycleScope {
             routesFlow.collectLatest {
                 // Send data to adapter

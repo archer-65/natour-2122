@@ -57,7 +57,7 @@ class ProfileFragment : BaseFragment() {
         _binding = null
     }
 
-    private fun setupUi() {
+    override fun setupUi() {
         binding.topAppBar.applyInsetter {
             type(statusBars = true) {
                 margin()

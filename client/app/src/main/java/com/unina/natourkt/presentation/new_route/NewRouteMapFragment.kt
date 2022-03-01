@@ -19,11 +19,12 @@ import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
 import com.unina.natourkt.presentation.base.contract.PlacesContract
+import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
+class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
 
     // This property is only valid between OnCreateView and
     // onDestroyView.
@@ -80,29 +81,31 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
     /**
      * Basic settings for UI
      */
-    private fun setupUi() = with(binding) {
-        mapView.applyInsetter {
-            type(navigationBars = true) {
-                margin()
-            }
-        }
-
-        nextFab.applyInsetter {
-            type(navigationBars = true) {
-                margin()
-            }
-        }
-
-        topAppBar.apply {
-            applyInsetter {
-                type(statusBars = true) {
+    override fun setupUi() {
+        with(binding) {
+            mapView.applyInsetter {
+                type(navigationBars = true) {
                     margin()
+                }
+            }
+
+            nextFab.applyInsetter {
+                type(navigationBars = true) {
+                    margin()
+                }
+            }
+
+            topAppBar.apply {
+                applyInsetter {
+                    type(statusBars = true) {
+                        margin()
+                    }
                 }
             }
         }
     }
 
-    private fun setListeners() = with(binding) {
+    override fun setListeners() = with(binding) {
         topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.search_place -> {
@@ -117,17 +120,7 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    override fun onMapReady(googleMap: GoogleMap) = with(newRouteViewModel) {
-        initMap()
-        collectState()
-
-        googleMap.setOnMapClickListener {
-            addStop(it.latitude, it.longitude)
-            Log.i("AGGIUNTA STOP", it.toString())
-        }
-    }
-
-    private fun collectState() {
+    override fun collectState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 newRouteViewModel.uiState.collect { uiState ->
@@ -165,6 +158,16 @@ class NewRouteMapFragment : Fragment(), OnMapReadyCallback {
         }
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15f))
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) = with(newRouteViewModel) {
+        initMap()
+        collectState()
+
+        googleMap.setOnMapClickListener {
+            addStop(it.latitude, it.longitude)
+            Log.i("AGGIUNTA STOP", it.toString())
+        }
     }
 
     // Here we are overriding lifecycle functions to manage MapView's lifecycle

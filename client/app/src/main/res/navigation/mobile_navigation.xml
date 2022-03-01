@@ -11,26 +11,24 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/navigation_home_to_navigation_auth_flow"
+            android:id="@+id/action_home_to_auth_flow"
             app:destination="@id/navigation_auth_flow"
             app:popUpTo="@id/mobile_navigation"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_navigation_home_to_navigation_viewer_post"
-            app:destination="@id/navigation_viewer_post" />
+            android:id="@+id/action_home_to_post_details"
+            app:destination="@id/navigation_post_details" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_viewer_post"
+        android:id="@+id/navigation_post_details"
         android:name="com.unina.natourkt.presentation.post_details.PostDetailsFragment"
         android:label="Dettaglio post"
         tools:layout="@layout/fragment_post_details">
 
         <argument
             android:name="postId"
-            app:argType="long"
-
-            />
+            app:argType="long" />
         <argument
             android:name="authorId"
             app:argType="long" />
@@ -42,10 +40,10 @@
         android:label="@string/title_routes"
         tools:layout="@layout/fragment_routes">
         <action
-            android:id="@+id/action_navigation_routes_to_route_details"
+            android:id="@+id/action_routes_to_route_details"
             app:destination="@id/navigation_route_details" />
         <action
-            android:id="@+id/action_navigation_routes_to_navigation_new_route_flow"
+            android:id="@+id/action_routes_to_new_route_flow"
             app:destination="@id/navigation_new_route_flow" />
     </fragment>
 
@@ -55,10 +53,10 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_navigation_profile_to_navigation_viewer_post"
-            app:destination="@id/navigation_viewer_post" />
+            android:id="@+id/action_profile_to_post_details"
+            app:destination="@id/navigation_post_details" />
         <action
-            android:id="@+id/action_navigation_profile_to_navigation_new_route_flow"
+            android:id="@+id/action_profile_to_new_route_flow"
             app:destination="@id/navigation_new_route_flow" />
     </fragment>
 
@@ -77,10 +75,10 @@
                 app:popUpTo="@id/navigation_auth_flow"
                 app:popUpToInclusive="true" />
             <action
-                android:id="@+id/navigation_login_to_navigation_registration"
+                android:id="@+id/action_login_to_registration"
                 app:destination="@id/navigation_registration" />
             <action
-                android:id="@+id/navigation_login_to_navigation_forgot_password"
+                android:id="@+id/action_login_to_forgot_password"
                 app:destination="@id/navigation_forgot_password" />
         </fragment>
 
@@ -90,7 +88,7 @@
             android:label="Reset password"
             tools:layout="@layout/fragment_forgot_password">
             <action
-                android:id="@+id/navigation_forgot_password_to_navigation_new_password"
+                android:id="@+id/action_forgot_password_to_new_password"
                 app:destination="@id/navigation_new_password" />
         </fragment>
 
@@ -100,7 +98,7 @@
             android:label="Nuova password"
             tools:layout="@layout/fragment_reset_password">
             <action
-                android:id="@+id/navigation_new_password_to_navigation_login"
+                android:id="@+id/action_new_password_to_login"
                 app:destination="@id/navigation_login"
                 app:popUpTo="@id/navigation_login"
                 app:popUpToInclusive="true" />
@@ -112,7 +110,7 @@
             android:label="Registrazione"
             tools:layout="@layout/fragment_registration">
             <action
-                android:id="@+id/navigation_registration_to_navigation_confirmation"
+                android:id="@+id/action_registration_to_confirmation"
                 app:destination="@id/navigation_confirmation" />
         </fragment>
 
@@ -122,7 +120,7 @@
             android:label="Conferma codice"
             tools:layout="@layout/fragment_confirmation">
             <action
-                android:id="@+id/navigation_confirmation_to_navigation_login"
+                android:id="@+id/action_confirmation_to_login"
                 app:destination="@id/navigation_login"
                 app:popUpTo="@id/navigation_login"
                 app:popUpToInclusive="true" />
@@ -136,21 +134,25 @@
         android:label="fragment_route_details"
         tools:layout="@layout/fragment_route_details" />
 
-    <navigation android:id="@+id/navigation_new_route_flow"
+    <navigation
+        android:id="@+id/navigation_new_route_flow"
         app:startDestination="@id/navigation_new_route_info">
+
         <fragment
             android:id="@+id/navigation_new_route_map"
             android:name="com.unina.natourkt.presentation.new_route.NewRouteMapFragment"
             android:label="fragment_new_route_map"
             tools:layout="@layout/fragment_new_route_map" />
+
         <fragment
             android:id="@+id/navigation_new_route_info"
             android:name="com.unina.natourkt.presentation.new_route.NewRouteInfoFragment"
             android:label="NewRouteInfoFragment">
             <action
-                android:id="@+id/action_navigation_new_route_info_to_navigation_new_route_map"
+                android:id="@+id/action_new_route_info_to_new_route_map"
                 app:destination="@id/navigation_new_route_map" />
         </fragment>
+
     </navigation>
 
 </navigation>

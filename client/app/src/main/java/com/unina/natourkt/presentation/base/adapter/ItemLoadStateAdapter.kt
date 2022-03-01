@@ -1,16 +1,15 @@
 package com.unina.natourkt.presentation.base.adapter
 
-import android.accounts.NetworkErrorException
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.NetworkError
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.databinding.ItemLoadBinding
+import javax.inject.Inject
 
 /**
  * The ItemLoadStateAdapter is a common class used by Paging Adapters
@@ -38,17 +37,12 @@ class ItemLoadStateAdapter : LoadStateAdapter<ItemLoadStateAdapter.LoadStateView
          * one CustomMessage, this one could be used for Error Messages
          */
         fun bind(loadState: LoadState) = with(binding) {
-            val errorHandler = ErrorHandler()
-            // Error management
-//            if (loadState is LoadState.Error) {
-//
-//                val error = errorHandler.handleException(loadState.error)
-//                errorLayout.isVisible = error is DataState.CustomMessage.NetworkError
-//            }
-
             // State Views visibility
+            val errorHandler = ErrorHandler()
+
             progressBar.isVisible = loadState is LoadState.Loading
-            errorLayout.isVisible = loadState is LoadState.Error && errorHandler.handleException(loadState.error) is DataState.CustomMessage.NetworkError
+            errorLayout.isVisible =
+                loadState is LoadState.Error && errorHandler.handleException(loadState.error) is DataState.CustomMessage.NetworkError
         }
     }
 }

@@ -73,14 +73,14 @@ class PersonalCompilationsFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    private fun setupUi() {
+    override fun setupUi() {
         recyclerView = binding.recyclerCompilations
     }
 
     /**
      * Recycler View init function
      */
-    private fun initRecycler() {
+    override fun initRecycler() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@PersonalCompilationsFragment.requireContext())
             recyclerAdapter = CompilationAdapter()
@@ -115,10 +115,7 @@ class PersonalCompilationsFragment : BaseFragment() {
         }
     }
 
-    /**
-     * Start to collect [PersonalCompilationsUiState], action based on Success/Loading/Error
-     */
-    private fun collectState() {
+    override fun collectState() {
         with(personalCompilationsViewModel) {
             launchOnLifecycleScope {
                 compilationsFlow.collectLatest {

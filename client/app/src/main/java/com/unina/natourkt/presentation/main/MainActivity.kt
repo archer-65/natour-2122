@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.libraries.places.api.Places
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         loggedUser = mainViewModel.loggedUser
 
         if (!isUserAuthenticated || loggedUser == null) {
-            navController.navigate(R.id.navigation_home_to_navigation_auth_flow)
+            navController.navigate(R.id.action_home_to_auth_flow)
         }
     }
 

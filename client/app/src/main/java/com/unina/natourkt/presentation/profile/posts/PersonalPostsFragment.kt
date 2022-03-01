@@ -67,14 +67,14 @@ class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListene
     /**
      * Basic settings for UI
      */
-    private fun setupUi() {
+    override fun setupUi() {
         recyclerView = binding.recyclerProfilePosts
     }
 
     /**
      * Recycler View init function
      */
-    private fun initRecycler() {
+    override fun initRecycler() {
         recyclerView.apply {
             // Grid declaration with Columns count
             val grid = GridLayoutManager(this@PersonalPostsFragment.requireContext(), COLUMN_COUNT)
@@ -130,7 +130,7 @@ class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListene
     /**
      * Start to collect [PersonalPostsUiState], action based on Success/Loading/Error
      */
-    private fun collectState() = with(personalPostsViewModel) {
+    override fun collectState() = with(personalPostsViewModel) {
         launchOnLifecycleScope {
             postsFlow.collectLatest {
                 // Send data to adapter
@@ -140,7 +140,7 @@ class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListene
     }
 
     override fun onItemClick(post: PostGridItemUiState) {
-        val action = ProfileFragmentDirections.actionNavigationProfileToNavigationViewerPost(
+        val action = ProfileFragmentDirections.actionProfileToPostDetails(
             post.id,
             post.authorId
         )

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
@@ -57,14 +56,14 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Start to collect [RegistrationUiState], action based on Success/Loading/Error
      */
-    private fun collectState() = with(binding) {
+    override fun collectState() = with(binding) {
         with(registrationViewModel) {
             launchOnLifecycleScope {
                 uiRegistrationState.collect {
                     // When the sign up is complete
                     if (it.isSignUpComplete) {
                         // We navigate to the home screen
-                        findNavController().navigate(R.id.navigation_registration_to_navigation_confirmation)
+                        findNavController().navigate(R.id.action_registration_to_confirmation)
                     }
 
                     // Bind the progress bar visibility
@@ -93,16 +92,18 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    private fun setupUi() = with(binding) {
-        signUpButton.applyInsetter {
-            type(navigationBars = true) {
-                margin()
+    override fun setupUi() {
+        with(binding) {
+            signUpButton.applyInsetter {
+                type(navigationBars = true) {
+                    margin()
+                }
             }
-        }
 
-        registrationImage.applyInsetter {
-            type(statusBars = true) {
-                margin()
+            registrationImage.applyInsetter {
+                type(statusBars = true) {
+                    margin()
+                }
             }
         }
     }
@@ -110,7 +111,7 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    private fun setListeners() = with(binding) {
+    override fun setListeners() = with(binding) {
         signUpButton.setOnClickListener {
             if (isFormValid()) {
                 registrationViewModel.registration(

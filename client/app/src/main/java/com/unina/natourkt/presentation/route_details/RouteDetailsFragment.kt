@@ -61,7 +61,7 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback{
     /**
      * Basic settings for UI
      */
-    fun setupUi() {
+    override fun setupUi() {
         binding.mapView.applyInsetter {
             type(navigationBars = true) {
                 margin()

@@ -4,15 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
@@ -23,15 +16,11 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
-import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.home.HomeUiState
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 /**
  * This Fragment represents the routes screen
@@ -81,7 +70,7 @@ class RoutesFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    private fun setupUi() {
+    override fun setupUi() {
         binding.topAppBar.applyInsetter {
             type(statusBars = true) {
                 margin()
@@ -98,7 +87,7 @@ class RoutesFragment : BaseFragment() {
     /**
      * Recycler View init function
      */
-    private fun initRecycler() {
+    override fun initRecycler() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@RoutesFragment.requireContext())
             recyclerAdapter = RouteAdapter()
@@ -140,7 +129,7 @@ class RoutesFragment : BaseFragment() {
         }
     }
 
-    private fun setListeners() = with(binding) {
+    override fun setListeners() = with(binding) {
         refresh.setOnRefreshListener {
             recyclerAdapter.refresh()
         }
@@ -148,7 +137,7 @@ class RoutesFragment : BaseFragment() {
         newRouteFab.setOnClickListener {
             val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
             findNavController().navigate(
-                R.id.action_navigation_routes_to_navigation_new_route_flow,
+                R.id.action_routes_to_new_route_flow,
                 null,
                 null,
                 extras
@@ -159,7 +148,7 @@ class RoutesFragment : BaseFragment() {
     /**
      * Start to collect [RouteUiState], action based on Success/Loading/Error
      */
-    private fun collectState() = with(routesViewModel) {
+    override fun collectState() = with(routesViewModel) {
         launchOnLifecycleScope {
             routesFlow.collectLatest {
                 // Send data to adapter

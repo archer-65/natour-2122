@@ -4,29 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.activityViewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
-import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.R
-import com.unina.natourkt.common.DataState
-import com.unina.natourkt.common.inVisible
-import com.unina.natourkt.common.visible
 import com.unina.natourkt.databinding.FragmentConfirmationBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 /**
  * This Fragment represents the Confirmation after Sign Up Screen
@@ -68,7 +56,7 @@ class ConfirmationFragment : BaseFragment() {
     /**
      * Start to collect LoginState, action based on Success/Loading/Error
      */
-    private fun collectState() = with(binding) {
+    override fun collectState() = with(binding) {
         with(registrationViewModel) {
             launchOnLifecycleScope {
                 uiConfirmationState.collect {
@@ -79,7 +67,7 @@ class ConfirmationFragment : BaseFragment() {
                         showSnackbar(message)
 
                         // We navigate to the login screen
-                        findNavController().navigate(R.id.navigation_confirmation_to_navigation_login)
+                        findNavController().navigate(R.id.action_confirmation_to_login)
                     }
 
                     // When the code is resent
@@ -112,10 +100,12 @@ class ConfirmationFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    private fun setupUi() = with(binding) {
-        confirmationImage.applyInsetter {
-            type(statusBars = true) {
-                margin()
+    override fun setupUi() {
+        with(binding) {
+            confirmationImage.applyInsetter {
+                type(statusBars = true) {
+                    margin()
+                }
             }
         }
     }
@@ -123,7 +113,7 @@ class ConfirmationFragment : BaseFragment() {
     /**
      * Function to set listeners for views
      */
-    private fun setListeners() = with(binding) {
+    override fun setListeners() = with(binding) {
         with(registrationViewModel) {
             confirmationButton.setOnClickListener {
                 if (isFormValid()) {

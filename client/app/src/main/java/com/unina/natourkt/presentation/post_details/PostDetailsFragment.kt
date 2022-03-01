@@ -63,7 +63,7 @@ class PostDetailsFragment : BaseFragment() {
     /**
      * Basic settings for UI
      */
-    fun setupUi() {
+    override fun setupUi() {
         binding.topAppBar.applyInsetter {
             type(statusBars = true) {
                 margin()
@@ -98,26 +98,6 @@ class PostDetailsFragment : BaseFragment() {
                     }
                     else -> {
                         false
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Start to collect [PostDetailsUiState], action based on Success/Loading/Error
-     */
-    private fun collectState() {
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                postDetailsViewModel.uiState.collectLatest { uiState ->
-                    // When the response arrives
-                    if (uiState.post != null) {
-                        bindView(uiState.post)
-                    }
-                    if (uiState.isLoading) {
-                        loadingView()
                     }
                 }
             }
@@ -174,6 +154,23 @@ class PostDetailsFragment : BaseFragment() {
             postDescription.inVisible()
             authorPhoto.inVisible()
             imageSlider.inVisible()
+        }
+    }
+
+    override fun collectState() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                postDetailsViewModel.uiState.collectLatest { uiState ->
+                    // When the response arrives
+                    if (uiState.post != null) {
+                        bindView(uiState.post)
+                    }
+                    if (uiState.isLoading) {
+                        loadingView()
+                    }
+                }
+            }
         }
     }
 }

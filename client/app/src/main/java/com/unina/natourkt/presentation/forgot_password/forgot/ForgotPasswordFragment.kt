@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentForgotPasswordBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
@@ -57,10 +55,54 @@ class ForgotPasswordFragment : BaseFragment() {
         _binding = null
     }
 
+    override fun setupUi() {
+        with(binding) {
+            forgotPasswordImage.applyInsetter {
+                type(statusBars = true) {
+                    margin()
+                }
+            }
+        }
+    }
+
+    override fun setListeners() {
+        with(binding) {
+            sendCodeButton.setOnClickListener {
+                if (isFormValid()) {
+                    forgotPasswordViewModel.resetRequest(usernameTextField.editText?.text.toString())
+                }
+            }
+        }
+    }
+
     /**
-     * Start to collect [ForgotPasswordUiState], action based on Success/Loading/Error
+     * Function to set TextListeners
      */
-    private fun collectState() = with(binding) {
+    private fun setTextChangedListeners() {
+        with(binding) {
+            usernameTextField.editText?.doAfterTextChanged {
+                val username = it.toString().trim()
+                forgotPasswordViewModel.setUsername(username)
+            }
+        }
+    }
+
+    /**
+     * Form validation based on other functions
+     */
+    private fun isFormValid(): Boolean {
+        with(binding) {
+            val isUsernameValid =
+                forgotPasswordViewModel.formState.value.isUsernameValid.also { valid ->
+                    val error = if (!valid) getString(R.string.username_check) else null
+                    usernameTextField.error = error
+                }
+
+            return isUsernameValid
+        }
+    }
+
+    override fun collectState() = with(binding) {
         with(forgotPasswordViewModel) {
             launchOnLifecycleScope {
                 uiState.collect {
@@ -71,7 +113,7 @@ class ForgotPasswordFragment : BaseFragment() {
                         showSnackbar(message)
 
                         // We navigate to new password insertion screen
-                        findNavController().navigate(R.id.navigation_forgot_password_to_navigation_new_password)
+                        findNavController().navigate(R.id.action_forgot_password_to_new_password)
                     }
 
                     // Bind the progress bar visibility
@@ -92,50 +134,5 @@ class ForgotPasswordFragment : BaseFragment() {
                 }
             }
         }
-    }
-
-    /**
-     * Basic settings for UI
-     */
-    private fun setupUi() = with(binding) {
-        forgotPasswordImage.applyInsetter {
-            type(statusBars = true) {
-                margin()
-            }
-        }
-    }
-
-    /**
-     * Function to set listeners for views
-     */
-    private fun setListeners() = with(binding) {
-        sendCodeButton.setOnClickListener {
-            if (isFormValid()) {
-                forgotPasswordViewModel.resetRequest(usernameTextField.editText?.text.toString())
-            }
-        }
-    }
-
-    /**
-     * Function to set TextListeners
-     */
-    private fun setTextChangedListeners() = with(binding) {
-        usernameTextField.editText?.doAfterTextChanged {
-            val username = it.toString().trim()
-            forgotPasswordViewModel.setUsername(username)
-        }
-    }
-
-    /**
-     * Form validation based on other functions
-     */
-    private fun isFormValid(): Boolean = with(binding) {
-        val isUsernameValid =
-            forgotPasswordViewModel.formState.value.isUsernameValid.also { valid ->
-                val error = if (!valid) getString(R.string.username_check) else null
-                usernameTextField.error = error
-            }
-
-        return isUsernameValid
     }
 }

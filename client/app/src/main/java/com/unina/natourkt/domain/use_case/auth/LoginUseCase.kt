@@ -1,7 +1,6 @@
 package com.unina.natourkt.domain.use_case.auth
 
 import android.util.Log
-import com.unina.natourkt.common.Constants
 import com.unina.natourkt.common.Constants.LOGIN_STATE
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
@@ -47,11 +46,11 @@ class LoginUseCase @Inject constructor(
                 emit(DataState.Success(isSignInComplete))
             } else {
                 Log.e(LOGIN_STATE, "Whoops, something went wrong with authentication")
-                emit(DataState.Error(DataState.CustomMessages.AuthGeneric))
+                emit(DataState.Error(DataState.CustomMessage.AuthGeneric))
             }
         } catch (e: Exception) {
             Log.e(LOGIN_STATE, e.localizedMessage ?: "Login failed", e)
-            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
+            emit(DataState.Error(errorHandler.handleException(e)))
         }
     }
 
@@ -74,11 +73,11 @@ class LoginUseCase @Inject constructor(
                 emit(DataState.Success(isSignInComplete))
             } else {
                 Log.e(LOGIN_STATE, "Whoops, something went wrong with authentication")
-                emit(DataState.Error(DataState.CustomMessages.AuthGeneric))
+                emit(DataState.Error(DataState.CustomMessage.AuthGeneric))
             }
         } catch (e: Exception) {
             Log.e(LOGIN_STATE, e.localizedMessage ?: "Social login failed", e)
-            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
+            emit(DataState.Error(errorHandler.handleException(e)))
         }
     }
 

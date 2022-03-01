@@ -2,11 +2,13 @@ package com.unina.natourkt.di
 
 import com.unina.natourkt.common.Constants.BASE_URL
 import com.unina.natourkt.common.Constants.MAPS_URL
+import com.unina.natourkt.common.NetworkConnectionInterceptor
 import com.unina.natourkt.data.remote.retrofit.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -20,6 +22,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
+    @Provides
+    @Singleton
+    fun provideHttpClient(networkConnectionInterceptor: NetworkConnectionInterceptor) =
+        OkHttpClient.Builder().addInterceptor(networkConnectionInterceptor).build()
+
     /**
      * Retrofit object is pretty much the same, so we define URL and Converter here, only one time
      * @see [BASE_URL]
@@ -27,44 +34,45 @@ object RetrofitModule {
      */
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideUserRetrofit(retrofit: Retrofit): UserRetrofitDataSource {
-        return retrofit.create(UserRetrofitDataSource::class.java)
+    fun provideUserRetrofit(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun providePostRetrofit(retrofit: Retrofit): PostRetrofitDataSource {
-        return retrofit.create(PostRetrofitDataSource::class.java)
+    fun providePostRetrofit(retrofit: Retrofit): PostApi {
+        return retrofit.create(PostApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideRouteRetrofit(retrofit: Retrofit): RouteRetrofitDataSource {
-        return retrofit.create(RouteRetrofitDataSource::class.java)
+    fun provideRouteRetrofit(retrofit: Retrofit): RouteApi {
+        return retrofit.create(RouteApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideCompilationRetrofit(retrofit: Retrofit): CompilationRetrofitDataSource {
-        return retrofit.create(CompilationRetrofitDataSource::class.java)
+    fun provideCompilationRetrofit(retrofit: Retrofit): CompilationApi {
+        return retrofit.create(CompilationApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideMapsRetrofit(): MapsApiRetrofitDataSource {
+    fun provideMapsRetrofit(): MapsApi {
         return Retrofit.Builder()
             .baseUrl(MAPS_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(MapsApiRetrofitDataSource::class.java)
+            .create(MapsApi::class.java)
     }
 }

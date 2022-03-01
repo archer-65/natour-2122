@@ -3,6 +3,7 @@ package com.unina.natourkt.data.remote.dto.route
 import com.unina.natourkt.data.remote.dto.UserDto
 import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.domain.model.route.Route
+import com.unina.natourkt.domain.model.route.RouteStop
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -24,6 +25,21 @@ data class RouteDto(
 )
 
 /**
+ * Only contains the response for route's photos
+ */
+data class RoutePhotoDto(
+    val id: Long,
+    val photoUrl: String
+)
+
+data class RouteStopDto(
+    val id: Long,
+    val stopNumber: Int,
+    val latitude: Double,
+    val longitude: Double,
+)
+
+/**
  * Function to map [RouteDto] to [Route]
  */
 fun RouteDto.toRoute(): Route {
@@ -37,5 +53,13 @@ fun RouteDto.toRoute(): Route {
         photos = photos.map { photo -> photo.photoUrl },
         stops = stops.map { stop -> stop.toRouteStop() },
         user = user.toUser()
+    )
+}
+
+fun RouteStopDto.toRouteStop(): RouteStop {
+    return RouteStop(
+        stopNumber = stopNumber,
+        latitude = latitude,
+        longitude = longitude
     )
 }

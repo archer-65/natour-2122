@@ -9,7 +9,7 @@ import retrofit2.http.Query
 /**
  * Retrofit interface for [PostDto]
  */
-interface PostRetrofitDataSource {
+interface PostApi {
 
     /**
      * Classic Get all posts (paginated)

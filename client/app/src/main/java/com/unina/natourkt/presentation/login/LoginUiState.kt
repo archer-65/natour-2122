@@ -7,7 +7,7 @@ import com.unina.natourkt.common.DataState
  */
 data class LoginUiState(
     val isLoading: Boolean = false,
-    val errorMessage: DataState.CustomMessages? = null,
+    val errorMessage: DataState.CustomMessage? = null,
     val isUserLoggedIn: Boolean = false,
 )
 

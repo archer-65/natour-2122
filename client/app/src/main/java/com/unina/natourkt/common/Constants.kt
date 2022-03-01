@@ -6,18 +6,20 @@ package com.unina.natourkt.common
  */
 object Constants {
 
-    // EMULATOR
-    const val BASE_URL = "http://10.0.2.2:8080/"
-    // LOCAL IP
-    //const val BASE_URL = "http://192.168.1.47:8080/"
+    // Emulator
+    //const val BASE_URL = "http://10.0.2.2:8080/"
 
+    // Maps API
     const val MAPS_URL = "https://maps.googleapis.com/"
+
+    // Local IP
+    const val BASE_URL = "http://192.168.1.47:8080/"
 
     // String used for Auth Providers
     const val GOOGLE = "GOOGLE"
     const val FACEBOOK = "FACEBOOK"
 
-    // TAGS
+    // Log tags
     const val AMPLIFY = "Amplify Status"
 
     const val LOGIN_STATE = "Login Process"
@@ -30,14 +32,14 @@ object Constants {
     const val ROUTE_MODEL = "Route Request Status"
     const val COMPILATION_MODEL = "Compilation Request Status"
 
-
     // DATASTORE NAME(S)
     const val PREFERENCES = "DATASTORE_PREF"
 
-    // OTHER
+    // Form validation
     const val PASSWORD_LENGTH = 8
+    const val CODE_LENGTH = 6
 
-    // GRID LAYOUT
+    // Grid Layout
     const val COLUMN_COUNT = 4
     const val COLUMN_SPACING = 5
 }

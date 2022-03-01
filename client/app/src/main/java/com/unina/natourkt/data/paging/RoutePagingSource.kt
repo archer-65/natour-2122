@@ -1,11 +1,11 @@
-package com.unina.natourkt.data.remote.paging
+package com.unina.natourkt.data.paging
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.unina.natourkt.common.Constants.ROUTE_MODEL
 import com.unina.natourkt.data.remote.dto.route.toRoute
-import com.unina.natourkt.data.remote.retrofit.RouteRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.RouteApi
 import com.unina.natourkt.data.repository.RouteRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.domain.model.route.Route
 import retrofit2.HttpException
@@ -15,7 +15,7 @@ import javax.inject.Inject
 private const val INITIAL_PAGE = 0
 
 class RoutePagingSource @Inject constructor(
-    private val retrofitDataSource: RouteRetrofitDataSource
+    private val api: RouteApi
 ) : PagingSource<Int, Route>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Route> {
@@ -23,7 +23,7 @@ class RoutePagingSource @Inject constructor(
         return try {
             val position = params.key ?: INITIAL_PAGE
 
-            val response = retrofitDataSource.getRoutes(position, params.loadSize)
+            val response = api.getRoutes(position, params.loadSize)
             Log.i(ROUTE_MODEL, "$response")
 
             LoadResult.Page(

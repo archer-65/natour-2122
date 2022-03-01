@@ -1,29 +1,29 @@
-package com.unina.natourkt.data.remote.paging
+package com.unina.natourkt.data.paging
 
 import android.util.Log
-import androidx.paging.LoadType
+import androidx.paging.LoadState
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.unina.natourkt.common.Constants.POST_MODEL
+import com.unina.natourkt.common.NetworkConnectionInterceptor
 import com.unina.natourkt.data.remote.dto.post.toPost
-import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.PostApi
 import com.unina.natourkt.data.repository.PostRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.domain.model.Post
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
 private const val INITIAL_PAGE = 0
 
 class PostPagingSource(
-    private val retrofitDataSource: PostRetrofitDataSource,
+    private val api: PostApi,
 ) : PagingSource<Int, Post>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Post> {
         return try {
             val position = params.key ?: INITIAL_PAGE
 
-            val response = retrofitDataSource.getPosts(position, params.loadSize)
+            val response = api.getPosts(position, params.loadSize)
             Log.i(POST_MODEL, "$response")
 
             LoadResult.Page(

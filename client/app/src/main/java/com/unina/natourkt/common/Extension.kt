@@ -1,21 +1,38 @@
 package com.unina.natourkt.common
 
 import android.view.View
-import androidx.annotation.IntegerRes
-import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputLayout
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 /**
- * Makes [View] VISIBLE
+ *  A function that makes the view visible.
  */
 fun View.visible() {
     this.visibility = View.VISIBLE
 }
 
 /**
- * Makes [View] GONE
+ *  A function that makes the view invisible.
  */
 fun View.inVisible() {
     this.visibility = View.GONE
+}
+
+fun ImageView.loadWithGlide(url: String?, @DrawableRes fallbackDrawable: Int) {
+    Glide.with(this)
+        .load(url)
+        .centerCrop()
+        .fallback(fallbackDrawable)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .into(this)
+}
+
+fun ImageView.loadWithGlide(url: String?) {
+    Glide.with(this)
+        .load(url)
+        .centerCrop()
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .into(this)
 }

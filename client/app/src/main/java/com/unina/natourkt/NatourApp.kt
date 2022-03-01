@@ -13,10 +13,8 @@ class NatourApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         try {
             Amplify.addPlugin(AWSCognitoAuthPlugin())
-
             Amplify.configure(applicationContext)
             Log.i(AMPLIFY, "Initialized Amplify")
         } catch (error: AmplifyException) {

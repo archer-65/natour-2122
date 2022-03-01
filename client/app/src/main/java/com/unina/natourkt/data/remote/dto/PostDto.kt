@@ -21,6 +21,14 @@ data class PostDto(
 )
 
 /**
+ * Only contains the response for post's photos
+ */
+data class PostPhotoDto(
+    val id: Long,
+    val photoUrl: String
+)
+
+/**
  * Function to map [PostDto] to [Post]
  */
 fun PostDto.toPost(): Post {

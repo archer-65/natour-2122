@@ -1,11 +1,11 @@
-package com.unina.natourkt.data.remote.paging
+package com.unina.natourkt.data.paging
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.unina.natourkt.common.Constants.POST_MODEL
 import com.unina.natourkt.data.remote.dto.post.toPost
-import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.PostApi
 
 import com.unina.natourkt.data.repository.PostRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.domain.model.Post
@@ -16,7 +16,7 @@ import javax.inject.Inject
 private const val INITIAL_PAGE = 0
 
 class PersonalPostPagingSource @Inject constructor(
-    private val retrofitDataSource: PostRetrofitDataSource,
+    private val api: PostApi,
     private val userId: Long
 ) : PagingSource<Int, Post>() {
 
@@ -25,7 +25,7 @@ class PersonalPostPagingSource @Inject constructor(
         return try {
             val position = params.key ?: INITIAL_PAGE
 
-            val response = retrofitDataSource.getPostsByUser(userId, position, params.loadSize)
+            val response = api.getPostsByUser(userId, position, params.loadSize)
             Log.i(POST_MODEL, "$response")
 
             LoadResult.Page(

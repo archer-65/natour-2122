@@ -21,6 +21,15 @@ data class Route(
 )
 
 /**
+ * RouteStop represents each Stop for a [Post]
+ */
+data class RouteStop(
+    val stopNumber: Int,
+    val latitude: Double,
+    val longitude: Double,
+)
+
+/**
  * Function to map Route to [RouteItemUiState]
  */
 fun Route.toUi(): RouteItemUiState {

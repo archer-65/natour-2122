@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -42,10 +43,7 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     private val binding get() = _binding!!
 
     // Recycler elements
-    private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerAdapter: PostAdapter
-    private lateinit var shimmerFrame: ShimmerFrameLayout
-    private lateinit var refresh: SwipeRefreshLayout
 
     // ViewModel
     private val homeViewModel: HomeViewModel by viewModels()
@@ -83,51 +81,37 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
                 margin()
             }
         }
-
-        refresh = swipeRefresh
-
-        recyclerView = recyclerHome
-
-        shimmerFrame = shimmerContainer
     }
 
     /**
      * Recycler View init function
      */
-    private fun initRecycler() {
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
-            recyclerAdapter = PostAdapter(this@HomeFragment)
-
-            adapter = recyclerAdapter.withLoadStateHeaderAndFooter(
-                header = ItemLoadStateAdapter(),
-                footer = ItemLoadStateAdapter()
-            )
-        }
+    private fun initRecycler() = with(binding) {
+        recyclerAdapter = PostAdapter(this@HomeFragment)
+        val footerLoadStateAdapter = ItemLoadStateAdapter()
+        val headerLoadStateAdapter = ItemLoadStateAdapter()
 
         recyclerAdapter.addLoadStateListener { loadState ->
+            footerLoadStateAdapter.loadState = loadState.append
+            headerLoadStateAdapter.loadState = loadState.refresh
 
-            refresh.isRefreshing = loadState.source.refresh is LoadState.Loading
+            swipeRefresh.isRefreshing = loadState.source.refresh is LoadState.Loading
 
-            when (loadState.source.refresh) {
-                // If loading, start the shimmer animation and mark as GONE the Recycler
-                is LoadState.Loading -> {
-                    shimmerFrame.startShimmer()
-                    shimmerFrame.isVisible = true
-                    recyclerView.isVisible = false
-                }
-                // If not loading, stop the shimmer animation and mark as VISIBLE the Recycler
-                else -> {
-                    shimmerFrame.stopShimmer()
-                    shimmerFrame.isVisible = false
-                    recyclerView.isVisible = true
-                }
-            }
+            shimmerContainer.isVisible = loadState.source.refresh is LoadState.Loading
+            recyclerHome.isVisible = loadState.source.refresh !is LoadState.Loading
+        }
+
+        val concatAdapter =
+            ConcatAdapter(headerLoadStateAdapter, recyclerAdapter, footerLoadStateAdapter)
+
+        recyclerHome.apply {
+            layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
+            adapter = concatAdapter
         }
     }
 
     private fun handleFab() = with(binding) {
-        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        recyclerHome.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if (scrollY > oldScrollY) {
                 newPostFab.hide()
             } else if (scrollX == scrollY) {
@@ -138,8 +122,8 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
         }
     }
 
-    private fun setListeners() {
-        refresh.setOnRefreshListener {
+    private fun setListeners() = with(binding) {
+        swipeRefresh.setOnRefreshListener {
             recyclerAdapter.refresh()
         }
     }
@@ -147,14 +131,11 @@ class HomeFragment : BaseFragment(), PostAdapter.OnItemClickListener {
     /**
      * Start to collect [HomeUiState], action based on Success/Loading/Error
      */
-    private fun collectState() = with(binding) {
-        with(homeViewModel) {
-            launchOnLifecycleScope {
-                postsFlow.collectLatest {
-                    // Send data to adapter
-                    recyclerAdapter.submitData(it)
-                }
-                //recyclerAdapter.loadStateFlow.collectLatest { }
+    private fun collectState() = with(homeViewModel) {
+        launchOnLifecycleScope {
+            postsFlow.collectLatest {
+                // Send data to adapter
+                recyclerAdapter.submitData(it)
             }
         }
     }

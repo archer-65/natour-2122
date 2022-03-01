@@ -5,60 +5,44 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.unina.natourkt.R
-import com.unina.natourkt.common.GlideApp
+import com.unina.natourkt.common.loadWithGlide
 import com.unina.natourkt.databinding.CompilationItemBinding
 import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
 
 /**
- * Implementation of PagingDataAdapter for [CompilationItemUiState] (compilations on profile screen)
+ * Implementation of PagingDataAdapter for [CompilationItemUiState]
  */
 class CompilationAdapter :
     PagingDataAdapter<CompilationItemUiState, CompilationAdapter.CompilationViewHolder>(
-        DiffUtilCallback()
+        CompilationComparator
     ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompilationViewHolder {
-
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = CompilationItemBinding.inflate(layoutInflater, parent, false)
-
-        return CompilationViewHolder(binding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        CompilationViewHolder(
+            CompilationItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
 
     override fun onBindViewHolder(holder: CompilationAdapter.CompilationViewHolder, position: Int) {
-        holder.bind(getItem(position)!!)
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class CompilationViewHolder(val binding: CompilationItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        /**
-         * Binder function, relies on [Glide]
-         */
-        fun bind(compilation: CompilationItemUiState) {
-            binding.apply {
-
-                // Set basic details
-                compilationTitle.text = compilation.title
-                compilationDescription.text = compilation.description
-
-                // If the user photo is present, then load with Glide
-                GlideApp.with(this.root)
-                    .load(compilation.authorPhoto)
-                    .error(R.drawable.ic_avatar_svgrepo_com)
-                    .into(authorPhoto)
-
-                // If the compilation photo is present, then load with Glide
-                GlideApp.with(this.root)
-                    .load(compilation.photo)
-                    .into(compilationPhoto)
-            }
+        fun bind(compilation: CompilationItemUiState) = with(binding) {
+            // Set basic details
+            compilationTitle.text = compilation.title
+            compilationDescription.text = compilation.description
+            // Load images
+            authorPhoto.loadWithGlide(compilation.authorPhoto, R.drawable.ic_avatar_svgrepo_com)
+            compilationPhoto.loadWithGlide(compilation.photo)
         }
     }
 
-    class DiffUtilCallback : DiffUtil.ItemCallback<CompilationItemUiState>() {
+    object CompilationComparator : DiffUtil.ItemCallback<CompilationItemUiState>() {
         override fun areItemsTheSame(
             oldItem: CompilationItemUiState,
             newItem: CompilationItemUiState

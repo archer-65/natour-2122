@@ -4,6 +4,7 @@ import androidx.datastore.core.CorruptionException
 import com.amplifyframework.auth.AuthException
 import retrofit2.HttpException
 import java.io.IOException
+import java.net.ConnectException
 
 /**
  * Used for HTTP Exceptions, each error name with its own error code
@@ -20,57 +21,65 @@ enum class ErrorCodes(val code: Int) {
     UnAuthorized(401),
 }
 
+
 /**
- * ErrorHandler class, maps every kind of Exception to one CustomMessage type
+ * This class is responsible for handling all the exceptions that occur in the app
  */
 open class ErrorHandler {
-    fun <T : Any> handleException(throwable: Throwable): DataState.CustomMessages {
+    fun handleException(throwable: Throwable): DataState.CustomMessage {
 
         return when (throwable) {
-
             // AuthException (Amplify)
-            is AuthException -> {
-
-                when (throwable) {
-                    is AuthException.UserNotFoundException -> DataState.CustomMessages.UserNotFound
-                    is AuthException.UserNotConfirmedException -> DataState.CustomMessages.UserNotConfirmed
-                    is AuthException.InvalidPasswordException -> DataState.CustomMessages.InvalidPassword
-                    is AuthException.NotAuthorizedException -> DataState.CustomMessages.InvalidCredentials
-                    is AuthException.UsernameExistsException -> DataState.CustomMessages.UsernameExists
-                    is AuthException.AliasExistsException -> DataState.CustomMessages.AliasExists
-                    is AuthException.InvalidParameterException -> DataState.CustomMessages.InvalidParameter
-                    is AuthException.CodeDeliveryFailureException -> DataState.CustomMessages.CodeDelivery
-                    is AuthException.CodeMismatchException -> DataState.CustomMessages.CodeMismatch
-                    is AuthException.CodeExpiredException -> DataState.CustomMessages.CodeExpired
-                    else -> DataState.CustomMessages.AuthGeneric
-                }
-            }
+            is AuthException -> getAuthError(throwable)
 
             // DataStore
-            is CorruptionException -> DataState.CustomMessages.DataCorrupted
+            is CorruptionException -> DataState.CustomMessage.DataCorrupted
 
             // Network related
-            is IOException -> DataState.CustomMessages.NetworkError
+            is NetworkConnectionInterceptor.NoConnectivityException -> DataState.CustomMessage.NetworkError
+            is IOException -> DataState.CustomMessage.NetworkError
             is HttpException -> getErrorType(throwable.code())
-            else -> DataState.CustomMessages.SomethingWentWrong("Unknown Error")
+
+            // Generic
+            else -> DataState.CustomMessage.SomethingWentWrong
         }
     }
 }
 
+
 /**
- * [HttpException]
+ * This function returns the error type based on the error code
  */
-private fun getErrorType(code: Int): DataState.CustomMessages {
+private fun getErrorType(code: Int): DataState.CustomMessage {
     return when (code) {
-        ErrorCodes.SocketTimeOut.code -> DataState.CustomMessages.Timeout
-        ErrorCodes.UnAuthorized.code -> DataState.CustomMessages.Unauthorized
-        ErrorCodes.InternalServerError.code -> DataState.CustomMessages.InternalServerError
-        ErrorCodes.BadRequest.code -> DataState.CustomMessages.BadRequest
-        ErrorCodes.Conflict.code -> DataState.CustomMessages.Conflict
-        ErrorCodes.NotFound.code -> DataState.CustomMessages.NotFound
-        ErrorCodes.NotAcceptable.code -> DataState.CustomMessages.NotAcceptable
-        ErrorCodes.ServiceUnavailable.code -> DataState.CustomMessages.ServiceUnavailable
-        ErrorCodes.Forbidden.code -> DataState.CustomMessages.Forbidden
-        else -> DataState.CustomMessages.SomethingWentWrong("An error occurred with code $code")
+        ErrorCodes.SocketTimeOut.code -> DataState.CustomMessage.Timeout
+        ErrorCodes.UnAuthorized.code -> DataState.CustomMessage.Unauthorized
+        ErrorCodes.InternalServerError.code -> DataState.CustomMessage.InternalServerError
+        ErrorCodes.BadRequest.code -> DataState.CustomMessage.BadRequest
+        ErrorCodes.Conflict.code -> DataState.CustomMessage.Conflict
+        ErrorCodes.NotFound.code -> DataState.CustomMessage.NotFound
+        ErrorCodes.NotAcceptable.code -> DataState.CustomMessage.NotAcceptable
+        ErrorCodes.ServiceUnavailable.code -> DataState.CustomMessage.ServiceUnavailable
+        ErrorCodes.Forbidden.code -> DataState.CustomMessage.Forbidden
+        else -> DataState.CustomMessage.SomethingWentWrong
+    }
+}
+
+/**
+ * This function returns a DataState.CustomMessage based on the AuthException thrown
+ */
+private fun getAuthError(throwable: AuthException): DataState.CustomMessage {
+    return when (throwable) {
+        is AuthException.UserNotFoundException -> DataState.CustomMessage.UserNotFound
+        is AuthException.UserNotConfirmedException -> DataState.CustomMessage.UserNotConfirmed
+        is AuthException.InvalidPasswordException -> DataState.CustomMessage.InvalidPassword
+        is AuthException.NotAuthorizedException -> DataState.CustomMessage.InvalidCredentials
+        is AuthException.UsernameExistsException -> DataState.CustomMessage.UsernameExists
+        is AuthException.AliasExistsException -> DataState.CustomMessage.AliasExists
+        is AuthException.InvalidParameterException -> DataState.CustomMessage.InvalidParameter
+        is AuthException.CodeDeliveryFailureException -> DataState.CustomMessage.CodeDelivery
+        is AuthException.CodeMismatchException -> DataState.CustomMessage.CodeMismatch
+        is AuthException.CodeExpiredException -> DataState.CustomMessage.CodeExpired
+        else -> DataState.CustomMessage.AuthGeneric
     }
 }

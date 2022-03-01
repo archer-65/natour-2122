@@ -1,16 +1,13 @@
-package com.unina.natourkt.data.remote.paging
+package com.unina.natourkt.data.paging
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.unina.natourkt.common.Constants
 import com.unina.natourkt.common.Constants.COMPILATION_MODEL
 import com.unina.natourkt.data.remote.dto.toCompilation
-import com.unina.natourkt.data.remote.retrofit.CompilationRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.CompilationApi
 import com.unina.natourkt.data.repository.CompilationRepositoryImpl.Companion.NETWORK_PAGE_SIZE
-import com.unina.natourkt.data.repository.RouteRepositoryImpl
 import com.unina.natourkt.domain.model.Compilation
-import com.unina.natourkt.domain.model.Post
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
@@ -18,7 +15,7 @@ import javax.inject.Inject
 private const val INITIAL_PAGE = 0
 
 class PersonalCompilationPagingSource @Inject constructor(
-    private val retrofitDataSource: CompilationRetrofitDataSource,
+    private val api: CompilationApi,
     private val userId: Long
 ) : PagingSource<Int, Compilation>() {
 
@@ -28,7 +25,7 @@ class PersonalCompilationPagingSource @Inject constructor(
             val position = params.key ?: INITIAL_PAGE
 
             val response =
-                retrofitDataSource.getCompilationsByUser(userId, position, params.loadSize)
+                api.getCompilationsByUser(userId, position, params.loadSize)
             Log.i(COMPILATION_MODEL, "$response")
 
             LoadResult.Page(

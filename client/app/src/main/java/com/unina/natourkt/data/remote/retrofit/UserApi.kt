@@ -7,7 +7,7 @@ import retrofit2.http.Query
 /**
  * Retrofit interface for [UserDto]
  */
-interface UserRetrofitDataSource {
+interface UserApi {
 
     @GET("/users/search")
     suspend fun getUserByUUID(@Query("uuid") cognitoId: String): UserDto

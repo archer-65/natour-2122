@@ -1,39 +1,67 @@
 package com.unina.natourkt.common
 
 /**
- * Generic wrapper class, usually returned by UseCase classes
+ * Generic DataState class, this wrapper class wraps our entire network/database response
+ * so we can have states based on the response's state (successful, loading, failed).
+ *
+ * Constructor is made of
+ * - Generic [data] object
+ * - A [CustomMessage] object
  */
 sealed class DataState<T>(
+    /**
+     * This attribute serves as data container for [T] class
+     */
     val data: T? = null,
-    val error: CustomMessages = CustomMessages.SomethingWentWrong("Something went wrong")
+    /**
+     * This attribute serves as error container for [CustomMessage]
+     */
+    val error: CustomMessage = CustomMessage.SomethingWentWrong
 ) {
-    class Success<T>(data: T) : DataState<T>(data)
-    class Loading<T> : DataState<T>()
-    class Error<T>(customMessages: CustomMessages) : DataState<T>(error = customMessages)
 
-    sealed class CustomMessages(val message: String = "") {
-        object UserNotFound : CustomMessages()
-        object UserNotConfirmed : CustomMessages()
-        object InvalidPassword : CustomMessages()
-        object InvalidCredentials: CustomMessages()
-        object UsernameExists : CustomMessages()
-        object AliasExists : CustomMessages()
-        object InvalidParameter : CustomMessages()
-        object CodeDelivery : CustomMessages()
-        object CodeMismatch : CustomMessages()
-        object CodeExpired : CustomMessages()
-        object AuthGeneric : CustomMessages()
-        object DataCorrupted : CustomMessages()
-        object NetworkError : CustomMessages()
-        object Timeout : CustomMessages()
-        object Unauthorized : CustomMessages()
-        object InternalServerError : CustomMessages()
-        object BadRequest : CustomMessages()
-        object NotFound : CustomMessages()
-        object NotAcceptable : CustomMessages()
-        object ServiceUnavailable : CustomMessages()
-        object Forbidden : CustomMessages()
-        object Conflict : CustomMessages()
-        data class SomethingWentWrong(val customMessage: String) : CustomMessages(customMessage)
+    /**
+     * A `Success` is a [DataState] that holds a generic data object
+     */
+    class Success<T>(data: T) : DataState<T>(data)
+
+    /**
+     * This is a [DataState] that represents a loading state
+     */
+    class Loading<T> : DataState<T>()
+
+    /**
+     * An `Error` is a [DataState] that holds [CustomMessage] object
+     */
+    class Error<T>(customMessage: CustomMessage) : DataState<T>(error = customMessage)
+
+
+    /**
+     * The `CustomMessage` class is a sealed class that contains a list of all the possible custom
+     * error messages that can be returned from the APIs
+     */
+    sealed class CustomMessage {
+        object UserNotFound : CustomMessage()
+        object UserNotConfirmed : CustomMessage()
+        object InvalidPassword : CustomMessage()
+        object InvalidCredentials : CustomMessage()
+        object UsernameExists : CustomMessage()
+        object AliasExists : CustomMessage()
+        object InvalidParameter : CustomMessage()
+        object CodeDelivery : CustomMessage()
+        object CodeMismatch : CustomMessage()
+        object CodeExpired : CustomMessage()
+        object AuthGeneric : CustomMessage()
+        object DataCorrupted : CustomMessage()
+        object NetworkError : CustomMessage()
+        object Timeout : CustomMessage()
+        object Unauthorized : CustomMessage()
+        object InternalServerError : CustomMessage()
+        object BadRequest : CustomMessage()
+        object NotFound : CustomMessage()
+        object NotAcceptable : CustomMessage()
+        object ServiceUnavailable : CustomMessage()
+        object Forbidden : CustomMessage()
+        object Conflict : CustomMessage()
+        object SomethingWentWrong : CustomMessage()
     }
 }

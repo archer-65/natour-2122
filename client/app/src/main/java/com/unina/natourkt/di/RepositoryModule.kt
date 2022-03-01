@@ -1,9 +1,9 @@
 package com.unina.natourkt.di
 
-import com.unina.natourkt.data.remote.retrofit.CompilationRetrofitDataSource
-import com.unina.natourkt.data.remote.retrofit.PostRetrofitDataSource
-import com.unina.natourkt.data.remote.retrofit.RouteRetrofitDataSource
-import com.unina.natourkt.data.remote.retrofit.UserRetrofitDataSource
+import com.unina.natourkt.data.remote.retrofit.CompilationApi
+import com.unina.natourkt.data.remote.retrofit.PostApi
+import com.unina.natourkt.data.remote.retrofit.RouteApi
+import com.unina.natourkt.data.remote.retrofit.UserApi
 import com.unina.natourkt.data.repository.*
 import com.unina.natourkt.domain.repository.*
 import dagger.Module
@@ -28,25 +28,25 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(retrofitDataSource: UserRetrofitDataSource): UserRepository {
-        return UserRepositoryImpl(retrofitDataSource)
+    fun provideUserRepository(api: UserApi): UserRepository {
+        return UserRepositoryImpl(api)
     }
 
     @Provides
     @Singleton
-    fun providePostRepository(retrofitDataSource: PostRetrofitDataSource): PostRepository {
-        return PostRepositoryImpl(retrofitDataSource)
+    fun providePostRepository(api: PostApi): PostRepository {
+        return PostRepositoryImpl(api)
     }
 
     @Provides
     @Singleton
-    fun provideRouteRepository(retrofitDataSource: RouteRetrofitDataSource): RouteRepository {
-        return RouteRepositoryImpl(retrofitDataSource)
+    fun provideRouteRepository(api: RouteApi): RouteRepository {
+        return RouteRepositoryImpl(api)
     }
 
     @Provides
     @Singleton
-    fun provideCompilationRepository(retrofitDataSource: CompilationRetrofitDataSource): CompilationRepository {
-        return CompilationRepositoryImpl(retrofitDataSource)
+    fun provideCompilationRepository(api: CompilationApi): CompilationRepository {
+        return CompilationRepositoryImpl(api)
     }
 }

@@ -7,7 +7,7 @@ import retrofit2.http.Query
 /**
  * Retrofit interface for [RouteDto]
  */
-interface RouteRetrofitDataSource {
+interface RouteApi {
 
     /**
      * Classic Get all routes (paginated)

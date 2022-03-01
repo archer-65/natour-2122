@@ -5,7 +5,7 @@ import com.unina.natourkt.common.DataState
 
 data class NewRouteUiState(
     val isLoading: Boolean = false,
-    val errorMessages: DataState.CustomMessages? = null,
+    val errorMessage: DataState.CustomMessage? = null,
     val routeInfo: NewRouteInfo = NewRouteInfo(),
     val routeStops: List<NewRouteStop> = emptyList(),
     val routePhotos: List<Bitmap> = emptyList()

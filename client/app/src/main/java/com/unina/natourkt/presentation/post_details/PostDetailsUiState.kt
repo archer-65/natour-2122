@@ -1,12 +1,11 @@
 package com.unina.natourkt.presentation.post_details
 
-import android.provider.ContactsContract
 import com.unina.natourkt.common.DataState
 
 data class PostDetailsUiState(
-   val isLoading: Boolean = false,
-   val error: DataState.CustomMessages? = null,
-   val  post: PostUiState? = null
+    val isLoading: Boolean = false,
+    val error: DataState.CustomMessage? = null,
+    val  post: PostUiState? = null
 )
 
 data class PostUiState(

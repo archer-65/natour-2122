@@ -1,7 +1,6 @@
 package com.unina.natourkt.domain.use_case.auth
 
 import android.util.Log
-import com.unina.natourkt.common.Constants
 import com.unina.natourkt.common.Constants.PASSWORD_RESET
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
@@ -36,11 +35,11 @@ class ResetPasswordRequestUseCase @Inject constructor(
                 emit(DataState.Success(isPasswordReset))
             } else {
                 Log.e(PASSWORD_RESET, "Whoops, something went wrong with code request, retry!")
-                emit(DataState.Error(DataState.CustomMessages.CodeDelivery))
+                emit(DataState.Error(DataState.CustomMessage.CodeDelivery))
             }
         } catch (e: Exception) {
             Log.e(PASSWORD_RESET, e.localizedMessage ?: "Password reset request failed", e)
-            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
+            emit(DataState.Error(errorHandler.handleException(e)))
         }
     }
 }

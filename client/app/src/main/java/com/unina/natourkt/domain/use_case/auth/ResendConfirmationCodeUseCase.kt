@@ -1,7 +1,6 @@
 package com.unina.natourkt.domain.use_case.auth
 
 import android.util.Log
-import com.unina.natourkt.common.Constants
 import com.unina.natourkt.common.Constants.REGISTRATION_STATE
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
@@ -36,11 +35,11 @@ class ResendConfirmationCodeUseCase @Inject constructor(
                 emit(DataState.Success(isCodeSent))
             } else {
                 Log.e(REGISTRATION_STATE, "Whoops, something went wrong with code delivery, retry!")
-                emit(DataState.Error(DataState.CustomMessages.CodeDelivery))
+                emit(DataState.Error(DataState.CustomMessage.CodeDelivery))
             }
         } catch (e: Exception) {
             Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Resend code failed due to", e)
-            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
+            emit(DataState.Error(errorHandler.handleException(e)))
         }
     }
 }

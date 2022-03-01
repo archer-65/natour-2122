@@ -6,7 +6,7 @@ import com.unina.natourkt.domain.model.Compilation
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface CompilationRetrofitDataSource {
+interface CompilationApi {
 
     @GET("/compilations/search_page")
     suspend fun getCompilationsByUser(

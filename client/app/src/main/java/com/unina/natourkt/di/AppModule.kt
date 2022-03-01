@@ -1,6 +1,7 @@
 package com.unina.natourkt.di
 
 import android.content.Context
+import com.unina.natourkt.common.NetworkConnectionInterceptor
 import com.unina.natourkt.data.repository.AuthRepositoryImpl
 import com.unina.natourkt.data.repository.DataStoreRepositoryImpl
 import com.unina.natourkt.domain.repository.AuthRepository
@@ -10,6 +11,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 /**

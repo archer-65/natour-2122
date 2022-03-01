@@ -1,7 +1,6 @@
 package com.unina.natourkt.domain.use_case.auth
 
 import android.util.Log
-import com.unina.natourkt.common.Constants
 import com.unina.natourkt.common.Constants.REGISTRATION_STATE
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
@@ -40,11 +39,11 @@ class RegistrationUseCase @Inject constructor(
                 emit(DataState.Success(isSignUpComplete))
             } else {
                 Log.e(REGISTRATION_STATE, "Whoops, something went wrong with sign up, retry!")
-                emit(DataState.Error(DataState.CustomMessages.AuthGeneric))
+                emit(DataState.Error(DataState.CustomMessage.AuthGeneric))
             }
         } catch (e: Exception) {
             Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Sign up failed", e)
-            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
+            emit(DataState.Error(errorHandler.handleException(e)))
         }
     }
 }

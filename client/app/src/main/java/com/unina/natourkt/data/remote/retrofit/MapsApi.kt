@@ -3,7 +3,7 @@ package com.unina.natourkt.data.remote.retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface MapsApiRetrofitDataSource {
+interface MapsApi {
 
     @GET("maps/api/directions/json")
     suspend fun getDirections(

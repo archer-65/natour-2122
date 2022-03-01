@@ -1,6 +1,5 @@
 package com.unina.natourkt.domain.use_case.post
 
-import androidx.datastore.dataStore
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.domain.model.Post
@@ -19,7 +18,7 @@ class GetPostDetailsUseCase @Inject constructor(
             val post = postRepository.getPostDetails(id)
             emit(DataState.Success<Post>(post))
         } catch (e:Exception) {
-            emit(DataState.Error(errorHandler.handleException<Throwable>(e)))
+            emit(DataState.Error(errorHandler.handleException(e)))
         }
     }
 

@@ -26,20 +26,20 @@ open class BaseFragment : Fragment() {
         Snackbar.make(this.requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
 
-    fun manageMessage(customMessage: DataState.CustomMessages) {
+    fun manageMessage(customMessage: DataState.CustomMessage) {
         // Get the right message
         val message = when (customMessage) {
-            is DataState.CustomMessages.UserNotFound -> getString(R.string.user_not_found)
-            is DataState.CustomMessages.UserNotConfirmed -> getString(R.string.user_not_confirmed)
-            is DataState.CustomMessages.InvalidPassword -> getString(R.string.invalid_password)
-            is DataState.CustomMessages.InvalidCredentials -> getString(R.string.wrong_credentials)
-            is DataState.CustomMessages.UsernameExists -> getString(R.string.username_exists)
-            is DataState.CustomMessages.AliasExists -> getString(R.string.credentials_already_taken)
-            is DataState.CustomMessages.InvalidParameter -> getString(R.string.incorrect_parameters)
-            is DataState.CustomMessages.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
-            is DataState.CustomMessages.CodeMismatch -> getString(R.string.wrong_confirmation_code)
-            is DataState.CustomMessages.CodeExpired -> getString(R.string.expired_confirmation_code)
-            is DataState.CustomMessages.AuthGeneric -> getString(R.string.auth_failed_exception)
+            is DataState.CustomMessage.UserNotFound -> getString(R.string.user_not_found)
+            is DataState.CustomMessage.UserNotConfirmed -> getString(R.string.user_not_confirmed)
+            is DataState.CustomMessage.InvalidPassword -> getString(R.string.invalid_password)
+            is DataState.CustomMessage.InvalidCredentials -> getString(R.string.wrong_credentials)
+            is DataState.CustomMessage.UsernameExists -> getString(R.string.username_exists)
+            is DataState.CustomMessage.AliasExists -> getString(R.string.credentials_already_taken)
+            is DataState.CustomMessage.InvalidParameter -> getString(R.string.incorrect_parameters)
+            is DataState.CustomMessage.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
+            is DataState.CustomMessage.CodeMismatch -> getString(R.string.wrong_confirmation_code)
+            is DataState.CustomMessage.CodeExpired -> getString(R.string.expired_confirmation_code)
+            is DataState.CustomMessage.AuthGeneric -> getString(R.string.auth_failed_exception)
             else -> getString(R.string.auth_failed_generic)
         }
 

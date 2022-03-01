@@ -1,9 +1,6 @@
 package com.unina.natourkt.di
 
-import com.unina.natourkt.data.remote.retrofit.CompilationApi
-import com.unina.natourkt.data.remote.retrofit.PostApi
-import com.unina.natourkt.data.remote.retrofit.RouteApi
-import com.unina.natourkt.data.remote.retrofit.UserApi
+import com.unina.natourkt.data.remote.retrofit.*
 import com.unina.natourkt.data.repository.*
 import com.unina.natourkt.domain.repository.*
 import dagger.Module
@@ -25,6 +22,12 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideAuthRepository(): AuthRepository = AuthRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideMapsRepository(api: MapsApi): MapsRepository {
+        return MapsRepositoryImpl(api)
+    }
 
     @Provides
     @Singleton

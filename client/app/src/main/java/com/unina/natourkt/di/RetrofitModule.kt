@@ -1,7 +1,7 @@
 package com.unina.natourkt.di
 
+import com.google.android.gms.maps.model.LatLng
 import com.unina.natourkt.common.Constants.BASE_URL
-import com.unina.natourkt.common.Constants.MAPS_URL
 import com.unina.natourkt.common.NetworkConnectionInterceptor
 import com.unina.natourkt.data.remote.retrofit.*
 import dagger.Module
@@ -68,11 +68,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideMapsRetrofit(): MapsApi {
-        return Retrofit.Builder()
-            .baseUrl(MAPS_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(MapsApi::class.java)
+    fun provideMapsRetrofit(retrofit: Retrofit): MapsApi {
+        return retrofit.create(MapsApi::class.java)
     }
 }

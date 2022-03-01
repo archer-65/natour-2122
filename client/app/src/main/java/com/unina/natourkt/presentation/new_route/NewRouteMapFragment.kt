@@ -9,6 +9,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -118,6 +119,10 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
                 }
             }
         }
+
+        topAppBar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     override fun collectState() {
@@ -127,6 +132,7 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
                     uiState.apply {
                         if (routeStops.isNotEmpty()) {
                             bindStops(routeStops)
+                            map.addPolyline(uiState.polylineOptions)
                         }
                     }
                 }
@@ -167,7 +173,9 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
         googleMap.setOnMapClickListener {
             addStop(it.latitude, it.longitude)
             Log.i("AGGIUNTA STOP", it.toString())
+            this.getDirections()
         }
+        googleMap.isTrafficEnabled = true
     }
 
     // Here we are overriding lifecycle functions to manage MapView's lifecycle

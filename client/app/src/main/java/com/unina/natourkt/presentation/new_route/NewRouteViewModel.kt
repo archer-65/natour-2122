@@ -1,16 +1,17 @@
 package com.unina.natourkt.presentation.new_route
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.android.gms.maps.model.PolylineOptions
+import com.unina.natourkt.common.DataState
+import com.unina.natourkt.domain.use_case.maps.GetDirectionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class NewRouteViewModel @Inject constructor(
-
+    private val getDirectionsUseCase: GetDirectionsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(NewRouteUiState())
@@ -31,6 +32,25 @@ class NewRouteViewModel @Inject constructor(
             )
             currentState.copy(routeStops = newStops)
         }
+    }
+
+    fun getDirections() {
+        val stops = uiState.value.routeStops.map { it.toRouteStop() }
+        getDirectionsUseCase(stops).onEach { result ->
+            when (result) {
+
+                is DataState.Success -> {
+                    val polylines = PolylineOptions()
+                    result.data?.let { polylines.addAll(it.points) }
+                    _uiState.update { it.copy(polylineOptions = polylines) }
+                }
+                is DataState.Error -> {
+                }
+                is DataState.Loading -> {
+
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 }
 

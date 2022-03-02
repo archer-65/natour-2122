@@ -1,6 +1,7 @@
 package com.unina.natourkt.presentation.new_route
 
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.InputFilter
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
@@ -16,6 +17,7 @@ import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.input_filter.DurationFilter
+import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -55,6 +57,19 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
             // Prepare information before next screen
             prepareInfo(viewModel.uiState.value.routeInfo)
             findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
+
+        }
+
+        selectPhotosButton.setOnClickListener {
+            TedImagePicker.with(requireContext())
+                .startMultiImage { uriList ->
+                    viewModel.setPhotos(uriList.map {
+                        MediaStore.Images.Media.getBitmap(
+                            requireContext().contentResolver,
+                            it
+                        )
+                    })
+                }
         }
 
         disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
@@ -128,13 +143,13 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
     }
 
     override fun collectState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect() { uiState ->
-                    uiState.apply {
-                        bindInfo(routeInfo)
-                    }
-                }
+        collectLatestOnLifecycleScope(viewModel.uiState) {
+            bindInfo(it.routeInfo)
+        }
+
+        collectLatestOnLifecycleScope(viewModel.uiState) {
+            if (it.routePhotos.isNotEmpty()) {
+                binding.imageView4.setImageBitmap(it.routePhotos.first())
             }
         }
     }

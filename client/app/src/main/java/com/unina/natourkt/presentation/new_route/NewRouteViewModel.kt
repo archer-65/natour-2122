@@ -1,5 +1,6 @@
 package com.unina.natourkt.presentation.new_route
 
+import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.PolylineOptions
@@ -51,6 +52,12 @@ class NewRouteViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun setPhotos(photos: List<Bitmap>) {
+        _uiState.update {
+            it.copy(routePhotos = photos)
+        }
     }
 }
 

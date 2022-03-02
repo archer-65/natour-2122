@@ -63,7 +63,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_location_on_24)
 
         viewPager.adapter = adapter
-        viewPager.isSaveEnabled = false
+        //viewPager.isSaveEnabled = false
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> tab.icon = portraitIcon

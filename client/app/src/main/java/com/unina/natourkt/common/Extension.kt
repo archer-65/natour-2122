@@ -17,7 +17,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.common.Constants.COLUMN_COUNT
@@ -95,6 +98,19 @@ fun RecyclerView.scrollBehavior(fab: FloatingActionButton) {
             fab.show()
         }
     }
+}
+
+fun GoogleMap.addCustomMarker(title: String, latLng: LatLng, isDraggable: Boolean = false) {
+    this.addMarker(
+        MarkerOptions()
+            .position(latLng)
+            .title(title)
+            .draggable(isDraggable)
+    )
+}
+
+fun GoogleMap.moveAndZoomCamera(latLng: LatLng, zoom: Float = 15F) {
+    this.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
 }
 
 fun String.decodePolyline(): List<LatLng> {

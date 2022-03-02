@@ -234,6 +234,13 @@ abstract class BaseMapFragment<VB : ViewBinding, VM : ViewModel, MapBinding : Ma
         }
     }
 
+    /**
+     * Overriding function of interface for when the map is ready to be used.
+     * Once an instance of this interface is set on a MapFragment or MapView object,
+     * the onMapReady(GoogleMap) method is triggered when the map is ready to be used and provides a non-null instance of GoogleMap.
+     * If Google Play services is not installed on the device, the user will be prompted to install it,
+     * and the onMapReady(GoogleMap) method will only be triggered when the user has installed it and returned to the app.
+     */
     override fun onMapReady(map: GoogleMap) {
         setFirstCameraPosition()
         collectState()

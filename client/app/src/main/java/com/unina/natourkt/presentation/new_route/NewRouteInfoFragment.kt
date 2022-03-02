@@ -55,9 +55,9 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
     override fun setListeners() = with(binding) {
         nextFab.setOnClickListener {
             // Prepare information before next screen
-            prepareInfo(viewModel.uiState.value.routeInfo)
-            findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
-
+        //    prepareInfo(viewModel.uiState.value.routeInfo)
+          //  findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
+        findNavController().navigate(R.id.action_navigation_new_route_info_to_newRoutePhotosFragment)
         }
 
         selectPhotosButton.setOnClickListener {
@@ -147,10 +147,10 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
             bindInfo(it.routeInfo)
         }
 
-        collectLatestOnLifecycleScope(viewModel.uiState) {
+       /* collectLatestOnLifecycleScope(viewModel.uiState) {
             if (it.routePhotos.isNotEmpty()) {
                 binding.imageView4.setImageBitmap(it.routePhotos.first())
             }
-        }
+        } */
     }
 }

@@ -3,14 +3,12 @@ package com.unina.natourkt.presentation.new_route
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.activity.result.ActivityResultLauncher
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,6 +16,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
+import com.unina.natourkt.common.setBottomMargin
+import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
 import com.unina.natourkt.presentation.base.contract.PlacesContract
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
@@ -25,31 +25,19 @@ import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
+class NewRouteMapFragment : BaseFragment<FragmentNewRouteMapBinding, NewRouteViewModel>(),
+    OnMapReadyCallback {
 
-    // This property is only valid between OnCreateView and
-    // onDestroyView.
-    private var _binding: FragmentNewRouteMapBinding? = null
-    private val binding get() = _binding!!
+
+    private val viewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
+
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentNewRouteMapBinding.inflate(layoutInflater)
 
     private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
     private lateinit var map: GoogleMap
 
-    private val newRouteViewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentNewRouteMapBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         // We are not using MapFragment anymore, it's useless and negative for performance.
         // Implementing MapView instead of Fragment requires lifecycle management.
         // Here we are creating our MapView and calling onMapReady callback.
@@ -61,7 +49,6 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
             }
         }
         initPlacesSearch()
-
         setupUi()
         setListeners()
     }
@@ -82,28 +69,10 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
     /**
      * Basic settings for UI
      */
-    override fun setupUi() {
-        with(binding) {
-            mapView.applyInsetter {
-                type(navigationBars = true) {
-                    margin()
-                }
-            }
-
-            nextFab.applyInsetter {
-                type(navigationBars = true) {
-                    margin()
-                }
-            }
-
-            topAppBar.apply {
-                applyInsetter {
-                    type(statusBars = true) {
-                        margin()
-                    }
-                }
-            }
-        }
+    override fun setupUi() = with(binding) {
+        topAppBar.setTopMargin()
+        mapView.setBottomMargin()
+        nextFab.setBottomMargin()
     }
 
     override fun setListeners() = with(binding) {
@@ -128,7 +97,7 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
     override fun collectState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                newRouteViewModel.uiState.collect { uiState ->
+                viewModel.uiState.collect { uiState ->
                     uiState.apply {
                         if (routeStops.isNotEmpty()) {
                             bindStops(routeStops)
@@ -155,7 +124,7 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     private fun initMap() {
-        val firstStop = newRouteViewModel.uiState.value.routeStops.firstOrNull()
+        val firstStop = viewModel.uiState.value.routeStops.firstOrNull()
 
         val position = if (firstStop != null) {
             LatLng(firstStop.latitude, firstStop.longitude)
@@ -166,7 +135,7 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15f))
     }
 
-    override fun onMapReady(googleMap: GoogleMap) = with(newRouteViewModel) {
+    override fun onMapReady(googleMap: GoogleMap) = with(viewModel) {
         initMap()
         collectState()
 
@@ -213,5 +182,5 @@ class NewRouteMapFragment : BaseFragment(), OnMapReadyCallback {
         super.onSaveInstanceState(outState)
         binding.mapView.onSaveInstanceState(outState)
     }
-    // End of lifecycle management for MapView
+// End of lifecycle management for MapView
 }

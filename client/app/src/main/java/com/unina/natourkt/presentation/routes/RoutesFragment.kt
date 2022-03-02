@@ -9,11 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.facebook.shimmer.ShimmerFrameLayout
 import com.unina.natourkt.R
+import com.unina.natourkt.common.scrollBehavior
+import com.unina.natourkt.common.setTopMargin
+import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
@@ -27,115 +28,33 @@ import kotlinx.coroutines.flow.collectLatest
  * filled of paginated routes
  */
 @AndroidEntryPoint
-class RoutesFragment : BaseFragment() {
+class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>() {
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private var _binding: FragmentRoutesBinding? = null
-    private val binding get() = _binding!!
+    private val recyclerAdapter = RouteAdapter()
 
-    // Recycler elements
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerAdapter: RouteAdapter
-    private lateinit var shimmerFrame: ShimmerFrameLayout
-    private lateinit var refresh: SwipeRefreshLayout
+    private val viewModel: RoutesViewModel by viewModels()
 
-    // ViewModel
-    private val routesViewModel: RoutesViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentRoutesBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentRoutesBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi()
         setListeners()
         initRecycler()
-        handleFab()
-        collectState()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    /**
-     * Basic settings for UI
-     */
-    override fun setupUi() {
-        binding.topAppBar.applyInsetter {
-            type(statusBars = true) {
-                margin()
-            }
-        }
-
-        recyclerView = binding.recyclerRoutes
-
-        shimmerFrame = binding.shimmerContainer
-
-        refresh = binding.swipeRefresh
-    }
-
-    /**
-     * Recycler View init function
-     */
-    override fun initRecycler() {
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@RoutesFragment.requireContext())
-            recyclerAdapter = RouteAdapter()
-            adapter = recyclerAdapter.withLoadStateHeaderAndFooter(
-                header = ItemLoadStateAdapter(),
-                footer = ItemLoadStateAdapter()
-            )
-        }
-        recyclerAdapter.addLoadStateListener { loadState ->
-
-            refresh.isRefreshing = loadState.source.refresh is LoadState.Loading
-
-            when (loadState.source.refresh) {
-                // If loading, start the shimmer animation and mark as GONE the Recycler
-                is LoadState.Loading -> {
-                    shimmerFrame.startShimmer()
-                    shimmerFrame.isVisible = true
-                    recyclerView.isVisible = false
-                }
-                // If not loading, stop the shimmer animation and mark as VISIBLE the Recycler
-                else -> {
-                    shimmerFrame.stopShimmer()
-                    shimmerFrame.isVisible = false
-                    recyclerView.isVisible = true
-                }
-            }
-        }
-    }
-
-    private fun handleFab() = with(binding) {
-        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (scrollY > oldScrollY) {
-                newRouteFab.hide()
-            } else if (scrollX == scrollY) {
-                newRouteFab.show()
-            } else {
-                newRouteFab.show()
-            }
-        }
+    override fun setupUi() = with(binding) {
+        topAppBar.setTopMargin()
     }
 
     override fun setListeners() = with(binding) {
-        refresh.setOnRefreshListener {
+        swipeRefresh.setOnRefreshListener {
             recyclerAdapter.refresh()
         }
 
         newRouteFab.setOnClickListener {
-            val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
+            val extras = FragmentNavigatorExtras(newRouteFab to "transitionNewRouteFab")
             findNavController().navigate(
                 R.id.action_routes_to_new_route_flow,
                 null,
@@ -145,15 +64,38 @@ class RoutesFragment : BaseFragment() {
         }
     }
 
-    /**
-     * Start to collect [RouteUiState], action based on Success/Loading/Error
-     */
-    override fun collectState() = with(routesViewModel) {
-        launchOnLifecycleScope {
-            routesFlow.collectLatest {
-                // Send data to adapter
-                recyclerAdapter.submitData(it)
+    override fun initRecycler() {
+        with(binding) {
+            recyclerRoutes.apply {
+                layoutManager = LinearLayoutManager(this@RoutesFragment.requireContext())
+                adapter = initConcatAdapter()
+                scrollBehavior(newRouteFab)
             }
+        }
+    }
+
+    override fun initConcatAdapter(): ConcatAdapter = with(binding) {
+        val footerLoadStateAdapter = ItemLoadStateAdapter()
+        val headerLoadStateAdapter = ItemLoadStateAdapter()
+
+        recyclerAdapter.addLoadStateListener { loadState ->
+            footerLoadStateAdapter.loadState = loadState.append
+            headerLoadStateAdapter.loadState = loadState.refresh
+
+            swipeRefresh.isRefreshing = loadState.source.refresh is LoadState.Loading
+
+            shimmerContainer.isVisible = loadState.source.refresh is LoadState.Loading
+            recyclerRoutes.isVisible = loadState.source.refresh !is LoadState.Loading
+        }
+
+        val concatAdapter =
+            ConcatAdapter(headerLoadStateAdapter, recyclerAdapter, footerLoadStateAdapter)
+        return concatAdapter
+    }
+
+    override fun collectState() = with(viewModel) {
+        collectLatestOnLifecycleScope(routesFlow) {
+            recyclerAdapter.submitData(it)
         }
     }
 }

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -12,33 +14,29 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
+import com.unina.natourkt.common.setBottomMargin
+import com.unina.natourkt.common.setTopMargin
+import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
 import com.unina.natourkt.presentation.base.contract.PlacesContract
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
 
+/**
+ * ViewModel da cambiare!!!
+ */
 @AndroidEntryPoint
-class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback{
-
-    // This property is only valid between OnCreateView and
-    // onDestroyView.
-    private var _binding: FragmentRouteDetailsBinding? = null
-    private val binding get() = _binding!!
+class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, ViewModel>(),
+    OnMapReadyCallback {
 
     private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
     private lateinit var googleMap: GoogleMap
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    private val viewModel: ViewModel by viewModels()
 
-        _binding = FragmentRouteDetailsBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentRouteDetailsBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,36 +52,29 @@ class RouteDetailsFragment : BaseFragment(), OnMapReadyCallback{
             }
         }
         initPlacesSearch()
-
-        setupUi()
     }
 
     /**
      * Basic settings for UI
      */
     override fun setupUi() {
-        binding.mapView.applyInsetter {
-            type(navigationBars = true) {
-                margin()
-            }
-        }
+        with(binding) {
+            mapView.setBottomMargin()
 
-        binding.topAppBar.apply {
-            applyInsetter {
-                type(statusBars = true) {
-                    margin()
-                }
-            }
+            topAppBar.apply {
+                setTopMargin()
 
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.search_place -> {
-                        val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
-                        launcherPlaces.launch(fields)
-                        true
-                    }
-                    else -> {
-                        false
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.search_place -> {
+                            val fields =
+                                listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
+                            launcherPlaces.launch(fields)
+                            true
+                        }
+                        else -> {
+                            false
+                        }
                     }
                 }
             }

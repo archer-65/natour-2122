@@ -1,18 +1,18 @@
 package com.unina.natourkt.presentation.registration
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
+import com.unina.natourkt.common.setBottomMargin
+import com.unina.natourkt.common.setTopMargin
+import com.unina.natourkt.common.updateText
 import com.unina.natourkt.databinding.FragmentRegistrationBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
@@ -20,132 +20,74 @@ import kotlinx.coroutines.flow.collectLatest
  * This Fragment represents the SignUp Screen
  */
 @AndroidEntryPoint
-class RegistrationFragment : BaseFragment() {
+class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, RegistrationViewModel>() {
 
-    // This property is only valid between OnCreateView and
-    // onDestroyView.
-    private var _binding: FragmentRegistrationBinding? = null
-    private val binding get() = _binding!!
+    private val viewModel: RegistrationViewModel by navGraphViewModels(R.id.navigation_auth_flow)
 
-    // ViewModel
-    private val registrationViewModel: RegistrationViewModel by navGraphViewModels(R.id.navigation_auth_flow)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentRegistrationBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi()
         setListeners()
         setTextChangedListeners()
-        collectState()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun setupUi() = with(binding) {
+        registrationImage.setTopMargin()
+        signUpButton.setBottomMargin()
     }
 
-    /**
-     * Start to collect [RegistrationUiState], action based on Success/Loading/Error
-     */
-    override fun collectState() = with(binding) {
-        with(registrationViewModel) {
-            launchOnLifecycleScope {
-                uiRegistrationState.collect {
-                    // When the sign up is complete
-                    if (it.isSignUpComplete) {
-                        // We navigate to the home screen
-                        findNavController().navigate(R.id.action_registration_to_confirmation)
-                    }
-
-                    // Bind the progress bar visibility
-                    progressBar.isVisible = it.isLoading
-
-                    // When an error is present
-                    it.errorMessage?.run {
-                        manageMessage(this)
-                    }
-                }
-            }
-
-            launchOnLifecycleScope {
-                uiRegistrationFormState.collectLatest {
-                    // Bind the button visibility
-                    signUpButton.isEnabled =
-                        it.username.isNotBlank() &&
-                                it.password.isNotBlank() &&
-                                it.password.isNotBlank() &&
-                                it.confirmPassword.isNotBlank()
-                }
-            }
-        }
-    }
-
-    /**
-     * Basic settings for UI
-     */
-    override fun setupUi() {
-        with(binding) {
-            signUpButton.applyInsetter {
-                type(navigationBars = true) {
-                    margin()
-                }
-            }
-
-            registrationImage.applyInsetter {
-                type(statusBars = true) {
-                    margin()
-                }
-            }
-        }
-    }
-
-    /**
-     * Function to set listeners for views
-     */
     override fun setListeners() = with(binding) {
         signUpButton.setOnClickListener {
             if (isFormValid()) {
-                registrationViewModel.registration(
-                    usernameTextField.editText?.text.toString(),
-                    emailTextField.editText?.text.toString(),
-                    passwordTextField.editText?.text.toString()
-                )
+                viewModel.registration()
             }
         }
     }
 
-    /**
-     * Function to set TextListeners
-     */
-    private fun setTextChangedListeners() = with(binding) {
-        with(registrationViewModel) {
-            usernameTextField.editText?.doAfterTextChanged {
-                val username = it.toString().trim()
-                setUsername(username)
+    override fun setTextChangedListeners() = with(binding) {
+        with(viewModel) {
+            usernameTextField.updateText {
+                setUsername(it)
             }
 
-            emailTextField.editText?.doAfterTextChanged {
-                val email = it.toString().trim()
-                setEmail(email)
+            emailTextField.updateText {
+                setEmail(it)
             }
 
-            passwordTextField.editText?.doAfterTextChanged {
-                val password = it.toString().trim()
-                setPassword(password)
+            passwordTextField.updateText {
+                setPassword(it)
             }
 
-            confirmPasswordTextField.editText?.doAfterTextChanged {
-                val password = it.toString().trim()
-                setConfirmPassword(password)
+            confirmPasswordTextField.updateText {
+                setConfirmPassword(it)
+            }
+        }
+    }
+
+
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            collectOnLifecycleScope(uiRegistrationState) {
+                // When the sign up is complete we navigate to the home screen
+                if (it.isSignUpComplete) {
+                    findNavController().navigate(R.id.action_registration_to_confirmation)
+                }
+
+                progressBar.isVisible = it.isLoading
+
+                // When an error is present
+                it.errorMessage?.run {
+                    manageMessage(this)
+                }
+            }
+
+
+            collectOnLifecycleScope(uiRegistrationFormState) {
+                signUpButton.isEnabled =
+                    it.username.isNotBlank() && it.password.isNotBlank() && it.password.isNotBlank() && it.confirmPassword.isNotBlank()
             }
         }
     }
@@ -153,31 +95,31 @@ class RegistrationFragment : BaseFragment() {
     /**
      * Form validation based on other functions
      */
-    private fun isFormValid(): Boolean = with(binding) {
-        val isUsernameValid =
-            registrationViewModel.uiRegistrationFormState.value.isUsernameValid.also { valid ->
-                val error = if (!valid) getString(R.string.username_check) else null
-                usernameTextField.error = error
-            }
+    private fun isFormValid(): Boolean {
+        with(binding) {
+            with(viewModel.uiRegistrationFormState.value) {
+                val isUsernameValid = isUsernameValid.also { valid ->
+                    val error = if (!valid) getString(R.string.username_check) else null
+                    usernameTextField.error = error
+                }
 
-        val isEmailValid =
-            registrationViewModel.uiRegistrationFormState.value.isEmailValid.also { valid ->
-                val error = if (!valid) getString(R.string.email_check) else null
-                emailTextField.error = error
-            }
+                val isEmailValid = isEmailValid.also { valid ->
+                    val error = if (!valid) getString(R.string.email_check) else null
+                    emailTextField.error = error
+                }
 
-        val isPasswordValid =
-            registrationViewModel.uiRegistrationFormState.value.isPasswordValid.also { valid ->
-                val error = if (!valid) getString(R.string.password_length) else null
-                passwordTextField.error = error
-            }
+                val isPasswordValid = isPasswordValid.also { valid ->
+                    val error = if (!valid) getString(R.string.password_length) else null
+                    passwordTextField.error = error
+                }
 
-        val isConfirmPasswordValid =
-            registrationViewModel.uiRegistrationFormState.value.isConfirmPasswordValid.also { valid ->
-                val error = if (!valid) getString(R.string.passwords_matching) else null
-                confirmPasswordTextField.error = error
-            }
+                val isConfirmPasswordValid = isConfirmPasswordValid.also { valid ->
+                    val error = if (!valid) getString(R.string.passwords_matching) else null
+                    confirmPasswordTextField.error = error
+                }
 
-        return isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid
+                return isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid
+            }
+        }
     }
 }

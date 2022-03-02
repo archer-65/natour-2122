@@ -27,9 +27,9 @@ class ForgotPasswordViewModel @Inject constructor(
     private val _formState = MutableStateFlow(ForgotPasswordFormUiState())
     val formState = _formState.asStateFlow()
 
-    fun resetRequest(username: String) {
+    fun resetRequest() {
         // On every value emitted by the flow
-        resetPasswordRequestUseCase(username).onEach { result ->
+        resetPasswordRequestUseCase(formState.value.username).onEach { result ->
             when (result) {
                 // In case of success, update the isCodeSent value
                 is DataState.Success -> {

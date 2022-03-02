@@ -1,17 +1,16 @@
 package com.unina.natourkt.presentation.profile.posts
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.common.Constants.COLUMN_COUNT
 import com.unina.natourkt.common.Constants.COLUMN_SPACING
+import com.unina.natourkt.common.scrollBehavior
 import com.unina.natourkt.databinding.FragmentPersonalPostsBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostGridAdapter
@@ -20,122 +19,84 @@ import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 
 /**
  * This Fragment represents the profile posts screen
  * filled of paginated posts
  */
 @AndroidEntryPoint
-class PersonalPostsFragment : BaseFragment(), PostGridAdapter.OnItemClickListener {
+class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, PersonalPostsViewModel>(),
+    PostGridAdapter.OnItemClickListener {
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private var _binding: FragmentPersonalPostsBinding? = null
-    private val binding get() = _binding!!
+    private val recyclerAdapter = PostGridAdapter(this@PersonalPostsFragment)
+    private val footerLoadStateAdapter = ItemLoadStateAdapter()
+    private val headerLoadStateAdapter = ItemLoadStateAdapter()
 
-    // Recycler elements
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerAdapter: PostGridAdapter
+    private val viewModel: PersonalPostsViewModel by viewModels()
 
-    // ViewModel
-    private val personalPostsViewModel: PersonalPostsViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPersonalPostsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentPersonalPostsBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi()
         initRecycler()
-        handleFab()
-        collectState()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    /**
-     * Basic settings for UI
-     */
-    override fun setupUi() {
-        recyclerView = binding.recyclerProfilePosts
     }
 
     /**
      * Recycler View init function
      */
     override fun initRecycler() {
-        recyclerView.apply {
-            // Grid declaration with Columns count
-            val grid = GridLayoutManager(this@PersonalPostsFragment.requireContext(), COLUMN_COUNT)
+        with(binding) {
+            recyclerProfilePosts.apply {
+                // Grid declaration with Columns count
+                val gridAdapter = initConcatAdapter()
 
-            recyclerAdapter = PostGridAdapter(this@PersonalPostsFragment)
-            addItemDecoration(GridItemDecoration(COLUMN_COUNT, COLUMN_SPACING, false))
+                val grid = GridLayoutManager(
+                    this@PersonalPostsFragment.requireContext(),
+                    COLUMN_COUNT
+                )
 
-            val header = ItemLoadStateAdapter()
-            val footer = ItemLoadStateAdapter()
-            val gridAdapter = recyclerAdapter.withLoadStateHeaderAndFooter(
-                header = header,
-                footer = footer
-            )
-            adapter = gridAdapter
-
-            layoutManager = grid
-            grid.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    return if (position == gridAdapter.itemCount - 1 && footer.itemCount > 0) {
-                        COLUMN_COUNT
-                    } else {
-                        1
+                grid.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return if (position == gridAdapter.itemCount - 1 && footerLoadStateAdapter.itemCount > 0) {
+                            COLUMN_COUNT
+                        } else {
+                            1
+                        }
                     }
                 }
+
+                layoutManager = grid
+
+                addItemDecoration(GridItemDecoration(COLUMN_COUNT, COLUMN_SPACING, false))
+
+                adapter = gridAdapter
+
+                scrollBehavior(newPostFab)
             }
         }
+    }
+
+    override fun initConcatAdapter(): ConcatAdapter = with(binding) {
+//        footerLoadStateAdapter = ItemLoadStateAdapter()
+//        headerLoadStateAdapter = ItemLoadStateAdapter()
+
         recyclerAdapter.addLoadStateListener { loadState ->
-            when (loadState.source.refresh) {
-                // If loading, start the shimmer animation and mark as GONE the Recycler
-                is LoadState.Loading -> {
-                    recyclerView.isVisible = false
-                }
-                // If not loading, stop the shimmer animation and mark as VISIBLE the Recycler
-                else -> {
-                    recyclerView.isVisible = true
-                }
-            }
+            footerLoadStateAdapter.loadState = loadState.append
+            //headerLoadStateAdapter.loadState = loadState.refresh
+
+            recyclerProfilePosts.isVisible = loadState.source.refresh !is LoadState.Loading
         }
+
+        val concatAdapter =
+            ConcatAdapter(headerLoadStateAdapter, recyclerAdapter, footerLoadStateAdapter)
+        return concatAdapter
     }
 
-    private fun handleFab() = with(binding) {
-        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (scrollY > oldScrollY) {
-                newPostFab.hide()
-            } else if (scrollX == scrollY) {
-                newPostFab.show()
-            } else {
-                newPostFab.show()
-            }
-        }
-    }
-
-    /**
-     * Start to collect [PersonalPostsUiState], action based on Success/Loading/Error
-     */
-    override fun collectState() = with(personalPostsViewModel) {
-        launchOnLifecycleScope {
-            postsFlow.collectLatest {
-                // Send data to adapter
-                recyclerAdapter.submitData(it)
-            }
+    override fun collectState() = with(viewModel) {
+        collectLatestOnLifecycleScope(postsFlow) {
+            recyclerAdapter.submitData(it)
         }
     }
 

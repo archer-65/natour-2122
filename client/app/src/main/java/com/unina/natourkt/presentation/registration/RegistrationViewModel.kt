@@ -46,12 +46,11 @@ class RegistrationViewModel @Inject constructor(
      * Registration function
      * @see [RegistrationUseCase]
      */
-    fun registration(username: String, email: String, password: String) {
+    fun registration() = with(uiRegistrationFormState.value) {
         // On every value emitted by the flow
         registrationUseCase(username, email, password).onEach { result ->
             when (result) {
-                // In case of success, update the isSignUpComplete value and
-                // set the username (will be used by confirmation)
+                // In case of success, update the isSignUpComplete valueu
                 is DataState.Success -> {
                     _uiRegistrationState.value =
                         RegistrationUiState(isSignUpComplete = result.data ?: false)
@@ -69,15 +68,16 @@ class RegistrationViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+
     /**
      * Confirmation function
      * @see [RegistrationConfirmationUseCase]
      */
-    fun confirmation(code: String) {
+    fun confirmation() {
         // On every value emitted by the flow
         registrationConfirmationUseCase(
             _uiRegistrationFormState.value.username,
-            code
+            _uiConfirmationFormState.value.code
         ).onEach { result ->
             when (result) {
                 // In case of success, update the isConfirmationComplete value

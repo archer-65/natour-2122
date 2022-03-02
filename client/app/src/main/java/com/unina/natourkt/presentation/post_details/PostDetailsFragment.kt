@@ -16,7 +16,9 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.common.inVisible
+import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.common.visible
+import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
@@ -26,54 +28,27 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PostDetailsFragment : BaseFragment() {
+class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetailsViewModel>() {
 
-    // This property is only valid between OnCreateView and
-    // onDestroyView.
-    private var _binding: FragmentPostDetailsBinding? = null
-    private val binding get() = _binding!!
-
+    private val viewModel: PostDetailsViewModel by viewModels()
     private val args: PostDetailsFragmentArgs by navArgs()
+
     private var user: User? = null
 
-    private val postDetailsViewModel: PostDetailsViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentPostDetailsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        user = mainViewModel.loggedUser
-        setupUi()
-        setupToolbar()
-
-        return root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentPostDetailsBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        collectState()
+        user = mainViewModel.loggedUser
+        setupToolbar()
     }
 
-    /**
-     * Basic settings for UI
-     */
-    override fun setupUi() {
-        binding.topAppBar.applyInsetter {
-            type(statusBars = true) {
-                margin()
-            }
-        }
+    override fun setupUi() = with(binding) {
+        topAppBar.setTopMargin()
     }
 
-    /**
-     * Options menu
-     */
     fun setupToolbar() {
         binding.topAppBar.apply {
             menu.clear()
@@ -157,19 +132,14 @@ class PostDetailsFragment : BaseFragment() {
         }
     }
 
-    override fun collectState() {
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                postDetailsViewModel.uiState.collectLatest { uiState ->
-                    // When the response arrives
-                    if (uiState.post != null) {
-                        bindView(uiState.post)
-                    }
-                    if (uiState.isLoading) {
-                        loadingView()
-                    }
-                }
+    override fun collectState() = with(viewModel) {
+        collectLatestOnLifecycleScope(uiState) {
+            // When the response arrives
+            if (it.post != null) {
+                bindView(it.post)
+            }
+            if (it.isLoading) {
+                loadingView()
             }
         }
     }

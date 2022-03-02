@@ -28,9 +28,9 @@ class LoginViewModel @Inject constructor(
      * Login function
      * @see [LoginUseCase]
      */
-    fun login(username: String, password: String) {
+    fun login() {
         // On every value emitted by the flow
-        loginUseCase(username, password).onEach { result ->
+        loginUseCase(formState.value.username, formState.value.password).onEach { result ->
             // Util function
             resultManager(result)
         }.launchIn(viewModelScope)

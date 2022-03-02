@@ -3,11 +3,15 @@ package com.unina.natourkt.common
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.annotation.IdRes
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
+import androidx.navigation.findNavController
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
@@ -15,7 +19,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputLayout
+import com.unina.natourkt.common.Constants.COLUMN_COUNT
 import com.unina.natourkt.domain.model.route.RouteStop
+import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
+import dev.chrisbanes.insetter.applyInsetter
 
 /**
  *  A function that makes the view visible.
@@ -29,6 +37,35 @@ fun View.visible() {
  */
 fun View.inVisible() {
     this.visibility = View.GONE
+}
+
+fun View.setTopMargin() {
+    this.applyInsetter {
+        type(statusBars = true) {
+            margin()
+        }
+    }
+}
+
+fun View.setBottomMargin() {
+    this.applyInsetter {
+        type(navigationBars = true) {
+            margin()
+        }
+    }
+}
+
+fun View.navigateOnClick(@IdRes resId: Int) {
+    this.setOnClickListener {
+        findNavController().navigate(resId)
+    }
+}
+
+fun TextInputLayout.updateText(execute: (text: String) -> Unit) {
+    this.editText?.doAfterTextChanged {
+        val text = it.toString().trim()
+        execute(text)
+    }
 }
 
 fun ImageView.loadWithGlide(url: String?, @DrawableRes fallbackDrawable: Int) {

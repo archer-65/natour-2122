@@ -1,15 +1,16 @@
 package com.unina.natourkt.presentation.registration
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
+import com.unina.natourkt.common.setTopMargin
+import com.unina.natourkt.common.updateText
 import com.unina.natourkt.databinding.FragmentConfirmationBinding
+import com.unina.natourkt.databinding.FragmentLoginBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
@@ -20,104 +21,29 @@ import kotlinx.coroutines.flow.collectLatest
  * This Fragment represents the Confirmation after Sign Up Screen
  */
 @AndroidEntryPoint
-class ConfirmationFragment : BaseFragment() {
+class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding, RegistrationViewModel>() {
 
-    // This property is only valid between OnCreateView and
-    // onDestroyView.
-    private var _binding: FragmentConfirmationBinding? = null
-    private val binding get() = _binding!!
+    private val viewModel: RegistrationViewModel by hiltNavGraphViewModels(R.id.navigation_auth_flow)
 
-    private val registrationViewModel: RegistrationViewModel by hiltNavGraphViewModels(R.id.navigation_auth_flow)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentConfirmationBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentConfirmationBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi()
         setListeners()
         setTextChangedListeners()
-        collectState()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun setupUi() = with(binding) {
+        confirmationImage.setTopMargin()
     }
 
-    /**
-     * Start to collect LoginState, action based on Success/Loading/Error
-     */
-    override fun collectState() = with(binding) {
-        with(registrationViewModel) {
-            launchOnLifecycleScope {
-                uiConfirmationState.collect {
-                    // When the user is confirmed
-                    if (it.isConfirmationComplete) {
-                        // Message is shown
-                        val message = getString(R.string.confirmed_account)
-                        showSnackbar(message)
-
-                        // We navigate to the login screen
-                        findNavController().navigate(R.id.action_confirmation_to_login)
-                    }
-
-                    // When the code is resent
-                    if (it.isCodeResent) {
-                        // Message is shown
-                        val message = getString(R.string.code_resent)
-                        showSnackbar(message)
-                    }
-
-                    // Bind the progress bar visibility
-                    progressBar.isVisible = it.isLoading
-
-                    // When an error is present
-                    it.errorMessage?.run {
-                        manageMessage(this)
-                    }
-                }
-            }
-
-            launchOnLifecycleScope {
-                uiConfirmationFormState.collectLatest {
-                    // Bind the button visibility
-                    confirmationButton.isEnabled = it.code.isNotBlank()
-                }
-            }
-        }
-    }
-
-
-    /**
-     * Basic settings for UI
-     */
-    override fun setupUi() {
-        with(binding) {
-            confirmationImage.applyInsetter {
-                type(statusBars = true) {
-                    margin()
-                }
-            }
-        }
-    }
-
-    /**
-     * Function to set listeners for views
-     */
     override fun setListeners() = with(binding) {
-        with(registrationViewModel) {
+        with(viewModel) {
             confirmationButton.setOnClickListener {
                 if (isFormValid()) {
-                    confirmation(confirmCodeTextField.editText?.text.toString())
+                    confirmation()
                 }
             }
 
@@ -127,13 +53,42 @@ class ConfirmationFragment : BaseFragment() {
         }
     }
 
-    /**
-     * Function to set TextListeners
-     */
-    private fun setTextChangedListeners() = with(binding) {
-        confirmCodeTextField.editText?.doAfterTextChanged {
-            val code = it.toString().trim()
-            registrationViewModel.setCode(code)
+    override fun setTextChangedListeners() = with(binding) {
+        with(viewModel) {
+            confirmCodeTextField.updateText {
+                setCode(it)
+            }
+        }
+    }
+
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            collectOnLifecycleScope(uiConfirmationState) {
+                // When the user is confirmed a message is shown and we navigate to the login screen
+                if (it.isConfirmationComplete) {
+                    val message = getString(R.string.confirmed_account)
+                    showSnackbar(message)
+
+                    findNavController().navigate(R.id.action_confirmation_to_login)
+                }
+
+                // When the code is resent a message is shown
+                if (it.isCodeResent) {
+                    val message = getString(R.string.code_resent)
+                    showSnackbar(message)
+                }
+
+                progressBar.isVisible = it.isLoading
+
+                // When an error is present
+                it.errorMessage?.run {
+                    manageMessage(this)
+                }
+            }
+
+            collectOnLifecycleScope(uiConfirmationFormState) {
+                confirmationButton.isEnabled = it.code.isNotBlank()
+            }
         }
     }
 
@@ -142,7 +97,7 @@ class ConfirmationFragment : BaseFragment() {
      */
     private fun isFormValid(): Boolean = with(binding) {
         val isCodeValid =
-            registrationViewModel.uiConfirmationFormState.value.isCodeValid.also { valid ->
+            viewModel.uiConfirmationFormState.value.isCodeValid.also { valid ->
                 val error = if (!valid) getString(R.string.code_check) else null
                 confirmCodeTextField.error = error
             }

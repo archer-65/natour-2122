@@ -1,17 +1,24 @@
 package com.unina.natourkt.presentation.base.fragment
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.presentation.main.MainViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 /**
@@ -21,13 +28,44 @@ import kotlinx.coroutines.launch
  * continuous request for logged-in users
  * - [Snackbar] showing function
  */
-open class BaseFragment : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     /* A way to get the MainViewModel from the activity, and not from the fragment. */
     val mainViewModel: MainViewModel by activityViewModels()
 
+    protected lateinit var baseViewModel: VM
+    protected abstract fun getVM(): VM
+
+    protected lateinit var binding: VB
+    protected abstract fun getViewBinding(): VB
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        init()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupUi()
+        collectState()
+    }
+
+    private fun init() {
+        binding = getViewBinding()
+        baseViewModel = getVM()
+    }
+
     /**
-     * This function setups every Ui related option, for example apply margins with [Insetter]
+     * This function setups every View
      */
     open fun setupUi() {}
 
@@ -35,6 +73,11 @@ open class BaseFragment : Fragment() {
      * This function sets any kind of listener
      */
     open fun setListeners() {}
+
+    /**
+     * This function sets any kind of text listener
+     */
+    open fun setTextChangedListeners() {}
 
     /**
      * This function initialize any recycler view
@@ -57,10 +100,22 @@ open class BaseFragment : Fragment() {
      * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
      * lifecycle until the view's lifecycle is in the STARTED state
      */
-    fun launchOnLifecycleScope(execute: suspend () -> Unit) {
+    fun <T> collectLatestOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                execute()
+                flow.collectLatest(execute)
+            }
+        }
+    }
+
+    /**
+     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
+     * lifecycle until the view's lifecycle is in the STARTED state
+     */
+    fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                flow.collect(execute)
             }
         }
     }

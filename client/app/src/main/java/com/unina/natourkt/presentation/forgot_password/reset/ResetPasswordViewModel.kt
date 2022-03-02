@@ -30,9 +30,12 @@ class ResetPasswordViewModel @Inject constructor(
     val formState = _formState.asStateFlow()
 
 
-    fun resetConfirm(password: String, code: String) {
+    fun resetConfirm() {
         // On every value emitted by the flow
-        resetPasswordConfirmUseCase(password, code).onEach { result ->
+        resetPasswordConfirmUseCase(
+            formState.value.password,
+            formState.value.code
+        ).onEach { result ->
             when (result) {
                 // In case of success, update the isPasswordReset value
                 is DataState.Success -> {

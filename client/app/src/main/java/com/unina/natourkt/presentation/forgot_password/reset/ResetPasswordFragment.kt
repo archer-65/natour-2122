@@ -1,124 +1,42 @@
 package com.unina.natourkt.presentation.forgot_password.reset
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.core.widget.doAfterTextChanged
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
+import com.unina.natourkt.common.setBottomMargin
+import com.unina.natourkt.common.setTopMargin
+import com.unina.natourkt.common.updateText
 import com.unina.natourkt.databinding.FragmentResetPasswordBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dev.chrisbanes.insetter.applyInsetter
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class ResetPasswordFragment : BaseFragment() {
+class ResetPasswordFragment : BaseFragment<FragmentResetPasswordBinding, ResetPasswordViewModel>() {
 
-    // This property is only valid between OnCreateView and
-    // onDestroyView.
-    private var _binding: FragmentResetPasswordBinding? = null
-    private val binding get() = _binding!!
+    private val viewModel: ResetPasswordViewModel by hiltNavGraphViewModels(R.id.navigation_auth_flow)
 
-    // ViewModel
-    private val resetPasswordViewModel: ResetPasswordViewModel by hiltNavGraphViewModels(R.id.navigation_auth_flow)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentResetPasswordBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi()
         setListeners()
         setTextChangedListeners()
-        collectState()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun setupUi() = with(binding) {
+        forgotPasswordImage.setTopMargin()
+        passwordResetButton.setBottomMargin()
     }
 
-    /**
-     * Start to collect [ResetPasswordUiState], action based on Success/Loading/Error
-     */
-    override fun collectState() {
-        with(binding) {
-            with(resetPasswordViewModel) {
-                launchOnLifecycleScope {
-                    uiState.collect {
-                        // When the password is reset
-                        if (it.isPasswordReset) {
-                            val message = getString(R.string.password_reset_success)
-                            showSnackbar(message)
-
-                            // We navigate to login screen
-                            findNavController().navigate(R.id.action_new_password_to_login)
-                        }
-
-                        // Bind the progress bar visibility
-                        progressBar.isVisible = it.isLoading
-
-                        // When an error is present
-                        it.errorMessage?.run {
-                            manageMessage(this)
-                        }
-                    }
-                }
-
-                launchOnLifecycleScope {
-                    formState.collectLatest {
-                        // Bind the button visibility
-                        passwordResetButton.isEnabled =
-                            it.code.isNotBlank() && it.password.isNotBlank() && it.confirmPassword.isNotBlank()
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Basic settings for UI
-     */
-    override fun setupUi() {
-        with(binding) {
-            passwordResetButton.applyInsetter {
-                type(navigationBars = true) {
-                    margin()
-                }
-            }
-
-            forgotPasswordImage.applyInsetter {
-                type(statusBars = true) {
-                    margin()
-                }
-            }
-        }
-    }
-
-    /**
-     * Function to set listeners for views
-     */
-    override fun setListeners() {
-        with(binding) {
-            passwordResetButton.setOnClickListener {
-                if (isFormValid()) {
-                    resetPasswordViewModel.resetConfirm(
-                        passwordTextField.editText?.text.toString(),
-                        confirmCodeTextField.editText?.text.toString()
-                    )
-                }
+    override fun setListeners() = with(binding) {
+        passwordResetButton.setOnClickListener {
+            if (isFormValid()) {
+                viewModel.resetConfirm()
             }
         }
     }
@@ -126,21 +44,44 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Function to set TextListeners
      */
-    private fun setTextChangedListeners() = with(binding) {
-        with(resetPasswordViewModel) {
-            confirmCodeTextField.editText?.doAfterTextChanged {
-                val code = it.toString().trim()
-                setCode(code)
+    override fun setTextChangedListeners() = with(binding) {
+        with(viewModel) {
+            confirmCodeTextField.updateText {
+                setCode(it)
             }
 
-            passwordTextField.editText?.doAfterTextChanged {
-                val password = it.toString().trim()
-                setPassword(password)
+            passwordTextField.updateText {
+                setPassword(it)
             }
 
-            confirmPasswordTextField.editText?.doAfterTextChanged {
-                val password = it.toString().trim()
-                setConfirmPassword(password)
+            confirmPasswordTextField.updateText {
+                setConfirmPassword(it)
+            }
+        }
+    }
+
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            collectOnLifecycleScope(uiState) {
+                // When the password is reset we show a message and navigate to login screen
+                if (it.isPasswordReset) {
+                    val message = getString(R.string.password_reset_success)
+                    showSnackbar(message)
+
+                    findNavController().navigate(R.id.action_new_password_to_login)
+                }
+
+                progressBar.isVisible = it.isLoading
+
+                // When an error is present we show the error through snackbar
+                it.errorMessage?.run {
+                    manageMessage(this)
+                }
+            }
+
+            collectOnLifecycleScope(formState) {
+                passwordResetButton.isEnabled =
+                    it.code.isNotBlank() && it.password.isNotBlank() && it.confirmPassword.isNotBlank()
             }
         }
     }
@@ -148,25 +89,26 @@ class ResetPasswordFragment : BaseFragment() {
     /**
      * Form validation based on other functions
      */
-    private fun isFormValid(): Boolean = with(binding) {
-        val isCodeValid =
-            resetPasswordViewModel.formState.value.isCodeValid.also { valid ->
-                val error = if (!valid) getString(R.string.code_check) else null
-                confirmCodeTextField.error = error
-            }
+    private fun isFormValid(): Boolean {
+        with(binding) {
+            with(viewModel.formState.value) {
+                val isCodeValid = isCodeValid.also { valid ->
+                    val error = if (!valid) getString(R.string.code_check) else null
+                    confirmCodeTextField.error = error
+                }
 
-        val isPasswordValid =
-            resetPasswordViewModel.formState.value.isPasswordValid.also { valid ->
-                val error = if (!valid) getString(R.string.password_length) else null
-                passwordTextField.error = error
-            }
+                val isPasswordValid = isPasswordValid.also { valid ->
+                    val error = if (!valid) getString(R.string.password_length) else null
+                    passwordTextField.error = error
+                }
 
-        val isConfirmPasswordValid =
-            resetPasswordViewModel.formState.value.isConfirmPasswordValid.also { valid ->
-                val error = if (!valid) getString(R.string.passwords_matching) else null
-                confirmPasswordTextField.error = error
-            }
+                val isConfirmPasswordValid = isConfirmPasswordValid.also { valid ->
+                    val error = if (!valid) getString(R.string.passwords_matching) else null
+                    confirmPasswordTextField.error = error
+                }
 
-        return isCodeValid && isPasswordValid && isConfirmPasswordValid
+                return isCodeValid && isPasswordValid && isConfirmPasswordValid
+            }
+        }
     }
 }

@@ -2,10 +2,7 @@ package com.unina.natourkt.presentation.new_route
 
 import android.os.Bundle
 import android.text.InputFilter
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
@@ -14,60 +11,38 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialContainerTransform
 import com.unina.natourkt.R
+import com.unina.natourkt.common.setBottomMargin
+import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.input_filter.DurationFilter
-import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class NewRouteInfoFragment : BaseFragment() {
+class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteViewModel>() {
 
-    // This property is only valid between OnCreateView and
-    // onDestroyView.
-    private var _binding: FragmentNewRouteInfoBinding? = null
-    private val binding get() = _binding!!
+    private val viewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
 
-    // ViewModel
-    private val newRouteViewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentNewRouteInfoBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = MaterialContainerTransform()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentNewRouteInfoBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi()
         setListeners()
         setTextChangedListeners()
-        collectState()
     }
 
     override fun setupUi() {
         with(binding) {
-            topAppBar.applyInsetter {
-                type(statusBars = true) {
-                    margin()
-                }
-            }
+            topAppBar.setTopMargin()
 
-            nextFab.applyInsetter {
-                type(navigationBars = true) {
-                    margin()
-                }
-            }
+            nextFab.setBottomMargin()
 
             durationTextField.editText?.apply {
                 filters = arrayOf<InputFilter>(DurationFilter(1, 16))
@@ -78,7 +53,7 @@ class NewRouteInfoFragment : BaseFragment() {
     override fun setListeners() = with(binding) {
         nextFab.setOnClickListener {
             // Prepare information before next screen
-            prepareInfo(newRouteViewModel.uiState.value.routeInfo)
+            prepareInfo(viewModel.uiState.value.routeInfo)
             findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
         }
 
@@ -96,12 +71,15 @@ class NewRouteInfoFragment : BaseFragment() {
         }
     }
 
-    private fun setTextChangedListeners() = with(binding) {
-        routeTitleTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
-        }
-        durationTextField.editText?.doAfterTextChanged {
-            isFormValidForButton()
+    override fun setTextChangedListeners() {
+        with(binding) {
+            routeTitleTextField.editText?.doAfterTextChanged {
+                isFormValidForButton()
+            }
+
+            durationTextField.editText?.doAfterTextChanged {
+                isFormValidForButton()
+            }
         }
     }
 
@@ -132,7 +110,7 @@ class NewRouteInfoFragment : BaseFragment() {
             difficulty = difficulty,
         )
 
-        newRouteViewModel.setInfo(newRoute)
+        viewModel.setInfo(newRoute)
     }
 
     private fun bindInfo(route: NewRouteInfo) = with(binding) {
@@ -152,7 +130,7 @@ class NewRouteInfoFragment : BaseFragment() {
     override fun collectState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                newRouteViewModel.uiState.collect() { uiState ->
+                viewModel.uiState.collect() { uiState ->
                     uiState.apply {
                         bindInfo(routeInfo)
                     }

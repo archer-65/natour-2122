@@ -9,15 +9,16 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.R
+import com.unina.natourkt.common.scrollBehavior
+import com.unina.natourkt.databinding.FragmentPersonalCompilationsBinding
 import com.unina.natourkt.databinding.FragmentPersonalRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 
 /**
@@ -25,114 +26,65 @@ import kotlinx.coroutines.flow.collectLatest
  * filled of paginated routes
  */
 @AndroidEntryPoint
-class PersonalRoutesFragment : BaseFragment() {
+class PersonalRoutesFragment :
+    BaseFragment<FragmentPersonalRoutesBinding, PersonalRoutesViewModel>() {
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private var _binding: FragmentPersonalRoutesBinding? = null
-    private val binding get() = _binding!!
-
-    // Recycler elements
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerAdapter: RouteAdapter
+    private val recyclerAdapter = RouteAdapter()
 
     // ViewModel
-    private val personalRoutesViewModel: PersonalRoutesViewModel by viewModels()
+    private val viewModel: PersonalRoutesViewModel by viewModels()
 
-    // Coroutines
-    private var searchJob: Job? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPersonalRoutesBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun getVM() = viewModel
+    override fun getViewBinding() = FragmentPersonalRoutesBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupUi()
-        initRecycler()
-        handleFab()
         setListeners()
-        collectState()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    /**
-     * Basic settings for Ui
-     */
-    override fun setupUi() {
-        recyclerView = binding.recyclerRoutes
-    }
-
-    /**
-     * Recycler View init function
-     */
-    override fun initRecycler() {
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@PersonalRoutesFragment.requireContext())
-            recyclerAdapter = RouteAdapter()
-            adapter = recyclerAdapter.withLoadStateHeaderAndFooter(
-                header = ItemLoadStateAdapter(),
-                footer = ItemLoadStateAdapter()
-            )
-        }
-        recyclerAdapter.addLoadStateListener { loadState ->
-            when (loadState.source.refresh) {
-                // If loading, start the shimmer animation and mark as GONE the Recycler
-                is LoadState.Loading -> {
-                    recyclerView.isVisible = false
-                }
-                // If not loading, stop the shimmer animation and mark as VISIBLE the Recycler
-                else -> {
-                    recyclerView.isVisible = true
-                }
-            }
-        }
-    }
-
-
-    private fun handleFab() = with(binding) {
-        recyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (scrollY > oldScrollY) {
-                newRouteFab.hide()
-            } else if (scrollX == scrollY) {
-                newRouteFab.show()
-            } else {
-                newRouteFab.show()
-            }
-        }
+        initRecycler()
     }
 
     override fun setListeners() = with(binding) {
         newRouteFab.setOnClickListener {
-            val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
+            //val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
             findNavController().navigate(
                 R.id.action_profile_to_new_route_flow,
-                null,
-                null,
-                extras
+               // null,
+               // null,
+                //extras
             )
         }
     }
 
-    /**
-     * Start to collect [PersonalRoutesUiState], action based on Success/Loading/Error
-     */
-    override fun collectState() = with(personalRoutesViewModel) {
-        launchOnLifecycleScope {
-            routesFlow.collectLatest {
-                // Send data to adapter
-                recyclerAdapter.submitData(it)
+    override fun initRecycler() {
+        with(binding) {
+            recyclerRoutes.apply {
+                layoutManager = LinearLayoutManager(this@PersonalRoutesFragment.requireContext())
+                adapter = initConcatAdapter()
+                scrollBehavior(newRouteFab)
             }
+        }
+    }
+
+    override fun initConcatAdapter(): ConcatAdapter = with(binding) {
+        val footerLoadStateAdapter = ItemLoadStateAdapter()
+        val headerLoadStateAdapter = ItemLoadStateAdapter()
+
+        recyclerAdapter.addLoadStateListener { loadState ->
+            footerLoadStateAdapter.loadState = loadState.append
+            headerLoadStateAdapter.loadState = loadState.refresh
+
+            recyclerRoutes.isVisible = loadState.source.refresh !is LoadState.Loading
+        }
+
+        val concatAdapter =
+            ConcatAdapter(headerLoadStateAdapter, recyclerAdapter, footerLoadStateAdapter)
+        return concatAdapter
+    }
+
+    override fun collectState() = with(viewModel) {
+        collectLatestOnLifecycleScope(routesFlow) {
+            recyclerAdapter.submitData(it)
         }
     }
 }

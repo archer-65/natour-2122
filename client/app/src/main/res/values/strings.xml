@@ -86,4 +86,8 @@
     <string name="disability_access_denied">Non accessibile a persone con disabilità</string>
     <string name="code_resent_password">Il codice per il reset della password è stato inviato!</string>
     <string name="password_reset_success">La password è stata aggiornata con successo! Effettua l\'accesso.</string>
+    <string name="insert_photos_route">Manca poco!\nInserisci fino a un massimo di <b>5 foto</b> per descrivere il tuo itinerario.</string>
+    <string name="select_images">Seleziona immagini</string>
+    <string name="done_select_photos">Fatto</string>
+    <string name="no_more_photo">Non puoi selezionare altre foto</string>
 </resources>

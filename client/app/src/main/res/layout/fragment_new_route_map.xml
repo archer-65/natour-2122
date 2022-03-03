@@ -41,16 +41,4 @@
         android:src="@drawable/ic_baseline_arrow_forward_24"
         app:fabSize="normal" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/deleteFab"
-        style="?attr/floatingActionButtonTertiaryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="12dp"
-        android:contentDescription="Avanti"
-        android:src="@drawable/ic_outline_delete_24"
-        app:fabSize="normal" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

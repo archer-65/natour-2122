@@ -41,6 +41,10 @@ class NewRouteMapFragment :
                 findNavController().navigateUp()
             }
         }
+
+        nextFab.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_new_route_map_to_newRoutePhotosFragment)
+        }
     }
 
     private fun onMenuClick(itemId: Int): Boolean {
@@ -80,6 +84,8 @@ class NewRouteMapFragment :
                 if (it.routeStops.size >= 2) {
                     map.addPolyline(it.polylineOptions)
                 }
+
+                binding.nextFab.isEnabled = it.routeStops.size >= 2
             }
         }
     }

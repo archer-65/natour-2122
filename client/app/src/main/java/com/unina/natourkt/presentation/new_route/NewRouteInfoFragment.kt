@@ -54,23 +54,12 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
 
     override fun setListeners() = with(binding) {
         nextFab.setOnClickListener {
-            // Prepare information before next screen
-        //    prepareInfo(viewModel.uiState.value.routeInfo)
-          //  findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
-        findNavController().navigate(R.id.action_navigation_new_route_info_to_newRoutePhotosFragment)
+            //Prepare information before next screen
+            prepareInfo(viewModel.uiState.value.routeInfo)
+            findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
+            //findNavController().navigate(R.id.action_navigation_new_route_info_to_newRoutePhotosFragment)
         }
 
-        selectPhotosButton.setOnClickListener {
-            TedImagePicker.with(requireContext())
-                .startMultiImage { uriList ->
-                    viewModel.setPhotos(uriList.map {
-                        MediaStore.Images.Media.getBitmap(
-                            requireContext().contentResolver,
-                            it
-                        )
-                    })
-                }
-        }
 
         disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
             when (state) {
@@ -146,11 +135,5 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
         collectLatestOnLifecycleScope(viewModel.uiState) {
             bindInfo(it.routeInfo)
         }
-
-       /* collectLatestOnLifecycleScope(viewModel.uiState) {
-            if (it.routePhotos.isNotEmpty()) {
-                binding.imageView4.setImageBitmap(it.routePhotos.first())
-            }
-        } */
     }
 }

@@ -1,5 +1,8 @@
 package com.unina.natourkt.common
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
@@ -27,6 +30,8 @@ import com.unina.natourkt.common.Constants.COLUMN_COUNT
 import com.unina.natourkt.domain.model.route.RouteStop
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import dev.chrisbanes.insetter.applyInsetter
+import gun0912.tedimagepicker.builder.TedImagePicker
+import gun0912.tedimagepicker.builder.TedImagePickerBaseBuilder
 
 /**
  *  A function that makes the view visible.
@@ -111,6 +116,14 @@ fun GoogleMap.addCustomMarker(title: String, latLng: LatLng, isDraggable: Boolea
 
 fun GoogleMap.moveAndZoomCamera(latLng: LatLng, zoom: Float = 15F) {
     this.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+}
+
+fun <T> List<T>.safeRemove(position: Int): List<T> {
+    val newList = this.toMutableList().apply {
+        removeAt(position)
+    }.toList()
+
+    return newList
 }
 
 fun String.decodePolyline(): List<LatLng> {

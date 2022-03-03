@@ -11,4 +11,8 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerRoundSquarePercent" parent="Widget.AppCompat.ActionButton">
+        <item name="cornerSize">5%</item>
+    </style>
+
 </resources>

@@ -11,9 +11,6 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -204,20 +201,6 @@
                 app:layout_constraintStart_toEndOf="@id/disability_friendly_textview_sub"
                 app:layout_constraintTop_toBottomOf="@id/disabilityFriendlyTextview" />
 
-            <Button
-                android:id="@+id/selectPhotosButton"
-                style="@style/Widget.Material3.Button.ElevatedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Seleziona foto"
-                app:icon="@drawable/ic_baseline_photo_library_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/guideline36"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toBottomOf="@+id/barrier7"
-                app:layout_constraintVertical_bias="0.84000003" />
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline34"
                 android:layout_width="wrap_content"
@@ -295,18 +278,7 @@
                 app:layout_constraintVertical_bias="0.592"
                 tools:ignore="ContentDescription" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/barrier7"
-                app:layout_constraintBottom_toTopOf="@+id/selectPhotosButton"
-                app:layout_constraintEnd_toStartOf="@+id/guideline36"
-                app:layout_constraintStart_toStartOf="@+id/guideline35"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </ScrollView>
 

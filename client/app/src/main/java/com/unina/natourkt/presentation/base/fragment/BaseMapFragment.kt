@@ -117,11 +117,12 @@ abstract class BaseMapFragment<VB : ViewBinding, VM : ViewModel, MapBinding : Ma
 
     /**
      * Manages the `onSaveInstanceState` behavior of MapView
+     * DON'T WORK!!!
      */
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        mapView.onSaveInstanceState(outState)
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        mapView.onSaveInstanceState(outState)
+//    }
 
     /**
      * [_binding] is set to null. This because Fragments could outlive their views, so we clean up

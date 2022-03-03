@@ -7,13 +7,13 @@ package com.unina.natourkt.common
 object Constants {
 
     // Emulator
-    const val BASE_URL = "http://10.0.2.2:8080/"
+    //const val BASE_URL = "http://10.0.2.2:8080/"
 
     // Maps API
     //const val MAPS_URL = "https://maps.googleapis.com/"
 
     // Local IP
-    //const val BASE_URL = "http://192.168.1.47:8080/"
+    const val BASE_URL = "http://192.168.1.47:8080/"
 
     // String used for Auth Providers
     const val GOOGLE = "GOOGLE"
@@ -42,4 +42,7 @@ object Constants {
     // Grid Layout
     const val COLUMN_COUNT = 4
     const val COLUMN_SPACING = 5
+
+    // Photos
+    const val MAX_PHOTO = 5
 }

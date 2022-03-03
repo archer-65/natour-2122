@@ -44,7 +44,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:minHeight="0dp"
-            android:text="Riprova" />
+            android:text="RIPROVA" />
 
     </LinearLayout>
 

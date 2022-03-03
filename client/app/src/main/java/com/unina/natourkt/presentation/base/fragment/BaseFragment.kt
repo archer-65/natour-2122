@@ -1,9 +1,13 @@
 package com.unina.natourkt.presentation.base.fragment
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -12,10 +16,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
+import com.unina.natourkt.common.Constants.MAX_PHOTO
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.presentation.main.MainViewModel
+import gun0912.tedimagepicker.builder.TedImagePicker
+import gun0912.tedimagepicker.builder.TedImagePickerBaseBuilder
+import gun0912.tedimagepicker.builder.type.MediaType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -140,6 +149,26 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
                 flow.collect(execute)
             }
         }
+    }
+
+    /**
+     * This function serves as a fast way to open an Image Picker.
+     * [TedImagePicker] is a really nice library, the default `Picker` is a bit limited
+     * and at the moment `Photo Picker` is available only for Preview SDK `Tiramisu`.
+     */
+    fun pickImageFromGallery(selected: List<Uri>, execute: (images: List<Uri>) -> Unit) {
+        TedImagePicker
+            .with(requireContext())
+            .title(getString(R.string.select_images))
+            .mediaType(MediaType.IMAGE)
+            .selectedUri(selected)
+            .max(MAX_PHOTO, getString(R.string.no_more_photo))
+            .buttonText(getString(R.string.done_select_photos))
+            .buttonBackground(R.color.md_theme_light_background)
+            .buttonTextColor(R.color.md_theme_light_primary)
+            .startMultiImage { uriList ->
+                execute(uriList)
+            }
     }
 
     /**

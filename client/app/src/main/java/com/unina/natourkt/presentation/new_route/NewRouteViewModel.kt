@@ -1,10 +1,12 @@
 package com.unina.natourkt.presentation.new_route
 
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.common.safeRemove
 import com.unina.natourkt.domain.use_case.maps.GetDirectionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -54,9 +56,15 @@ class NewRouteViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun setPhotos(photos: List<Bitmap>) {
+    fun setPhotos(photos: List<Uri>) {
         _uiState.update {
             it.copy(routePhotos = photos)
+        }
+    }
+
+    fun removePhoto(position: Int) {
+        _uiState.update {
+            it.copy(routePhotos = it.routePhotos.safeRemove(position))
         }
     }
 }

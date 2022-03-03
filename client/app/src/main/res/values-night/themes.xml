@@ -49,4 +49,8 @@
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle2
         </item>
     </style>
+
+<!--    <color name="ted_image_picker_primary">@color/md_theme_dark_primary</color>-->
+<!--    <color name="ted_image_picker_primary_pressed">@color/md_theme_dark_primaryInverse</color>-->
+
 </resources>

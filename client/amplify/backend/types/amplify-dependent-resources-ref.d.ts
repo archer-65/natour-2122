@@ -19,5 +19,11 @@ export type AmplifyDependentResourcesAttributes = {
             "LambdaExecutionRole": "string",
             "Region": "string"
         }
+    },
+    "storage": {
+        "s3natour": {
+            "BucketName": "string",
+            "Region": "string"
+        }
     }
 }

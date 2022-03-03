@@ -2,19 +2,23 @@ package com.unina.natourkt.presentation.new_route
 
 import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.safeRemove
 import com.unina.natourkt.domain.use_case.maps.GetDirectionsUseCase
+import com.unina.natourkt.domain.use_case.storage.UploadFilesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NewRouteViewModel @Inject constructor(
-    private val getDirectionsUseCase: GetDirectionsUseCase
+    private val getDirectionsUseCase: GetDirectionsUseCase,
+    private val uploadFilesUseCase: UploadFilesUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(NewRouteUiState())
@@ -65,6 +69,13 @@ class NewRouteViewModel @Inject constructor(
     fun removePhoto(position: Int) {
         _uiState.update {
             it.copy(routePhotos = it.routePhotos.safeRemove(position))
+        }
+    }
+
+    fun uploadRoute() {
+        viewModelScope.launch {
+            val url = uploadFilesUseCase(uiState.value.routePhotos.first())
+            Log.i("Url s3", url.toString())
         }
     }
 }

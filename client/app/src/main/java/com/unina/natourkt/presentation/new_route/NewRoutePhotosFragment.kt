@@ -40,6 +40,10 @@ class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRo
                     setPhotos(it)
                 }
             }
+
+            nextFab.setOnClickListener {
+                this.uploadRoute()
+            }
         }
     }
 
@@ -64,6 +68,7 @@ class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRo
 
         collectLatestOnLifecycleScope(uiState) {
             binding.insertPhotoButton.isEnabled = it.routePhotos.size < 5
+            binding.nextFab.isEnabled = it.routePhotos.isNotEmpty()
         }
     }
 

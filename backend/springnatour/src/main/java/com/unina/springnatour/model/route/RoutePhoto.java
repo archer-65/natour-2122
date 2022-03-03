@@ -21,9 +21,8 @@ public class RoutePhoto implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @URL
-    @Column(name = "photo_url")
-    private String photoUrl;
+    @Column(name = "photo_object_key")
+    private String photoObjectKey;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Route route;

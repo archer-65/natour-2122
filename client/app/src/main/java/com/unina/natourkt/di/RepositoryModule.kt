@@ -25,6 +25,10 @@ object RepositoryModule {
 
     @Provides
     @Singleton
+    fun provideStorageRepository(): StorageRepository = StorageRepositoryImpl()
+
+    @Provides
+    @Singleton
     fun provideMapsRepository(api: MapsApi): MapsRepository {
         return MapsRepositoryImpl(api)
     }

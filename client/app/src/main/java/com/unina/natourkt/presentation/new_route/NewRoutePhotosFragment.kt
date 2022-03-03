@@ -8,13 +8,13 @@ import com.unina.natourkt.R
 import com.unina.natourkt.common.setBottomMargin
 import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewRoutePhotosBinding
-import com.unina.natourkt.presentation.base.adapter.NewPhotoAdapter
+import com.unina.natourkt.presentation.base.adapter.PhotoAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 
 class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRouteViewModel>(),
-    NewPhotoAdapter.OnItemClickListener {
+    PhotoAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = NewPhotoAdapter(this@NewRoutePhotosFragment)
+    private val recyclerAdapter = PhotoAdapter(this@NewRoutePhotosFragment)
 
     private val viewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
 

@@ -7,25 +7,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.databinding.NewPhotoItemBinding
-import java.util.*
 
-class NewPhotoAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Uri, NewPhotoAdapter.NewPhotoHolder>(NewPhotosComparator) {
+class PhotoAdapter(private val listener: OnItemClickListener) :
+    ListAdapter<Uri, PhotoAdapter.PhotoHolder>(PhotoComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        NewPhotoHolder(
+        PhotoHolder(
             NewPhotoItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
 
-    override fun onBindViewHolder(holder: NewPhotoHolder, position: Int) {
+    override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
         holder.bind(currentList[position])
     }
 
     override fun getItemCount() = currentList.size
 
-    inner class NewPhotoHolder(val binding: NewPhotoItemBinding) :
+    inner class PhotoHolder(val binding: NewPhotoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -46,7 +45,7 @@ class NewPhotoAdapter(private val listener: OnItemClickListener) :
         fun onRemoveClick(position: Int)
     }
 
-    object NewPhotosComparator : DiffUtil.ItemCallback<Uri>() {
+    object PhotoComparator : DiffUtil.ItemCallback<Uri>() {
 
         override fun areItemsTheSame(oldItem: Uri, newItem: Uri) =
             oldItem.equals(newItem)

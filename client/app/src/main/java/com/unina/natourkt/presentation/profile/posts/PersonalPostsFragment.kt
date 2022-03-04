@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
+import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants.COLUMN_COUNT
 import com.unina.natourkt.common.Constants.COLUMN_SPACING
 import com.unina.natourkt.common.scrollBehavior
@@ -40,7 +41,15 @@ class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, Persona
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setListeners()
+
         initRecycler()
+    }
+
+    override fun setListeners() = with(binding) {
+        newPostFab.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_newPostFragment)
+        }
     }
 
     /**

@@ -3,6 +3,7 @@ package com.unina.springnatour.repository;
 import com.unina.springnatour.model.route.Route;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.Nullable;
@@ -33,4 +34,6 @@ public interface RouteRepository extends JpaRepository<Route, Long> {
      * @return List of Routes
      */
     List<Route> findAll(@Nullable Specification<Route> filter);
+
+    List<Route> findByTitleContainingIgnoreCase(String title, Sort sort);
 }

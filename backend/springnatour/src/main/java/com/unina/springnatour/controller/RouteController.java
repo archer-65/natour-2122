@@ -2,6 +2,7 @@ package com.unina.springnatour.controller;
 
 import com.unina.springnatour.dto.post.PostDto;
 import com.unina.springnatour.dto.route.RouteDto;
+import com.unina.springnatour.dto.route.RouteTitleDto;
 import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.service.RouteService;
@@ -123,6 +124,18 @@ public class RouteController {
 
         if (!routeDtoList.isEmpty()) {
             return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/routes/search_title")
+    public ResponseEntity<List<RouteTitleDto>> getRoutesTitleByQuery(@RequestParam String query) {
+
+        List<RouteTitleDto> routeTitleDtoList = routeService.getRoutesTitleByQuery(query);
+
+        if (!routeTitleDtoList.isEmpty()) {
+            return new ResponseEntity<>(routeTitleDtoList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

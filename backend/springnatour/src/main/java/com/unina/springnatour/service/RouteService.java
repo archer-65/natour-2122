@@ -2,6 +2,8 @@ package com.unina.springnatour.service;
 
 import com.unina.springnatour.dto.route.RouteDto;
 import com.unina.springnatour.dto.route.RouteMapper;
+import com.unina.springnatour.dto.route.RouteTitleDto;
+import com.unina.springnatour.dto.route.RouteTitleMapper;
 import com.unina.springnatour.exception.RouteNotFoundException;
 import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.repository.RouteRepository;
@@ -9,6 +11,7 @@ import com.unina.springnatour.specification.RouteFilter;
 import com.unina.springnatour.specification.RouteSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,9 @@ public class RouteService {
     @Autowired
     private RouteMapper routeMapper;
 
+    @Autowired
+    private RouteTitleMapper routeTitleMapper;
+
     /**
      * Gets a route
      *
@@ -36,6 +42,7 @@ public class RouteService {
 
     /**
      * Gets all routes
+     *
      * @return List of RouteDTO Objects, mapped from Entity
      */
     public List<RouteDto> getAllRoutes() {
@@ -65,6 +72,7 @@ public class RouteService {
 
     /**
      * Get all routes by filter
+     *
      * @param filter the search criteria
      * @return List of RouteDTO Objects, mapped from Entity
      */
@@ -75,8 +83,15 @@ public class RouteService {
         return routeMapper.toDto(routeRepository.findAll(filterCriteria));
     }
 
+    public List<RouteTitleDto> getRoutesTitleByQuery(String query) {
+
+        List<Route> routes = routeRepository.findByTitleContainingIgnoreCase(query, Sort.by(Sort.Direction.DESC, "creationDate"));
+        return routeTitleMapper.toDto(routes);
+    }
+
     /**
      * Adds a route
+     *
      * @param routeDto RouteDTO Object with required fields
      * @return
      */
@@ -88,7 +103,8 @@ public class RouteService {
 
     /**
      * Updates a route
-     * @param id the identifier of the route
+     *
+     * @param id       the identifier of the route
      * @param routeDto RouteDTO Object updated
      */
     public void updateRoute(Long id, RouteDto routeDto) {
@@ -100,6 +116,7 @@ public class RouteService {
 
     /**
      * Deletes a route
+     *
      * @param id the identifier of the route
      */
     public void deleteRoute(Long id) {

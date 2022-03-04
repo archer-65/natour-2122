@@ -50,32 +50,4 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-//    private val _isUserAuthenticated = MutableStateFlow(false)
-//    val isUserAuthenticated = _isUserAuthenticated.asStateFlow()
-//
-//    private val _loggedUser: MutableStateFlow<User?> = MutableStateFlow(null)
-//    val loggedUser = _loggedUser.asStateFlow()
-//
-//    init {
-//        getState()
-//        getUser()
-//    }
-//
-//    fun getState() {
-//        viewModelScope {
-//            val auth = getAuthStateUseCase()
-//            _isUserAuthenticated.update { auth }
-//        }
-//    }
-//
-//    fun getUser() {
-//        viewModelScope.launch {
-//            val user = getUserFromStoreUseCase().also {
-//                it?.convertKeys {
-//                    getUrlFromKeyUseCase(it)
-//                }
-//            }
-//            _loggedUser.update { user }
-//        }
-//    }
 }

@@ -15,26 +15,18 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.URL
 
-@OptIn(FlowPreview::class, kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class StorageRepositoryImpl : StorageRepository {
 
-    override suspend fun uploadFromUri(key: String, uri: Uri): String? {
-
-        val uploadResult = withContext(Dispatchers.IO) {
-            val stream = runCatching {
-                MainActivity.instance.contentResolver.openInputStream(uri)
-            }
-            stream.getOrThrow()
-                ?.let { Amplify.Storage.uploadInputStream(key, it) }
-        }
-
-        Log.i("S3 Upload Status", "${uploadResult?.result()}")
-        return uploadResult?.result()?.key
+    override suspend fun uploadFromUri(key: String, stream: InputStream): String {
+        val uploadResult = Amplify.Storage.uploadInputStream(key, stream)
+        Log.i("S3 Upload", "${uploadResult.result()}")
+        return uploadResult.result().key
     }
 
     override suspend fun getUrlFromKey(key: String): URL {
         val result = Amplify.Storage.getUrl(key)
-        Log.i("S3 get url result", "$result")
+        Log.i("S3 Retrieve", "$result")
         return result.url
     }
 }

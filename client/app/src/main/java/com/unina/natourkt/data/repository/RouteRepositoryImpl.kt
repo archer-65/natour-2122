@@ -7,6 +7,7 @@ import com.unina.natourkt.data.paging.PersonalRoutePagingSource
 import com.unina.natourkt.data.paging.RoutePagingSource
 import com.unina.natourkt.data.remote.retrofit.RouteApi
 import com.unina.natourkt.domain.model.route.Route
+import com.unina.natourkt.domain.model.route.toDto
 import com.unina.natourkt.domain.repository.RouteRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -18,7 +19,7 @@ import javax.inject.Inject
  */
 class RouteRepositoryImpl @Inject constructor(
     private val api: RouteApi
-): RouteRepository {
+) : RouteRepository {
 
     /**
      * Page size for network requests for this class
@@ -50,4 +51,6 @@ class RouteRepositoryImpl @Inject constructor(
             pagingSourceFactory = { PersonalRoutePagingSource(api, userId) }
         ).flow
     }
+
+    override suspend fun createRoute(route: Route) = api.createRoute(route.toDto())
 }

@@ -161,6 +161,9 @@
             android:name="com.unina.natourkt.presentation.new_route.NewRoutePhotosFragment"
             android:label="fragment_new_route_photos"
             tools:layout="@layout/fragment_new_route_photos" />
+        <action
+            android:id="@+id/action_global_navigation_routes"
+            app:destination="@id/navigation_routes" />
 
     </navigation>
 

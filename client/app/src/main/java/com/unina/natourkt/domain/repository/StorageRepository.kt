@@ -5,7 +5,7 @@ import java.net.URL
 
 interface StorageRepository {
 
-    suspend fun uploadFromUri(uri: Uri): String?
+    suspend fun uploadFromUri(key: String, uri: Uri): String?
 
     suspend fun getUrlFromKey(key: String): URL
 

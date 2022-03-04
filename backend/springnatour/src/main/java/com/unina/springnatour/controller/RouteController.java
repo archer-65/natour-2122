@@ -2,6 +2,7 @@ package com.unina.springnatour.controller;
 
 import com.unina.springnatour.dto.post.PostDto;
 import com.unina.springnatour.dto.route.RouteDto;
+import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.service.RouteService;
 import com.unina.springnatour.specification.RouteFilter;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -20,6 +23,7 @@ public class RouteController {
 
     /**
      * Gets a route
+     *
      * @param id the identifier of the route
      * @return RouteDTO
      */
@@ -33,6 +37,7 @@ public class RouteController {
 
     /**
      * Gets all the routes
+     *
      * @return List of RouteDTO
      */
     @GetMapping("/routes/all")
@@ -66,6 +71,7 @@ public class RouteController {
 
     /**
      * Gets all the routes for a certain user
+     *
      * @param userId the identifier of the user
      * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
      */
@@ -83,6 +89,7 @@ public class RouteController {
 
     /**
      * Gets all the routes for a certain user
+     *
      * @param userId the identifier of the user
      * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
      */
@@ -103,17 +110,18 @@ public class RouteController {
 
     /**
      * Searches all routes by filter
-     * @see RouteFilter
-     * @see com.unina.springnatour.specification.RouteSpecifications
+     *
      * @param filter the RouteFilter Object containing criteria filters
      * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
+     * @see RouteFilter
+     * @see com.unina.springnatour.specification.RouteSpecifications
      */
     @GetMapping("/routes/filter")
     public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(@RequestBody RouteFilter filter) {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(filter);
 
-        if(!routeDtoList.isEmpty()) {
+        if (!routeDtoList.isEmpty()) {
             return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -122,20 +130,30 @@ public class RouteController {
 
     /**
      * Creates a new route
+     *
      * @param routeDto the RouteDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
     @PostMapping("/routes/add")
     public ResponseEntity<?> addRoute(@RequestBody RouteDto routeDto) {
 
-        routeService.addRoute(routeDto);
+        Route createdRoute = routeService.addRoute(routeDto);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(createdRoute.getId())
+                .toUri();
+
+        return ResponseEntity
+                .created(location)
+                .build();
     }
 
     /**
      * Updates an existing route
-     * @param id the identifier of the route
+     *
+     * @param id       the identifier of the route
      * @param routeDto the RouteDTO Object with the updated route
      * @return HTTP Status CREATED after update
      */
@@ -150,6 +168,7 @@ public class RouteController {
 
     /**
      * Deletes an existing route
+     *
      * @param id the identifier of the route
      * @return HTTP Status OK
      */

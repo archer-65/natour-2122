@@ -8,7 +8,7 @@ data class CompilationDto(
     val title: String,
     val description: String,
     val creationDate: String,
-    val photoUrl: String,
+    val photo: String,
     val user: UserDto
 )
 
@@ -17,7 +17,7 @@ fun CompilationDto.toCompilation(): Compilation{
         id = id,
         title = title,
         description = description,
-        photoUrl = photoUrl,
+        photo = photo,
         user = user.toUser()
     )
 }

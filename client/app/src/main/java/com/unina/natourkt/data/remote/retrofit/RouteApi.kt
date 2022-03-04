@@ -1,7 +1,9 @@
 package com.unina.natourkt.data.remote.retrofit
 
 import com.unina.natourkt.data.remote.dto.route.RouteDto
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 /**
@@ -26,5 +28,10 @@ interface RouteApi {
         @Query("userId") userId: Long,
         @Query("pageNo") pageNo: Int,
         @Query("pageSize") pageSize: Int
-    ) : List<RouteDto>
+    ): List<RouteDto>
+
+    @POST("/routes/add")
+    suspend fun createRoute(
+        @Body routeDto: RouteDto
+    )
 }

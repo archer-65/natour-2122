@@ -1,11 +1,9 @@
 package com.unina.springnatour.dto.post;
 
-import com.unina.springnatour.dto.route.RouteDto;
 import com.unina.springnatour.dto.user.UserDto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

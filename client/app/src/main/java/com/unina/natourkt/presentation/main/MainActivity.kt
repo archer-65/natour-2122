@@ -1,10 +1,14 @@
 package com.unina.natourkt.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -15,6 +19,8 @@ import com.unina.natourkt.databinding.ActivityMainBinding
 import com.unina.natourkt.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.insetter.applyInsetter
+import kotlinx.coroutines.launch
+import kotlin.math.log
 
 /**
  * Container activity for all fragments
@@ -37,8 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     // ViewModel
     private val mainViewModel: MainViewModel by viewModels()
-    private var isUserAuthenticated: Boolean = false
-    private var loggedUser: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -63,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         navHostFragment =
             supportFragmentManager.findFragmentById(binding.navHostFragmentActivityMain.id) as NavHostFragment
 
-        //navController = findNavController(R.id.nav_host_fragment_activity_main)
         navController = navHostFragment.navController
 
         navView = binding.navView
@@ -79,10 +82,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Check if user is authenticated, if not, then go to Login Fragment
      */
-    private fun checkAuthState() {
-        isUserAuthenticated = mainViewModel.isUserAuthenticated
-        loggedUser = mainViewModel.loggedUser
-
+    private fun checkAuthState() = with(mainViewModel) {
         if (!isUserAuthenticated || loggedUser == null) {
             navController.navigate(R.id.action_home_to_auth_flow)
         }

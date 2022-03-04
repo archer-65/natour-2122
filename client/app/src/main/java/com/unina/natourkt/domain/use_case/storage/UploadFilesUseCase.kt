@@ -11,16 +11,12 @@ class UploadFilesUseCase @Inject constructor(
     private val storageRepository: StorageRepository
 ) {
 
-    suspend operator fun invoke(uri: Uri): URL? {
-
-        val url = try {
-            val key = storageRepository.uploadFromUri(uri)
-            key?.let { storageRepository.getUrlFromKey(it) }
+    suspend operator fun invoke(key: String, uri: Uri): String? {
+        return try {
+            storageRepository.uploadFromUri(key, uri)
         } catch (error: StorageException) {
             Log.e("S3 error", error.localizedMessage, error)
             null
         }
-
-        return url
     }
 }

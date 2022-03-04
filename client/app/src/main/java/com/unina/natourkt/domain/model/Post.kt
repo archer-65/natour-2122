@@ -3,7 +3,6 @@ package com.unina.natourkt.domain.model
 import com.unina.natourkt.domain.model.route.Route
 import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
-import com.unina.natourkt.presentation.post_details.PostDetailsUiState
 import com.unina.natourkt.presentation.post_details.PostUiState
 
 /**
@@ -40,7 +39,7 @@ fun Post.toUi(): PostItemUiState {
 fun Post.toGridUi(): PostGridItemUiState {
     return PostGridItemUiState(
         id = id,
-        previewPhoto = photos.firstOrNull(),
+        previewPhoto = photos.first(),
         authorId = user.id
     )
 }

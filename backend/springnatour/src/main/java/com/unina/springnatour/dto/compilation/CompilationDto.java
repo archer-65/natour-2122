@@ -13,7 +13,7 @@ public class CompilationDto {
     private String title;
     private String description;
     private LocalDateTime creationDate;
-    private String photoUrl;
+    private String photo;
     private UserDto user;
   //  private List<RouteDto> routes;
 }

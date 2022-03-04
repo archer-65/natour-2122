@@ -11,14 +11,14 @@ import java.time.LocalDateTime
  * This class represents the response from API for [Route]
  */
 data class RouteDto(
-    val id: Long,
+    val id: Long?,
     val title: String,
-    val description: String,
+    val description: String?,
     val avgDifficulty: Int,
     val avgDuration: Double,
     val disabledFriendly: Boolean,
-    val creationDate: String,
-    val modifiedDate: String,
+    val creationDate: String? = null,
+    val modifiedDate: String? = null,
     val photos: List<RoutePhotoDto>,
     val stops: List<RouteStopDto>,
     val user: UserDto,
@@ -28,12 +28,12 @@ data class RouteDto(
  * Only contains the response for route's photos
  */
 data class RoutePhotoDto(
-    val id: Long,
-    val photoUrl: String
+    val id: Long?,
+    val photo: String
 )
 
 data class RouteStopDto(
-    val id: Long,
+    val id: Long?,
     val stopNumber: Int,
     val latitude: Double,
     val longitude: Double,
@@ -50,7 +50,7 @@ fun RouteDto.toRoute(): Route {
         avgDifficulty = avgDifficulty,
         avgDuration = avgDuration,
         disabledFriendly = disabledFriendly,
-        photos = photos.map { photo -> photo.photoUrl },
+        photos = photos.map { photo -> photo.photo },
         stops = stops.map { stop -> stop.toRouteStop() },
         user = user.toUser()
     )

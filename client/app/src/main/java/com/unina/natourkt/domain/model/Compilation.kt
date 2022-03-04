@@ -6,7 +6,7 @@ data class Compilation(
     val id: Long,
     val title: String,
     val description: String,
-    val photoUrl: String,
+    val photo: String,
     val user: User
 )
 
@@ -15,7 +15,7 @@ fun Compilation.toUi(): CompilationItemUiState{
         id = id,
         title = title,
         description = description,
-        photo = photoUrl,
+        photo = photo,
         authorId = user.id,
         authorPhoto = user.photo
     )

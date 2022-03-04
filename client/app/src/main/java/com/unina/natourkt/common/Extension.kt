@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.view.View
+import android.webkit.URLUtil
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
@@ -32,6 +33,7 @@ import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import dev.chrisbanes.insetter.applyInsetter
 import gun0912.tedimagepicker.builder.TedImagePicker
 import gun0912.tedimagepicker.builder.TedImagePickerBaseBuilder
+import retrofit2.http.Url
 
 /**
  *  A function that makes the view visible.
@@ -80,7 +82,7 @@ fun ImageView.loadWithGlide(url: String?, @DrawableRes fallbackDrawable: Int) {
     Glide.with(this)
         .load(url)
         .centerCrop()
-        .fallback(fallbackDrawable)
+        .error(fallbackDrawable)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)
 }
@@ -125,6 +127,15 @@ fun <T> List<T>.safeRemove(position: Int): List<T> {
 
     return newList
 }
+
+suspend fun String.convertKeyToUrl(execute: suspend (text: String) -> String): String {
+    return if (!URLUtil.isValidUrl(this)) {
+        execute(this)
+    } else {
+        this
+    }
+}
+
 
 fun String.decodePolyline(): List<LatLng> {
     val poly = ArrayList<LatLng>()

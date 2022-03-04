@@ -18,4 +18,7 @@ interface RouteRepository {
      * Get paginated routes for logged user
      */
     fun getPersonalRoutes(userId: Long): Flow<PagingData<Route>>
+
+
+    suspend fun createRoute(route: Route)
 }

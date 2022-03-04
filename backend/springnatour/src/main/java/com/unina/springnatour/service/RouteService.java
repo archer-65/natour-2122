@@ -9,7 +9,6 @@ import com.unina.springnatour.specification.RouteFilter;
 import com.unina.springnatour.specification.RouteSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -79,11 +78,12 @@ public class RouteService {
     /**
      * Adds a route
      * @param routeDto RouteDTO Object with required fields
+     * @return
      */
-    public void addRoute(RouteDto routeDto) {
+    public Route addRoute(RouteDto routeDto) {
         Route route = routeMapper.toEntity(routeDto);
 
-        routeRepository.save(route);
+        return routeRepository.save(route);
     }
 
     /**

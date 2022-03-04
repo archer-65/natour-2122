@@ -21,8 +21,8 @@ public class PostPhoto implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "photo_object_key")
-    private String photoObjectKey;
+    @Column(name = "photo")
+    private String photo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;

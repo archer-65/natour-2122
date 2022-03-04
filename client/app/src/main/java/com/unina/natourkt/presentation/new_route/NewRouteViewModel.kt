@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.safeRemove
 import com.unina.natourkt.domain.use_case.maps.GetDirectionsUseCase
+import com.unina.natourkt.domain.use_case.route.CreateRouteUseCase
 import com.unina.natourkt.domain.use_case.storage.UploadFilesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -18,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NewRouteViewModel @Inject constructor(
     private val getDirectionsUseCase: GetDirectionsUseCase,
-    private val uploadFilesUseCase: UploadFilesUseCase
+    private val createRouteUseCase: CreateRouteUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(NewRouteUiState())
@@ -73,10 +74,23 @@ class NewRouteViewModel @Inject constructor(
     }
 
     fun uploadRoute() {
-        viewModelScope.launch {
-            val url = uploadFilesUseCase(uiState.value.routePhotos.first())
-            Log.i("Url s3", url.toString())
-        }
+        createRouteUseCase(uiState.value.toRoute()).onEach { result ->
+            when (result) {
+                is DataState.Success -> _uiState.update {
+                    it.copy(
+                        isInserted = result.data ?: false,
+                        isLoading = false,
+                        errorMessage = null
+                    )
+                }
+                is DataState.Loading -> _uiState.update {
+                    it.copy(isLoading = true)
+                }
+                is DataState.Error -> _uiState.update {
+                    it.copy(isLoading = false, errorMessage = result.error)
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 }
 

@@ -5,6 +5,7 @@ import androidx.paging.PagingData
 import com.unina.natourkt.common.Constants.POST_MODEL
 import com.unina.natourkt.domain.model.Post
 import com.unina.natourkt.domain.repository.PostRepository
+import com.unina.natourkt.domain.repository.StorageRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -13,6 +14,7 @@ import javax.inject.Inject
  */
 class GetPostsUseCase @Inject constructor(
     private val postRepository: PostRepository,
+    private val storageRepository: StorageRepository,
 ) {
 
     /**

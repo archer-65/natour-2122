@@ -1,11 +1,22 @@
 package com.unina.natourkt.presentation.main
 
+import android.util.Log
+import android.webkit.URLUtil
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.domain.model.User
+import com.unina.natourkt.domain.model.convertKeys
 import com.unina.natourkt.domain.use_case.auth.GetAuthStateUseCase
 import com.unina.natourkt.domain.use_case.datastore.GetUserFromStoreUseCase
+import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
+import kotlin.math.log
 
 /**
  * ViewModel used by [MainActivity]
@@ -15,18 +26,56 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getAuthStateUseCase: GetAuthStateUseCase,
     private val getUserFromStoreUseCase: GetUserFromStoreUseCase,
+    private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase
 ) : ViewModel() {
 
-    /**
-     * This ARE NOT UiStates
-     */
-    val isUserAuthenticated
+    val isUserAuthenticated: Boolean
         get() = runBlocking {
-            getAuthStateUseCase()
+            getAuthState()
         }
 
     val loggedUser
         get() = runBlocking {
-            getUserFromStoreUseCase()
+            getLoggedUser()
         }
+
+    suspend fun getAuthState(): Boolean = withContext(Dispatchers.IO) {
+        getAuthStateUseCase()
+    }
+
+    suspend fun getLoggedUser(): User? = withContext(Dispatchers.IO) {
+        return@withContext getUserFromStoreUseCase().also {
+            it?.convertKeys {
+                getUrlFromKeyUseCase(it)
+            }
+        }
+    }
+//    private val _isUserAuthenticated = MutableStateFlow(false)
+//    val isUserAuthenticated = _isUserAuthenticated.asStateFlow()
+//
+//    private val _loggedUser: MutableStateFlow<User?> = MutableStateFlow(null)
+//    val loggedUser = _loggedUser.asStateFlow()
+//
+//    init {
+//        getState()
+//        getUser()
+//    }
+//
+//    fun getState() {
+//        viewModelScope {
+//            val auth = getAuthStateUseCase()
+//            _isUserAuthenticated.update { auth }
+//        }
+//    }
+//
+//    fun getUser() {
+//        viewModelScope.launch {
+//            val user = getUserFromStoreUseCase().also {
+//                it?.convertKeys {
+//                    getUrlFromKeyUseCase(it)
+//                }
+//            }
+//            _loggedUser.update { user }
+//        }
+//    }
 }

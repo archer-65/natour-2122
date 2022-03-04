@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.toDetailUi
 import com.unina.natourkt.domain.use_case.post.GetPostDetailsUseCase
+import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
+import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
 import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -15,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PostDetailsViewModel @Inject constructor(
     private val getPostDetailsUseCase: GetPostDetailsUseCase,
+    private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -28,22 +31,22 @@ class PostDetailsViewModel @Inject constructor(
     }
 
     fun getPostDetails(id: Long) {
-        viewModelScope.launch {
-
-            getPostDetailsUseCase(id).onEach { result ->
-                when (result) {
-                    is DataState.Success -> {
-                        _uiState.value = PostDetailsUiState(post = result.data?.toDetailUi())
-                    }
-                    is DataState.Error -> {
-                        _uiState.value = PostDetailsUiState(error = result.error)
-                    }
-
-                    is DataState.Loading -> {
-                        _uiState.value = PostDetailsUiState(isLoading = true)
-                    }
+        getPostDetailsUseCase(id).onEach { result ->
+            when (result) {
+                is DataState.Success -> {
+                    _uiState.value =
+                        PostDetailsUiState(post = result.data?.toDetailUi()?.convertKeys {
+                            getUrlFromKeyUseCase(it)
+                        })
                 }
-            }.launchIn(viewModelScope)
-        }
+                is DataState.Error -> {
+                    _uiState.value = PostDetailsUiState(error = result.error)
+                }
+
+                is DataState.Loading -> {
+                    _uiState.value = PostDetailsUiState(isLoading = true)
+                }
+            }
+        }.launchIn(viewModelScope)
     }
 }

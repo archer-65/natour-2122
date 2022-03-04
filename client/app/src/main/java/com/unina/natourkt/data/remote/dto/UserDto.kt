@@ -7,7 +7,7 @@ import com.unina.natourkt.domain.model.User
  */
 data class UserDto(
     val id: Long,
-    val photoUrl: String,
+    val photo: String?,
     val username: String
 )
 
@@ -18,6 +18,6 @@ fun UserDto.toUser(): User {
     return User(
         id = id,
         username = username,
-        photo = photoUrl,
+        photo = photo,
     )
 }

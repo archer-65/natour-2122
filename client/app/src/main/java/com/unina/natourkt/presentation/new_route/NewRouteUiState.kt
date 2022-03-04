@@ -4,9 +4,11 @@ import android.graphics.Bitmap
 import android.net.Uri
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.domain.model.route.Route
 import com.unina.natourkt.domain.model.route.RouteStop
 
 data class NewRouteUiState(
+    val isInserted: Boolean = false,
     val isLoading: Boolean = false,
     val errorMessage: DataState.CustomMessage? = null,
     val routeInfo: NewRouteInfo = NewRouteInfo(),
@@ -40,5 +42,18 @@ fun NewRouteStop.toRouteStop(): RouteStop {
         stopNumber = stopNumber,
         latitude = latitude,
         longitude = longitude
+    )
+}
+
+fun NewRouteUiState.toRoute(): Route {
+    return Route(
+        id = null,
+        title = routeInfo.routeTitle,
+        description = routeInfo.routeDescription,
+        avgDifficulty = routeInfo.difficulty.difficultyValue,
+        avgDuration = routeInfo.duration.toDouble(),
+        disabledFriendly = routeInfo.disabilityFriendly,
+        photos = routePhotos.map { it.toString() },
+        stops = routeStops.map { it.toRouteStop() },
     )
 }

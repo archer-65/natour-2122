@@ -2,7 +2,10 @@ package com.unina.natourkt.presentation.new_route
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
 import com.unina.natourkt.common.setBottomMargin
@@ -69,6 +72,18 @@ class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRo
         collectLatestOnLifecycleScope(uiState) {
             binding.insertPhotoButton.isEnabled = it.routePhotos.size < 5
             binding.nextFab.isEnabled = it.routePhotos.isNotEmpty()
+        }
+
+        collectOnLifecycleScope(uiState) {
+            if (it.isInserted) {
+                findNavController().navigate(R.id.action_global_navigation_routes)
+            }
+
+            it.errorMessage?.run {
+                manageMessage(this)
+            }
+
+            binding.progressBar.isVisible = it.isLoading
         }
     }
 

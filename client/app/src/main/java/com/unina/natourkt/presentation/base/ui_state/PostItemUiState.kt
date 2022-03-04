@@ -10,6 +10,15 @@ data class PostItemUiState(
     val authorId: Long,
     val authorUsername: String,
     val authorPhoto: String?,
-    val routeId: Long,
+    val routeId: Long?,
     val routeTitle: String,
 )
+
+suspend fun PostItemUiState.convertKeys(execute: suspend (string: String) -> String): PostItemUiState {
+    val authorPhoto = this.authorPhoto?.let { execute(it) }
+    val photos = this.photos.map {
+        execute(it)
+    }
+
+    return this.copy(photos = photos, authorPhoto = authorPhoto)
+}

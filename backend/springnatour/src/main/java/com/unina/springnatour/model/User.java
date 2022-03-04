@@ -34,9 +34,8 @@ public class User implements Serializable {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @URL
-    @Column(name = "photo_url")
-    private String photoUrl;
+    @Column(name = "photo")
+    private String photo;
 
     @OneToMany(
             mappedBy = "user",

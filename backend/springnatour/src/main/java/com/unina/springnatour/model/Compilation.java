@@ -38,9 +38,8 @@ public class Compilation implements Serializable {
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
-    @URL
-    @Column(name = "photo_url")
-    private String photoUrl;
+    @Column(name = "photo")
+    private String photo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

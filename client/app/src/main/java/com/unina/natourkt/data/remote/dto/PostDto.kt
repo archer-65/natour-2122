@@ -25,7 +25,7 @@ data class PostDto(
  */
 data class PostPhotoDto(
     val id: Long,
-    val photoUrl: String
+    val photo: String
 )
 
 /**
@@ -36,7 +36,7 @@ fun PostDto.toPost(): Post {
         id = id,
         description = description,
         isReported = reported,
-        photos = photos.map { photo -> photo.photoUrl },
+        photos = photos.map { photo -> photo.photo },
         user = user.toUser(),
         route = Route(
             id = routeId,

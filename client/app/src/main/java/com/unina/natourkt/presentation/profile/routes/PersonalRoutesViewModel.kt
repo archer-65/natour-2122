@@ -8,8 +8,10 @@ import androidx.paging.map
 import com.unina.natourkt.domain.model.route.toUi
 import com.unina.natourkt.domain.use_case.datastore.GetUserFromStoreUseCase
 import com.unina.natourkt.domain.use_case.route.GetPersonalRoutesUseCase
+import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
 import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
+import com.unina.natourkt.presentation.base.ui_state.convertKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -21,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PersonalRoutesViewModel @Inject constructor(
     private val getPersonalRoutesUseCase: GetPersonalRoutesUseCase,
+    private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase
 ) : ViewModel() {
 
     /**
@@ -40,7 +43,13 @@ class PersonalRoutesViewModel @Inject constructor(
     fun getPersonalRoutes() {
         viewModelScope.launch {
             _routesFlow = getPersonalRoutesUseCase()
-                .map { pagingData -> pagingData.map { route -> route.toUi() } }
+                .map { pagingData ->
+                    pagingData.map { route ->
+                        route.toUi().convertKeys {
+                            getUrlFromKeyUseCase(it)
+                        }
+                    }
+                }
                 .cachedIn(viewModelScope)
         }
     }

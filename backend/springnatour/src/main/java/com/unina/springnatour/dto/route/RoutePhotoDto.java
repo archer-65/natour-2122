@@ -7,5 +7,5 @@ import java.io.Serializable;
 @Data
 public class RoutePhotoDto implements Serializable {
     private Long id;
-    private String photoUrl;
+    private String photo;
 }

@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.unina.natourkt.R
 import com.unina.natourkt.common.scrollBehavior
 import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentHomeBinding
@@ -46,6 +47,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     override fun setListeners() = with(binding) {
         swipeRefresh.setOnRefreshListener {
             recyclerAdapter.refresh()
+        }
+
+        newPostFab.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_newPostFragment)
         }
     }
 

@@ -90,4 +90,5 @@
     <string name="select_images">Seleziona immagini</string>
     <string name="done_select_photos">Fatto</string>
     <string name="no_more_photo">Non puoi selezionare altre foto</string>
+    <string name="insert_post_photos">Manca poco!\nInserisci fino a un massimo di <b>5 foto</b> per descrivere il tuo post.</string>
 </resources>

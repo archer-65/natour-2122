@@ -97,13 +97,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/nextFab"
+        android:id="@+id/confirmRouteFab"
         style="?attr/extendedFloatingActionButtonSecondaryStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="12dp"
-        android:contentDescription="@string/next_fab"
+        android:contentDescription="@string/confirm_route_fab"
         android:enabled="false"
         android:text="Inserisci itinerario"
         app:fabSize="normal"

@@ -10,15 +10,14 @@ import javax.inject.Inject
 
 class GetPostDetailsUseCase @Inject constructor(
     private val postRepository: PostRepository,
-    private val errorHandler: ErrorHandler
 ){
     operator fun invoke(id: Long): Flow<DataState<Post>> = flow {
         try {
             emit(DataState.Loading())
             val post = postRepository.getPostDetails(id)
-            emit(DataState.Success<Post>(post))
-        } catch (e:Exception) {
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Success(post))
+        } catch (e: Exception) {
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 

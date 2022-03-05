@@ -52,7 +52,7 @@ class LoginUseCase @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e(LOGIN_STATE, e.localizedMessage ?: "Login failed", e)
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 
@@ -79,7 +79,7 @@ class LoginUseCase @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e(LOGIN_STATE, e.localizedMessage ?: "Social login failed", e)
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 

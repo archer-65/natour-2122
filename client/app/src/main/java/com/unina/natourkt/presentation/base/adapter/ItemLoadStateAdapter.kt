@@ -38,11 +38,9 @@ class ItemLoadStateAdapter : LoadStateAdapter<ItemLoadStateAdapter.LoadStateView
          */
         fun bind(loadState: LoadState) = with(binding) {
             // State Views visibility
-            val errorHandler = ErrorHandler()
-
             progressBar.isVisible = loadState is LoadState.Loading
             errorLayout.isVisible =
-                loadState is LoadState.Error && errorHandler.handleException(loadState.error) is DataState.CustomMessage.NetworkError
+                loadState is LoadState.Error && ErrorHandler.handleException(loadState.error) is DataState.CustomMessage.NetworkError
         }
     }
 }

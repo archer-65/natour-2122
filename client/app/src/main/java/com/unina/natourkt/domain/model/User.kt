@@ -1,6 +1,7 @@
 package com.unina.natourkt.domain.model
 
 import com.unina.natourkt.data.remote.dto.UserDto
+import com.unina.natourkt.presentation.base.ui_state.UserUiState
 
 /**
  * User domain model (to improve)
@@ -17,6 +18,15 @@ fun User.toDto(): UserDto {
         id = id,
         username = username,
         photo = photo
+    )
+}
+
+fun User.toUi(): UserUiState {
+    return UserUiState(
+        id = id,
+        username = username,
+        isAdmin = isAdmin,
+        photo = photo,
     )
 }
 

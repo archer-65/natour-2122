@@ -32,7 +32,7 @@ class ResetPasswordConfirmUseCase @Inject constructor(
             emit(DataState.Success(true))
         } catch (e: Exception) {
             Log.e(PASSWORD_RESET, e.localizedMessage ?: "Resetting password failed", e)
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 }

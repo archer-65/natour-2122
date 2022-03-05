@@ -8,6 +8,7 @@ import com.unina.natourkt.presentation.base.validation.isPasswordValid
 import com.unina.natourkt.presentation.base.validation.isUsernameValid
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -30,10 +31,12 @@ class LoginViewModel @Inject constructor(
      */
     fun login() {
         // On every value emitted by the flow
-        loginUseCase(formState.value.username, formState.value.password).onEach { result ->
-            // Util function
-            resultManager(result)
-        }.launchIn(viewModelScope)
+        viewModelScope.launch {
+            loginUseCase(formState.value.username, formState.value.password).onEach { result ->
+                // Util function
+                resultManager(result)
+            }.launchIn(viewModelScope)
+        }
     }
 
     /**
@@ -42,10 +45,12 @@ class LoginViewModel @Inject constructor(
      */
     fun login(provider: String) {
         // On every value emitted by the flow
-        loginUseCase(provider).onEach { result ->
-            // Util function
-            resultManager(result)
-        }.launchIn(viewModelScope)
+        viewModelScope.launch {
+            loginUseCase(provider).onEach { result ->
+                // Util function
+                resultManager(result)
+            }.launchIn(viewModelScope)
+        }
     }
 
     /**

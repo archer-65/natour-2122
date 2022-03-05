@@ -39,7 +39,7 @@ class RegistrationConfirmationUseCase @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Confirmation failed", e)
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 }

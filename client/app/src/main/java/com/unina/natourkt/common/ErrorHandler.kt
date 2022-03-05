@@ -26,22 +26,24 @@ enum class ErrorCodes(val code: Int) {
  * This class is responsible for handling all the exceptions that occur in the app
  */
 open class ErrorHandler {
-    fun handleException(throwable: Throwable): DataState.CustomMessage {
 
-        return when (throwable) {
-            // AuthException (Amplify)
-            is AuthException -> getAuthError(throwable)
+    companion object {
+        fun handleException(throwable: Throwable): DataState.CustomMessage {
+            return when (throwable) {
+                // AuthException (Amplify)
+                is AuthException -> getAuthError(throwable)
 
-            // DataStore
-            is CorruptionException -> DataState.CustomMessage.DataCorrupted
+                // DataStore
+                is CorruptionException -> DataState.CustomMessage.DataCorrupted
 
-            // Network related
-            is NetworkConnectionInterceptor.NoConnectivityException -> DataState.CustomMessage.NetworkError
-            is IOException -> DataState.CustomMessage.NetworkError
-            is HttpException -> getErrorType(throwable.code())
+                // Network related
+                is NetworkConnectionInterceptor.NoConnectivityException -> DataState.CustomMessage.NetworkError
+                is IOException -> DataState.CustomMessage.NetworkError
+                is HttpException -> getErrorType(throwable.code())
 
-            // Generic
-            else -> DataState.CustomMessage.SomethingWentWrong
+                // Generic
+                else -> DataState.CustomMessage.SomethingWentWrong
+            }
         }
     }
 }

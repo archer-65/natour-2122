@@ -29,7 +29,7 @@ class CreateRouteUseCase @Inject constructor(
 
             emit(DataState.Success(true))
         } catch (e: Exception) {
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 

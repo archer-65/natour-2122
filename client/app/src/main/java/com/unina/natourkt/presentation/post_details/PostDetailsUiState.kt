@@ -1,11 +1,13 @@
 package com.unina.natourkt.presentation.post_details
 
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.presentation.base.ui_state.UserUiState
 
 data class PostDetailsUiState(
     val isLoading: Boolean = false,
     val error: DataState.CustomMessage? = null,
-    val post: PostUiState? = null
+    val post: PostUiState? = null,
+    val loggedUser: UserUiState? = null
 )
 
 data class PostUiState(

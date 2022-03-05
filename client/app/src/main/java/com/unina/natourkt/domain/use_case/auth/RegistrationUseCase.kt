@@ -15,7 +15,6 @@ import javax.inject.Inject
  */
 class RegistrationUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-    private val errorHandler: ErrorHandler,
 ) {
 
     /**
@@ -43,7 +42,7 @@ class RegistrationUseCase @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Sign up failed", e)
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 }

@@ -39,7 +39,7 @@ class ResetPasswordRequestUseCase @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e(PASSWORD_RESET, e.localizedMessage ?: "Password reset request failed", e)
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 }

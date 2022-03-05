@@ -39,7 +39,7 @@ class ResendConfirmationCodeUseCase @Inject constructor(
             }
         } catch (e: Exception) {
             Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Resend code failed due to", e)
-            emit(DataState.Error(errorHandler.handleException(e)))
+            emit(DataState.Error(ErrorHandler.handleException(e)))
         }
     }
 }

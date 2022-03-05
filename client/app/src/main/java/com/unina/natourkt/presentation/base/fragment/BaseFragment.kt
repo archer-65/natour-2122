@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants.MAX_PHOTO
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.presentation.main.MainViewModel
 import gun0912.tedimagepicker.builder.TedImagePicker
 import gun0912.tedimagepicker.builder.TedImagePickerBaseBuilder
@@ -40,7 +41,7 @@ import kotlinx.coroutines.launch
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
     /* A way to get the MainViewModel from the activity, and not from the fragment. */
-    val mainViewModel: MainViewModel by activityViewModels()
+    /* val mainViewModel: MainViewModel by activityViewModels() */
 
     /**
      * This property serves as ViewModel generalization

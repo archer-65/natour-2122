@@ -2,16 +2,17 @@ package com.unina.natourkt.presentation.new_post
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
+import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.safeRemove
+import com.unina.natourkt.domain.model.toUi
+import com.unina.natourkt.domain.use_case.route.GetRouteTitleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
 class NewPostViewModel @Inject constructor(
+    private val getRouteTitleUseCase: GetRouteTitleUseCase
 
 ) : ViewModel() {
 
@@ -32,4 +33,22 @@ class NewPostViewModel @Inject constructor(
             it.copy(postPhotos = it.postPhotos.safeRemove(position))
         }
     }
+
+fun updateRoutes(title: String) {
+    getRouteTitleUseCase(title).onEach  { result ->
+        when(result){
+            is DataState.Success -> {
+                _upcomingRoutes.value = RouteResultsUiState(result.data?.map{
+                    it.toUi()
+                }?: emptyList())
+            }
+        }
+
+    }
 }
+
+}
+
+
+
+

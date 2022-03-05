@@ -1,6 +1,8 @@
 package com.unina.natourkt.domain.repository
 
 import androidx.paging.PagingData
+import com.unina.natourkt.common.DataState
+import com.unina.natourkt.domain.model.RouteTitle
 import com.unina.natourkt.domain.model.route.Route
 import kotlinx.coroutines.flow.Flow
 
@@ -21,4 +23,5 @@ interface RouteRepository {
 
 
     suspend fun createRoute(route: Route)
+    suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>>
 }

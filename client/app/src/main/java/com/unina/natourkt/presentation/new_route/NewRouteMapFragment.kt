@@ -81,6 +81,7 @@ class NewRouteMapFragment :
                         LatLng(stop.latitude, stop.longitude)
                     )
                 }
+
                 if (it.routeStops.size >= 2) {
                     map.addPolyline(it.polylineOptions)
                 }

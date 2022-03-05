@@ -1,5 +1,7 @@
 package com.unina.natourkt.domain.repository
 
+import com.unina.natourkt.common.DataState
+
 /**
  * Interface for authentication functions
  */
@@ -12,43 +14,37 @@ interface AuthRepository {
     suspend fun fetchCurrentSession(): Boolean
 
     /**
-     * Fetch User UUID, will be used to query
-     * user from REST API
-     */
-    suspend fun fetchUserSub(): String
-
-    /**
      * Provides user registration
      */
-    suspend fun register(username: String, email: String, password: String): Boolean
+    suspend fun register(username: String, email: String, password: String): DataState<Boolean>
 
     /**
      * Provides user confirmation after successful registration
      */
-    suspend fun confirmRegistration(username: String, code: String): Boolean
+    suspend fun confirmRegistration(username: String, code: String): DataState<Boolean>
 
     /**
      * Provides user login
      */
-    suspend fun login(username: String, password: String): Boolean
+    suspend fun login(username: String, password: String): DataState<Boolean>
 
     /**
      * Provides user login with socials
      */
-    suspend fun login(provider: String): Boolean
+    suspend fun login(provider: String): DataState<Boolean>
 
     /**
      * Resend confirmation code
      */
-    suspend fun resendCode(username: String): Boolean
+    suspend fun resendCode(username: String): DataState<Boolean>
 
     /**
      * Reset password request
      */
-    suspend fun resetPasswordRequest(username: String): Boolean
+    suspend fun resetPasswordRequest(username: String): DataState<Boolean>
 
     /**
      * Reset password confirmation
      */
-    suspend fun resetPasswordConfirm(password: String, code: String)
+    suspend fun resetPasswordConfirm(password: String, code: String): DataState<Boolean>
 }

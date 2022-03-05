@@ -10,9 +10,6 @@ class GetAuthStateUseCase @Inject constructor(
     private val authRepository: AuthRepository,
 ) {
 
-    /**
-     * Fetch auth session
-     */
     suspend operator fun invoke(): Boolean {
         return authRepository.fetchCurrentSession()
     }

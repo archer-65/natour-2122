@@ -15,7 +15,7 @@ class CompilationRepositoryImpl @Inject constructor(
 ): CompilationRepository  {
 
     companion object{
-        const val  NETWORK_PAGE_SIZE = 10
+        const val NETWORK_PAGE_SIZE = 10
     }
 
     override fun getPersonalCompilations(userId: Long): Flow<PagingData<Compilation>> {

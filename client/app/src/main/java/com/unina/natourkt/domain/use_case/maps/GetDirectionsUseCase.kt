@@ -17,18 +17,14 @@ class GetDirectionsUseCase @Inject constructor(
 ) {
 
     operator fun invoke(stops: List<RouteStop>): Flow<DataState<DirectionsPolyline>> = flow {
-        try {
-            emit(DataState.Loading())
-            Log.i("DIRECTIONS REQUEST", "Loading request for directions")
-            val directionsRequest = stops.toDirectionsRequest()
-            Log.i("DIRECTIONS REQUEST", "$directionsRequest")
+        Log.i("DIRECTIONS REQUEST", "Loading request for directions")
+        emit(DataState.Loading())
 
-            val directions = mapsRepository.getDirections(directionsRequest)
-            Log.i("DIRECTIONS RESPONSE", directions.toString())
-            emit(DataState.Success(directions))
-        } catch (e: Exception) {
-            Log.e("DIRECTIONS ERROR", e.localizedMessage, e)
-            emit(DataState.Error(DataState.CustomMessage.NotAcceptable))
-        }
+        val directionsRequest = stops.toDirectionsRequest()
+        Log.i("DIRECTIONS REQUEST", "$directionsRequest")
+
+        val directions = mapsRepository.getDirections(directionsRequest)
+        Log.i("DIRECTIONS RESPONSE", directions.toString())
+        emit(directions)
     }
 }

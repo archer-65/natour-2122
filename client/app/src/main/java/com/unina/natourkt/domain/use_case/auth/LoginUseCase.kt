@@ -17,83 +17,31 @@ import java.lang.Exception
 import javax.inject.Inject
 
 /**
- * This UseCase make use of
- * - [AuthRepository] to login the user
- * - [DataStoreRepository] to persist the user on DataStore Preferences
- * - [UserRepository] to retrieve the user through REST Service
+ * This UseCase makes use of [AuthRepository] to register an user
  */
 class LoginUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-    private val userRepository: UserRepository,
-    private val saveUserToStoreUseCase: SaveUserToStoreUseCase,
-    private val errorHandler: ErrorHandler,
 ) {
 
     /**
      * Use this one for classic login
      */
     operator fun invoke(username: String, password: String): Flow<DataState<Boolean>> = flow {
-        try {
-            emit(DataState.Loading())
+        Log.i(LOGIN_STATE, "Processing login request...")
+        emit(DataState.Loading())
 
-            Log.i(LOGIN_STATE, "Processing login request...")
-
-            val isSignInComplete = authRepository.login(username, password)
-            if (isSignInComplete) {
-                // If user's login is successful, save the user locally in DataStore Preferences
-                Log.i(LOGIN_STATE, "Login ok!")
-                localAuthStateManager()
-
-                Log.i(LOGIN_STATE, "Login successful!")
-                emit(DataState.Success(isSignInComplete))
-            } else {
-                Log.e(LOGIN_STATE, "Whoops, something went wrong with authentication")
-                emit(DataState.Error(DataState.CustomMessage.AuthGeneric))
-            }
-        } catch (e: Exception) {
-            Log.e(LOGIN_STATE, e.localizedMessage ?: "Login failed", e)
-            emit(DataState.Error(ErrorHandler.handleException(e)))
-        }
+        val loginResult = authRepository.login(username, password)
+        emit(loginResult)
     }
 
     /**
      * Use this one for social login
      */
     operator fun invoke(provider: String): Flow<DataState<Boolean>> = flow {
-        try {
-            emit(DataState.Loading())
+        Log.i(LOGIN_STATE, "Processing login request...")
+        emit(DataState.Loading())
 
-            Log.i(LOGIN_STATE, "Processing login request...")
-
-            val isSignInComplete = authRepository.login(provider)
-            if (isSignInComplete) {
-                // If user's login is successful, save the user locally in DataStore Preferences
-                Log.i(LOGIN_STATE, "Login with social provider ok!")
-                localAuthStateManager()
-
-                Log.i(LOGIN_STATE, "Login successful!")
-                emit(DataState.Success(isSignInComplete))
-            } else {
-                Log.e(LOGIN_STATE, "Whoops, something went wrong with authentication")
-                emit(DataState.Error(DataState.CustomMessage.AuthGeneric))
-            }
-        } catch (e: Exception) {
-            Log.e(LOGIN_STATE, e.localizedMessage ?: "Social login failed", e)
-            emit(DataState.Error(ErrorHandler.handleException(e)))
-        }
-    }
-
-    /**
-     * Save to DataStore the logged user
-     */
-    private suspend fun localAuthStateManager() {
-        Log.i(LOGIN_STATE, "Retreving User Sub...")
-        val userUUID = authRepository.fetchUserSub()
-
-        Log.i(LOGIN_STATE, "Getting user data from API...")
-        val user = userRepository.getUserByCognitoId(userUUID).toUser()
-
-        Log.i(LOGIN_STATE, "Saving user data locally...")
-        saveUserToStoreUseCase(user)
+        val loginResult = authRepository.login(provider)
+        emit(loginResult)
     }
 }

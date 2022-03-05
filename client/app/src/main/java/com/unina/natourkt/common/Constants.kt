@@ -28,6 +28,10 @@ object Constants {
 
     const val DATASTORE_STATE = "Datastore Status"
 
+    const val NETWORK_REQUEST = "Network Request Status"
+    const val NETWORK_ERROR = "Network Error"
+    const val SERVER_ERROR = "Server unreachable"
+
     const val POST_MODEL = "Post Request Status"
     const val ROUTE_MODEL = "Route Request Status"
     const val COMPILATION_MODEL = "Compilation Request Status"

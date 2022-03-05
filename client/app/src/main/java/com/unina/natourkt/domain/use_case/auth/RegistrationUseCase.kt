@@ -11,38 +11,21 @@ import java.lang.Exception
 import javax.inject.Inject
 
 /**
- * This UseCase make use of [AuthRepository] to register a user
+ * This UseCase make use of [AuthRepository] to register an user
  */
 class RegistrationUseCase @Inject constructor(
     private val authRepository: AuthRepository,
 ) {
 
-    /**
-     * Sign up user
-     */
     operator fun invoke(
         username: String,
         email: String,
         password: String
     ): Flow<DataState<Boolean>> = flow {
+        Log.i(REGISTRATION_STATE, "Processing sign up request...")
+        emit(DataState.Loading())
 
-        try {
-            emit(DataState.Loading())
-
-            Log.i(REGISTRATION_STATE, "Processing sign up request...")
-
-            val isSignUpComplete = authRepository.register(username, email, password)
-            if (isSignUpComplete) {
-                // If sign up is successful emit true
-                Log.i(REGISTRATION_STATE, "Account creation successful!")
-                emit(DataState.Success(isSignUpComplete))
-            } else {
-                Log.e(REGISTRATION_STATE, "Whoops, something went wrong with sign up, retry!")
-                emit(DataState.Error(DataState.CustomMessage.AuthGeneric))
-            }
-        } catch (e: Exception) {
-            Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Sign up failed", e)
-            emit(DataState.Error(ErrorHandler.handleException(e)))
-        }
+        val signUpResult = authRepository.register(username, email, password)
+        emit(signUpResult)
     }
 }

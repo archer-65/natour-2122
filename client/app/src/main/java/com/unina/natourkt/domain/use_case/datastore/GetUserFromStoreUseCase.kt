@@ -13,9 +13,6 @@ class GetUserFromStoreUseCase @Inject constructor(
     private val dataStoreRepository: DataStoreRepository,
 ) {
 
-    /**
-     * Get logged in user, could be null
-     */
     suspend operator fun invoke(): User? {
         Log.i(DATASTORE_STATE, "Getting user data attempt...")
         return dataStoreRepository.getUserFromDataStore()

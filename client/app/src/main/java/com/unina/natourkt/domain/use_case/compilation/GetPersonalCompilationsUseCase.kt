@@ -11,12 +11,11 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetPersonalCompilationsUseCase @Inject constructor(
-
     private val getUserFromStoreUseCase: GetUserFromStoreUseCase,
     private val compilationRepository: CompilationRepository,
-)  {
+) {
 
-    suspend operator fun invoke(): Flow<PagingData<Compilation>>{
+    suspend operator fun invoke(): Flow<PagingData<Compilation>> {
 
         val loggedUser = getUserFromStoreUseCase()
 

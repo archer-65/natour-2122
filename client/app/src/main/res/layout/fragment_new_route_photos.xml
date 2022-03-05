@@ -96,13 +96,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    <include-->
-    <!--        layout="@layout/insert_images_placeholder"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_gravity="center" />-->
-
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/nextFab"
         style="?attr/extendedFloatingActionButtonSecondaryStyle"
@@ -120,7 +113,7 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

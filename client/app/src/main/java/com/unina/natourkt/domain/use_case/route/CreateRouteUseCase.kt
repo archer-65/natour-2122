@@ -16,7 +16,6 @@ class CreateRouteUseCase @Inject constructor(
     private val routeRepository: RouteRepository,
     private val getUserFromStoreUseCase: GetUserFromStoreUseCase,
     private val uploadFilesUseCase: UploadFilesUseCase,
-    private val errorHandler: ErrorHandler,
 ) {
 
     operator fun invoke(route: Route): Flow<DataState<Boolean>> = flow {

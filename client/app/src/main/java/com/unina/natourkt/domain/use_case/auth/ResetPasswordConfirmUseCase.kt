@@ -15,24 +15,13 @@ import javax.inject.Inject
  */
 class ResetPasswordConfirmUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-    private val errorHandler: ErrorHandler,
 ) {
 
-    /**
-     * Reset password
-     */
     operator fun invoke(password: String, code: String): Flow<DataState<Boolean>> = flow {
+        Log.i(PASSWORD_RESET, "Processing password reset request...")
+        emit(DataState.Loading())
 
-        try {
-            emit(DataState.Loading())
-
-            Log.i(PASSWORD_RESET, "Processing password reset request...")
-
-            authRepository.resetPasswordConfirm(password, code)
-            emit(DataState.Success(true))
-        } catch (e: Exception) {
-            Log.e(PASSWORD_RESET, e.localizedMessage ?: "Resetting password failed", e)
-            emit(DataState.Error(ErrorHandler.handleException(e)))
-        }
+        val isPasswordReset = authRepository.resetPasswordConfirm(password, code)
+        emit(isPasswordReset)
     }
 }

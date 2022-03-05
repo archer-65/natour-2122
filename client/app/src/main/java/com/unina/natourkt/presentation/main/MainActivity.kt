@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.libraries.places.api.Places
@@ -83,11 +84,9 @@ class MainActivity : AppCompatActivity() {
      * Check if user is authenticated, if not, then go to Login Fragment
      */
     private fun checkAuthState() = with(mainViewModel) {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                if (!isUserAuthenticated || loggedUser == null) {
-                    navController.navigate(R.id.action_home_to_auth_flow)
-                }
+        if (!isUserAuthenticated || loggedUser == null) {
+            if (navController.currentDestination?.id == R.id.navigation_home) {
+                navController.navigate(R.id.action_home_to_auth_flow)
             }
         }
     }

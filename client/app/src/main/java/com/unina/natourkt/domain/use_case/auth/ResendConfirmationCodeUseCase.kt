@@ -15,31 +15,13 @@ import javax.inject.Inject
  */
 class ResendConfirmationCodeUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-    private val errorHandler: ErrorHandler,
 ) {
 
-    /**
-     * Resend confirmation code
-     */
     operator fun invoke(username: String): Flow<DataState<Boolean>> = flow {
+        Log.i(REGISTRATION_STATE, "Processing new code request...")
+        emit(DataState.Loading())
 
-        try {
-            emit(DataState.Loading())
-
-            Log.i(REGISTRATION_STATE, "Processing new code request...")
-
-            val isCodeSent = authRepository.resendCode(username)
-            if (isCodeSent) {
-                // If the code is resent successfully emit
-                Log.i(REGISTRATION_STATE, "New code sent!")
-                emit(DataState.Success(isCodeSent))
-            } else {
-                Log.e(REGISTRATION_STATE, "Whoops, something went wrong with code delivery, retry!")
-                emit(DataState.Error(DataState.CustomMessage.CodeDelivery))
-            }
-        } catch (e: Exception) {
-            Log.e(REGISTRATION_STATE, e.localizedMessage ?: "Resend code failed due to", e)
-            emit(DataState.Error(ErrorHandler.handleException(e)))
-        }
+        val isCodeSent = authRepository.resendCode(username)
+        emit(isCodeSent)
     }
 }

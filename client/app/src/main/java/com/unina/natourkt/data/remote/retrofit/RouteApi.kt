@@ -1,5 +1,6 @@
 package com.unina.natourkt.data.remote.retrofit
 
+import com.unina.natourkt.data.remote.dto.RouteCreationDto
 import com.unina.natourkt.data.remote.dto.RouteTitleDto
 import com.unina.natourkt.data.remote.dto.route.RouteDto
 import retrofit2.http.Body
@@ -33,12 +34,12 @@ interface RouteApi {
 
     @POST("/routes/add")
     suspend fun createRoute(
-        @Body routeDto: RouteDto
+        @Body routeDto: RouteCreationDto
     )
 
     @GET("/routes/search_title")
     suspend fun getRouteTitles(
-        @Query("title") title: String
+        @Query("query") query: String
     ): List<RouteTitleDto>
 
 }

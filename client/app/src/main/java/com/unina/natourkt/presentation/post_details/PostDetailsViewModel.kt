@@ -6,11 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.toDetailUi
 import com.unina.natourkt.domain.model.toUi
-import com.unina.natourkt.domain.use_case.datastore.GetUserFromStoreUseCase
+import com.unina.natourkt.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.domain.use_case.post.GetPostDetailsUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
-import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
-import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -19,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PostDetailsViewModel @Inject constructor(
     private val getPostDetailsUseCase: GetPostDetailsUseCase,
-    private val getUserFromStoreUseCase: GetUserFromStoreUseCase,
+    private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
@@ -57,7 +55,7 @@ class PostDetailsViewModel @Inject constructor(
     private fun getLoggedUser() {
         viewModelScope.launch {
             _uiState.update {
-                val user = getUserFromStoreUseCase()
+                val user = getUserDataUseCase()
                 it.copy(loggedUser = user?.toUi())
             }
         }

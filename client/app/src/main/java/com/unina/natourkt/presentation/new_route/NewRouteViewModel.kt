@@ -1,29 +1,68 @@
 package com.unina.natourkt.presentation.new_route
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.safeRemove
+import com.unina.natourkt.common.toInputStream
 import com.unina.natourkt.domain.use_case.maps.GetDirectionsUseCase
 import com.unina.natourkt.domain.use_case.route.CreateRouteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.ticofab.androidgpxparser.parser.GPXParser
+import io.ticofab.androidgpxparser.parser.domain.Gpx
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import org.xmlpull.v1.XmlPullParserException
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
 class NewRouteViewModel @Inject constructor(
     private val getDirectionsUseCase: GetDirectionsUseCase,
     private val createRouteUseCase: CreateRouteUseCase,
+    private val gpxParser: GPXParser,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(NewRouteUiState())
     val uiState: StateFlow<NewRouteUiState> = _uiState.asStateFlow()
 
-    fun setInfo(routeInfo: NewRouteInfo) {
-        _uiState.update { currentState ->
-            currentState.copy(routeInfo = routeInfo)
+
+    fun setTitle(routeTitle: String) {
+        _uiState.update {
+            val currentInfo = it.routeInfo.copy(routeTitle = routeTitle)
+            it.copy(routeInfo = currentInfo)
+        }
+    }
+
+    fun setDescription(description: String) {
+        _uiState.update {
+            val currentInfo = it.routeInfo.copy(routeDescription = description)
+            it.copy(routeInfo = currentInfo)
+        }
+    }
+
+    fun setDuration(duration: String) {
+        _uiState.update {
+            val currentInfo = it.routeInfo.copy(duration = duration)
+            it.copy(routeInfo = currentInfo)
+        }
+    }
+
+    fun setDisabilityFriendly(checked: Boolean) {
+        _uiState.update {
+            val currentInfo = it.routeInfo.copy(disabilityFriendly = checked)
+            it.copy(routeInfo = currentInfo)
+        }
+    }
+
+    fun setDifficulty(difficulty: Difficulty) {
+        _uiState.update {
+            val currentInfo = it.routeInfo.copy(difficulty = difficulty)
+            it.copy(routeInfo = currentInfo)
         }
     }
 
@@ -39,7 +78,7 @@ class NewRouteViewModel @Inject constructor(
     }
 
     fun getDirections() {
-        val stops = uiState.value.routeStops.map { it.toRouteStop() }
+        val stops = uiState.value.routeStops.map { it.toRouteStopCreation() }
         getDirectionsUseCase(stops).onEach { result ->
             when (result) {
                 is DataState.Success -> {
@@ -68,11 +107,11 @@ class NewRouteViewModel @Inject constructor(
     }
 
     fun uploadRoute() {
-        createRouteUseCase(uiState.value.toRoute()).onEach { result ->
+        createRouteUseCase(uiState.value.toRouteCreation()).onEach { result ->
             when (result) {
                 is DataState.Success -> _uiState.update {
                     it.copy(
-                        isInserted = result.data ?: false,
+                        isInserted = true,
                         isLoading = false,
                         errorMessage = null
                     )
@@ -85,6 +124,31 @@ class NewRouteViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun setFromGpx(gpx: Uri) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val uri = gpx.toInputStream()
+                val parsedGpx: Gpx? = gpxParser.parse(uri.getOrThrow()!!)
+                parsedGpx?.let { gpx ->
+                    val stops = gpx.wayPoints.mapIndexed { index, value ->
+                        NewRouteStop(index + 1, value.latitude, value.longitude)
+                    }
+                    resetStops(stops)
+                }
+            } catch (e: IOException) {
+                Log.e("GPX Parse IO ERROR", e.localizedMessage, e)
+            } catch (e: XmlPullParserException) {
+                Log.e("GPX Parse XML", e.localizedMessage, e)
+            }
+        }
+    }
+
+    fun resetStops(stops: List<NewRouteStop>) {
+        _uiState.update {
+            it.copy(routeStops = stops)
+        }
     }
 }
 

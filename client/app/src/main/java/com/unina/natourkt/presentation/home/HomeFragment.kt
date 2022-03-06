@@ -91,7 +91,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
 
     override fun onItemClick(post: PostItemUiState) {
         val action = HomeFragmentDirections.actionHomeToPostDetails(
-            post.id,
+            post.id!!,
             post.authorId
         )
         findNavController().navigate(action)

@@ -7,7 +7,7 @@ import com.unina.natourkt.common.DataState
  */
 data class RegistrationUiState(
     val isLoading: Boolean = false,
-    val errorMessage: DataState.CustomMessage? = null,
+    val errorMessage: DataState.Cause? = null,
     val isSignUpComplete: Boolean = false,
     val isConfirmationComplete: Boolean = false,
 )

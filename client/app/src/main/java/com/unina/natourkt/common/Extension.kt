@@ -3,6 +3,7 @@ package com.unina.natourkt.common
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.view.View
 import android.webkit.URLUtil
 import android.widget.ImageView
@@ -30,10 +31,18 @@ import com.google.android.material.textfield.TextInputLayout
 import com.unina.natourkt.common.Constants.COLUMN_COUNT
 import com.unina.natourkt.domain.model.route.RouteStop
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
+import com.unina.natourkt.presentation.main.MainActivity
 import dev.chrisbanes.insetter.applyInsetter
 import gun0912.tedimagepicker.builder.TedImagePicker
 import gun0912.tedimagepicker.builder.TedImagePickerBaseBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.http.Url
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  *  A function that makes the view visible.
@@ -133,6 +142,16 @@ suspend fun String.convertKeyToUrl(execute: suspend (text: String) -> String): S
         execute(this)
     } else {
         this
+    }
+}
+
+
+fun String.toDateTime(): LocalDateTime =
+    LocalDateTime.parse(this)
+
+suspend fun Uri.toInputStream() = withContext(Dispatchers.Default) {
+    runCatching {
+        MainActivity.instance.contentResolver.openInputStream(this@toInputStream)
     }
 }
 

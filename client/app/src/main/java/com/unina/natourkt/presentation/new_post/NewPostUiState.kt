@@ -2,21 +2,32 @@ package com.unina.natourkt.presentation.new_post
 
 import android.net.Uri
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.domain.model.PostCreation
 
 data class NewPostUiState(
     val isInserted: Boolean = false,
     val isLoading: Boolean = false,
-    val errorMessage: DataState.CustomMessage? = null,
+    val errorMessage: DataState.Cause? = null,
     val postDescription: String = "",
-    val routeId: Long? = null,
+    val route: RouteTitleItemUiState? = null,
     val postPhotos: List<Uri> = emptyList(),
 )
 
 data class RouteResultsUiState(
-    val routes: List<UpcomingRoute> = emptyList(),
+    val routes: List<RouteTitleItemUiState> = emptyList(),
 )
 
-data class UpcomingRoute(
-    val routeTitle: String,
+data class RouteTitleItemUiState(
     val routeId: Long,
+    val routeTitle: String,
 )
+
+fun NewPostUiState.toPostCreation(): PostCreation {
+    return PostCreation(
+        description = postDescription,
+        photos = postPhotos.map { it.toString() },
+        author = null,
+        routeId = route!!.routeId,
+        routeTitle = route.routeTitle
+    )
+}

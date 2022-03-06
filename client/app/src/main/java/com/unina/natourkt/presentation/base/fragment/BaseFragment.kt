@@ -1,30 +1,23 @@
 package com.unina.natourkt.presentation.base.fragment
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.color.MaterialColors
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants.MAX_PHOTO
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.presentation.main.MainViewModel
 import gun0912.tedimagepicker.builder.TedImagePicker
-import gun0912.tedimagepicker.builder.TedImagePickerBaseBuilder
 import gun0912.tedimagepicker.builder.type.MediaType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -182,19 +175,19 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     /**
      * Get the right message and show it to the user
      */
-    fun manageMessage(customMessage: DataState.CustomMessage) {
-        val message = when (customMessage) {
-            is DataState.CustomMessage.UserNotFound -> getString(R.string.user_not_found)
-            is DataState.CustomMessage.UserNotConfirmed -> getString(R.string.user_not_confirmed)
-            is DataState.CustomMessage.InvalidPassword -> getString(R.string.invalid_password)
-            is DataState.CustomMessage.InvalidCredentials -> getString(R.string.wrong_credentials)
-            is DataState.CustomMessage.UsernameExists -> getString(R.string.username_exists)
-            is DataState.CustomMessage.AliasExists -> getString(R.string.credentials_already_taken)
-            is DataState.CustomMessage.InvalidParameter -> getString(R.string.incorrect_parameters)
-            is DataState.CustomMessage.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
-            is DataState.CustomMessage.CodeMismatch -> getString(R.string.wrong_confirmation_code)
-            is DataState.CustomMessage.CodeExpired -> getString(R.string.expired_confirmation_code)
-            is DataState.CustomMessage.AuthGeneric -> getString(R.string.auth_failed_exception)
+    fun manageMessage(cause: DataState.Cause) {
+        val message = when (cause) {
+            is DataState.Cause.UserNotFound -> getString(R.string.user_not_found)
+            is DataState.Cause.UserNotConfirmed -> getString(R.string.user_not_confirmed)
+            is DataState.Cause.InvalidPassword -> getString(R.string.invalid_password)
+            is DataState.Cause.InvalidCredentials -> getString(R.string.wrong_credentials)
+            is DataState.Cause.UsernameExists -> getString(R.string.username_exists)
+            is DataState.Cause.AliasExists -> getString(R.string.credentials_already_taken)
+            is DataState.Cause.InvalidParameter -> getString(R.string.incorrect_parameters)
+            is DataState.Cause.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
+            is DataState.Cause.CodeMismatch -> getString(R.string.wrong_confirmation_code)
+            is DataState.Cause.CodeExpired -> getString(R.string.expired_confirmation_code)
+            is DataState.Cause.AuthGeneric -> getString(R.string.auth_failed_exception)
             else -> getString(R.string.auth_failed_generic)
         }
 

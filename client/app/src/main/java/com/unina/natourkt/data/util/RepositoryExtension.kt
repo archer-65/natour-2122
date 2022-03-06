@@ -29,7 +29,7 @@ suspend fun <T> safeApiCall(
             }
         } catch (timeoutException: TimeoutCancellationException) {
             Log.e(NETWORK_ERROR, timeoutException.localizedMessage, timeoutException)
-            DataState.Error(DataState.CustomMessage.Timeout)
+            DataState.Error(DataState.Cause.Timeout)
         } catch (ioException: IOException) {
             Log.e(SERVER_ERROR, ioException.localizedMessage, ioException)
             DataState.Error(ErrorHandler.handleException(ioException))

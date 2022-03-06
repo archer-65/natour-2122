@@ -1,25 +1,18 @@
 package com.unina.natourkt.presentation.new_route
 
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.InputFilter
 import android.view.View
-import androidx.core.widget.doAfterTextChanged
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialContainerTransform
 import com.unina.natourkt.R
 import com.unina.natourkt.common.setBottomMargin
 import com.unina.natourkt.common.setTopMargin
+import com.unina.natourkt.common.updateText
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.input_filter.DurationFilter
-import gun0912.tedimagepicker.builder.TedImagePicker
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteViewModel>() {
 
@@ -36,6 +29,7 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupUi()
         setListeners()
         setTextChangedListeners()
     }
@@ -54,14 +48,11 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
 
     override fun setListeners() = with(binding) {
         nextFab.setOnClickListener {
-            //Prepare information before next screen
-            prepareInfo(viewModel.uiState.value.routeInfo)
             findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
-            //findNavController().navigate(R.id.action_navigation_new_route_info_to_newRoutePhotosFragment)
         }
 
 
-        disabilityFriendlySwitch.setOnCheckedChangeListener { check, state ->
+        disabilityFriendlySwitch.setOnCheckedChangeListener { _, state ->
             when (state) {
                 true -> disabilityFriendlyTextviewSub.text =
                     getString(R.string.disability_access)
@@ -75,46 +66,45 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
         }
     }
 
-    override fun setTextChangedListeners() {
-        with(binding) {
-            routeTitleTextField.editText?.doAfterTextChanged {
-                isFormValidForButton()
+    override fun setTextChangedListeners() = with(binding) {
+        with(viewModel) {
+            routeTitleTextField.updateText {
+                setTitle(it)
             }
 
-            durationTextField.editText?.doAfterTextChanged {
-                isFormValidForButton()
+            descriptionTextField.updateText {
+                setDescription(it)
+            }
+
+            durationTextField.updateText {
+                setDuration(it)
+            }
+
+            disabilityFriendlySwitch.setOnCheckedChangeListener { compoundButton, _ ->
+                setDisabilityFriendly(compoundButton.isChecked)
+            }
+
+            difficultyChipgroup.setOnCheckedStateChangeListener { group, _ ->
+                val checkedDifficulty = when (group.checkedChipId) {
+                    easyChip.id -> Difficulty.EASY
+                    mediumChip.id -> Difficulty.MEDIUM
+                    hardChip.id -> Difficulty.HARD
+                    else -> Difficulty.EASY
+                }
+                setDifficulty(checkedDifficulty)
             }
         }
     }
 
-    private fun isFormValidForButton() = with(binding) {
-        nextFab.isEnabled =
-            routeTitleTextField.editText?.text!!.isNotBlank() && durationTextField.editText?.text!!.isNotBlank()
-    }
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            bindInfo(uiState.value.routeInfo)
 
-    private fun prepareInfo(route: NewRouteInfo) = with(binding) {
-        val title = routeTitleTextField.editText?.text.toString().trim()
-        val description = descriptionTextField.editText?.text.toString().trim()
-        val duration = durationTextField.editText?.text.toString().trim()
-        val disabilityFriendly = disabilityFriendlySwitch.isChecked
-        val difficulty = difficultyChipgroup.run {
-            when (checkedChipId) {
-                easyChip.id -> Difficulty.EASY
-                mediumChip.id -> Difficulty.MEDIUM
-                hardChip.id -> Difficulty.HARD
-                else -> Difficulty.EASY
+            collectOnLifecycleScope(uiState) {
+                nextFab.isEnabled =
+                    it.routeInfo.routeTitle.isNotBlank() && it.routeInfo.duration.isNotBlank()
             }
         }
-
-        val newRoute = route.copy(
-            routeTitle = title,
-            routeDescription = description,
-            duration = duration.toInt(),
-            disabilityFriendly = disabilityFriendly,
-            difficulty = difficulty,
-        )
-
-        viewModel.setInfo(newRoute)
     }
 
     private fun bindInfo(route: NewRouteInfo) = with(binding) {
@@ -127,13 +117,7 @@ class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteV
                 Difficulty.HARD -> hardChip.id
             }
         )
-        durationTextField.editText?.setText(route.duration.toString())
+        durationTextField.editText?.setText(route.duration)
         disabilityFriendlySwitch.isChecked = route.disabilityFriendly
-    }
-
-    override fun collectState() {
-        collectLatestOnLifecycleScope(viewModel.uiState) {
-            bindInfo(it.routeInfo)
-        }
     }
 }

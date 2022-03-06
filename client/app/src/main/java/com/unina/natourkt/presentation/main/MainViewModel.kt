@@ -3,7 +3,7 @@ package com.unina.natourkt.presentation.main
 import androidx.lifecycle.ViewModel
 import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.auth.GetAuthStateUseCase
-import com.unina.natourkt.domain.use_case.datastore.GetUserFromStoreUseCase
+import com.unina.natourkt.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.presentation.base.ui_state.UserUiState
 import com.unina.natourkt.presentation.base.ui_state.convertKeys
@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getAuthStateUseCase: GetAuthStateUseCase,
-    private val getUserFromStoreUseCase: GetUserFromStoreUseCase,
+    private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase
 ) : ViewModel() {
 
@@ -39,7 +39,7 @@ class MainViewModel @Inject constructor(
     }
 
     suspend fun getLoggedUser(): UserUiState? = withContext(Dispatchers.IO) {
-        return@withContext getUserFromStoreUseCase()?.toUi().also {
+        return@withContext getUserDataUseCase()?.toUi().also {
             it?.convertKeys {
                 getUrlFromKeyUseCase(it)
             }

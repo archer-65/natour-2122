@@ -9,4 +9,12 @@
         android:contentDescription="Cerca"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/import_gpx"
+        android:title="Importa file GPX"
+        android:icon="@drawable/ic_baseline_file_upload_24"
+        android:contentDescription="Importa file GPX"
+        app:showAsAction="never"/>
+
+
 </menu>

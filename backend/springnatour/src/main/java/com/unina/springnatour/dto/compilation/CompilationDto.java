@@ -15,5 +15,4 @@ public class CompilationDto {
     private LocalDateTime creationDate;
     private String photo;
     private UserDto user;
-  //  private List<RouteDto> routes;
 }

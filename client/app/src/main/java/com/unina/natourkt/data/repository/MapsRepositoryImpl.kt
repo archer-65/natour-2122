@@ -20,7 +20,6 @@ class MapsRepositoryImpl @Inject constructor(
     ): DataState<DirectionsPolyline> {
 
         return safeApiCall(IO) {
-
             mapsApi.getDirections(
                 origin = directionsRequest.origin,
                 destination = directionsRequest.destination,

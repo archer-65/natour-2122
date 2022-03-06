@@ -10,7 +10,9 @@ import javax.inject.Inject
 class GetRouteTitleUseCase @Inject constructor(
     private val routeRepository: RouteRepository
 ) {
-    operator fun invoke (title: String): Flow<DataState<List<RouteTitle>>> = flow{
+    operator fun invoke(title: String): Flow<DataState<List<RouteTitle>>> = flow {
+        emit(DataState.Loading())
+
         val routes = routeRepository.getRouteTitle(title)
         emit(routes)
     }

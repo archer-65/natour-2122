@@ -1,6 +1,5 @@
 package com.unina.natourkt.data.repository
 
-import android.icu.text.CaseMap
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -10,9 +9,10 @@ import com.unina.natourkt.data.paging.RoutePagingSource
 import com.unina.natourkt.data.remote.dto.toRouteTitle
 import com.unina.natourkt.data.remote.retrofit.RouteApi
 import com.unina.natourkt.data.util.safeApiCall
+import com.unina.natourkt.domain.model.RouteCreation
 import com.unina.natourkt.domain.model.RouteTitle
 import com.unina.natourkt.domain.model.route.Route
-import com.unina.natourkt.domain.model.route.toDto
+import com.unina.natourkt.domain.model.toCreationDto
 import com.unina.natourkt.domain.repository.RouteRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
@@ -58,13 +58,16 @@ class RouteRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>>{
-        return safeApiCall(IO){
-            api.getRouteTitles(title).map{
+    override suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>> =
+        safeApiCall(IO) {
+            api.getRouteTitles(title).map {
                 it.toRouteTitle()
             }
         }
-    }
 
-    override suspend fun createRoute(route: Route) = api.createRoute(route.toDto())
+
+    override suspend fun createRoute(route: RouteCreation): DataState<Unit> =
+        safeApiCall(IO) {
+            api.createRoute(route.toCreationDto())
+        }
 }

@@ -1,10 +1,11 @@
 package com.unina.natourkt.presentation.new_route
 
+import android.os.Bundle
+import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
@@ -13,16 +14,25 @@ import com.unina.natourkt.common.moveAndZoomCamera
 import com.unina.natourkt.common.setBottomMargin
 import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
+import com.unina.natourkt.presentation.base.contract.GpxPickerContract
 import com.unina.natourkt.presentation.base.fragment.BaseMapFragment
 
 class NewRouteMapFragment :
     BaseMapFragment<FragmentNewRouteMapBinding, NewRouteViewModel, MapView>() {
+
+    private lateinit var launcherGpx: ActivityResultLauncher<Unit>
 
     private val viewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentNewRouteMapBinding.inflate(layoutInflater)
     override fun getMapBinding() = binding.mapView
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupGpx()
+    }
 
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()
@@ -52,6 +62,9 @@ class NewRouteMapFragment :
             R.id.search_place -> {
                 val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
                 launcherPlaces.launch(fields)
+            }
+            R.id.import_gpx -> {
+                launcherGpx.launch(Unit)
             }
         }
         return true
@@ -87,6 +100,20 @@ class NewRouteMapFragment :
                 }
 
                 binding.nextFab.isEnabled = it.routeStops.size >= 2
+            }
+        }
+    }
+
+    private fun setupGpx() {
+        launcherGpx = registerForActivityResult(GpxPickerContract()) { result ->
+            result?.let {
+                map.clear()
+                viewModel.setFromGpx(it)
+                val firstStop = viewModel.uiState.value.routeStops.firstOrNull()
+                firstStop?.let {
+                    val position = LatLng(it.latitude, it.longitude)
+                    map.moveAndZoomCamera(position)
+                }
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.unina.natourkt.data.repository
 
 import android.util.Log
-import com.amazonaws.mobileconnectors.cognitoauth.Auth
 import com.amplifyframework.auth.AuthException
 import com.amplifyframework.auth.AuthProvider
 import com.amplifyframework.auth.AuthUserAttributeKey
@@ -21,7 +20,7 @@ import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.data.remote.retrofit.UserApi
 import com.unina.natourkt.domain.repository.AuthRepository
-import com.unina.natourkt.domain.repository.DataStoreRepository
+import com.unina.natourkt.domain.repository.PreferencesRepository
 import com.unina.natourkt.presentation.main.MainActivity
 import retrofit2.HttpException
 import java.io.IOException
@@ -31,7 +30,7 @@ import javax.inject.Inject
  * This is an [AuthRepository] class built on [Amplify] methods
  */
 class AuthRepositoryImpl @Inject constructor(
-    private val dataStoreRepository: DataStoreRepository,
+    private val preferencesRepository: PreferencesRepository,
     private val userApi: UserApi,
 ) : AuthRepository {
 
@@ -65,7 +64,7 @@ class AuthRepositoryImpl @Inject constructor(
         if (result.isSignUpComplete) {
             DataState.Success(true)
         } else {
-            DataState.Error(DataState.CustomMessage.AuthGeneric)
+            DataState.Error(DataState.Cause.AuthGeneric)
         }
     } catch (authException: AuthException) {
         Log.e(REGISTRATION_STATE, authException.localizedMessage, authException)
@@ -84,7 +83,7 @@ class AuthRepositoryImpl @Inject constructor(
             if (result.isSignUpComplete) {
                 DataState.Success(true)
             } else {
-                DataState.Error(DataState.CustomMessage.AuthGeneric)
+                DataState.Error(DataState.Cause.AuthGeneric)
             }
         } catch (authException: AuthException) {
             Log.e(REGISTRATION_STATE, authException.localizedMessage, authException)
@@ -103,7 +102,7 @@ class AuthRepositoryImpl @Inject constructor(
             if (result.isSignUpComplete) {
                 DataState.Success(true)
             } else {
-                DataState.Error(DataState.CustomMessage.AuthGeneric)
+                DataState.Error(DataState.Cause.AuthGeneric)
             }
         } catch (authException: AuthException) {
             Log.e(REGISTRATION_STATE, authException.localizedMessage, authException)
@@ -126,12 +125,12 @@ class AuthRepositoryImpl @Inject constructor(
                 // Make request to API to retrieve data
                 val user = userApi.getUserByUUID(sub).toUser()
                 // Save user data to DataStore Preferences
-                dataStoreRepository.saveUserToDataStore(user)
+                preferencesRepository.saveUserToDataStore(user)
                 // Return Success
                 DataState.Success(true)
             } else {
                 // Return error
-                DataState.Error(DataState.CustomMessage.AuthGeneric)
+                DataState.Error(DataState.Cause.AuthGeneric)
             }
         } catch (authException: AuthException) {
             Log.e(LOGIN_STATE, authException.localizedMessage, authException)
@@ -166,12 +165,12 @@ class AuthRepositoryImpl @Inject constructor(
                 // Make request to API to retrieve data
                 val user = userApi.getUserByUUID(sub).toUser()
                 // Save user data to DataStore Preferences
-                dataStoreRepository.saveUserToDataStore(user)
+                preferencesRepository.saveUserToDataStore(user)
                 // Return Success
                 DataState.Success(true)
             } else {
                 // Return error
-                DataState.Error(DataState.CustomMessage.AuthGeneric)
+                DataState.Error(DataState.Cause.AuthGeneric)
             }
         } catch (authException: AuthException) {
             Log.e(LOGIN_STATE, authException.localizedMessage, authException)
@@ -196,7 +195,7 @@ class AuthRepositoryImpl @Inject constructor(
             if (result.nextStep.resetPasswordStep == AuthResetPasswordStep.CONFIRM_RESET_PASSWORD_WITH_CODE) {
                 DataState.Success(true)
             } else {
-                DataState.Error(DataState.CustomMessage.AuthGeneric)
+                DataState.Error(DataState.Cause.AuthGeneric)
             }
         } catch (authException: AuthException) {
             Log.e(PASSWORD_RESET, authException.localizedMessage, authException)

@@ -1,5 +1,8 @@
 package com.unina.natourkt.domain.model
 
+import android.net.Uri
+import com.unina.natourkt.data.remote.dto.PostCreationDto
+import com.unina.natourkt.data.remote.dto.PostPhotoCreationDto
 import com.unina.natourkt.domain.model.route.Route
 import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
@@ -11,10 +14,11 @@ import com.unina.natourkt.presentation.post_details.PostUiState
 data class Post(
     val id: Long,
     val description: String,
-    val isReported: Boolean = false,
+    val isReported: Boolean,
     val photos: List<String>,
-    val user: User,
-    val route: Route,
+    val author: User,
+    val routeId: Long,
+    val routeTitle: String,
 )
 
 /**
@@ -25,11 +29,11 @@ fun Post.toUi(): PostItemUiState {
         id = id,
         description = description,
         photos = photos,
-        authorId = user.id,
-        authorUsername = user.username,
-        authorPhoto = user.photo,
-        routeId = route.id,
-        routeTitle = route.title
+        authorId = author.id,
+        authorUsername = author.username,
+        authorPhoto = author.photo,
+        routeId = routeId,
+        routeTitle = routeTitle
     )
 }
 
@@ -40,7 +44,7 @@ fun Post.toGridUi(): PostGridItemUiState {
     return PostGridItemUiState(
         id = id,
         previewPhoto = photos.first(),
-        authorId = user.id
+        authorId = author.id
     )
 }
 
@@ -52,10 +56,10 @@ fun Post.toDetailUi(): PostUiState {
         id = id,
         description = description,
         photos = photos,
-        authorId = user.id,
-        authorUsername = user.username,
-        authorPhoto = user.photo,
-        routeId = route.id,
-        routeTitle = route.title
+        authorId = author.id,
+        authorUsername = author.username,
+        authorPhoto = author.photo,
+        routeId = routeId,
+        routeTitle = routeTitle
     )
 }

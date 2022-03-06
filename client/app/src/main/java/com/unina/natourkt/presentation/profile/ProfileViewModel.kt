@@ -3,7 +3,7 @@ package com.unina.natourkt.presentation.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.domain.model.toUi
-import com.unina.natourkt.domain.use_case.datastore.GetUserFromStoreUseCase
+import com.unina.natourkt.domain.use_case.settings.GetUserDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val getUserFromStoreUseCase: GetUserFromStoreUseCase
+    private val getUserDataUseCase: GetUserDataUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ProfileUiState())
@@ -26,7 +26,7 @@ class ProfileViewModel @Inject constructor(
     private fun getLoggedUser() {
         viewModelScope.launch {
             _uiState.update {
-                val user = getUserFromStoreUseCase()
+                val user = getUserDataUseCase()
                 it.copy(loggedUser = user?.toUi())
             }
         }

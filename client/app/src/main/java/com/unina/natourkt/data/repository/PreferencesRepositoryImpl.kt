@@ -8,18 +8,18 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.unina.natourkt.common.Constants.DATASTORE_STATE
 import com.unina.natourkt.common.Constants.PREFERENCES
 import com.unina.natourkt.domain.model.User
-import com.unina.natourkt.domain.repository.DataStoreRepository
+import com.unina.natourkt.domain.repository.PreferencesRepository
 import kotlinx.coroutines.flow.*
 import java.lang.Exception
 import javax.inject.Inject
 
 /**
- * This is the [DataStoreRepository] class implementation, containing
+ * This is the [PreferencesRepository] class implementation, containing
  * all user preferences (and logged user basic data)
  */
-class DataStoreRepositoryImpl @Inject constructor(
+class PreferencesRepositoryImpl @Inject constructor(
     private val context: Context
-) : DataStoreRepository {
+) : PreferencesRepository {
 
     private val Context.dataStore: DataStore<Preferences>
             by preferencesDataStore(name = PREFERENCES)

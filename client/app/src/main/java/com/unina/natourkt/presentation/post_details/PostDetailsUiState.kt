@@ -5,14 +5,14 @@ import com.unina.natourkt.presentation.base.ui_state.UserUiState
 
 data class PostDetailsUiState(
     val isLoading: Boolean = false,
-    val error: DataState.CustomMessage? = null,
+    val error: DataState.Cause? = null,
     val post: PostUiState? = null,
     val loggedUser: UserUiState? = null
 )
 
 data class PostUiState(
     val id: Long,
-    val description: String,
+    val description: String?,
     val photos: List<String>,
     val authorId: Long,
     val authorUsername: String,

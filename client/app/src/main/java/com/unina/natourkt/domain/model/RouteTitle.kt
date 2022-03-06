@@ -1,14 +1,15 @@
 package com.unina.natourkt.domain.model
-import com.unina.natourkt.presentation.new_post.UpcomingRoute
+
+import com.unina.natourkt.presentation.new_post.RouteTitleItemUiState
 
 data class RouteTitle(
+    val id: Long,
     val title: String,
-    val id: Long
 )
 
-fun RouteTitle.toUi(): UpcomingRoute{
-    return UpcomingRoute(
+fun RouteTitle.toUi(): RouteTitleItemUiState {
+    return RouteTitleItemUiState(
+        routeId = id,
         routeTitle = title,
-        routeId = id
     )
 }

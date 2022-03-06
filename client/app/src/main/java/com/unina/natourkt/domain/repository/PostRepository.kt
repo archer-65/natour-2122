@@ -3,6 +3,7 @@ package com.unina.natourkt.domain.repository
 import androidx.paging.PagingData
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.Post
+import com.unina.natourkt.domain.model.PostCreation
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -21,5 +22,6 @@ interface PostRepository {
     fun getPersonalPosts(userId: Long): Flow<PagingData<Post>>
 
 
-    suspend fun getPostDetails(id: Long) : Post
+    suspend fun getPostDetails(id: Long) : DataState<Post>
+    suspend fun createPost(post: PostCreation): DataState<Unit>
 }

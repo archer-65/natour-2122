@@ -6,7 +6,7 @@ package com.unina.natourkt.common
  *
  * Constructor is made of
  * - Generic [data] object
- * - A [CustomMessage] object
+ * - A [Cause] object
  */
 sealed class DataState<T>(
     /**
@@ -14,9 +14,9 @@ sealed class DataState<T>(
      */
     val data: T? = null,
     /**
-     * This attribute serves as error container for [CustomMessage]
+     * This attribute serves as error container for [Cause]
      */
-    val error: CustomMessage = CustomMessage.SomethingWentWrong
+    val error: Cause = Cause.SomethingWentWrong
 ) {
 
     /**
@@ -30,38 +30,38 @@ sealed class DataState<T>(
     class Loading<T> : DataState<T>()
 
     /**
-     * An `Error` is a [DataState] that holds [CustomMessage] object
+     * An `Error` is a [DataState] that holds [Cause] object
      */
-    class Error<T>(customMessage: CustomMessage) : DataState<T>(error = customMessage)
+    class Error<T>(cause: Cause) : DataState<T>(error = cause)
 
 
     /**
      * The `CustomMessage` class is a sealed class that contains a list of all the possible custom
      * error messages that can be returned from the APIs
      */
-    sealed class CustomMessage {
-        object UserNotFound : CustomMessage()
-        object UserNotConfirmed : CustomMessage()
-        object InvalidPassword : CustomMessage()
-        object InvalidCredentials : CustomMessage()
-        object UsernameExists : CustomMessage()
-        object AliasExists : CustomMessage()
-        object InvalidParameter : CustomMessage()
-        object CodeDelivery : CustomMessage()
-        object CodeMismatch : CustomMessage()
-        object CodeExpired : CustomMessage()
-        object AuthGeneric : CustomMessage()
-        object DataCorrupted : CustomMessage()
-        object NetworkError : CustomMessage()
-        object Timeout : CustomMessage()
-        object Unauthorized : CustomMessage()
-        object InternalServerError : CustomMessage()
-        object BadRequest : CustomMessage()
-        object NotFound : CustomMessage()
-        object NotAcceptable : CustomMessage()
-        object ServiceUnavailable : CustomMessage()
-        object Forbidden : CustomMessage()
-        object Conflict : CustomMessage()
-        object SomethingWentWrong : CustomMessage()
+    sealed class Cause {
+        object UserNotFound : Cause()
+        object UserNotConfirmed : Cause()
+        object InvalidPassword : Cause()
+        object InvalidCredentials : Cause()
+        object UsernameExists : Cause()
+        object AliasExists : Cause()
+        object InvalidParameter : Cause()
+        object CodeDelivery : Cause()
+        object CodeMismatch : Cause()
+        object CodeExpired : Cause()
+        object AuthGeneric : Cause()
+        object DataCorrupted : Cause()
+        object NetworkError : Cause()
+        object Timeout : Cause()
+        object Unauthorized : Cause()
+        object InternalServerError : Cause()
+        object BadRequest : Cause()
+        object NotFound : Cause()
+        object NotAcceptable : Cause()
+        object ServiceUnavailable : Cause()
+        object Forbidden : Cause()
+        object Conflict : Cause()
+        object SomethingWentWrong : Cause()
     }
 }

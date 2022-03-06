@@ -7,7 +7,7 @@ import com.unina.natourkt.common.DataState
  */
 data class ForgotPasswordUiState(
     val isLoading: Boolean = false,
-    val errorMessage: DataState.CustomMessage? = null,
+    val errorMessage: DataState.Cause? = null,
     val isCodeSent: Boolean = false,
 )
 

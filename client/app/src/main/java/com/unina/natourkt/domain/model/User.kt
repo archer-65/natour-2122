@@ -10,7 +10,7 @@ data class User(
     val id: Long,
     val username: String,
     val isAdmin: Boolean = false,
-    val photo: String? = null
+    val photo: String?
 )
 
 fun User.toDto(): UserDto {

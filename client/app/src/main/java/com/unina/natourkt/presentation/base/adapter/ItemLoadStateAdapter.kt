@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
 import com.unina.natourkt.databinding.ItemLoadBinding
-import javax.inject.Inject
 
 /**
  * The ItemLoadStateAdapter is a common class used by Paging Adapters
@@ -40,7 +39,7 @@ class ItemLoadStateAdapter : LoadStateAdapter<ItemLoadStateAdapter.LoadStateView
             // State Views visibility
             progressBar.isVisible = loadState is LoadState.Loading
             errorLayout.isVisible =
-                loadState is LoadState.Error && ErrorHandler.handleException(loadState.error) is DataState.CustomMessage.NetworkError
+                loadState is LoadState.Error && ErrorHandler.handleException(loadState.error) is DataState.Cause.NetworkError
         }
     }
 }

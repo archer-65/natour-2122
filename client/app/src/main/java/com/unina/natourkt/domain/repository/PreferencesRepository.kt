@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Interface for simple DataStore Preferences methods
  */
-interface DataStoreRepository {
+interface PreferencesRepository {
     
     suspend fun saveUserToDataStore(user: User)
 

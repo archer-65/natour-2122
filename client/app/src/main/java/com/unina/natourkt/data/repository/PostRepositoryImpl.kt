@@ -3,12 +3,17 @@ package com.unina.natourkt.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.unina.natourkt.common.DataState
 import com.unina.natourkt.data.remote.dto.post.toPost
 import com.unina.natourkt.data.paging.PersonalPostPagingSource
 import com.unina.natourkt.data.paging.PostPagingSource
 import com.unina.natourkt.data.remote.retrofit.PostApi
+import com.unina.natourkt.data.util.safeApiCall
 import com.unina.natourkt.domain.model.Post
+import com.unina.natourkt.domain.model.PostCreation
+import com.unina.natourkt.domain.model.toCreationDto
 import com.unina.natourkt.domain.repository.PostRepository
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -19,7 +24,7 @@ import javax.inject.Inject
  */
 class PostRepositoryImpl @Inject constructor(
     private val api: PostApi
-): PostRepository {
+) : PostRepository {
 
     /**
      * Page size for network requests for this class
@@ -52,7 +57,13 @@ class PostRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getPostDetails(id: Long): Post {
-        return api.getPostById(id).toPost()
-    }
+    override suspend fun getPostDetails(id: Long): DataState<Post> =
+        safeApiCall(IO) {
+            api.getPostById(id).toPost()
+        }
+
+    override suspend fun createPost(post: PostCreation): DataState<Unit> =
+        safeApiCall(IO) {
+            api.createRoute(post.toCreationDto())
+        }
 }

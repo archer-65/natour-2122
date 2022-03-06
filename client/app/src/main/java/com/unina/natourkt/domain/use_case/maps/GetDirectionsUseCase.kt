@@ -1,12 +1,10 @@
 package com.unina.natourkt.domain.use_case.maps
 
 import android.util.Log
-import com.google.android.gms.maps.model.LatLng
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.common.decodePolyline
 import com.unina.natourkt.domain.model.DirectionsPolyline
-import com.unina.natourkt.domain.model.route.RouteStop
-import com.unina.natourkt.domain.model.route.toDirectionsRequest
+import com.unina.natourkt.domain.model.RouteStopCreation
+import com.unina.natourkt.domain.model.toDirectionsRequest
 import com.unina.natourkt.domain.repository.MapsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,7 +14,7 @@ class GetDirectionsUseCase @Inject constructor(
     private val mapsRepository: MapsRepository
 ) {
 
-    operator fun invoke(stops: List<RouteStop>): Flow<DataState<DirectionsPolyline>> = flow {
+    operator fun invoke(stops: List<RouteStopCreation>): Flow<DataState<DirectionsPolyline>> = flow {
         Log.i("DIRECTIONS REQUEST", "Loading request for directions")
         emit(DataState.Loading())
 

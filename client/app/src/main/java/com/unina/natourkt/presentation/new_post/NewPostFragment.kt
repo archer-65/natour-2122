@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,11 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class NewPostFragment : BaseFragment<FragmentNewPostBinding, NewPostViewModel>(),
     PhotoAdapter.OnItemClickListener {
 
-   private val items = ArrayList<String>()
-
-    private lateinit var arrayAdapter: ArrayAdapter<String>
-
-
     private val recyclerAdapter = PhotoAdapter(this@NewPostFragment)
 
     private val viewModel: NewPostViewModel by viewModels()
@@ -41,20 +37,13 @@ class NewPostFragment : BaseFragment<FragmentNewPostBinding, NewPostViewModel>()
 
         setListeners()
         initRecycler()
+        setTextChangedListeners()
     }
 
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()
         postFab.setBottomMargin()
-
-
-          arrayAdapter = ArrayAdapter(
-            requireContext(),
-            androidx.databinding.library.baseAdapters.R.layout.support_simple_spinner_dropdown_item,
-            items
-        )
     }
-
 
 
     override fun setListeners() = with(binding) {
@@ -63,6 +52,10 @@ class NewPostFragment : BaseFragment<FragmentNewPostBinding, NewPostViewModel>()
                 pickImageFromGallery(uiState.value.postPhotos) {
                     setPhotos(it)
                 }
+            }
+
+            postFab.setOnClickListener {
+                uploadPost()
             }
         }
     }
@@ -83,39 +76,37 @@ class NewPostFragment : BaseFragment<FragmentNewPostBinding, NewPostViewModel>()
 
     override fun setTextChangedListeners() {
         super.setTextChangedListeners()
-        binding.autoComplete.setAdapter(arrayAdapter)
-        binding.autoComplete.doOnTextChanged { text, start, before, count ->
-            viewModel.updateRoutes(text.toString().trim())
+
+        binding.routeTextField.editText?.doAfterTextChanged {
+            viewModel.updateRoutes(it.toString().trim())
+            viewModel.setRoute(it.toString().trim())
         }
     }
 
-    override fun collectState() = with(viewModel) {
-        collectLatestOnLifecycleScope(uiState) {
-            recyclerAdapter.submitList(it.postPhotos)
-        }
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            collectLatestOnLifecycleScope(uiState) {
+                recyclerAdapter.submitList(it.postPhotos)
 
-        collectOnLifecycleScope(upcomingRoutes) { routes ->
-            val text = (binding.routeTextField.editText as MaterialAutoCompleteTextView)
-            items.clear()
-            items.addAll(routes.routes.map { it.routeTitle })
-            arrayAdapter.notifyDataSetChanged()
-        }
+                insertPhotoButton.isEnabled = it.postPhotos.size < 5
+                postFab.isEnabled = it.postPhotos.isNotEmpty() && it.route != null
 
-        collectLatestOnLifecycleScope(uiState) {
-            binding.insertPhotoButton.isEnabled = it.postPhotos.size < 5
-            binding.postFab.isEnabled = it.postPhotos.isNotEmpty()
-        }
+                if (it.isInserted) {
+                    findNavController().navigate(R.id.action_newPostFragment_to_navigation_home)
+                }
 
-        collectOnLifecycleScope(uiState) {
-            if (it.isInserted) {
-                findNavController().navigate(R.id.action_global_navigation_routes)
+                it.errorMessage?.run {
+                    manageMessage(this)
+                }
+                //progressBar.isVisible = it.isLoading
             }
 
-            it.errorMessage?.run {
-                manageMessage(this)
+            collectOnLifecycleScope(upcomingRoutes) { it ->
+                val updated = it.routes.map { it.routeTitle }.toTypedArray()
+                (routeTextField.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
+                    updated
+                )
             }
-
-            //binding.progressBar.isVisible = it.isLoading
         }
     }
 

@@ -22,9 +22,9 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideAuthRepository(
-        dataStoreRepository: DataStoreRepository,
+        preferencesRepository: PreferencesRepository,
         userApi: UserApi
-    ): AuthRepository = AuthRepositoryImpl(dataStoreRepository, userApi)
+    ): AuthRepository = AuthRepositoryImpl(preferencesRepository, userApi)
 
     @Provides
     @Singleton

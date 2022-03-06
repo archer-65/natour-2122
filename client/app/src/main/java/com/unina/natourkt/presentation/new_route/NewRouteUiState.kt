@@ -1,16 +1,15 @@
 package com.unina.natourkt.presentation.new_route
 
-import android.graphics.Bitmap
 import android.net.Uri
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.model.route.Route
-import com.unina.natourkt.domain.model.route.RouteStop
+import com.unina.natourkt.domain.model.RouteCreation
+import com.unina.natourkt.domain.model.RouteStopCreation
 
 data class NewRouteUiState(
     val isInserted: Boolean = false,
     val isLoading: Boolean = false,
-    val errorMessage: DataState.CustomMessage? = null,
+    val errorMessage: DataState.Cause? = null,
     val routeInfo: NewRouteInfo = NewRouteInfo(),
     val routeStops: List<NewRouteStop> = emptyList(),
     val routePhotos: List<Uri> = emptyList(),
@@ -20,7 +19,7 @@ data class NewRouteUiState(
 data class NewRouteInfo(
     val routeTitle: String = "",
     val routeDescription: String = "",
-    val duration: Int = 1,
+    val duration: String = "1",
     val disabilityFriendly: Boolean = false,
     val difficulty: Difficulty = Difficulty.EASY,
 )
@@ -37,23 +36,23 @@ enum class Difficulty(val difficultyValue: Int) {
     HARD(3),
 }
 
-fun NewRouteStop.toRouteStop(): RouteStop {
-    return RouteStop(
+fun NewRouteStop.toRouteStopCreation(): RouteStopCreation {
+    return RouteStopCreation(
         stopNumber = stopNumber,
         latitude = latitude,
         longitude = longitude
     )
 }
 
-fun NewRouteUiState.toRoute(): Route {
-    return Route(
-        id = null,
+fun NewRouteUiState.toRouteCreation(): RouteCreation {
+    return RouteCreation(
         title = routeInfo.routeTitle,
         description = routeInfo.routeDescription,
         avgDifficulty = routeInfo.difficulty.difficultyValue,
         avgDuration = routeInfo.duration.toDouble(),
         disabledFriendly = routeInfo.disabilityFriendly,
         photos = routePhotos.map { it.toString() },
-        stops = routeStops.map { it.toRouteStop() },
+        stops = routeStops.map { it.toRouteStopCreation() },
+        author = null
     )
 }

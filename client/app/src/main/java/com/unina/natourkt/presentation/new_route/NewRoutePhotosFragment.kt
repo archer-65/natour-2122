@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
 import com.unina.natourkt.common.setBottomMargin
@@ -33,7 +32,7 @@ class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRo
 
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()
-        nextFab.setBottomMargin()
+        createRouteFab.setBottomMargin()
     }
 
     override fun setListeners() = with(binding) {
@@ -44,7 +43,7 @@ class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRo
                 }
             }
 
-            nextFab.setOnClickListener {
+            createRouteFab.setOnClickListener {
                 this.uploadRoute()
             }
         }
@@ -71,7 +70,7 @@ class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRo
 
         collectLatestOnLifecycleScope(uiState) {
             binding.insertPhotoButton.isEnabled = it.routePhotos.size < 5
-            binding.nextFab.isEnabled = it.routePhotos.isNotEmpty()
+            binding.createRouteFab.isEnabled = it.routePhotos.isNotEmpty()
         }
 
         collectOnLifecycleScope(uiState) {

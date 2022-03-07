@@ -2,10 +2,10 @@ package com.unina.springnatour.specification;
 
 import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.model.route.RouteStop;
-import com.unina.springnatour.model.route.RouteStop_;
 import com.unina.springnatour.model.route.Route_;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.ListJoin;
 
 /**
@@ -16,6 +16,7 @@ public class RouteSpecifications {
 
     /**
      * Entry method, the one called from the outside
+     *
      * @param filter the parameter of type RouteFilter, with a role of search criteria
      * @return Specification for Route
      */
@@ -28,6 +29,7 @@ public class RouteSpecifications {
         Boolean disability = filter.getDisabledFriendly();
         Double longitude = filter.getLongitude();
         Double latitude = filter.getLatitude();
+        Float distance = filter.getDistance();
 
         return Specification
                 // Title
@@ -49,13 +51,13 @@ public class RouteSpecifications {
                 // Position
                 .and(longitude == null || latitude == null
                         ? null :
-                        positionIs(filter.getLongitude(), filter.getLatitude()));
+                        positionIs(longitude, latitude, distance));
     }
 
     // Keyword search
     public static Specification<Route> titleContains(String title) {
         return (root, query, builder) ->
-                builder.like(root.get("title"), title);
+                builder.like(root.get("title"), "%" + title + "%" );
     }
 
     // Difficulty greater than or equal
@@ -77,18 +79,25 @@ public class RouteSpecifications {
     }
 
     // Position query
-    public static Specification<Route> positionIs(Double longitude, Double latitude) {
+    public static Specification<Route> positionIs(Double longitude, Double latitude, Float distance) {
 
         return (root, query, builder) -> {
 
             // Join between Route and RouteStop, on stops
             ListJoin<Route, RouteStop> stopJoin = root.join(Route_.stops);
 
-            return
-                    builder.and(
-                            builder.equal(stopJoin.get(RouteStop_.longitude), longitude),
-                            builder.equal(stopJoin.get(RouteStop_.latitude), latitude)
-                    );
+            Expression<Route_> point1 = builder.function("Point", Route_.class, stopJoin.get("latitude"), stopJoin.get("longitude"));
+            Expression<Double> point2 = builder.function("Point", Double.class, builder.literal(latitude), builder.literal(longitude));
+
+            Expression<Number> dist = builder.function("ST_Distance_Sphere", Number.class, point1, point2);
+
+            return builder.lt(dist, distance);
+
+//            return
+//                    builder.and(
+//                            builder.equal(stopJoin.get(RouteStop_.longitude), longitude),
+//                            builder.equal(stopJoin.get(RouteStop_.latitude), latitude)
+//                    );
         };
     }
 }

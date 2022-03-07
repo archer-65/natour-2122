@@ -88,6 +88,7 @@ class NewRouteMapFragment :
     override fun collectState() = with(viewModel) {
         collectOnLifecycleScope(uiState) {
             if (it.routeStops.isNotEmpty()) {
+                map.clear()
                 it.routeStops.map { stop ->
                     map.addCustomMarker(
                         stop.stopNumber.toString(),
@@ -99,6 +100,10 @@ class NewRouteMapFragment :
                     map.addPolyline(it.polylineOptions)
                 }
 
+                if (it.isLoadedFromGPX) {
+                    setFirstCameraPosition()
+                }
+
                 binding.nextFab.isEnabled = it.routeStops.size >= 2
             }
         }
@@ -107,13 +112,7 @@ class NewRouteMapFragment :
     private fun setupGpx() {
         launcherGpx = registerForActivityResult(GpxPickerContract()) { result ->
             result?.let {
-                map.clear()
                 viewModel.setFromGpx(it)
-                val firstStop = viewModel.uiState.value.routeStops.firstOrNull()
-                firstStop?.let {
-                    val position = LatLng(it.latitude, it.longitude)
-                    map.moveAndZoomCamera(position)
-                }
             }
         }
     }

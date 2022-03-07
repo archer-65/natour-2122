@@ -73,7 +73,7 @@ class NewRouteViewModel @Inject constructor(
                 latitude,
                 longitude
             )
-            currentState.copy(routeStops = newStops)
+            currentState.copy(routeStops = newStops, isLoadedFromGPX = false)
         }
     }
 
@@ -92,6 +92,32 @@ class NewRouteViewModel @Inject constructor(
                 is DataState.Loading -> {}
             }
         }.launchIn(viewModelScope)
+    }
+
+
+    fun setFromGpx(gpx: Uri) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val uri = gpx.toInputStream()
+                val parsedGpx: Gpx? = gpxParser.parse(uri.getOrThrow()!!)
+                parsedGpx?.let { gpx ->
+                    val stops = gpx.wayPoints.mapIndexed { index, value ->
+                        NewRouteStop(index + 1, value.latitude, value.longitude)
+                    }
+                    resetStops(stops)
+                }
+            } catch (e: IOException) {
+                Log.e("GPX Parse IO ERROR", e.localizedMessage, e)
+            } catch (e: XmlPullParserException) {
+                Log.e("GPX Parse XML", e.localizedMessage, e)
+            }
+        }
+    }
+
+    fun resetStops(stops: List<NewRouteStop>) {
+        _uiState.update {
+            it.copy(routeStops = stops, isLoadedFromGPX = true)
+        }
     }
 
     fun setPhotos(photos: List<Uri>) {
@@ -124,31 +150,6 @@ class NewRouteViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
-    }
-
-    fun setFromGpx(gpx: Uri) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val uri = gpx.toInputStream()
-                val parsedGpx: Gpx? = gpxParser.parse(uri.getOrThrow()!!)
-                parsedGpx?.let { gpx ->
-                    val stops = gpx.wayPoints.mapIndexed { index, value ->
-                        NewRouteStop(index + 1, value.latitude, value.longitude)
-                    }
-                    resetStops(stops)
-                }
-            } catch (e: IOException) {
-                Log.e("GPX Parse IO ERROR", e.localizedMessage, e)
-            } catch (e: XmlPullParserException) {
-                Log.e("GPX Parse XML", e.localizedMessage, e)
-            }
-        }
-    }
-
-    fun resetStops(stops: List<NewRouteStop>) {
-        _uiState.update {
-            it.copy(routeStops = stops)
-        }
     }
 }
 

@@ -7,6 +7,7 @@ import com.unina.natourkt.domain.model.RouteCreation
 import com.unina.natourkt.domain.model.RouteStopCreation
 
 data class NewRouteUiState(
+    val isLoadedFromGPX: Boolean = false,
     val isInserted: Boolean = false,
     val isLoading: Boolean = false,
     val errorMessage: DataState.Cause? = null,

@@ -16,4 +16,5 @@ public class RouteFilter implements Serializable {
     private Boolean disabledFriendly;
     private Double longitude;
     private Double latitude;
+    private Float distance;
 }

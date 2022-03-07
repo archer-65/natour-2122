@@ -11,7 +11,7 @@ class GpxPickerContract : ActivityResultContract<Unit, Uri>() {
     override fun createIntent(context: Context, input: Unit?): Intent {
         return Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
             addCategory(Intent.CATEGORY_OPENABLE)
-            type = "application/gpx+xml"
+            type = "application/*"
         }
     }
 

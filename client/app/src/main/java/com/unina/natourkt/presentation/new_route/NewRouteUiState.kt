@@ -51,7 +51,7 @@ fun NewRouteUiState.toRouteCreation(): RouteCreation {
         description = routeInfo.routeDescription,
         avgDifficulty = routeInfo.difficulty.difficultyValue,
         avgDuration = routeInfo.duration.toDouble(),
-        disabledFriendly = routeInfo.disabilityFriendly,
+        disabilityFriendly = routeInfo.disabilityFriendly,
         photos = routePhotos.map { it.toString() },
         stops = routeStops.map { it.toRouteStopCreation() },
         author = null

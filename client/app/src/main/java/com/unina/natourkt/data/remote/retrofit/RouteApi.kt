@@ -3,10 +3,7 @@ package com.unina.natourkt.data.remote.retrofit
 import com.unina.natourkt.data.remote.dto.RouteCreationDto
 import com.unina.natourkt.data.remote.dto.RouteTitleDto
 import com.unina.natourkt.data.remote.dto.route.RouteDto
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Retrofit interface for [RouteDto]
@@ -18,8 +15,8 @@ interface RouteApi {
      */
     @GET("/routes")
     suspend fun getRoutes(
-        @Query("pageNo") pageNo: Int,
-        @Query("pageSize") pageSize: Int
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
     ): List<RouteDto>
 
     /**
@@ -27,9 +24,9 @@ interface RouteApi {
      */
     @GET("/routes/search_page")
     suspend fun getRoutesByUser(
-        @Query("userId") userId: Long,
-        @Query("pageNo") pageNo: Int,
-        @Query("pageSize") pageSize: Int
+        @Query("user_id") userId: Long,
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
     ): List<RouteDto>
 
     @POST("/routes/add")
@@ -42,4 +39,16 @@ interface RouteApi {
         @Query("query") query: String
     ): List<RouteTitleDto>
 
+    @GET("/routes/filter")
+    suspend fun getRoutesByFilter(
+        @Query("query") query: String,
+        @Query("difficulty") difficulty: Int? = null,
+        @Query("duration") duration: Float? = null,
+        @Query("disability_friendly") isDisabilityFriendly: Boolean? = null,
+        @Query("latitude") latitude: Double? = null,
+        @Query("longitude") longitude: Double? = null,
+        @Query("distance") distance: Float? = null,
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
+    ): List<RouteDto>
 }

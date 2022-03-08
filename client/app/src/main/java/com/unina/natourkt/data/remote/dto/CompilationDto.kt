@@ -5,22 +5,22 @@ import com.unina.natourkt.domain.model.Compilation
 import java.time.LocalDateTime
 
 data class CompilationDto(
-    @SerializedName("id")
+    @SerializedName("compilation_id")
     val id: Long,
 
-    @SerializedName("title")
+    @SerializedName("compilation_title")
     val title: String,
 
-    @SerializedName("description")
+    @SerializedName("compilation_description")
     val description: String,
 
-    @SerializedName("creationDate")
+    @SerializedName("compilation_creation_date")
     val creationDate: String,
 
-    @SerializedName("photo")
+    @SerializedName("compilation_photo")
     val photo: String,
 
-    @SerializedName("user")
+    @SerializedName("compilation_author")
     val author: UserDto
 )
 
@@ -30,6 +30,6 @@ fun CompilationDto.toCompilation(): Compilation {
         title = title,
         description = description,
         photo = photo,
-        user = author.toUser()
+        author = author.toUser()
     )
 }

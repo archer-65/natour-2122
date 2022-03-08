@@ -11,7 +11,7 @@ data class RouteCreation(
     val description: String,
     val avgDifficulty: Int,
     val avgDuration: Double,
-    val disabledFriendly: Boolean,
+    val disabilityFriendly: Boolean,
     val photos: List<String>,
     val stops: List<RouteStopCreation>,
     val author: User?,
@@ -27,9 +27,9 @@ fun RouteCreation.toCreationDto(): RouteCreationDto {
     return RouteCreationDto(
         title = title,
         description = description,
-        avgDifficulty = avgDifficulty,
-        avgDuration = avgDuration,
-        disabledFriendly = disabledFriendly,
+        difficulty = avgDifficulty,
+        duration = avgDuration,
+        isDisabilityFriendly = disabilityFriendly,
         photos = photos.map {
             RoutePhotoCreationDto(
                 it

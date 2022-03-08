@@ -50,7 +50,7 @@ public class Route implements Serializable{
     private Float avgDuration;
 
     @NotNull
-    @Column(name = "disabled_friendly", nullable = false)
+    @Column(name = "disability_friendly", nullable = false)
     private Boolean disabledFriendly = false;
 
     @CreationTimestamp
@@ -59,6 +59,9 @@ public class Route implements Serializable{
 
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
+
+    @Column(name = "is_reported")
+    private Boolean isReported = Boolean.FALSE;
 
     @OneToMany(
             mappedBy = "route",

@@ -11,37 +11,37 @@ import com.unina.natourkt.domain.model.route.RouteStop
  * This class represents the response from API for [Route]
  */
 data class RouteDto(
-    @SerializedName("id")
+    @SerializedName("route_id")
     val id: Long,
 
-    @SerializedName("title")
+    @SerializedName("route_title")
     val title: String,
 
-    @SerializedName("description")
+    @SerializedName("route_description")
     val description: String?,
 
-    @SerializedName("avgDifficulty")
-    val avgDifficulty: Int,
+    @SerializedName("route_difficulty")
+    val difficulty: Int,
 
-    @SerializedName("avgDuration")
-    val avgDuration: Double,
+    @SerializedName("route_duration")
+    val duration: Double,
 
-    @SerializedName("disabledFriendly")
-    val disabledFriendly: Boolean,
+    @SerializedName("is_disability_friendly")
+    val isDisabilityFriendly: Boolean,
 
-    @SerializedName("creationDate")
+    @SerializedName("route_creation_date")
     val creationDate: String,
 
-    @SerializedName("modifiedDate")
+    @SerializedName("route_modified_date")
     val modifiedDate: String?,
 
-    @SerializedName("photos")
+    @SerializedName("route_photos")
     val photos: List<RoutePhotoDto>,
 
-    @SerializedName("stops")
+    @SerializedName("route_stops")
     val stops: List<RouteStopDto>,
 
-    @SerializedName("user")
+    @SerializedName("route_author")
     val author: UserDto,
 )
 
@@ -57,16 +57,16 @@ data class RoutePhotoDto(
 )
 
 data class RouteStopDto(
-    @SerializedName("id")
+    @SerializedName("stop_id")
     val id: Long,
 
-    @SerializedName("stopNumber")
+    @SerializedName("stop_number")
     val stopNumber: Int,
 
-    @SerializedName("latitude")
+    @SerializedName("stop_latitude")
     val latitude: Double,
 
-    @SerializedName("longitude")
+    @SerializedName("stop_longitude")
     val longitude: Double,
 )
 
@@ -78,14 +78,14 @@ fun RouteDto.toRoute(): Route {
         id = id,
         title = title,
         description = description ?: "",
-        avgDifficulty = avgDifficulty,
-        avgDuration = avgDuration,
-        disabledFriendly = disabledFriendly,
+        difficulty = difficulty,
+        duration = duration,
+        disabilityFriendly = isDisabilityFriendly,
         creationDate = creationDate.toDateTime(),
         modifiedDate = modifiedDate?.toDateTime(),
         photos = photos.map { photo -> photo.photo },
         stops = stops.map { stop -> stop.toRouteStop() },
-        user = author.toUser()
+        author = author.toUser()
     )
 }
 

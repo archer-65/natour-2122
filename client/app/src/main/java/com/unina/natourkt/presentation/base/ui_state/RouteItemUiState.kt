@@ -7,7 +7,7 @@ data class RouteItemUiState(
     val id: Long?,
     val title: String,
     val avgDifficulty: Int,
-    val disabledFriendly: Boolean,
+    val disabilityFriendly: Boolean,
     val previewPhoto: String,
 )
 

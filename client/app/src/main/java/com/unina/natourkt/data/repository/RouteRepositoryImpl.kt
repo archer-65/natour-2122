@@ -4,11 +4,13 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.data.paging.FilteredRoutesPagingSource
 import com.unina.natourkt.data.paging.PersonalRoutePagingSource
 import com.unina.natourkt.data.paging.RoutePagingSource
 import com.unina.natourkt.data.remote.dto.toRouteTitle
 import com.unina.natourkt.data.remote.retrofit.RouteApi
 import com.unina.natourkt.data.util.safeApiCall
+import com.unina.natourkt.domain.model.Filter
 import com.unina.natourkt.domain.model.RouteCreation
 import com.unina.natourkt.domain.model.RouteTitle
 import com.unina.natourkt.domain.model.route.Route
@@ -55,6 +57,16 @@ class RouteRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { PersonalRoutePagingSource(api, userId) }
+        ).flow
+    }
+
+    override fun getFilteredRoutes(filter: Filter): Flow<PagingData<Route>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { FilteredRoutesPagingSource(filter, api) }
         ).flow
     }
 

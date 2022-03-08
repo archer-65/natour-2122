@@ -7,7 +7,7 @@ data class Compilation(
     val title: String,
     val description: String,
     val photo: String,
-    val user: User
+    val author: User
 )
 
 fun Compilation.toUi(): CompilationItemUiState{
@@ -16,7 +16,7 @@ fun Compilation.toUi(): CompilationItemUiState{
         title = title,
         description = description,
         photo = photo,
-        authorId = user.id,
-        authorPhoto = user.photo
+        authorId = author.id,
+        authorPhoto = author.profilePhoto
     )
 }

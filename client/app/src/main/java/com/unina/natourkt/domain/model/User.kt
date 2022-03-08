@@ -10,14 +10,14 @@ data class User(
     val id: Long,
     val username: String,
     val isAdmin: Boolean = false,
-    val photo: String?
+    val profilePhoto: String?
 )
 
 fun User.toDto(): UserDto {
     return UserDto(
         id = id,
         username = username,
-        photo = photo
+        profilePhoto = profilePhoto
     )
 }
 
@@ -26,11 +26,11 @@ fun User.toUi(): UserUiState {
         id = id,
         username = username,
         isAdmin = isAdmin,
-        photo = photo,
+        photo = profilePhoto,
     )
 }
 
 suspend fun User.convertKeys(execute: suspend (string: String) -> String): User {
-    val newPhoto = this.photo?.let { execute(it) }
-    return this.copy(photo = newPhoto)
+    val newPhoto = this.profilePhoto?.let { execute(it) }
+    return this.copy(profilePhoto = newPhoto)
 }

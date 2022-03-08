@@ -6,18 +6,29 @@ import com.unina.springnatour.model.Rating;
 import com.unina.springnatour.model.Report;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RatingMapper extends BaseMapper<Rating, RatingDto> {
 
     @Override
-    @Mapping(target = "userId", source = "user.id")
-    @Mapping(target = "routeId", source = "route.id")
+    @Mappings({
+            @Mapping(target = "ratingId", source = "id"),
+            @Mapping(target = "ratingDifficulty", source = "difficulty"),
+            @Mapping(target = "ratingDuration", source = "duration"),
+            @Mapping(target = "authorId", source = "user.id"),
+            @Mapping(target = "ratedRouteId", source = "route.id") ,
+    })
     RatingDto toDto(Rating rating);
 
     @Override
-    @Mapping(target = "user.id", source = "userId")
-    @Mapping(target = "route.id", source = "routeId")
+    @Mappings({
+            @Mapping(target = "id", source = "ratingId"),
+            @Mapping(target = "difficulty", source = "ratingDifficulty"),
+            @Mapping(target = "duration", source = "ratingDuration"),
+            @Mapping(target = "user.id", source = "authorId"),
+            @Mapping(target = "route.id", source = "ratedRouteId") ,
+    })
     Rating toEntity(RatingDto ratingDto);
 }

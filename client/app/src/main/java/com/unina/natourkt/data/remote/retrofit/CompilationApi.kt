@@ -10,8 +10,8 @@ interface CompilationApi {
 
     @GET("/compilations/search_page")
     suspend fun getCompilationsByUser(
-        @Query("userId") userId: Long,
-        @Query("pageNo") pageNo: Int,
-        @Query("pageSize") pageSize: Int
+        @Query("user_id") userId: Long,
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
     ) : List<CompilationDto>
 }

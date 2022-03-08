@@ -43,7 +43,7 @@ class PreferencesRepositoryImpl @Inject constructor(
             it[ID] = user.id
             it[USERNAME] = user.username
             it[IS_ADMIN] = user.isAdmin
-            it[PHOTO] = user.photo ?: ""
+            it[PHOTO] = user.profilePhoto ?: ""
         }
     }
 
@@ -57,7 +57,7 @@ class PreferencesRepositoryImpl @Inject constructor(
                     id = it[ID]!!,
                     username = it[USERNAME]!!,
                     isAdmin = it[IS_ADMIN] ?: false,
-                    photo = it[PHOTO]
+                    profilePhoto = it[PHOTO]
                 )
             }.first()
         } catch (e: Exception) {

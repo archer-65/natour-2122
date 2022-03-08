@@ -7,14 +7,14 @@ import com.unina.natourkt.domain.model.User
  * Response coming from API for [User]
  */
 data class UserDto(
-    @SerializedName("id")
+    @SerializedName("user_id")
     val id: Long,
 
     @SerializedName("username")
     val username: String,
 
-    @SerializedName("photo")
-    val photo: String?,
+    @SerializedName("profile_photo")
+    val profilePhoto: String?,
 )
 
 /**
@@ -24,6 +24,6 @@ fun UserDto.toUser(): User {
     return User(
         id = id,
         username = username,
-        photo = photo,
+        profilePhoto = profilePhoto,
     )
 }

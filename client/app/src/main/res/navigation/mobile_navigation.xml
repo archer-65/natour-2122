@@ -20,7 +20,7 @@
             app:destination="@id/navigation_post_details" />
         <action
             android:id="@+id/action_navigation_home_to_newPostFragment"
-            app:destination="@id/newPostFragment" />
+            app:destination="@id/navigation_new_post" />
     </fragment>
 
     <fragment
@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_routes_to_new_route_flow"
             app:destination="@id/navigation_new_route_flow" />
+        <action
+            android:id="@+id/action_navigation_routes_to_navigation_search_route2"
+            app:destination="@id/navigation_search_route" />
     </fragment>
 
     <fragment
@@ -63,7 +66,7 @@
             app:destination="@id/navigation_new_route_flow" />
         <action
             android:id="@+id/action_navigation_profile_to_newPostFragment"
-            app:destination="@id/newPostFragment" />
+            app:destination="@id/navigation_new_post" />
     </fragment>
 
     <navigation
@@ -173,7 +176,7 @@
 
     </navigation>
     <fragment
-        android:id="@+id/newPostFragment"
+        android:id="@+id/navigation_new_post"
         android:name="com.unina.natourkt.presentation.new_post.NewPostFragment"
         android:label="fragment_new_post"
         tools:layout="@layout/fragment_new_post" >
@@ -181,5 +184,10 @@
             android:id="@+id/action_newPostFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_search_route"
+        android:name="com.unina.natourkt.presentation.route_search.RouteSearchFragment"
+        android:label="fragment_route_search"
+        tools:layout="@layout/fragment_route_search" />
 
 </navigation>

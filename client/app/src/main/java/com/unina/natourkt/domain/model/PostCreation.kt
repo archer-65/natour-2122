@@ -7,8 +7,7 @@ data class PostCreation(
     val description: String,
     val photos: List<String>,
     val author: User? = null,
-    val routeId: Long,
-    val routeTitle: String,
+    val taggedRoute: RouteTitle,
 )
 
 fun PostCreation.toCreationDto(): PostCreationDto {
@@ -20,6 +19,6 @@ fun PostCreation.toCreationDto(): PostCreationDto {
             )
         },
         author = author!!.toDto(),
-        routeId = routeId,
+        taggedRoute = taggedRoute.toRouteTitleDto(),
     )
 }

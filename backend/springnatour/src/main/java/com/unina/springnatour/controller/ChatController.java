@@ -50,8 +50,8 @@ public class ChatController {
      * @return ChatDTO Object with HTTP Status OK
      */
     @GetMapping("/chat/search")
-    public ResponseEntity<ChatDto> getChatByUsers(@RequestParam Long senderId,
-                                                  @RequestParam Long recipientId) {
+    public ResponseEntity<ChatDto> getChatByUsers(@RequestParam(name = "sender_id") Long senderId,
+                                                  @RequestParam(name = "recipient_id") Long recipientId) {
 
         ChatDto chatDto = chatService.getChatByUsers(senderId, recipientId);
 
@@ -64,7 +64,7 @@ public class ChatController {
      * @return a List of ChatDTO Objects after mapping from Entity, or throws Exception
      */
     @GetMapping("/chats/search")
-    public ResponseEntity<List<ChatDto>> getAllChatsByUserId(@RequestParam Long userId) {
+    public ResponseEntity<List<ChatDto>> getAllChatsByUserId(@RequestParam(name = "user_id") Long userId) {
 
         List<ChatDto> chatDtoList = chatService.getAllChatsByUserId(userId);
 

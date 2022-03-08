@@ -17,8 +17,7 @@ data class Post(
     val isReported: Boolean,
     val photos: List<String>,
     val author: User,
-    val routeId: Long,
-    val routeTitle: String,
+    val taggedRoute: RouteTitle,
 )
 
 /**
@@ -31,9 +30,9 @@ fun Post.toUi(): PostItemUiState {
         photos = photos,
         authorId = author.id,
         authorUsername = author.username,
-        authorPhoto = author.photo,
-        routeId = routeId,
-        routeTitle = routeTitle
+        authorPhoto = author.profilePhoto,
+        routeId = taggedRoute.id,
+        routeTitle = taggedRoute.title
     )
 }
 
@@ -58,8 +57,8 @@ fun Post.toDetailUi(): PostUiState {
         photos = photos,
         authorId = author.id,
         authorUsername = author.username,
-        authorPhoto = author.photo,
-        routeId = routeId,
-        routeTitle = routeTitle
+        authorPhoto = author.profilePhoto,
+        routeId = taggedRoute.id,
+        routeTitle = taggedRoute.title
     )
 }

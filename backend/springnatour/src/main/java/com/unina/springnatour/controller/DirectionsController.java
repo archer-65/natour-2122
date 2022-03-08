@@ -25,8 +25,8 @@ public class DirectionsController {
     public ResponseEntity<MapsResponse> getDirections(
             @RequestParam("origin") String origin,
             @RequestParam("destination") String destination,
-            @RequestParam(value = "mode", defaultValue = "walking") String mode,
-            @RequestParam(value = "waypoints", defaultValue = "") String waypoints
+            @RequestParam(name = "mode", defaultValue = "walking") String mode,
+            @RequestParam(name = "waypoints", defaultValue = "") String waypoints
     ) {
         String url = baseUrl + "?"
                 + "origin=" + origin

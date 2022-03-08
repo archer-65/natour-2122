@@ -35,7 +35,7 @@ public class CompilationController {
      * @return List of CompilationDTO Objects with HTTP Status OK if the list is not empty
      */
     @GetMapping("/compilations/search")
-    public ResponseEntity<List<CompilationDto>> getAllCompilationsByUserId(@RequestParam Long userId) {
+    public ResponseEntity<List<CompilationDto>> getAllCompilationsByUserId(@RequestParam(name = "user_id") Long userId) {
 
         List<CompilationDto> compilationDtoList = compilationService.getAllCompilationsByUserId(userId);
 
@@ -52,9 +52,9 @@ public class CompilationController {
      */
     @GetMapping("/compilations/search_page")
     public ResponseEntity<List<CompilationDto>> getAllCompilationsByUserId(
-            @RequestParam Long userId,
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
+            @RequestParam(name = "user_id") Long userId,
+            @RequestParam(value = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(value = "page_size", defaultValue = "10") Integer pageSize) {
 
         List<CompilationDto> compilationDtoList = compilationService.getAllCompilationsByUserId(userId, pageNo, pageSize);
 

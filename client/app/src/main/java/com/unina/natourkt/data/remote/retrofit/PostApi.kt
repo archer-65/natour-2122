@@ -15,8 +15,8 @@ interface PostApi {
      */
     @GET("/posts")
     suspend fun getPosts(
-        @Query("pageNo") pageNo: Int,
-        @Query("pageSize") pageSize: Int
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
     ): List<PostDto>
 
     /**
@@ -24,9 +24,9 @@ interface PostApi {
      */
     @GET("/posts/search_page")
     suspend fun getPostsByUser(
-        @Query("userId") userId: Long,
-        @Query("pageNo") pageNo: Int,
-        @Query("pageSize") pageSize: Int
+        @Query("user_id") userId: Long,
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
     ): List<PostDto>
 
 

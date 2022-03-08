@@ -3,28 +3,28 @@ package com.unina.natourkt.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class RouteCreationDto(
-    @SerializedName("title")
+    @SerializedName("route_title")
     val title: String,
 
-    @SerializedName("description")
+    @SerializedName("route_description")
     val description: String,
 
-    @SerializedName("avgDifficulty")
-    val avgDifficulty: Int,
+    @SerializedName("route_difficulty")
+    val difficulty: Int,
 
-    @SerializedName("avgDuration")
-    val avgDuration: Double,
+    @SerializedName("route_duration")
+    val duration: Double,
 
-    @SerializedName("disabledFriendly")
-    val disabledFriendly: Boolean,
+    @SerializedName("is_disability_friendly")
+    val isDisabilityFriendly: Boolean,
 
-    @SerializedName("photos")
+    @SerializedName("route_photos")
     val photos: List<RoutePhotoCreationDto>,
 
-    @SerializedName("stops")
+    @SerializedName("route_stops")
     val stops: List<RouteStopCreationDto>,
 
-    @SerializedName("user")
+    @SerializedName("route_author")
     val author: UserDto,
 )
 
@@ -34,12 +34,12 @@ data class RoutePhotoCreationDto(
 )
 
 data class RouteStopCreationDto(
-    @SerializedName("stopNumber")
+    @SerializedName("stop_number")
     val stopNumber: Int,
 
-    @SerializedName("latitude")
+    @SerializedName("stop_latitude")
     val latitude: Double,
 
-    @SerializedName("longitude")
+    @SerializedName("stop_longitude")
     val longitude: Double,
 )

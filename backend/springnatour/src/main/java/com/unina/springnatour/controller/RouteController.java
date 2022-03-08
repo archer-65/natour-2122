@@ -1,9 +1,7 @@
 package com.unina.springnatour.controller;
 
-import com.unina.springnatour.dto.post.PostDto;
 import com.unina.springnatour.dto.route.RouteDto;
 import com.unina.springnatour.dto.route.RouteTitleDto;
-import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.model.route.Route;
 import com.unina.springnatour.service.RouteService;
 import com.unina.springnatour.specification.RouteFilter;
@@ -58,8 +56,8 @@ public class RouteController {
      */
     @GetMapping("/routes")
     public ResponseEntity<List<RouteDto>> getAllRoutes(
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutes(pageNo, pageSize);
 
@@ -77,7 +75,7 @@ public class RouteController {
      * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
      */
     @GetMapping("/routes/search")
-    public ResponseEntity<List<RouteDto>> getAllRoutesByUserId(@RequestParam Long userId) {
+    public ResponseEntity<List<RouteDto>> getAllRoutesByUserId(@RequestParam(name = "user_id") Long userId) {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByUserId(userId);
 
@@ -96,9 +94,9 @@ public class RouteController {
      */
     @GetMapping("/routes/search_page")
     public ResponseEntity<List<RouteDto>> getAllRoutesByUserId(
-            @RequestParam Long userId,
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
+            @RequestParam(name = "user_id") Long userId,
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByUserId(userId, pageNo, pageSize);
 
@@ -112,15 +110,25 @@ public class RouteController {
     /**
      * Searches all routes by filter
      *
-     * @param filter the RouteFilter Object containing criteria filters
      * @return List of RouteDTO Objects with HTTP Status OK if the list is not empty
      * @see RouteFilter
      * @see com.unina.springnatour.specification.RouteSpecifications
      */
     @GetMapping("/routes/filter")
-    public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(@RequestBody RouteFilter filter) {
+    public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(
+            @RequestParam("query") String query,
+            @RequestParam(value = "difficulty", required = false) Integer difficulty,
+            @RequestParam(value = "duration", required = false) Float duration,
+            @RequestParam(value = "disability_friendly", required = false) Boolean isDisabilityFriendly,
+            @RequestParam(value = "latitude", required = false) Double latitude,
+            @RequestParam(value = "longitude", required = false) Double longitude,
+            @RequestParam(value = "distance", required = false) Float distance,
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
 
-        List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(filter);
+        RouteFilter filter = new RouteFilter(query, difficulty, duration, isDisabilityFriendly, latitude, longitude, distance);
+
+        List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(filter, pageNo, pageSize);
 
         if (!routeDtoList.isEmpty()) {
             return new ResponseEntity<>(routeDtoList, HttpStatus.OK);

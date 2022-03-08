@@ -3,17 +3,17 @@ package com.unina.natourkt.data.remote.dto
 import com.google.gson.annotations.SerializedName
 
 data class PostCreationDto(
-    @SerializedName("description")
+    @SerializedName("post_description")
     val description: String,
 
-    @SerializedName("photos")
+    @SerializedName("post_photos")
     val photos: List<PostPhotoCreationDto>,
 
-    @SerializedName("user")
+    @SerializedName("post_author")
     val author: UserDto,
 
-    @SerializedName("routeId")
-    val routeId: Long
+    @SerializedName("tagged_route")
+    val taggedRoute: RouteTitleDto,
 )
 
 data class PostPhotoCreationDto(

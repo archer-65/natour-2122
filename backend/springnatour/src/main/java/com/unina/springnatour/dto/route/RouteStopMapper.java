@@ -4,6 +4,7 @@ import com.unina.springnatour.dto.BaseMapper;
 import com.unina.springnatour.model.route.RouteStop;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
@@ -12,12 +13,20 @@ import java.util.List;
 public interface RouteStopMapper extends BaseMapper<RouteStop, RouteStopDto> {
 
     @Override
-    //@Mapping(target = "longitude", source = "location.longitude")
-    //@Mapping(target = "latitude", source = "location.latitude")
+    @Mappings({
+            @Mapping(target = "stopId", source = "id"),
+            @Mapping(target = "stopNumber", source = "stopNumber"),
+            @Mapping(target = "stopLatitude", source = "latitude"),
+            @Mapping(target = "stopLongitude", source = "longitude"),
+    })
     RouteStopDto toDto(RouteStop routeStop);
 
     @Override
-    //@Mapping(target = "location.longitude", source = "longitude")
-    //@Mapping(target = "location.latitude", source = "latitude")
+    @Mappings({
+            @Mapping(target = "id", source = "stopId"),
+            @Mapping(target = "stopNumber", source = "stopNumber"),
+            @Mapping(target = "latitude", source = "stopLatitude"),
+            @Mapping(target = "longitude", source = "stopLongitude"),
+    })
     RouteStop toEntity(RouteStopDto routeStopDto);
 }

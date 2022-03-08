@@ -2,6 +2,7 @@ package com.unina.natourkt.domain.repository
 
 import androidx.paging.PagingData
 import com.unina.natourkt.common.DataState
+import com.unina.natourkt.domain.model.Filter
 import com.unina.natourkt.domain.model.RouteCreation
 import com.unina.natourkt.domain.model.RouteTitle
 import com.unina.natourkt.domain.model.route.Route
@@ -22,7 +23,9 @@ interface RouteRepository {
      */
     fun getPersonalRoutes(userId: Long): Flow<PagingData<Route>>
 
+    fun getFilteredRoutes(filter: Filter): Flow<PagingData<Route>>
 
     suspend fun createRoute(route: RouteCreation): DataState<Unit>
+
     suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>>
 }

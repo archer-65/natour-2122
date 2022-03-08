@@ -65,7 +65,7 @@ class RouteAdapter :
                 iconDifficulty.setImageResource(difficulty)
 
                 // Accessibility icon visibility based on route's boolean attribute
-                iconDisabled.isVisible = route.disabledFriendly
+                iconDisabled.isVisible = route.disabilityFriendly
             }
         }
     }

@@ -74,13 +74,15 @@ public class RouteService {
      * Get all routes by filter
      *
      * @param filter the search criteria
+     * @param pageNo
+     * @param pageSize
      * @return List of RouteDTO Objects, mapped from Entity
      */
-    public List<RouteDto> getAllRoutesByFilter(RouteFilter filter) {
+    public List<RouteDto> getAllRoutesByFilter(RouteFilter filter, Integer pageNo, Integer pageSize) {
 
         Specification<Route> filterCriteria = RouteSpecifications.createRouteQuery(filter);
 
-        return routeMapper.toDto(routeRepository.findAll(filterCriteria));
+        return routeMapper.toDto(routeRepository.findAll(filterCriteria, PageRequest.of(pageNo, pageSize)));
     }
 
     public List<RouteTitleDto> getRoutesTitleByQuery(String query) {

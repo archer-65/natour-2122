@@ -4,18 +4,17 @@ import com.unina.springnatour.model.chat.Chat;
 import com.unina.springnatour.model.chat.Message;
 import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.model.route.Route;
-import lombok.*;
-import org.hibernate.validator.constraints.URL;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
-@Builder
 @Table(name = "user")
 @Getter
 @Setter

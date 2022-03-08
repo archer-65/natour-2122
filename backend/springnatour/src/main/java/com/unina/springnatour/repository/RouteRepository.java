@@ -33,7 +33,7 @@ public interface RouteRepository extends JpaRepository<Route, Long> {
      * @param filter the search criteria
      * @return List of Routes
      */
-    List<Route> findAll(@Nullable Specification<Route> filter);
+    List<Route> findAll(@Nullable Specification<Route> filter, Pageable pageDetails);
 
     List<Route> findByTitleContainingIgnoreCase(String title, Sort sort);
 }

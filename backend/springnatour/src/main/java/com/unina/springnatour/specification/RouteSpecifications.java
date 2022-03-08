@@ -91,7 +91,7 @@ public class RouteSpecifications {
 
             Expression<Number> dist = builder.function("ST_Distance_Sphere", Number.class, point1, point2);
 
-            return builder.lt(dist, distance);
+            return builder.lt(dist, distance*1000);
 
 //            return
 //                    builder.and(

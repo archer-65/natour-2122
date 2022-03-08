@@ -40,7 +40,7 @@ class CreatePostUseCase @Inject constructor(
 
     private fun prefixCreation(index: Int, post: PostCreation): String {
         val prefix = "posts/${post.author?.id}"
-        val title = post.routeTitle.replace(" ", "")
+        val title = post.taggedRoute.title.replace(" ", "")
         val path = "${prefix}/${title}/image${index}"
         return path
     }

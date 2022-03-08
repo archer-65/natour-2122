@@ -53,8 +53,8 @@ public class PostController {
      */
     @GetMapping("/posts")
     public ResponseEntity<List<PostDto>> getAllPosts(
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
 
         List<PostDto> postDtoList = postService.getAllPosts(pageNo, pageSize);
 
@@ -72,7 +72,7 @@ public class PostController {
      * @return List of PostDTO Objects with HTTP Status OK if the list is not empty
      */
     @GetMapping("/posts/search")
-    public ResponseEntity<List<PostDto>> getAllPostsByUserId(@RequestParam Long userId) {
+    public ResponseEntity<List<PostDto>> getAllPostsByUserId(@RequestParam(name = "user_id") Long userId) {
 
         List<PostDto> postDtoList = postService.getAllPostsByUserId(userId);
 
@@ -91,9 +91,9 @@ public class PostController {
      */
     @GetMapping("/posts/search_page")
     public ResponseEntity<List<PostDto>> getAllPostsByUserId(
-            @RequestParam Long userId,
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize) {
+            @RequestParam(name = "user_id") Long userId,
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
 
         List<PostDto> postDtoList = postService.getAllPostsByUserId(userId, pageNo, pageSize);
 

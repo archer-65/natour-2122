@@ -103,8 +103,8 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	Tutto ciò si concretizza con la possibilità di interagire con gli altri utenti, in modo da poter avere un contatto più diretto con
 	la realtà dell'escursionismo, e di lasciare valutazioni personali su qualunque itinerario si desideri.\\
 	
-	Il sistema valuta essenziale la sicurezza degli utenti: questi potranno segnalare informazioni inesatte o contenuti inappropriati, al fine 
-	di rendere la permanenza nella community piacevole.
+	Il sistema valuta essenziale la sicurezza degli utenti: questi potranno segnalare informazioni inesatte o contenuti inappropriati al fine 
+	di rendere la permanenza nella community piacevole per tutti.
 
 	\section{Presentazione dell'idea progettuale}
 
@@ -113,10 +113,10 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	oltre a promuovere la condivisione di contenuti personali.\\\\
 	NaTour21 mette a disposizione degli utenti registrati diverse funzionalità.\\
 	Il lato prettamente informativo consente di ricercare - nonchè inserire in piattaforma - diversi itinerari, e tutte le informazioni relative ad essi.
-	Ciò comprende la possibilità di ottenere indicazioni stradali per l'itinerario, e, per garantire un'accuratezza maggiore delle informazioni, di lasciare 
-	un feedback personale per ciascuno degli itinerari.\\\\
+	Ciò comprende la possibilità di visualizzarli su mappa, e, per garantire un'accuratezza maggiore delle informazioni, di lasciare 
+	un feedback personale per ciascuno di essi.\\\\
 	Ci sono, però, ulteriori funzionalità che coinvolgono direttamente l'utente: tra queste la condivisione di post, la creazione di compilation personalizzate e 
-	la visualizzazione di una homepage con post riguardanti gli itinerari consigliati.\\
+	la visualizzazione di una homepage con post riguardanti diversi itinerari.\\
 	Particolare attenzione è riservata alla sicurezza degli utenti, i quali possono segnalare contenuti inappropriati o informazioni inesatte.
 	
 	\section{Individuazione del target degli utenti}
@@ -150,6 +150,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	\subsection{Requisiti funzionali}
 	In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazione NaTour21, cioè le funzionalità richieste dai commissionanti.
 	
+	\subsubsection{Autenticazione}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
@@ -177,7 +178,23 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\caption{RF.2}
 		\label{table:2}
 	\end{table}
-	
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Reimpostazione password & Il sistema deve consentire ad un utente registrato di poter cambiare la propria password se dimenticata o persa.\\ 
+			\hline
+		\end{tabular}
+		\caption{RF.3}
+		\label{table:3}
+	\end{table}
+
+
+	\subsubsection{Interazione con un itinerario}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
@@ -189,8 +206,8 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			dettagli degli itinerari pubblicati e i post ad essi associati. \\
 			\hline
 		\end{tabular}
-		\caption{RF.3}
-		\label{table:3}
+		\caption{RF.4}
+		\label{table:4}
 	\end{table}
 
 	\begin{table}[H]
@@ -219,7 +236,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
 			Ricerca itinerari &  Il sistema deve consentire a un utente autenticato di effettuare ricerche di itinerari tra quelli presenti in piattaforma, con possibilità di filtrare i risultati
-			per area geografica, per livello di difficoltà, per durata, e per accessibilità a disabili.\\ 
+			per area geografica, per livello di difficoltà, per durata, e per accessibilità ai disabili.\\ 
 			\hline
 		\end{tabular}
 		\caption{RF.5}
@@ -233,7 +250,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Valutare itinerari & Il sistema deve consentire a un utente autenticato di indicare un punteggio di difficoltà e/o un tempo
+			Valutazione itinerario & Il sistema deve consentire a un utente autenticato di indicare un punteggio di difficoltà e/o un tempo
 			di percorrenza diverso da quello indicato dall’utente che ha inserito il sentiero. In questo caso, il
 			punteggio di difficoltà e il tempo di percorrenza per il sentiero saranno ri-calcolati come la media
 			delle difficoltà/dei tempi indicati.\\ 
@@ -265,8 +282,8 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Indicazioni itinerario & Il sistema deve consentire a un utente autenticato di ottenere indicazioni
-			per un tracciato geografico (se presente). \\
+			Segnalazione itinerario & Il sistema deve consentire a un utente autenticato di segnalare degli itinerari
+			le quali informazioni potrebbero non essere corrette e/o aggiornate. \\
 			\hline
 		\end{tabular}
 		\caption{RF.8}
@@ -280,29 +297,15 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Segnalazione itinerari & Il sistema deve consentire a un utente autenticato di segnalare degli itinerari
-			le quali informazioni potrebbero non essere corrette e/o aggiornate. \\
+			Rimozione itinerario & Il sistema deve consentire a un utente autenticato di eliminare itinerari di cui
+			è l'autore. \\
 			\hline
 		\end{tabular}
 		\caption{RF.9}
 		\label{table:9}
 	\end{table}
-
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
-			\hline
-			\rowcolor{PineGreen!70}
-			\textbf{Nome} & \textbf{Descrizione} \\
-			\hline
-			Rimozione itinerario & Il sistema deve consentire a un utente autenticato di eliminare itinerari di cui
-			è l'autore. \\
-			\hline
-		\end{tabular}
-		\caption{RF.10}
-		\label{table:10}
-	\end{table}
 	
+	\subsection{Interazione con un post}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
@@ -314,8 +317,8 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			i dettagli di un post. \\
 			\hline
 		\end{tabular}
-		\caption{RF.11}
-		\label{table:11}
+		\caption{RF.10}
+		\label{table:10}
 	\end{table}
 
 	\begin{table}[H]
@@ -329,8 +332,8 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			caratterizzato da foto (max 5), una descrizione (opzionale) e un itinerario associato. \\
 			\hline
 		\end{tabular}
-		\caption{RF.12}
-		\label{table:12}
+		\caption{RF.11}
+		\label{table:11}
 	\end{table}
 	
 	
@@ -345,8 +348,8 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			inappropriate. \\
 			\hline
 		\end{tabular}
-		\caption{RF.13}
-		\label{table:13}
+		\caption{RF.12}
+		\label{table:12}
 	\end{table}
 
 	\begin{table}[H]
@@ -360,10 +363,11 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			è l'autore. \\
 			\hline
 		\end{tabular}
-		\caption{RF.14}
-		\label{table:14}
+		\caption{RF.13}
+		\label{table:13}
 	\end{table}
-
+	
+	\subsection{Gestione dati personali e conversazioni private}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
@@ -372,13 +376,12 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
 			Gestione profilo &  Il sistema deve consentire a un utente autenticato di gestire il suo profilo, 
-			egli potrà visitare i contenuti inseriti e modificarli. Inoltre potrà cambiare la foto profilo. \\
+			egli potrà visitare i contenuti inseriti ed eliminarli. Inoltre potrà cambiare la foto profilo. \\
 			\hline
 		\end{tabular}
-		\caption{RF.15}
-		\label{table:15}
+		\caption{RF.14}
+		\label{table:14}
 	\end{table}
-	
 
 	\begin{table}[H]
 		\centering
@@ -387,8 +390,24 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Visualizza compilation & Il sistema deve consentire a un utente autenticato di visualizzare i dettagli
-			delle proprie compilation.  \\
+			Gestione conversazioni private & Il sistema deve permettere all'utente autenticato lo scambio di informazioni con altri utenti.
+			È possibile avviare la conversazione a partire dai contenuti pubblicati. Inoltre è possibile ricercare un destinatario. \\
+			\hline
+		\end{tabular}
+		\caption{RF.19}
+		\label{table:19}
+	\end{table}
+	
+	\subsection{Interazione con una compilation}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Creazione compilation & Il sistema deve consentire a un utente autenticato di creare delle \textit{compilation personalizzate},
+			caratterizzate da un titolo e da una descrizione. \\
 			\hline
 		\end{tabular}
 		\caption{RF.16}
@@ -402,8 +421,8 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Creazione compilation & Il sistema deve consentire a un utente autenticato di creare delle \textit{compilation personalizzate},
-			caratterizzate da un titolo e da una descrizione. \\
+			Rimozione compilation & Il sistema deve consentire a un utente autenticato di eliminare le proprie
+			compilation personalizzate \\
 			\hline
 		\end{tabular}
 		\caption{RF.17}
@@ -417,13 +436,14 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Elimina compilation & Il sistema deve consentire a un utente autenticato di eliminare le proprie
-			compilation personalizzate \\
+			Visualizzazione compilation & Il sistema deve consentire a un utente autenticato di visualizzare i dettagli
+			delle proprie compilation.  \\
 			\hline
 		\end{tabular}
-		\caption{RF.18}
-		\label{table:18}
+		\caption{RF.15}
+		\label{table:15}
 	\end{table}
+
 	
 	\begin{table}[H]
 		\centering
@@ -432,12 +452,28 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Elimina itinerario da compilation & Il sistema deve consentire a un utente autenticato di eliminare gli itinerari
+			Rimozione itinerario da compilation & Il sistema deve consentire a un utente autenticato di eliminare gli itinerari
 			che compongono le proprie compilation personalizzate \\
 			\hline
 		\end{tabular}
-		\caption{RF.19}
-		\label{table:19}
+		\caption{RF.18}
+		\label{table:18}
+	\end{table}
+
+	\subsection{Requisiti amministratore}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+			\hline
+			\rowcolor{PineGreen!70}
+			\textbf{Nome} & \textbf{Descrizione} \\
+			\hline
+			Visualizzazione segnalazioni & Il sistema deve permettere all'utente autenticato con i privilegi di amministratore di visualizzare
+			la lista di segnalazioni inviate.\\
+			\hline
+		\end{tabular}
+		\caption{RF.20}
+		\label{table:20}
 	\end{table}
 
 	\begin{table}[H]
@@ -447,12 +483,12 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 			\rowcolor{PineGreen!70}
 			\textbf{Nome} & \textbf{Descrizione} \\
 			\hline
-			Conversazioni private & Il sistema deve permettere all'utente autenticato lo scambio di informazioni con altri utenti.
-			È possibile avviare la conversazione a partire dai contenuti pubblicati. Inoltre è possibile ricercare un destinatario. \\
+			Amministrazione itinerario & Il sistema deve permettere all'utente autenticato con i privilegi di amministratore di modificare o
+			rimuovere un itinerario segnalato.\\
 			\hline
 		\end{tabular}
-		\caption{RF20}
-		\label{table:20}
+		\caption{RF.21}
+		\label{table:21}
 	\end{table}
 
 	\newpage

@@ -5,6 +5,7 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.RouteCreation
 import com.unina.natourkt.domain.model.RouteStopCreation
+import com.unina.natourkt.domain.model.route.RouteStop
 
 data class NewRouteUiState(
     val isLoadedFromGPX: Boolean = false,
@@ -37,8 +38,8 @@ enum class Difficulty(val difficultyValue: Int) {
     HARD(3),
 }
 
-fun NewRouteStop.toRouteStopCreation(): RouteStopCreation {
-    return RouteStopCreation(
+fun NewRouteStop.toRouteStopCreation(): RouteStop {
+    return RouteStop(
         stopNumber = stopNumber,
         latitude = latitude,
         longitude = longitude

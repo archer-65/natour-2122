@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
 import com.unina.natourkt.common.setTopMargin
@@ -89,8 +91,8 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
         )
 
         val adapter = ViewPagerAdapter(fragmentList, childFragmentManager, lifecycle)
-
         viewPager.adapter = adapter
+
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = "INFO"
@@ -98,5 +100,14 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
                 2 -> tab.text = "TAG"
             }
         }.attach()
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+
+                viewPager.isUserInputEnabled =
+                    !(state == SCROLL_STATE_DRAGGING && viewPager.currentItem == 1)
+            }
+        })
     }
 }

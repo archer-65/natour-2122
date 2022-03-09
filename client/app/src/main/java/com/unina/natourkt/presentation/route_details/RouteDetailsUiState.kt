@@ -1,5 +1,6 @@
 package com.unina.natourkt.presentation.route_details
 
+import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.domain.model.route.RouteStop
@@ -11,6 +12,7 @@ data class RouteDetailsUiState(
     val isLoading: Boolean = false,
     val error: DataState.Cause? = null,
     val route: RouteUiState? = null,
+    val polylineOptions: PolylineOptions = PolylineOptions(),
     val loggedUser: UserUiState? = null,
 )
 
@@ -38,6 +40,14 @@ enum class Difficulty(val difficultyValue: Int) {
     EASY(1),
     MEDIUM(2),
     HARD(3),
+}
+
+fun RouteStopUiState.toRouteStop(): RouteStop {
+    return RouteStop(
+        stopNumber = stopNumber,
+        latitude = latitude,
+        longitude = longitude,
+    )
 }
 
 suspend fun RouteUiState.convertKeys(execute: suspend (string: String) -> String): RouteUiState {

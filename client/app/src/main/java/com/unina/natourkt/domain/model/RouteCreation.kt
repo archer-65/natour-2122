@@ -13,7 +13,7 @@ data class RouteCreation(
     val avgDuration: Double,
     val disabilityFriendly: Boolean,
     val photos: List<String>,
-    val stops: List<RouteStopCreation>,
+    val stops: List<RouteStop>,
     val author: User?,
 )
 
@@ -40,7 +40,7 @@ fun RouteCreation.toCreationDto(): RouteCreationDto {
     )
 }
 
-fun RouteStopCreation.toDto(): RouteStopCreationDto {
+fun RouteStop.toDto(): RouteStopCreationDto {
     return RouteStopCreationDto(
         stopNumber = stopNumber,
         latitude = latitude,
@@ -48,7 +48,7 @@ fun RouteStopCreation.toDto(): RouteStopCreationDto {
     )
 }
 
-fun List<RouteStopCreation>.toDirectionsRequest(): DirectionsRequest {
+fun List<RouteStop>.toDirectionsRequest(): DirectionsRequest {
     val first = this.first()
     val origin = "${first.latitude},${first.longitude}"
 

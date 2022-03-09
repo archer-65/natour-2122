@@ -4,13 +4,16 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.route.toDetailUi
 import com.unina.natourkt.domain.model.toDetailUi
 import com.unina.natourkt.domain.model.toUi
+import com.unina.natourkt.domain.use_case.maps.GetDirectionsUseCase
 import com.unina.natourkt.domain.use_case.route.GetRouteDetailsUseCase
 import com.unina.natourkt.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
+import com.unina.natourkt.presentation.new_route.toRouteStopCreation
 import com.unina.natourkt.presentation.post_details.convertKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -22,6 +25,7 @@ class RouteDetailsViewModel @Inject constructor(
     private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getRouteDetailsUseCase: GetRouteDetailsUseCase,
+    private val getDirectionsUseCase: GetDirectionsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -70,5 +74,22 @@ class RouteDetailsViewModel @Inject constructor(
                 it.copy(loggedUser = getUserDataUseCase()!!.toUi())
             }
         }
+    }
+
+    fun getDirections() {
+        val stops = uiState.value.route?.stops?.map { it.toRouteStop() }
+        getDirectionsUseCase(stops!!).onEach { result ->
+            when (result) {
+                is DataState.Success -> {
+                    val polylines = PolylineOptions()
+                    result.data?.let { polylines.addAll(it.points) }
+                    _uiState.update { it.copy(polylineOptions = polylines) }
+                }
+                is DataState.Error -> _uiState.update {
+                    it.copy(error = result.error)
+                }
+                is DataState.Loading -> {}
+            }
+        }.launchIn(viewModelScope)
     }
 }

@@ -9,8 +9,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
-        app:liftOnScroll="false">
+        app:liftOnScrollTargetViewId="@id/recycler_home"
+        app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -53,28 +53,6 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/recycler_home"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_gravity="bottom"-->
-    <!--        app:layout_anchor="@id/shimmer_container"-->
-    <!--        app:layout_anchorGravity="bottom"-->
-    <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
-
-    <!--        <ProgressBar-->
-    <!--            android:id="@+id/progressBar"-->
-    <!--            style="?android:attr/progressBarStyle"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:foregroundGravity="center"-->
-    <!--            android:visibility="gone"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />-->
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/newPostFab"
         style="?attr/floatingActionButtonSecondaryStyle"
@@ -86,6 +64,5 @@
         android:enabled="true"
         android:src="@drawable/ic_outline_add_photo_24"
         app:fabSize="normal" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -26,10 +26,15 @@ class FilteredRoutesPagingSource @Inject constructor(
         return try {
             val position = params.key ?: INITIAL_PAGE
 
-            val query = filter.query
-
             val response = api.getRoutesByFilter(
-                query = query,
+                query = filter.query,
+                difficulty = filter.minDifficulty,
+                minDuration = filter.minDuration?.toFloat(),
+                maxDuration = filter.maxDuration?.toFloat(),
+                latitude = filter.latitude,
+                longitude = filter.longitude,
+                distance = filter.distance,
+                isDisabilityFriendly = filter.isDisabilityFriendly,
                 pageNo = position,
                 pageSize = params.loadSize
             )

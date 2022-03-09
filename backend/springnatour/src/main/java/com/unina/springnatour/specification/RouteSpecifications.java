@@ -24,8 +24,9 @@ public class RouteSpecifications {
 
         // Get single fields from search criteria
         String title = filter.getTitle();
-        Integer difficulty = filter.getAvgDifficulty();
-        Float duration = filter.getAvgDuration();
+        Integer difficulty = filter.getMinDifficulty();
+        Float minDuration = filter.getMinDuration();
+        Float maxDuration = filter.getMaxDuration();
         Boolean disability = filter.getDisabledFriendly();
         Double longitude = filter.getLongitude();
         Double latitude = filter.getLatitude();
@@ -41,15 +42,15 @@ public class RouteSpecifications {
                         ? null
                         : isDifficultyGreaterThan(difficulty))
                 // Duration
-                .and(duration == null
+                .and(minDuration == null || maxDuration == null
                         ? null
-                        : isDurationGreaterThan(duration))
+                        : isDurationBetween(minDuration, maxDuration))
                 // Disability
                 .and(disability == null
                         ? null
                         : isDisabledFriendly(disability))
                 // Position
-                .and(longitude == null || latitude == null
+                .and(longitude == null || latitude == null || distance == null
                         ? null :
                         positionIs(longitude, latitude, distance));
     }
@@ -57,7 +58,7 @@ public class RouteSpecifications {
     // Keyword search
     public static Specification<Route> titleContains(String title) {
         return (root, query, builder) ->
-                builder.like(root.get("title"), "%" + title + "%" );
+                builder.like(root.get("title"), "%" + title + "%");
     }
 
     // Difficulty greater than or equal
@@ -66,10 +67,12 @@ public class RouteSpecifications {
                 builder.greaterThanOrEqualTo(root.get("avgDifficulty"), avgDifficulty);
     }
 
-    // Duration greater than or equal
-    public static Specification<Route> isDurationGreaterThan(Float avgDuration) {
+    // Duration between
+    public static Specification<Route> isDurationBetween(Float minDuration, Float maxDuration) {
         return ((root, query, builder) ->
-                builder.greaterThanOrEqualTo(root.get("avgDuration"), avgDuration));
+                builder.and(
+                        builder.greaterThanOrEqualTo(root.get("avgDuration"), minDuration),
+                        builder.lessThanOrEqualTo(root.get("avgDuration"), maxDuration)));
     }
 
     // Disabled friendly?
@@ -91,13 +94,9 @@ public class RouteSpecifications {
 
             Expression<Number> dist = builder.function("ST_Distance_Sphere", Number.class, point1, point2);
 
-            return builder.lt(dist, distance*1000);
+            query.distinct(true);
 
-//            return
-//                    builder.and(
-//                            builder.equal(stopJoin.get(RouteStop_.longitude), longitude),
-//                            builder.equal(stopJoin.get(RouteStop_.latitude), latitude)
-//                    );
+            return builder.lt(dist, distance * 1000);
         };
     }
 }

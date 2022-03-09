@@ -1,5 +1,8 @@
 package com.unina.natourkt.presentation.post_details
 
+import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -7,10 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
-import com.unina.natourkt.common.GlideApp
-import com.unina.natourkt.common.inVisible
-import com.unina.natourkt.common.setTopMargin
-import com.unina.natourkt.common.visible
+import com.unina.natourkt.common.*
 import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.presentation.base.ui_state.UserUiState
@@ -25,7 +25,6 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentPostDetailsBinding.inflate(layoutInflater)
 
-
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()
     }
@@ -35,9 +34,7 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
             collectLatestOnLifecycleScope(uiState) {
                 setupToolbar(it.loggedUser)
                 chatButton.isVisible = it.loggedUser?.id != args.authorId
-            }
 
-            collectLatestOnLifecycleScope(uiState) {
                 if (it.post != null) {
                     bindView(it.post)
                 }
@@ -48,7 +45,7 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
         }
     }
 
-    fun setupToolbar(user: UserUiState?) = with(binding) {
+    private fun setupToolbar(user: UserUiState?) = with(binding) {
         topAppBar.apply {
             menu.clear()
 
@@ -83,45 +80,23 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
      */
     private fun bindView(post: PostUiState) = with(binding) {
 
-        progressBar.inVisible()
+        constraintLayout.visible()
 
-        authorName.apply {
-            text = post.authorUsername
-            visible()
-        }
-        routeName.apply {
-            text = post.routeTitle
-            visible()
-        }
-
-        postDescription.apply {
-            text = post.description
-            visible()
-        }
-
-        authorPhoto.apply {
-            GlideApp.with(this@PostDetailsFragment)
-                .load(post.authorPhoto)
-                .error(R.drawable.ic_avatar_svgrepo_com)
-                .into(this)
-
-            visible()
-        }
+        authorName.text = post.authorUsername
+        routeName.text = post.routeTitle
+        postDescription.text = post.description
+        authorPhoto.loadWithGlide(post.authorPhoto, R.drawable.ic_avatar_svgrepo_com)
 
         imageSlider.apply {
             val imageList = post.photos.map { SlideModel(it) }
             setImageList(imageList, ScaleTypes.CENTER_CROP)
-            visible()
         }
+
+        progressBar.inVisible()
     }
 
     private fun loadingView() = with(binding) {
         progressBar.visible()
-        chatButton.inVisible()
-        authorName.inVisible()
-        routeName.inVisible()
-        postDescription.inVisible()
-        authorPhoto.inVisible()
-        imageSlider.inVisible()
+        constraintLayout.inVisible()
     }
 }

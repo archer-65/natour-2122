@@ -82,7 +82,7 @@ public class RouteService {
 
         Specification<Route> filterCriteria = RouteSpecifications.createRouteQuery(filter);
 
-        return routeMapper.toDto(routeRepository.findAll(filterCriteria, PageRequest.of(pageNo, pageSize)));
+        return routeMapper.toDto(routeRepository.findAll(filterCriteria, PageRequest.of(pageNo, pageSize, Sort.by("id"))));
     }
 
     public List<RouteTitleDto> getRoutesTitleByQuery(String query) {

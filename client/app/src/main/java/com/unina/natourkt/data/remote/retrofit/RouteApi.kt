@@ -10,6 +10,11 @@ import retrofit2.http.*
  */
 interface RouteApi {
 
+    @GET("/routes/{id}")
+    suspend fun getRouteById(
+        @Path("id") id: Long,
+    ): RouteDto
+
     /**
      * Classic Get all routes (paginated)
      */
@@ -43,7 +48,8 @@ interface RouteApi {
     suspend fun getRoutesByFilter(
         @Query("query") query: String,
         @Query("difficulty") difficulty: Int? = null,
-        @Query("duration") duration: Float? = null,
+        @Query("min_duration") minDuration: Float? = null,
+        @Query("max_duration") maxDuration: Float? = null,
         @Query("disability_friendly") isDisabilityFriendly: Boolean? = null,
         @Query("latitude") latitude: Double? = null,
         @Query("longitude") longitude: Double? = null,

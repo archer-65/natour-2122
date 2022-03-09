@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.route_search.BottomSheetFilterFragment">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".presentation.new_route.NewRouteInfoFragment">
+
+            <ImageView
+                android:id="@+id/geoIcon"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_travel_explore_24"
+                app:layout_constraintBottom_toTopOf="@+id/areaChip"
+                app:layout_constraintEnd_toStartOf="@+id/geoAreaTextView"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toTopOf="@+id/guideline34"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/geoAreaTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Area geografica"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintBottom_toTopOf="@+id/areaChip"
+                app:layout_constraintEnd_toStartOf="@+id/guideline36"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/geoIcon"
+                app:layout_constraintTop_toBottomOf="@+id/guideline34" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/areaChip"
+                style="@style/Widget.Material3.Chip.Input.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:checkable="false"
+                android:text="@string/choose_position"
+                android:theme="@style/ThemeOverlay.NaTour.ElevationOverlayDisabled"
+                app:chipIcon="@drawable/ic_baseline_location_on_24"
+                app:closeIconVisible="false"
+                app:layout_constraintBottom_toTopOf="@id/areaSlider"
+                app:layout_constraintEnd_toStartOf="@+id/guideline36"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@id/geoAreaTextView" />
+
+            <TextView
+                android:id="@+id/helperSlider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Raggio in km:"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                app:layout_constraintBottom_toTopOf="@id/barrier4"
+                app:layout_constraintEnd_toStartOf="@id/radiusTextView"
+                app:layout_constraintHorizontal_weight="0.3"
+                app:layout_constraintStart_toEndOf="@+id/areaSlider"
+                app:layout_constraintTop_toBottomOf="@id/areaChip" />
+
+            <TextView
+                android:id="@+id/radiusTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                app:layout_constraintBottom_toTopOf="@id/barrier4"
+                app:layout_constraintEnd_toStartOf="@id/guideline36"
+                app:layout_constraintHorizontal_weight="0.1"
+                app:layout_constraintStart_toEndOf="@+id/helperSlider"
+                app:layout_constraintTop_toBottomOf="@id/areaChip" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/areaSlider"
+                android:layout_width="0dp"
+                android:stepSize="1"
+                android:layout_height="wrap_content"
+                android:contentDescription="Raggio in km"
+                android:valueFrom="5"
+                android:valueTo="100"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@id/barrier4"
+                app:layout_constraintEnd_toStartOf="@+id/helperSlider"
+                app:layout_constraintHorizontal_weight="0.7"
+                app:layout_constraintStart_toEndOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@+id/areaChip"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/durationImage"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_hourglass_bottom_24"
+                app:layout_constraintBottom_toTopOf="@+id/durationChipGroup"
+                app:layout_constraintEnd_toStartOf="@+id/durationTextView"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@+id/barrier4"
+                app:layout_constraintVertical_bias="0.625"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/durationTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Durata"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintBottom_toTopOf="@+id/durationChipGroup"
+                app:layout_constraintEnd_toStartOf="@+id/guideline36"
+                app:layout_constraintStart_toEndOf="@+id/durationImage"
+                app:layout_constraintTop_toBottomOf="@id/barrier4"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/durationChipGroup"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:theme="@style/ThemeOverlay.NaTour.ElevationOverlayDisabled"
+                app:chipSpacingVertical="0dp"
+                app:layout_constraintBottom_toTopOf="@id/barrier8"
+                app:layout_constraintEnd_toStartOf="@+id/guideline36"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@+id/durationTextView"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/durationFirst"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tra 1 e 4 ore"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/durationSecond"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tra 4 e 8 ore"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/durationThird"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tra 8 e 12 ore"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/durationFourth"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Più di 12 ore"
+                    app:chipIconVisible="true" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/difficulty_label"
+                app:layout_constraintBottom_toTopOf="@+id/difficultyChipgroup"
+                app:layout_constraintEnd_toStartOf="@+id/difficultyTextview"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@id/barrier8"
+                app:layout_constraintVertical_bias="0.592"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/difficultyTextview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Livello di difficoltà minimo"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintBottom_toTopOf="@+id/difficultyChipgroup"
+                app:layout_constraintEnd_toStartOf="@+id/guideline36"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/barrier8" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/difficultyChipgroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:theme="@style/ThemeOverlay.NaTour.ElevationOverlayDisabled"
+                app:layout_constraintBottom_toTopOf="@+id/barrier5"
+                app:layout_constraintEnd_toStartOf="@+id/guideline36"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@+id/difficultyTextview"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/minEasyChip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/easy_difficulty"
+                    app:chipIcon="@drawable/difficulty_easy"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/minMediumChip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/intermediate_difficulty"
+                    app:chipIcon="@drawable/difficulty_medium"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/minHardChip"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/difficult_difficulty"
+                    app:chipIcon="@drawable/difficulty_hard"
+                    app:chipIconVisible="true" />
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_accessible_24"
+                app:layout_constraintBottom_toTopOf="@+id/disabilityFriendlyGroup"
+                app:layout_constraintEnd_toStartOf="@+id/disabilityFriendlyTextview"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@+id/barrier5"
+                app:layout_constraintVertical_bias="0.606"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/disabilityFriendlyTextview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/disability_friendly"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?android:attr/textColorSecondary"
+                app:layout_constraintBottom_toTopOf="@+id/disabilityFriendlyGroup"
+                app:layout_constraintEnd_toStartOf="@+id/guideline36"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/difficultyChipgroup" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/disabilityFriendlyGroup"
+                style="@style/Widget.Material3.Chip.Suggestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/barrier7"
+                android:theme="@style/ThemeOverlay.NaTour.ElevationOverlayDisabled"
+                app:layout_constraintEnd_toEndOf="@id/guideline36"
+                app:layout_constraintStart_toStartOf="@+id/guideline35"
+                app:layout_constraintTop_toBottomOf="@id/disabilityFriendlyTextview"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/accessible"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sì"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/notAccessible"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    app:chipIconVisible="true" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.04" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="helperSlider"
+                tools:layout_editor_absoluteY="115dp" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="difficultyChipgroup"
+                tools:layout_editor_absoluteY="357dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.03" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.97" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="disabilityFriendlyGroup"
+                tools:layout_editor_absoluteY="509dp" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="durationChipGroup"
+                tools:layout_editor_absoluteY="322dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

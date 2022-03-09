@@ -17,6 +17,7 @@ import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -24,9 +25,10 @@ import dagger.hilt.android.AndroidEntryPoint
  * filled of paginated routes
  */
 @AndroidEntryPoint
-class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>() {
+class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
+    RouteAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = RouteAdapter()
+    private val recyclerAdapter = RouteAdapter(this@RoutesFragment)
 
     private val viewModel: RoutesViewModel by viewModels()
 
@@ -107,5 +109,13 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>() {
         collectLatestOnLifecycleScope(routesFlow) {
             recyclerAdapter.submitData(it)
         }
+    }
+
+    override fun onItemClick(route: RouteItemUiState) {
+        val action = RoutesFragmentDirections.actionRoutesToRouteDetails(
+            route.id,
+            route.authorId
+        )
+        findNavController().navigate(action)
     }
 }

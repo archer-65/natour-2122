@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.route_details.RouteDetailsViewModel
 
 /**
  * Generic ViewPagerAdapter, accepts three values:
@@ -15,13 +16,13 @@ import com.unina.natourkt.presentation.base.fragment.BaseFragment
  * - [Lifecycle] related to Fragment
  */
 class ViewPagerAdapter(
-    val fragmentList: ArrayList<BaseFragment<out ViewBinding, out ViewModel>>,
+    val fragmentList: ArrayList<Fragment>,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
-): FragmentStateAdapter(fragmentManager, lifecycle) {
+) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
-       return fragmentList.size
+        return fragmentList.size
     }
 
     override fun createFragment(position: Int): Fragment {

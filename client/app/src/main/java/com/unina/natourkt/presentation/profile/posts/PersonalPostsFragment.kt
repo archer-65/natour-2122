@@ -68,7 +68,7 @@ class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, Persona
 
                 grid.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        return if (position == gridAdapter.itemCount - 1 && footerLoadStateAdapter.itemCount > 0) {
+                        return if (position == gridAdapter.itemCount - 1 && footerLoadStateAdapter.itemCount > 0 || headerLoadStateAdapter.itemCount > 0) {
                             COLUMN_COUNT
                         } else {
                             1
@@ -93,7 +93,7 @@ class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, Persona
 
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append
-            //headerLoadStateAdapter.loadState = loadState.refresh
+            headerLoadStateAdapter.loadState = loadState.refresh
 
             recyclerProfilePosts.isVisible = loadState.source.refresh !is LoadState.Loading
         }

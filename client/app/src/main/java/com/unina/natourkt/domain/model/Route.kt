@@ -1,10 +1,9 @@
 package com.unina.natourkt.domain.model.route
 
-import android.util.Log
-import com.unina.natourkt.domain.model.DirectionsRequest
 import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
-import com.unina.natourkt.presentation.new_route.Difficulty
+import com.unina.natourkt.presentation.route_details.RouteStopUiState
+import com.unina.natourkt.presentation.route_details.RouteUiState
 import java.time.LocalDateTime
 
 /**
@@ -19,6 +18,7 @@ data class Route(
     val disabilityFriendly: Boolean,
     val creationDate: LocalDateTime,
     val modifiedDate: LocalDateTime?,
+    val isReported: Boolean,
     val photos: List<String>,
     val stops: List<RouteStop>,
     val author: User
@@ -42,6 +42,34 @@ fun Route.toUi(): RouteItemUiState {
         title = title,
         avgDifficulty = difficulty,
         disabilityFriendly = disabilityFriendly,
-        previewPhoto = photos.first()
+        previewPhoto = photos.first(),
+        authorId = author.id
+    )
+}
+
+fun Route.toDetailUi(): RouteUiState {
+    return RouteUiState(
+        id = id,
+        title = title,
+        description = description,
+        difficulty = when (difficulty) {
+            1 -> com.unina.natourkt.presentation.route_details.Difficulty.EASY
+            2 -> com.unina.natourkt.presentation.route_details.Difficulty.MEDIUM
+            3 -> com.unina.natourkt.presentation.route_details.Difficulty.HARD
+            else -> com.unina.natourkt.presentation.route_details.Difficulty.EASY
+        },
+        duration = duration,
+        disabilityFriendly = disabilityFriendly,
+        modifiedDate = modifiedDate,
+        isReported = isReported,
+        photos = photos,
+        stops = stops.map {
+            RouteStopUiState(
+                stopNumber = it.stopNumber,
+                latitude = it.latitude,
+                longitude = it.longitude
+            )
+        },
+        authorId = author.id
     )
 }

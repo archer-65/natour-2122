@@ -3,6 +3,7 @@ package com.unina.natourkt.presentation.profile
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
@@ -55,7 +56,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun setupViewPager() = with(binding) {
 
-        val fragmentList = arrayListOf(
+        val fragmentList = arrayListOf<Fragment>(
             PersonalPostsFragment(),
             PersonalCompilationsFragment(),
             PersonalRoutesFragment()

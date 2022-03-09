@@ -36,11 +36,13 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_primaryInverse</item>
+
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.NaTour.Light.BottomSheetDialog</item>
     </style>
 
     <!-- Alternative background for certain screens -->
     <style name="BackgroundAlternative">
-        <item name="android:background">@color/md_theme_light_inverseOnSurface</item>
+        <item name="android:background">@color/md_theme_light_onPrimary</item>
     </style>
 
     <!-- Linked actions color (Forgot password and Resend code) -->
@@ -50,7 +52,16 @@
         </item>
     </style>
 
-<!--    <color name="ted_image_picker_primary">@color/md_theme_light_primary</color>-->
-<!--    <color name="ted_image_picker_primary_pressed">@color/md_theme_light_primaryInverse</color>-->
+    <style name="ThemeOverlay.NaTour.Light.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheetDialog</item>
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/md_theme_light_surface</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <color name="ted_image_picker_primary">@color/md_theme_light_primary</color>
+    <color name="ted_image_picker_primary_pressed">@color/md_theme_light_primaryInverse</color>
 
 </resources>

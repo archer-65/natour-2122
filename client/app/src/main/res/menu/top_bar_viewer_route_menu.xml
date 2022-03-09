@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/save_route"
+        android:contentDescription="Salva itinerario"
+        android:icon="@drawable/ic_outline_bookmark_24"
+        android:title="Salva itinerario"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/report_route"
+        android:contentDescription="Segnala itinerario"
+        android:icon="@drawable/ic_baseline_error_outline_24"
+        android:title="Segnala itinerario"
+        app:showAsAction="always" />
+
+</menu>

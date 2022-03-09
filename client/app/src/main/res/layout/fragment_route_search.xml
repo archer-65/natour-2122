@@ -9,6 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:liftOnScrollTargetViewId="@id/recycler_routes"
         app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -24,42 +25,13 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/search_background"
                 android:iconifiedByDefault="false"
-                app:queryHint="Cerca un itinerario" >
+                app:queryHint="Cerca un itinerario">
 
             </androidx.appcompat.widget.SearchView>
 
         </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include layout="@layout/route_item_shimmer" />
-
-            <include layout="@layout/route_item_shimmer" />
-
-            <include layout="@layout/route_item_shimmer" />
-
-            <include layout="@layout/route_item_shimmer" />
-
-            <include layout="@layout/route_item_shimmer" />
-
-            <include layout="@layout/route_item_shimmer" />
-
-            <include layout="@layout/route_item_shimmer" />
-
-        </LinearLayout>
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_routes"

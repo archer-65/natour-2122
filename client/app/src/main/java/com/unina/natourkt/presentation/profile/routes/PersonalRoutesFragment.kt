@@ -18,6 +18,9 @@ import com.unina.natourkt.databinding.FragmentPersonalRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
+import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
+import com.unina.natourkt.presentation.routes.RoutesFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -27,11 +30,11 @@ import kotlinx.coroutines.flow.collectLatest
  */
 @AndroidEntryPoint
 class PersonalRoutesFragment :
-    BaseFragment<FragmentPersonalRoutesBinding, PersonalRoutesViewModel>() {
+    BaseFragment<FragmentPersonalRoutesBinding, PersonalRoutesViewModel>(),
+    RouteAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = RouteAdapter()
+    private val recyclerAdapter = RouteAdapter(this@PersonalRoutesFragment)
 
-    // ViewModel
     private val viewModel: PersonalRoutesViewModel by viewModels()
 
     override fun getVM() = viewModel
@@ -46,13 +49,7 @@ class PersonalRoutesFragment :
 
     override fun setListeners() = with(binding) {
         newRouteFab.setOnClickListener {
-            //val extras = FragmentNavigatorExtras(binding.newRouteFab to "transitionNewRouteFab")
-            findNavController().navigate(
-                R.id.action_profile_to_new_route_flow,
-               // null,
-               // null,
-                //extras
-            )
+            findNavController().navigate(R.id.action_profile_to_new_route_flow)
         }
     }
 
@@ -86,5 +83,13 @@ class PersonalRoutesFragment :
         collectLatestOnLifecycleScope(routesFlow) {
             recyclerAdapter.submitData(it)
         }
+    }
+
+    override fun onItemClick(route: RouteItemUiState) {
+        val action = ProfileFragmentDirections.actionNavigationProfileToNavigationRouteDetails(
+            route.id,
+            route.authorId
+        )
+        findNavController().navigate(action)
     }
 }

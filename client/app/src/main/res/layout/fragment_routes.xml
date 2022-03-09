@@ -9,8 +9,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
-        app:liftOnScroll="false">
+        app:liftOnScroll="true"
+        app:liftOnScrollTargetViewId="@id/recycler_routes">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"

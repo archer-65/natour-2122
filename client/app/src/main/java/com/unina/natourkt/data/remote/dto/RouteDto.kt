@@ -35,6 +35,9 @@ data class RouteDto(
     @SerializedName("route_modified_date")
     val modifiedDate: String?,
 
+    @SerializedName("is_route_reported")
+    val isRouteReported: Boolean,
+
     @SerializedName("route_photos")
     val photos: List<RoutePhotoDto>,
 
@@ -83,6 +86,7 @@ fun RouteDto.toRoute(): Route {
         disabilityFriendly = isDisabilityFriendly,
         creationDate = creationDate.toDateTime(),
         modifiedDate = modifiedDate?.toDateTime(),
+        isReported = isRouteReported,
         photos = photos.map { photo -> photo.photo },
         stops = stops.map { stop -> stop.toRouteStop() },
         author = author.toUser()

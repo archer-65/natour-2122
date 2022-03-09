@@ -118,7 +118,8 @@ public class RouteController {
     public ResponseEntity<List<RouteDto>> getAllRoutesByFilter(
             @RequestParam("query") String query,
             @RequestParam(value = "difficulty", required = false) Integer difficulty,
-            @RequestParam(value = "duration", required = false) Float duration,
+            @RequestParam(value = "min_duration", required = false) Float minDuration,
+            @RequestParam(value = "max_duration", required = false) Float maxDuration,
             @RequestParam(value = "disability_friendly", required = false) Boolean isDisabilityFriendly,
             @RequestParam(value = "latitude", required = false) Double latitude,
             @RequestParam(value = "longitude", required = false) Double longitude,
@@ -126,7 +127,7 @@ public class RouteController {
             @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
             @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
 
-        RouteFilter filter = new RouteFilter(query, difficulty, duration, isDisabilityFriendly, latitude, longitude, distance);
+        RouteFilter filter = new RouteFilter(query, difficulty, minDuration, maxDuration, isDisabilityFriendly, latitude, longitude, distance);
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(filter, pageNo, pageSize);
 

@@ -15,4 +15,8 @@
         <item name="cornerSize">5%</item>
     </style>
 
+    <style name="ThemeOverlay.NaTour.ElevationOverlayDisabled" parent="">
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+
 </resources>

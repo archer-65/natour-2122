@@ -1,39 +1,30 @@
 package com.unina.natourkt.presentation.route_details
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.result.ActivityResultLauncher
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.libraries.places.api.model.Place
+import androidx.fragment.app.Fragment
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
-import com.unina.natourkt.common.setBottomMargin
 import com.unina.natourkt.common.setTopMargin
-import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
-import com.unina.natourkt.presentation.base.contract.PlacesContract
+import com.unina.natourkt.presentation.base.adapter.ViewPagerAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.base.ui_state.UserUiState
+import com.unina.natourkt.presentation.post_details.PostDetailsFragmentArgs
+import com.unina.natourkt.presentation.route_details.info.RouteDetailsInfoFragment
+import com.unina.natourkt.presentation.route_details.map.RouteDetailsMapFragment
+import com.unina.natourkt.presentation.route_details.tag.RouteDetailsTagFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dev.chrisbanes.insetter.applyInsetter
 
-/**
- * ViewModel da cambiare!!!
- */
 @AndroidEntryPoint
-class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, ViewModel>(),
-    OnMapReadyCallback {
+class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDetailsViewModel>() {
 
-    private lateinit var launcherPlaces: ActivityResultLauncher<List<Place.Field>>
-    private lateinit var googleMap: GoogleMap
+    private val viewModel: RouteDetailsViewModel by hiltNavGraphViewModels(R.id.navigation_route_details_flow)
+    private val args: RouteDetailsFragmentArgs by navArgs()
 
-    private val viewModel: ViewModel by viewModels()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentRouteDetailsBinding.inflate(layoutInflater)
@@ -41,106 +32,71 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, ViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // We are not using MapFragment anymore, it's useless and negative for performance.
-        // Implementing MapView instead of Fragment requires lifecycle management.
-        // Here we are creating our MapView and calling onMapReady callback.
-        binding.mapView.apply {
-            onCreate(savedInstanceState)
-            getMapAsync {
-                googleMap = it
-                onMapReady(googleMap)
-            }
-        }
-        initPlacesSearch()
+        setupViewPager()
     }
 
-    /**
-     * Basic settings for UI
-     */
     override fun setupUi() {
-        with(binding) {
-            mapView.setBottomMargin()
+        binding.topAppBar.setTopMargin()
+    }
 
-            topAppBar.apply {
-                setTopMargin()
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            collectLatestOnLifecycleScope(uiState) {
+                setupToolbar(it.loggedUser)
+            }
+        }
+    }
 
-                setOnMenuItemClickListener {
-                    when (it.itemId) {
-                        R.id.search_place -> {
-                            val fields =
-                                listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
-                            launcherPlaces.launch(fields)
-                            true
-                        }
-                        else -> {
-                            false
-                        }
+    private fun setupToolbar(loggedUser: UserUiState?) = with(binding) {
+        topAppBar.apply {
+            menu.clear()
+
+            if (loggedUser?.id == args.authorId) {
+                inflateMenu(R.menu.top_bar_owner_route_menu)
+            } else {
+                inflateMenu(R.menu.top_bar_viewer_route_menu)
+            }
+
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.report_route -> {
+                        true
+                    }
+                    R.id.delete_route -> {
+                        true
+                    }
+                    R.id.save_route -> {
+                        true
+                    }
+                    else -> {
+                        false
                     }
                 }
             }
         }
     }
 
-    /**
-     * Callback used when the map is ready, could be useful to
-     * set listeners or other map-related functions
-     */
-    override fun onMapReady(googleMap: GoogleMap) {
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(
-            MarkerOptions()
-                .position(sydney)
-                .title("This is Sydney :)")
+    private fun setupViewPager() = with(binding) {
+
+        val fragmentList = arrayListOf<Fragment>(
+            RouteDetailsInfoFragment(),
+            RouteDetailsMapFragment(),
+            RouteDetailsTagFragment()
         )
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
+        val adapter = ViewPagerAdapter(fragmentList, childFragmentManager, lifecycle)
 
-    /**
-     * Function to initialize [launcherPlaces] with [registerForActivityResult], replacing
-     * [startActivityForResult] and [onActivityResult] (deprecated)
-     * @see [PlacesContract]
-     */
-    private fun initPlacesSearch() {
-        launcherPlaces = registerForActivityResult(PlacesContract()) { result ->
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(result.latLng!!, 15f))
-        }
+        viewPager.adapter = adapter
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "INFO"
+                1 -> tab.text = "MAPPA"
+                2 -> tab.text = "TAG"
+            }
+        }.attach()
     }
-
-    // Here we are overriding lifecycle functions to manage MapView's lifecycle
-    override fun onResume() {
-        super.onResume()
-        binding.mapView.onResume()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        binding.mapView.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        binding.mapView.onStop()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        binding.mapView.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.mapView.onDestroy()
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-        binding.mapView.onLowMemory()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        binding.mapView.onSaveInstanceState(outState)
-    }
-    // End of lifecycle management for MapView
 }

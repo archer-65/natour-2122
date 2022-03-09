@@ -28,4 +28,6 @@ interface RouteRepository {
     suspend fun createRoute(route: RouteCreation): DataState<Unit>
 
     suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>>
+
+    suspend fun getRouteById(id: Long): DataState<Route>
 }

@@ -13,8 +13,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class RouteFilter implements Serializable {
     private String title;
-    private Integer avgDifficulty;
-    private Float avgDuration;
+    private Integer minDifficulty;
+    private Float minDuration;
+    private Float maxDuration;
     private Boolean disabledFriendly;
     private Double latitude;
     private Double longitude;

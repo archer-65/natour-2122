@@ -7,6 +7,7 @@ import com.unina.natourkt.common.DataState
 import com.unina.natourkt.data.paging.FilteredRoutesPagingSource
 import com.unina.natourkt.data.paging.PersonalRoutePagingSource
 import com.unina.natourkt.data.paging.RoutePagingSource
+import com.unina.natourkt.data.remote.dto.route.toRoute
 import com.unina.natourkt.data.remote.dto.toRouteTitle
 import com.unina.natourkt.data.remote.retrofit.RouteApi
 import com.unina.natourkt.data.util.safeApiCall
@@ -81,5 +82,10 @@ class RouteRepositoryImpl @Inject constructor(
     override suspend fun createRoute(route: RouteCreation): DataState<Unit> =
         safeApiCall(IO) {
             api.createRoute(route.toCreationDto())
+        }
+
+    override suspend fun getRouteById(id: Long): DataState<Route> =
+        safeApiCall(IO) {
+            api.getRouteById(id).toRoute()
         }
 }

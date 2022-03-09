@@ -50,8 +50,8 @@ public class Route implements Serializable{
     private Float avgDuration;
 
     @NotNull
-    @Column(name = "disability_friendly", nullable = false)
-    private Boolean disabledFriendly = false;
+    @Column(name = "disabled_friendly", nullable = false)
+    private Boolean disabledFriendly = Boolean.FALSE;
 
     @CreationTimestamp
     @Column(name = "creation_date")

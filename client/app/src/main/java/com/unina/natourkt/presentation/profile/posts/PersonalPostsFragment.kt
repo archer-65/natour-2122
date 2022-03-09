@@ -42,7 +42,6 @@ class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, Persona
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
-
         initRecycler()
     }
 
@@ -88,8 +87,6 @@ class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, Persona
     }
 
     override fun initConcatAdapter(): ConcatAdapter = with(binding) {
-//        footerLoadStateAdapter = ItemLoadStateAdapter()
-//        headerLoadStateAdapter = ItemLoadStateAdapter()
 
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append

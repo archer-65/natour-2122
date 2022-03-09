@@ -104,6 +104,21 @@ public class PostController {
         }
     }
 
+    @GetMapping("/posts/tag")
+    public ResponseEntity<List<PostDto>> getAllPostsByRouteId(
+            @RequestParam(name = "route_id") Long routeId,
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
+
+        List<PostDto> postDtoList = postService.getAllPostsByRouteId(routeId, pageNo, pageSize);
+
+        if (!postDtoList.isEmpty()) {
+            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     /**
      * Creates a new post
      *

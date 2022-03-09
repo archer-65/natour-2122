@@ -233,6 +233,9 @@
                 android:name="authorId"
                 app:argType="long" />
         </fragment>
+        <action
+            android:id="@+id/action_global_navigation_post_details"
+            app:destination="@id/navigation_post_details" />
 
     </navigation>
 

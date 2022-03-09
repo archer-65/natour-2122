@@ -7,6 +7,7 @@ import com.unina.natourkt.common.DataState
 import com.unina.natourkt.data.remote.dto.post.toPost
 import com.unina.natourkt.data.paging.PersonalPostPagingSource
 import com.unina.natourkt.data.paging.PostPagingSource
+import com.unina.natourkt.data.paging.TaggedPostPagingSource
 import com.unina.natourkt.data.remote.retrofit.PostApi
 import com.unina.natourkt.data.util.safeApiCall
 import com.unina.natourkt.domain.model.Post
@@ -54,6 +55,16 @@ class PostRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { PersonalPostPagingSource(api, userId) }
+        ).flow
+    }
+
+    override fun getTaggedPosts(routeId: Long): Flow<PagingData<Post>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { TaggedPostPagingSource(api, routeId) }
         ).flow
     }
 

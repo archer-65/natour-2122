@@ -43,9 +43,13 @@ class PersonalPostsViewModel @Inject constructor(
     private fun getPersonalPosts() {
         viewModelScope.launch {
             _postsFlow = getPersonalPostsUseCase()
-                .map { pagingData -> pagingData.map { post -> post.toGridUi().convertKeys {
-                    getUrlFromKeyUseCase(it)
-                } } }
+                .map { pagingData ->
+                    pagingData.map { post ->
+                        post.toGridUi().convertKeys {
+                            getUrlFromKeyUseCase(it)
+                        }
+                    }
+                }
                 .cachedIn(viewModelScope)
         }
     }

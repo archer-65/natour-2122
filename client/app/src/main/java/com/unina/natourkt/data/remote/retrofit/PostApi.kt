@@ -35,6 +35,13 @@ interface PostApi {
         @Path("id") id: Long
     ): PostDto
 
+    @GET("/posts/tag")
+    suspend fun getTaggedPosts(
+        @Query("route_id") userId: Long,
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
+    ): List<PostDto>
+
     @POST("/posts/add")
     suspend fun createRoute(
         @Body postDto: PostCreationDto

@@ -24,6 +24,7 @@ public class PostService {
 
     /**
      * Gets a post
+     *
      * @param id the identifier of the post
      * @return PostDTO Object after mapping from Entity, or throws Exception
      */
@@ -34,6 +35,7 @@ public class PostService {
 
     /**
      * Gets all the posts
+     *
      * @return a List of PostDTO Objects after mapping from Entity, or throws Exception
      */
     public List<PostDto> getAllPosts() {
@@ -50,6 +52,7 @@ public class PostService {
 
     /**
      * Gets all the posts for a certain user
+     *
      * @param userId the identifier of the user
      * @return a List of PostDTO Objects after mapping from Entity, or throws Exception
      */
@@ -61,6 +64,7 @@ public class PostService {
 
     /**
      * Gets all the posts for a certain user
+     *
      * @param userId the identifier of the user
      * @return a List of PostDTO Objects after mapping from Entity, or throws Exception
      */
@@ -70,8 +74,15 @@ public class PostService {
                 .toList());
     }
 
+    public List<PostDto> getAllPostsByRouteId(Long routeId, Integer pageNo, Integer pageSize) {
+        return postMapper.toDto(postRepository.findByRoute_idAndReportedFalse(routeId, PageRequest.of(pageNo, pageSize))
+                .stream()
+                .toList());
+    }
+
     /**
      * Adds a post
+     *
      * @param postDto PostDTO Object with required fields, mapped to Entity and saved
      */
     public void addPost(PostDto postDto) {
@@ -80,7 +91,8 @@ public class PostService {
 
     /**
      * Updates a post
-     * @param id the identifier of the post
+     *
+     * @param id      the identifier of the post
      * @param postDto PostDTO Object, mapped to Entity, or throws Exception
      */
     public void updatePost(Long id, PostDto postDto) {
@@ -92,6 +104,7 @@ public class PostService {
 
     /**
      * Deletes a post
+     *
      * @param id the identifier of the post
      */
     public void deletePost(Long id) {

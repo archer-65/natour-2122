@@ -69,8 +69,8 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    binding.recyclerRoutes.scrollToPosition(0)
-                    clearRecycler()
+                    //binding.recyclerRoutes.scrollToPosition(0)
+                    //clearRecycler()
                     viewModel.setQuery(it)
                 }
                 return true
@@ -109,6 +109,7 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
 
     override fun collectState() = with(viewModel) {
         collectLatestOnLifecycleScope(routeResults) {
+            //clearRecycler()
             recyclerAdapter.submitData(it)
         }
     }

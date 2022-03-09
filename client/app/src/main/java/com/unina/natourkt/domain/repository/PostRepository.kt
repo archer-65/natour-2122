@@ -21,7 +21,9 @@ interface PostRepository {
      */
     fun getPersonalPosts(userId: Long): Flow<PagingData<Post>>
 
+    fun getTaggedPosts(routeId: Long): Flow<PagingData<Post>>
 
     suspend fun getPostDetails(id: Long) : DataState<Post>
+
     suspend fun createPost(post: PostCreation): DataState<Unit>
 }

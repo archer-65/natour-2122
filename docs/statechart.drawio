@@ -1,23 +1,24 @@
 <mxfile host="65bd71144e" pages="2">
     <diagram id="SqWFwGlkPupEOphNOxqh" name="SegnalaItinerario">
-        <mxGraphModel dx="1181" dy="620" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="908" dy="475" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="P-UPh3qyv3hZ8wY0hTl4-10" value="clickPulsanteSegnala()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="P-UPh3qyv3hZ8wY0hTl4-1" target="P-UPh3qyv3hZ8wY0hTl4-7" edge="1">
+                <mxCell id="P-UPh3qyv3hZ8wY0hTl4-10" value="clickPulsanteSegnala()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="P-UPh3qyv3hZ8wY0hTl4-1" edge="1">
                     <mxGeometry x="-0.2" y="15" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                         <mxPoint x="520" y="230" as="sourcePoint"/>
                         <Array as="points">
                             <mxPoint x="435" y="220"/>
                         </Array>
+                        <mxPoint x="435" y="310" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="P-UPh3qyv3hZ8wY0hTl4-1" value="Schermata RouteUI" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
                     <mxGeometry x="382.5" y="130" width="105" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="P-UPh3qyv3hZ8wY0hTl4-5" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;" parent="1" vertex="1">
-                    <mxGeometry x="420" y="20" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="420" y="30" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="P-UPh3qyv3hZ8wY0hTl4-6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="P-UPh3qyv3hZ8wY0hTl4-5" target="P-UPh3qyv3hZ8wY0hTl4-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -26,129 +27,126 @@
                         <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="P-UPh3qyv3hZ8wY0hTl4-7" value="Schermata ReportRouteDialog" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#006A6A;fillColor=#CCE8E7;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="130" y="340" width="610" height="160" as="geometry"/>
+                <mxCell id="E679spEXlBCzC6LPfACg-12" value="Schermata ReportRouteDialog" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#006A6A;fillColor=#CCE8E7;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="310" width="610" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="oNcgXgYPCTdMk-m1rUHO-2" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;" parent="1" vertex="1">
-                    <mxGeometry x="180" y="350" width="30" height="30" as="geometry"/>
+                <mxCell id="E679spEXlBCzC6LPfACg-14" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="320" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="ERQUoR-sSJmclNkxznP7-1" value="&lt;span style=&quot;&quot;&gt;modificaCampi[campiCompilati]&lt;/span&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;entryX=0.998;entryY=0.868;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.001;exitY=0.861;exitDx=0;exitDy=0;exitPerimeter=0;labelBorderColor=#CCE8E7;labelBackgroundColor=#CCE8E7;" parent="1" source="ERQUoR-sSJmclNkxznP7-2" target="ERQUoR-sSJmclNkxznP7-3" edge="1">
-                    <mxGeometry x="1" y="23" relative="1" as="geometry">
-                        <mxPoint x="530" y="450" as="sourcePoint"/>
-                        <Array as="points">
-                            <mxPoint x="520" y="449"/>
-                        </Array>
-                        <mxPoint x="-10" y="-3" as="offset"/>
-                        <mxPoint x="460" y="450" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="ERQUoR-sSJmclNkxznP7-2" value="PulsanteInvio &lt;br&gt;Disabilitato" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="540" y="415" width="85" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="ERQUoR-sSJmclNkxznP7-3" value="PulsanteInvio&lt;br&gt;Abilitato" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="320" y="415" width="90" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="bkXg_mWF159hFVvTeKGJ-1" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;" parent="1" vertex="1">
-                    <mxGeometry x="680" y="420" width="30" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="EVyJyDSGeRXr-mokT5fk-1" value="modificaCampi[!campiCompilati]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;entryX=0.011;entryY=0.139;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.988;exitY=0.139;exitDx=0;exitDy=0;exitPerimeter=0;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;" parent="1" source="ERQUoR-sSJmclNkxznP7-3" target="ERQUoR-sSJmclNkxznP7-2" edge="1">
-                    <mxGeometry x="-1" y="28" relative="1" as="geometry">
-                        <mxPoint x="455" y="420" as="sourcePoint"/>
-                        <Array as="points"/>
-                        <mxPoint x="-19" y="7" as="offset"/>
-                        <mxPoint x="525" y="420" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="EVyJyDSGeRXr-mokT5fk-2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.079;exitY=0.508;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="bkXg_mWF159hFVvTeKGJ-1" target="ERQUoR-sSJmclNkxznP7-2" edge="1">
+                <mxCell id="E679spEXlBCzC6LPfACg-15" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="E679spEXlBCzC6LPfACg-14" target="E679spEXlBCzC6LPfACg-16">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="630" y="434.82000000000005" as="targetPoint"/>
-                        <mxPoint x="670" y="435" as="sourcePoint"/>
-                        <Array as="points">
-                            <mxPoint x="670" y="435"/>
-                        </Array>
+                        <mxPoint x="205" y="420" as="targetPoint"/>
+                        <mxPoint x="205" y="350" as="sourcePoint"/>
+                        <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="U5Jt7K455ZCTaunyim-e-1" value="&lt;span&gt;ClickPulsanteInvio()&lt;br&gt;/InviaSegnalazione&lt;/span&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBorderColor=#CCE8E7;labelBackgroundColor=#CCE8E7;entryX=0.519;entryY=1.034;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="ERQUoR-sSJmclNkxznP7-3" target="oNcgXgYPCTdMk-m1rUHO-2" edge="1">
-                    <mxGeometry x="0.3934" y="44" relative="1" as="geometry">
-                        <mxPoint x="350" y="435" as="sourcePoint"/>
-                        <Array as="points">
-                            <mxPoint x="196" y="435"/>
-                            <mxPoint x="196" y="400"/>
-                            <mxPoint x="196" y="400"/>
-                        </Array>
-                        <mxPoint x="18" y="35" as="offset"/>
-                        <mxPoint x="190" y="390" as="targetPoint"/>
+                <mxCell id="E679spEXlBCzC6LPfACg-16" value="" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="1">
+                    <mxGeometry x="230" y="370" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="wPOawF9bRzYnKkvgL3WN-1" value="ModificaCampi(campi)&lt;br&gt;[CampiCompilati]/EnableButton()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="E679spEXlBCzC6LPfACg-16" target="HHioK46XEYuqjPP3HB4C-1">
+                    <mxGeometry x="-1" y="-32" relative="1" as="geometry">
+                        <mxPoint x="330" y="400" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-10" y="-2" as="offset"/>
+                        <mxPoint x="400" y="400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="RDZ-7PV9FKxrTLs3N1Bp-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBorderColor=#CCE8E7;labelBackgroundColor=#CCE8E7;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="sso9k7ifs4KbWW9XCHyA-1" edge="1">
-                    <mxGeometry x="0.5714" relative="1" as="geometry">
-                        <mxPoint x="130" y="420" as="sourcePoint"/>
+                <mxCell id="wPOawF9bRzYnKkvgL3WN-2" value="[!CampiCompilati]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="E679spEXlBCzC6LPfACg-16" target="E679spEXlBCzC6LPfACg-16">
+                    <mxGeometry x="0.36" y="34" relative="1" as="geometry">
+                        <mxPoint x="253" y="420" as="sourcePoint"/>
                         <Array as="points">
-                            <mxPoint x="130" y="420"/>
+                            <mxPoint x="298" y="450"/>
+                            <mxPoint x="253" y="450"/>
                         </Array>
+                        <mxPoint x="1" y="10" as="offset"/>
+                        <mxPoint x="298" y="420" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="HHioK46XEYuqjPP3HB4C-1" value="" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="1">
+                    <mxGeometry x="405" y="370" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="F_bNq50gZ8Xo4W-b9d4n-1" value="ModificaCampi()&lt;br&gt;[!CampiCompilati]/DisableButton" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="HHioK46XEYuqjPP3HB4C-1" target="E679spEXlBCzC6LPfACg-16">
+                    <mxGeometry x="1" y="-95" relative="1" as="geometry">
+                        <mxPoint x="330" y="380" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-90" y="65" as="offset"/>
+                        <mxPoint x="340" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="F_bNq50gZ8Xo4W-b9d4n-2" value="ClickButton()/InviaSegnalazione" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.988;exitY=0.139;exitDx=0;exitDy=0;exitPerimeter=0;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;" edge="1" parent="1" target="F_bNq50gZ8Xo4W-b9d4n-3">
+                    <mxGeometry x="-0.8893" y="10" relative="1" as="geometry">
+                        <mxPoint x="495" y="389.77" as="sourcePoint"/>
+                        <Array as="points"/>
                         <mxPoint as="offset"/>
-                        <mxPoint x="95" y="415" as="targetPoint"/>
+                        <mxPoint x="627.015" y="389.77" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="sso9k7ifs4KbWW9XCHyA-1" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="405" width="30" height="30" as="geometry"/>
+                <mxCell id="F_bNq50gZ8Xo4W-b9d4n-3" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;" vertex="1" parent="1">
+                    <mxGeometry x="680" y="375" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="F_bNq50gZ8Xo4W-b9d4n-4" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="535" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="F_bNq50gZ8Xo4W-b9d4n-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="E679spEXlBCzC6LPfACg-12" target="F_bNq50gZ8Xo4W-b9d4n-4">
+                    <mxGeometry x="-0.2308" y="45" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <mxPoint x="420" y="475" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="435" y="595" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="YuO611kW2K4qPOFMh_-G-1" value="[CampiCompilati]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;" edge="1" parent="1">
+                    <mxGeometry x="0.5294" y="7" relative="1" as="geometry">
+                        <mxPoint x="427.5" y="370" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="428" y="350"/>
+                            <mxPoint x="473" y="350"/>
+                        </Array>
+                        <mxPoint x="8" y="7" as="offset"/>
+                        <mxPoint x="472.5" y="370" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="YHVfvykiVUKUb5ghU3nG" name="CreaItinerario">
-        <mxGraphModel dx="1131" dy="142" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2818" dy="1030" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="PN0qWD7VaQw6Qfc42OEK-0"/>
                 <mxCell id="PN0qWD7VaQw6Qfc42OEK-1" parent="PN0qWD7VaQw6Qfc42OEK-0"/>
-                <mxCell id="dVftqXZDu1YxiCLwtgYp-4" value="Schermata &quot;AddItineraryMapUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;fillColor=#CCE8E7;strokeColor=#006A6A;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-362.5" y="680" width="750" height="370" as="geometry"/>
+                <mxCell id="dVftqXZDu1YxiCLwtgYp-4" value="Schermata &quot;AddRouteMapUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;fillColor=#CCE8E7;strokeColor=#006A6A;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
+                    <mxGeometry x="-370" y="1010" width="750" height="370" as="geometry"/>
                 </mxCell>
                 <mxCell id="PN0qWD7VaQw6Qfc42OEK-2" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
                     <mxGeometry x="-2.5" y="280" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="PN0qWD7VaQw6Qfc42OEK-3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="PN0qWD7VaQw6Qfc42OEK-2" edge="1">
+                <mxCell id="PN0qWD7VaQw6Qfc42OEK-3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="PN0qWD7VaQw6Qfc42OEK-2" edge="1" target="PN0qWD7VaQw6Qfc42OEK-4">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="12.5" y="370" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="12.5" y="360"/>
-                            <mxPoint x="12.5" y="360"/>
-                        </Array>
+                        <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="PN0qWD7VaQw6Qfc42OEK-6" value="clickPulsanteNuovoItinerario()&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="PN0qWD7VaQw6Qfc42OEK-4" target="PN0qWD7VaQw6Qfc42OEK-5" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="PN0qWD7VaQw6Qfc42OEK-6" value="clickPulsanteNuovoItinerario()&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="PN0qWD7VaQw6Qfc42OEK-4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="12.5" y="500" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="PN0qWD7VaQw6Qfc42OEK-4" value="Schermata &quot;ExploreUI&quot;&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-55" y="370" width="135" height="60" as="geometry"/>
+                    <mxGeometry x="-55" y="390" width="135" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="dVftqXZDu1YxiCLwtgYp-1" value="clickPulsanteSuccessivo() [durataOK]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="PN0qWD7VaQw6Qfc42OEK-5" target="dVftqXZDu1YxiCLwtgYp-4" edge="1">
+                <mxCell id="dVftqXZDu1YxiCLwtgYp-1" value="clickPulsanteSuccessivo() [durataOK]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="PN0qWD7VaQw6Qfc42OEK-1" target="dVftqXZDu1YxiCLwtgYp-4" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="13" y="670" as="targetPoint"/>
+                        <mxPoint x="5.5" y="1000" as="targetPoint"/>
+                        <mxPoint x="5.5" y="970" as="sourcePoint"/>
                     </mxGeometry>
-                </mxCell>
-                <mxCell id="PN0qWD7VaQw6Qfc42OEK-5" value="Schermata &quot;AddItineraryInfoUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-55" y="500" width="135" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="dVftqXZDu1YxiCLwtgYp-5" value="clickInserisciItinerario() [fotoSelezionate &amp;gt; 0 &amp;amp;&amp;amp; fotoSelezionate &amp;lt; 6]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="dVftqXZDu1YxiCLwtgYp-0" target="AFWNUuEa0bjdK_go1RRJ-2" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="13" y="1275" as="targetPoint"/>
+                        <mxPoint x="5.5" y="1605" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="dVftqXZDu1YxiCLwtgYp-0" value="Schermata &quot;AddItineraryPhotosUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-55" y="1125" width="135" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="dVftqXZDu1YxiCLwtgYp-2" value="clickPulsanteAvanti() [!durataOK] /evidenziaCampoDurata()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="PN0qWD7VaQw6Qfc42OEK-5" target="PN0qWD7VaQw6Qfc42OEK-5" edge="1">
-                    <mxGeometry x="-0.4454" y="-10" relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="100" y="530"/>
-                            <mxPoint x="100" y="580"/>
-                            <mxPoint x="46" y="580"/>
-                            <mxPoint x="46" y="560"/>
-                        </Array>
-                        <mxPoint x="41" y="570" as="targetPoint"/>
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
+                    <mxGeometry x="-62.5" y="1455" width="135" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-14" value="inserisceTappa()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;verticalAlign=bottom;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=none;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="RJv6F9HYFyBM5nJx5Jfc-4" target="RJv6F9HYFyBM5nJx5Jfc-11" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -157,20 +155,20 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-4" value="Prima tappa inserita" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-320" y="810" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-327.5" y="1140" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-8" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-275" y="720" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="-282.5" y="1050" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-9" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="RJv6F9HYFyBM5nJx5Jfc-8" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="-260" y="810" as="targetPoint"/>
+                        <mxPoint x="-267.5" y="1140" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="RJv6F9HYFyBM5nJx5Jfc-11" target="RJv6F9HYFyBM5nJx5Jfc-17" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="100" y="965"/>
+                            <mxPoint x="92.5" y="1295"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -188,58 +186,207 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-11" value="Pronto per l'inserimento" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="40" y="810" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="32.5" y="1140" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-15" value="inserisceTappa()&amp;nbsp;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=none;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="RJv6F9HYFyBM5nJx5Jfc-11" edge="1">
                     <mxGeometry x="0.267" relative="1" as="geometry">
-                        <mxPoint x="160" y="830" as="targetPoint"/>
+                        <mxPoint x="152.5" y="1160" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="130" y="790"/>
-                            <mxPoint x="180" y="790"/>
-                            <mxPoint x="180" y="830"/>
-                            <mxPoint x="160" y="830"/>
+                            <mxPoint x="122.5" y="1120"/>
+                            <mxPoint x="172.5" y="1120"/>
+                            <mxPoint x="172.5" y="1160"/>
+                            <mxPoint x="152.5" y="1160"/>
                         </Array>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-17" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="85" y="1000" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="77.5" y="1330" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-24" value="eliminaTappa() [tappeInserite &amp;gt; 1]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;endArrow=open;endFill=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=none;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="RJv6F9HYFyBM5nJx5Jfc-11" target="RJv6F9HYFyBM5nJx5Jfc-11" edge="1">
                     <mxGeometry x="0.28" y="-90" relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="130" y="890"/>
-                            <mxPoint x="180" y="890"/>
-                            <mxPoint x="180" y="855"/>
+                            <mxPoint x="122.5" y="1220"/>
+                            <mxPoint x="172.5" y="1220"/>
+                            <mxPoint x="172.5" y="1185"/>
                         </Array>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-27" value="[fileSelezionato]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;endArrow=open;endFill=0;entryX=0.112;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=none;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="RJv6F9HYFyBM5nJx5Jfc-25" target="RJv6F9HYFyBM5nJx5Jfc-11" edge="1">
                     <mxGeometry x="-0.2341" y="10" relative="1" as="geometry">
-                        <mxPoint x="40" y="870" as="targetPoint"/>
+                        <mxPoint x="32.5" y="1200" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="53" y="935"/>
-                            <mxPoint x="53" y="870"/>
+                            <mxPoint x="45.5" y="1265"/>
+                            <mxPoint x="45.5" y="1200"/>
                         </Array>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="RJv6F9HYFyBM5nJx5Jfc-25" value="Selezione file GPX" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-320" y="920" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-327.5" y="1250" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="KugmjlWFgLdjhHt4tslQ-2" value="1. Ci vuole un'associazione ricorsiva per quando premo il pulsante con 0 o più di 5 foto?&lt;br&gt;2. Per la freccia successiva ci vuole la condizione quando non posso premere il pulsante se la condizione non è soddisfatta?" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;labelBackgroundColor=none;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#d6b656;fillColor=#fff2cc;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="110" y="1110" width="350" height="90" as="geometry"/>
+                    <mxGeometry x="102.5" y="1440" width="350" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="AFWNUuEa0bjdK_go1RRJ-2" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="PN0qWD7VaQw6Qfc42OEK-1" vertex="1">
-                    <mxGeometry x="-2.5" y="1280" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="-10" y="1610" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="AX0yzLEHzvX8vqvErUu3-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=right;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="dVftqXZDu1YxiCLwtgYp-4" target="dVftqXZDu1YxiCLwtgYp-0">
+                <mxCell id="AX0yzLEHzvX8vqvErUu3-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=right;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="PN0qWD7VaQw6Qfc42OEK-1" source="dVftqXZDu1YxiCLwtgYp-4" target="dVftqXZDu1YxiCLwtgYp-0" edge="1">
                     <mxGeometry x="0.1111" y="35" relative="1" as="geometry">
                         <Array as="points"/>
-                        <mxPoint x="13" y="1110" as="targetPoint"/>
+                        <mxPoint x="5.5" y="1440" as="targetPoint"/>
                         <mxPoint as="offset"/>
-                        <mxPoint x="20" y="1060" as="sourcePoint"/>
+                        <mxPoint x="12.5" y="1390" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="1KyiQCv3Z7cRczMbWnrE-0" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Schermata &quot;AddRouteInfoUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;fillColor=#CCE8E7;strokeColor=#006A6A;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="-510" y="500" width="1120" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-1" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="-405" y="560" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-1" target="0_EiWiRKq0PDG39n65AQ-3">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-432.5" y="602.5" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-432.53" y="597.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-3" value="Titolo &lt;br&gt;vuoto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="-430" y="630" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-4" value="Titolo compilato" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="-430" y="705" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-5" value="compila(titolo)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-3" target="0_EiWiRKq0PDG39n65AQ-4">
+                    <mxGeometry x="-0.3333" y="-77" relative="1" as="geometry">
+                        <mxPoint x="-337.5" y="653" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-1" as="offset"/>
+                        <mxPoint x="-283.75" y="655" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-6" value="cancella(titolo)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-4" target="0_EiWiRKq0PDG39n65AQ-3">
+                    <mxGeometry x="0.3333" relative="1" as="geometry">
+                        <mxPoint x="-327.5" y="619.9999999999999" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="-369.5" y="665" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-8" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-272" y="500" as="sourcePoint"/>
+                        <mxPoint x="-272" y="860" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-14" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="-150" y="560" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-15" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-14" target="0_EiWiRKq0PDG39n65AQ-16">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-177.5" y="602.5" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-177.52999999999997" y="597.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-16" value="Descrizione&lt;br&gt;vuoto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="-175" y="630" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-17" value="Descrizione compilato" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="-175" y="705" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-18" value="compila&lt;br&gt;(descrizione)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-16" target="0_EiWiRKq0PDG39n65AQ-17">
+                    <mxGeometry x="-0.3333" y="-77" relative="1" as="geometry">
+                        <mxPoint x="-82.5" y="653" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-1" as="offset"/>
+                        <mxPoint x="-28.75" y="655" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-19" value="cancella&lt;br&gt;(descrizione)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-17" target="0_EiWiRKq0PDG39n65AQ-16">
+                    <mxGeometry x="0.1111" y="-10" relative="1" as="geometry">
+                        <mxPoint x="-72.5" y="619.9999999999999" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="-114.5" y="665" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-20" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="9" y="500" as="sourcePoint"/>
+                        <mxPoint x="9" y="860" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-21" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="127.5" y="560" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-22" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-21" target="0_EiWiRKq0PDG39n65AQ-23">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="100" y="602.5" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="99.97000000000003" y="597.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-23" value="Durata&lt;br&gt;vuoto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="102.5" y="630" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-24" value="Durata compilato" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="102.5" y="705" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-25" value="compila&lt;br&gt;(durata)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-23" target="0_EiWiRKq0PDG39n65AQ-24">
+                    <mxGeometry x="-0.3333" y="-77" relative="1" as="geometry">
+                        <mxPoint x="195" y="653" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-1" as="offset"/>
+                        <mxPoint x="248.75" y="655" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-26" value="cancella&lt;br&gt;(durata)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-24" target="0_EiWiRKq0PDG39n65AQ-23">
+                    <mxGeometry x="0.1111" y="-10" relative="1" as="geometry">
+                        <mxPoint x="205" y="619.9999999999999" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="163" y="665" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-27" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="312.49999999999955" y="505" as="sourcePoint"/>
+                        <mxPoint x="312.49999999999955" y="865" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-28" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="452.5" y="560" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-29" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;rounded=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-28" target="0_EiWiRKq0PDG39n65AQ-30">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="425" y="602.5" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="424.97" y="597.5" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-30" value="Difficoltà&lt;br&gt;vuoto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="427.5" y="630" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-31" value="Difficoltà compilato" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="PN0qWD7VaQw6Qfc42OEK-1">
+                    <mxGeometry x="427.5" y="705" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-32" value="compila&lt;br&gt;(difficoltà)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-30" target="0_EiWiRKq0PDG39n65AQ-31">
+                    <mxGeometry x="-0.3333" y="-77" relative="1" as="geometry">
+                        <mxPoint x="520" y="653" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint x="-1" as="offset"/>
+                        <mxPoint x="573.75" y="655" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="0_EiWiRKq0PDG39n65AQ-33" value="cancella&lt;br&gt;(difficoltà)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;align=left;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;strokeColor=#6F7978;labelBackgroundColor=#CCE8E7;labelBorderColor=#CCE8E7;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="PN0qWD7VaQw6Qfc42OEK-1" source="0_EiWiRKq0PDG39n65AQ-31" target="0_EiWiRKq0PDG39n65AQ-30">
+                    <mxGeometry x="0.1111" y="-10" relative="1" as="geometry">
+                        <mxPoint x="530" y="619.9999999999999" as="sourcePoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="488" y="665" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>

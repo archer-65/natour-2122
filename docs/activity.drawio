@@ -1,174 +1,112 @@
 <mxfile host="65bd71144e">
-    <diagram id="DfZXAu3wmzwe0IcZCl70" name="Autenticazione">
-        <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" page="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <diagram id="DfZXAu3wmzwe0IcZCl70" name="Login/Login social">
+        <mxGraphModel dx="1687" dy="883" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="2" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="384" y="150" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="645" y="30" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="2" edge="1">
+                <mxCell id="3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="2" edge="1" target="6">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="399" y="240" as="targetPoint"/>
+                        <mxPoint x="659" y="110" as="targetPoint"/>
+                        <mxPoint x="660" y="70" as="sourcePoint"/>
+                        <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="6" value="Apre schermata iniziale" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="339" y="240" width="120" height="40" as="geometry"/>
+                <mxCell id="6" value="Visualizza schermata&lt;br&gt;&quot;LoginUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="120" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0.5;entryY=-0.012;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="6" target="14" edge="1">
+                <mxCell id="7" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="6" target="36" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="399" y="330" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="400" y="310"/>
-                            <mxPoint x="400" y="310"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="14" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#B3C8E8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="340" width="80" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="15" value="[L'utente non vuole creare un account]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="14" edge="1">
-                    <mxGeometry x="-1" relative="1" as="geometry">
-                        <mxPoint x="600" y="440" as="targetPoint"/>
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="16" value="[L'utente vuole creare un account]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="14" edge="1">
-                    <mxGeometry x="0.3333" y="-22" relative="1" as="geometry">
-                        <mxPoint x="200" y="440" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="200" y="360"/>
-                        </Array>
-                        <mxPoint x="12" y="-20" as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="19" value="Preme pulsante &quot;Registrati&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="140" y="440" width="120" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="20" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="19" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="200" y="540" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="23" value="Visualizza schermata &quot;SignUpUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="140" y="540" width="120" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="24" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="23" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="200" y="640" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="25" value="Inserisce informazioni" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="140" y="640" width="120" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="26" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="25" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="200" y="740" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="27" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#B3C8E8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="160" y="840" width="80" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="28" value="[Informazioni non valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="27" target="25" edge="1">
-                    <mxGeometry x="-0.52" relative="1" as="geometry">
-                        <mxPoint x="80" y="680" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint y="860"/>
-                            <mxPoint y="660"/>
-                        </Array>
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="29" value="[Informazioni valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0.167;entryY=-0.008;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="27" target="61" edge="1">
-                    <mxGeometry x="-1" y="20" relative="1" as="geometry">
-                        <mxPoint x="400" y="930" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="440" y="860"/>
-                        </Array>
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="30" value="Preme pulsante &quot;Registrati&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="140" y="740" width="120" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="31" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="30" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="200" y="840" as="targetPoint"/>
+                        <mxPoint x="660" y="210" as="targetPoint"/>
+                        <Array as="points"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="36" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#B3C8E8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="560" y="440" width="80" height="40" as="geometry"/>
+                    <mxGeometry x="620" y="220" width="80" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="37" value="[L'utente vuole accedere &lt;br&gt;tramite credenziali]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0.506;entryY=-0.072;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="36" target="64" edge="1">
                     <mxGeometry x="-1" relative="1" as="geometry">
-                        <mxPoint x="720" y="520" as="targetPoint"/>
+                        <mxPoint x="780" y="300" as="targetPoint"/>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="38" value="[L'utente vuole accedere &lt;br&gt;tramite terzi]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="36" target="39" edge="1">
-                    <mxGeometry y="-50" relative="1" as="geometry">
-                        <mxPoint x="480" y="520" as="targetPoint"/>
+                    <mxGeometry y="-57" relative="1" as="geometry">
+                        <mxPoint x="540" y="300" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="480" y="460"/>
+                            <mxPoint x="540" y="240"/>
                         </Array>
-                        <mxPoint x="20" y="-40" as="offset"/>
+                        <mxPoint x="17" y="-40" as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="39" value="Preme il pulsante di Google o di Facebook" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="420" y="540" width="120" height="40" as="geometry"/>
+                    <mxGeometry x="480" y="320" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="39" target="61" edge="1">
+                <mxCell id="40" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="39" target="IKP4s8SIM8X3_A3ncpb--80" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="480" y="947" as="targetPoint"/>
+                        <mxPoint x="540" y="420" as="targetPoint"/>
+                        <mxPoint x="630" y="340" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="55" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="64" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="719" y="640" as="targetPoint"/>
+                        <mxPoint x="779" y="420" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="56" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#B3C8E8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="679" y="740" width="80" height="40" as="geometry"/>
+                    <mxGeometry x="739" y="520" width="80" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="[Informazioni non valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="56" target="64" edge="1">
+                <mxCell id="57" value="[Credenziali non valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="56" target="64" edge="1">
                     <mxGeometry x="-1" relative="1" as="geometry">
-                        <mxPoint x="789" y="560" as="targetPoint"/>
+                        <mxPoint x="849.0000000000001" y="340" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="919" y="760"/>
-                            <mxPoint x="919" y="560"/>
+                            <mxPoint x="979.0000000000001" y="540"/>
+                            <mxPoint x="979.0000000000001" y="340"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="58" value="[Informazioni valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0.833;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="56" target="61" edge="1">
-                    <mxGeometry x="-0.1667" y="-20" relative="1" as="geometry">
-                        <mxPoint x="519" y="940" as="targetPoint"/>
+                <mxCell id="58" value="[Credenziali valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="56" target="61" edge="1">
+                    <mxGeometry x="-0.476" y="11" relative="1" as="geometry">
+                        <mxPoint x="740" y="730" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="519" y="760"/>
+                            <mxPoint x="779" y="640"/>
                         </Array>
                         <mxPoint as="offset"/>
+                        <mxPoint x="580" y="510" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="59" value="Preme pulsante &quot;Accedi&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="659" y="640" width="120" height="40" as="geometry"/>
+                    <mxGeometry x="719" y="420" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="60" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" source="59" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="719" y="740" as="targetPoint"/>
+                        <mxPoint x="779" y="520" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="61" value="Visualizza schermata &quot;HomepageUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="420" y="950" width="120" height="40" as="geometry"/>
+                    <mxGeometry x="600" y="620" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="63" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="465" y="1050" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="645" y="710" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="64" value="Inserisce credenziali" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" vertex="1">
-                    <mxGeometry x="659" y="540" width="120" height="40" as="geometry"/>
+                    <mxGeometry x="719" y="320" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="66" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="1" edge="1">
+                <mxCell id="66" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" target="63" source="61">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="479.5" y="1050" as="targetPoint"/>
-                        <mxPoint x="479.5" y="990" as="sourcePoint"/>
+                        <mxPoint x="660" y="720" as="targetPoint"/>
+                        <mxPoint x="659.5" y="670" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKP4s8SIM8X3_A3ncpb--80" value="Effettua accesso&amp;nbsp;&lt;br&gt;tramite WebView" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="420" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKP4s8SIM8X3_A3ncpb--81" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IKP4s8SIM8X3_A3ncpb--80" target="61">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="539.66" y="530.0000000000001" as="targetPoint"/>
+                        <mxPoint x="539.66" y="470" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>
@@ -1486,6 +1424,154 @@
                 <mxCell id="aOiUjcqVyldJsEt0Ff5z-1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" edge="1" source="aOiUjcqVyldJsEt0Ff5z-0" parent="FMA_D36bvQWmhanH8rQe-1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="399" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="Ylbr5xX_-nYyxPoIokil" name="Registrazione">
+        <mxGraphModel dx="1389" dy="1896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="6BR2JrZ1X4PfegnLqz2E-0"/>
+                <mxCell id="6BR2JrZ1X4PfegnLqz2E-1" parent="6BR2JrZ1X4PfegnLqz2E-0"/>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-0" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="43n9t6GVvynivrk02gIN-2" target="OOPq8lXjvhI3xpM1xjOq-1">
+                    <mxGeometry x="-0.5543" y="-183" relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-950" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="459.89" y="-1020" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-1" value="Preme pulsante &quot;Registrati&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.89" y="-950" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-850" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-3" value="Visualizza schermata &quot;SignUpUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.89" y="-850" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-3">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-750" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-5" value="Inserisce informazioni" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.89" y="-750" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-6" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-5">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-650" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-7" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#B3C8E8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="419.89" y="-550" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-8" value="[Informazioni non valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-7" target="OOPq8lXjvhI3xpM1xjOq-5">
+                    <mxGeometry x="-0.4" relative="1" as="geometry">
+                        <mxPoint x="339.89" y="-710" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="259.89" y="-530"/>
+                            <mxPoint x="259.89" y="-730"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-9" value="[Informazioni valide]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-7" target="OOPq8lXjvhI3xpM1xjOq-12">
+                    <mxGeometry x="-0.4286" relative="1" as="geometry">
+                        <mxPoint x="599.89" y="-450" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="459.89" y="-500"/>
+                            <mxPoint x="459.89" y="-500"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="459.89" y="-500" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-10" value="Preme pulsante &quot;Registrati&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.89" y="-650" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-11" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-10">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-550" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-12" value="Visualizza schermata &quot;SignUpConfirmationUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="389.89" y="-440" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-13" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-12" target="OOPq8lXjvhI3xpM1xjOq-14">
+                    <mxGeometry x="-0.4286" relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-340" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="459.6" y="-390" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-14" value="Inserisce codice &lt;br&gt;di conferma" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.89" y="-340" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-15" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-14" target="OOPq8lXjvhI3xpM1xjOq-16">
+                    <mxGeometry x="-0.4286" relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-240" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="459.98" y="-290" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-16" value="Preme pulsante&lt;br&gt;&quot;Conferma&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.89" y="-240" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-17" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#B3C8E8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="419.89" y="-140" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-18" value="[Codice di conferma non valido]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-17" target="OOPq8lXjvhI3xpM1xjOq-14">
+                    <mxGeometry x="-0.3645" y="30" relative="1" as="geometry">
+                        <mxPoint x="359.98" y="-320" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="262.98" y="-120"/>
+                            <mxPoint x="262.98" y="-320"/>
+                        </Array>
+                        <mxPoint x="7" y="20" as="offset"/>
+                        <mxPoint x="413.07000000000005" y="-120" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-19" value="[Codice di conferma valido]" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=top;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-17" target="Nz2LGBR-1U30JrZ93LWP-0">
+                    <mxGeometry x="-0.4286" relative="1" as="geometry">
+                        <mxPoint x="459.8899999999999" y="-30" as="targetPoint"/>
+                        <Array as="points"/>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="459.89" y="-90" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="OOPq8lXjvhI3xpM1xjOq-20" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="OOPq8lXjvhI3xpM1xjOq-16" target="OOPq8lXjvhI3xpM1xjOq-17">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.98" y="-150" as="targetPoint"/>
+                        <mxPoint x="459.8899999999999" y="-200" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="43n9t6GVvynivrk02gIN-0" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="444.88999999999993" y="-1140" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="43n9t6GVvynivrk02gIN-1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="43n9t6GVvynivrk02gIN-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.8899999999998" y="-1050" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="43n9t6GVvynivrk02gIN-2" value="Visualizza schermata&lt;br&gt;&quot;LoginUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.88999999999993" y="-1050" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="Nz2LGBR-1U30JrZ93LWP-0" value="Visualizza schermata&lt;br&gt;&quot;LoginUI&quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="399.89" y="-30" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="19wbr0KumHUnvIjVABRX-0" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#81A1C1;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" vertex="1" parent="6BR2JrZ1X4PfegnLqz2E-1">
+                    <mxGeometry x="444.89" y="70" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19wbr0KumHUnvIjVABRX-1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#6F7978;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="6BR2JrZ1X4PfegnLqz2E-1" source="Nz2LGBR-1U30JrZ93LWP-0" target="19wbr0KumHUnvIjVABRX-0">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.3899999999999" y="70" as="targetPoint"/>
+                        <mxPoint x="459" y="20" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>

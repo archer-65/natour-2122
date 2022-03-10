@@ -96,7 +96,9 @@ class RouteDetailsViewModel @Inject constructor(
                 is DataState.Success -> {
                     val polylines = PolylineOptions()
                     result.data?.let { polylines.addAll(it.points) }
-                    _uiState.update { it.copy(polylineOptions = polylines) }
+                    val oldRoute = uiState.value.route
+                    val newRoute = oldRoute?.copy(polylineOptions = polylines)
+                    _uiState.update { it.copy(route = newRoute) }
                 }
                 is DataState.Error -> _uiState.update {
                     it.copy(error = result.error)

@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.unina.natourkt.R
 import com.unina.natourkt.common.scrollBehavior
 import com.unina.natourkt.databinding.FragmentPersonalCompilationsBinding
 import com.unina.natourkt.presentation.base.adapter.CompilationAdapter
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
+import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -21,9 +25,10 @@ import kotlinx.coroutines.flow.collectLatest
  */
 @AndroidEntryPoint
 class PersonalCompilationsFragment :
-    BaseFragment<FragmentPersonalCompilationsBinding, PersonalCompilationsViewModel>() {
+    BaseFragment<FragmentPersonalCompilationsBinding, PersonalCompilationsViewModel>(),
+    CompilationAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = CompilationAdapter()
+    private val recyclerAdapter = CompilationAdapter(this@PersonalCompilationsFragment)
 
     private val viewModel: PersonalCompilationsViewModel by viewModels()
 
@@ -67,5 +72,12 @@ class PersonalCompilationsFragment :
         collectLatestOnLifecycleScope(compilationsFlow) {
             recyclerAdapter.submitData(it)
         }
+    }
+
+    override fun onItemClick(compilation: CompilationItemUiState) {
+        val action = ProfileFragmentDirections.actionNavigationProfileToCompilationDetailsFragment(
+            compilation
+        )
+        findNavController().navigate(action)
     }
 }

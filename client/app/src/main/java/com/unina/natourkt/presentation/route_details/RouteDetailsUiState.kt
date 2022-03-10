@@ -12,7 +12,6 @@ data class RouteDetailsUiState(
     val isLoading: Boolean = false,
     val error: DataState.Cause? = null,
     val route: RouteUiState? = null,
-    val polylineOptions: PolylineOptions = PolylineOptions(),
     val loggedUser: UserUiState? = null,
 )
 
@@ -27,7 +26,8 @@ data class RouteUiState(
     val isReported: Boolean,
     val photos: List<String>,
     val stops: List<RouteStopUiState>,
-    val authorId: Long
+    val authorId: Long,
+    val polylineOptions: PolylineOptions = PolylineOptions(),
 )
 
 data class RouteStopUiState(

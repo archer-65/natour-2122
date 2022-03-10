@@ -69,11 +69,16 @@ public class RouteService {
                 .toList());
     }
 
+    public List<RouteDto> getAllRoutesByCompilationId(Long compilationId, Integer pageNo, Integer pageSize) {
+        return routeMapper.toDto(routeRepository.findByCompilation(compilationId, PageRequest.of(pageNo, pageSize))
+                .stream()
+                .toList());
+    }
 
     /**
      * Get all routes by filter
      *
-     * @param filter the search criteria
+     * @param filter   the search criteria
      * @param pageNo
      * @param pageSize
      * @return List of RouteDTO Objects, mapped from Entity

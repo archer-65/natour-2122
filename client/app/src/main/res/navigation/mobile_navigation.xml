@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_navigation_route_details"
             app:destination="@id/navigation_route_details_flow" />
+        <action
+            android:id="@+id/action_navigation_profile_to_compilationDetailsFragment"
+            app:destination="@id/compilationDetailsFragment" />
     </fragment>
 
     <navigation
@@ -238,5 +241,17 @@
             app:destination="@id/navigation_post_details" />
 
     </navigation>
+    <fragment
+        android:id="@+id/compilationDetailsFragment"
+        android:name="com.unina.natourkt.presentation.compilation_details.CompilationDetailsFragment"
+        android:label="fragment_compilation_details"
+        tools:layout="@layout/fragment_compilation_details" >
+        <argument
+            android:name="compilationItem"
+            app:argType="com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState" />
+        <action
+            android:id="@+id/action_compilationDetailsFragment_to_navigation_route_details_flow"
+            app:destination="@id/navigation_route_details_flow" />
+    </fragment>
 
 </navigation>

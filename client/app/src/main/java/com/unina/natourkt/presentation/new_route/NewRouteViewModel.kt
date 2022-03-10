@@ -77,6 +77,12 @@ class NewRouteViewModel @Inject constructor(
         }
     }
 
+    fun cleanStops() {
+        _uiState.update {
+            it.copy(routeStops = emptyList())
+        }
+    }
+
     fun getDirections() {
         val stops = uiState.value.routeStops.map { it.toRouteStopCreation() }
         getDirectionsUseCase(stops).onEach { result ->

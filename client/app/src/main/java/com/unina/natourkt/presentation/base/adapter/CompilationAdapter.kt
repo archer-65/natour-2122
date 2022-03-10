@@ -9,11 +9,12 @@ import com.unina.natourkt.R
 import com.unina.natourkt.common.loadWithGlide
 import com.unina.natourkt.databinding.CompilationItemBinding
 import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
+import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
 
 /**
  * Implementation of PagingDataAdapter for [CompilationItemUiState]
  */
-class CompilationAdapter :
+class CompilationAdapter(val listener: OnItemClickListener) :
     PagingDataAdapter<CompilationItemUiState, CompilationAdapter.CompilationViewHolder>(
         CompilationComparator
     ) {
@@ -32,6 +33,18 @@ class CompilationAdapter :
     inner class CompilationViewHolder(val binding: CompilationItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onItemClick(item)
+                    }
+                }
+            }
+        }
+
         fun bind(compilation: CompilationItemUiState) = with(binding) {
             // Set basic details
             compilationTitle.text = compilation.title
@@ -40,6 +53,10 @@ class CompilationAdapter :
             authorPhoto.loadWithGlide(compilation.authorPhoto, R.drawable.ic_avatar_svgrepo_com)
             compilationPhoto.loadWithGlide(compilation.photo)
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(compilation: CompilationItemUiState)
     }
 
     object CompilationComparator : DiffUtil.ItemCallback<CompilationItemUiState>() {

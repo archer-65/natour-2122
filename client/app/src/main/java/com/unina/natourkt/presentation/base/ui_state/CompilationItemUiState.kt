@@ -1,13 +1,19 @@
 package com.unina.natourkt.presentation.base.ui_state
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CompilationItemUiState(
     val id: Long,
     val title: String,
     val description: String,
     val photo: String,
     val authorId: Long,
-    val authorPhoto: String?
-)
+    val authorPhoto: String?,
+) : Parcelable
+
+
 
 suspend fun CompilationItemUiState.convertKeys(execute: suspend (string: String) -> String): CompilationItemUiState {
     val authorPhoto = this.authorPhoto?.let { execute(it) }

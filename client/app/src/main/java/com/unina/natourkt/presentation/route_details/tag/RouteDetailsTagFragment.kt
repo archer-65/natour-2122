@@ -85,7 +85,7 @@ class RouteDetailsTagFragment :
             footerLoadStateAdapter.loadState = loadState.append
             headerLoadStateAdapter.loadState = loadState.refresh
 
-            recyclerTaggedPosts.isVisible = loadState.source.refresh !is LoadState.Loading
+            //recyclerTaggedPosts.isVisible = loadState.source.refresh !is LoadState.Loading
         }
 
         val concatAdapter =

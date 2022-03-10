@@ -107,6 +107,21 @@ public class RouteController {
         }
     }
 
+    @GetMapping("/routes/compilation")
+    public ResponseEntity<List<RouteDto>> getAllRoutesByCompilationId(
+            @RequestParam(name = "compilation_id") Long compilationId,
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize) {
+
+        List<RouteDto> routeDtoList = routeService.getAllRoutesByCompilationId(compilationId, pageNo, pageSize);
+
+        if (!routeDtoList.isEmpty()) {
+            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     /**
      * Searches all routes by filter
      *

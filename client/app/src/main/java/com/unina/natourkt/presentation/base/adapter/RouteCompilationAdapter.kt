@@ -2,6 +2,7 @@ package com.unina.natourkt.presentation.base.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.NonNull
 import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -10,28 +11,34 @@ import com.bumptech.glide.Glide
 import com.unina.natourkt.R
 import com.unina.natourkt.common.loadWithGlide
 import com.unina.natourkt.databinding.RouteItemBinding
+import com.unina.natourkt.databinding.RouteItemInCompilationBinding
 import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
 
 /**
  * Implementation of PagingDataAdapter for [RouteItemUiState] (posts on routes screen)
  */
-class RouteAdapter(private val listener: OnItemClickListener) :
-    PagingDataAdapter<RouteItemUiState, RouteAdapter.RouteViewHolder>(DiffUtilCallback()) {
+class RouteCompilationAdapter(private val listener: OnItemClickListener) :
+    PagingDataAdapter<RouteItemUiState, RouteCompilationAdapter.RouteCompilationViewHolder>(
+        DiffUtilCallback()
+    ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RouteViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RouteCompilationViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
 
-        val binding = RouteItemBinding.inflate(layoutInflater, parent, false)
+        val binding = RouteItemInCompilationBinding.inflate(layoutInflater, parent, false)
 
-        return RouteViewHolder(binding)
+        return RouteCompilationViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RouteAdapter.RouteViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: RouteCompilationAdapter.RouteCompilationViewHolder,
+        position: Int
+    ) {
         holder.bind(getItem(position)!!)
     }
 
-    inner class RouteViewHolder(val binding: RouteItemBinding) :
+    inner class RouteCompilationViewHolder(val binding: RouteItemInCompilationBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {

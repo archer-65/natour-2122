@@ -30,4 +30,5 @@ interface RouteRepository {
     suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>>
 
     suspend fun getRouteById(id: Long): DataState<Route>
+    fun getCompilationRoutes(compilationId: Long): Flow<PagingData<Route>>
 }

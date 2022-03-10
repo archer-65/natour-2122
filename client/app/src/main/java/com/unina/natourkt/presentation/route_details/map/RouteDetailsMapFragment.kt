@@ -33,24 +33,23 @@ class RouteDetailsMapFragment :
         mapView.setBottomMargin()
     }
 
-    override fun setFirstCameraPosition() = with(viewModel.uiState.value.route!!.stops.first()) {
-        map.moveAndZoomCamera(LatLng(latitude, longitude))
-    }
-
     override fun collectState() = with(viewModel) {
         collectLatestOnLifecycleScope(uiState) {
             it.route?.let {
+                val firstStop = it.stops.first()
+                map.moveAndZoomCamera(LatLng(firstStop.latitude, firstStop.longitude))
+
                 it.stops.map { stop ->
                     map.addCustomMarker(
                         stop.stopNumber.toString(),
                         LatLng(stop.latitude, stop.longitude)
                     )
                 }
-            }
 
-            if (it.route?.stops?.size!! >= 2) {
-                getDirections()
-                map.addPolyline(it.polylineOptions)
+                if (it.stops.size >= 2) {
+                    getDirections()
+                    map.addPolyline(it.polylineOptions)
+                }
             }
         }
     }

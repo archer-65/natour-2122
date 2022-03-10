@@ -91,6 +91,7 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
         )
 
         val adapter = ViewPagerAdapter(fragmentList, childFragmentManager, lifecycle)
+        viewPager.isUserInputEnabled = false
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -100,14 +101,5 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
                 2 -> tab.text = "TAG"
             }
         }.attach()
-
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageScrollStateChanged(state: Int) {
-                super.onPageScrollStateChanged(state)
-
-                viewPager.isUserInputEnabled =
-                    !(state == SCROLL_STATE_DRAGGING && viewPager.currentItem == 1)
-            }
-        })
     }
 }

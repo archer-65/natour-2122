@@ -119,7 +119,7 @@ abstract class BaseMapFragment<VB : ViewBinding, VM : ViewModel, MapBinding : Ma
      * Manages the `onSaveInstanceState` behavior of MapView
      * DON'T WORK!!!
      */
-//    override fun onSaveInstanceState(outState: Bundle) {
+//    override fun onSaveInstanceState(outState: Bundle) {dd
 //        super.onSaveInstanceState(outState)
 //        mapView.onSaveInstanceState(outState)
 //    }
@@ -188,18 +188,6 @@ abstract class BaseMapFragment<VB : ViewBinding, VM : ViewModel, MapBinding : Ma
     open fun setTextChangedListeners() {}
 
     /**
-     * This function initialize any recycler view
-     */
-    open fun initRecycler() {}
-
-    /**
-     * This function initialize a [ConcatAdapter]
-     */
-    open fun initConcatAdapter(): ConcatAdapter {
-        return ConcatAdapter()
-    }
-
-    /**
      * This function serves as a way to set the initial map position.
      * Usually the initial position is the first stop of a route or a placeholder chosen
      * by developers :)
@@ -243,6 +231,7 @@ abstract class BaseMapFragment<VB : ViewBinding, VM : ViewModel, MapBinding : Ma
      * and the onMapReady(GoogleMap) method will only be triggered when the user has installed it and returned to the app.
      */
     override fun onMapReady(map: GoogleMap) {
+        map.setPadding(0, 0, 0, 150)
         setFirstCameraPosition()
         collectState()
         setMapListeners()

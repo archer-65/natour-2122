@@ -30,7 +30,6 @@ class NewRouteMapFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupGpx()
     }
 
@@ -66,6 +65,9 @@ class NewRouteMapFragment :
             R.id.import_gpx -> {
                 launcherGpx.launch(Unit)
             }
+            R.id.clear_map -> {
+                viewModel.cleanStops()
+            }
         }
         return true
     }
@@ -87,8 +89,9 @@ class NewRouteMapFragment :
 
     override fun collectState() = with(viewModel) {
         collectOnLifecycleScope(uiState) {
+            map.clear()
+
             if (it.routeStops.isNotEmpty()) {
-                map.clear()
                 it.routeStops.map { stop ->
                     map.addCustomMarker(
                         stop.stopNumber.toString(),

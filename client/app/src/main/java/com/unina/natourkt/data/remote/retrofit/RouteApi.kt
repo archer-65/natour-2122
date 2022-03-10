@@ -34,6 +34,13 @@ interface RouteApi {
         @Query("page_size") pageSize: Int
     ): List<RouteDto>
 
+    @GET("/routes/compilation")
+    suspend fun getRoutesByCompilation(
+        @Query("compilation_id") compilationId: Long,
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
+    ): List<RouteDto>
+
     @POST("/routes/add")
     suspend fun createRoute(
         @Body routeDto: RouteCreationDto

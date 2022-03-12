@@ -18,7 +18,7 @@
     <string name="button_signup_text">Registrati</string>
     <string name="button_login_text">Accedi</string>
     <string name="text_social_login">Oppure</string>
-    <string name="button_signup_send_text">Registrazione</string>
+    <string name="button_signup_send_text">Registrati</string>
     <string name="forgot_password"><u>Password dimenticata?</u></string>
     <string name="resend_confirmation_code"><u>Inviami di nuovo il codice</u></string>
     <!-- Form validation -->

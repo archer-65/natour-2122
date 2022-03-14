@@ -19,27 +19,29 @@ data class RouteCreationDto(
     val isDisabilityFriendly: Boolean,
 
     @SerializedName("route_photos")
-    val photos: List<RoutePhotoCreationDto>,
+    val photos: List<Photo>,
 
     @SerializedName("route_stops")
-    val stops: List<RouteStopCreationDto>,
+    val stops: List<RouteStopDto>,
 
     @SerializedName("route_author")
     val author: UserDto,
-)
+) {
 
-data class RoutePhotoCreationDto(
-    @SerializedName("photo")
-    val photo: String
-)
+    data class Photo(
+        @SerializedName("photo")
+        val photo: String
+    )
+}
 
-data class RouteStopCreationDto(
-    @SerializedName("stop_number")
-    val stopNumber: Int,
 
-    @SerializedName("stop_latitude")
-    val latitude: Double,
-
-    @SerializedName("stop_longitude")
-    val longitude: Double,
-)
+//data class RouteStopCreationDto(
+//    @SerializedName("stop_number")
+//    val stopNumber: Int,
+//
+//    @SerializedName("stop_latitude")
+//    val latitude: Double,
+//
+//    @SerializedName("stop_longitude")
+//    val longitude: Double,
+//)

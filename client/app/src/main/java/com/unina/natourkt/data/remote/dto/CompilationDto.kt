@@ -23,13 +23,3 @@ data class CompilationDto(
     @SerializedName("compilation_author")
     val author: UserDto
 )
-
-fun CompilationDto.toCompilation(): Compilation {
-    return Compilation(
-        id = id,
-        title = title,
-        description = description,
-        photo = photo,
-        author = author.toUser()
-    )
-}

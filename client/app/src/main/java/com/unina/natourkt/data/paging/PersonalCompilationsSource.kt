@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.unina.natourkt.common.Constants.COMPILATION_MODEL
-import com.unina.natourkt.data.remote.dto.toCompilation
+import com.unina.natourkt.data.remote.dto.mapper.CompilationApiMapper
 import com.unina.natourkt.data.remote.retrofit.CompilationApi
 import com.unina.natourkt.data.repository.CompilationRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.domain.model.Compilation
@@ -16,6 +16,7 @@ private const val INITIAL_PAGE = 0
 
 class PersonalCompilationPagingSource @Inject constructor(
     private val api: CompilationApi,
+    private val compilationApiMapper: CompilationApiMapper,
     private val userId: Long
 ) : PagingSource<Int, Compilation>() {
 
@@ -29,7 +30,7 @@ class PersonalCompilationPagingSource @Inject constructor(
             Log.i(COMPILATION_MODEL, "$response")
 
             LoadResult.Page(
-                data = response.map { compilationDto -> compilationDto.toCompilation() },
+                data = response.map { dto -> compilationApiMapper.mapToDomain(dto) },
                 prevKey = if (position == INITIAL_PAGE) null else position - 1,
                 // Avoids duplicates
                 nextKey = if (response.isEmpty()) null else position + (params.loadSize / NETWORK_PAGE_SIZE)

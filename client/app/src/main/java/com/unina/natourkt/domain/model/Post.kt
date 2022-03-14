@@ -1,9 +1,5 @@
 package com.unina.natourkt.domain.model
 
-import android.net.Uri
-import com.unina.natourkt.data.remote.dto.PostCreationDto
-import com.unina.natourkt.data.remote.dto.PostPhotoCreationDto
-import com.unina.natourkt.domain.model.route.Route
 import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
 import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
 import com.unina.natourkt.presentation.post_details.PostUiState

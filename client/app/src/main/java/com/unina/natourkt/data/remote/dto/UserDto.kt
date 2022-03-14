@@ -17,13 +17,13 @@ data class UserDto(
     val profilePhoto: String?,
 )
 
-/**
- * Map [UserDto] to [User]
- */
-fun UserDto.toUser(): User {
-    return User(
-        id = id,
-        username = username,
-        profilePhoto = profilePhoto,
-    )
-}
+///**
+// * Map [UserDto] to [User]
+// */
+//fun UserDto.toUser(): User {
+//    return User(
+//        id = id,
+//        username = username,
+//        profilePhoto = profilePhoto,
+//    )
+//}

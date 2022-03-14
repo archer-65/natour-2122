@@ -1,11 +1,9 @@
 package com.unina.natourkt.data.remote.dto.route
 
 import com.google.gson.annotations.SerializedName
-import com.unina.natourkt.common.toDateTime
+import com.unina.natourkt.data.remote.dto.RouteStopDto
 import com.unina.natourkt.data.remote.dto.UserDto
-import com.unina.natourkt.data.remote.dto.toUser
 import com.unina.natourkt.domain.model.route.Route
-import com.unina.natourkt.domain.model.route.RouteStop
 
 /**
  * This class represents the response from API for [Route]
@@ -39,64 +37,67 @@ data class RouteDto(
     val isRouteReported: Boolean,
 
     @SerializedName("route_photos")
-    val photos: List<RoutePhotoDto>,
+    val photos: List<Photo>,
 
     @SerializedName("route_stops")
     val stops: List<RouteStopDto>,
 
     @SerializedName("route_author")
     val author: UserDto,
-)
+) {
+
+    data class Photo(
+        @SerializedName("id")
+        val id: Long,
+
+        @SerializedName("photo")
+        val photo: String
+    )
+}
 
 /**
  * Only contains the response for route's photos
  */
-data class RoutePhotoDto(
-    @SerializedName("id")
-    val id: Long,
 
-    @SerializedName("photo")
-    val photo: String
-)
 
-data class RouteStopDto(
-    @SerializedName("stop_id")
-    val id: Long,
+//data class RouteStopDto(
+//    @SerializedName("stop_id")
+//    val id: Long,
+//
+//    @SerializedName("stop_number")
+//    val stopNumber: Int,
+//
+//    @SerializedName("stop_latitude")
+//    val latitude: Double,
+//
+//    @SerializedName("stop_longitude")
+//    val longitude: Double,
+//)
 
-    @SerializedName("stop_number")
-    val stopNumber: Int,
-
-    @SerializedName("stop_latitude")
-    val latitude: Double,
-
-    @SerializedName("stop_longitude")
-    val longitude: Double,
-)
-
-/**
- * Function to map [RouteDto] to [Route]
- */
-fun RouteDto.toRoute(): Route {
-    return Route(
-        id = id,
-        title = title,
-        description = description ?: "",
-        difficulty = difficulty,
-        duration = duration,
-        disabilityFriendly = isDisabilityFriendly,
-        creationDate = creationDate.toDateTime(),
-        modifiedDate = modifiedDate?.toDateTime(),
-        isReported = isRouteReported,
-        photos = photos.map { photo -> photo.photo },
-        stops = stops.map { stop -> stop.toRouteStop() },
-        author = author.toUser()
-    )
-}
-
-fun RouteStopDto.toRouteStop(): RouteStop {
-    return RouteStop(
-        stopNumber = stopNumber,
-        latitude = latitude,
-        longitude = longitude
-    )
-}
+///**
+// * Function to map [RouteDto] to [Route]
+// */
+//fun RouteDto.toRoute(): Route {
+//    return Route(
+//        id = id,
+//        title = title,
+//        description = description ?: "",
+//        difficulty = difficulty,
+//        duration = duration,
+//        disabilityFriendly = isDisabilityFriendly,
+//        creationDate = creationDate.toDateTime(),
+//        modifiedDate = modifiedDate?.toDateTime(),
+//        isReported = isRouteReported,
+//        photos = photos.map { photo -> photo.photo },
+//        stops = stops.map { stop -> stop.toRouteStop() },
+//        author = author.toUser()
+//    )
+//}
+//
+//fun RouteStopDto.toRouteStop(): RouteStop {
+//    return RouteStop(
+//        stopNumber = stopNumber,
+//        latitude = latitude,
+//        longitude = longitude
+//    )
+//}

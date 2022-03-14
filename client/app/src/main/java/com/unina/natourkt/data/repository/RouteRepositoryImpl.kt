@@ -4,9 +4,13 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.data.paging.*
-import com.unina.natourkt.data.remote.dto.route.toRoute
-import com.unina.natourkt.data.remote.dto.toRouteTitle
+import com.unina.natourkt.data.paging.CompilationRoutePagingSource
+import com.unina.natourkt.data.paging.FilteredRoutesPagingSource
+import com.unina.natourkt.data.paging.PersonalRoutePagingSource
+import com.unina.natourkt.data.paging.RoutePagingSource
+import com.unina.natourkt.data.remote.dto.mapper.RouteApiMapper
+import com.unina.natourkt.data.remote.dto.mapper.RouteCreationApiMapper
+import com.unina.natourkt.data.remote.dto.mapper.RouteTitleApiMapper
 import com.unina.natourkt.data.remote.retrofit.RouteApi
 import com.unina.natourkt.data.util.safeApiCall
 import com.unina.natourkt.domain.model.Filter
@@ -25,7 +29,10 @@ import javax.inject.Inject
  * Paging 3 library
  */
 class RouteRepositoryImpl @Inject constructor(
-    private val api: RouteApi
+    private val api: RouteApi,
+    private val routeApiMapper: RouteApiMapper,
+    private val routeTitleApiMapper: RouteTitleApiMapper,
+    private val routeCreationApiMapper: RouteCreationApiMapper,
 ) : RouteRepository {
 
     /**
@@ -45,7 +52,7 @@ class RouteRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { RoutePagingSource(api) }
+            pagingSourceFactory = { RoutePagingSource(api, routeApiMapper) }
         ).flow
     }
 
@@ -55,7 +62,7 @@ class RouteRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { PersonalRoutePagingSource(api, userId) }
+            pagingSourceFactory = { PersonalRoutePagingSource(api, routeApiMapper, userId) }
         ).flow
     }
 
@@ -65,7 +72,13 @@ class RouteRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { CompilationRoutePagingSource(api, compilationId) }
+            pagingSourceFactory = {
+                CompilationRoutePagingSource(
+                    api,
+                    routeApiMapper,
+                    compilationId
+                )
+            }
         ).flow
     }
 
@@ -75,15 +88,14 @@ class RouteRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { FilteredRoutesPagingSource(filter, api) }
+            pagingSourceFactory = { FilteredRoutesPagingSource(filter, routeApiMapper, api) }
         ).flow
     }
 
     override suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>> =
         safeApiCall(IO) {
-            api.getRouteTitles(title).map {
-                it.toRouteTitle()
-            }
+            val titlesResponse = api.getRouteTitles(title)
+            titlesResponse.map { routeTitleApiMapper.mapToDomain(it) }
         }
 
 
@@ -94,6 +106,7 @@ class RouteRepositoryImpl @Inject constructor(
 
     override suspend fun getRouteById(id: Long): DataState<Route> =
         safeApiCall(IO) {
-            api.getRouteById(id).toRoute()
+            val routeResponse = api.getRouteById(id)
+            routeApiMapper.mapToDomain(routeResponse)
         }
 }

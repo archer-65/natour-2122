@@ -2,8 +2,7 @@ package com.unina.natourkt.domain.model
 
 import android.util.Log
 import com.unina.natourkt.data.remote.dto.RouteCreationDto
-import com.unina.natourkt.data.remote.dto.RoutePhotoCreationDto
-import com.unina.natourkt.data.remote.dto.RouteStopCreationDto
+import com.unina.natourkt.data.remote.dto.RouteStopDto
 import com.unina.natourkt.domain.model.route.RouteStop
 
 data class RouteCreation(
@@ -31,7 +30,7 @@ fun RouteCreation.toCreationDto(): RouteCreationDto {
         duration = avgDuration,
         isDisabilityFriendly = disabilityFriendly,
         photos = photos.map {
-            RoutePhotoCreationDto(
+            RouteCreationDto.Photo(
                 it
             )
         },
@@ -40,8 +39,8 @@ fun RouteCreation.toCreationDto(): RouteCreationDto {
     )
 }
 
-fun RouteStop.toDto(): RouteStopCreationDto {
-    return RouteStopCreationDto(
+fun RouteStop.toDto(): RouteStopDto {
+    return RouteStopDto(
         stopNumber = stopNumber,
         latitude = latitude,
         longitude = longitude

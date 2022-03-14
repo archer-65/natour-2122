@@ -11,10 +11,3 @@ data class RouteTitleDto(
     val title: String,
 )
 
-fun RouteTitleDto.toRouteTitle(): RouteTitle {
-    return RouteTitle(
-        id = id,
-        title = title,
-    )
-}
-

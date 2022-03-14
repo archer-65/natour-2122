@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.data.paging.PersonalCompilationPagingSource
+import com.unina.natourkt.data.remote.dto.mapper.CompilationApiMapper
 import com.unina.natourkt.data.remote.retrofit.CompilationApi
 import com.unina.natourkt.domain.model.Compilation
 import com.unina.natourkt.domain.repository.CompilationRepository
@@ -11,10 +12,11 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CompilationRepositoryImpl @Inject constructor(
-    private val api: CompilationApi
-): CompilationRepository  {
+    private val api: CompilationApi,
+    private val compilationApiMapper: CompilationApiMapper
+) : CompilationRepository {
 
-    companion object{
+    companion object {
         const val NETWORK_PAGE_SIZE = 10
     }
 
@@ -24,7 +26,13 @@ class CompilationRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory =  { PersonalCompilationPagingSource(api, userId) }
+            pagingSourceFactory = {
+                PersonalCompilationPagingSource(
+                    api,
+                    compilationApiMapper,
+                    userId
+                )
+            }
         ).flow
     }
 }

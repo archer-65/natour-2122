@@ -7,16 +7,19 @@ data class PostCreationDto(
     val description: String,
 
     @SerializedName("post_photos")
-    val photos: List<PostPhotoCreationDto>,
+    val photos: List<Photo>,
 
     @SerializedName("post_author")
     val author: UserDto,
 
     @SerializedName("tagged_route")
     val taggedRoute: RouteTitleDto,
-)
+) {
 
-data class PostPhotoCreationDto(
-    @SerializedName("photo")
-    val photo: String,
-)
+    data class Photo(
+        @SerializedName("photo")
+        val photo: String,
+    )
+}
+
+

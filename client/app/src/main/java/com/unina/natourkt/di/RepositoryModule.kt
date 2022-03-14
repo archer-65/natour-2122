@@ -1,5 +1,6 @@
 package com.unina.natourkt.di
 
+import com.unina.natourkt.data.remote.dto.mapper.*
 import com.unina.natourkt.data.remote.retrofit.*
 import com.unina.natourkt.data.repository.*
 import com.unina.natourkt.domain.repository.*
@@ -23,8 +24,9 @@ object RepositoryModule {
     @Singleton
     fun provideAuthRepository(
         preferencesRepository: PreferencesRepository,
+        userApiMapper: UserApiMapper,
         userApi: UserApi
-    ): AuthRepository = AuthRepositoryImpl(preferencesRepository, userApi)
+    ): AuthRepository = AuthRepositoryImpl(preferencesRepository, userApiMapper, userApi)
 
     @Provides
     @Singleton
@@ -32,8 +34,11 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideMapsRepository(api: MapsApi): MapsRepository {
-        return MapsRepositoryImpl(api)
+    fun provideMapsRepository(
+        api: MapsApi,
+        directionsApiMapper: DirectionsApiMapper
+    ): MapsRepository {
+        return MapsRepositoryImpl(api, directionsApiMapper)
     }
 
     @Provides
@@ -44,19 +49,31 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providePostRepository(api: PostApi): PostRepository {
-        return PostRepositoryImpl(api)
+    fun providePostRepository(
+        api: PostApi,
+        postApiMapper: PostApiMapper,
+        postCreationApiMapper: PostCreationApiMapper
+    ): PostRepository {
+        return PostRepositoryImpl(api, postApiMapper, postCreationApiMapper)
     }
 
     @Provides
     @Singleton
-    fun provideRouteRepository(api: RouteApi): RouteRepository {
-        return RouteRepositoryImpl(api)
+    fun provideRouteRepository(
+        api: RouteApi,
+        routeApiMapper: RouteApiMapper,
+        routeTitleApiMapper: RouteTitleApiMapper,
+        routeCreationApiMapper: RouteCreationApiMapper
+    ): RouteRepository {
+        return RouteRepositoryImpl(api, routeApiMapper, routeTitleApiMapper, routeCreationApiMapper)
     }
 
     @Provides
     @Singleton
-    fun provideCompilationRepository(api: CompilationApi): CompilationRepository {
-        return CompilationRepositoryImpl(api)
+    fun provideCompilationRepository(
+        api: CompilationApi,
+        compilationApiMapper: CompilationApiMapper
+    ): CompilationRepository {
+        return CompilationRepositoryImpl(api, compilationApiMapper)
     }
 }

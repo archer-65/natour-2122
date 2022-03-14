@@ -17,7 +17,7 @@ import com.unina.natourkt.common.Constants.REGISTRATION_STATE
 import com.unina.natourkt.common.Constants.SERVER_ERROR
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.common.ErrorHandler
-import com.unina.natourkt.data.remote.dto.toUser
+import com.unina.natourkt.data.remote.dto.mapper.UserApiMapper
 import com.unina.natourkt.data.remote.retrofit.UserApi
 import com.unina.natourkt.domain.repository.AuthRepository
 import com.unina.natourkt.domain.repository.PreferencesRepository
@@ -31,6 +31,7 @@ import javax.inject.Inject
  */
 class AuthRepositoryImpl @Inject constructor(
     private val preferencesRepository: PreferencesRepository,
+    private val userApiMapper: UserApiMapper,
     private val userApi: UserApi,
 ) : AuthRepository {
 
@@ -123,7 +124,8 @@ class AuthRepositoryImpl @Inject constructor(
                 // Fetch sub of logged user
                 val sub = Amplify.Auth.getCurrentUser()!!.userId
                 // Make request to API to retrieve data
-                val user = userApi.getUserByUUID(sub).toUser()
+                val userApi = userApi.getUserByUUID(sub)
+                val user = userApiMapper.mapToDomain(userApi)
                 // Save user data to DataStore Preferences
                 preferencesRepository.saveUserToDataStore(user)
                 // Return Success
@@ -163,7 +165,8 @@ class AuthRepositoryImpl @Inject constructor(
                 // Fetch sub of logged user
                 val sub = Amplify.Auth.getCurrentUser()!!.userId
                 // Make request to API to retrieve data
-                val user = userApi.getUserByUUID(sub).toUser()
+                val userApi = userApi.getUserByUUID(sub)
+                val user = userApiMapper.mapToDomain(userApi)
                 // Save user data to DataStore Preferences
                 preferencesRepository.saveUserToDataStore(user)
                 // Return Success

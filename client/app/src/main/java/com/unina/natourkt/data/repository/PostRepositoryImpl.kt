@@ -4,15 +4,15 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.data.remote.dto.post.toPost
 import com.unina.natourkt.data.paging.PersonalPostPagingSource
 import com.unina.natourkt.data.paging.PostPagingSource
 import com.unina.natourkt.data.paging.TaggedPostPagingSource
+import com.unina.natourkt.data.remote.dto.mapper.PostApiMapper
+import com.unina.natourkt.data.remote.dto.mapper.PostCreationApiMapper
 import com.unina.natourkt.data.remote.retrofit.PostApi
 import com.unina.natourkt.data.util.safeApiCall
 import com.unina.natourkt.domain.model.Post
 import com.unina.natourkt.domain.model.PostCreation
-import com.unina.natourkt.domain.model.toCreationDto
 import com.unina.natourkt.domain.repository.PostRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
@@ -24,7 +24,9 @@ import javax.inject.Inject
  * Paging 3 library
  */
 class PostRepositoryImpl @Inject constructor(
-    private val api: PostApi
+    private val api: PostApi,
+    private val postApiMapper: PostApiMapper,
+    private val postCreationApiMapper: PostCreationApiMapper,
 ) : PostRepository {
 
     /**
@@ -44,7 +46,7 @@ class PostRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { PostPagingSource(api) }
+            pagingSourceFactory = { PostPagingSource(api, postApiMapper) }
         ).flow
     }
 
@@ -54,7 +56,7 @@ class PostRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { PersonalPostPagingSource(api, userId) }
+            pagingSourceFactory = { PersonalPostPagingSource(api, postApiMapper, userId) }
         ).flow
     }
 
@@ -64,17 +66,19 @@ class PostRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { TaggedPostPagingSource(api, routeId) }
+            pagingSourceFactory = { TaggedPostPagingSource(api, postApiMapper, routeId) }
         ).flow
     }
 
     override suspend fun getPostDetails(id: Long): DataState<Post> =
         safeApiCall(IO) {
-            api.getPostById(id).toPost()
+            val postResponse = api.getPostById(id)
+            postApiMapper.mapToDomain(postResponse)
         }
 
     override suspend fun createPost(post: PostCreation): DataState<Unit> =
         safeApiCall(IO) {
-            api.createRoute(post.toCreationDto())
+            val postRequest = postCreationApiMapper.mapToDto(post)
+            api.createRoute(postRequest)
         }
 }

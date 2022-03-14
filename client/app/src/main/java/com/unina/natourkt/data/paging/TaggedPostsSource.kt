@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.unina.natourkt.common.Constants.POST_MODEL
-import com.unina.natourkt.data.remote.dto.post.toPost
+import com.unina.natourkt.data.remote.dto.mapper.PostApiMapper
 import com.unina.natourkt.data.remote.retrofit.PostApi
-
 import com.unina.natourkt.data.repository.PostRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.domain.model.Post
 import retrofit2.HttpException
@@ -17,6 +16,7 @@ private const val INITIAL_PAGE = 0
 
 class TaggedPostPagingSource @Inject constructor(
     private val api: PostApi,
+    private val postApiMapper: PostApiMapper,
     private val routeId: Long
 ) : PagingSource<Int, Post>() {
 
@@ -29,7 +29,7 @@ class TaggedPostPagingSource @Inject constructor(
             Log.i(POST_MODEL, "$response")
 
             LoadResult.Page(
-                data = response.map { postDto -> postDto.toPost() },
+                data = response.map { dto -> postApiMapper.mapToDomain(dto) },
                 prevKey = if (position == INITIAL_PAGE) null else position - 1,
                 // Avoids duplicates
                 nextKey = if (response.isEmpty()) null else position + (params.loadSize / NETWORK_PAGE_SIZE)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.new_post.NewPostFragment">
+    tools:context=".feature_post.new_post.NewPostFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -32,7 +32,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.new_route.NewRouteInfoFragment">
+            tools:context=".feature_route.new_route.NewRouteInfoFragment">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/routeTextField"

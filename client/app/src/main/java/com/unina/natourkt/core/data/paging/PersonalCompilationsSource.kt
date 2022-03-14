@@ -1,0 +1,61 @@
+package com.unina.natourkt.core.data.paging
+
+import android.util.Log
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
+import com.unina.natourkt.core.util.Constants.COMPILATION_MODEL
+import com.unina.natourkt.core.data.remote.dto.mapper.CompilationApiMapper
+import com.unina.natourkt.core.data.remote.retrofit.CompilationApi
+import com.unina.natourkt.core.data.repository.CompilationRepositoryImpl.Companion.NETWORK_PAGE_SIZE
+import com.unina.natourkt.core.domain.model.Compilation
+import retrofit2.HttpException
+import java.io.IOException
+import javax.inject.Inject
+
+private const val INITIAL_PAGE = 0
+
+class PersonalCompilationPagingSource @Inject constructor(
+    private val api: CompilationApi,
+    private val compilationApiMapper: CompilationApiMapper,
+    private val userId: Long
+) : PagingSource<Int, Compilation>() {
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Compilation> {
+
+        return try {
+            val position = params.key ?: INITIAL_PAGE
+
+            val response =
+                api.getCompilationsByUser(userId, position, params.loadSize)
+            Log.i(COMPILATION_MODEL, "$response")
+
+            LoadResult.Page(
+                data = response.map { dto -> compilationApiMapper.mapToDomain(dto) },
+                prevKey = if (position == INITIAL_PAGE) null else position - 1,
+                // Avoids duplicates
+                nextKey = if (response.isEmpty()) null else position + (params.loadSize / NETWORK_PAGE_SIZE)
+            )
+        } catch (e: IOException) {
+            // IOException for network failures.
+            Log.e(
+                COMPILATION_MODEL,
+                e.localizedMessage ?: "Network error retrieving Posts",
+                e
+            )
+            return LoadResult.Error(e)
+        } catch (e: HttpException) {
+            // HttpException for any non-2xx HTTP status codes.
+            Log.e(
+                COMPILATION_MODEL,
+                e.localizedMessage ?: "HTTP error retrieving Posts",
+                e
+            )
+            return LoadResult.Error(e)
+        }
+
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, Compilation>): Int {
+        return INITIAL_PAGE
+    }
+}

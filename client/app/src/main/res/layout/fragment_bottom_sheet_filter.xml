@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.route_search.BottomSheetFilterFragment">
+    tools:context=".feature_route.route_search.BottomSheetFilterFragment">
 
     <ScrollView
         android:id="@+id/scroll_view"
@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.new_route.NewRouteInfoFragment">
+            tools:context=".feature_route.new_route.NewRouteInfoFragment">
 
             <ImageView
                 android:id="@+id/geoIcon"

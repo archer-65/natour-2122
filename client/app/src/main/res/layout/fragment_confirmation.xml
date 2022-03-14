@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.registration.ConfirmationFragment">
+    tools:context=".feature_auth.registration.ConfirmationFragment">
 
     <ImageView
         android:id="@+id/confirmationImage"

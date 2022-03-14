@@ -6,7 +6,7 @@ import com.amplifyframework.AmplifyException
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin
-import com.unina.natourkt.common.Constants.AMPLIFY
+import com.unina.natourkt.core.util.Constants.AMPLIFY
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

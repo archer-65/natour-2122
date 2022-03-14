@@ -53,3 +53,5 @@ amplifytools.xcconfig
 team-provider-info.json
 **.sample
 #amplify-do-not-edit-end
+#
+codemr/**

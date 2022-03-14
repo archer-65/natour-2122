@@ -1,6 +1,5 @@
 package com.unina.natourkt.presentation.home
 
-import android.webkit.URLUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -9,8 +8,8 @@ import androidx.paging.map
 import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.post.GetPostsUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
-import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
-import com.unina.natourkt.presentation.base.ui_state.convertKeys
+import com.unina.natourkt.presentation.base.model.PostItemUiState
+import com.unina.natourkt.presentation.base.model.convertKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

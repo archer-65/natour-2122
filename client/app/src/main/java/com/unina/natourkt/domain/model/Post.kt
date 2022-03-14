@@ -1,7 +1,7 @@
 package com.unina.natourkt.domain.model
 
-import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
-import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
+import com.unina.natourkt.presentation.base.model.PostGridItemUiState
+import com.unina.natourkt.presentation.base.model.PostItemUiState
 import com.unina.natourkt.presentation.post_details.PostUiState
 
 /**

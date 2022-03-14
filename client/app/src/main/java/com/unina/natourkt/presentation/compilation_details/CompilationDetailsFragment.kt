@@ -9,13 +9,11 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.common.loadWithGlide
-import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentCompilationDetailsBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
-import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteCompilationAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
+import com.unina.natourkt.presentation.base.model.RouteItemUiState
 import dagger.hilt.android.AndroidEntryPoint
 
 

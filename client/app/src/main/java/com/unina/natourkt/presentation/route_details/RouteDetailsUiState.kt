@@ -2,10 +2,8 @@ package com.unina.natourkt.presentation.route_details
 
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.domain.model.User
 import com.unina.natourkt.domain.model.route.RouteStop
-import com.unina.natourkt.presentation.base.ui_state.UserUiState
-import com.unina.natourkt.presentation.post_details.PostUiState
+import com.unina.natourkt.presentation.base.model.UserUiState
 import java.time.LocalDateTime
 
 data class RouteDetailsUiState(

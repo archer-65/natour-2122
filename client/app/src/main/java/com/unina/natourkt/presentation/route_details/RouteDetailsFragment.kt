@@ -6,16 +6,13 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_DRAGGING
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
 import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
 import com.unina.natourkt.presentation.base.adapter.ViewPagerAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.UserUiState
-import com.unina.natourkt.presentation.post_details.PostDetailsFragmentArgs
+import com.unina.natourkt.presentation.base.model.UserUiState
 import com.unina.natourkt.presentation.route_details.info.RouteDetailsInfoFragment
 import com.unina.natourkt.presentation.route_details.map.RouteDetailsMapFragment
 import com.unina.natourkt.presentation.route_details.tag.RouteDetailsTagFragment

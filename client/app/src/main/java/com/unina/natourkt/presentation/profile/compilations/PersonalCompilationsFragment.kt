@@ -8,16 +8,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.unina.natourkt.R
 import com.unina.natourkt.common.scrollBehavior
 import com.unina.natourkt.databinding.FragmentPersonalCompilationsBinding
 import com.unina.natourkt.presentation.base.adapter.CompilationAdapter
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
+import com.unina.natourkt.presentation.base.model.CompilationItemUiState
 import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 
 /**
  * This Fragment represents the profile compilations screen

@@ -1,8 +1,5 @@
 package com.unina.natourkt.presentation.post_details
 
-import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,7 +10,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.common.*
 import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.UserUiState
+import com.unina.natourkt.presentation.base.model.UserUiState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -15,7 +15,7 @@ import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
+import com.unina.natourkt.presentation.base.model.PostItemUiState
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

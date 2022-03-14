@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.R
 import com.unina.natourkt.common.loadWithGlide
 import com.unina.natourkt.databinding.CompilationItemBinding
-import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
-import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
+import com.unina.natourkt.presentation.base.model.CompilationItemUiState
 
 /**
  * Implementation of PagingDataAdapter for [CompilationItemUiState]

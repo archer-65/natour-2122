@@ -1,6 +1,5 @@
 package com.unina.natourkt.presentation.route_search
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -10,12 +9,11 @@ import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.domain.model.route.toUi
 import com.unina.natourkt.domain.use_case.route.GetFilteredRoutesUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
-import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
-import com.unina.natourkt.presentation.base.ui_state.convertKeys
+import com.unina.natourkt.presentation.base.model.RouteItemUiState
+import com.unina.natourkt.presentation.base.model.convertKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi

@@ -10,7 +10,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.databinding.PostGridItemBinding
-import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
+import com.unina.natourkt.presentation.base.model.PostGridItemUiState
 
 /**
  * Implementation of PagingDataAdapter for [PostGridItemUiState] (posts on profile and route detail screen)

@@ -17,7 +17,7 @@ import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostGridAdapter
 import com.unina.natourkt.presentation.base.decoration.GridItemDecoration
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
+import com.unina.natourkt.presentation.base.model.PostGridItemUiState
 import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 

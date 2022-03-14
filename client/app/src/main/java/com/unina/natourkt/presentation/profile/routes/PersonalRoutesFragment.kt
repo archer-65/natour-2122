@@ -1,28 +1,22 @@
 package com.unina.natourkt.presentation.profile.routes
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
 import com.unina.natourkt.common.scrollBehavior
-import com.unina.natourkt.databinding.FragmentPersonalCompilationsBinding
 import com.unina.natourkt.databinding.FragmentPersonalRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
+import com.unina.natourkt.presentation.base.model.RouteItemUiState
 import com.unina.natourkt.presentation.profile.ProfileFragmentDirections
-import com.unina.natourkt.presentation.routes.RoutesFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 
 /**
  * This Fragment represents the personal routes part of the profile screen

@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.base.ui_state
+package com.unina.natourkt.presentation.base.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

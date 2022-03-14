@@ -1,6 +1,6 @@
 package com.unina.natourkt.domain.model
 
-import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
+import com.unina.natourkt.presentation.base.model.CompilationItemUiState
 
 data class Compilation(
     val id: Long,

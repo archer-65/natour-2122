@@ -1,7 +1,7 @@
 package com.unina.natourkt.domain.model
 
 import com.unina.natourkt.data.remote.dto.UserDto
-import com.unina.natourkt.presentation.base.ui_state.UserUiState
+import com.unina.natourkt.presentation.base.model.UserUiState
 
 /**
  * User domain model (to improve)

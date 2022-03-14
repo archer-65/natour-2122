@@ -9,9 +9,9 @@ import androidx.paging.map
 import com.unina.natourkt.domain.model.route.toUi
 import com.unina.natourkt.domain.use_case.route.GetCompilationRoutesUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
-import com.unina.natourkt.presentation.base.ui_state.CompilationItemUiState
-import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
-import com.unina.natourkt.presentation.base.ui_state.convertKeys
+import com.unina.natourkt.presentation.base.model.CompilationItemUiState
+import com.unina.natourkt.presentation.base.model.RouteItemUiState
+import com.unina.natourkt.presentation.base.model.convertKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

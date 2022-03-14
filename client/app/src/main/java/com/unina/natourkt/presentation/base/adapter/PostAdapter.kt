@@ -11,7 +11,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.common.GlideApp
 import com.unina.natourkt.databinding.PostItemBinding
-import com.unina.natourkt.presentation.base.ui_state.PostItemUiState
+import com.unina.natourkt.presentation.base.model.PostItemUiState
 
 /**
  * Implementation of PagingDataAdapter for [PostItemUiState] (posts on home screen)

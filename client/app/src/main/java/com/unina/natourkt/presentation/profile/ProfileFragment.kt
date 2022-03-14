@@ -12,7 +12,7 @@ import com.unina.natourkt.common.setTopMargin
 import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.presentation.base.adapter.ViewPagerAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.UserUiState
+import com.unina.natourkt.presentation.base.model.UserUiState
 import com.unina.natourkt.presentation.profile.compilations.PersonalCompilationsFragment
 import com.unina.natourkt.presentation.profile.posts.PersonalPostsFragment
 import com.unina.natourkt.presentation.profile.routes.PersonalRoutesFragment

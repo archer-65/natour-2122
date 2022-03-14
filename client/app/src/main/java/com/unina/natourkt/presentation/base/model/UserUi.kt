@@ -1,6 +1,4 @@
-package com.unina.natourkt.presentation.base.ui_state
-
-import com.unina.natourkt.domain.model.User
+package com.unina.natourkt.presentation.base.model
 
 data class UserUiState(
     val id: Long,

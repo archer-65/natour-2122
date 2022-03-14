@@ -2,7 +2,6 @@ package com.unina.natourkt.presentation.base.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -10,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.unina.natourkt.R
 import com.unina.natourkt.common.loadWithGlide
-import com.unina.natourkt.databinding.RouteItemBinding
 import com.unina.natourkt.databinding.RouteItemInCompilationBinding
-import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
+import com.unina.natourkt.presentation.base.model.RouteItemUiState
 
 /**
  * Implementation of PagingDataAdapter for [RouteItemUiState] (posts on routes screen)

@@ -2,21 +2,18 @@ package com.unina.natourkt.presentation.route_details.tag
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import com.unina.natourkt.R
 import com.unina.natourkt.common.Constants
-import com.unina.natourkt.common.scrollBehavior
 import com.unina.natourkt.databinding.FragmentRouteDetailsTagBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.PostGridAdapter
 import com.unina.natourkt.presentation.base.decoration.GridItemDecoration
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
+import com.unina.natourkt.presentation.base.model.PostGridItemUiState
 import com.unina.natourkt.presentation.route_details.RouteDetailsFragmentDirections
 import com.unina.natourkt.presentation.route_details.RouteDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint

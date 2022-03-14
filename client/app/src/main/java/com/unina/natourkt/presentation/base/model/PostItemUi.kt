@@ -1,4 +1,4 @@
-package com.unina.natourkt.presentation.base.ui_state
+package com.unina.natourkt.presentation.base.model
 
 /**
  * Represents the data class of a post (home screen) element

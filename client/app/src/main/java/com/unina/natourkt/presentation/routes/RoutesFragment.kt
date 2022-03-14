@@ -2,7 +2,6 @@ package com.unina.natourkt.presentation.routes
 
 import android.os.Bundle
 import android.view.View
-import android.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -17,7 +16,7 @@ import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.presentation.base.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.presentation.base.adapter.RouteAdapter
 import com.unina.natourkt.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.presentation.base.ui_state.RouteItemUiState
+import com.unina.natourkt.presentation.base.model.RouteItemUiState
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

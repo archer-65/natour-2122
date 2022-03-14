@@ -1,6 +1,5 @@
 package com.unina.natourkt.presentation.route_details
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +9,6 @@ import androidx.paging.map
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.common.DataState
 import com.unina.natourkt.domain.model.route.toDetailUi
-import com.unina.natourkt.domain.model.toDetailUi
 import com.unina.natourkt.domain.model.toGridUi
 import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.maps.GetDirectionsUseCase
@@ -18,10 +16,8 @@ import com.unina.natourkt.domain.use_case.post.GetTaggedPostsUseCase
 import com.unina.natourkt.domain.use_case.route.GetRouteDetailsUseCase
 import com.unina.natourkt.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
-import com.unina.natourkt.presentation.base.ui_state.PostGridItemUiState
-import com.unina.natourkt.presentation.base.ui_state.convertKeys
-import com.unina.natourkt.presentation.new_route.toRouteStopCreation
-import com.unina.natourkt.presentation.post_details.convertKeys
+import com.unina.natourkt.presentation.base.model.PostGridItemUiState
+import com.unina.natourkt.presentation.base.model.convertKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

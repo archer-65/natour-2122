@@ -1,7 +1,7 @@
 package com.unina.natourkt.presentation.post_details
 
 import com.unina.natourkt.common.DataState
-import com.unina.natourkt.presentation.base.ui_state.UserUiState
+import com.unina.natourkt.presentation.base.model.UserUiState
 
 data class PostDetailsUiState(
     val isLoading: Boolean = false,

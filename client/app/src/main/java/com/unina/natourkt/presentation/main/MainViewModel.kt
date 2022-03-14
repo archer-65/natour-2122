@@ -6,8 +6,8 @@ import com.unina.natourkt.domain.model.toUi
 import com.unina.natourkt.domain.use_case.auth.GetAuthStateUseCase
 import com.unina.natourkt.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.domain.use_case.storage.GetUrlFromKeyUseCase
-import com.unina.natourkt.presentation.base.ui_state.UserUiState
-import com.unina.natourkt.presentation.base.ui_state.convertKeys
+import com.unina.natourkt.presentation.base.model.UserUiState
+import com.unina.natourkt.presentation.base.model.convertKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking

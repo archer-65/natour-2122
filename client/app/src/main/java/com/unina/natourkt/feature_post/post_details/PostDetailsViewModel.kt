@@ -24,7 +24,7 @@ class PostDetailsViewModel @Inject constructor(
     savedState: SavedStateHandle
 ) : ViewModel() {
 
-    val postId = savedState.get<Long>("postId")
+    private val postId = savedState.get<Long>("postId")
 
     private val _uiState = MutableStateFlow(PostDetailsUiState())
     val uiState: StateFlow<PostDetailsUiState> = _uiState.asStateFlow()

@@ -121,7 +121,7 @@
 
         <fragment
             android:id="@+id/navigation_registration"
-            android:name="com.unina.natourkt.feature_auth.registration.RegistrationFragment"
+            android:name="com.unina.natourkt.feature_auth.registration.signup.RegistrationFragment"
             android:label="Registrazione"
             tools:layout="@layout/fragment_registration">
             <action
@@ -131,14 +131,20 @@
 
         <fragment
             android:id="@+id/navigation_confirmation"
-            android:name="com.unina.natourkt.feature_auth.registration.ConfirmationFragment"
+            android:name="com.unina.natourkt.feature_auth.registration.confirmation.ConfirmationFragment"
             android:label="Conferma codice"
             tools:layout="@layout/fragment_confirmation">
+
+            <argument
+                android:name="userConfirm"
+                app:argType="string" />
+
             <action
                 android:id="@+id/action_confirmation_to_login"
                 app:destination="@id/navigation_login"
                 app:popUpTo="@id/navigation_login"
                 app:popUpToInclusive="true" />
+
         </fragment>
 
     </navigation>
@@ -245,7 +251,7 @@
         android:id="@+id/compilationDetailsFragment"
         android:name="com.unina.natourkt.feature_compilation.compilation_details.CompilationDetailsFragment"
         android:label="fragment_compilation_details"
-        tools:layout="@layout/fragment_compilation_details" >
+        tools:layout="@layout/fragment_compilation_details">
         <argument
             android:name="compilationItem"
             app:argType="com.unina.natourkt.core.presentation.model.CompilationItemUi" />

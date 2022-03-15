@@ -5,12 +5,11 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentResetPasswordBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.util.setBottomMargin
-import com.unina.natourkt.core.presentation.util.setTopMargin
-import com.unina.natourkt.core.presentation.util.updateText
+import com.unina.natourkt.core.presentation.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,9 +34,7 @@ class ResetPasswordFragment : BaseFragment<FragmentResetPasswordBinding, ResetPa
 
     override fun setListeners() = with(binding) {
         passwordResetButton.setOnClickListener {
-            if (isFormValid()) {
-                viewModel.resetConfirm()
-            }
+            viewModel.onEvent(ResetPasswordEvent.Reset)
         }
     }
 
@@ -47,15 +44,15 @@ class ResetPasswordFragment : BaseFragment<FragmentResetPasswordBinding, ResetPa
     override fun setTextChangedListeners() = with(binding) {
         with(viewModel) {
             confirmCodeTextField.updateText {
-                setCode(it)
+                onEvent(ResetPasswordEvent.EnteredCode(it))
             }
 
             passwordTextField.updateText {
-                setPassword(it)
+                onEvent(ResetPasswordEvent.EnteredPassword(it))
             }
 
             confirmPasswordTextField.updateText {
-                setConfirmPassword(it)
+                onEvent(ResetPasswordEvent.EnteredConfirmPassword(it))
             }
         }
     }
@@ -65,49 +62,31 @@ class ResetPasswordFragment : BaseFragment<FragmentResetPasswordBinding, ResetPa
             collectOnLifecycleScope(uiState) {
                 // When the password is reset we show a message and navigate to login screen
                 if (it.isPasswordReset) {
-                    val message = getString(R.string.password_reset_success)
-                    showSnackbar(message)
-
                     findNavController().navigate(R.id.action_new_password_to_login)
                 }
 
                 progressBar.isVisible = it.isLoading
-
-                // When an error is present we show the error through snackbar
-                it.errorMessage?.run {
-                    manageMessage(this)
-                }
             }
 
             collectOnLifecycleScope(formState) {
-                passwordResetButton.isEnabled =
-                    it.code.isNotBlank() && it.password.isNotBlank() && it.confirmPassword.isNotBlank()
+                passwordResetButton.isEnabled = it.isButtonEnabled
+                confirmCodeTextField.error = it.code.error?.asString(requireContext())
+                passwordTextField.error = it.password.error?.asString(requireContext())
+                confirmPasswordTextField.error =
+                    it.confirmPassword.error?.asString(requireContext())
             }
-        }
-    }
 
-    /**
-     * Form validation based on other functions
-     */
-    private fun isFormValid(): Boolean {
-        with(binding) {
-            with(viewModel.formState.value) {
-                val isCodeValid = isCodeValid.also { valid ->
-                    val error = if (!valid) getString(R.string.code_check) else null
-                    confirmCodeTextField.error = error
+            collectLatestOnLifecycleScope(eventFlow) { event ->
+                when (event) {
+                    is UiEvent.ShowSnackbar -> {
+                        Snackbar.make(
+                            requireView(),
+                            event.uiText.asString(requireContext()),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                    else -> {}
                 }
-
-                val isPasswordValid = isPasswordValid.also { valid ->
-                    val error = if (!valid) getString(R.string.password_length) else null
-                    passwordTextField.error = error
-                }
-
-                val isConfirmPasswordValid = isConfirmPasswordValid.also { valid ->
-                    val error = if (!valid) getString(R.string.passwords_matching) else null
-                    confirmPasswordTextField.error = error
-                }
-
-                return isCodeValid && isPasswordValid && isConfirmPasswordValid
             }
         }
     }

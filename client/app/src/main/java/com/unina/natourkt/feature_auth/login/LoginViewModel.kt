@@ -2,10 +2,14 @@ package com.unina.natourkt.feature_auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.unina.natourkt.core.util.DataState
+import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.use_case.auth.LoginUseCase
 import com.unina.natourkt.core.presentation.base.validation.isPasswordValid
 import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
+import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiText
+import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -25,17 +29,34 @@ class LoginViewModel @Inject constructor(
     private val _formState = MutableStateFlow(LoginFormUiState())
     val formState = _formState.asStateFlow()
 
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
+    fun onEvent(event: LoginEvent) {
+        when (event) {
+            is LoginEvent.EnteredUsername -> setUsername(event.username)
+            is LoginEvent.EnteredPassword -> setPassword(event.password)
+            is LoginEvent.Login -> login()
+            is LoginEvent.LoginSocial -> login(event.provider)
+        }
+    }
+
     /**
      * Login function
      * @see [LoginUseCase]
      */
-    fun login() {
+    private fun login() {
         // On every value emitted by the flow
         viewModelScope.launch {
-            loginUseCase(formState.value.username, formState.value.password).onEach { result ->
-                // Util function
-                resultManager(result)
-            }.launchIn(viewModelScope)
+            if (checkFormValidity()) {
+                loginUseCase(
+                    formState.value.username.text,
+                    formState.value.password.text
+                ).onEach { result ->
+                    // Util function
+                    resultManager(result)
+                }.launchIn(viewModelScope)
+            }
         }
     }
 
@@ -43,7 +64,7 @@ class LoginViewModel @Inject constructor(
      * Login social function
      * @see [LoginUseCase]
      */
-    fun login(provider: String) {
+    private fun login(provider: String) {
         // On every value emitted by the flow
         viewModelScope.launch {
             loginUseCase(provider).onEach { result ->
@@ -56,7 +77,7 @@ class LoginViewModel @Inject constructor(
     /**
      * Manager for same logic in the above functions
      */
-    private fun resultManager(result: DataState<Boolean>) {
+    private suspend fun resultManager(result: DataState<Boolean>) {
         when (result) {
             // In case of success, update the isUserLoggedIn value
             is DataState.Success -> {
@@ -64,7 +85,10 @@ class LoginViewModel @Inject constructor(
             }
             // In case of error, update the error message
             is DataState.Error -> {
-                _uiState.value = LoginUiState(errorMessage = result.error)
+                _uiState.value = LoginUiState(isLoading = false)
+
+                val errorText = UiTextCauseMapper.mapToText(result.error)
+                _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
             }
             // In case of loading state, isLoading is true
             is DataState.Loading -> {
@@ -73,15 +97,29 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun setUsername(username: String) {
+    private fun setUsername(username: String) {
         _formState.update {
-            it.copy(username = username, isUsernameValid = username.isUsernameValid())
+            it.copy(username = it.username.copy(text = username))
         }
     }
 
-    fun setPassword(password: String) {
+    private fun setPassword(password: String) {
         _formState.update {
-            it.copy(password = password, isPasswordValid = password.isPasswordValid())
+            it.copy(password = it.password.copy(text = password))
         }
+    }
+
+    private fun checkFormValidity(): Boolean {
+        val usernameError = formState.value.username.text.isUsernameValid()
+        val passwordError = formState.value.password.text.isPasswordValid()
+
+        _formState.update {
+            it.copy(
+                username = it.username.copy(error = usernameError),
+                password = it.password.copy(error = passwordError)
+            )
+        }
+
+        return usernameError == null && passwordError == null
     }
 }

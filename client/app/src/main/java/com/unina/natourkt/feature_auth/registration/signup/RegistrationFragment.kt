@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_auth.login
+package com.unina.natourkt.feature_auth.registration.signup
 
 import android.os.Bundle
 import android.view.View
@@ -7,23 +7,21 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.Constants.FACEBOOK
-import com.unina.natourkt.core.util.Constants.GOOGLE
-import com.unina.natourkt.databinding.FragmentLoginBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.databinding.FragmentRegistrationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * This Fragment represents the Login Screen
+ * This Fragment represents the SignUp Screen
  */
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
+class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, RegistrationViewModel>() {
 
-    private val viewModel: LoginViewModel by hiltNavGraphViewModels(R.id.navigation_auth_flow)
+    private val viewModel: RegistrationViewModel by hiltNavGraphViewModels(R.id.navigation_auth_flow)
 
     override fun getVM() = viewModel
-    override fun getViewBinding() = FragmentLoginBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentRegistrationBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,57 +31,59 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     }
 
     override fun setupUi() = with(binding) {
-        facebookButton.setBottomMargin()
-        loginImage.setTopMargin()
+        registrationImage.setTopMargin()
+        signUpButton.setBottomMargin()
     }
 
     override fun setListeners() = with(binding) {
-        with(viewModel) {
-            loginButton.setOnClickListener {
-                onEvent(LoginEvent.Login)
-            }
-
-            googleButton.setOnClickListener {
-                onEvent(LoginEvent.LoginSocial(GOOGLE))
-            }
-
-            facebookButton.setOnClickListener {
-                onEvent(LoginEvent.LoginSocial(FACEBOOK))
-            }
-
-            forgotPasswordButton.navigateOnClick(R.id.action_login_to_forgot_password)
-
-            signUpTextView.navigateOnClick(R.id.action_login_to_registration)
+        signUpButton.setOnClickListener {
+            viewModel.onEvent(RegistrationEvent.Registration)
         }
     }
 
     override fun setTextChangedListeners() = with(binding) {
         with(viewModel) {
             usernameTextField.updateText {
-                onEvent(LoginEvent.EnteredUsername(it))
+                onEvent(RegistrationEvent.EnteredUsername(it))
+            }
+
+            emailTextField.updateText {
+                onEvent(RegistrationEvent.EnteredEmail(it))
             }
 
             passwordTextField.updateText {
-                onEvent(LoginEvent.EnteredPassword(it))
+                onEvent(RegistrationEvent.EnteredPassword(it))
+            }
+
+            confirmPasswordTextField.updateText {
+                onEvent(RegistrationEvent.EnteredConfirmPassword(it))
             }
         }
     }
 
+
     override fun collectState() = with(binding) {
         with(viewModel) {
             collectLatestOnLifecycleScope(uiState) {
-                // When the user is logged in we navigate to the home screen
-                if (it.isUserLoggedIn) {
-                    findNavController().navigate(R.id.navigation_login_to_navigation_home)
+                // When the sign up is complete we navigate to the home screen
+                if (it.isSignUpComplete) {
+                    val action = RegistrationFragmentDirections.actionRegistrationToConfirmation(
+                        formState.value.username.text
+                    )
+                    findNavController().navigate(action)
                 }
 
                 progressBar.isVisible = it.isLoading
             }
 
+
             collectOnLifecycleScope(formState) {
+                signUpButton.isEnabled = it.isButtonEnabled
                 usernameTextField.error = it.username.error?.asString(requireContext())
+                emailTextField.error = it.email.error?.asString(requireContext())
                 passwordTextField.error = it.password.error?.asString(requireContext())
-                loginButton.isEnabled = it.isButtonEnabled
+                confirmPasswordTextField.error =
+                    it.confirmPassword.error?.asString(requireContext())
             }
 
             collectLatestOnLifecycleScope(eventFlow) { event ->

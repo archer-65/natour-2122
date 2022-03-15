@@ -5,17 +5,15 @@ import android.text.InputFilter
 import android.view.View
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.util.DurationFilter
-import com.unina.natourkt.core.presentation.util.setBottomMargin
-import com.unina.natourkt.core.presentation.util.setTopMargin
-import com.unina.natourkt.core.presentation.util.updateText
+import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.core.util.Difficulty
+import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
+import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
-import com.unina.natourkt.feature_route.create_route.Difficulty
-import com.unina.natourkt.feature_route.create_route.NewRouteInfo
 
 class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, CreateRouteViewModel>() {
 
@@ -37,16 +35,9 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
         setTextChangedListeners()
     }
 
-    override fun setupUi() {
-        with(binding) {
-            topAppBar.setTopMargin()
-
-            nextFab.setBottomMargin()
-
-            durationTextField.editText?.apply {
-                filters = arrayOf<InputFilter>(DurationFilter(1, 16))
-            }
-        }
+    override fun setupUi() = with(binding) {
+        topAppBar.setTopMargin()
+        nextFab.setBottomMargin()
     }
 
     override fun setListeners() = with(binding) {
@@ -54,6 +45,9 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
             findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
         }
 
+        durationTextField.editText?.apply {
+            filters = arrayOf<InputFilter>(DurationFilter(1, 16))
+        }
 
         disabilityFriendlySwitch.setOnCheckedChangeListener { _, state ->
             when (state) {
@@ -72,19 +66,19 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
     override fun setTextChangedListeners() = with(binding) {
         with(viewModel) {
             routeTitleTextField.updateText {
-                setTitle(it)
+                onEvent(CreateRouteEvent.EnteredTitle(it))
             }
 
             descriptionTextField.updateText {
-                setDescription(it)
+                onEvent(CreateRouteEvent.EnteredDescription(it))
             }
 
             durationTextField.updateText {
-                setDuration(it)
+                onEvent(CreateRouteEvent.EnteredDuration(it))
             }
 
-            disabilityFriendlySwitch.setOnCheckedChangeListener { compoundButton, _ ->
-                setDisabilityFriendly(compoundButton.isChecked)
+            disabilityFriendlySwitch.setOnCheckedChangeListener { switch, _ ->
+                onEvent(CreateRouteEvent.EnteredDisability(switch.isChecked))
             }
 
             difficultyChipgroup.setOnCheckedStateChangeListener { group, _ ->
@@ -94,25 +88,37 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
                     hardChip.id -> Difficulty.HARD
                     else -> Difficulty.EASY
                 }
-                setDifficulty(checkedDifficulty)
+                onEvent(CreateRouteEvent.EnteredDifficulty(checkedDifficulty))
             }
         }
     }
 
     override fun collectState() = with(binding) {
         with(viewModel) {
-            bindInfo(uiState.value.routeInfo)
+            bindInfo(uiStateInfo.value)
 
-            collectOnLifecycleScope(uiState) {
-                nextFab.isEnabled =
-                    it.routeInfo.routeTitle.isNotBlank() && it.routeInfo.duration.isNotBlank()
+            collectOnLifecycleScope(uiStateInfo) {
+                nextFab.isEnabled = it.isButtonEnabled
+            }
+
+            collectLatestOnLifecycleScope(eventFlow) { event ->
+                when (event) {
+                    is UiEvent.ShowSnackbar -> {
+                        Snackbar.make(
+                            requireView(),
+                            event.uiText.asString(requireContext()),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                    else -> {}
+                }
             }
         }
     }
 
-    private fun bindInfo(route: NewRouteInfo) = with(binding) {
-        routeTitleTextField.editText?.setText(route.routeTitle)
-        descriptionTextField.editText?.setText(route.routeDescription)
+    private fun bindInfo(route: CreateRouteInfoUiState) = with(binding) {
+        routeTitleTextField.editText?.setText(route.routeTitle.text)
+        descriptionTextField.editText?.setText(route.routeDescription.text)
         difficultyChipgroup.check(
             when (route.difficulty) {
                 Difficulty.EASY -> easyChip.id
@@ -120,7 +126,7 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
                 Difficulty.HARD -> hardChip.id
             }
         )
-        durationTextField.editText?.setText(route.duration)
+        durationTextField.editText?.setText(route.duration.text)
         disabilityFriendlySwitch.isChecked = route.disabilityFriendly
     }
 }

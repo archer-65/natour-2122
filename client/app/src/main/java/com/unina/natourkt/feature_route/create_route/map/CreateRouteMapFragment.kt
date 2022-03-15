@@ -8,14 +8,13 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
+import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
 import com.unina.natourkt.core.presentation.contract.GpxPickerContract
 import com.unina.natourkt.core.presentation.base.fragment.BaseMapFragment
-import com.unina.natourkt.core.presentation.util.addCustomMarker
-import com.unina.natourkt.core.presentation.util.moveAndZoomCamera
-import com.unina.natourkt.core.presentation.util.setBottomMargin
-import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
 
 class CreateRouteMapFragment :
@@ -67,7 +66,7 @@ class CreateRouteMapFragment :
                 launcherGpx.launch(Unit)
             }
             R.id.clear_map -> {
-                viewModel.cleanStops()
+                viewModel.onEvent(CreateRouteEvent.CleanStop)
             }
         }
         return true
@@ -75,12 +74,12 @@ class CreateRouteMapFragment :
 
     override fun setMapListeners() = with(viewModel) {
         map.setOnMapClickListener {
-            addStop(it.latitude, it.longitude)
-            getDirections()
+            onEvent(CreateRouteEvent.AddedStop(it.latitude, it.longitude))
+            //getDirections()
         }
     }
 
-    override fun setFirstCameraPosition() = with(viewModel.uiState.value.routeStops.firstOrNull()) {
+    override fun setFirstCameraPosition() = with(viewModel.uiStateMap.value.stops.firstOrNull()) {
         val position = this?.let {
             LatLng(it.latitude, it.longitude)
         } ?: LatLng(40.82806233458257, 14.19321142133755)
@@ -89,26 +88,37 @@ class CreateRouteMapFragment :
     }
 
     override fun collectState() = with(viewModel) {
-        collectOnLifecycleScope(uiState) {
+        collectOnLifecycleScope(uiStateMap) {
             map.clear()
 
-            if (it.routeStops.isNotEmpty()) {
-                it.routeStops.map { stop ->
+            if (it.stops.isNotEmpty()) {
+                it.stops.map { stop ->
                     map.addCustomMarker(
                         stop.stopNumber.toString(),
                         LatLng(stop.latitude, stop.longitude)
                     )
                 }
 
-                if (it.routeStops.size >= 2) {
-                    map.addPolyline(it.polylineOptions)
-                }
+                map.addPolyline(it.polylineOptions)
 
                 if (it.isLoadedFromGPX) {
                     setFirstCameraPosition()
                 }
 
-                binding.nextFab.isEnabled = it.routeStops.size >= 2
+                binding.nextFab.isEnabled = it.isButtonEnabled
+            }
+        }
+
+        collectLatestOnLifecycleScope(eventFlow) { event ->
+            when (event) {
+                is UiEvent.ShowSnackbar -> {
+                    Snackbar.make(
+                        requireView(),
+                        event.uiText.asString(requireContext()),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {}
             }
         }
     }
@@ -116,7 +126,7 @@ class CreateRouteMapFragment :
     private fun setupGpx() {
         launcherGpx = registerForActivityResult(GpxPickerContract()) { result ->
             result?.let {
-                viewModel.setFromGpx(it)
+                viewModel.onEvent(CreateRouteEvent.InsertedGpx(it))
             }
         }
     }

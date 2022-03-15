@@ -6,15 +6,20 @@ import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentNewRoutePhotosBinding
 import com.unina.natourkt.core.presentation.adapter.PhotoAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.asString
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
 
-class CreateRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, CreateRouteViewModel>(),
+class CreateRoutePhotosFragment :
+    BaseFragment<FragmentNewRoutePhotosBinding, CreateRouteViewModel>(),
     PhotoAdapter.OnItemClickListener {
 
     private val recyclerAdapter = PhotoAdapter(this@CreateRoutePhotosFragment)
@@ -39,13 +44,13 @@ class CreateRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, Cr
     override fun setListeners() = with(binding) {
         with(viewModel) {
             insertPhotoButton.setOnClickListener {
-                pickImageFromGallery(uiState.value.routePhotos) {
-                    setPhotos(it)
+                pickImageFromGallery(uiStatePhotos.value.photos) {
+                    onEvent(CreateRouteEvent.InsertedPhotos(it))
                 }
             }
 
             createRouteFab.setOnClickListener {
-                this.uploadRoute()
+                onEvent(CreateRouteEvent.Upload)
             }
         }
     }
@@ -65,13 +70,10 @@ class CreateRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, Cr
     }
 
     override fun collectState() = with(viewModel) {
-        collectLatestOnLifecycleScope(uiState) {
-            recyclerAdapter.submitList(it.routePhotos)
-        }
+        collectLatestOnLifecycleScope(uiStatePhotos) {
+            recyclerAdapter.submitList(it.photos)
 
-        collectLatestOnLifecycleScope(uiState) {
-            binding.insertPhotoButton.isEnabled = it.routePhotos.size < 5
-            binding.createRouteFab.isEnabled = it.routePhotos.isNotEmpty()
+            binding.createRouteFab.isEnabled = it.isButtonEnabled
         }
 
         collectOnLifecycleScope(uiState) {
@@ -79,16 +81,25 @@ class CreateRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, Cr
                 findNavController().navigate(R.id.action_global_navigation_routes)
             }
 
-            it.errorMessage?.run {
-                manageMessage(this)
-            }
-
             binding.progressBar.isVisible = it.isLoading
+        }
+
+        collectLatestOnLifecycleScope(eventFlow) { event ->
+            when (event) {
+                is UiEvent.ShowSnackbar -> {
+                    Snackbar.make(
+                        requireView(),
+                        event.uiText.asString(requireContext()),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {}
+            }
         }
     }
 
 
     override fun onRemoveClick(position: Int) {
-        viewModel.removePhoto(position)
+        viewModel.onEvent(CreateRouteEvent.RemovePhoto(position))
     }
 }

@@ -13,7 +13,7 @@ class RouteCreationApiMapper @Inject constructor(
         return RouteCreationDto(
             title = domainEntity.title,
             description = domainEntity.description,
-            difficulty = domainEntity.avgDifficulty,
+            difficulty = domainEntity.avgDifficulty.value,
             duration = domainEntity.avgDuration,
             isDisabilityFriendly = domainEntity.disabilityFriendly,
             photos = domainEntity.photos.map { RouteCreationDto.Photo(it) },

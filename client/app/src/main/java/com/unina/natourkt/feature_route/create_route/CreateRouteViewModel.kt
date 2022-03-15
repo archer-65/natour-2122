@@ -5,11 +5,20 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.PolylineOptions
+import com.unina.natourkt.core.domain.model.RouteCreation
 import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.util.safeRemove
 import com.unina.natourkt.core.util.toInputStream
 import com.unina.natourkt.core.domain.use_case.maps.GetDirectionsUseCase
 import com.unina.natourkt.core.domain.use_case.route.CreateRouteUseCase
+import com.unina.natourkt.core.presentation.model.RouteStopUi
+import com.unina.natourkt.core.presentation.model.mapper.RouteStopUiMapper
+import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.Difficulty
+import com.unina.natourkt.core.util.safeRemove
+import com.unina.natourkt.feature_route.create_route.info.CreateRouteInfoUiState
+import com.unina.natourkt.feature_route.create_route.map.CreateRouteMapUiState
+import com.unina.natourkt.feature_route.create_route.photos.CreateRoutePhotosUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ticofab.androidgpxparser.parser.GPXParser
 import io.ticofab.androidgpxparser.parser.domain.Gpx
@@ -25,75 +34,109 @@ class CreateRouteViewModel @Inject constructor(
     private val getDirectionsUseCase: GetDirectionsUseCase,
     private val createRouteUseCase: CreateRouteUseCase,
     private val gpxParser: GPXParser,
+    private val routeStopUiMapper: RouteStopUiMapper,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(NewRouteUiState())
-    val uiState: StateFlow<NewRouteUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(CreateRouteUiState())
+    val uiState = _uiState.asStateFlow()
 
+    private val _uiStateInfo = MutableStateFlow(CreateRouteInfoUiState())
+    val uiStateInfo = _uiStateInfo.asStateFlow()
 
-    fun setTitle(routeTitle: String) {
-        _uiState.update {
-            val currentInfo = it.routeInfo.copy(routeTitle = routeTitle)
-            it.copy(routeInfo = currentInfo)
+    private val _uiStateMap = MutableStateFlow(CreateRouteMapUiState())
+    val uiStateMap = _uiStateMap.asStateFlow()
+
+    private val _uiStatePhotos = MutableStateFlow(CreateRoutePhotosUiState())
+    val uiStatePhotos = _uiStatePhotos.asStateFlow()
+
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
+    fun onEvent(event: CreateRouteEvent) {
+        when (event) {
+            // INFO
+            is CreateRouteEvent.EnteredTitle -> setTitle(event.title)
+            is CreateRouteEvent.EnteredDescription -> setDescription(event.description)
+            is CreateRouteEvent.EnteredDifficulty -> setDifficulty(event.difficulty)
+            is CreateRouteEvent.EnteredDisability -> setDisabilityFriendly(event.disability)
+            is CreateRouteEvent.EnteredDuration -> setDuration(event.duration)
+
+            // MAP
+            is CreateRouteEvent.AddedStop -> addStop(event.latitude, event.longitude)
+            is CreateRouteEvent.InsertedGpx -> setFromGpx(event.gpx)
+            is CreateRouteEvent.CleanStop -> cleanStops()
+
+            // PHOTOS
+            is CreateRouteEvent.InsertedPhotos -> setPhotos(event.photos)
+            is CreateRouteEvent.RemovePhoto -> removePhoto(event.position)
+
+            // GENERAL
+            is CreateRouteEvent.Upload -> uploadRoute()
         }
     }
 
-    fun setDescription(description: String) {
-        _uiState.update {
-            val currentInfo = it.routeInfo.copy(routeDescription = description)
-            it.copy(routeInfo = currentInfo)
+    private fun setTitle(title: String) {
+        _uiStateInfo.update {
+            it.copy(routeTitle = it.routeTitle.copy(text = title))
         }
     }
 
-    fun setDuration(duration: String) {
-        _uiState.update {
-            val currentInfo = it.routeInfo.copy(duration = duration)
-            it.copy(routeInfo = currentInfo)
+    private fun setDescription(description: String) {
+        _uiStateInfo.update {
+            it.copy(routeDescription = it.routeDescription.copy(text = description))
         }
     }
 
-    fun setDisabilityFriendly(checked: Boolean) {
-        _uiState.update {
-            val currentInfo = it.routeInfo.copy(disabilityFriendly = checked)
-            it.copy(routeInfo = currentInfo)
+    private fun setDuration(duration: String) {
+        _uiStateInfo.update {
+            it.copy(duration = it.duration.copy(text = duration))
         }
     }
 
-    fun setDifficulty(difficulty: Difficulty) {
-        _uiState.update {
-            val currentInfo = it.routeInfo.copy(difficulty = difficulty)
-            it.copy(routeInfo = currentInfo)
+    private fun setDisabilityFriendly(checked: Boolean) {
+        _uiStateInfo.update {
+            it.copy(disabilityFriendly = checked)
         }
     }
 
-    fun addStop(latitude: Double, longitude: Double) {
-        _uiState.update { currentState ->
-            val newStops = currentState.routeStops + NewRouteStop(
-                stopNumber = currentState.routeStops.size + 1,
+    private fun setDifficulty(difficulty: Difficulty) {
+        _uiStateInfo.update {
+            it.copy(difficulty = difficulty)
+        }
+    }
+
+    private fun addStop(latitude: Double, longitude: Double) {
+        _uiStateMap.update {
+            val newStops = it.stops + RouteStopUi(
+                stopNumber = it.stops.size + 1,
                 latitude,
                 longitude
             )
-            currentState.copy(routeStops = newStops, isLoadedFromGPX = false)
+//            if (newStops.size >= 2) getDirections()
+            it.copy(stops = newStops, isLoadedFromGPX = false)
+        }
+
+        if (uiStateMap.value.shouldGetDirections) getDirections()
+    }
+
+    private fun cleanStops() {
+        _uiStateMap.update {
+            it.copy(stops = emptyList())
         }
     }
 
-    fun cleanStops() {
-        _uiState.update {
-            it.copy(routeStops = emptyList())
-        }
-    }
-
-    fun getDirections() {
-        val stops = uiState.value.routeStops.map { it.toRouteStopCreation() }
+    private fun getDirections() {
+        val stops = uiStateMap.value.stops.map { routeStopUiMapper.mapToDomain(it) }
         getDirectionsUseCase(stops).onEach { result ->
             when (result) {
                 is DataState.Success -> {
                     val polylines = PolylineOptions()
                     result.data?.let { polylines.addAll(it.points) }
-                    _uiState.update { it.copy(polylineOptions = polylines) }
+                    _uiStateMap.update { it.copy(polylineOptions = polylines) }
                 }
-                is DataState.Error -> _uiState.update {
-                    it.copy(errorMessage = result.error)
+                is DataState.Error -> {
+                    val errorText = UiTextCauseMapper.mapToText(result.error)
+                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
                 }
                 is DataState.Loading -> {}
             }
@@ -101,14 +144,14 @@ class CreateRouteViewModel @Inject constructor(
     }
 
 
-    fun setFromGpx(gpx: Uri) {
+    private fun setFromGpx(gpx: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val uri = gpx.toInputStream()
                 val parsedGpx: Gpx? = gpxParser.parse(uri.getOrThrow()!!)
                 parsedGpx?.let { gpx ->
                     val stops = gpx.wayPoints.mapIndexed { index, value ->
-                        NewRouteStop(index + 1, value.latitude, value.longitude)
+                        RouteStopUi(index + 1, value.latitude, value.longitude)
                     }
                     resetStops(stops)
                 }
@@ -120,42 +163,56 @@ class CreateRouteViewModel @Inject constructor(
         }
     }
 
-    fun resetStops(stops: List<NewRouteStop>) {
-        _uiState.update {
-            it.copy(routeStops = stops, isLoadedFromGPX = true)
+    private fun resetStops(stops: List<RouteStopUi>) {
+        _uiStateMap.update {
+            it.copy(stops = stops, isLoadedFromGPX = true)
         }
     }
 
-    fun setPhotos(photos: List<Uri>) {
-        _uiState.update {
-            it.copy(routePhotos = photos)
+    private fun setPhotos(photos: List<Uri>) {
+        _uiStatePhotos.update {
+            it.copy(photos = photos)
         }
     }
 
-    fun removePhoto(position: Int) {
-        _uiState.update {
-            it.copy(routePhotos = it.routePhotos.safeRemove(position))
+    private fun removePhoto(position: Int) {
+        _uiStatePhotos.update {
+            it.copy(photos = it.photos.safeRemove(position))
         }
     }
 
-    fun uploadRoute() {
-        createRouteUseCase(uiState.value.toRouteCreation()).onEach { result ->
+    private fun uploadRoute() {
+        createRouteUseCase(mapForCreation()).onEach { result ->
             when (result) {
                 is DataState.Success -> _uiState.update {
-                    it.copy(
-                        isInserted = true,
-                        isLoading = false,
-                        errorMessage = null
-                    )
+                    it.copy(isInserted = true, isLoading = false)
                 }
                 is DataState.Loading -> _uiState.update {
                     it.copy(isLoading = true)
                 }
-                is DataState.Error -> _uiState.update {
-                    it.copy(isLoading = false, errorMessage = result.error)
+                is DataState.Error -> {
+                    _uiState.update {
+                        it.copy(isLoading = false)
+                    }
+
+                    val errorText = UiTextCauseMapper.mapToText(result.error)
+                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    private fun mapForCreation(): RouteCreation {
+        return RouteCreation(
+            title = uiStateInfo.value.routeTitle.text,
+            description = uiStateInfo.value.routeDescription.text,
+            avgDifficulty = uiStateInfo.value.difficulty,
+            avgDuration = uiStateInfo.value.duration.text.toDouble(),
+            disabilityFriendly = uiStateInfo.value.disabilityFriendly,
+            photos = uiStatePhotos.value.photos.map { it.toString() },
+            stops = uiStateMap.value.stops.map { routeStopUiMapper.mapToDomain(it) },
+            author = null
+        )
     }
 }
 

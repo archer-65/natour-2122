@@ -155,7 +155,7 @@
 
         <fragment
             android:id="@+id/navigation_new_route_map"
-            android:name="com.unina.natourkt.feature_route.create_route.CreateRouteMapFragment"
+            android:name="com.unina.natourkt.feature_route.create_route.map.CreateRouteMapFragment"
             android:label="fragment_new_route_map"
             tools:layout="@layout/fragment_new_route_map">
             <action
@@ -165,7 +165,7 @@
 
         <fragment
             android:id="@+id/navigation_new_route_info"
-            android:name="com.unina.natourkt.feature_route.create_route.CreateRouteInfoFragment"
+            android:name="com.unina.natourkt.feature_route.create_route.info.CreateRouteInfoFragment"
             android:label="NewRouteInfoFragment">
             <action
                 android:id="@+id/action_new_route_info_to_new_route_map"
@@ -173,7 +173,7 @@
         </fragment>
         <fragment
             android:id="@+id/newRoutePhotosFragment"
-            android:name="com.unina.natourkt.feature_route.create_route.CreateRoutePhotosFragment"
+            android:name="com.unina.natourkt.feature_route.create_route.photos.CreateRoutePhotosFragment"
             android:label="fragment_new_route_photos"
             tools:layout="@layout/fragment_new_route_photos" />
         <action

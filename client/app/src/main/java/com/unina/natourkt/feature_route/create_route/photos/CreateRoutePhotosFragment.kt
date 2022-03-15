@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_route.create_route
+package com.unina.natourkt.feature_route.create_route.photos
 
 import android.os.Bundle
 import android.view.View
@@ -12,6 +12,7 @@ import com.unina.natourkt.core.presentation.adapter.PhotoAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
 
 class CreateRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, CreateRouteViewModel>(),
     PhotoAdapter.OnItemClickListener {

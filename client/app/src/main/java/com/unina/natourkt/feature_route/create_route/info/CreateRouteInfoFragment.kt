@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_route.create_route
+package com.unina.natourkt.feature_route.create_route.info
 
 import android.os.Bundle
 import android.text.InputFilter
@@ -13,6 +13,9 @@ import com.unina.natourkt.core.presentation.util.DurationFilter
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.core.presentation.util.updateText
+import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
+import com.unina.natourkt.feature_route.create_route.Difficulty
+import com.unina.natourkt.feature_route.create_route.NewRouteInfo
 
 class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, CreateRouteViewModel>() {
 

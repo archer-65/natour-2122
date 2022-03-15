@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_route.create_route
+package com.unina.natourkt.feature_route.create_route.map
 
 import android.os.Bundle
 import android.view.View
@@ -16,6 +16,7 @@ import com.unina.natourkt.core.presentation.util.addCustomMarker
 import com.unina.natourkt.core.presentation.util.moveAndZoomCamera
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
 
 class CreateRouteMapFragment :
     BaseMapFragment<FragmentNewRouteMapBinding, CreateRouteViewModel, MapView>() {

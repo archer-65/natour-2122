@@ -36,10 +36,6 @@ class CompilationDetailsFragment :
         bindView()
     }
 
-    override fun setupUi() {
-        //binding.appBarLayout.setTopMargin()
-    }
-
     override fun initRecycler() {
         with(binding) {
             recyclerCompilationRoutes.apply {

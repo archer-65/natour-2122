@@ -33,7 +33,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".feature_route.create_route.CreateRouteInfoFragment">
+            tools:context=".feature_route.create_route.info.CreateRouteInfoFragment">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/routeTitleTextField"

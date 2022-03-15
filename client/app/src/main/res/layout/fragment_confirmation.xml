@@ -39,7 +39,7 @@
         android:minWidth="250dp"
         app:endIconMode="clear_text"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/button_confirmation"
+        app:layout_constraintBottom_toTopOf="@+id/confirmationButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline18"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline17"

@@ -76,10 +76,7 @@ class MainActivity : AppCompatActivity() {
      * Check if user is authenticated, if not, then go to Login Fragment
      */
     private fun checkAuthState() = with(mainViewModel) {
-        val isUserAuthenticated = isUserAuthenticated
-        val loggedUser = loggedUser
-
-        if (!isUserAuthenticated || loggedUser == null) {
+        if (!isUserAuthenticated) {
             if (navController.currentDestination?.id == R.id.navigation_home) {
                 navController.navigate(R.id.action_home_to_auth_flow)
             }

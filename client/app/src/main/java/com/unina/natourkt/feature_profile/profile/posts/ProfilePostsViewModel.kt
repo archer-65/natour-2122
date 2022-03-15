@@ -15,17 +15,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel used by [PersonalPostsFragment]
+ * ViewModel used by [ProfilePostsFragment]
  */
 @HiltViewModel
-class PersonalPostsViewModel @Inject constructor(
+class ProfilePostsViewModel @Inject constructor(
     private val getPersonalPostsUseCase: GetPersonalPostsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val postGridItemUiMapper: PostGridItemUiMapper
 ) : ViewModel() {
 
     /**
-     * [PersonalPostsUiState] with a set of RouteItemUiState
+     * [ProfilePostsUiState] with a set of RouteItemUiState
      */
     // private val _uiState = MutableStateFlow(PersonalPostsUiState())
     // val uiState: StateFlow<PersonalPostsUiState> = _uiState.asStateFlow()

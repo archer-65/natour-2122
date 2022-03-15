@@ -23,13 +23,13 @@ import dagger.hilt.android.AndroidEntryPoint
  * filled of paginated routes
  */
 @AndroidEntryPoint
-class PersonalRoutesFragment :
-    BaseFragment<FragmentPersonalRoutesBinding, PersonalRoutesViewModel>(),
+class ProfileRoutesFragment :
+    BaseFragment<FragmentPersonalRoutesBinding, ProfileRoutesViewModel>(),
     RouteAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = RouteAdapter(this@PersonalRoutesFragment)
+    private val recyclerAdapter = RouteAdapter(this@ProfileRoutesFragment)
 
-    private val viewModel: PersonalRoutesViewModel by viewModels()
+    private val viewModel: ProfileRoutesViewModel by viewModels()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentPersonalRoutesBinding.inflate(layoutInflater)
@@ -50,7 +50,7 @@ class PersonalRoutesFragment :
     override fun initRecycler() {
         with(binding) {
             recyclerRoutes.apply {
-                layoutManager = LinearLayoutManager(this@PersonalRoutesFragment.requireContext())
+                layoutManager = LinearLayoutManager(this@ProfileRoutesFragment.requireContext())
                 adapter = initConcatAdapter()
                 scrollBehavior(newRouteFab)
             }

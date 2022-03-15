@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_route.new_route
+package com.unina.natourkt.feature_route.create_route
 
 import android.os.Bundle
 import android.view.View
@@ -17,12 +17,12 @@ import com.unina.natourkt.core.presentation.util.moveAndZoomCamera
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.core.presentation.util.setTopMargin
 
-class NewRouteMapFragment :
-    BaseMapFragment<FragmentNewRouteMapBinding, NewRouteViewModel, MapView>() {
+class CreateRouteMapFragment :
+    BaseMapFragment<FragmentNewRouteMapBinding, CreateRouteViewModel, MapView>() {
 
     private lateinit var launcherGpx: ActivityResultLauncher<Unit>
 
-    private val viewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
+    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentNewRouteMapBinding.inflate(layoutInflater)

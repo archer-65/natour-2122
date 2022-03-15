@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_route.new_route
+package com.unina.natourkt.feature_route.create_route
 
 import android.net.Uri
 import android.util.Log
@@ -21,7 +21,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-class NewRouteViewModel @Inject constructor(
+class CreateRouteViewModel @Inject constructor(
     private val getDirectionsUseCase: GetDirectionsUseCase,
     private val createRouteUseCase: CreateRouteUseCase,
     private val gpxParser: GPXParser,

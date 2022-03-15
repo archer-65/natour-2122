@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_post.new_post
+package com.unina.natourkt.feature_post.create_post
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class NewPostViewModel @Inject constructor(
+class CreatePostViewModel @Inject constructor(
     private val getRouteTitleUseCase: GetRouteTitleUseCase,
     private val createPostUseCase: CreatePostUseCase,
     private val routeTitleUiMapper: RouteTitleUiMapper

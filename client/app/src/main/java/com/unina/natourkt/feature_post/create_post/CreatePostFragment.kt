@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_post.new_post
+package com.unina.natourkt.feature_post.create_post
 
 import android.os.Bundle
 import android.view.View
@@ -16,12 +16,12 @@ import com.unina.natourkt.core.presentation.util.setTopMargin
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewPostFragment : BaseFragment<FragmentNewPostBinding, NewPostViewModel>(),
+class CreatePostFragment : BaseFragment<FragmentNewPostBinding, CreatePostViewModel>(),
     PhotoAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = PhotoAdapter(this@NewPostFragment)
+    private val recyclerAdapter = PhotoAdapter(this@CreatePostFragment)
 
-    private val viewModel: NewPostViewModel by viewModels()
+    private val viewModel: CreatePostViewModel by viewModels()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentNewPostBinding.inflate(layoutInflater)
@@ -59,7 +59,7 @@ class NewPostFragment : BaseFragment<FragmentNewPostBinding, NewPostViewModel>()
             recyclerNewPhotos.apply {
                 layoutManager =
                     LinearLayoutManager(
-                        this@NewPostFragment.requireContext(),
+                        this@CreatePostFragment.requireContext(),
                         LinearLayoutManager.HORIZONTAL,
                         false
                     )

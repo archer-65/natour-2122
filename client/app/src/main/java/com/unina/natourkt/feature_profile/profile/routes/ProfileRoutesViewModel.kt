@@ -15,17 +15,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel used by [PersonalRoutesFragment]
+ * ViewModel used by [ProfileRoutesFragment]
  */
 @HiltViewModel
-class PersonalRoutesViewModel @Inject constructor(
+class ProfileRoutesViewModel @Inject constructor(
     private val getPersonalRoutesUseCase: GetPersonalRoutesUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val routeItemUiMapper: RouteItemUiMapper,
 ) : ViewModel() {
 
     /**
-     * [PersonalRoutesUiState] with a set of RouteItemUiState
+     * [ProfileRoutesUiState] with a set of RouteItemUiState
      */
     // private val _uiState = MutableStateFlow(PersonalRoutesUiState())
     // val uiState: StateFlow<PersonalRoutesUiState> = _uiState.asStateFlow()

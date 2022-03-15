@@ -22,13 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
  * filled of paginated compilations
  */
 @AndroidEntryPoint
-class PersonalCompilationsFragment :
-    BaseFragment<FragmentPersonalCompilationsBinding, PersonalCompilationsViewModel>(),
+class ProfileCompilationsFragment :
+    BaseFragment<FragmentPersonalCompilationsBinding, ProfileCompilationsViewModel>(),
     CompilationAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = CompilationAdapter(this@PersonalCompilationsFragment)
+    private val recyclerAdapter = CompilationAdapter(this@ProfileCompilationsFragment)
 
-    private val viewModel: PersonalCompilationsViewModel by viewModels()
+    private val viewModel: ProfileCompilationsViewModel by viewModels()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentPersonalCompilationsBinding.inflate(layoutInflater)
@@ -43,7 +43,7 @@ class PersonalCompilationsFragment :
         with(binding) {
             recyclerCompilations.apply {
                 layoutManager =
-                    LinearLayoutManager(this@PersonalCompilationsFragment.requireContext())
+                    LinearLayoutManager(this@ProfileCompilationsFragment.requireContext())
                 adapter = initConcatAdapter()
                 scrollBehavior(newCompilationFab)
             }

@@ -13,9 +13,9 @@ import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.presentation.util.loadWithGlide
 import com.unina.natourkt.core.presentation.util.setTopMargin
-import com.unina.natourkt.feature_profile.profile.compilations.PersonalCompilationsFragment
-import com.unina.natourkt.feature_profile.profile.posts.PersonalPostsFragment
-import com.unina.natourkt.feature_profile.profile.routes.PersonalRoutesFragment
+import com.unina.natourkt.feature_profile.profile.compilations.ProfileCompilationsFragment
+import com.unina.natourkt.feature_profile.profile.posts.ProfilePostsFragment
+import com.unina.natourkt.feature_profile.profile.routes.ProfileRoutesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -57,9 +57,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private fun setupViewPager() = with(binding) {
 
         val fragmentList = arrayListOf<Fragment>(
-            PersonalPostsFragment(),
-            PersonalCompilationsFragment(),
-            PersonalRoutesFragment()
+            ProfilePostsFragment(),
+            ProfileCompilationsFragment(),
+            ProfileRoutesFragment()
         )
 
         val adapter = ViewPagerAdapter(fragmentList, childFragmentManager, lifecycle)

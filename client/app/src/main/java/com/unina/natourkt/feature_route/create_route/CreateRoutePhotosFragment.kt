@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_route.new_route
+package com.unina.natourkt.feature_route.create_route
 
 import android.os.Bundle
 import android.view.View
@@ -13,12 +13,12 @@ import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.core.presentation.util.setTopMargin
 
-class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRouteViewModel>(),
+class CreateRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, CreateRouteViewModel>(),
     PhotoAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = PhotoAdapter(this@NewRoutePhotosFragment)
+    private val recyclerAdapter = PhotoAdapter(this@CreateRoutePhotosFragment)
 
-    private val viewModel: NewRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
+    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentNewRoutePhotosBinding.inflate(layoutInflater)
@@ -54,7 +54,7 @@ class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRo
             recyclerNewPhotos.apply {
                 layoutManager =
                     LinearLayoutManager(
-                        this@NewRoutePhotosFragment.requireContext(),
+                        this@CreateRoutePhotosFragment.requireContext(),
                         LinearLayoutManager.HORIZONTAL,
                         false
                     )

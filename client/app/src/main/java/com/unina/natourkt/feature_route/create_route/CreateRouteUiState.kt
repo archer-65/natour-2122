@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_route.new_route
+package com.unina.natourkt.feature_route.create_route
 
 import android.net.Uri
 import com.google.android.gms.maps.model.PolylineOptions

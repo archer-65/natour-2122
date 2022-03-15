@@ -1,6 +1,8 @@
 package com.unina.natourkt.core.domain.use_case.auth
 
 import com.unina.natourkt.core.domain.repository.AuthRepository
+import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
+import com.unina.natourkt.core.util.DataState
 import javax.inject.Inject
 
 /**
@@ -8,9 +10,10 @@ import javax.inject.Inject
  */
 class GetAuthStateUseCase @Inject constructor(
     private val authRepository: AuthRepository,
+    private val getUserDataUseCase: GetUserDataUseCase,
 ) {
 
     suspend operator fun invoke(): Boolean {
-        return authRepository.fetchCurrentSession()
+        return authRepository.fetchCurrentSession() && getUserDataUseCase() != null
     }
 }

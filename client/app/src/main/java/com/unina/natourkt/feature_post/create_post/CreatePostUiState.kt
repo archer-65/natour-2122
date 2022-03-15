@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_post.new_post
+package com.unina.natourkt.feature_post.create_post
 
 import android.net.Uri
 import com.unina.natourkt.core.util.DataState

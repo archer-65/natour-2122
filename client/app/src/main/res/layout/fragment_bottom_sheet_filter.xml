@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".feature_route.new_route.NewRouteInfoFragment">
+            tools:context=".feature_route.create_route.CreateRouteInfoFragment">
 
             <ImageView
                 android:id="@+id/geoIcon"

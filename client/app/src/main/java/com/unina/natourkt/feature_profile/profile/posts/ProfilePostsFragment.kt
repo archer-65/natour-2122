@@ -26,14 +26,14 @@ import dagger.hilt.android.AndroidEntryPoint
  * filled of paginated posts
  */
 @AndroidEntryPoint
-class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, PersonalPostsViewModel>(),
+class ProfilePostsFragment : BaseFragment<FragmentPersonalPostsBinding, ProfilePostsViewModel>(),
     PostGridAdapter.OnItemClickListener {
 
-    private val recyclerAdapter = PostGridAdapter(this@PersonalPostsFragment)
+    private val recyclerAdapter = PostGridAdapter(this@ProfilePostsFragment)
     private val footerLoadStateAdapter = ItemLoadStateAdapter()
     private val headerLoadStateAdapter = ItemLoadStateAdapter()
 
-    private val viewModel: PersonalPostsViewModel by viewModels()
+    private val viewModel: ProfilePostsViewModel by viewModels()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentPersonalPostsBinding.inflate(layoutInflater)
@@ -61,7 +61,7 @@ class PersonalPostsFragment : BaseFragment<FragmentPersonalPostsBinding, Persona
                 val gridAdapter = initConcatAdapter()
 
                 val grid = GridLayoutManager(
-                    this@PersonalPostsFragment.requireContext(),
+                    this@ProfilePostsFragment.requireContext(),
                     COLUMN_COUNT
                 )
 

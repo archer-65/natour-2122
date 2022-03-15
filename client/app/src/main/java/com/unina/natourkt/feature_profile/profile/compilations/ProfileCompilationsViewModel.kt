@@ -16,17 +16,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel used by [PersonalCompilationsFragment]
+ * ViewModel used by [ProfileCompilationsFragment]
  */
 @HiltViewModel
-class PersonalCompilationsViewModel @Inject constructor(
+class ProfileCompilationsViewModel @Inject constructor(
     private val getPersonalCompilationsUseCase: GetPersonalCompilationsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val compilationMapper: CompilationItemUiMapper,
 ) : ViewModel() {
 
     /**
-     * [PersonalCompilationsUiState] with a set of RouteItemUiState
+     * [ProfileCompilationsUiState] with a set of RouteItemUiState
      */
     // private val _uiState = MutableStateFlow(PersonalCompilationsUiState())
     // val uiState: StateFlow<PersonalCompilationsUiState> = _uiState.asStateFlow()

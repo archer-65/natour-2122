@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.unina.natourkt.R
 import com.unina.natourkt.core.util.Difficulty
-import com.unina.natourkt.core.util.loadWithGlide
 import com.unina.natourkt.databinding.RouteItemInCompilationBinding
 import com.unina.natourkt.core.presentation.model.RouteItemUi
+import com.unina.natourkt.core.presentation.util.loadWithGlide
 
 /**
  * Implementation of PagingDataAdapter for [RouteItemUi] (posts on routes screen)

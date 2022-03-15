@@ -8,12 +8,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.unina.natourkt.core.util.loadWithGlide
 import com.unina.natourkt.databinding.FragmentCompilationDetailsBinding
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.RouteCompilationAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.RouteItemUi
+import com.unina.natourkt.core.presentation.util.loadWithGlide
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -24,7 +24,7 @@ enum class ErrorCodes(val code: Int) {
 /**
  * This class is responsible for handling all the exceptions that occur in the app
  */
-open class ErrorHandler {
+class ErrorHandler {
 
     companion object {
         fun handleException(throwable: Throwable): DataState.Cause {

@@ -37,6 +37,8 @@
     <string name="wrong_confirmation_code">Codice di conferma non valido, riprova.</string>
     <string name="expired_confirmation_code">Il codice di conferma è scaduto, richiedine un altro.</string>
 
+    <string name="unknown_error">Errore sconosciuto, contatta un amministratore</string>
+
     <!-- STUFF -->
     <string name="cover_authentication">Cover login</string>
     <string name="logo_app">Logo App</string>
@@ -48,6 +50,16 @@
     <string name="retrofit_http_error">Unexpected error, retry</string>
     <string name="internet_error">Check your internet connection</string>
 
+    <string name="bad_request">Operazione effettuata non valida, controlla le informazioni inserite</string>
+    <string name="forbidden">Non hai i permessi necessari per effettuare l\'operazione</string>
+    <string name="conflict">Non è possibile completare l\'operazione, questo elemento esiste già!</string>
+    <string name="internal_error">Il Server non può elaborare la richiesta al momento, riprova più tardi</string>
+    <string name="not_acceptable">Richiesta non valida, aggiorna l\'app</string>
+    <string name="not_found">Non ci sono risultati</string>
+    <string name="service_unavailable">Servizio non disponibile, riprova più tardi</string>
+    <string name="timeout">Timeout della richiesta, riprova</string>
+    <string name="unauthorized">Non sei autenticato correttamente per l\'utilizzo dei servizi</string>
+    
     <string name="confirmed_account">Account confermato, effettua l\'accesso!</string>
     <string name="code_resent">Il codice è stato inviato di nuovo.</string>
     <string name="button_confirm_text">Conferma registrazione</string>
@@ -60,8 +72,7 @@
     <string name="button_confirm_reset_text">Conferma il reset</string>
     <string name="chip_save_text">Salva</string>
     <string name="route_placeholder_text">Itinerario</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="placeholder_username">\@username</string>
     <string name="chip_text_settings">Impostazioni</string>
     <string name="itinerary_placeholder">Itinerario</string>

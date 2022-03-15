@@ -9,13 +9,13 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.addCustomMarker
-import com.unina.natourkt.core.util.moveAndZoomCamera
-import com.unina.natourkt.core.util.setBottomMargin
-import com.unina.natourkt.core.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
 import com.unina.natourkt.core.presentation.contract.GpxPickerContract
 import com.unina.natourkt.core.presentation.base.fragment.BaseMapFragment
+import com.unina.natourkt.core.presentation.util.addCustomMarker
+import com.unina.natourkt.core.presentation.util.moveAndZoomCamera
+import com.unina.natourkt.core.presentation.util.setBottomMargin
+import com.unina.natourkt.core.presentation.util.setTopMargin
 
 class NewRouteMapFragment :
     BaseMapFragment<FragmentNewRouteMapBinding, NewRouteViewModel, MapView>() {

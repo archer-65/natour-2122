@@ -7,11 +7,11 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.setBottomMargin
-import com.unina.natourkt.core.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewRoutePhotosBinding
 import com.unina.natourkt.core.presentation.adapter.PhotoAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.core.presentation.util.setBottomMargin
+import com.unina.natourkt.core.presentation.util.setTopMargin
 
 class NewRoutePhotosFragment : BaseFragment<FragmentNewRoutePhotosBinding, NewRouteViewModel>(),
     PhotoAdapter.OnItemClickListener {

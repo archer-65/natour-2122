@@ -6,11 +6,11 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.setBottomMargin
-import com.unina.natourkt.core.util.setTopMargin
-import com.unina.natourkt.core.util.updateText
 import com.unina.natourkt.databinding.FragmentRegistrationBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.core.presentation.util.setBottomMargin
+import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.updateText
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

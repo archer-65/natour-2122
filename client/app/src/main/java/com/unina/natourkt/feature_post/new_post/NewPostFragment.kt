@@ -8,11 +8,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.setBottomMargin
-import com.unina.natourkt.core.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentNewPostBinding
 import com.unina.natourkt.core.presentation.adapter.PhotoAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.core.presentation.util.setBottomMargin
+import com.unina.natourkt.core.presentation.util.setTopMargin
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

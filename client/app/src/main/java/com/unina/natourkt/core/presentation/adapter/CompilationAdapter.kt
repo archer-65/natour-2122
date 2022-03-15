@@ -6,9 +6,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.loadWithGlide
 import com.unina.natourkt.databinding.CompilationItemBinding
 import com.unina.natourkt.core.presentation.model.CompilationItemUi
+import com.unina.natourkt.core.presentation.util.loadWithGlide
 
 /**
  * Implementation of PagingDataAdapter for [CompilationItemUi]

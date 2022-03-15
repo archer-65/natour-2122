@@ -10,13 +10,13 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.scrollBehavior
-import com.unina.natourkt.core.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentRoutesBinding
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.RouteAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.RouteItemUi
+import com.unina.natourkt.core.presentation.util.scrollBehavior
+import com.unina.natourkt.core.presentation.util.setTopMargin
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

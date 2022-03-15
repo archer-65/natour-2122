@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.loadWithGlide
-import com.unina.natourkt.core.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.core.presentation.adapter.ViewPagerAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.UserUi
+import com.unina.natourkt.core.presentation.util.loadWithGlide
+import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.feature_profile.profile.compilations.PersonalCompilationsFragment
 import com.unina.natourkt.feature_profile.profile.posts.PersonalPostsFragment
 import com.unina.natourkt.feature_profile.profile.routes.PersonalRoutesFragment

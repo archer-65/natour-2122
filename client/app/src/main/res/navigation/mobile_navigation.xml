@@ -248,7 +248,7 @@
         tools:layout="@layout/fragment_compilation_details" >
         <argument
             android:name="compilationItem"
-            app:argType="com.unina.natourkt.core.presentation.base.model.CompilationItemUi" />
+            app:argType="com.unina.natourkt.core.presentation.model.CompilationItemUi" />
         <action
             android:id="@+id/action_compilationDetailsFragment_to_navigation_route_details_flow"
             app:destination="@id/navigation_route_details_flow" />

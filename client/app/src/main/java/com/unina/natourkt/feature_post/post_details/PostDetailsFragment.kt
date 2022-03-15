@@ -12,6 +12,10 @@ import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.PostDetailsUi
 import com.unina.natourkt.core.presentation.model.UserUi
+import com.unina.natourkt.core.presentation.util.inVisible
+import com.unina.natourkt.core.presentation.util.loadWithGlide
+import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -50,7 +50,6 @@ class RouteDetailsViewModel @Inject constructor(
     init {
         getLoggedUser()
         getRouteDetails(routeId!!)
-        getDirections()
         getTaggedPosts()
     }
 
@@ -67,6 +66,7 @@ class RouteDetailsViewModel @Inject constructor(
                                 getUrlFromKeyUseCase(it)
                             })
                     }
+                    getDirections()
                 }
                 is DataState.Error -> {
                     _uiState.update {

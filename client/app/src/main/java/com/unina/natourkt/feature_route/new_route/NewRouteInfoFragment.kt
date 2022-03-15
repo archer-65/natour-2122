@@ -7,12 +7,12 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialContainerTransform
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.setBottomMargin
-import com.unina.natourkt.core.util.setTopMargin
-import com.unina.natourkt.core.util.updateText
 import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.DurationFilter
+import com.unina.natourkt.core.presentation.util.setBottomMargin
+import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.updateText
 
 class NewRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, NewRouteViewModel>() {
 

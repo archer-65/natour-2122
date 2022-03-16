@@ -74,7 +74,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             collectLatestOnLifecycleScope(uiState) {
                 // When the user is logged in we navigate to the home screen
                 if (it.isUserLoggedIn) {
-                    findNavController().navigate(R.id.navigation_login_to_navigation_home)
+                    findNavController().navigate(R.id.action_login_to_home)
                 }
 
                 progressBar.isVisible = it.isLoading

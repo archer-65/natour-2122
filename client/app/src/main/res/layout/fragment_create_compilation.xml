@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature_post.create_post.CreatePostFragment">
+    tools:context=".feature_compilation.create_compilation.CreateCompilationFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -18,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            app:title="Nuovo post" />
+            app:title="Crea compilation" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,22 +34,25 @@
             tools:context=".feature_route.create_route.info.CreateRouteInfoFragment">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/routeTextField"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:id="@+id/compilationTitleTextField"
+                style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Itinerario"
+                android:layout_marginTop="20dp"
+                android:hint="Titolo"
                 app:errorEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/descriptionTextField"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toTopOf="@+id/guideline34"
+                app:layout_constraintTop_toBottomOf="@+id/insertPhotoButton"
+                app:layout_constraintTop_toTopOf="@+id/barrier3"
                 app:layout_constraintVertical_chainStyle="packed">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +66,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/barrier4"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toBottomOf="@+id/routeTextField">
+                app:layout_constraintTop_toBottomOf="@+id/compilationTitleTextField">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -72,7 +74,7 @@
                     android:gravity="top|start"
                     android:inputType="textMultiLine"
                     android:isScrollContainer="true"
-                    android:lines="3"
+                    android:lines="5"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
@@ -81,19 +83,19 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/photoHelperText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:maxWidth="350dp"
-                android:text="@string/insert_post_photos"
+                android:text="Seleziona una foto come anteprima della tua compilation."
                 android:textAlignment="center"
                 android:textAppearance="?attr/textAppearanceBodyLarge"
                 android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintBottom_toTopOf="@+id/insertPhotoButton"
                 app:layout_constraintEnd_toEndOf="@+id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toBottomOf="@+id/barrier4" />
+                app:layout_constraintTop_toBottomOf="@+id/compilation_new_photo" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/insertPhotoButton"
@@ -101,22 +103,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Seleziona foto"
-                app:layout_constraintEnd_toEndOf="@id/textView"
-                app:layout_constraintStart_toStartOf="@id/textView"
-                app:layout_constraintTop_toBottomOf="@id/textView" />
+                app:layout_constraintEnd_toEndOf="@id/photoHelperText"
+                app:layout_constraintStart_toStartOf="@id/photoHelperText"
+                app:layout_constraintTop_toBottomOf="@id/photoHelperText" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_new_photos"
+            <ImageView
+                android:id="@+id/compilation_new_photo"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="220dp"
+                android:src="@drawable/ic_undraw_moments_0y20"
+                app:layout_constraintBottom_toTopOf="@id/photoHelperText"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrier3"
-                app:layout_constraintVertical_bias="0.15" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier3"
@@ -161,7 +161,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/postFab"
+        android:id="@+id/createCompilationFab"
         style="?attr/floatingActionButtonSecondaryStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -169,8 +169,15 @@
         android:layout_margin="12dp"
         android:contentDescription="@string/next_fab"
         android:enabled="true"
-        android:text="Pubblica"
+        android:text="Crea compilation"
         app:fabSize="normal"
         app:icon="@drawable/ic_check" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,5 +1,6 @@
 package com.unina.natourkt.core.data.repository
 
+import androidx.core.net.toUri
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -18,6 +19,8 @@ import com.unina.natourkt.core.domain.model.RouteCreation
 import com.unina.natourkt.core.domain.model.RouteTitle
 import com.unina.natourkt.core.domain.model.route.Route
 import com.unina.natourkt.core.domain.repository.RouteRepository
+import com.unina.natourkt.core.domain.repository.StorageRepository
+import com.unina.natourkt.core.util.toInputStream
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

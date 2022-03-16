@@ -2,7 +2,11 @@ package com.unina.natourkt.feature_route.create_route.map
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.MapView
@@ -10,22 +14,23 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentNewRouteMapBinding
 import com.unina.natourkt.core.presentation.contract.GpxPickerContract
 import com.unina.natourkt.core.presentation.base.fragment.BaseMapFragment
 import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.databinding.FragmentCreateRouteMapBinding
 import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
+import dev.chrisbanes.insetter.applyInsetter
 
 class CreateRouteMapFragment :
-    BaseMapFragment<FragmentNewRouteMapBinding, CreateRouteViewModel, MapView>() {
+    BaseMapFragment<FragmentCreateRouteMapBinding, CreateRouteViewModel, MapView>() {
 
     private lateinit var launcherGpx: ActivityResultLauncher<Unit>
 
-    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
+    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_create_route_flow)
 
     override fun getVM() = viewModel
-    override fun getViewBinding() = FragmentNewRouteMapBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentCreateRouteMapBinding.inflate(layoutInflater)
     override fun getMapBinding() = binding.mapView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +57,7 @@ class CreateRouteMapFragment :
         }
 
         nextFab.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_new_route_map_to_newRoutePhotosFragment)
+            findNavController().navigate(R.id.action_create_route_map_to_create_route_photos)
         }
     }
 
@@ -113,10 +118,10 @@ class CreateRouteMapFragment :
             when (event) {
                 is UiEvent.ShowSnackbar -> {
                     Snackbar.make(
-                        requireView(),
+                        binding.nextFab,
                         event.uiText.asString(requireContext()),
                         Snackbar.LENGTH_SHORT
-                    ).show()
+                    ).setAnchorView(binding.nextFab).show()
                 }
                 else -> {}
             }

@@ -19,26 +19,22 @@ class CreatePostUseCase @Inject constructor(
     operator fun invoke(post: PostCreation): Flow<DataState<Unit>> = flow {
         emit(DataState.Loading())
 
-        val postWithUser = preparePostWithUser(post)
-        val preparedPost = preparePostForUpload(postWithUser)
-        val createdPost = postRepository.createPost(preparedPost)
+        val postWithUploadedFiles = uploadPhotos(post)
+        val createdPost = postRepository.createPost(postWithUploadedFiles)
 
         emit(createdPost)
     }
 
-    private suspend fun preparePostWithUser(post: PostCreation) =
-        post.copy(author = getUserDataUseCase())
-
-
-    private suspend fun preparePostForUpload(post: PostCreation) =
-        post.copy(photos = prepareUpload(post))
-
-    private suspend fun prepareUpload(post: PostCreation) =
-        post.photos.mapIndexed { index, value ->
-            uploadFilesUseCase(prefixCreation(index, post), value.toUri())
+    private suspend fun uploadPhotos(post: PostCreation): PostCreation {
+        val uploadedPhotos = post.photos.mapIndexed { index, value ->
+            val pathDefinition = definePath(index, post)
+            uploadFilesUseCase(pathDefinition, value.toUri())
         }.filterNotNull()
 
-    private fun prefixCreation(index: Int, post: PostCreation): String {
+        return post.copy(photos = uploadedPhotos)
+    }
+
+    private fun definePath(index: Int, post: PostCreation): String {
         val prefix = "posts/${post.author?.id}"
         val title = post.taggedRoute.title.replace(" ", "")
         val path = "${prefix}/${title}/image${index}"

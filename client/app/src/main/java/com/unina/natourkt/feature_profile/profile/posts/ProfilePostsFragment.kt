@@ -47,7 +47,7 @@ class ProfilePostsFragment : BaseFragment<FragmentPersonalPostsBinding, ProfileP
 
     override fun setListeners() = with(binding) {
         newPostFab.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_profile_to_newPostFragment)
+            findNavController().navigate(R.id.action_profile_to_create_post)
         }
     }
 

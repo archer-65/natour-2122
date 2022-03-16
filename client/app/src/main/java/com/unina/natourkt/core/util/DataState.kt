@@ -62,6 +62,8 @@ sealed class DataState<T>(
         object ServiceUnavailable : Cause()
         object Forbidden : Cause()
         object Conflict : Cause()
+        object StorageError : Cause()
+        object FileError : Cause()
         object SomethingWentWrong : Cause()
     }
 }

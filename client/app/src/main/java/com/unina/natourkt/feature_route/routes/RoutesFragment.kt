@@ -54,7 +54,7 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
             newRouteFab.setOnClickListener {
                 val extras = FragmentNavigatorExtras(newRouteFab to "transitionNewRouteFab")
                 findNavController().navigate(
-                    R.id.action_routes_to_new_route_flow,
+                    R.id.action_routes_to_create_route_flow,
                     null,
                     null,
                     extras
@@ -64,7 +64,7 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
             topAppBar.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.search_route -> {
-                        findNavController().navigate(R.id.action_navigation_routes_to_navigation_search_route2)
+                        findNavController().navigate(R.id.action_routes_to_route_search)
                         true
                     }
                     else -> {

@@ -11,16 +11,17 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.core.util.Difficulty
-import com.unina.natourkt.databinding.FragmentNewRouteInfoBinding
+import com.unina.natourkt.databinding.FragmentCreateRouteInfoBinding
 import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
 
-class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, CreateRouteViewModel>() {
+class CreateRouteInfoFragment :
+    BaseFragment<FragmentCreateRouteInfoBinding, CreateRouteViewModel>() {
 
-    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
+    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_create_route_flow)
 
     override fun getVM() = viewModel
-    override fun getViewBinding() = FragmentNewRouteInfoBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentCreateRouteInfoBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,7 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
 
     override fun setListeners() = with(binding) {
         nextFab.setOnClickListener {
-            findNavController().navigate(R.id.action_new_route_info_to_new_route_map)
+            findNavController().navigate(R.id.action_create_route_info_to_create_route_map)
         }
 
         durationTextField.editText?.apply {
@@ -105,10 +106,10 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
                 when (event) {
                     is UiEvent.ShowSnackbar -> {
                         Snackbar.make(
-                            requireView(),
+                            nextFab,
                             event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_SHORT
-                        ).show()
+                        ).setAnchorView(nextFab).show()
                     }
                     else -> {}
                 }

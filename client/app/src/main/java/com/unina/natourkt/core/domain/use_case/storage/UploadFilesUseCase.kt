@@ -4,6 +4,10 @@ import android.net.Uri
 import android.util.Log
 import com.unina.natourkt.core.util.toInputStream
 import com.unina.natourkt.core.domain.repository.StorageRepository
+import com.unina.natourkt.core.util.DataState
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import java.io.FileNotFoundException
 import javax.inject.Inject
 
 class UploadFilesUseCase @Inject constructor(
@@ -11,12 +15,6 @@ class UploadFilesUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(key: String, uri: Uri): String? {
-        return try {
-            val stream = uri.toInputStream()
-            stream.let { storageRepository.uploadFromUri(key, it.getOrThrow()!!) }
-        } catch (error: Exception) {
-            Log.e("Uploading error", error.localizedMessage, error)
-            null
-        }
+        return storageRepository.uploadFromUri(key, uri)
     }
 }

@@ -77,7 +77,7 @@ class CompilationDetailsFragment :
 
     override fun onItemClick(route: RouteItemUi) {
         val action =
-            CompilationDetailsFragmentDirections.actionCompilationDetailsFragmentToNavigationRouteDetailsFlow(
+            CompilationDetailsFragmentDirections.actionCompilationDetailsToRouteDetailsFlow(
                 route.id,
                 route.authorId
             )

@@ -150,7 +150,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
      * [TedImagePicker] is a really nice library, the default `Picker` is a bit limited
      * and at the moment `Photo Picker` is available only for Preview SDK `Tiramisu`.
      */
-    fun pickImageFromGallery(selected: List<Uri>, execute: (images: List<Uri>) -> Unit) {
+    fun pickImagesFromGallery(selected: List<Uri>, execute: (images: List<Uri>) -> Unit) {
         TedImagePicker
             .with(requireContext())
             .title(getString(R.string.select_images))
@@ -165,32 +165,13 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
             }
     }
 
-    /**
-     * Display a snackbar with a given message
-     */
-    fun showSnackbar(message: String) {
-        Snackbar.make(this.requireView(), message, Snackbar.LENGTH_SHORT).show()
-    }
-
-    /**
-     * Get the right message and show it to the user
-     */
-    fun manageMessage(cause: DataState.Cause) {
-        val message = when (cause) {
-            is DataState.Cause.UserNotFound -> getString(R.string.user_not_found)
-            is DataState.Cause.UserNotConfirmed -> getString(R.string.user_not_confirmed)
-            is DataState.Cause.InvalidPassword -> getString(R.string.invalid_password)
-            is DataState.Cause.InvalidCredentials -> getString(R.string.wrong_credentials)
-            is DataState.Cause.UsernameExists -> getString(R.string.username_exists)
-            is DataState.Cause.AliasExists -> getString(R.string.credentials_already_taken)
-            is DataState.Cause.InvalidParameter -> getString(R.string.incorrect_parameters)
-            is DataState.Cause.CodeDelivery -> getString(R.string.error_confirmation_code_deliver)
-            is DataState.Cause.CodeMismatch -> getString(R.string.wrong_confirmation_code)
-            is DataState.Cause.CodeExpired -> getString(R.string.expired_confirmation_code)
-            is DataState.Cause.AuthGeneric -> getString(R.string.auth_failed_exception)
-            else -> getString(R.string.auth_failed_generic)
-        }
-
-        showSnackbar(message)
+    fun pickImageFromGallery(execute: (image: Uri) -> Unit) {
+        TedImagePicker
+            .with(requireContext())
+            .title("Seleziona immagine")
+            .mediaType(MediaType.IMAGE)
+            .start { uri ->
+                execute(uri)
+            }
     }
 }

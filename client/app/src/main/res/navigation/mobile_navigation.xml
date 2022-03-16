@@ -10,6 +10,7 @@
         android:name="com.unina.natourkt.feature_post.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
+
         <action
             android:id="@+id/action_home_to_auth_flow"
             app:destination="@id/navigation_auth_flow"
@@ -19,8 +20,9 @@
             android:id="@+id/action_home_to_post_details"
             app:destination="@id/navigation_post_details" />
         <action
-            android:id="@+id/action_navigation_home_to_newPostFragment"
-            app:destination="@id/navigation_new_post" />
+            android:id="@+id/action_home_to_create_post"
+            app:destination="@id/navigation_create_post" />
+
     </fragment>
 
     <fragment
@@ -35,6 +37,7 @@
         <argument
             android:name="authorId"
             app:argType="long" />
+
     </fragment>
 
     <fragment
@@ -42,15 +45,17 @@
         android:name="com.unina.natourkt.feature_route.routes.RoutesFragment"
         android:label="@string/title_routes"
         tools:layout="@layout/fragment_routes">
+
         <action
             android:id="@+id/action_routes_to_route_details"
             app:destination="@id/navigation_route_details_flow" />
         <action
-            android:id="@+id/action_routes_to_new_route_flow"
-            app:destination="@id/navigation_new_route_flow" />
+            android:id="@+id/action_routes_to_create_route_flow"
+            app:destination="@id/navigation_create_route_flow" />
         <action
-            android:id="@+id/action_navigation_routes_to_navigation_search_route2"
+            android:id="@+id/action_routes_to_route_search"
             app:destination="@id/navigation_search_flow" />
+
     </fragment>
 
     <fragment
@@ -58,21 +63,26 @@
         android:name="com.unina.natourkt.feature_profile.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
+
         <action
             android:id="@+id/action_profile_to_post_details"
             app:destination="@id/navigation_post_details" />
         <action
-            android:id="@+id/action_profile_to_new_route_flow"
-            app:destination="@id/navigation_new_route_flow" />
+            android:id="@+id/action_profile_to_create_route_flow"
+            app:destination="@id/navigation_create_route_flow" />
         <action
-            android:id="@+id/action_navigation_profile_to_newPostFragment"
-            app:destination="@id/navigation_new_post" />
+            android:id="@+id/action_profile_to_create_post"
+            app:destination="@id/navigation_create_post" />
         <action
-            android:id="@+id/action_navigation_profile_to_navigation_route_details"
+            android:id="@+id/action_profile_to_route_details"
             app:destination="@id/navigation_route_details_flow" />
         <action
-            android:id="@+id/action_navigation_profile_to_compilationDetailsFragment"
-            app:destination="@id/compilationDetailsFragment" />
+            android:id="@+id/action_profile_to_compilation_details"
+            app:destination="@id/navigation_compilation_details" />
+        <action
+            android:id="@+id/action_profile_to_create_compilation"
+            app:destination="@id/navigation_create_compilation" />
+
     </fragment>
 
     <navigation
@@ -84,8 +94,9 @@
             android:name="com.unina.natourkt.feature_auth.login.LoginFragment"
             android:label="Login"
             tools:layout="@layout/fragment_login">
+
             <action
-                android:id="@+id/navigation_login_to_navigation_home"
+                android:id="@+id/action_login_to_home"
                 app:destination="@id/navigation_home"
                 app:popUpTo="@id/navigation_auth_flow"
                 app:popUpToInclusive="true" />
@@ -95,6 +106,7 @@
             <action
                 android:id="@+id/action_login_to_forgot_password"
                 app:destination="@id/navigation_forgot_password" />
+
         </fragment>
 
         <fragment
@@ -102,9 +114,11 @@
             android:name="com.unina.natourkt.feature_auth.forgot_password.forgot.ForgotPasswordFragment"
             android:label="Reset password"
             tools:layout="@layout/fragment_forgot_password">
+
             <action
                 android:id="@+id/action_forgot_password_to_new_password"
                 app:destination="@id/navigation_new_password" />
+
         </fragment>
 
         <fragment
@@ -112,11 +126,13 @@
             android:name="com.unina.natourkt.feature_auth.forgot_password.reset.ResetPasswordFragment"
             android:label="Nuova password"
             tools:layout="@layout/fragment_reset_password">
+
             <action
                 android:id="@+id/action_new_password_to_login"
                 app:destination="@id/navigation_login"
                 app:popUpTo="@id/navigation_login"
                 app:popUpToInclusive="true" />
+
         </fragment>
 
         <fragment
@@ -124,9 +140,11 @@
             android:name="com.unina.natourkt.feature_auth.registration.signup.RegistrationFragment"
             android:label="Registrazione"
             tools:layout="@layout/fragment_registration">
+
             <action
                 android:id="@+id/action_registration_to_confirmation"
                 app:destination="@id/navigation_confirmation" />
+
         </fragment>
 
         <fragment
@@ -150,45 +168,54 @@
     </navigation>
 
     <navigation
-        android:id="@+id/navigation_new_route_flow"
-        app:startDestination="@id/navigation_new_route_info">
+        android:id="@+id/navigation_create_route_flow"
+        app:startDestination="@id/navigation_create_route_info">
 
         <fragment
-            android:id="@+id/navigation_new_route_map"
+            android:id="@+id/navigation_create_route_map"
             android:name="com.unina.natourkt.feature_route.create_route.map.CreateRouteMapFragment"
-            android:label="fragment_new_route_map"
-            tools:layout="@layout/fragment_new_route_map">
+            android:label="fragment_create_route_map"
+            tools:layout="@layout/fragment_create_route_map">
+
             <action
-                android:id="@+id/action_navigation_new_route_map_to_newRoutePhotosFragment"
-                app:destination="@id/newRoutePhotosFragment" />
+                android:id="@+id/action_create_route_map_to_create_route_photos"
+                app:destination="@id/navigation_create_route_photos" />
+
         </fragment>
 
         <fragment
-            android:id="@+id/navigation_new_route_info"
+            android:id="@+id/navigation_create_route_info"
             android:name="com.unina.natourkt.feature_route.create_route.info.CreateRouteInfoFragment"
-            android:label="NewRouteInfoFragment">
+            android:label="fragment_create_route_info">
+
             <action
-                android:id="@+id/action_new_route_info_to_new_route_map"
-                app:destination="@id/navigation_new_route_map" />
+                android:id="@+id/action_create_route_info_to_create_route_map"
+                app:destination="@id/navigation_create_route_map" />
+
         </fragment>
+
         <fragment
-            android:id="@+id/newRoutePhotosFragment"
+            android:id="@+id/navigation_create_route_photos"
             android:name="com.unina.natourkt.feature_route.create_route.photos.CreateRoutePhotosFragment"
-            android:label="fragment_new_route_photos"
-            tools:layout="@layout/fragment_new_route_photos" />
+            android:label="fragment_create_route_photos"
+            tools:layout="@layout/fragment_create_route_photos" />
+
         <action
             android:id="@+id/action_global_navigation_routes"
             app:destination="@id/navigation_routes" />
 
     </navigation>
+
     <fragment
-        android:id="@+id/navigation_new_post"
+        android:id="@+id/navigation_create_post"
         android:name="com.unina.natourkt.feature_post.create_post.CreatePostFragment"
-        android:label="fragment_new_post"
-        tools:layout="@layout/fragment_new_post">
+        android:label="fragment_create_post"
+        tools:layout="@layout/fragment_create_post">
+
         <action
-            android:id="@+id/action_newPostFragment_to_navigation_home"
+            android:id="@+id/action_create_post_to_home"
             app:destination="@id/navigation_home" />
+
     </fragment>
 
     <navigation
@@ -200,25 +227,31 @@
             android:name="com.unina.natourkt.feature_route.route_search.RouteSearchFragment"
             android:label="fragment_route_search"
             tools:layout="@layout/fragment_route_search">
+
             <action
-                android:id="@+id/action_navigation_search_route_to_bottomSheetFilterFragment"
-                app:destination="@id/fragment_bottom_sheet_filter" />
+                android:id="@+id/action_search_route_to_bottomsheet_filter"
+                app:destination="@id/fragment_bottomsheet_filter" />
+
         </fragment>
 
         <dialog
-            android:id="@+id/fragment_bottom_sheet_filter"
+            android:id="@+id/fragment_bottomsheet_filter"
             android:name="com.unina.natourkt.feature_route.route_search.BottomSheetFilterFragment"
             android:label="fragment_bottom_sheet_filter"
             tools:layout="@layout/fragment_bottom_sheet_filter">
+
             <action
-                android:id="@+id/action_bottomSheetFilterFragment_to_navigation_search_route"
+                android:id="@+id/action_bottomsheet_filter_to_search_route"
                 app:destination="@id/navigation_search_route" />
+
         </dialog>
+
         <action
             android:id="@+id/action_global_navigation_route_details"
             app:destination="@id/navigation_route_details_flow" />
 
     </navigation>
+
     <navigation
         android:id="@+id/navigation_route_details_flow"
         app:startDestination="@id/navigation_route_details">
@@ -235,29 +268,46 @@
             android:name="com.unina.natourkt.feature_route.route_details.RouteDetailsFragment"
             android:label="fragment_route_details"
             tools:layout="@layout/fragment_route_details">
+
             <argument
                 android:name="routeId"
                 app:argType="long" />
             <argument
                 android:name="authorId"
                 app:argType="long" />
+
         </fragment>
+
         <action
             android:id="@+id/action_global_navigation_post_details"
             app:destination="@id/navigation_post_details" />
 
     </navigation>
+
     <fragment
-        android:id="@+id/compilationDetailsFragment"
+        android:id="@+id/navigation_compilation_details"
         android:name="com.unina.natourkt.feature_compilation.compilation_details.CompilationDetailsFragment"
         android:label="fragment_compilation_details"
         tools:layout="@layout/fragment_compilation_details">
+
         <argument
             android:name="compilationItem"
             app:argType="com.unina.natourkt.core.presentation.model.CompilationItemUi" />
+
         <action
-            android:id="@+id/action_compilationDetailsFragment_to_navigation_route_details_flow"
+            android:id="@+id/action_compilation_details_to_route_details_flow"
             app:destination="@id/navigation_route_details_flow" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_create_compilation"
+        android:name="com.unina.natourkt.feature_compilation.create_compilation.CreateCompilationFragment"
+        android:label="fragment_create_compilation"
+        tools:layout="@layout/fragment_create_compilation" >
+        <action
+            android:id="@+id/action_create_compilation_to_profile"
+            app:destination="@id/navigation_profile" />
     </fragment>
 
 </navigation>

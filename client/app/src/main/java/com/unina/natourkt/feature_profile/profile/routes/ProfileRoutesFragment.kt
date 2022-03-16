@@ -43,7 +43,7 @@ class ProfileRoutesFragment :
 
     override fun setListeners() = with(binding) {
         newRouteFab.setOnClickListener {
-            findNavController().navigate(R.id.action_profile_to_new_route_flow)
+            findNavController().navigate(R.id.action_profile_to_create_route_flow)
         }
     }
 
@@ -80,7 +80,7 @@ class ProfileRoutesFragment :
     }
 
     override fun onItemClick(route: RouteItemUi) {
-        val action = ProfileFragmentDirections.actionNavigationProfileToNavigationRouteDetails(
+        val action = ProfileFragmentDirections.actionProfileToRouteDetails(
             route.id,
             route.authorId
         )

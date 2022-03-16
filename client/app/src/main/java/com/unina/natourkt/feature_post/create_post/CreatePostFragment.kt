@@ -2,21 +2,21 @@ package com.unina.natourkt.feature_post.create_post
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.widget.doAfterTextChanged
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentNewPostBinding
 import com.unina.natourkt.core.presentation.adapter.PhotoAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.util.setBottomMargin
-import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.databinding.FragmentCreatePostBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CreatePostFragment : BaseFragment<FragmentNewPostBinding, CreatePostViewModel>(),
+class CreatePostFragment : BaseFragment<FragmentCreatePostBinding, CreatePostViewModel>(),
     PhotoAdapter.OnItemClickListener {
 
     private val recyclerAdapter = PhotoAdapter(this@CreatePostFragment)
@@ -24,7 +24,7 @@ class CreatePostFragment : BaseFragment<FragmentNewPostBinding, CreatePostViewMo
     private val viewModel: CreatePostViewModel by viewModels()
 
     override fun getVM() = viewModel
-    override fun getViewBinding() = FragmentNewPostBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentCreatePostBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,13 +43,13 @@ class CreatePostFragment : BaseFragment<FragmentNewPostBinding, CreatePostViewMo
     override fun setListeners() = with(binding) {
         with(viewModel) {
             insertPhotoButton.setOnClickListener {
-                pickImageFromGallery(uiState.value.postPhotos) {
-                    setPhotos(it)
+                pickImagesFromGallery(uiState.value.postPhotos) {
+                    onEvent(CreatePostEvent.InsertedPhotos(it))
                 }
             }
 
             postFab.setOnClickListener {
-                uploadPost()
+                onEvent(CreatePostEvent.Upload)
             }
         }
     }
@@ -68,43 +68,53 @@ class CreatePostFragment : BaseFragment<FragmentNewPostBinding, CreatePostViewMo
         }
     }
 
-    override fun setTextChangedListeners() {
-        super.setTextChangedListeners()
+    override fun setTextChangedListeners() = with(binding) {
+        with(viewModel) {
+            descriptionTextField.updateText {
+                onEvent(CreatePostEvent.EnteredDescription(it))
+            }
 
-        binding.routeTextField.editText?.doAfterTextChanged {
-            viewModel.updateRoutes(it.toString().trim())
-            viewModel.setRoute(it.toString().trim())
+            routeTextField.updateText {
+                onEvent(CreatePostEvent.EnteredQuery(it))
+                onEvent(CreatePostEvent.EnteredRoute(it))
+            }
         }
     }
 
     override fun collectState() = with(binding) {
         with(viewModel) {
             collectLatestOnLifecycleScope(uiState) {
+                if (it.isInserted) {
+                    findNavController().navigate(R.id.action_create_post_to_home)
+                }
+
                 recyclerAdapter.submitList(it.postPhotos)
 
-                insertPhotoButton.isEnabled = it.postPhotos.size < 5
-                postFab.isEnabled = it.postPhotos.isNotEmpty() && it.route != null
-
-                if (it.isInserted) {
-                    findNavController().navigate(R.id.action_newPostFragment_to_navigation_home)
-                }
-
-                it.errorMessage?.run {
-                    manageMessage(this)
-                }
-                //progressBar.isVisible = it.isLoading
+                postFab.isEnabled = it.isButtonEnabled
+                progressBar.isVisible = it.isLoading
             }
 
-            collectOnLifecycleScope(upcomingRoutes) { it ->
-                val updated = it.routes.map { it.routeTitle }.toTypedArray()
-                (routeTextField.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(
-                    updated
-                )
+            collectOnLifecycleScope(upcomingRoutes) {
+                val updated = it.map { it.routeTitle }.toTypedArray()
+                (routeTextField.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(updated)
+            }
+
+            collectLatestOnLifecycleScope(eventFlow) { event ->
+                when (event) {
+                    is UiEvent.ShowSnackbar -> {
+                        Snackbar.make(
+                            postFab,
+                            event.uiText.asString(requireContext()),
+                            Snackbar.LENGTH_SHORT
+                        ).setAnchorView(postFab).show()
+                    }
+                    else -> {}
+                }
             }
         }
     }
 
     override fun onRemoveClick(position: Int) {
-        viewModel.removePhoto(position)
+        viewModel.onEvent(CreatePostEvent.RemovePhoto(position))
     }
 }

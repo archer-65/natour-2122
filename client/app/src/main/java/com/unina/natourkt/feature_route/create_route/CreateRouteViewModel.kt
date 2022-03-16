@@ -2,6 +2,7 @@ package com.unina.natourkt.feature_route.create_route
 
 import android.net.Uri
 import android.util.Log
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.PolylineOptions
@@ -10,6 +11,8 @@ import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.toInputStream
 import com.unina.natourkt.core.domain.use_case.maps.GetDirectionsUseCase
 import com.unina.natourkt.core.domain.use_case.route.CreateRouteUseCase
+import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
+import com.unina.natourkt.core.domain.use_case.storage.UploadFilesUseCase
 import com.unina.natourkt.core.presentation.model.RouteStopUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteStopUiMapper
 import com.unina.natourkt.core.presentation.util.UiEvent
@@ -22,6 +25,7 @@ import com.unina.natourkt.feature_route.create_route.photos.CreateRoutePhotosUiS
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ticofab.androidgpxparser.parser.GPXParser
 import io.ticofab.androidgpxparser.parser.domain.Gpx
+import io.ticofab.androidgpxparser.parser.domain.Route
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -33,6 +37,7 @@ import javax.inject.Inject
 class CreateRouteViewModel @Inject constructor(
     private val getDirectionsUseCase: GetDirectionsUseCase,
     private val createRouteUseCase: CreateRouteUseCase,
+    private val getUserDataUseCase: GetUserDataUseCase,
     private val gpxParser: GPXParser,
     private val routeStopUiMapper: RouteStopUiMapper,
 ) : ViewModel() {
@@ -181,27 +186,29 @@ class CreateRouteViewModel @Inject constructor(
     }
 
     private fun uploadRoute() {
-        createRouteUseCase(mapForCreation()).onEach { result ->
-            when (result) {
-                is DataState.Success -> _uiState.update {
-                    it.copy(isInserted = true, isLoading = false)
-                }
-                is DataState.Loading -> _uiState.update {
-                    it.copy(isLoading = true)
-                }
-                is DataState.Error -> {
-                    _uiState.update {
-                        it.copy(isLoading = false)
+        viewModelScope.launch {
+            createRouteUseCase(mapForCreation()).onEach { result ->
+                when (result) {
+                    is DataState.Success -> _uiState.update {
+                        it.copy(isInserted = true, isLoading = false)
                     }
+                    is DataState.Loading -> _uiState.update {
+                        it.copy(isLoading = true)
+                    }
+                    is DataState.Error -> {
+                        _uiState.update {
+                            it.copy(isLoading = false)
+                        }
 
-                    val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        val errorText = UiTextCauseMapper.mapToText(result.error)
+                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                    }
                 }
-            }
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }
     }
 
-    private fun mapForCreation(): RouteCreation {
+    private suspend fun mapForCreation(): RouteCreation {
         return RouteCreation(
             title = uiStateInfo.value.routeTitle.text,
             description = uiStateInfo.value.routeDescription.text,
@@ -210,7 +217,7 @@ class CreateRouteViewModel @Inject constructor(
             disabilityFriendly = uiStateInfo.value.disabilityFriendly,
             photos = uiStatePhotos.value.photos.map { it.toString() },
             stops = uiStateMap.value.stops.map { routeStopUiMapper.mapToDomain(it) },
-            author = null
+            author = getUserDataUseCase()
         )
     }
 }

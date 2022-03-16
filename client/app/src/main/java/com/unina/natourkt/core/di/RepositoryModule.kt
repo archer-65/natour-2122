@@ -72,8 +72,9 @@ object RepositoryModule {
     @Singleton
     fun provideCompilationRepository(
         api: CompilationApi,
-        compilationApiMapper: CompilationApiMapper
+        compilationApiMapper: CompilationApiMapper,
+        compilationCreationApiMapper: CompilationCreationApiMapper,
     ): CompilationRepository {
-        return CompilationRepositoryImpl(api, compilationApiMapper)
+        return CompilationRepositoryImpl(api, compilationApiMapper, compilationCreationApiMapper)
     }
 }

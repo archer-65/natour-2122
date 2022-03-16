@@ -5,10 +5,8 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
@@ -20,7 +18,6 @@ import com.unina.natourkt.core.presentation.model.RouteItemUi
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -50,7 +47,7 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
         binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.filter_search -> {
-                    findNavController().navigate(R.id.action_navigation_search_route_to_bottomSheetFilterFragment)
+                    findNavController().navigate(R.id.action_search_route_to_bottomsheet_filter)
                     true
                 }
                 else -> false

@@ -50,7 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         }
 
         newPostFab.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_newPostFragment)
+            findNavController().navigate(R.id.action_home_to_create_post)
         }
     }
 

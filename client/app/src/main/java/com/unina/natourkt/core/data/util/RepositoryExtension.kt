@@ -1,6 +1,7 @@
 package com.unina.natourkt.core.data.util
 
 import android.util.Log
+import com.amplifyframework.storage.StorageException
 import com.unina.natourkt.core.util.Constants.NETWORK_ERROR
 import com.unina.natourkt.core.util.Constants.SERVER_ERROR
 import com.unina.natourkt.core.util.DataState

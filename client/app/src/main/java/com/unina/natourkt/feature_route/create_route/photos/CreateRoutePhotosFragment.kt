@@ -8,26 +8,26 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentNewRoutePhotosBinding
 import com.unina.natourkt.core.presentation.adapter.PhotoAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.asString
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.databinding.FragmentCreateRoutePhotosBinding
 import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
 
 class CreateRoutePhotosFragment :
-    BaseFragment<FragmentNewRoutePhotosBinding, CreateRouteViewModel>(),
+    BaseFragment<FragmentCreateRoutePhotosBinding, CreateRouteViewModel>(),
     PhotoAdapter.OnItemClickListener {
 
     private val recyclerAdapter = PhotoAdapter(this@CreateRoutePhotosFragment)
 
-    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_new_route_flow)
+    private val viewModel: CreateRouteViewModel by hiltNavGraphViewModels(R.id.navigation_create_route_flow)
 
     override fun getVM() = viewModel
-    override fun getViewBinding() = FragmentNewRoutePhotosBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentCreateRoutePhotosBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +44,7 @@ class CreateRoutePhotosFragment :
     override fun setListeners() = with(binding) {
         with(viewModel) {
             insertPhotoButton.setOnClickListener {
-                pickImageFromGallery(uiStatePhotos.value.photos) {
+                pickImagesFromGallery(uiStatePhotos.value.photos) {
                     onEvent(CreateRouteEvent.InsertedPhotos(it))
                 }
             }
@@ -69,31 +69,33 @@ class CreateRoutePhotosFragment :
         }
     }
 
-    override fun collectState() = with(viewModel) {
-        collectLatestOnLifecycleScope(uiStatePhotos) {
-            recyclerAdapter.submitList(it.photos)
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            collectLatestOnLifecycleScope(uiStatePhotos) {
+                recyclerAdapter.submitList(it.photos)
 
-            binding.createRouteFab.isEnabled = it.isButtonEnabled
-        }
-
-        collectOnLifecycleScope(uiState) {
-            if (it.isInserted) {
-                findNavController().navigate(R.id.action_global_navigation_routes)
+                createRouteFab.isEnabled = it.isButtonEnabled
             }
 
-            binding.progressBar.isVisible = it.isLoading
-        }
-
-        collectLatestOnLifecycleScope(eventFlow) { event ->
-            when (event) {
-                is UiEvent.ShowSnackbar -> {
-                    Snackbar.make(
-                        requireView(),
-                        event.uiText.asString(requireContext()),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+            collectOnLifecycleScope(uiState) {
+                if (it.isInserted) {
+                    findNavController().navigate(R.id.action_global_navigation_routes)
                 }
-                else -> {}
+
+                progressBar.isVisible = it.isLoading
+            }
+
+            collectLatestOnLifecycleScope(eventFlow) { event ->
+                when (event) {
+                    is UiEvent.ShowSnackbar -> {
+                        Snackbar.make(
+                            createRouteFab,
+                            event.uiText.asString(requireContext()),
+                            Snackbar.LENGTH_SHORT
+                        ).setAnchorView(createRouteFab).show()
+                    }
+                    else -> {}
+                }
             }
         }
     }

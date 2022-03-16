@@ -7,6 +7,7 @@ import com.unina.springnatour.repository.CompilationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class CompilationService {
 
     /**
      * Gets a compilation
+     *
      * @param id the identifier of the compilation
      * @return CompilationDTO Object after mapping from Entity, or throws Exception
      */
@@ -31,6 +33,7 @@ public class CompilationService {
 
     /**
      * Gets all the compilations for a certain user
+     *
      * @param userId the identifier of the user
      * @return a List of CompilationDTO Objects after mapping from Entity, or throws Exception
      */
@@ -42,6 +45,7 @@ public class CompilationService {
 
     /**
      * Gets all the compilations for a certain user
+     *
      * @param userId the identifier of the user
      * @return a List of CompilationDTO Objects after mapping from Entity, or throws Exception
      */
@@ -53,6 +57,7 @@ public class CompilationService {
 
     /**
      * Adds a compilation
+     *
      * @param compilationDto CompilationDTO Object with required fields, mapped to Entity and saved
      */
     public void addCompilation(CompilationDto compilationDto) {
@@ -61,7 +66,8 @@ public class CompilationService {
 
     /**
      * Updates a compilation
-     * @param id the identifier of the compilation
+     *
+     * @param id             the identifier of the compilation
      * @param compilationDto CompilationDTO Object, mapped to Entity, or throws Exception
      */
     public void updateCompilation(Long id, CompilationDto compilationDto) {
@@ -69,8 +75,19 @@ public class CompilationService {
                 .orElseThrow(() -> new CompilationNotFoundException(id));
     }
 
+    @Transactional
+    public void addRouteToCompilation(Long compilationId, Long routeId) {
+        compilationRepository.insertRouteIntoCompilation(routeId, compilationId);
+    }
+
+    @Transactional
+    public void removeRouteFromCompilation(Long compilationId, Long routeId) {
+        compilationRepository.deleteRouteFromCompilation(routeId, compilationId);
+    }
+
     /**
      * Deletes a compilation
+     *
      * @param id the identifier of the compilation
      */
     public void deleteCompilation(Long id) {

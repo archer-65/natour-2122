@@ -19,6 +19,7 @@ public class CompilationController {
 
     /**
      * Gets a compilation
+     *
      * @param id the identifier of the compilation
      * @return CompilationDto
      */
@@ -32,6 +33,7 @@ public class CompilationController {
 
     /**
      * Gets all the compilations
+     *
      * @return List of CompilationDTO Objects with HTTP Status OK if the list is not empty
      */
     @GetMapping("/compilations/search")
@@ -48,6 +50,7 @@ public class CompilationController {
 
     /**
      * Gets all the compilations
+     *
      * @return List of CompilationDTO Objects with HTTP Status OK if the list is not empty
      */
     @GetMapping("/compilations/search_page")
@@ -67,6 +70,7 @@ public class CompilationController {
 
     /**
      * Creates a new compilation
+     *
      * @param compilationDto the CompilationDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
@@ -80,7 +84,8 @@ public class CompilationController {
 
     /**
      * Updates an existing compilation
-     * @param id the identifier of the compilation
+     *
+     * @param id             the identifier of the compilation
      * @param compilationDto the CompilationDTO Object containing the updated compilation
      * @return HTTP Status CREATED after update
      */
@@ -93,8 +98,27 @@ public class CompilationController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PutMapping("/compilations/{id}/add")
+    public ResponseEntity<?> addRouteToCompilation(@PathVariable(value = "id") Long compilationId,
+                                                   @RequestParam(value = "route_id") Long routeId) {
+
+        compilationService.addRouteToCompilation(compilationId, routeId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("compilations/{id}/remove")
+    public ResponseEntity<?> removeRouteFromCompilation(@PathVariable(value = "id") Long compilationId,
+                                                        @RequestParam(value = "route_id") Long routeId) {
+
+        compilationService.removeRouteFromCompilation(compilationId, routeId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     /**
      * Delete an existing compilation
+     *
      * @param id the identifier of the compilation
      * @return HTTP Status OK after deletion
      */

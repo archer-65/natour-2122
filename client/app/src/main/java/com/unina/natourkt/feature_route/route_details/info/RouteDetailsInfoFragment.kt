@@ -2,14 +2,12 @@ package com.unina.natourkt.feature_route.route_details.info
 
 import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.Difficulty
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.model.RouteDetailsUi
-import com.unina.natourkt.core.presentation.util.formatFull
+import com.unina.natourkt.core.presentation.util.asString
+import com.unina.natourkt.core.presentation.util.load
 import com.unina.natourkt.databinding.FragmentRouteDetailsInfoBinding
+import com.unina.natourkt.feature_route.route_details.RouteDetailsUiState
 import com.unina.natourkt.feature_route.route_details.RouteDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,48 +20,37 @@ class RouteDetailsInfoFragment :
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentRouteDetailsInfoBinding.inflate(layoutInflater)
 
-    override fun collectState() = with(binding) {
+    override fun collectState() {
         with(viewModel) {
             collectLatestOnLifecycleScope(uiState) {
-                chatButton.isVisible = it.loggedUser?.id != viewModel.authorId
-
-                it.route?.let {
-                    bindView(it)
-                }
-
-                progressBar.isVisible = it.isLoading
-                constraintLayout.isVisible = !it.isLoading
+                bindView(it)
             }
         }
     }
 
-    private fun bindView(route: RouteDetailsUi) = with(binding) {
-        routeTitleTextView.text = route.title
-        routeDescription.text = route.description
+    private fun bindView(uiState: RouteDetailsUiState) = with(binding) {
+        uiState.apply {
+            route?.let {
+                routeTitleTextView.text = it.title
+                routeDescription.text = it.description
 
-        warningTextView.isVisible = route.modifiedDate != null || route.isReported
+                disabilityFriendlyTextView.isVisible = it.disabilityFriendly
+                disabilityFriendlyImage.isVisible = it.disabilityFriendly
 
-        if (route.modifiedDate == null && route.isReported) {
-            warningTextView.text = "Informazioni inesatte o non aggiornate"
-        } else if (route.modifiedDate != null) {
-            warningTextView.text = route.modifiedDate.formatFull()
+                routeImageSlider.load(it.photos)
+
+                durationTextView.text =
+                    getString(R.string.duration_placeholder_details, it.duration.toInt())
+            }
+
+            progressBar.isVisible = isLoading
+            constraintLayout.isVisible = !isLoading
+            chatButton.isVisible = canContactAuthor
+
+            warningTextView.isVisible = isWarningPresent
+            warningTextView.text = warningText?.asString(requireContext())
+
+            difficultyTextview.text = difficultyText?.asString(requireContext())
         }
-
-        disabilityFriendlyTextView.isVisible = route.disabilityFriendly
-        disabilityFriendlyImage.isVisible = route.disabilityFriendly
-
-        routeImageSlider.apply {
-            val imageList = route.photos.map { SlideModel(it) }
-            setImageList(imageList, ScaleTypes.CENTER_CROP)
-        }
-
-        difficultyTextview.text = when (route.difficulty) {
-            Difficulty.EASY -> "Facile"
-            Difficulty.MEDIUM -> "Intermedio"
-            Difficulty.HARD -> "Difficile"
-        }
-
-        durationTextView.text =
-            getString(R.string.duration_placeholder_details, route.duration.toInt())
     }
 }

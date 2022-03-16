@@ -9,6 +9,8 @@ import com.unina.natourkt.core.domain.use_case.post.GetPostDetailsUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.mapper.PostDetailsUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
+import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -29,34 +31,36 @@ class PostDetailsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(PostDetailsUiState())
     val uiState: StateFlow<PostDetailsUiState> = _uiState.asStateFlow()
 
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
     init {
         getLoggedUser()
-        getPostDetails(postId!!)
+        getPostDetails()
     }
 
-    private fun getPostDetails(id: Long) {
-        getPostDetailsUseCase(id).onEach { result ->
+    private fun getPostDetails() {
+        getPostDetailsUseCase(postId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {
                     val postUi = result.data?.let { postDetailsUiMapper.mapToUi(it) }
+                    val postDetails = postUi?.convertKeys { getUrlFromKeyUseCase(it) }
+
                     _uiState.update {
-                        it.copy(
-                            isLoading = false,
-                            error = null,
-                            post = postUi?.convertKeys {
-                                getUrlFromKeyUseCase(it)
-                            })
+                        it.copy(isLoading = false, post = postDetails)
                     }
                 }
                 is DataState.Error -> {
                     _uiState.update {
-                        it.copy(isLoading = false, error = result.error)
+                        it.copy(isLoading = false)
                     }
-                }
 
+                    val errorText = UiTextCauseMapper.mapToText(result.error)
+                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                }
                 is DataState.Loading -> {
                     _uiState.update {
-                        it.copy(isLoading = true, error = null)
+                        it.copy(isLoading = true)
                     }
                 }
             }

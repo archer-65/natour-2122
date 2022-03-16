@@ -4,11 +4,15 @@ import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
+import androidx.annotation.MenuRes
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
@@ -75,6 +79,11 @@ fun ImageView.loadWithGlide(url: String?) {
         .centerCrop()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .into(this)
+}
+
+fun ImageSlider.load(photos: List<String>) {
+    val imageList = photos.map { SlideModel(it) }
+    this.setImageList(imageList, ScaleTypes.CENTER_CROP)
 }
 
 fun RecyclerView.scrollBehavior(fab: FloatingActionButton) {

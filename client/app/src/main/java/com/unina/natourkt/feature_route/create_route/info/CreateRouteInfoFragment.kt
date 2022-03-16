@@ -124,6 +124,7 @@ class CreateRouteInfoFragment : BaseFragment<FragmentNewRouteInfoBinding, Create
                 Difficulty.EASY -> easyChip.id
                 Difficulty.MEDIUM -> mediumChip.id
                 Difficulty.HARD -> hardChip.id
+                else -> easyChip.id
             }
         )
         durationTextField.editText?.setText(route.duration.text)

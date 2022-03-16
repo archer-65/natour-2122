@@ -1,5 +1,6 @@
 package com.unina.natourkt.feature_route.route_search
 
+import androidx.annotation.IdRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -10,6 +11,7 @@ import com.unina.natourkt.core.domain.use_case.route.GetFilteredRoutesUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.RouteItemUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteItemUiMapper
+import com.unina.natourkt.core.util.Difficulty
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -30,47 +32,61 @@ class RouteSearchViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RouteSearchUiState())
     val uiState = _uiState.asStateFlow()
 
+    fun onEvent(event: RouteSearchEvent) {
+        when (event) {
+            is RouteSearchEvent.EnteredQuery -> setQuery(event.query)
+            is RouteSearchEvent.FilterPlace -> setPlace(event.place)
+            is RouteSearchEvent.FilterDistance -> setDistance(event.distance)
+            is RouteSearchEvent.FilterDuration -> setDurationRange(
+                event.minDuration,
+                event.maxDuration
+            )
+            is RouteSearchEvent.FilterDifficulty -> setDifficulty(event.difficulty)
+            is RouteSearchEvent.FilterDisability -> setDisability(event.disability)
+        }
+    }
+
     init {
         getResults()
     }
 
-    fun setQuery(query: String) {
+    private fun setQuery(query: String) {
         _uiState.update {
             it.copy(query = query)
         }
     }
 
-    fun setPlace(place: Place?) {
+    private fun setPlace(place: Place?) {
         _uiState.update {
             it.copy(place = place)
         }
     }
 
-    fun setDistance(distance: Float) {
+    private fun setDistance(distance: Float) {
         _uiState.update {
             it.copy(distance = distance)
         }
     }
 
-    fun setDurationRange(minDuration: Int?, maxDuration: Int?) {
+    private fun setDurationRange(minDuration: Int?, maxDuration: Int?) {
         _uiState.update {
             it.copy(minDuration = minDuration, maxDuration = maxDuration)
         }
     }
 
-    fun setDifficulty(difficulty: Difficulty) {
+    private fun setDifficulty(difficulty: Difficulty) {
         _uiState.update {
             it.copy(minDifficulty = difficulty)
         }
     }
 
-    fun setDisability(isDisabilityFriendly: Boolean?) {
+    private fun setDisability(isDisabilityFriendly: Boolean?) {
         _uiState.update {
             it.copy(isDisabilityFriendly = isDisabilityFriendly)
         }
     }
 
-    fun getResults() {
+    private fun getResults() {
         _routeResults = _uiState.flatMapLatest { filter ->
             getFilteredRoutesUseCase(filter.toFilter())
                 .map { pagingData ->

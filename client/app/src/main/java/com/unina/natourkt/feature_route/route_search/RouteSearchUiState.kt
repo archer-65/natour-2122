@@ -2,6 +2,7 @@ package com.unina.natourkt.feature_route.route_search
 
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.core.domain.model.Filter
+import com.unina.natourkt.core.util.Difficulty
 
 data class RouteSearchUiState(
     val query: String = "",
@@ -9,7 +10,7 @@ data class RouteSearchUiState(
     val distance: Float = 5F,
     val minDuration: Int? = null,
     val maxDuration: Int? = null,
-    val minDifficulty: Difficulty = Difficulty.NONE,
+    val minDifficulty: Difficulty? = null,
     val isDisabilityFriendly: Boolean? = null,
 )
 
@@ -21,14 +22,7 @@ fun RouteSearchUiState.toFilter(): Filter {
         distance = distance,
         minDuration = minDuration,
         maxDuration = maxDuration,
-        minDifficulty = minDifficulty.difficultyValue,
+        minDifficulty = minDifficulty?.value,
         isDisabilityFriendly = isDisabilityFriendly
     )
-}
-
-enum class Difficulty(val difficultyValue: Int) {
-    EASY(1),
-    MEDIUM(2),
-    HARD(3),
-    NONE(0)
 }

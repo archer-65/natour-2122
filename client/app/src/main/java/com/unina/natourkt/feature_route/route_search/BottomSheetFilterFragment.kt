@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentBottomSheetFilterBinding
 import com.unina.natourkt.core.presentation.contract.PlacesContract
+import com.unina.natourkt.core.util.Difficulty
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
@@ -61,68 +62,84 @@ class BottomSheetFilterFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun setListeners() {
-        binding.areaChip.setOnClickListener {
-            val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
-            launcherPlaces.launch(fields)
-        }
-
-        binding.areaChip.setOnCloseIconClickListener {
-            viewModel.setPlace(null)
-        }
-
-        binding.areaSlider.addOnChangeListener { _, value, _ ->
-            viewModel.setDistance(value)
-        }
-
-        binding.durationChipGroup.setOnCheckedStateChangeListener { group, _ ->
-            when (group.checkedChipId) {
-                R.id.durationFirst -> {
-                    viewModel.setDurationRange(1, 4)
-                }
-                R.id.durationSecond -> {
-                    viewModel.setDurationRange(4, 8)
-                }
-                R.id.durationThird -> {
-                    viewModel.setDurationRange(8, 12)
-                }
-                R.id.durationFourth -> {
-                    viewModel.setDurationRange(12, 16)
-                }
-                else -> {
-                    viewModel.setDurationRange(null, null)
-                }
+    private fun setListeners() = with(binding) {
+        with(viewModel)
+        {
+            areaChip.setOnClickListener {
+                val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
+                launcherPlaces.launch(fields)
             }
-        }
 
-        binding.difficultyChipgroup.setOnCheckedStateChangeListener { group, _ ->
-            when (group.checkedChipId) {
-                R.id.minEasyChip -> {
-                    viewModel.setDifficulty(Difficulty.EASY)
-                }
-                R.id.minMediumChip -> {
-                    viewModel.setDifficulty(Difficulty.MEDIUM)
-                }
-                R.id.minHardChip -> {
-                    viewModel.setDifficulty(Difficulty.HARD)
-                }
-                else -> {
-                    viewModel.setDifficulty(Difficulty.NONE)
-                }
+            areaChip.setOnCloseIconClickListener {
+                onEvent(RouteSearchEvent.FilterPlace(null))
             }
-        }
 
-        binding.disabilityFriendlyGroup.setOnCheckedStateChangeListener { group, _ ->
-            when (group.checkedChipId) {
-                R.id.accessible -> {
-                    viewModel.setDisability(true)
+            areaSlider.addOnChangeListener { _, value, _ ->
+                onEvent(RouteSearchEvent.FilterDistance(value))
+            }
+
+            durationChipGroup.setOnCheckedStateChangeListener { group, _ ->
+                val minDuration: Int?
+                val maxDuration: Int?
+
+                when (group.checkedChipId) {
+                    R.id.durationFirst -> {
+                        minDuration = 1; maxDuration = 4
+                    }
+                    R.id.durationSecond -> {
+                        minDuration = 4; maxDuration = 8
+                    }
+                    R.id.durationThird -> {
+                        minDuration = 8; maxDuration = 12
+                    }
+                    R.id.durationFourth -> {
+                        minDuration = 12; maxDuration = 16
+                    }
+                    else -> {
+                        minDuration = null; maxDuration = null
+                    }
                 }
-                R.id.notAccessible -> {
-                    viewModel.setDisability(false)
+
+                onEvent(RouteSearchEvent.FilterDuration(minDuration, maxDuration))
+            }
+
+            difficultyChipgroup.setOnCheckedStateChangeListener { group, _ ->
+                val difficulty: Difficulty
+
+                when (group.checkedChipId) {
+                    R.id.minEasyChip -> {
+                        difficulty = Difficulty.EASY
+                    }
+                    R.id.minMediumChip -> {
+                        difficulty = Difficulty.MEDIUM
+                    }
+                    R.id.minHardChip -> {
+                        difficulty = Difficulty.HARD
+                    }
+                    else -> {
+                        difficulty = Difficulty.NONE
+                    }
                 }
-                else -> {
-                    viewModel.setDisability(null)
+
+                onEvent(RouteSearchEvent.FilterDifficulty(difficulty))
+            }
+
+            disabilityFriendlyGroup.setOnCheckedStateChangeListener { group, _ ->
+                val disability: Boolean?
+
+                when (group.checkedChipId) {
+                    R.id.accessible -> {
+                        disability = true
+                    }
+                    R.id.notAccessible -> {
+                        disability = false
+                    }
+                    else -> {
+                        disability = null
+                    }
                 }
+
+                onEvent(RouteSearchEvent.FilterDisability(disability))
             }
         }
     }
@@ -162,7 +179,7 @@ class BottomSheetFilterFragment : BottomSheetDialogFragment() {
     private fun initPlacesSearch() {
         launcherPlaces = registerForActivityResult(PlacesContract()) { result ->
             result?.let {
-                viewModel.setPlace(it)
+                viewModel.onEvent(RouteSearchEvent.FilterPlace(it))
             }
         }
     }
@@ -181,12 +198,12 @@ class BottomSheetFilterFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun bindDifficulty(minDifficulty: Difficulty) = with(binding) {
+    private fun bindDifficulty(minDifficulty: Difficulty?) = with(binding) {
         when (minDifficulty) {
             Difficulty.EASY -> difficultyChipgroup.check(R.id.minEasyChip)
             Difficulty.MEDIUM -> difficultyChipgroup.check(R.id.minMediumChip)
             Difficulty.HARD -> difficultyChipgroup.check(R.id.minHardChip)
-            Difficulty.NONE -> difficultyChipgroup.clearCheck()
+            else -> difficultyChipgroup.clearCheck()
         }
     }
 

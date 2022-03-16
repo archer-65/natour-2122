@@ -10,19 +10,13 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.util.*
 import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.model.PostDetailsUi
-import com.unina.natourkt.core.presentation.model.UserUi
-import com.unina.natourkt.core.presentation.util.inVisible
-import com.unina.natourkt.core.presentation.util.loadWithGlide
-import com.unina.natourkt.core.presentation.util.setTopMargin
-import com.unina.natourkt.core.presentation.util.visible
+import com.unina.natourkt.core.presentation.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetailsViewModel>() {
 
     private val viewModel: PostDetailsViewModel by viewModels()
-    private val args: PostDetailsFragmentArgs by navArgs()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentPostDetailsBinding.inflate(layoutInflater)
@@ -31,31 +25,19 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
         topAppBar.setTopMargin()
     }
 
-    override fun collectState() = with(binding) {
+    override fun collectState() {
         with(viewModel) {
             collectLatestOnLifecycleScope(uiState) {
-                setupToolbar(it.loggedUser)
-                chatButton.isVisible = it.loggedUser?.id != args.authorId
-
-                if (it.post != null) {
-                    bindView(it.post)
-                }
-                if (it.isLoading) {
-                    loadingView()
-                }
+                it.menu?.let { setupToolbar(it) }
+                bindView(it)
             }
         }
     }
 
-    private fun setupToolbar(user: UserUi?) = with(binding) {
+    private fun setupToolbar(menu: Int) = with(binding) {
         topAppBar.apply {
-            menu.clear()
-
-            if (user?.id == args.authorId) {
-                inflateMenu(R.menu.top_bar_owner_post_menu)
-            } else {
-                inflateMenu(R.menu.top_bar_viewer_post_menu)
-            }
+            this.menu.clear()
+            inflateMenu(menu)
 
             setNavigationOnClickListener {
                 findNavController().navigateUp()
@@ -80,25 +62,21 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
     /**
      * Bind view to [PostUiState]
      */
-    private fun bindView(post: PostDetailsUi) = with(binding) {
+    private fun bindView(uiState: PostDetailsUiState) = with(binding) {
+        uiState.apply {
+            post?.let {
+                authorName.text = it.authorUsername
+                routeName.text = it.routeTitle
+                postDescription.text = it.description
 
-        constraintLayout.visible()
+                authorPhoto.loadWithGlide(it.authorPhoto, R.drawable.ic_avatar_svgrepo_com)
 
-        authorName.text = post.authorUsername
-        routeName.text = post.routeTitle
-        postDescription.text = post.description
-        authorPhoto.loadWithGlide(post.authorPhoto, R.drawable.ic_avatar_svgrepo_com)
+                imageSlider.load(it.photos)
+            }
 
-        imageSlider.apply {
-            val imageList = post.photos.map { SlideModel(it) }
-            setImageList(imageList, ScaleTypes.CENTER_CROP)
+            progressBar.isVisible = isLoading
+            constraintLayout.isVisible = !isLoading
+            chatButton.isVisible = canContactAuthor
         }
-
-        progressBar.inVisible()
-    }
-
-    private fun loadingView() = with(binding) {
-        progressBar.visible()
-        constraintLayout.inVisible()
     }
 }

@@ -105,4 +105,8 @@
     <string name="confirm_route_fab">Inserisci itinerario</string>
     <string name="choose_position">Scegli una posizione</string>
     <string name="duration_placeholder_details">%1$d ore</string>
+    <string name="warning_not_updated_or_incorrect">Informazioni inesatte o non aggiornate</string>
+    <string name="easy_label">Facile</string>
+    <string name="medium_label">Intermedio</string>
+    <string name="hard_label">Difficile</string>
 </resources>

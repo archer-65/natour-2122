@@ -62,6 +62,7 @@ class RouteAdapter(private val listener: OnItemClickListener) :
                     Difficulty.EASY -> R.drawable.difficulty_easy
                     Difficulty.MEDIUM -> R.drawable.difficulty_medium
                     Difficulty.HARD -> R.drawable.difficulty_hard
+                    else -> R.drawable.difficulty_easy
                 }
                 iconDifficulty.setImageResource(difficulty)
 

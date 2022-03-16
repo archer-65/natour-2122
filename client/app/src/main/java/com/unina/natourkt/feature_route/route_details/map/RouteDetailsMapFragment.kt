@@ -38,12 +38,8 @@ class RouteDetailsMapFragment :
                         LatLng(stop.latitude, stop.longitude)
                     )
                 }
-
-//                if (it.stops.size >= 2) {
-//                    getDirections()
-                    map.addPolyline(it.polylineOptions)
-//                }
             }
+            map.addPolyline(it.polylineOptions)
         }
     }
 }

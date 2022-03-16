@@ -112,7 +112,6 @@ class CreateRouteViewModel @Inject constructor(
                 latitude,
                 longitude
             )
-//            if (newStops.size >= 2) getDirections()
             it.copy(stops = newStops, isLoadedFromGPX = false)
         }
 

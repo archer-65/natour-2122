@@ -18,6 +18,8 @@ import com.unina.natourkt.core.presentation.model.mapper.PostGridItemUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.RouteDetailsUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.RouteStopUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
+import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -38,7 +40,6 @@ class RouteDetailsViewModel @Inject constructor(
 ) : ViewModel() {
 
     val routeId = savedState.get<Long>("routeId")
-    val authorId = savedState.get<Long>("authorId")
 
     private val _uiState = MutableStateFlow(RouteDetailsUiState())
     val uiState = _uiState.asStateFlow()
@@ -47,36 +48,40 @@ class RouteDetailsViewModel @Inject constructor(
     val postsFlow: Flow<PagingData<PostGridItemUi>>
         get() = _postsFlow
 
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
     init {
         getLoggedUser()
-        getRouteDetails(routeId!!)
+        getRouteDetails()
         getTaggedPosts()
     }
 
-    private fun getRouteDetails(id: Long) {
-        getRouteDetailsUseCase(id).onEach { result ->
+    private fun getRouteDetails() {
+        getRouteDetailsUseCase(routeId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {
+                    val routeUi = result.data?.let { routeDetailsUiMapper.mapToUi(it) }
+                    val routeDetails = routeUi?.convertKeys { getUrlFromKeyUseCase(it) }
+
                     _uiState.update {
-                        val routeUi = result.data?.let { routeDetailsUiMapper.mapToUi(it) }
-                        it.copy(
-                            isLoading = false,
-                            error = null,
-                            route = routeUi?.convertKeys {
-                                getUrlFromKeyUseCase(it)
-                            })
+                        it.copy(isLoading = false, route = routeDetails)
                     }
+
                     getDirections()
                 }
                 is DataState.Error -> {
                     _uiState.update {
-                        it.copy(isLoading = false, error = result.error)
+                        it.copy(isLoading = false)
                     }
+
+                    val errorText = UiTextCauseMapper.mapToText(result.error)
+                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
                 }
 
                 is DataState.Loading -> {
                     _uiState.update {
-                        it.copy(isLoading = true, error = null)
+                        it.copy(isLoading = true)
                     }
                 }
             }
@@ -92,19 +97,18 @@ class RouteDetailsViewModel @Inject constructor(
         }
     }
 
-    fun getDirections() {
+    private fun getDirections() {
         val stops = uiState.value.route?.stops?.map { routeStopUiMapper.mapToDomain(it) }
         getDirectionsUseCase(stops!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {
                     val polylines = PolylineOptions()
                     result.data?.let { polylines.addAll(it.points) }
-                    val oldRoute = uiState.value.route
-                    val newRoute = oldRoute?.copy(polylineOptions = polylines)
-                    _uiState.update { it.copy(route = newRoute) }
+                    _uiState.update { it.copy(polylineOptions = polylines) }
                 }
-                is DataState.Error -> _uiState.update {
-                    it.copy(error = result.error)
+                is DataState.Error -> {
+                    val errorText = UiTextCauseMapper.mapToText(result.error)
+                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
                 }
                 is DataState.Loading -> {}
             }

@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 /**
@@ -63,6 +64,12 @@ object RetrofitModule {
     @Singleton
     fun provideCompilationRetrofit(retrofit: Retrofit): CompilationApi {
         return retrofit.create(CompilationApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReportRetrofit(retrofit: Retrofit): ReportApi {
+        return retrofit.create(ReportApi::class.java)
     }
 
     @Provides

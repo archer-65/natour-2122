@@ -1,8 +1,8 @@
 package com.unina.natourkt.core.domain.model
 
-data class PostCreation(
+data class ReportCreation(
+    val title: String,
     val description: String,
-    val photos: List<String>,
     val author: User?,
-    val taggedRoute: RouteTitle,
+    val reportedRouteId: Long
 )

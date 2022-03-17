@@ -77,4 +77,13 @@ object RepositoryModule {
     ): CompilationRepository {
         return CompilationRepositoryImpl(api, compilationApiMapper, compilationCreationApiMapper)
     }
+
+    @Provides
+    @Singleton
+    fun provideReportRepository(
+        api: ReportApi,
+        reportCreationApiMapper: ReportCreationApiMapper,
+    ): ReportRepository {
+        return ReportRepositoryImpl(api, reportCreationApiMapper)
+    }
 }

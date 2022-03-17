@@ -38,6 +38,10 @@
 
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.NaTour.Light.BottomSheetDialog
         </item>
+
+        <item name="snackbarStyle">@style/Widget.NaTour.Light.Snackbar</item>
+        <item name="snackbarButtonStyle">@style/Widget.NaTour.Light.SnackbarButton</item>
+        <item name="snackbarTextViewStyle">@style/Widget.NaTour.Light.SnackbarText</item>
     </style>
 
     <!-- Alternative background for certain screens -->
@@ -59,6 +63,25 @@
     <style name="ModalBottomSheetDialog" parent="Widget.Material3.BottomSheet.Modal">
         <item name="backgroundTint">@color/md_theme_light_surface</item>
         <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="Widget.NaTour.Light.Snackbar" parent="Widget.Material3.Snackbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.NaTour.Light.Snackbar</item>
+    </style>
+
+    <style name="Widget.NaTour.Light.SnackbarText" parent="Widget.Material3.Snackbar.TextView">
+        <item name="android:textColor">@color/md_theme_light_onTertiaryContainer</item>
+    </style>
+
+    <style name="Widget.NaTour.Light.SnackbarButton" parent="Widget.Material3.Button.TextButton.Snackbar">
+        <item name="android:textColor">@color/md_theme_light_onTertiaryContainer</item>
+        <item name="colorPrimaryInverse">@color/md_theme_light_onTertiaryContainer</item>
+    </style>
+
+    <style name="ThemeOverlay.NaTour.Light.Snackbar" parent="">
+        <item name="colorPrimary">@color/md_theme_light_tertiaryContainer</item>
+        <item name="colorSurfaceInverse">@color/md_theme_light_tertiaryContainer</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_light_onTertiaryContainer</item>
     </style>
 
     <style name="Theme.NaTour.FullScreenDialog" parent="Theme.Material3.Light.Dialog">

@@ -285,7 +285,11 @@
             android:id="@+id/navigation_dialog_report_route"
             android:name="com.unina.natourkt.feature_route.report_route.ReportRouteDialogFragment"
             android:label="fragment_report_route"
-            tools:layout="@layout/dialog_report_route" />
+            tools:layout="@layout/dialog_report_route" >
+            <argument
+                android:name="reportedRouteId"
+                app:argType="long" />
+        </dialog>
 
         <action
             android:id="@+id/action_global_navigation_post_details"

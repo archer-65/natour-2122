@@ -86,4 +86,7 @@ class ProfileRoutesFragment :
         )
         findNavController().navigate(action)
     }
+
+    override fun onSaveClick(route: RouteItemUi) {
+    }
 }

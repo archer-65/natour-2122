@@ -1,26 +1,20 @@
 package com.unina.natourkt.feature_profile.profile.compilations
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentPersonalCompilationsBinding
 import com.unina.natourkt.core.presentation.adapter.CompilationAdapter
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.CompilationItemUi
 import com.unina.natourkt.core.presentation.util.scrollBehavior
-import com.unina.natourkt.feature_profile.profile.ProfileFragment
-import com.unina.natourkt.feature_profile.profile.ProfileFragmentArgs
+import com.unina.natourkt.databinding.FragmentPersonalCompilationsBinding
 import com.unina.natourkt.feature_profile.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -68,6 +68,21 @@ public class CompilationController {
         }
     }
 
+    @GetMapping("/compilations/search_exclude_route")
+    public ResponseEntity<List<CompilationDto>> getCompilationsByUserAndRouteNotPresent(
+            @RequestParam(name = "user_id") Long userId,
+            @RequestParam(name = "route_id") Long routeId
+    ) {
+
+        List<CompilationDto> compilationDtoList = compilationService.getCompilationsByUserAndRouteNotPresent(userId, routeId);
+
+        if (!compilationDtoList.isEmpty()) {
+            return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     /**
      * Creates a new compilation
      *

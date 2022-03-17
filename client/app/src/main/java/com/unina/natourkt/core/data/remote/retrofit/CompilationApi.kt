@@ -2,10 +2,7 @@ package com.unina.natourkt.core.data.remote.retrofit
 
 import com.unina.natourkt.core.data.remote.dto.CompilationCreationDto
 import com.unina.natourkt.core.data.remote.dto.CompilationDto
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface CompilationApi {
 
@@ -16,8 +13,20 @@ interface CompilationApi {
         @Query("page_size") pageSize: Int
     ): List<CompilationDto>
 
+    @GET("/compilations/search_exclude_route")
+    suspend fun getCompilationsByUserAndRouteNotPresent(
+        @Query("user_id") userId: Long,
+        @Query("route_id") routeId: Long,
+    ): List<CompilationDto>
+
     @POST("/compilations/add")
     suspend fun createCompilation(
         @Body compilation: CompilationCreationDto
+    )
+
+    @PUT("/compilations/{id}/add")
+    suspend fun addRouteToCompilation(
+        @Path(value = "id") compilationId: Long,
+        @Query(value = "route_id") routeId: Long,
     )
 }

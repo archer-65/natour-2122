@@ -1,8 +1,9 @@
 package com.unina.natourkt.feature_route.routes
 
-import androidx.paging.PagingData
-import com.unina.natourkt.core.presentation.model.RouteItemUi
+import com.unina.natourkt.core.presentation.model.CompilationDialogItemUi
 
 data class RoutesUiState(
-    val routeItems: PagingData<RouteItemUi> = PagingData.empty(),
+    val isLoading: Boolean = false,
+    val compilations: List<CompilationDialogItemUi> = emptyList(),
+    val selectedRoute: Long? = null
 )

@@ -114,4 +114,5 @@
     <string name="compilation_created">La tua compilation è stata creata con successo!</string>
     <string name="file_not_valid">File non validi, riprova</string>
     <string name="storage_error">Impossibile accedere ai file, riprova.</string>
+    <string name="route_added_compilation">Itinerario aggiunto alla compilation!</string>
 </resources>

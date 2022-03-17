@@ -45,6 +45,16 @@ class RouteAdapter(private val listener: OnItemClickListener) :
                     }
                 }
             }
+
+            binding.chipSave.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onSaveClick(item)
+                    }
+                }
+            }
         }
 
         /**
@@ -74,6 +84,7 @@ class RouteAdapter(private val listener: OnItemClickListener) :
 
     interface OnItemClickListener {
         fun onItemClick(route: RouteItemUi)
+        fun onSaveClick(route: RouteItemUi)
         //fun onOptionsClick(post: PostItemUiState, position: Int)
     }
 

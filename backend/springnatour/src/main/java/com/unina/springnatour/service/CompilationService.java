@@ -43,6 +43,12 @@ public class CompilationService {
                 .toList());
     }
 
+    public List<CompilationDto> getCompilationsByUserAndRouteNotPresent(Long userId, Long routeId) {
+        return compilationMapper.toDto(compilationRepository.findByUserAndRouteNotPresent(userId, routeId)
+                .stream()
+                .toList());
+    }
+
     /**
      * Gets all the compilations for a certain user
      *

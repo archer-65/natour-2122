@@ -22,6 +22,10 @@ public interface CompilationRepository extends JpaRepository<Compilation, Long> 
      */
     List<Compilation> findByUser_id(Long userId);
 
+//    @Query("SELECT C from Compilation C join C.routes R where C.user.id = :userId AND R.id != :routeId")
+    @Query("SELECT C FROM Compilation C WHERE C NOT IN (SELECT COMP FROM Compilation COMP JOIN COMP.routes R WHERE COMP.user.id = :userId AND R.id = :routeId) AND C.user.id = :userId")
+    List<Compilation> findByUserAndRouteNotPresent(Long userId, Long routeId);
+
     /**
      * Finds compilations by author
      *

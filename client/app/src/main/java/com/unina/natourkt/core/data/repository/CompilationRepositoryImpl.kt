@@ -43,9 +43,27 @@ class CompilationRepositoryImpl @Inject constructor(
         ).flow
     }
 
+    override suspend fun getPersonalCompilationsToAddRoute(
+        userId: Long,
+        routeId: Long
+    ): DataState<List<Compilation>> {
+        return safeApiCall(Dispatchers.IO) {
+            val compilationResponse = api.getCompilationsByUserAndRouteNotPresent(userId, routeId)
+            compilationResponse.map { compilationApiMapper.mapToDomain(it) }
+        }
+    }
+
     override suspend fun createCompilation(compilation: CompilationCreation): DataState<Unit> =
         safeApiCall(Dispatchers.IO) {
             val compilationRequest = compilationCreationApiMapper.mapToDto(compilation)
             api.createCompilation(compilationRequest)
+        }
+
+    override suspend fun addRouteToCompilation(
+        compilationId: Long,
+        routeId: Long
+    ): DataState<Unit> =
+        safeApiCall(Dispatchers.IO) {
+            api.addRouteToCompilation(compilationId, routeId)
         }
 }

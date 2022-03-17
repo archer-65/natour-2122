@@ -108,4 +108,7 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
         )
         findNavController().navigate(action)
     }
+
+    override fun onSaveClick(route: RouteItemUi) {
+    }
 }

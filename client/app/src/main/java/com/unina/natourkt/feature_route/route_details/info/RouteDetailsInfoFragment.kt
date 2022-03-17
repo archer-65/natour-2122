@@ -48,6 +48,7 @@ class RouteDetailsInfoFragment :
             chatButton.isVisible = canContactAuthor
 
             warningTextView.isVisible = isWarningPresent
+            warningImage.isVisible = isWarningPresent
             warningTextView.text = warningText?.asString(requireContext())
 
             difficultyTextview.text = difficultyText?.asString(requireContext())

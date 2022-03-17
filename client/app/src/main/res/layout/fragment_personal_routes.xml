@@ -23,7 +23,7 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/newRouteFab"
         style="?attr/floatingActionButtonSecondaryStyle"
         android:layout_width="wrap_content"
@@ -33,7 +33,8 @@
         android:transitionName="transitionNewRouteFab"
         android:contentDescription="Nuovo itinerario"
         android:enabled="true"
-        android:src="@drawable/ic_outline_add_location_24"
+        android:text="Nuovo itinerario"
+        app:icon="@drawable/ic_outline_add_location_24"
         app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

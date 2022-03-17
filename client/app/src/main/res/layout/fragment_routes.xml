@@ -84,7 +84,7 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/newRouteFab"
         style="?attr/floatingActionButtonSecondaryStyle"
         android:layout_width="wrap_content"
@@ -92,8 +92,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="12dp"
         android:contentDescription="Nuovo itinerario"
+        android:text="Nuovo itinerario"
         android:enabled="true"
-        android:src="@drawable/ic_outline_add_location_24"
+        app:icon="@drawable/ic_outline_add_location_24"
         android:transitionName="transitionNewRouteFab"
         app:fabSize="normal" />
 

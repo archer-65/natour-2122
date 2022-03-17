@@ -53,7 +53,7 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/newPostFab"
         style="?attr/floatingActionButtonSecondaryStyle"
         android:layout_width="wrap_content"
@@ -62,7 +62,8 @@
         android:layout_margin="12dp"
         android:contentDescription="Nuovo post"
         android:enabled="true"
-        android:src="@drawable/ic_outline_add_photo_24"
+        android:text="Nuovo post"
+        app:icon="@drawable/ic_outline_add_photo_24"
         app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

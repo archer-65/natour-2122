@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import dev.chrisbanes.insetter.applyInsetter
@@ -94,6 +95,18 @@ fun RecyclerView.scrollBehavior(fab: FloatingActionButton) {
             fab.show()
         } else {
             fab.show()
+        }
+    }
+}
+
+fun RecyclerView.scrollBehavior(extendedFab: ExtendedFloatingActionButton) {
+    this.setOnScrollChangeListener { _, scrollX, scrollY, _, oldScrollY ->
+        if (scrollY > oldScrollY) {
+            extendedFab.shrink()
+        } else if (scrollX == scrollY) {
+            extendedFab.extend()
+        } else {
+            extendedFab.extend()
         }
     }
 }

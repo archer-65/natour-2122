@@ -58,6 +58,7 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.report_route -> {
+                        findNavController().navigate(R.id.action_navigation_route_details_to_navigation_dialog_report_route)
                         true
                     }
                     R.id.delete_route -> {

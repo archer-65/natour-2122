@@ -240,9 +240,9 @@
             android:label="fragment_bottom_sheet_filter"
             tools:layout="@layout/fragment_bottom_sheet_filter">
 
-            <action
-                android:id="@+id/action_bottomsheet_filter_to_search_route"
-                app:destination="@id/navigation_search_route" />
+<!--            <action-->
+<!--                android:id="@+id/action_bottomsheet_filter_to_search_route"-->
+<!--                app:destination="@id/navigation_search_route" />-->
 
         </dialog>
 
@@ -275,8 +275,17 @@
             <argument
                 android:name="authorId"
                 app:argType="long" />
+            <action
+                android:id="@+id/action_navigation_route_details_to_navigation_dialog_report_route"
+                app:destination="@id/navigation_dialog_report_route" />
 
         </fragment>
+
+        <dialog
+            android:id="@+id/navigation_dialog_report_route"
+            android:name="com.unina.natourkt.feature_route.report_route.ReportRouteDialogFragment"
+            android:label="fragment_report_route"
+            tools:layout="@layout/dialog_report_route" />
 
         <action
             android:id="@+id/action_global_navigation_post_details"

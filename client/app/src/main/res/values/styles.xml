@@ -18,5 +18,10 @@
     <style name="ThemeOverlay.NaTour.ElevationOverlayDisabled" parent="">
         <item name="elevationOverlayEnabled">false</item>
     </style>
+    
+    <style name="Theme.Natour.Widget.ActionButton" parent="Widget.AppCompat.ActionButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAppearance">?attr/textAppearanceButton</item>
+    </style>
 
 </resources>

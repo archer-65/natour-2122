@@ -61,6 +61,20 @@
         <item name="android:elevation">0dp</item>
     </style>
 
+    <style name="Theme.NaTour.FullScreenDialog" parent="Theme.Material3.Light.Dialog">
+        <item name="colorAccent">@color/md_theme_light_surface</item>
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="actionMenuTextColor">@color/md_theme_light_primary</item>
+        <item name="actionButtonStyle">@style/Theme.Natour.Widget.ActionButton</item>
+
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@color/md_theme_light_surface</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
     <color name="ted_image_picker_primary">@color/md_theme_light_primary</color>
     <color name="ted_image_picker_primary_pressed">@color/md_theme_light_primaryInverse</color>
 

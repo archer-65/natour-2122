@@ -1,24 +1,19 @@
 package com.unina.natourkt.core.presentation.base.fragment
 
-import android.net.Uri
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window.FEATURE_NO_TITLE
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.Constants.MAX_PHOTO
-import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.presentation.main.MainViewModel
-import gun0912.tedimagepicker.builder.TedImagePicker
-import gun0912.tedimagepicker.builder.type.MediaType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -28,10 +23,7 @@ import kotlinx.coroutines.launch
  * This open class extending [Fragment] provides basic functionality
  * for Fragments which extends it
  */
-abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
-
-    /* A way to get the MainViewModel from the activity, and not from the fragment. */
-    /* val mainViewModel: MainViewModel by activityViewModels() */
+abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFragment() {
 
     /**
      * This property serves as ViewModel generalization
@@ -46,6 +38,17 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     protected val binding get() = _binding!!
     protected abstract fun getViewBinding(): VB
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.Theme_NaTour_FullScreenDialog)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.requestWindowFeature(FEATURE_NO_TITLE)
+        return dialog
+    }
 
     /**
      * Overrides `onCreateView` only to return binding's root view, initialized in [init]
@@ -66,7 +69,17 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUi()
+        setListeners()
+        setTextChangedListeners()
         collectState()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
     }
 
     /**
@@ -102,18 +115,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     open fun setTextChangedListeners() {}
 
     /**
-     * This function initialize any recycler view
-     */
-    open fun initRecycler() {}
-
-    /**
-     * This function initialize a [ConcatAdapter]
-     */
-    open fun initConcatAdapter(): ConcatAdapter {
-        return ConcatAdapter()
-    }
-
-    /**
      * This function serves as a way to collect states from ViewModel
      */
     open fun collectState() {}
@@ -140,35 +141,5 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
                 flow.collect(execute)
             }
         }
-    }
-
-    /**
-     * This function serves as a fast way to open an Image Picker.
-     * [TedImagePicker] is a really nice library, the default `Picker` is a bit limited
-     * and at the moment `Photo Picker` is available only for Preview SDK `Tiramisu`.
-     */
-    fun pickImagesFromGallery(selected: List<Uri>, execute: (images: List<Uri>) -> Unit) {
-        TedImagePicker
-            .with(requireContext())
-            .title(getString(R.string.select_images))
-            .mediaType(MediaType.IMAGE)
-            .selectedUri(selected)
-            .max(MAX_PHOTO, getString(R.string.no_more_photo))
-            .buttonText(getString(R.string.done_select_photos))
-            .buttonBackground(R.color.md_theme_light_background)
-            .buttonTextColor(R.color.md_theme_light_primary)
-            .startMultiImage { uriList ->
-                execute(uriList)
-            }
-    }
-
-    fun pickImageFromGallery(execute: (image: Uri) -> Unit) {
-        TedImagePicker
-            .with(requireContext())
-            .title("Seleziona immagine")
-            .mediaType(MediaType.IMAGE)
-            .start { uri ->
-                execute(uri)
-            }
     }
 }

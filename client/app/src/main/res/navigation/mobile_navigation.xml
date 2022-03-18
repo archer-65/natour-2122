@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_routes_to_route_search"
             app:destination="@id/navigation_search_flow" />
+        <action
+            android:id="@+id/action_navigation_routes_to_saveIntoCompilationDialog"
+            app:destination="@id/saveIntoCompilationDialog" />
 
     </fragment>
 
@@ -278,12 +281,15 @@
             <action
                 android:id="@+id/action_navigation_route_details_to_navigation_dialog_report_route"
                 app:destination="@id/navigation_dialog_report_route" />
+            <action
+                android:id="@+id/action_navigation_route_details_to_rateRouteDialogFragment2"
+                app:destination="@id/rateRouteDialogFragment2" />
 
         </fragment>
 
         <dialog
             android:id="@+id/navigation_dialog_report_route"
-            android:name="com.unina.natourkt.feature_route.report_route.ReportRouteDialogFragment"
+            android:name="com.unina.natourkt.feature_route.report_route.ReportRouteFullDialog"
             android:label="fragment_report_route"
             tools:layout="@layout/dialog_report_route" >
             <argument
@@ -294,6 +300,15 @@
         <action
             android:id="@+id/action_global_navigation_post_details"
             app:destination="@id/navigation_post_details" />
+        <dialog
+            android:id="@+id/rateRouteDialogFragment2"
+            android:name="com.unina.natourkt.feature_route.rate_route.RateRouteFullDialog"
+            android:label="dialog_rate_route"
+            tools:layout="@layout/dialog_rate_route" >
+            <argument
+                android:name="ratedRouteId"
+                app:argType="long" />
+        </dialog>
 
     </navigation>
 
@@ -322,5 +337,16 @@
             android:id="@+id/action_create_compilation_to_profile"
             app:destination="@id/navigation_profile" />
     </fragment>
+    <dialog
+        android:id="@+id/saveIntoCompilationDialog"
+        android:name="com.unina.natourkt.feature_compilation.save_into_compilation.SaveIntoCompilationDialog"
+        android:label="SaveIntoCompilationDialog" >
+        <argument
+            android:name="routeToSaveId"
+            app:argType="long" />
+        <argument
+            android:name="ownerCompilationId"
+            app:argType="long" />
+    </dialog>
 
 </navigation>

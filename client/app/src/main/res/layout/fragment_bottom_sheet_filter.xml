@@ -15,8 +15,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".feature_route.create_route.info.CreateRouteInfoFragment">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/geoIcon"
@@ -89,9 +88,9 @@
             <com.google.android.material.slider.Slider
                 android:id="@+id/areaSlider"
                 android:layout_width="0dp"
-                android:stepSize="1"
                 android:layout_height="wrap_content"
                 android:contentDescription="Raggio in km"
+                android:stepSize="1"
                 android:valueFrom="5"
                 android:valueTo="100"
                 app:layout_constrainedWidth="true"
@@ -278,8 +277,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/barrier7"
                 android:theme="@style/ThemeOverlay.NaTour.ElevationOverlayDisabled"
+                app:layout_constraintBottom_toBottomOf="@+id/barrier7"
                 app:layout_constraintEnd_toEndOf="@id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@id/disabilityFriendlyTextview"

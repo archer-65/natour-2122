@@ -1,9 +1,8 @@
 package com.unina.natourkt.feature_route.routes
 
-import com.unina.natourkt.core.presentation.model.CompilationDialogItemUi
+import com.unina.natourkt.core.presentation.model.UserUi
 
 data class RoutesUiState(
     val isLoading: Boolean = false,
-    val compilations: List<CompilationDialogItemUi> = emptyList(),
-    val selectedRoute: Long? = null
+    val loggedUser: UserUi? = null,
 )

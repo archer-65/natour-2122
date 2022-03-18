@@ -17,6 +17,7 @@ public class RatingController {
 
     /**
      * Gets a rating
+     *
      * @param id the identifier of the rating
      * @return RatingDTO
      */
@@ -30,6 +31,7 @@ public class RatingController {
 
     /**
      * Gets all the ratings
+     *
      * @return List of RatingDTO
      */
     @GetMapping("/ratings")
@@ -46,11 +48,12 @@ public class RatingController {
 
     /**
      * Creates a new rating
+     *
      * @param ratingDto the RatingDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
     @PostMapping("/ratings/add")
-    public ResponseEntity<?> addRating(@RequestBody RatingDto ratingDto){
+    public ResponseEntity<?> addRating(@RequestBody RatingDto ratingDto) {
 
         ratingService.addRating(ratingDto);
 
@@ -59,7 +62,8 @@ public class RatingController {
 
     /**
      * Updates an existing rating
-     * @param id the identifier of the rating
+     *
+     * @param id        the identifier of the rating
      * @param ratingDto the RatingDTO Object containing the updated rating
      * @return HTTP Status CREATED after update
      */
@@ -73,6 +77,7 @@ public class RatingController {
 
     /**
      * Deletes an existing rating
+     *
      * @param id the identifier of the rating
      * @return HTTP Status OK after deletion
      */

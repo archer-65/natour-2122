@@ -15,6 +15,7 @@ import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.RouteItemUi
 import com.unina.natourkt.core.presentation.model.mapper.CompilationDialogItemUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.RouteItemUiMapper
+import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
@@ -30,12 +31,10 @@ import javax.inject.Inject
 @HiltViewModel
 class RoutesViewModel @Inject constructor(
     private val getRoutesUseCase: GetRoutesUseCase,
-    private val getPersonalCompilationsToAddRoute: GetPersonalCompilationsToAddRoute,
-    private val addCompilationRouteUseCase: AddCompilationRouteUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val userUiMapper: UserUiMapper,
     private val routeItemUiMapper: RouteItemUiMapper,
-    private val compilationDialogItemUiMapper: CompilationDialogItemUiMapper,
 ) : ViewModel() {
 
     /**
@@ -53,6 +52,7 @@ class RoutesViewModel @Inject constructor(
 
     init {
         getRoutes()
+        getUser()
     }
 
     fun getRoutes() {
@@ -70,56 +70,12 @@ class RoutesViewModel @Inject constructor(
         }
     }
 
-    fun getCompilationsToSave(routeId: Long) {
+    fun getUser() {
         viewModelScope.launch {
-            getUserDataUseCase()?.id?.let {
-                getPersonalCompilationsToAddRoute(it, routeId).onEach { result ->
-                    when (result) {
-                        is DataState.Success -> _uiState.update {
-                            val compilations =
-                                result.data?.map {
-                                    compilationDialogItemUiMapper.mapToUi(it).convertKeys {
-                                        getUrlFromKeyUseCase(it)
-                                    }
-                                } ?: emptyList()
-
-                            it.copy(compilations = compilations, selectedRoute = routeId)
-                        }
-                        is DataState.Error -> {}
-                        is DataState.Loading -> {}
-                    }
-                }.launchIn(viewModelScope)
+            _uiState.update {
+                val user = getUserDataUseCase()?.let { userUiMapper.mapToUi(it) }
+                it.copy(loggedUser = user)
             }
-        }
-    }
-
-    fun saveRouteIntoCompilation(compilationId: Long) {
-        uiState.value.selectedRoute?.let {
-            addCompilationRouteUseCase(compilationId, it).onEach { result ->
-                when (result) {
-                    is DataState.Success -> {
-                        _uiState.update {
-                            it.copy(isLoading = false)
-                        }
-
-                        _eventFlow.emit(UiEvent.ShowSnackbar(UiText.StringResource(R.string.route_added_compilation)))
-                        _eventFlow.emit(UiEvent.DismissDialog)
-                    }
-                    is DataState.Error -> {
-                        _uiState.update {
-                            it.copy(isLoading = false)
-                        }
-
-                        val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar((errorText)))
-                    }
-                    is DataState.Loading -> {
-                        _uiState.update {
-                            it.copy(isLoading = true)
-                        }
-                    }
-                }
-            }.launchIn(viewModelScope)
         }
     }
 }

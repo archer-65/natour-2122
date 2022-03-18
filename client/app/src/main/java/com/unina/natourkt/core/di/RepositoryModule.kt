@@ -86,4 +86,13 @@ object RepositoryModule {
     ): ReportRepository {
         return ReportRepositoryImpl(api, reportCreationApiMapper)
     }
+
+    @Provides
+    @Singleton
+    fun provideRatingRepository(
+        api: RatingApi,
+        ratingCreationApiMapper: RatingCreationApiMapper,
+    ): RatingRepository {
+        return RatingRepositoryImpl(api, ratingCreationApiMapper)
+    }
 }

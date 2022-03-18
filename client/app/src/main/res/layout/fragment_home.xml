@@ -9,8 +9,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScrollTargetViewId="@id/recycler_home"
-        app:liftOnScroll="true">
+        app:liftOnScroll="true"
+        app:liftOnScrollTargetViewId="@id/recycler_home">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -63,7 +63,7 @@
         android:contentDescription="Nuovo post"
         android:enabled="true"
         android:text="Nuovo post"
-        app:icon="@drawable/ic_outline_add_photo_24"
-        app:fabSize="normal" />
+        app:fabSize="normal"
+        app:icon="@drawable/ic_outline_add_photo_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

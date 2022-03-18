@@ -1,14 +1,10 @@
 package com.unina.natourkt.feature_route.report_route
 
-import android.graphics.Color
-import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.unina.natourkt.R
-import com.unina.natourkt.core.presentation.base.fragment.BaseDialogFragment
+import com.unina.natourkt.core.presentation.base.fragment.BaseFullDialogFragment
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.asString
 import com.unina.natourkt.core.presentation.util.setTopMargin
@@ -17,8 +13,8 @@ import com.unina.natourkt.databinding.DialogReportRouteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReportRouteDialogFragment :
-    BaseDialogFragment<DialogReportRouteBinding, ReportRouteViewModel>() {
+class ReportRouteFullDialog :
+    BaseFullDialogFragment<DialogReportRouteBinding, ReportRouteViewModel>() {
 
     private val viewModel: ReportRouteViewModel by viewModels()
 

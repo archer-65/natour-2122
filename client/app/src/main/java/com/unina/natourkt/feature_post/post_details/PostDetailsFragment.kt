@@ -75,7 +75,7 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
             }
 
             progressBar.isVisible = isLoading
-            constraintLayout.isVisible = !isLoading
+            constraintLayout.isVisible = !isLoading && !isError
             chatButton.isVisible = canContactAuthor
         }
     }

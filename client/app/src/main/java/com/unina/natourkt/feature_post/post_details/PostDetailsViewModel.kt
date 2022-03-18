@@ -47,12 +47,12 @@ class PostDetailsViewModel @Inject constructor(
                     val postDetails = postUi?.convertKeys { getUrlFromKeyUseCase(it) }
 
                     _uiState.update {
-                        it.copy(isLoading = false, post = postDetails)
+                        it.copy(isLoading = false, isError = false, post = postDetails)
                     }
                 }
                 is DataState.Error -> {
                     _uiState.update {
-                        it.copy(isLoading = false)
+                        it.copy(isLoading = false, isError = true)
                     }
 
                     val errorText = UiTextCauseMapper.mapToText(result.error)
@@ -60,7 +60,7 @@ class PostDetailsViewModel @Inject constructor(
                 }
                 is DataState.Loading -> {
                     _uiState.update {
-                        it.copy(isLoading = true)
+                        it.copy(isLoading = true, isError = false)
                     }
                 }
             }

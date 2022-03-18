@@ -60,7 +60,7 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
                     R.id.report_route -> {
                         val action =
                             RouteDetailsFragmentDirections.actionNavigationRouteDetailsToNavigationDialogReportRoute(
-                                args.routeId
+                                viewModel.routeId
                             )
                         findNavController().navigate(action)
                         true

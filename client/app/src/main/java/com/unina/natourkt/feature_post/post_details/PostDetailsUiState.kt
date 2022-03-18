@@ -6,6 +6,7 @@ import com.unina.natourkt.core.presentation.model.UserUi
 
 data class PostDetailsUiState(
     val isLoading: Boolean = false,
+    val isError: Boolean = false,
     val loggedUser: UserUi? = null,
     val post: PostDetailsUi? = null,
 ) {

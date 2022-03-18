@@ -40,9 +40,9 @@
 
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.NaTour.Dark.BottomSheetDialog</item>
 
-        <item name="snackbarStyle">@style/Widget.NaTour.Dark.Snackbar</item>
-        <item name="snackbarButtonStyle">@style/Widget.NaTour.Dark.SnackbarButton</item>
-        <item name="snackbarTextViewStyle">@style/Widget.NaTour.Dark.SnackbarText</item>
+        <!--        <item name="snackbarStyle">@style/Widget.NaTour.Dark.Snackbar</item>-->
+        <!--        <item name="snackbarButtonStyle">@style/Widget.NaTour.Dark.SnackbarButton</item>-->
+        <!--        <item name="snackbarTextViewStyle">@style/Widget.NaTour.Dark.SnackbarText</item>-->
     </style>
 
     <!-- Alternative background for certain screens -->
@@ -66,27 +66,28 @@
         <item name="android:elevation">0dp</item>
     </style>
 
-    <style name="Widget.NaTour.Dark.Snackbar" parent="Widget.Material3.Snackbar">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.NaTour.Dark.Snackbar</item>
-    </style>
+    <!--    <style name="Widget.NaTour.Dark.Snackbar" parent="Widget.Material3.Snackbar">-->
+    <!--        <item name="materialThemeOverlay">@style/ThemeOverlay.NaTour.Dark.Snackbar</item>-->
+    <!--    </style>-->
 
-    <style name="Widget.NaTour.Dark.SnackbarText" parent="Widget.Material3.Snackbar.TextView">
-        <item name="android:textColor">@color/md_theme_dark_onTertiaryContainer</item>
-    </style>
+    <!--    <style name="Widget.NaTour.Dark.SnackbarText" parent="Widget.Material3.Snackbar.TextView">-->
+    <!--        <item name="android:textColor">@color/md_theme_dark_onTertiaryContainer</item>-->
+    <!--    </style>-->
 
-    <style name="Widget.NaTour.Dark.SnackbarButton" parent="Widget.Material3.Button.TextButton.Snackbar">
-        <item name="android:textColor">@color/md_theme_dark_onTertiaryContainer</item>
-        <item name="colorPrimaryInverse">@color/md_theme_dark_onTertiaryContainer</item>
-    </style>
+    <!--    <style name="Widget.NaTour.Dark.SnackbarButton" parent="Widget.Material3.Button.TextButton.Snackbar">-->
+    <!--        <item name="android:textColor">@color/md_theme_dark_onTertiaryContainer</item>-->
+    <!--        <item name="colorPrimaryInverse">@color/md_theme_dark_onTertiaryContainer</item>-->
+    <!--    </style>-->
 
-    <style name="ThemeOverlay.NaTour.Dark.Snackbar" parent="">
-        <item name="colorPrimary">@color/md_theme_dark_tertiaryContainer</item>
-        <item name="colorSurfaceInverse">@color/md_theme_dark_tertiaryContainer</item>
-        <item name="colorOnSurfaceInverse">@color/md_theme_dark_onTertiaryContainer</item>
-    </style>
+    <!--    <style name="ThemeOverlay.NaTour.Dark.Snackbar" parent="">-->
+    <!--        <item name="colorPrimary">@color/md_theme_dark_tertiaryContainer</item>-->
+    <!--        <item name="colorSurfaceInverse">@color/md_theme_dark_tertiaryContainer</item>-->
+    <!--        <item name="colorOnSurfaceInverse">@color/md_theme_dark_onTertiaryContainer</item>-->
+    <!--    </style>-->
 
     <style name="Theme.NaTour.FullScreenDialog" parent="Theme.Material3.Dark.Dialog">
         <item name="colorAccent">@color/md_theme_dark_surface</item>
+        <item name="colorSecondaryContainer">@color/md_theme_dark_secondaryContainer</item>
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="actionMenuTextColor">@color/md_theme_dark_primary</item>
         <item name="actionButtonStyle">@style/Theme.Natour.Widget.ActionButton</item>

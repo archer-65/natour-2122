@@ -173,7 +173,7 @@
                 android:id="@+id/routeDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Esempio di testo per un itk;ljasjk;asdjk;lasdj;asdjk;asdj;kasdj;k;kjlas;kjlasj;klasd;kjasdj;kasdj;kaj;ksda;sdjka;kjsdakjlsakajls;jkls;jkls;jklasddjkas;lkjdaljasdjasdj;asdjlkasdj;kaj;dlkj;dlkj;ldkj;ldskj;ldskj;ldsjk;ldsjk;ldsjk;dskj;kdjs;kj;ds;kjld;jldjadsjldsj;ldskj;ldsjk;ldskj;ldskj;ldsjk;ldsjk;kds;djks;ajkd;sjkd;sjk;ldj;kdlkj;ldsj;klds;jklds;jkds;jkds;kjsdj;kdsj;kldsj;kldsj;kldsj;klds;kjldsjkldsjkd;sjk;djks;djksjkdljkdljkldkjld;jklds;kjlads;jkladskasdj;j;adklj;kasdj;kladsjk;lasdjk;lasjk;lasdj;klasj;klasd;jklasdj;klsdj;klads;jkladskjkdjsadjks;kj;ladj;kladsjk;ladsjk;ladskj;lakdsj;adsj;k;kdjl;kdjl;kjldj;kldjk;ldj;kldsj;klds;jkdsjkjdlkadjskjld;jldaj;klsasdjk;jkad;sj;kldj;kladjk;adsjkasdjkdsjkladsjk;adsad;skajds;kajdslkj;ladjkl;adjkl;adskjl;adsjkl;dsjk;ladsjk;ladsj;kadsjk;sdkj;asdjk;asdjk;jdks;sdj;kasdj;k;adjskj;kads;jkladj;klads;jkladsjk;ladsjk;lasdjk;ladsjk;ldsjk;dsjk;ds;jkadjks;adjks;jkld;ajk;ldkjl;djkl;sjkl;sdjklsdjkl;ajksd;jkd;ljkad;sjk;ladsjk;lasdjk;ladsjk;lasdjk;ladsj;kldsjk;lads;jkaasjkdlkljasdjkl;asj;klasdj;klasdj;klasdj;kasdj;kj;klasj;klasj;klasdj;kladsj;kladsj;kasdj;kjklasdjkl;asjkl;asj;klad;jkladkljads;jklads;jkldasjkldskj;adsj;kinerario"
+                android:text="Descrizione itinerario"
                 android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
 
         </androidx.core.widget.NestedScrollView>
@@ -233,5 +233,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/rateRouteFab"
+        style="?attr/floatingActionButtonSecondaryStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="12dp"
+        android:contentDescription="Valuta itinerario"
+        android:enabled="true"
+        android:text="Valuta itinerario"
+        android:transitionName="transitionNewRouteFab"
+        app:fabSize="normal"
+        app:icon="@drawable/ic_outline_rate_review_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

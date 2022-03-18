@@ -39,7 +39,7 @@ class RouteDetailsViewModel @Inject constructor(
     savedState: SavedStateHandle
 ) : ViewModel() {
 
-    val routeId = savedState.get<Long>("routeId")
+    val routeId = savedState.get<Long>("routeId")!!
 
     private val _uiState = MutableStateFlow(RouteDetailsUiState())
     val uiState = _uiState.asStateFlow()
@@ -65,14 +65,14 @@ class RouteDetailsViewModel @Inject constructor(
                     val routeDetails = routeUi?.convertKeys { getUrlFromKeyUseCase(it) }
 
                     _uiState.update {
-                        it.copy(isLoading = false, route = routeDetails)
+                        it.copy(isLoading = false, isError = false, route = routeDetails)
                     }
 
                     getDirections()
                 }
                 is DataState.Error -> {
                     _uiState.update {
-                        it.copy(isLoading = false)
+                        it.copy(isLoading = false, isError = true)
                     }
 
                     val errorText = UiTextCauseMapper.mapToText(result.error)
@@ -81,7 +81,7 @@ class RouteDetailsViewModel @Inject constructor(
 
                 is DataState.Loading -> {
                     _uiState.update {
-                        it.copy(isLoading = true)
+                        it.copy(isLoading = true, isError = false)
                     }
                 }
             }

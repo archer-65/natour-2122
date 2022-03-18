@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window.FEATURE_NO_TITLE
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -12,6 +13,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
+import com.unina.natourkt.R
+import com.unina.natourkt.core.presentation.util.UiText
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -21,7 +25,7 @@ import kotlinx.coroutines.launch
  * This open class extending [Fragment] provides basic functionality
  * for Fragments which extends it
  */
-abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFragment() {
+abstract class BaseFullDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFragment() {
 
     /**
      * This property serves as ViewModel generalization
@@ -36,6 +40,18 @@ abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFrag
     protected val binding get() = _binding!!
     protected abstract fun getViewBinding(): VB
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.Theme_NaTour_FullScreenDialog)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.requestWindowFeature(FEATURE_NO_TITLE)
+        return dialog
+    }
+
     /**
      * Overrides `onCreateView` only to return binding's root view, initialized in [init]
      */
@@ -44,6 +60,7 @@ abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFrag
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        init()
         return binding.root
     }
 
@@ -57,6 +74,14 @@ abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFrag
         setListeners()
         setTextChangedListeners()
         collectState()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
     }
 
     /**

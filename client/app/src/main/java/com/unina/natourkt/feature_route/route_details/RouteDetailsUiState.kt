@@ -10,6 +10,7 @@ import com.unina.natourkt.core.util.Difficulty
 
 data class RouteDetailsUiState(
     val isLoading: Boolean = false,
+    val isError: Boolean = false,
     val loggedUser: UserUi? = null,
     val route: RouteDetailsUi? = null,
     val polylineOptions: PolylineOptions = PolylineOptions()
@@ -26,6 +27,9 @@ data class RouteDetailsUiState(
                 null
             }
         }
+
+    val canRateRoute: Boolean
+        get() = loggedUser?.id != route?.authorId
 
     val canContactAuthor: Boolean
         get() = loggedUser?.id != route?.authorId

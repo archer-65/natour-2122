@@ -116,4 +116,5 @@
     <string name="storage_error">Impossibile accedere ai file, riprova.</string>
     <string name="route_added_compilation">Itinerario aggiunto alla compilation!</string>
     <string name="report_inserted">La tua segnalazione è stata inoltrata con successo.</string>
+    <string name="rating_inserted">La tua valutazione è stata inserita con successo.</string>
 </resources>

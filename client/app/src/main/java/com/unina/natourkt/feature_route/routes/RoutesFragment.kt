@@ -3,6 +3,7 @@ package com.unina.natourkt.feature_route.routes
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -35,14 +36,9 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
-    RouteAdapter.OnItemClickListener, CompilationDialogAdapter.OnItemCLickListener {
+    RouteAdapter.OnItemClickListener {
 
     private val recyclerAdapter = RouteAdapter(this@RoutesFragment)
-    private val dialogAdapter = CompilationDialogAdapter(this@RoutesFragment)
-
-    private lateinit var materialAlertDialogBuilder: MaterialAlertDialogBuilder
-    private lateinit var dialog: AlertDialog
-    private lateinit var customAlertDialogView: View
 
     private val viewModel: RoutesViewModel by viewModels()
 
@@ -51,8 +47,6 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
 
         setListeners()
         initRecycler()
@@ -126,10 +120,6 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
             recyclerAdapter.submitData(it)
         }
 
-        collectLatestOnLifecycleScope(uiState) {
-            dialogAdapter.submitList(it.compilations)
-        }
-
         collectLatestOnLifecycleScope(eventFlow) { event ->
             when (event) {
                 is UiEvent.ShowSnackbar -> {
@@ -139,7 +129,14 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
                         Snackbar.LENGTH_SHORT
                     ).setAnchorView(binding.newRouteFab).show()
                 }
-                is UiEvent.DismissDialog -> dialog.dismiss()
+                is UiEvent.ShowToast -> {
+                    Toast.makeText(
+                        requireContext(),
+                        event.uiText.asString(requireContext()),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {}
             }
         }
     }
@@ -152,39 +149,11 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
         findNavController().navigate(action)
     }
 
-    private fun launchDialog() {
-        customAlertDialogView =
-            layoutInflater.inflate(R.layout.dialog_compilation, binding.root, false)
-        val recyclerDialog: RecyclerView =
-            customAlertDialogView.findViewById(R.id.recycler_compilations)
-
-        recyclerDialog.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = dialogAdapter
-
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
-        }
-
-        dialog = materialAlertDialogBuilder.setView(customAlertDialogView)
-            .setTitle("Salva itinerario")
-            .setMessage("Seleziona una compilation dove salvare questo itinerario")
-            .create()
-
-        dialog.show()
-    }
-
     override fun onSaveClick(route: RouteItemUi) {
-        viewModel.getCompilationsToSave(route.id)
-        launchDialog()
-    }
-
-    override fun onCompilationSelection(compilation: CompilationDialogItemUi) {
-        Log.i("STO QUA", "ciao")
-        viewModel.saveRouteIntoCompilation(compilation.id)
+        val action = RoutesFragmentDirections.actionNavigationRoutesToSaveIntoCompilationDialog(
+            route.id,
+            viewModel.uiState.value.loggedUser!!.id
+        )
+        findNavController().navigate(action)
     }
 }

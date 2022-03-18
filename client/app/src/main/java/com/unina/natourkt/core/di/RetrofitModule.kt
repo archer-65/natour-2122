@@ -1,5 +1,6 @@
 package com.unina.natourkt.core.di
 
+import android.media.Rating
 import com.unina.natourkt.core.util.Constants.BASE_URL
 import com.unina.natourkt.core.util.NetworkConnectionInterceptor
 import com.unina.natourkt.core.data.remote.retrofit.*
@@ -70,6 +71,12 @@ object RetrofitModule {
     @Singleton
     fun provideReportRetrofit(retrofit: Retrofit): ReportApi {
         return retrofit.create(ReportApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRatingRetrofit(retrofit: Retrofit): RatingApi {
+        return retrofit.create(RatingApi::class.java)
     }
 
     @Provides

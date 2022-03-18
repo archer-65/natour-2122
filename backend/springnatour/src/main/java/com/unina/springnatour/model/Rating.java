@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -25,7 +26,7 @@ public class Rating implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 3, message = "Difficulty must be between 1 and 3")
+    @Range(min = 1, max = 3, message = "Difficulty must be between 1 and 3")
     @Column(name = "difficulty", nullable = false)
     private Integer difficulty;
 

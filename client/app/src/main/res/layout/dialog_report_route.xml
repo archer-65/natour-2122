@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature_route.report_route.ReportRouteDialogFragment">
+    tools:context=".feature_route.report_route.ReportRouteFullDialog">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -48,13 +48,12 @@
                 android:id="@+id/report_route_image"
                 android:layout_width="0dp"
                 android:layout_height="220dp"
-                android:layout_marginTop="45dp"
                 android:src="@drawable/ic_undraw_warning_cyit"
                 app:layout_constraintBottom_toTopOf="@id/barrier3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/guideline34" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/reportTitleTextField"
@@ -126,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.04" />
+                app:layout_constraintGuide_percent="0.06" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline35"

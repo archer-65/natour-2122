@@ -8,6 +8,12 @@
 \usepackage{amsmath}
 \usepackage{pdfpages}
 \usepackage{placeins}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{multirow}
+\usepackage{float} 
+\usepackage{tabularx}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -659,33 +665,295 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	\subsection{Tabelle di Cockburn dei casi d'uso}
 	Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dell'UCD.
 
-	%%TODO
-	
 	\subsubsection{Inserisce un itinerario}
+
+
+
+	\begin{table}[H]    
+
+	\def\arraystretch{1.5}
+
+
+	\begin{tabularx}{\linewidth}{|l| p{1cm} | p{4cm} | X | X|}
+
+	\hline Use Case \#1 & \multicolumn{4} {l|}{Inserisce un itinerario} \\
+	\hline Goal in
+	Context & \multicolumn{4}{>{\hsize=\dimexpr 4\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
+		L’utente vuole inserire un itinerario in piattaforma  } \\
+
+	\hline Preconditions &
+	\multicolumn{4}{l|}{L’utente è autenticato} \\
+
+	\hline Success End Conditions &
+	\multicolumn{4}{l|}{L’utente riesce ad inserire il nuovo itinerario} \\
+
+	\hline Failed End Conditions &
+	\multicolumn{4}{l|}{L’utente non riesce ad inserire il nuovo itinerario} \\
+
+	\hline Primary Actor &
+	\multicolumn{4}{l|}{Utente registrato} \\
+
+	\hline Secondary Actor &
+	\multicolumn{4}{l|}{Google Maps} \\
+
+	\hline Trigger & \multicolumn{4}{>{\hsize=\dimexpr 4\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
+	L’utente preme il Floating Action Button “newRouteFab” nella schermata “RoutesUI”  } \\
+
+	\hline 
+	\multirow{2}{*}{} 
+	& Step & Utente registrato & Sistema & Google Maps \\
+
+	\cline{2-5} & 1 & Preme il Floating Action Button “newRouteFab” nella schermata “RoutesUI”
+	& & \\
+
+	\cline{2-5} & 2 & & Mostra la schermata “CreateRouteInfoUI” & \\
+
 	
-	%TODO
+
+	\cline{2-5} & & & & \\
+	\hline 
+	\multirow{2}{*}{Extensions} 
+	& Step & Utente registrato & Sistema & Google Maps \\
+	
+
+	\cline{2-5} & & & & \\
+	\hline
+
+
+	\end{tabularx}
+
+	\end{table}
+
 	
 	\subsubsection{Segnala un itinerario}
 	
-	%TODO
 	\newpage
-
 	\subsection{Mock-Up dell'applicazione}
 	Vengono ora mostrati i Mock-Up dei casi d'uso significativi dettagliati nella sottosezione precedente.\\
 	Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente.
 
 
-
+	\newpage
 	\subsection{Prototipazione funzionale via statechart dell'interfaccia grafica}
 
+	\begin{figure}[!htbp]
+		\subsubsection{Segnalazione itinerario}
+		\centering
+		\includegraphics[width=\textwidth, page=1]{./diagrams/statechart.pdf}
+		\caption{Nuova segnalazione itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Inserimento itinerario}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=2]{./diagrams/statechart.pdf}
+		\caption{Nuovo itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Inserimento dettagli itinerario}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=3]{./diagrams/statechart.pdf}
+		\caption{Regione interna - Inserimento dettagli itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Inserimento mappa itinerario}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=4]{./diagrams/statechart.pdf}
+		\caption{Regione interna - Inserimento mappa itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Inserimento foto itinerario}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=5]{./diagrams/statechart.pdf}
+		\caption{Regione interna - Inserimento foto itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
 	\subsection{Classi, oggetti e relazioni di analisi}
 
+	\newpage
 	\subsection{Diagrammi di sequenza di analisi}
 
+	\newpage
 	\subsection{Diagrammi di attività}
 
+	\begin{figure}[!htbp]
+		\subsubsection{Login}
+		\centering
+		\includegraphics[width=\textwidth, page=1]{./diagrams/activity.pdf}
+		\caption{Login utente}
+	\end{figure}
+	\FloatBarrier
 
+	\newpage
+	\subsubsection{Registrazione}
+	% \begin{figure}[!htbp]
+	% 	\centering
+	% 	\includegraphics[width=\textwidth, page=3]{./diagrams/activity.pdf}
+	% 	\caption{Registrazione utente}
+	% \end{figure}
+	% \FloatBarrier
+
+	\newpage
+	\subsubsection{Interazione con un itinerario}
+	% \begin{figure}[!htbp]
+	% 	\centering
+	% 	\includegraphics[width=\textwidth, page=17]{./diagrams/activity.pdf}
+	% 	\caption{Aggiunta itinerario}
+	% \end{figure}
+	% \FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=10]{./diagrams/activity.pdf}
+		\caption{Rimozione itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=2]{./diagrams/activity.pdf}
+		\caption{Ricerca itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=11]{./diagrams/activity.pdf}
+		\caption{Valutazione itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=12]{./diagrams/activity.pdf}
+		\caption{Salvataggio itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=13]{./diagrams/activity.pdf}
+		\caption{Segnalazione itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Interazione con un post}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=4]{./diagrams/activity.pdf}
+		\caption{Aggiunta post}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=5]{./diagrams/activity.pdf}
+		\caption{Rimozione post}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=2]{./diagrams/activity.pdf}
+		\caption{Ricerca itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=15]{./diagrams/activity.pdf}
+		\caption{Segnalazione post}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Interazione con una compilation}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=8]{./diagrams/activity.pdf}
+		\caption{Aggiunta compilation}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=7]{./diagrams/activity.pdf}
+		\caption{Rimozione compilation}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=9]{./diagrams/activity.pdf}
+		\caption{Rimozione itinerario da compilation}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Gestione profilo e interazione con utenti}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=16]{./diagrams/activity.pdf}
+		\caption{Invio messaggio}
+	\end{figure}
+	\FloatBarrier
 	
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=14]{./diagrams/activity.pdf}
+		\caption{Avvio conversazione con l'autore di un post}
+	\end{figure}
+	\FloatBarrier
+	
+	\newpage
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=6]{./diagrams/activity.pdf}
+		\caption{Modifica foto profilo}
+	\end{figure}
+	\FloatBarrier
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	\newpage
 	\section{Documento di Design del sistema}
 
 

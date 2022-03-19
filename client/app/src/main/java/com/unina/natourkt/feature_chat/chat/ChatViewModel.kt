@@ -1,26 +1,22 @@
 package com.unina.natourkt.feature_chat.chat
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.unina.natourkt.core.data.remote.dto.MessageCreationDto
 import com.unina.natourkt.core.data.remote.dto.MessageDto
 import com.unina.natourkt.core.domain.model.Message
 import com.unina.natourkt.core.domain.use_case.chat.GetChatMessagesUseCase
-import com.unina.natourkt.core.presentation.model.*
-import com.unina.natourkt.core.presentation.util.format
+import com.unina.natourkt.core.presentation.model.ChatItemUi
+import com.unina.natourkt.core.presentation.model.MessageItemUi
+import com.unina.natourkt.core.presentation.model.MessageType
+import com.unina.natourkt.core.presentation.model.groupIntoMap
 import com.unina.natourkt.core.util.Constants.BASE_WS
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.DateTimeParser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
 import org.hildan.krossbow.stomp.StompClient
 import org.hildan.krossbow.stomp.StompSession
 import org.hildan.krossbow.stomp.conversions.kxserialization.StompSessionWithKxSerialization
@@ -48,7 +44,6 @@ class ChatViewModel @Inject constructor(
 
     init {
         getMessages()
-        connectToWs()
         collector()
     }
 
@@ -79,10 +74,15 @@ class ChatViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun connectToWs() {
-        viewModelScope.launch {
-            session = client.connect(url = BASE_WS)
-            jsonStompSession = session.withJsonConversions()
+    fun messageUpdate(message: String) {
+        _uiState.update {
+            it.copy(messageState = message)
+        }
+    }
+
+    fun setReadMessages() {
+        _uiState.update {
+            it.copy(newMessagesNumber = 0)
         }
     }
 
@@ -93,20 +93,16 @@ class ChatViewModel @Inject constructor(
 
             jsonStompSession.use { session ->
                 val header = StompSendHeaders("/natour/chat")
-                val receipt = session.convertAndSend(
+                session.convertAndSend(
                     header,
                     MessageCreationDto(
                         chatId = uiState.value.chatInfo.chatId,
                         recipientId = uiState.value.chatInfo.otherMemberId,
                         senderId = userId!!,
-                        messageContent = "Text example"
+                        messageContent = uiState.value.messageState
                     ),
                     MessageCreationDto.serializer()
                 )
-
-                receipt?.let {
-
-                }
             }
         }
     }
@@ -135,7 +131,10 @@ class ChatViewModel @Inject constructor(
                     val oldMessages = it.messages.toMutableList()
                     oldMessages.add(index = 0, element = mex.mapToUi())
 
-                    it.copy(messages = oldMessages.toList())
+                    it.copy(
+                        messages = oldMessages.toList(),
+                        newMessagesNumber = it.newMessagesNumber + 1
+                    )
                 }
             }
         }
@@ -154,41 +153,4 @@ class ChatViewModel @Inject constructor(
             sentOn = this.sentOn,
         )
     }
-
-    fun List<MessageItemUi>.groupIntoMap(): List<ChatGenericUi> {
-        val groupedHashMap: LinkedHashMap<String, MutableSet<MessageItemUi>> = LinkedHashMap()
-        var list: MutableSet<MessageItemUi>
-
-        for (message in this) {
-            val hashMapKey: String = message.sentOn.toLocalDate().toString()
-            if (groupedHashMap.containsKey(hashMapKey)) {
-                groupedHashMap.get(hashMapKey)?.add(message)
-            } else {
-                list = LinkedHashSet()
-                list.add(message)
-                groupedHashMap.put(hashMapKey, list)
-            }
-        }
-
-        return groupedHashMap.generateListFromMap()
-    }
-
-    fun LinkedHashMap<String, MutableSet<MessageItemUi>>.generateListFromMap(): List<ChatGenericUi> {
-        val newList: MutableList<ChatGenericUi> = ArrayList()
-        for (date in this.keys) {
-            val dateItem =
-                DateItemUi(date = DateTimeParser.parseDate(date), type = MessageType.TYPE_DATE)
-
-            val set = this.get(date)
-            if (set != null) {
-                for (message in set) {
-                    newList.add(message)
-                }
-            }
-            newList.add(dateItem)
-        }
-
-        return newList.toList()
-    }
-
 }

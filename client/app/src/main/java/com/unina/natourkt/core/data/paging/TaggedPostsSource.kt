@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 private const val INITIAL_PAGE = 0
 
-class TaggedPostPagingSource @Inject constructor(
+class TaggedPostSource @Inject constructor(
     private val api: PostApi,
     private val postApiMapper: PostApiMapper,
     private val routeId: Long

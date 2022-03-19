@@ -3,17 +3,16 @@ package com.unina.natourkt.feature_chat.chat
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.badge.BadgeUtils
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.adapter.MessageAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.ChatItemUi
-import com.unina.natourkt.core.presentation.util.loadWithGlide
-import com.unina.natourkt.core.presentation.util.setBottomMargin
-import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.databinding.FragmentChatBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,6 +30,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         super.onViewCreated(view, savedInstanceState)
 
         setListeners()
+        setTextChangedListeners()
         initRecycler()
     }
 
@@ -42,6 +42,19 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     override fun setListeners() {
         binding.buttonGchatSend.setOnClickListener {
             viewModel.sender()
+        }
+
+        binding.scrollBottomFab.setOnClickListener {
+            binding.recyclerChat.scrollToPosition(0)
+            viewModel.setReadMessages()
+        }
+
+        binding.recyclerChat.scrollChat(binding.scrollBottomFab)
+    }
+
+    override fun setTextChangedListeners() {
+        binding.editGchatMessage.doAfterTextChanged {
+            viewModel.messageUpdate(it.toString())
         }
     }
 
@@ -61,18 +74,33 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
         }
     }
 
+    @com.google.android.material.badge.ExperimentalBadgeUtils
     override fun collectState() = with(binding) {
+        val badge = BadgeDrawable.create(requireContext())
+        badge.verticalOffset = 40
+        badge.horizontalOffset = 40
+
+
         with(viewModel) {
             collectLatestOnLifecycleScope(uiState) {
                 bindChat(it.chatInfo)
                 recyclerAdapter.submitList(it.messages)
                 progressBar.isVisible = it.isLoading
+                buttonGchatSend.isEnabled = it.messageState.isNotBlank()
+
+                badge.number = it.newMessagesNumber
+                if (it.shouldResetBadge) {
+                    BadgeUtils.detachBadgeDrawable(badge, binding.scrollBottomFab)
+                } else {
+                    BadgeUtils.attachBadgeDrawable(badge, binding.scrollBottomFab)
+
+                }
             }
         }
     }
 
     private fun bindChat(chatInfo: ChatItemUi) = with(binding) {
         toolbarUsername.text = chatInfo.otherMemberUsername
-        toolbarAvatar.loadWithGlide(chatInfo.otherMemberPhoto, R.drawable.ic_avatar_svgrepo_com)
+        toolbarAvatar.loadWithGlide(chatInfo.otherMemberPhoto, R.drawable.ic_avatar_icon)
     }
 }

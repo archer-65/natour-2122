@@ -3,9 +3,6 @@ package com.unina.natourkt.feature_post.post_details
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.core.util.*
 import com.unina.natourkt.databinding.FragmentPostDetailsBinding
@@ -69,7 +66,7 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
                 routeName.text = it.routeTitle
                 postDescription.text = it.description
 
-                authorPhoto.loadWithGlide(it.authorPhoto, R.drawable.ic_avatar_svgrepo_com)
+                authorPhoto.loadWithGlide(it.authorPhoto, R.drawable.ic_avatar_icon)
 
                 imageSlider.load(it.photos)
             }

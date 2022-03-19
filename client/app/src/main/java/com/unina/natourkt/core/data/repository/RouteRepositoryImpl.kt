@@ -1,14 +1,13 @@
 package com.unina.natourkt.core.data.repository
 
-import androidx.core.net.toUri
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.data.paging.CompilationRoutePagingSource
-import com.unina.natourkt.core.data.paging.FilteredRoutesPagingSource
-import com.unina.natourkt.core.data.paging.PersonalRoutePagingSource
-import com.unina.natourkt.core.data.paging.RoutePagingSource
+import com.unina.natourkt.core.data.paging.CompilationRouteSource
+import com.unina.natourkt.core.data.paging.FilteredRoutesSource
+import com.unina.natourkt.core.data.paging.PersonalRouteSource
+import com.unina.natourkt.core.data.paging.RoutesSource
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteCreationApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteTitleApiMapper
@@ -19,15 +18,13 @@ import com.unina.natourkt.core.domain.model.RouteCreation
 import com.unina.natourkt.core.domain.model.RouteTitle
 import com.unina.natourkt.core.domain.model.route.Route
 import com.unina.natourkt.core.domain.repository.RouteRepository
-import com.unina.natourkt.core.domain.repository.StorageRepository
-import com.unina.natourkt.core.util.toInputStream
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
  * This implementation of [RouteRepository] contains [Route] related functions for incoming
- * responses from [RouteApi] and uses [RoutePagingSource] to Paginate with
+ * responses from [RouteApi] and uses [RoutesSource] to Paginate with
  * Paging 3 library
  */
 class RouteRepositoryImpl @Inject constructor(
@@ -54,7 +51,7 @@ class RouteRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { RoutePagingSource(api, routeApiMapper) }
+            pagingSourceFactory = { RoutesSource(api, routeApiMapper) }
         ).flow
     }
 
@@ -64,7 +61,7 @@ class RouteRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { PersonalRoutePagingSource(api, routeApiMapper, userId) }
+            pagingSourceFactory = { PersonalRouteSource(api, routeApiMapper, userId) }
         ).flow
     }
 
@@ -75,7 +72,7 @@ class RouteRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                CompilationRoutePagingSource(
+                CompilationRouteSource(
                     api,
                     routeApiMapper,
                     compilationId
@@ -90,7 +87,7 @@ class RouteRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { FilteredRoutesPagingSource(filter, routeApiMapper, api) }
+            pagingSourceFactory = { FilteredRoutesSource(filter, routeApiMapper, api) }
         ).flow
     }
 

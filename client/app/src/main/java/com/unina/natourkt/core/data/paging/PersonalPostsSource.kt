@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 private const val INITIAL_PAGE = 0
 
-class PersonalPostPagingSource @Inject constructor(
+class PersonalPostSource @Inject constructor(
     private val api: PostApi,
     private val postApiMapper: PostApiMapper,
     private val userId: Long

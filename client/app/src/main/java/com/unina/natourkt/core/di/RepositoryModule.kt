@@ -83,8 +83,9 @@ object RepositoryModule {
     fun provideReportRepository(
         api: ReportApi,
         reportCreationApiMapper: ReportCreationApiMapper,
+        reportApiMapper: ReportApiMapper,
     ): ReportRepository {
-        return ReportRepositoryImpl(api, reportCreationApiMapper)
+        return ReportRepositoryImpl(api, reportCreationApiMapper, reportApiMapper)
     }
 
     @Provides

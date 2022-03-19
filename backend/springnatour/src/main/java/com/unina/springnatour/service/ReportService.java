@@ -5,6 +5,7 @@ import com.unina.springnatour.dto.report.ReportMapper;
 import com.unina.springnatour.exception.ReportNotFoundException;
 import com.unina.springnatour.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ReportService {
 
     /**
      * Gets a report
+     *
      * @param id the identifier of the report
      * @return ReportDTO Object after mapping from Entity, or throws Exception
      */
@@ -30,6 +32,7 @@ public class ReportService {
 
     /**
      * Gets all the reports
+     *
      * @return a List of ReportDTO Objects after mapping from Entity, or throws Exception
      */
     public List<ReportDto> getAllReports() {
@@ -38,8 +41,15 @@ public class ReportService {
                 .toList());
     }
 
+    public List<ReportDto> getAllReports(Integer pageNo, Integer pageSize) {
+        return reportMapper.toDto(reportRepository.findAll(PageRequest.of(pageNo, pageSize))
+                .stream()
+                .toList());
+    }
+
     /**
      * Adds a report
+     *
      * @param reportDto ReportDTO Object with required fields, mapped to Entity and saved
      */
     public void addReport(ReportDto reportDto) {
@@ -48,7 +58,8 @@ public class ReportService {
 
     /**
      * Updates a report
-     * @param id the identifier of the report
+     *
+     * @param id        the identifier of the report
      * @param reportDto ReportDTO Object, mapped to Entity, or throws Exception
      */
     public void updateReport(Long id, ReportDto reportDto) {
@@ -58,6 +69,7 @@ public class ReportService {
 
     /**
      * Deletes a report
+     *
      * @param id the identifier of the report
      */
     public void deleteReport(Long id) {

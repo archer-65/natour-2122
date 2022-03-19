@@ -41,7 +41,7 @@ class ChatAdapter(val listener: OnItemCLickListener) :
 
         fun bind(chat: ChatItemUi) = with(binding) {
             otherUser.text = chat.otherMemberUsername
-            otherUserPhoto.loadWithGlide(chat.otherMemberPhoto, R.drawable.ic_avatar_svgrepo_com)
+            otherUserPhoto.loadWithGlide(chat.otherMemberPhoto, R.drawable.ic_avatar_icon)
         }
     }
 

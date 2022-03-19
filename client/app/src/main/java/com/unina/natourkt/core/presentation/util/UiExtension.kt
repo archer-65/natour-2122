@@ -110,3 +110,13 @@ fun RecyclerView.scrollBehavior(extendedFab: ExtendedFloatingActionButton) {
         }
     }
 }
+
+fun RecyclerView.scrollChat(fab: FloatingActionButton) {
+    this.setOnScrollChangeListener { _, scrollX, scrollY, _, oldScrollY ->
+        if (!this.canScrollVertically(1)) {
+            fab.hide()
+        } else {
+            fab.show()
+        }
+    }
+}

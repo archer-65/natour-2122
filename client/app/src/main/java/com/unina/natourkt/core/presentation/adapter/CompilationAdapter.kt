@@ -49,7 +49,7 @@ class CompilationAdapter(val listener: OnItemClickListener) :
             compilationTitle.text = compilation.title
             compilationDescription.text = compilation.description
             // Load images
-            authorPhoto.loadWithGlide(compilation.authorPhoto, R.drawable.ic_avatar_svgrepo_com)
+            authorPhoto.loadWithGlide(compilation.authorPhoto, R.drawable.ic_avatar_icon)
             compilationPhoto.loadWithGlide(compilation.photo)
         }
     }

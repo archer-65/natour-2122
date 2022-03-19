@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 private const val INITIAL_PAGE = 0
 
-class FilteredRoutesPagingSource @Inject constructor(
+class FilteredRoutesSource @Inject constructor(
     private val filter: Filter,
     private val routeApiMapper: RouteApiMapper,
     private val api: RouteApi

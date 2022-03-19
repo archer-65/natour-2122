@@ -41,6 +41,13 @@ public class ChatController {
     public void processMessage(@RequestBody MessageDto messageDto) {
 
         MessageDto savedMessage = messageService.saveMessage(messageDto);
+
+        messagingTemplate.convertAndSendToUser(
+                String.valueOf(messageDto.getSenderId()),
+                "/queue/messages",
+                savedMessage
+        );
+
         messagingTemplate.convertAndSendToUser(
                 String.valueOf(messageDto.getRecipientId()),
                 "/queue/messages",

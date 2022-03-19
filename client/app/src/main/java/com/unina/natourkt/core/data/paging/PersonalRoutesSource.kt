@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 private const val INITIAL_PAGE = 0
 
-class PersonalRoutePagingSource @Inject constructor(
+class PersonalRouteSource @Inject constructor(
     private val api: RouteApi,
     private val routeApiMapper: RouteApiMapper,
     private val userId: Long

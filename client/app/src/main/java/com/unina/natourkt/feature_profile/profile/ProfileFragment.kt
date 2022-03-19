@@ -5,13 +5,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.core.presentation.adapter.ViewPagerAdapter
+import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.presentation.util.loadWithGlide
@@ -51,7 +48,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private fun setupUserInfo(loggedUser: UserUi?) = with(binding) {
         profilePhoto.loadWithGlide(
             loggedUser?.photo,
-            R.drawable.ic_avatar_svgrepo_com
+            R.drawable.ic_avatar_icon
         )
 
         textviewUsername.text = loggedUser?.username

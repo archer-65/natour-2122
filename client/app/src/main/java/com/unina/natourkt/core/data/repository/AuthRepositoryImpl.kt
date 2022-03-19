@@ -1,6 +1,8 @@
 package com.unina.natourkt.core.data.repository
 
 import android.util.Log
+import com.amazonaws.mobile.client.AWSMobileClient
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoJWTParser
 import com.amplifyframework.auth.AuthException
 import com.amplifyframework.auth.AuthProvider
 import com.amplifyframework.auth.AuthUserAttributeKey
@@ -34,6 +36,20 @@ class AuthRepositoryImpl @Inject constructor(
     private val userApiMapper: UserApiMapper,
     private val userApi: UserApi,
 ) : AuthRepository {
+
+    private fun getToken(): Boolean {
+        val groups = ArrayList<String>()
+        val GROUP_KEY = "cognito:groups"
+        val token = AWSMobileClient.getInstance().tokens.accessToken.tokenString
+        val payload = CognitoJWTParser.getPayload(token)
+        if (payload.has(GROUP_KEY)) {
+            val jsonGroups = payload.getJSONArray(GROUP_KEY)
+            for (i in 0..jsonGroups.length() - 1) {
+                groups.add(jsonGroups.getString(i))
+            }
+        }
+        return groups.contains("admins")
+    }
 
     /**
      * Fetch authentication session, this function is used only
@@ -126,8 +142,11 @@ class AuthRepositoryImpl @Inject constructor(
                 // Make request to API to retrieve data
                 val userApi = userApi.getUserByUUID(sub)
                 val user = userApiMapper.mapToDomain(userApi)
+                val isAdmin = getToken()
+                val userFinal = user.copy(isAdmin = isAdmin)
+
                 // Save user data to DataStore Preferences
-                preferencesRepository.saveUserToDataStore(user)
+                preferencesRepository.saveUserToDataStore(userFinal)
                 // Return Success
                 DataState.Success(true)
             } else {
@@ -167,8 +186,11 @@ class AuthRepositoryImpl @Inject constructor(
                 // Make request to API to retrieve data
                 val userApi = userApi.getUserByUUID(sub)
                 val user = userApiMapper.mapToDomain(userApi)
+                val isAdmin = getToken()
+                val userFinal = user.copy(isAdmin = isAdmin)
+
                 // Save user data to DataStore Preferences
-                preferencesRepository.saveUserToDataStore(user)
+                preferencesRepository.saveUserToDataStore(userFinal)
                 // Return Success
                 DataState.Success(true)
             } else {

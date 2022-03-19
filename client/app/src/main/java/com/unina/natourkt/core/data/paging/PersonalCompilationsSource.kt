@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 private const val INITIAL_PAGE = 0
 
-class PersonalCompilationPagingSource @Inject constructor(
+class PersonalCompilationSource @Inject constructor(
     private val api: CompilationApi,
     private val compilationApiMapper: CompilationApiMapper,
     private val userId: Long

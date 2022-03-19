@@ -118,4 +118,7 @@
     <string name="report_inserted">La tua segnalazione è stata inoltrata con successo.</string>
     <string name="rating_inserted">La tua valutazione è stata inserita con successo.</string>
     <string name="title_chat">Chat</string>
+    <string name="today_chat">Oggi</string>
+    <string name="yesterday_chat">Ieri</string>
+    <string name="title_admin">Admin</string>
 </resources>

@@ -369,5 +369,10 @@
             android:name="userMeId"
             app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_admin_board"
+        android:name="com.unina.natourkt.feature_admin.admin_board.AdminBoardFragment"
+        android:label="fragment_report_board"
+        tools:layout="@layout/fragment_admin_board" />
 
 </navigation>

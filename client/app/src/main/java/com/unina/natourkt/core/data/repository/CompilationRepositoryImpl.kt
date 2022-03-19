@@ -3,14 +3,13 @@ package com.unina.natourkt.core.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.unina.natourkt.core.data.paging.PersonalCompilationPagingSource
+import com.unina.natourkt.core.data.paging.PersonalCompilationSource
 import com.unina.natourkt.core.data.remote.dto.mapper.CompilationApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.CompilationCreationApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.CompilationApi
 import com.unina.natourkt.core.data.util.safeApiCall
 import com.unina.natourkt.core.domain.model.Compilation
 import com.unina.natourkt.core.domain.model.CompilationCreation
-import com.unina.natourkt.core.domain.model.PostCreation
 import com.unina.natourkt.core.domain.repository.CompilationRepository
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +33,7 @@ class CompilationRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                PersonalCompilationPagingSource(
+                PersonalCompilationSource(
                     api,
                     compilationApiMapper,
                     userId

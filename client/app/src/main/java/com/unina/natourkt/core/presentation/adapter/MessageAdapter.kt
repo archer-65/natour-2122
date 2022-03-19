@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.model.ChatGenericUi
 import com.unina.natourkt.core.presentation.model.DateItemUi
 import com.unina.natourkt.core.presentation.model.MessageItemUi
 import com.unina.natourkt.core.presentation.model.MessageType
 import com.unina.natourkt.core.presentation.util.format
-import com.unina.natourkt.core.presentation.util.formatFull
 import com.unina.natourkt.databinding.MessageItemDateBinding
 import com.unina.natourkt.databinding.MessageItemMeBinding
 import com.unina.natourkt.databinding.MessageItemOtherBinding
+import java.time.LocalDate
 
 class MessageAdapter : ListAdapter<ChatGenericUi, RecyclerView.ViewHolder>(MessageComparator) {
 
@@ -83,7 +84,17 @@ class MessageAdapter : ListAdapter<ChatGenericUi, RecyclerView.ViewHolder>(Messa
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(message: DateItemUi) = with(binding) {
-            dateText.text = message.date.format()
+            dateText.text = getDate(message.date)
+        }
+
+        fun getDate(messageDate: LocalDate): String = with(binding) {
+            return if (messageDate.isEqual(LocalDate.now())) {
+                root.context.getString((R.string.today_chat))
+            } else if (messageDate.isEqual(LocalDate.now().minusDays(1))) {
+                root.context.getString(R.string.yesterday_chat)
+            } else {
+                messageDate.format()
+            }
         }
     }
 

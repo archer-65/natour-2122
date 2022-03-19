@@ -9,9 +9,20 @@ data class ReportCreationDto(
     @SerializedName("report_description")
     val reportDescription: String,
 
-    @SerializedName("author_id")
-    val authorId: Long,
+    @SerializedName("author")
+    val author: Author,
 
-    @SerializedName("reported_route_id")
-    val reportedRouteId: Long
-)
+    @SerializedName("reported_route")
+    val reportedRoute: ReportedRoute
+) {
+
+    data class Author(
+        @SerializedName("user_id")
+        val id: Long,
+    )
+
+    data class ReportedRoute(
+        @SerializedName("route_id")
+        val id: Long,
+    )
+}

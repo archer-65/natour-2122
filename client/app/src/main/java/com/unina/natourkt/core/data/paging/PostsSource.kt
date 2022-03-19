@@ -13,7 +13,7 @@ import java.io.IOException
 
 private const val INITIAL_PAGE = 0
 
-class PostPagingSource(
+class PostSource(
     private val api: PostApi,
     private val postApiMapper: PostApiMapper,
 ) : PagingSource<Int, Post>() {

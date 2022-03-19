@@ -11,8 +11,8 @@ class ReportCreationApiMapper @Inject constructor() :
         return ReportCreationDto(
             reportTitle = domainEntity.title,
             reportDescription = domainEntity.description,
-            authorId = domainEntity.author?.id ?: -1,
-            reportedRouteId = domainEntity.reportedRouteId
+            author = ReportCreationDto.Author(domainEntity.author?.id ?: -1),
+            reportedRoute = ReportCreationDto.ReportedRoute(domainEntity.reportedRouteId)
         )
     }
 }

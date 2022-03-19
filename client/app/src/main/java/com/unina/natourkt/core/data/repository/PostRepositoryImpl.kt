@@ -4,9 +4,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.data.paging.PersonalPostPagingSource
-import com.unina.natourkt.core.data.paging.PostPagingSource
-import com.unina.natourkt.core.data.paging.TaggedPostPagingSource
+import com.unina.natourkt.core.data.paging.PersonalPostSource
+import com.unina.natourkt.core.data.paging.PostSource
+import com.unina.natourkt.core.data.paging.TaggedPostSource
 import com.unina.natourkt.core.data.remote.dto.mapper.PostApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.PostCreationApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.PostApi
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 /**
  * This implementation of [PostRepository] contains [Post] related functions for incoming
- * responses from [PostApi] and uses [PostPagingSource] to Paginate with
+ * responses from [PostApi] and uses [PostSource] to Paginate with
  * Paging 3 library
  */
 class PostRepositoryImpl @Inject constructor(
@@ -46,7 +46,7 @@ class PostRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { PostPagingSource(api, postApiMapper) }
+            pagingSourceFactory = { PostSource(api, postApiMapper) }
         ).flow
     }
 
@@ -56,7 +56,7 @@ class PostRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { PersonalPostPagingSource(api, postApiMapper, userId) }
+            pagingSourceFactory = { PersonalPostSource(api, postApiMapper, userId) }
         ).flow
     }
 
@@ -66,7 +66,7 @@ class PostRepositoryImpl @Inject constructor(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { TaggedPostPagingSource(api, postApiMapper, routeId) }
+            pagingSourceFactory = { TaggedPostSource(api, postApiMapper, routeId) }
         ).flow
     }
 

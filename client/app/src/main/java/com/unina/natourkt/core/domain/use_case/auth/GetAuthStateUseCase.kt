@@ -10,10 +10,9 @@ import javax.inject.Inject
  */
 class GetAuthStateUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-    private val getUserDataUseCase: GetUserDataUseCase,
 ) {
 
     suspend operator fun invoke(): Boolean {
-        return authRepository.fetchCurrentSession() && getUserDataUseCase() != null
+        return authRepository.fetchCurrentSession()
     }
 }

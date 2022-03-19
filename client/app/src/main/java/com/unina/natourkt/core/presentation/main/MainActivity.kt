@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setupUi() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        makeStatusBarTransparent()
 
         navHostFragment =
             supportFragmentManager.findFragmentById(binding.navHostFragmentActivityMain.id) as NavHostFragment
@@ -78,17 +77,23 @@ class MainActivity : AppCompatActivity() {
                 margin()
             }
         }
+
+//        navView.menu.removeItem(R.id.navigation_home)
     }
 
     /**
      * Check if user is authenticated, if not, then go to Login Fragment
      */
     private fun checkAuthState() = with(mainViewModel) {
-        if (!isUserAuthenticated) {
+        val user = loggedUser
+
+        if (!isUserAuthenticated || user == null) {
             if (navController.currentDestination?.id == R.id.navigation_home) {
                 navController.navigate(R.id.action_home_to_auth_flow)
             }
         }
+
+        user?.let { if (!it.isAdmin) navView.menu.removeItem(R.id.navigation_admin_board) }
     }
 
     /**
@@ -101,6 +106,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home -> navView.visibility = View.VISIBLE
                 R.id.navigation_profile -> navView.visibility = View.VISIBLE
                 R.id.navigation_chat_list -> navView.visibility = View.VISIBLE
+                R.id.navigation_admin_board -> navView.visibility = View.VISIBLE
                 else -> navView.visibility = View.GONE
             }
         }

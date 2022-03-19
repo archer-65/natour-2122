@@ -12,13 +12,18 @@
         android:title="@string/title_routes" />
 
     <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/child_profile"
+        android:title="@string/title_profile" />
+
+    <item
         android:id="@+id/navigation_chat_list"
         android:icon="@drawable/child_chat"
         android:title="@string/title_chat" />
 
     <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/child_profile"
-        android:title="@string/title_profile" />
+        android:id="@+id/navigation_admin_board"
+        android:icon="@drawable/child_admin"
+        android:title="@string/title_admin" />
 
 </menu>

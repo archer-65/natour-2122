@@ -4,5 +4,5 @@ import java.time.LocalDate
 
 data class DateItemUi(
     val date: LocalDate,
-    override val type: MessageType
+    override val type: MessageType = MessageType.TYPE_DATE
 ) : ChatGenericUi

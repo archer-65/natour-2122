@@ -70,7 +70,7 @@ class PostAdapter(private val listener: OnItemClickListener) :
                 // If the user photo is present, then load with Glide
                 GlideApp.with(this.root)
                     .load(post.authorPhoto)
-                    .fallback(R.drawable.ic_avatar_svgrepo_com)
+                    .fallback(R.drawable.ic_avatar_icon)
                     .into(authorPhoto)
 
                 // Load photos in the slider

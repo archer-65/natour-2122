@@ -32,7 +32,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="start"
-                    android:src="@drawable/ic_avatar_svgrepo_com"
+                    android:src="@drawable/ic_avatar_icon"
                     app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
                 <TextView
@@ -52,9 +52,10 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-42dp"
+        android:layout_marginTop="-52dp"
         android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -62,7 +63,7 @@
             android:id="@+id/recycler_chat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:clipToPadding="false"
+            android:clipToPadding="true"
             android:paddingTop="3dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toTopOf="@id/barrier14"
@@ -70,6 +71,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scrollBottomFab"
+            style="?attr/floatingActionButtonSecondaryStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_scroll_down_24"
+            android:visibility="invisible"
+            app:fabCustomSize="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/barrier14"
+            app:layout_constraintEnd_toEndOf="@+id/recycler_chat" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_gchat_chatbox"

@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_avatar_svgrepo_com"
+        android:src="@drawable/ic_avatar_icon"
         app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
 

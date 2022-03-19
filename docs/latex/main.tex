@@ -106,7 +106,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	Il sistema valuta essenziale la sicurezza degli utenti: questi potranno segnalare informazioni inesatte o contenuti inappropriati al fine 
 	di rendere la permanenza nella community piacevole per tutti.
 
-	\section{Presentazione dell'idea progettuale}
+	\subsection{Presentazione dell'idea progettuale}
 
 	L'applicazione "NaTour21" nasce in seguito all'esigenza di uno spazio virtuale dove poter condividere la passione per l'escursionismo.\\
 	Creare una community di escursionisti, esperti o meno, ha lo scopo di rendere le esperienze individuali degli utenti più sicure e informate, 
@@ -119,7 +119,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	la visualizzazione di una homepage con post riguardanti diversi itinerari.\\
 	Particolare attenzione è riservata alla sicurezza degli utenti, i quali possono segnalare contenuti inappropriati o informazioni inesatte.
 	
-	\section{Individuazione del target degli utenti}
+	\subsection{Individuazione del target degli utenti}
 	NaTour21 si configura come community in cui chiunque può intraprendere la passione per l'escursionismo e condividerla.\\\\
 	Ciononostante, è stato possibile individuare un target di utenti ben definito grazie ai dati 
 	statistici\footnote{Fonte: \href{http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI}{sito ufficiale Istat}.} raccolti 
@@ -144,7 +144,6 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	la minima cifra considerata nella raccolta dati.\\
 
 	\subsection{Definizione delle personas}
-
 
 	\section{Documento dei Requisiti Software}
 	\subsection{Requisiti funzionali}
@@ -305,7 +304,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\label{table:9}
 	\end{table}
 	
-	\subsection{Interazione con un post}
+	\subsubsection{Interazione con un post}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
@@ -367,7 +366,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\label{table:13}
 	\end{table}
 	
-	\subsection{Gestione dati personali e conversazioni private}
+	\subsubsection{Gestione dati personali e conversazioni private}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| } 
@@ -398,7 +397,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\label{table:19}
 	\end{table}
 	
-	\subsection{Interazione con una compilation}
+	\subsubsection{Interazione con una compilation}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
@@ -460,7 +459,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\label{table:18}
 	\end{table}
 
-	\subsection{Requisiti amministratore}
+	\subsubsection{Requisiti amministratore}
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{ |p{5cm}|p{10.3cm}| }
@@ -490,76 +489,6 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 		\caption{RF.21}
 		\label{table:21}
 	\end{table}
-
-	\newpage
-	\subsection{Modellazione dei Casi d'Uso}
-	In questa sezione sarà riportato il diagramma Use Case per l'applicazione.\\
-	Per garantire una maggiore leggibilità e data la molteplicità di funzioni garantite
-	dal sistema, si è fatta la scelta di raggruppare le funzioni logicamente legate 
-	tra loro in packages.
-
-	\begin{figure}[!htbp]
-		\centering
-		\includegraphics[width=\textwidth, page=1]{./diagrams/useCase.pdf}
-		\caption{Use Case Diagram}
-	\end{figure}
-	\FloatBarrier
-
-	\newpage
-	\subsubsection{Interazione con un itinerario}
-	\begin{figure}[!htbp]
-		\centering
-		\includegraphics[width=\textwidth, page=3]{./diagrams/useCase.pdf}
-		\caption{Package 1 - Interazione con un Itinerario}
-	\end{figure}
-	\FloatBarrier
-
-	\newpage
-	\subsubsection{Interazione con un post}
-	\begin{figure}[!htbp]
-		\centering
-		\includegraphics[width=\textwidth, page=4]{./diagrams/useCase.pdf}
-		\caption{Package 2 - Interazione con un Post}
-	\end{figure}
-	\FloatBarrier
-
-	\newpage
-	\subsubsection{Gestione profilo}
-	\begin{figure}[!htbp]
-		\centering
-		\includegraphics[width=\textwidth, page=5]{./diagrams/useCase.pdf}
-		\caption{Package 3 - Gestione Profilo}
-	\end{figure}
-	\FloatBarrier
-
-	\newpage
-	\subsubsection{Gestione messaggi}
-	\begin{figure}[!htbp]
-		\centering
-		\includegraphics[width=\textwidth, page=2]{./diagrams/useCase.pdf}
-		\caption{Package 4 - Gestione messaggi}
-	\end{figure}
-	\FloatBarrier
-
-	\newpage
-	\subsection{Tabelle di Cockburn dei casi d'uso}
-	Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dell'UCD.
-
-	%%TODO
-
-	\subsubsection{Inserisce un itinerario}
-
-	%TODO
-
-	\subsubsection{Segnala un itinerario}
-
-	%TODO
-
-	\subsection{Mock-Up dell'applicazione}
-	Vengono ora mostrati i Mock-Up dei casi d'uso significativi dettagliati nella sottosezione precedente.\\
-	Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente.
-
-	\newpage
 
 	\subsection{Requisiti non funzionali}
 	Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applicazione, ovvero tutti i vincoli sui servizi offerti dal sistema.
@@ -675,6 +604,89 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	\end{table}
 
 	\newpage
+
+	\newpage
+	\subsection{Modellazione dei Casi d'Uso}
+	In questa sezione sarà riportato il diagramma Use Case per l'applicazione.\\
+	Per garantire una maggiore leggibilità e data la molteplicità di funzioni garantite
+	dal sistema, si è fatta la scelta di raggruppare le funzioni logicamente legate 
+	tra loro in packages.
+
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=1]{./diagrams/useCase.pdf}
+		\caption{Use Case Diagram}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Interazione con un itinerario}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=3]{./diagrams/useCase.pdf}
+		\caption{Package 1 - Interazione con un Itinerario}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Interazione con un post}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=4]{./diagrams/useCase.pdf}
+		\caption{Package 2 - Interazione con un Post}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Gestione profilo}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=5]{./diagrams/useCase.pdf}
+		\caption{Package 3 - Gestione Profilo}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsubsection{Gestione messaggi}
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=\textwidth, page=2]{./diagrams/useCase.pdf}
+		\caption{Package 4 - Gestione messaggi}
+	\end{figure}
+	\FloatBarrier
+
+	\newpage
+	\subsection{Tabelle di Cockburn dei casi d'uso}
+	Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dell'UCD.
+
+	%%TODO
+	
+	\subsubsection{Inserisce un itinerario}
+	
+	%TODO
+	
+	\subsubsection{Segnala un itinerario}
+	
+	%TODO
+	\newpage
+
+	\subsection{Mock-Up dell'applicazione}
+	Vengono ora mostrati i Mock-Up dei casi d'uso significativi dettagliati nella sottosezione precedente.\\
+	Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente.
+
+
+
+	\subsection{Prototipazione funzionale via statechart dell'interfaccia grafica}
+
+	\subsection{Classi, oggetti e relazioni di analisi}
+
+	\subsection{Diagrammi di sequenza di analisi}
+
+	\subsection{Diagrammi di attività}
+
+
+	
+	\section{Documento di Design del sistema}
 
 
 

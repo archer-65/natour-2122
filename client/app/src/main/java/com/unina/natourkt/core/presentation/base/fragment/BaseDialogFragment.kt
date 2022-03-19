@@ -1,6 +1,5 @@
 package com.unina.natourkt.core.presentation.base.fragment
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -115,7 +114,9 @@ abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFrag
     fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect(execute)
+                flow.collect() {
+                    execute(it)
+                }
             }
         }
     }

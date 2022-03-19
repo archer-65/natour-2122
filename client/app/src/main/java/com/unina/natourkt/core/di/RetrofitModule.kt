@@ -81,6 +81,12 @@ object RetrofitModule {
 
     @Provides
     @Singleton
+    fun provideChatRetrofit(retrofit: Retrofit): ChatApi {
+        return retrofit.create(ChatApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideMapsRetrofit(retrofit: Retrofit): MapsApi {
         return retrofit.create(MapsApi::class.java)
     }

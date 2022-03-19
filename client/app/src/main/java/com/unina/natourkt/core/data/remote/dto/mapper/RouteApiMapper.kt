@@ -19,8 +19,10 @@ class RouteApiMapper @Inject constructor(
             duration = apiEntity.duration,
             difficulty = Difficulty.fromInt(apiEntity.difficulty),
             disabilityFriendly = apiEntity.isDisabilityFriendly,
-            creationDate = DateTimeParser.parse(apiEntity.creationDate),
-            modifiedDate = if (apiEntity.modifiedDate.isNullOrEmpty()) null else DateTimeParser.parse(apiEntity.modifiedDate),
+            creationDate = DateTimeParser.parseDateTime(apiEntity.creationDate),
+            modifiedDate = if (apiEntity.modifiedDate.isNullOrEmpty()) null else DateTimeParser.parseDateTime(
+                apiEntity.modifiedDate
+            ),
             isReported = apiEntity.isRouteReported,
             photos = apiEntity.photos.map { it.photo },
             stops = apiEntity.stops.map { routeStopApiMapper.mapToDomain(it) },

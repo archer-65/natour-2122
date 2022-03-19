@@ -14,6 +14,7 @@ object Constants {
 
     // Local IP
     const val BASE_URL = "http://192.168.1.47:8080/"
+    const val BASE_WS = "ws://192.168.1.47:8080/ws"
 
     // String used for Auth Providers
     const val GOOGLE = "GOOGLE"

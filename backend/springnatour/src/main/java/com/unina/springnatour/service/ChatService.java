@@ -8,6 +8,8 @@ import com.unina.springnatour.model.User;
 import com.unina.springnatour.model.chat.Chat;
 import com.unina.springnatour.repository.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -31,7 +33,8 @@ public class ChatService {
 
     /**
      * Tricky method, contains business logic to get OR create and get a chat
-     * @param senderId sender of the request
+     *
+     * @param senderId    sender of the request
      * @param recipientId other member of the chat
      * @return ChatDTO Object, the requested chat
      */
@@ -68,6 +71,12 @@ public class ChatService {
 
     public List<ChatDto> getAllChatsByUserId(Long userId) {
         return chatMapper.toDto(chatRepository.getAllChatsByUser(userId)
+                .stream()
+                .toList());
+    }
+
+    public List<ChatDto> getAllChatsByUserId(Long userId, Integer pageNo, Integer pageSize) {
+        return chatMapper.toDto(chatRepository.getAllChatsByUser(userId, PageRequest.of(pageNo, pageSize, Sort.by("creationDate").descending()))
                 .stream()
                 .toList());
     }

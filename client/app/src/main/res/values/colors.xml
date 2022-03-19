@@ -55,4 +55,6 @@
     <color name="seed">#006A6A</color>
     <color name="error">#BA1B1B</color>
 
+    <color name="md_theme_light_top_bar">#1A006A6A</color>
+    <color name="md_theme_dark_top_bar">#1A4DDADA</color>
 </resources>

@@ -44,6 +44,14 @@
         <!--        <item name="snackbarTextViewStyle">@style/Widget.NaTour.Light.SnackbarText</item>-->
     </style>
 
+    <style name="TopBarColorElevation">
+        <item name="android:background">@color/md_theme_light_top_bar</item>
+    </style>
+
+    <style name="SearchBarBackground">
+        <item name="android:backgroundTint">@color/md_theme_light_top_bar</item>
+    </style>
+
     <!-- Alternative background for certain screens -->
     <style name="BackgroundAlternative">
         <item name="android:background">@color/md_theme_light_onPrimary</item>

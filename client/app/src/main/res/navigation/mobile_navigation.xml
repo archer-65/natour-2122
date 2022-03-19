@@ -348,5 +348,26 @@
             android:name="ownerCompilationId"
             app:argType="long" />
     </dialog>
+    <fragment
+        android:id="@+id/navigation_chat_list"
+        android:name="com.unina.natourkt.feature_chat.chat_list.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" >
+        <action
+            android:id="@+id/action_navigation_chat_list_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.unina.natourkt.feature_chat.chat.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="chatInfo"
+            app:argType="com.unina.natourkt.core.presentation.model.ChatItemUi" />
+        <argument
+            android:name="userMeId"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

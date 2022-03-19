@@ -17,11 +17,11 @@
         android:title="Ricerca itinerari"
         app:showAsAction="ifRoom|collapseActionView" />
 
-    <item
-        android:id="@+id/chat"
-        android:contentDescription="Vai alle chat"
-        android:icon="@drawable/ic_outline_near_me_24"
-        android:title="Chat"
-        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/chat"-->
+<!--        android:contentDescription="Vai alle chat"-->
+<!--        android:icon="@drawable/ic_outline_near_me_24"-->
+<!--        android:title="Chat"-->
+<!--        app:showAsAction="always" />-->
 
 </menu>

@@ -217,7 +217,9 @@ abstract class BaseMapFragment<VB : ViewBinding, VM : ViewModel, MapBinding : Ma
     fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect(execute)
+                flow.collect() {
+                    execute(it)
+                }
             }
         }
     }

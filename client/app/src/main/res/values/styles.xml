@@ -18,10 +18,20 @@
     <style name="ThemeOverlay.NaTour.ElevationOverlayDisabled" parent="">
         <item name="elevationOverlayEnabled">false</item>
     </style>
-    
+
     <style name="Theme.Natour.Widget.ActionButton" parent="Widget.AppCompat.ActionButton">
         <item name="textAllCaps">false</item>
         <item name="android:textAppearance">?attr/textAppearanceButton</item>
+    </style>
+
+    <style name="Widget.NaTour.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
     </style>
 
 </resources>

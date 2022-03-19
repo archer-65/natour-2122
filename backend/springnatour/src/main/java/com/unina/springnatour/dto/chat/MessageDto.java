@@ -15,7 +15,7 @@ public class MessageDto implements Serializable {
     private String messageContent;
 
     @JsonProperty("sent_on")
-    private LocalDateTime sentOn;
+    private String sentOn;
 
     @JsonProperty("sender_id")
     private Long senderId;

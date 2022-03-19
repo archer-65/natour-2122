@@ -140,7 +140,9 @@ abstract class BaseFullDialogFragment<VB : ViewBinding, VM : ViewModel> : Dialog
     fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect(execute)
+                flow.collect() {
+                    execute(it)
+                }
             }
         }
     }

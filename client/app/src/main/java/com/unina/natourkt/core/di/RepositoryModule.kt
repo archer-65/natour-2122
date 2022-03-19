@@ -95,4 +95,14 @@ object RepositoryModule {
     ): RatingRepository {
         return RatingRepositoryImpl(api, ratingCreationApiMapper)
     }
+
+    @Provides
+    @Singleton
+    fun provideChatRepository(
+        api: ChatApi,
+        chatApiMapper: ChatApiMapper,
+        messageApiMapper: MessageApiMapper,
+    ): ChatRepository {
+        return ChatRepositoryImpl(api, chatApiMapper, messageApiMapper)
+    }
 }

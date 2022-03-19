@@ -29,7 +29,6 @@ public class Message implements Serializable {
     private String content;
 
     @CreationTimestamp
-    @NotNull
     @Column(name = "sent_on", nullable = false)
     private LocalDateTime sentOn;
 

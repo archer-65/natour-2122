@@ -9,8 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScrollTargetViewId="@id/recycler_routes"
-        app:liftOnScroll="true">
+        app:liftOnScroll="true"
+        app:liftOnScrollTargetViewId="@id/recycler_routes">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -21,10 +21,13 @@
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search"
+                style="@style/SearchBarBackground"
                 android:layout_width="match_parent"
+                android:paddingBottom="2dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/search_background"
                 android:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
                 app:queryHint="Cerca un itinerario">
 
             </androidx.appcompat.widget.SearchView>

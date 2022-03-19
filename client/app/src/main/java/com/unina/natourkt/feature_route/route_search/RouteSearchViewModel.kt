@@ -87,7 +87,7 @@ class RouteSearchViewModel @Inject constructor(
     }
 
     private fun getResults() {
-        _routeResults = _uiState.flatMapLatest { filter ->
+        _routeResults = _uiState.filter { it.query.isNotBlank() }.flatMapLatest { filter ->
             getFilteredRoutesUseCase(filter.toFilter())
                 .map { pagingData ->
                     pagingData.map { route ->

@@ -10,8 +10,12 @@
 \usepackage{placeins}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-
 \usepackage{multirow}
+
+
+\usepackage{ltablex}
+\usepackage{longtable}
+
 \usepackage{float} 
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -666,17 +670,13 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dell'UCD.
 
 	\subsubsection{Inserisce un itinerario}
-
-
-
-	\begin{table}[H]    
+ 
 
 	\def\arraystretch{1.5}
 
-
 	\begin{tabularx}{\linewidth}{|l| p{1cm} | p{4cm} | X | X|}
 
-	\hline Use Case \#1 & \multicolumn{4} {l|}{Inserisce un itinerario} \\
+	\hline \textbf{USE CASE \#1} & \multicolumn{4} {l|}{\textbf{Inserisce un itinerario}} \\
 	\hline Goal in
 	Context & \multicolumn{4}{>{\hsize=\dimexpr 4\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
 		L’utente vuole inserire un itinerario in piattaforma  } \\
@@ -708,25 +708,56 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 
 	\cline{2-5} & 2 & & Mostra la schermata “CreateRouteInfoUI” & \\
 
-	
+	\cline{2-5} & 3 & Inserisce il nome dell’itinerario, (opzionalmente) la descrizione, la durata approssimativa, il livello di difficoltà e la possibilità di accessibilità per disabili  & & \\
 
-	\cline{2-5} & & & & \\
+	\cline{2-5} & 4 & Preme il Floating Action Button “nextFab” & & \\
+
+	\cline{2-5} & 5 & & Mostra la schermata “NewRouteMapUI” & \\
+
+	\cline{2-5} & 6 & Preme sull’icona di ricerca & & \\
+
+	\cline{2-5} & 7 & Inserisce la posizione della prima tappa del percorso per visualizzarla sulla mappa & & \\
+
+	\cline{2-5} & 8 & & & Mostra la posizione desiderata sulla mappa \\
+
+	\cline{2-5} & 9 & Seleziona le tappe del percorso tramite la mappa interattiva & & Recupera la posizione dei punti selezionati sulla mappa e traccia i percorsi tra essi \\
+
+	\cline{2-5} & 10 & Preme il Floating Action Button “nextFab” & & \\
+
+	\cline{2-5} & 11 & & Mostra la schermata “NewRoutePhotosUI” & \\
+	
+	\cline{2-5} & 12 & Preme il bottone insertPhotoButton & & \\
+
+	\cline{2-5} & 13 & & Mostra il photo picker per la selezione delle foto & \\
+
+	\cline{2-5} & 14 & Seleziona un numero di foto compreso tra 1 e 5 & & \\
+
+	\cline{2-5} & 15 & Preme il bottone “Fatto” & & \\
+
+	\cline{2-5} & 16 & & Mostra la schermata “NewRoutePhotosUI” & \\
+
+	\cline{2-5} & 17 & Preme il Floating Action Button “confirmRouteFab” & & \\
+
 	\hline 
-	\multirow{2}{*}{Extensions} 
+	\multirow{2}{*}{EXTENSION \#1}
 	& Step & Utente registrato & Sistema & Google Maps \\
 	
+	\cline{2-5} & 9.1 & Apre il menu a tendina in alto a destra della schermata e seleziona “Importa GPX” & & \\
 
-	\cline{2-5} & & & & \\
+	\cline{2-5} & 10.1 & & Mostra la schermata per la selezione di un file GPX & \\
+
+	\cline{2-5} & 11.1 & Seleziona il file GPX & & \\
+
+	\cline{2-5} & 12.1 & & Mostra la schermata "NewRouteMapUI" aggiornata & \\
+
 	\hline
-
 
 	\end{tabularx}
 
-	\end{table}
-
 	
 	\subsubsection{Segnala un itinerario}
-	
+
+
 	\newpage
 	\subsection{Mock-Up dell'applicazione}
 	Vengono ora mostrati i Mock-Up dei casi d'uso significativi dettagliati nella sottosezione precedente.\\
@@ -938,25 +969,7 @@ Mattia \textsc{Rossi} N86003211} %Nome studenti
 	\end{figure}
 	\FloatBarrier
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	\newpage
 	\section{Documento di Design del sistema}
-
-
-
 
 \end{document}	

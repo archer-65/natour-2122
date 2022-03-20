@@ -1,7 +1,6 @@
 \LoadClass[a4paper,12pt]{article} % Classe documento
 
 %--------------------- Packages ------------------------
-
 \RequirePackage[italian]{babel} %Lingua documento
 \RequirePackage[utf8]{inputenc} %Caratteri speciali
 \RequirePackage[section]{placeins}%Posizione sezione

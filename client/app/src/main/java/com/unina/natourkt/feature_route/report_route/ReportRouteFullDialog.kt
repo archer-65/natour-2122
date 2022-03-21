@@ -3,12 +3,11 @@ package com.unina.natourkt.feature_route.report_route
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFullDialogFragment
-import com.unina.natourkt.core.presentation.util.UiEvent
-import com.unina.natourkt.core.presentation.util.asString
-import com.unina.natourkt.core.presentation.util.setTopMargin
-import com.unina.natourkt.core.presentation.util.updateText
+import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.databinding.DialogReportRouteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,20 +24,32 @@ class ReportRouteFullDialog :
         binding.toolbar.setTopMargin()
     }
 
-    override fun setListeners() {
-        binding.toolbar.setNavigationOnClickListener { dismiss() }
+    override fun setListeners() = with(binding) {
+        toolbar.apply {
+            setNavigationOnClickListener {
+                showHelperDialog(
+                    title = R.string.cancel_report_dialog,
+                    message = R.string.cancel_insertion_message,
+                    icon = R.drawable.ic_warning_generic_24,
+                    positive = R.string.yes_action_dialog,
+                    negative = R.string.no_action_dialog
+                ) {
+                    dismiss()
+                }
+            }
+        }
 
-        binding.sendReportButton.setOnClickListener {
+        sendReportButton.setOnClickListener {
             viewModel.onEvent(ReportRouteEvent.Upload)
         }
     }
 
-    override fun setTextChangedListeners() {
-        binding.reportTitleTextField.updateText {
+    override fun setTextChangedListeners() = with(binding) {
+        reportTitleTextField.updateText {
             viewModel.onEvent(ReportRouteEvent.EnteredTitle(it))
         }
 
-        binding.descriptionTextField.updateText {
+        descriptionTextField.updateText {
             viewModel.onEvent(ReportRouteEvent.EnteredDescription(it))
         }
     }

@@ -14,6 +14,7 @@ import com.unina.natourkt.core.presentation.adapter.PostGridAdapter
 import com.unina.natourkt.core.presentation.decoration.GridItemDecoration
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.PostGridItemUi
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.feature_route.route_details.RouteDetailsFragmentDirections
 import com.unina.natourkt.feature_route.route_details.RouteDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,8 +25,8 @@ class RouteDetailsTagFragment :
     PostGridAdapter.OnItemClickListener {
 
     private val recyclerAdapter = PostGridAdapter(this@RouteDetailsTagFragment)
-    private val footerLoadStateAdapter = ItemLoadStateAdapter()
-    private val headerLoadStateAdapter = ItemLoadStateAdapter()
+    private val footerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
+    private val headerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
 
     private val viewModel: RouteDetailsViewModel by hiltNavGraphViewModels(R.id.navigation_route_details_flow)
 

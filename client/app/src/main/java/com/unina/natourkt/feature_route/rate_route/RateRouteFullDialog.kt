@@ -4,7 +4,9 @@ import android.text.InputFilter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFullDialogFragment
 import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.core.util.Difficulty
@@ -24,7 +26,17 @@ class RateRouteFullDialog : BaseFullDialogFragment<DialogRateRouteBinding, RateR
     }
 
     override fun setListeners() = with(binding) {
-        toolbar.setNavigationOnClickListener { dismiss() }
+        toolbar.setNavigationOnClickListener {
+            showHelperDialog(
+                title = R.string.cancel_rate_dialog,
+                message = R.string.cancel_insertion_message,
+                icon = R.drawable.ic_warning_generic_24,
+                positive = R.string.yes_action_dialog,
+                negative = R.string.no_action_dialog
+            ) {
+                dismiss()
+            }
+        }
 
         durationTextField.editText?.apply {
             filters = arrayOf<InputFilter>(DurationFilter(1, 16))

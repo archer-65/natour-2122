@@ -1,9 +1,13 @@
 package com.unina.natourkt.core.presentation.base.fragment
 
+import android.app.Dialog
+import android.content.DialogInterface
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -11,6 +15,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.unina.natourkt.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -34,6 +40,31 @@ abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFrag
     protected var _binding: VB? = null
     protected val binding get() = _binding!!
     protected abstract fun getViewBinding(): VB
+
+    protected open var shouldSetCustomView = false
+
+    protected abstract var baseTitle: Int
+    protected abstract fun getDialogTitle(): Int
+
+    protected abstract var baseMessage: Int
+    protected abstract fun getDialogMessage(): Int
+
+    protected var baseIcon: Int? = null
+    protected open fun getDialogIcon(): Int? = baseIcon
+
+    protected var basePositive: Int? = null
+    protected open fun getDialogPositive(): Int? = basePositive
+
+    protected var baseNegative: Int? = null
+    protected open fun getDialogNegative(): Int? = baseNegative
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        init()
+        val dialog = initDialog()
+        dialog.setListeners()
+
+        return dialog
+    }
 
     /**
      * Overrides `onCreateView` only to return binding's root view, initialized in [init]
@@ -73,7 +104,56 @@ abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFrag
     open fun init() {
         _binding = getViewBinding()
         baseViewModel = getVM()
+        baseTitle = getDialogTitle()
+        baseIcon = getDialogIcon()
+        baseMessage = getDialogMessage()
+        basePositive = getDialogPositive()
+        baseNegative = getDialogNegative()
     }
+
+    open fun initDialog(): AlertDialog {
+        val baseDialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(baseTitle)
+            .setMessage(baseMessage)
+            .setCancelable(false)
+
+        if (shouldSetCustomView) baseDialog.setView(binding.root)
+
+        baseDialog.initAddIcon()
+        baseDialog.initAddButtons()
+
+        return baseDialog.create()
+    }
+
+    open fun MaterialAlertDialogBuilder.initAddIcon() {
+        baseIcon?.let { this.setIcon(it) }
+    }
+
+    open fun MaterialAlertDialogBuilder.initAddButtons() {
+        basePositive?.let {
+            this.setPositiveButton(it, null)
+        }
+
+        baseNegative?.let {
+            this.setNegativeButton(it, null)
+        }
+    }
+
+    open fun AlertDialog.setListeners() {
+        val dialog = this
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                positiveAction()
+            }
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener {
+                negativeAction()
+            }
+        }
+    }
+
+    open fun positiveAction() {}
+
+    open fun negativeAction() {}
 
     /**
      * This function setups every View
@@ -94,30 +174,4 @@ abstract class BaseDialogFragment<VB : ViewBinding, VM : ViewModel> : DialogFrag
      * This function serves as a way to collect states from ViewModel
      */
     open fun collectState() {}
-
-    /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectLatestOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collectLatest(execute)
-            }
-        }
-    }
-
-    /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect() {
-                    execute(it)
-                }
-            }
-        }
-    }
 }

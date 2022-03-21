@@ -121,4 +121,20 @@
     <string name="today_chat">Oggi</string>
     <string name="yesterday_chat">Ieri</string>
     <string name="title_admin">Admin</string>
+    <string name="select_single_image">Seleziona immagine</string>
+    <string name="cancel_insertion">Annulla inserimento</string>
+    <string name="cancel_insertion_message">Vuoi davvero uscire? Tutte le informazioni inserite saranno perse.</string>
+    <string name="yes_action_dialog">Sì</string>
+    <string name="no_action_dialog">No</string>
+    <string name="remove_marker_dialog_title">Rimuovi marker inseriti</string>
+    <string name="remove_marker_dialog_message">Vuoi davvero rimuovere tutti i marker?</string>
+    <string name="save_in_compilation_dialog_title">Salva itinerario</string>
+    <string name="save_in_compilation_dialog_message">Seleziona una compilation dove salvare questo itinerario</string>
+    <string name="send_report_dialog_title">Invia segnalazione</string>
+    <string name="send_report_dialog_message">Sei sicuro di voler segnalare questo post? Non apparirà più nel dettaglio degli itinerari.</string>
+    <string name="report_action_dialog">Segnala</string>
+    <string name="cancel_dialog">Annulla</string>
+    <string name="post_reported_success">Grazie per la tua segnalazione, analizzeremo il post al più presto</string>
+    <string name="cancel_report_dialog">Annulla segnalazione</string>
+    <string name="cancel_rate_dialog">Annulla valutazione</string>
 </resources>

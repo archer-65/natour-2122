@@ -13,6 +13,7 @@ import com.unina.natourkt.core.presentation.adapter.CompilationAdapter
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.CompilationItemUi
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.scrollBehavior
 import com.unina.natourkt.databinding.FragmentPersonalCompilationsBinding
 import com.unina.natourkt.feature_profile.profile.ProfileFragmentDirections
@@ -59,8 +60,8 @@ class ProfileCompilationsFragment :
     }
 
     override fun initConcatAdapter(): ConcatAdapter = with(binding) {
-        val footerLoadStateAdapter = ItemLoadStateAdapter()
-        val headerLoadStateAdapter = ItemLoadStateAdapter()
+        val footerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
+        val headerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
 
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append

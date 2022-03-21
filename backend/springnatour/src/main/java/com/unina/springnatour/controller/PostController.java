@@ -3,6 +3,7 @@ package com.unina.springnatour.controller;
 import com.unina.springnatour.dto.post.PostDto;
 import com.unina.springnatour.model.post.Post;
 import com.unina.springnatour.service.PostService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -147,6 +148,14 @@ public class PostController {
         postService.updatePost(id, postDto);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/posts/{id}/report")
+    public ResponseEntity<?> reportPost(@PathVariable Long id) {
+
+        postService.reportPost(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

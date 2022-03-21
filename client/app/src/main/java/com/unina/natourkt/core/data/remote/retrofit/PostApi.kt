@@ -42,8 +42,13 @@ interface PostApi {
     ): List<PostDto>
 
     @POST("/posts/add")
-    suspend fun createRoute(
+    suspend fun createPost(
         @Body postDto: PostCreationDto
+    )
+
+    @PUT("/posts/{id}/report")
+    suspend fun reportPost(
+        @Path("id") id: Long,
     )
 }
 

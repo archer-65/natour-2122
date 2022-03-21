@@ -1,19 +1,19 @@
 package com.unina.natourkt.feature_compilation.save_into_compilation
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.adapter.CompilationDialogAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseDialogFragment
 import com.unina.natourkt.core.presentation.model.CompilationDialogItemUi
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.asString
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.databinding.DialogCompilationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,14 +29,15 @@ class SaveIntoCompilationDialog :
     override fun getViewBinding() = DialogCompilationBinding.inflate(layoutInflater)
     override fun getVM() = viewModel
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        init()
-        return MaterialAlertDialogBuilder(requireContext())
-            .setView(binding.root)
-            .setTitle("Salva itinerario")
-            .setMessage("Seleziona una compilation dove salvare questo itinerario")
-            .create()
-    }
+    override var shouldSetCustomView: Boolean = true
+
+    override var baseTitle = R.string.save_in_compilation_dialog_title
+    override fun getDialogTitle() = baseTitle
+
+    override var baseMessage = R.string.save_in_compilation_dialog_message
+    override fun getDialogMessage() = baseMessage
+
+    override fun getDialogIcon() = R.drawable.ic_outline_bookmark_24
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

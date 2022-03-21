@@ -26,4 +26,5 @@ interface PostRepository {
     suspend fun getPostDetails(id: Long) : DataState<Post>
 
     suspend fun createPost(post: PostCreation): DataState<Unit>
+    suspend fun reportPost(postId: Long): DataState<Unit>
 }

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.ErrorHandler
@@ -14,20 +15,22 @@ import com.unina.natourkt.databinding.ItemLoadBinding
  * The ItemLoadStateAdapter is a common class used by Paging Adapters
  * of the Paging 3 library, used for displaying items based on LoadState of PagedList
  */
-class ItemLoadStateAdapter : LoadStateAdapter<ItemLoadStateAdapter.LoadStateViewHolder>() {
+class ItemLoadStateAdapter(private val retry: () -> Unit) :
+    LoadStateAdapter<ItemLoadStateAdapter.LoadStateViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState) =
         LoadStateViewHolder(
             ItemLoadBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
-            )
+            ),
+            retry
         )
 
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
         holder.bind(loadState)
     }
 
-    inner class LoadStateViewHolder(val binding: ItemLoadBinding) :
+    inner class LoadStateViewHolder(val binding: ItemLoadBinding, val retry: () -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         /**
@@ -38,6 +41,9 @@ class ItemLoadStateAdapter : LoadStateAdapter<ItemLoadStateAdapter.LoadStateView
         fun bind(loadState: LoadState) = with(binding) {
             // State Views visibility
             progressBar.isVisible = loadState is LoadState.Loading
+
+            retryButton.setOnClickListener { retry() }
+
             errorLayout.isVisible =
                 loadState is LoadState.Error && ErrorHandler.handleException(loadState.error) is DataState.Cause.NetworkError
         }

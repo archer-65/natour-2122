@@ -79,6 +79,11 @@ class PostRepositoryImpl @Inject constructor(
     override suspend fun createPost(post: PostCreation): DataState<Unit> =
         safeApiCall(IO) {
             val postRequest = postCreationApiMapper.mapToDto(post)
-            api.createRoute(postRequest)
+            api.createPost(postRequest)
+        }
+
+    override suspend fun reportPost(postId: Long): DataState<Unit> =
+        safeApiCall(IO) {
+            api.reportPost(postId)
         }
 }

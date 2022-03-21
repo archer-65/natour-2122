@@ -13,10 +13,7 @@ import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.ReportAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.ReportItemUi
-import com.unina.natourkt.core.presentation.util.UiEvent
-import com.unina.natourkt.core.presentation.util.asString
-import com.unina.natourkt.core.presentation.util.scrollBehavior
-import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.databinding.FragmentAdminBoardBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,8 +57,8 @@ class AdminBoardFragment : BaseFragment<FragmentAdminBoardBinding, AdminBoardVie
     }
 
     override fun initConcatAdapter(): ConcatAdapter = with(binding) {
-        val footerLoadStateAdapter = ItemLoadStateAdapter()
-        val headerLoadStateAdapter = ItemLoadStateAdapter()
+        val footerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
+        val headerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
 
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append

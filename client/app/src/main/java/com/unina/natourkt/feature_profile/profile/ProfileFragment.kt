@@ -11,6 +11,7 @@ import com.unina.natourkt.core.presentation.adapter.ViewPagerAdapter
 import com.unina.natourkt.databinding.FragmentProfileBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.UserUi
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.loadWithGlide
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.feature_profile.profile.compilations.ProfileCompilationsFragment

@@ -43,7 +43,7 @@ class CreateCompilationFragment :
             }
 
             insertPhotoButton.setOnClickListener {
-                pickImageFromGallery {
+                pickImageFromGallery() {
                     onEvent(CreateCompilationEvent.InsertedPhoto(it))
                 }
             }

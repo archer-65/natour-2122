@@ -9,10 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentForgotPasswordBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.util.UiEvent
-import com.unina.natourkt.core.presentation.util.asString
-import com.unina.natourkt.core.presentation.util.setTopMargin
-import com.unina.natourkt.core.presentation.util.updateText
+import com.unina.natourkt.core.presentation.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

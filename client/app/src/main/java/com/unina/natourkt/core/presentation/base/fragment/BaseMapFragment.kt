@@ -199,32 +199,6 @@ abstract class BaseMapFragment<VB : ViewBinding, VM : ViewModel, MapBinding : Ma
     open fun collectState() {}
 
     /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectLatestOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collectLatest(execute)
-            }
-        }
-    }
-
-    /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect() {
-                    execute(it)
-                }
-            }
-        }
-    }
-
-    /**
      * Overriding function of interface for when the map is ready to be used.
      * Once an instance of this interface is set on a MapFragment or MapView object,
      * the onMapReady(GoogleMap) method is triggered when the map is ready to be used and provides a non-null instance of GoogleMap.

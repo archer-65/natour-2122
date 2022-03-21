@@ -36,6 +36,10 @@
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_primaryInverse</item>
 
+        <item name="materialAlertDialogTheme">
+            @style/ThemeOverlay.Material3.MaterialAlertDialog.Centered
+        </item>
+
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.NaTour.Light.BottomSheetDialog
         </item>
 

@@ -15,6 +15,7 @@ import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.RouteAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.RouteItemUi
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -42,15 +43,21 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
         binding.topAppBar.setTopMargin()
     }
 
-    override fun setListeners() {
+    override fun setListeners() = with(binding) {
 
-        binding.topAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.filter_search -> {
-                    findNavController().navigate(R.id.action_search_route_to_bottomsheet_filter)
-                    true
+        topAppBar.apply {
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
+
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.filter_search -> {
+                        findNavController().navigate(R.id.action_search_route_to_bottomsheet_filter)
+                        true
+                    }
+                    else -> false
                 }
-                else -> false
             }
         }
 
@@ -80,8 +87,8 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
     }
 
     override fun initConcatAdapter(): ConcatAdapter = with(binding) {
-        val footerLoadStateAdapter = ItemLoadStateAdapter()
-        val headerLoadStateAdapter = ItemLoadStateAdapter()
+        val footerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
+        val headerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
 
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append

@@ -1,7 +1,9 @@
 package com.unina.natourkt.feature_post.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +16,7 @@ import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.PostAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.PostItemUi
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.scrollBehavior
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,8 +68,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
     }
 
     override fun initConcatAdapter(): ConcatAdapter = with(binding) {
-        val footerLoadStateAdapter = ItemLoadStateAdapter()
-        val headerLoadStateAdapter = ItemLoadStateAdapter()
+        val footerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
+        val headerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
 
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append
@@ -93,6 +96,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         val action = HomeFragmentDirections.actionHomeToPostDetails(
             post.id,
             post.authorId
+        )
+        findNavController().navigate(action)
+    }
+
+    override fun onOptionsClick(post: PostItemUi, position: Int) {
+        val action = HomeFragmentDirections.actionNavigationHomeToBottomSheetHomeFragment2(
+            post
         )
         findNavController().navigate(action)
     }

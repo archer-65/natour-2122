@@ -7,6 +7,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentRouteDetailsMapBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseMapFragment
 import com.unina.natourkt.core.presentation.util.addCustomMarker
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.moveAndZoomCamera
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.feature_route.route_details.RouteDetailsViewModel

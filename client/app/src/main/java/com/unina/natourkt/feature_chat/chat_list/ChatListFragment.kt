@@ -14,6 +14,7 @@ import com.unina.natourkt.core.presentation.adapter.ChatAdapter
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.ChatItemUi
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.scrollBehavior
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentChatListBinding
@@ -63,8 +64,8 @@ class ChatListFragment : BaseFragment<FragmentChatListBinding, ChatListViewModel
     }
 
     override fun initConcatAdapter(): ConcatAdapter = with(binding) {
-        val footerLoadStateAdapter = ItemLoadStateAdapter()
-        val headerLoadStateAdapter = ItemLoadStateAdapter()
+        val footerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
+        val headerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
 
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append

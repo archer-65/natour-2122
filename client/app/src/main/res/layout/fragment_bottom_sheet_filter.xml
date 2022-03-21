@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".feature_route.route_search.BottomSheetFilterFragment">
 
-    <ScrollView
+    <Button
+        android:id="@+id/button_apply"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Applica"
+        app:layout_constraintBottom_toTopOf="@+id/dividerLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dividerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:dividerColor="#dddddd"
+        app:layout_constraintBottom_toTopOf="@id/barrier13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_apply" />
+
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier13">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,7 +49,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/areaChip"
                 app:layout_constraintEnd_toStartOf="@+id/geoAreaTextView"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toTopOf="@+id/guideline34"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:ignore="ContentDescription" />
@@ -41,7 +65,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/geoIcon"
-                app:layout_constraintTop_toBottomOf="@+id/guideline34" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <com.google.android.material.chip.Chip
@@ -79,11 +103,10 @@
                 android:layout_height="wrap_content"
                 android:text="5"
                 android:textAppearance="?attr/textAppearanceBodyLarge"
-                app:layout_constraintBottom_toTopOf="@id/barrier4"
+                app:layout_constraintBaseline_toBaselineOf="@+id/helperSlider"
                 app:layout_constraintEnd_toStartOf="@id/guideline36"
                 app:layout_constraintHorizontal_weight="0.1"
-                app:layout_constraintStart_toEndOf="@+id/helperSlider"
-                app:layout_constraintTop_toBottomOf="@id/areaChip" />
+                app:layout_constraintStart_toEndOf="@+id/helperSlider" />
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/areaSlider"
@@ -307,7 +330,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.04" />
+                app:layout_constraintGuide_percent="0.06" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier4"
@@ -357,6 +380,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="dividerLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

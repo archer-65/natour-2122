@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.print.Pageable;
 import java.util.ArrayList;
@@ -100,6 +101,11 @@ public class PostService {
                 .orElseThrow(() -> new PostNotFoundException(id));
 
         postRepository.save(postMapper.toEntity(postDto));
+    }
+
+    @Transactional
+    public void reportPost(Long id) {
+        postRepository.updateReportTrue(id);
     }
 
     /**

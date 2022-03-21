@@ -10,10 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.adapter.PhotoAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.util.UiEvent
-import com.unina.natourkt.core.presentation.util.asString
-import com.unina.natourkt.core.presentation.util.setBottomMargin
-import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.databinding.FragmentCreateRoutePhotosBinding
 import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
@@ -41,18 +38,47 @@ class CreateRoutePhotosFragment :
         createRouteFab.setBottomMargin()
     }
 
-    override fun setListeners() = with(binding) {
-        with(viewModel) {
-            insertPhotoButton.setOnClickListener {
-                pickImagesFromGallery(uiStatePhotos.value.photos) {
-                    onEvent(CreateRouteEvent.InsertedPhotos(it))
+    override fun setListeners() {
+        with(binding) {
+            with(viewModel) {
+                insertPhotoButton.setOnClickListener {
+                    pickImagesFromGallery(uiStatePhotos.value.photos) {
+                        onEvent(CreateRouteEvent.InsertedPhotos(it))
+                    }
+                }
+
+                createRouteFab.setOnClickListener {
+                    onEvent(CreateRouteEvent.Upload)
+                }
+
+                topAppBar.apply {
+                    topAppBar.setNavigationOnClickListener {
+                        findNavController().navigateUp()
+                    }
+
+                    setOnMenuItemClickListener {
+                        onMenuClick(it.itemId)
+                    }
                 }
             }
+        }
+    }
 
-            createRouteFab.setOnClickListener {
-                onEvent(CreateRouteEvent.Upload)
+    private fun onMenuClick(item: Int): Boolean {
+        when (item) {
+            R.id.action_generic_close -> {
+                showHelperDialog(
+                    title = R.string.cancel_insertion,
+                    message = R.string.cancel_insertion_message,
+                    icon = R.drawable.ic_warning_generic_24,
+                    positive = R.string.yes_action_dialog,
+                    negative = R.string.no_action_dialog
+                ) {
+                    findNavController().popBackStack(R.id.navigation_routes, false)
+                }
             }
         }
+        return true
     }
 
     override fun initRecycler() {

@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/save_route"
+        android:contentDescription="Salva itinerario"
+        android:icon="@drawable/ic_outline_bookmark_24"
+        android:title="Salva itinerario"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/delete_route"
         android:contentDescription="Rimuovi itinerario"
         android:icon="@drawable/ic_outline_delete_24"
         android:title="Rimuovi itinerario"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>

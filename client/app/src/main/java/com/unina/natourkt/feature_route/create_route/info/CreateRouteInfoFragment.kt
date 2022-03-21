@@ -2,7 +2,6 @@ package com.unina.natourkt.feature_route.create_route.info
 
 import android.os.Bundle
 import android.text.InputFilter
-import android.view.View
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -26,14 +25,6 @@ class CreateRouteInfoFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = MaterialContainerTransform()
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupUi()
-        setListeners()
-        setTextChangedListeners()
     }
 
     override fun setupUi() = with(binding) {
@@ -60,7 +51,15 @@ class CreateRouteInfoFragment :
         }
 
         topAppBar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+            showHelperDialog(
+                title = R.string.cancel_insertion,
+                message = R.string.cancel_insertion_message,
+                icon = R.drawable.ic_warning_generic_24,
+                positive = R.string.yes_action_dialog,
+                negative = R.string.no_action_dialog
+            ) {
+                findNavController().navigateUp()
+            }
         }
     }
 

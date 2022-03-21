@@ -17,6 +17,7 @@ import com.unina.natourkt.core.presentation.adapter.PostGridAdapter
 import com.unina.natourkt.core.presentation.decoration.GridItemDecoration
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.PostGridItemUi
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.scrollBehavior
 import com.unina.natourkt.feature_profile.profile.ProfileFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +31,8 @@ class ProfilePostsFragment : BaseFragment<FragmentPersonalPostsBinding, ProfileP
     PostGridAdapter.OnItemClickListener {
 
     private val recyclerAdapter = PostGridAdapter(this@ProfilePostsFragment)
-    private val footerLoadStateAdapter = ItemLoadStateAdapter()
-    private val headerLoadStateAdapter = ItemLoadStateAdapter()
+    private val footerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
+    private val headerLoadStateAdapter = ItemLoadStateAdapter(recyclerAdapter::retry)
 
     private val viewModel: ProfilePostsViewModel by viewModels()
 

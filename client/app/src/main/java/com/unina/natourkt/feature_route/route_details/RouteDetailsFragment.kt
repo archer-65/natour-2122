@@ -1,9 +1,9 @@
 package com.unina.natourkt.feature_route.route_details
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
@@ -11,13 +11,12 @@ import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
 import com.unina.natourkt.core.presentation.adapter.ViewPagerAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.feature_route.route_details.info.RouteDetailsInfoFragment
 import com.unina.natourkt.feature_route.route_details.map.RouteDetailsMapFragment
 import com.unina.natourkt.feature_route.route_details.tag.RouteDetailsTagFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.distinctUntilChangedBy
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDetailsViewModel>() {
@@ -56,25 +55,7 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
             }
 
             setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.report_route -> {
-                        val action =
-                            RouteDetailsFragmentDirections.actionNavigationRouteDetailsToNavigationDialogReportRoute(
-                                viewModel.routeId
-                            )
-                        findNavController().navigate(action)
-                        true
-                    }
-                    R.id.delete_route -> {
-                        true
-                    }
-                    R.id.save_route -> {
-                        true
-                    }
-                    else -> {
-                        false
-                    }
-                }
+                onMenuClick(it)
             }
         }
     }
@@ -98,5 +79,27 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
                 2 -> tab.text = "TAG"
             }
         }.attach()
+    }
+
+    private fun onMenuClick(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.report_route -> {
+                val action =
+                    RouteDetailsFragmentDirections.actionNavigationRouteDetailsToNavigationDialogReportRoute(
+                        viewModel.routeId
+                    )
+                findNavController().navigate(action)
+            }
+            R.id.save_route -> {
+                val action = RouteDetailsFragmentDirections.actionGlobalSaveIntoCompilationDialog(
+                    viewModel.routeId,
+                    viewModel.uiState.value.loggedUser!!.id,
+                )
+                findNavController().navigate(action)
+            }
+            R.id.delete_route -> {
+            }
+        }
+        return true
     }
 }

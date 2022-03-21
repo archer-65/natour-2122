@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.asString
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.load
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.databinding.FragmentRouteDetailsInfoBinding

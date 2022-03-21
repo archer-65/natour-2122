@@ -120,30 +120,4 @@ abstract class BaseFullDialogFragment<VB : ViewBinding, VM : ViewModel> : Dialog
      * This function serves as a way to collect states from ViewModel
      */
     open fun collectState() {}
-
-    /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectLatestOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collectLatest(execute)
-            }
-        }
-    }
-
-    /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect() {
-                    execute(it)
-                }
-            }
-        }
-    }
 }

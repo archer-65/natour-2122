@@ -1,5 +1,6 @@
 package com.unina.natourkt.core.presentation.base.fragment
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -66,6 +67,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupUi()
+        setListeners()
+        setTextChangedListeners()
+        initRecycler()
         collectState()
     }
 
@@ -117,60 +121,4 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
      * This function serves as a way to collect states from ViewModel
      */
     open fun collectState() {}
-
-    /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectLatestOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collectLatest(execute)
-            }
-        }
-    }
-
-    /**
-     * It launches a coroutine on the view's lifecycle scope, and repeats the coroutine on the view's
-     * lifecycle until the view's lifecycle is in the STARTED state
-     */
-    fun <T> collectOnLifecycleScope(flow: Flow<T>, execute: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collect() {
-                    execute(it)
-                }
-            }
-        }
-    }
-
-    /**
-     * This function serves as a fast way to open an Image Picker.
-     * [TedImagePicker] is a really nice library, the default `Picker` is a bit limited
-     * and at the moment `Photo Picker` is available only for Preview SDK `Tiramisu`.
-     */
-    fun pickImagesFromGallery(selected: List<Uri>, execute: (images: List<Uri>) -> Unit) {
-        TedImagePicker
-            .with(requireContext())
-            .title(getString(R.string.select_images))
-            .mediaType(MediaType.IMAGE)
-            .selectedUri(selected)
-            .max(MAX_PHOTO, getString(R.string.no_more_photo))
-            .buttonText(getString(R.string.done_select_photos))
-            .buttonBackground(R.color.md_theme_light_background)
-            .buttonTextColor(R.color.md_theme_light_primary)
-            .startMultiImage { uriList ->
-                execute(uriList)
-            }
-    }
-
-    fun pickImageFromGallery(execute: (image: Uri) -> Unit) {
-        TedImagePicker
-            .with(requireContext())
-            .title("Seleziona immagine")
-            .mediaType(MediaType.IMAGE)
-            .start { uri ->
-                execute(uri)
-            }
-    }
 }

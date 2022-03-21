@@ -14,6 +14,6 @@
         android:contentDescription="Segnala itinerario"
         android:icon="@drawable/ic_baseline_error_outline_24"
         android:title="Segnala itinerario"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>

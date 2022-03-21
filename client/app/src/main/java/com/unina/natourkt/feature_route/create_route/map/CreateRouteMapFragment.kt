@@ -2,11 +2,7 @@ package com.unina.natourkt.feature_route.create_route.map
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.MapView
@@ -20,7 +16,6 @@ import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.databinding.FragmentCreateRouteMapBinding
 import com.unina.natourkt.feature_route.create_route.CreateRouteEvent
 import com.unina.natourkt.feature_route.create_route.CreateRouteViewModel
-import dev.chrisbanes.insetter.applyInsetter
 
 class CreateRouteMapFragment :
     BaseMapFragment<FragmentCreateRouteMapBinding, CreateRouteViewModel, MapView>() {
@@ -71,7 +66,26 @@ class CreateRouteMapFragment :
                 launcherGpx.launch(Unit)
             }
             R.id.clear_map -> {
-                viewModel.onEvent(CreateRouteEvent.CleanStop)
+                showHelperDialog(
+                    title = R.string.remove_marker_dialog_title,
+                    message = R.string.remove_marker_dialog_message,
+                    icon = R.drawable.ic_baseline_cleaning_services_24,
+                    positive = R.string.yes_action_dialog,
+                    negative = R.string.no_action_dialog
+                ) {
+                    viewModel.onEvent(CreateRouteEvent.CleanStop)
+                }
+            }
+            R.id.exit_map -> {
+                showHelperDialog(
+                    title = R.string.cancel_insertion,
+                    message = R.string.cancel_insertion_message,
+                    icon = R.drawable.ic_warning_generic_24,
+                    positive = R.string.yes_action_dialog,
+                    negative = R.string.no_action_dialog
+                ) {
+                    findNavController().popBackStack(R.id.navigation_routes, false)
+                }
             }
         }
         return true
@@ -80,7 +94,6 @@ class CreateRouteMapFragment :
     override fun setMapListeners() = with(viewModel) {
         map.setOnMapClickListener {
             onEvent(CreateRouteEvent.AddedStop(it.latitude, it.longitude))
-            //getDirections()
         }
     }
 

@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_home_to_create_post"
             app:destination="@id/navigation_create_post" />
+        <action
+            android:id="@+id/action_navigation_home_to_reportPostDialog"
+            app:destination="@id/reportPostDialog" />
+        <action
+            android:id="@+id/action_navigation_home_to_bottomSheetHomeFragment2"
+            app:destination="@id/bottomSheetHomeFragment2" />
 
     </fragment>
 
@@ -37,6 +43,9 @@
         <argument
             android:name="authorId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_navigation_post_details_to_reportPostDialog"
+            app:destination="@id/reportPostDialog" />
 
     </fragment>
 
@@ -309,6 +318,9 @@
                 android:name="ratedRouteId"
                 app:argType="long" />
         </dialog>
+        <action
+            android:id="@+id/action_global_saveIntoCompilationDialog"
+            app:destination="@id/saveIntoCompilationDialog" />
 
     </navigation>
 
@@ -374,5 +386,24 @@
         android:name="com.unina.natourkt.feature_admin.admin_board.AdminBoardFragment"
         android:label="fragment_report_board"
         tools:layout="@layout/fragment_admin_board" />
+    <dialog
+        android:id="@+id/reportPostDialog"
+        android:name="com.unina.natourkt.feature_post.report_post.ReportPostDialog"
+        android:label="ReportPostDialog" >
+        <argument
+            android:name="postToReportId"
+            app:argType="long" />
+    </dialog>
+    <dialog
+        android:id="@+id/bottomSheetHomeFragment2"
+        android:name="com.unina.natourkt.feature_post.home.BottomSheetHomeFragment"
+        android:label="BottomSheetHomeFragment" >
+        <argument
+            android:name="postForBottomSheet"
+            app:argType="com.unina.natourkt.core.presentation.model.PostItemUi" />
+        <action
+            android:id="@+id/action_bottomSheetHomeFragment2_to_reportPostDialog"
+            app:destination="@id/reportPostDialog" />
+    </dialog>
 
 </navigation>

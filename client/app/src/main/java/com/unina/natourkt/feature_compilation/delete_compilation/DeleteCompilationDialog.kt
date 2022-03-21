@@ -1,4 +1,4 @@
-package com.unina.natourkt.feature_post.report_post
+package com.unina.natourkt.feature_compilation.delete_compilation
 
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -8,43 +8,40 @@ import com.unina.natourkt.core.presentation.base.fragment.BaseDialogFragment
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.asString
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
-import com.unina.natourkt.databinding.DialogReportPostBinding
+import com.unina.natourkt.databinding.DialogDeleteCompilationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReportPostDialog : BaseDialogFragment<DialogReportPostBinding, ReportPostViewModel>() {
+class DeleteCompilationDialog :
+    BaseDialogFragment<DialogDeleteCompilationBinding, DeleteCompilationViewModel>() {
 
-    private val viewModel: ReportPostViewModel by viewModels()
+    private val viewModel: DeleteCompilationViewModel by viewModels()
 
-    override fun getViewBinding() = DialogReportPostBinding.inflate(layoutInflater)
+    override fun getViewBinding() = DialogDeleteCompilationBinding.inflate(layoutInflater)
     override fun getVM() = viewModel
 
-    override var baseTitle = R.string.send_report_dialog_title
+    override var baseTitle: Int = R.string.delete_compilation_title_dialog
     override fun getDialogTitle() = baseTitle
 
-    override var baseMessage = R.string.send_report_dialog_message
+    override var baseMessage: Int = R.string.delete_compilation_message_dialog
     override fun getDialogMessage() = baseMessage
 
-    override fun getDialogIcon() = R.drawable.ic_baseline_error_outline_24
-    override fun getDialogPositive() = R.string.report_action_dialog
+    override fun getDialogIcon() = R.drawable.ic_outline_delete_24
+    override fun getDialogPositive() = R.string.remove_dialog
     override fun getDialogNegative() = R.string.cancel_dialog
 
     override fun positiveAction() {
-        viewModel.sendReport()
+        viewModel.removeCompilation()
     }
 
     override fun negativeAction() {
-        findNavController().navigateUp()
+        dismiss()
     }
 
     override fun collectState() {
         collectLatestOnLifecycleScope(viewModel.uiState) {
-            if (it.isReported) {
-                if (findNavController().previousBackStackEntry?.destination?.id == R.id.bottomSheetHomeFragment2) {
-                    findNavController().navigateUp()
-                }
-
-                findNavController().navigateUp()
+            if (it.isDeleted) {
+                findNavController().navigate(R.id.action_deleteCompilationDialog_to_navigation_profile)
             }
         }
 

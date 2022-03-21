@@ -22,7 +22,7 @@ public interface CompilationRepository extends JpaRepository<Compilation, Long> 
      */
     List<Compilation> findByUser_id(Long userId);
 
-//    @Query("SELECT C from Compilation C join C.routes R where C.user.id = :userId AND R.id != :routeId")
+    //    @Query("SELECT C from Compilation C join C.routes R where C.user.id = :userId AND R.id != :routeId")
     @Query("SELECT C FROM Compilation C WHERE C NOT IN (SELECT COMP FROM Compilation COMP JOIN COMP.routes R WHERE COMP.user.id = :userId AND R.id = :routeId) AND C.user.id = :userId")
     List<Compilation> findByUserAndRouteNotPresent(Long userId, Long routeId);
 
@@ -47,4 +47,11 @@ public interface CompilationRepository extends JpaRepository<Compilation, Long> 
             nativeQuery = true
     )
     void deleteRouteFromCompilation(@Param("route") Long routeId, @Param("compilation") Long compilationId);
+
+    @Modifying
+    @Query(
+            value = "delete from route_compilation rc where rc.compilation_id=:compilationId",
+            nativeQuery = true
+    )
+    void deleteCompilation(@Param("compilationId") Long compilationId);
 }

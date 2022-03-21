@@ -96,7 +96,9 @@ public class CompilationService {
      *
      * @param id the identifier of the compilation
      */
+    @Transactional
     public void deleteCompilation(Long id) {
+        compilationRepository.deleteCompilation(id);
         compilationRepository.deleteById(id);
     }
 }

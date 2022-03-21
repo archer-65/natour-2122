@@ -337,6 +337,9 @@
         <action
             android:id="@+id/action_compilation_details_to_route_details_flow"
             app:destination="@id/navigation_route_details_flow" />
+        <action
+            android:id="@+id/action_navigation_compilation_details_to_deleteCompilationDialog"
+            app:destination="@id/deleteCompilationDialog" />
 
     </fragment>
 
@@ -404,6 +407,16 @@
         <action
             android:id="@+id/action_bottomSheetHomeFragment2_to_reportPostDialog"
             app:destination="@id/reportPostDialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/deleteCompilationDialog"
+        android:name="com.unina.natourkt.feature_compilation.delete_compilation.DeleteCompilationDialog"
+        android:label="DeleteCompilationDialog" >
+        <argument android:name="compilationToDeleteId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_deleteCompilationDialog_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
     </dialog>
 
 </navigation>

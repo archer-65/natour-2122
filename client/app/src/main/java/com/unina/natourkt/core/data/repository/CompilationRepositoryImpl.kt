@@ -13,6 +13,7 @@ import com.unina.natourkt.core.domain.model.CompilationCreation
 import com.unina.natourkt.core.domain.repository.CompilationRepository
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -46,14 +47,14 @@ class CompilationRepositoryImpl @Inject constructor(
         userId: Long,
         routeId: Long
     ): DataState<List<Compilation>> {
-        return safeApiCall(Dispatchers.IO) {
+        return safeApiCall(IO) {
             val compilationResponse = api.getCompilationsByUserAndRouteNotPresent(userId, routeId)
             compilationResponse.map { compilationApiMapper.mapToDomain(it) }
         }
     }
 
     override suspend fun createCompilation(compilation: CompilationCreation): DataState<Unit> =
-        safeApiCall(Dispatchers.IO) {
+        safeApiCall(IO) {
             val compilationRequest = compilationCreationApiMapper.mapToDto(compilation)
             api.createCompilation(compilationRequest)
         }
@@ -62,7 +63,22 @@ class CompilationRepositoryImpl @Inject constructor(
         compilationId: Long,
         routeId: Long
     ): DataState<Unit> =
-        safeApiCall(Dispatchers.IO) {
+        safeApiCall(IO) {
             api.addRouteToCompilation(compilationId, routeId)
+        }
+
+    override suspend fun removeRouteFromCompilation(
+        compilationId: Long,
+        routeId: Long
+    ): DataState<Unit> =
+        safeApiCall(IO) {
+            api.removeRouteFromCompilation(compilationId, routeId)
+        }
+
+    override suspend fun removeCompilation(
+        compilationId: Long,
+    ): DataState<Unit> =
+        safeApiCall(IO) {
+            api.removeCompilation(compilationId)
         }
 }

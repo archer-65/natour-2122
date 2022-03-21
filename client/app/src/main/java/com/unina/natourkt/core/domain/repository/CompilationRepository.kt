@@ -12,4 +12,6 @@ interface CompilationRepository {
     suspend fun createCompilation(compilation: CompilationCreation): DataState<Unit>
     suspend fun getPersonalCompilationsToAddRoute(userId: Long, routeId: Long): DataState<List<Compilation>>
     suspend fun addRouteToCompilation(compilationId: Long, routeId: Long): DataState<Unit>
+    suspend fun removeRouteFromCompilation(compilationId: Long, routeId: Long): DataState<Unit>
+    suspend fun removeCompilation(compilationId: Long): DataState<Unit>
 }

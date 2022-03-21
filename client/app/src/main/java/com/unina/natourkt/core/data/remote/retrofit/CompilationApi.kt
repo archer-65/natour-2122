@@ -29,4 +29,15 @@ interface CompilationApi {
         @Path(value = "id") compilationId: Long,
         @Query(value = "route_id") routeId: Long,
     )
+
+    @PUT("/compilations/{id}/remove")
+    suspend fun removeRouteFromCompilation(
+        @Path(value = "id") compilationId: Long,
+        @Query(value = "route_id") routeId: Long
+    )
+
+    @DELETE("/compilations/{id}/delete")
+    suspend fun removeCompilation(
+        @Path(value = "id") compilationId: Long,
+    )
 }

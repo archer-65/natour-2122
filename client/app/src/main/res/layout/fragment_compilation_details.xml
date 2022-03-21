@@ -42,6 +42,7 @@
                 android:layout_height="?actionBarSize"
                 android:background="@android:color/transparent"
                 app:layout_collapseMode="pin"
+                app:menu="@menu/top_bar_compilation_details"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:title="Dettagli" />
 
@@ -54,5 +55,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

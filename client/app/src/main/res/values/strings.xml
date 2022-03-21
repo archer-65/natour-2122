@@ -137,4 +137,9 @@
     <string name="post_reported_success">Grazie per la tua segnalazione, analizzeremo il post al più presto</string>
     <string name="cancel_report_dialog">Annulla segnalazione</string>
     <string name="cancel_rate_dialog">Annulla valutazione</string>
+    <string name="route_removed_from_compilation">Itinerario rimosso da questa compilation.</string>
+    <string name="delete_compilation_title_dialog">Elimina compilation</string>
+    <string name="delete_compilation_message_dialog">Sei sicuro di voler eliminare questa compilation? Perderai anche gli itinerari salvati in essa.</string>
+    <string name="remove_dialog">Elimina</string>
+    <string name="compilation_deleted">Compilation eliminata con successo!</string>
 </resources>

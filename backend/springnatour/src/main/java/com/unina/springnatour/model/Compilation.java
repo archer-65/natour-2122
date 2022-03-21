@@ -44,6 +44,6 @@ public class Compilation implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToMany(mappedBy = "compilations", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "compilations", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Route> routes;
 }

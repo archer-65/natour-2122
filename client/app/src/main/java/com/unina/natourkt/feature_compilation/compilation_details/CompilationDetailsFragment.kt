@@ -5,16 +5,16 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentCompilationDetailsBinding
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.RouteCompilationAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.RouteItemUi
-import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
-import com.unina.natourkt.core.presentation.util.loadWithGlide
+import com.unina.natourkt.core.presentation.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -37,6 +37,33 @@ class CompilationDetailsFragment :
         bindView()
     }
 
+    override fun setupUi() {
+        binding.recyclerCompilationRoutes.setBottomMargin()
+    }
+
+    override fun setListeners() {
+        binding.topAppBar.apply {
+            setNavigationOnClickListener { findNavController().navigateUp() }
+            setOnMenuItemClickListener {
+                onMenuClick(it.itemId)
+            }
+        }
+    }
+
+    private fun onMenuClick(item: Int): Boolean {
+        when (item) {
+            R.id.remove_compilation -> {
+                val action =
+                    CompilationDetailsFragmentDirections.actionNavigationCompilationDetailsToDeleteCompilationDialog(
+                        viewModel.compilation!!.id
+                    )
+
+                findNavController().navigate(action)
+            }
+        }
+        return true
+    }
+
     override fun initRecycler() {
         with(binding) {
             recyclerCompilationRoutes.apply {
@@ -55,7 +82,7 @@ class CompilationDetailsFragment :
             footerLoadStateAdapter.loadState = loadState.append
             headerLoadStateAdapter.loadState = loadState.refresh
 
-            recyclerCompilationRoutes.isVisible = loadState.source.refresh !is LoadState.Loading
+            //recyclerCompilationRoutes.isVisible = loadState.source.refresh !is LoadState.Loading
         }
 
         val concatAdapter =
@@ -63,9 +90,34 @@ class CompilationDetailsFragment :
         return concatAdapter
     }
 
-    override fun collectState() = with(viewModel) {
-        collectLatestOnLifecycleScope(routesFlow) {
-            recyclerAdapter.submitData(it)
+    override fun collectState() = with(binding) {
+        with(viewModel) {
+            collectLatestOnLifecycleScope(routesFlow) {
+                recyclerAdapter.submitData(it)
+            }
+
+            collectLatestOnLifecycleScope(uiState) {
+                if (it.isRemoved) {
+                    recyclerAdapter.snapshot().toMutableList()
+                        .apply { removeAt(it.removedPosition!!) }
+                    recyclerAdapter.notifyItemRemoved(it.removedPosition!!)
+                }
+
+                progressBar.isVisible = it.isLoading
+            }
+
+            collectLatestOnLifecycleScope(eventFlow) { event ->
+                when (event) {
+                    is UiEvent.ShowSnackbar -> {
+                        Snackbar.make(
+                            requireView(),
+                            event.uiText.asString(requireContext()),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                    else -> {}
+                }
+            }
         }
     }
 
@@ -84,5 +136,9 @@ class CompilationDetailsFragment :
             )
 
         findNavController().navigate(action)
+    }
+
+    override fun onRemoveClick(route: RouteItemUi, position: Int) {
+        viewModel.deleteRouteFromCompilation(route.id, position)
     }
 }

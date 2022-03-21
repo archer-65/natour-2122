@@ -50,6 +50,16 @@ class RouteCompilationAdapter(private val listener: OnItemClickListener) :
                     }
                 }
             }
+
+            binding.chipRemoveFromCompilation.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onRemoveClick(item, position)
+                    }
+                }
+            }
         }
 
         /**
@@ -79,7 +89,7 @@ class RouteCompilationAdapter(private val listener: OnItemClickListener) :
 
     interface OnItemClickListener {
         fun onItemClick(route: RouteItemUi)
-        //fun onOptionsClick(post: PostItemUiState, position: Int)
+        fun onRemoveClick(route: RouteItemUi, position: Int)
     }
 
     class DiffUtilCallback : DiffUtil.ItemCallback<RouteItemUi>() {

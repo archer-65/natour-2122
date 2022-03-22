@@ -50,6 +50,12 @@ interface PostApi {
     suspend fun reportPost(
         @Path("id") id: Long,
     )
+
+    @DELETE("/posts/{id}/delete")
+    suspend fun deletePost(
+        @Path("id") id: Long,
+    )
 }
+
 
 

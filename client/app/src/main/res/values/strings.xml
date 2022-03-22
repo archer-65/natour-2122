@@ -142,4 +142,9 @@
     <string name="delete_compilation_message_dialog">Sei sicuro di voler eliminare questa compilation? Perderai anche gli itinerari salvati in essa.</string>
     <string name="remove_dialog">Elimina</string>
     <string name="compilation_deleted">Compilation eliminata con successo!</string>
+    <string name="delete_post_dialog_title">Elimina post</string>
+    <string name="delete_post_dialog_message">Sei sicuro di voler eliminare questo post?</string>
+    <string name="deleted_post_success">Post eliminato con successo!</string>
+    <string name="delete_route_dialog_title">Elimina itinerario</string>
+    <string name="delete_route_dialog_message">Sei sicuro di voler eliminare questo itinerario?</string>
 </resources>

@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_navigation_post_details_to_reportPostDialog"
             app:destination="@id/reportPostDialog" />
+        <action
+            android:id="@+id/action_navigation_post_details_to_deletePostDialog"
+            app:destination="@id/deletePostDialog" />
 
     </fragment>
 
@@ -417,6 +420,17 @@
         <action
             android:id="@+id/action_deleteCompilationDialog_to_navigation_profile"
             app:destination="@id/navigation_profile" />
+    </dialog>
+    <dialog
+        android:id="@+id/deletePostDialog"
+        android:name="com.unina.natourkt.feature_post.delete_post.DeletePostDialog"
+        android:label="DeletePostDialog" >
+        <argument
+            android:name="postToDeleteId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_deletePostDialog_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </dialog>
 
 </navigation>

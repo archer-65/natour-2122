@@ -86,4 +86,9 @@ class PostRepositoryImpl @Inject constructor(
         safeApiCall(IO) {
             api.reportPost(postId)
         }
+
+    override suspend fun deletePost(postId: Long): DataState<Unit> =
+        safeApiCall(IO) {
+            api.deletePost(postId)
+        }
 }

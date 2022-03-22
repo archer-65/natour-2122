@@ -41,20 +41,31 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
             }
 
             setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.report_post -> {
-                        true
-                    }
-                    R.id.delete_post -> {
-                        true
-                    }
-                    else -> {
-                        false
-                    }
-                }
+                onMenuClick(it.itemId)
             }
         }
     }
+
+    private fun onMenuClick(item: Int): Boolean {
+        when (item) {
+            R.id.report_post -> {
+                val action =
+                    PostDetailsFragmentDirections.actionNavigationPostDetailsToReportPostDialog(
+                        viewModel.uiState.value.post!!.id
+                    )
+                findNavController().navigate(action)
+            }
+            R.id.delete_post -> {
+                val action =
+                    PostDetailsFragmentDirections.actionNavigationPostDetailsToDeletePostDialog(
+                        viewModel.uiState.value.post!!.id
+                    )
+                findNavController().navigate(action)
+            }
+        }
+        return true
+    }
+
 
     /**
      * Bind view to [PostUiState]

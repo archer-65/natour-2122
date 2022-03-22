@@ -27,4 +27,5 @@ interface PostRepository {
 
     suspend fun createPost(post: PostCreation): DataState<Unit>
     suspend fun reportPost(postId: Long): DataState<Unit>
+    suspend fun deletePost(postId: Long): DataState<Unit>
 }

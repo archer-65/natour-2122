@@ -14,7 +14,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -115,10 +117,15 @@ public class RouteService {
      * @param routeDto RouteDTO Object updated
      */
     public void updateRoute(Long id, RouteDto routeDto) {
-        routeRepository.findById(id)
+        Route foundRoute = routeRepository.findById(id)
                 .orElseThrow(() -> new RouteNotFoundException(id));
 
-        routeRepository.save(routeMapper.toEntity(routeDto));
+        Route givenRoute = routeMapper.toEntity(routeDto);
+
+        foundRoute.setDescription(givenRoute.getDescription());
+        foundRoute.setModifiedDate(LocalDateTime.now());
+
+        routeRepository.save(foundRoute);
     }
 
     /**
@@ -126,7 +133,9 @@ public class RouteService {
      *
      * @param id the identifier of the route
      */
+    @Transactional
     public void deleteRoute(Long id) {
+        routeRepository.deleteRouteCompilationRelation(id);
         routeRepository.deleteById(id);
     }
 }

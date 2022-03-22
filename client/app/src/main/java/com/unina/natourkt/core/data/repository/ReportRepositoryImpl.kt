@@ -14,6 +14,7 @@ import com.unina.natourkt.core.domain.model.ReportCreation
 import com.unina.natourkt.core.domain.repository.ReportRepository
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -32,7 +33,7 @@ class ReportRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createReport(report: ReportCreation): DataState<Unit> =
-        safeApiCall(Dispatchers.IO) {
+        safeApiCall(IO) {
             val reportRequest = reportCreationApiMapper.mapToDto(report)
             api.createReport(reportRequest)
         }
@@ -46,4 +47,9 @@ class ReportRepositoryImpl @Inject constructor(
             pagingSourceFactory = { ReportsSource(api, reportApiMapper) }
         ).flow
     }
+
+    override suspend fun deleteReport(reportId: Long): DataState<Unit> =
+        safeApiCall(IO) {
+            api.deleteReport(reportId)
+        }
 }

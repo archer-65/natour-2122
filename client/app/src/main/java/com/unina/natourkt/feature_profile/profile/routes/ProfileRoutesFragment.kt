@@ -83,7 +83,6 @@ class ProfileRoutesFragment :
     override fun onItemClick(route: RouteItemUi) {
         val action = ProfileFragmentDirections.actionProfileToRouteDetails(
             route.id,
-            route.authorId
         )
         findNavController().navigate(action)
     }

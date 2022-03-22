@@ -5,7 +5,8 @@ import com.unina.natourkt.core.presentation.model.RouteDetailsUi
 import javax.inject.Inject
 
 class RouteDetailsUiMapper @Inject constructor(
-    private val routeStopUiMapper: RouteStopUiMapper
+    private val routeStopUiMapper: RouteStopUiMapper,
+    private val userUiMapper: UserUiMapper,
 ) : UiMapper<Route, RouteDetailsUi> {
 
     override fun mapToUi(domainEntity: Route): RouteDetailsUi {
@@ -16,11 +17,29 @@ class RouteDetailsUiMapper @Inject constructor(
             difficulty = domainEntity.difficulty,
             duration = domainEntity.duration,
             disabilityFriendly = domainEntity.disabilityFriendly,
+            creationDate = domainEntity.creationDate,
             modifiedDate = domainEntity.modifiedDate,
             isReported = domainEntity.isReported,
             photos = domainEntity.photos,
             stops = domainEntity.stops.map { routeStopUiMapper.mapToUi(it) },
-            authorId = domainEntity.author.id,
+            author = userUiMapper.mapToUi(domainEntity.author),
+        )
+    }
+
+    fun mapToDomain(uiEntity: RouteDetailsUi): Route {
+        return Route(
+            id = uiEntity.id,
+            title = uiEntity.title,
+            description = uiEntity.description,
+            difficulty = uiEntity.difficulty,
+            duration = uiEntity.duration,
+            disabilityFriendly = uiEntity.disabilityFriendly,
+            creationDate = uiEntity.creationDate,
+            modifiedDate = uiEntity.modifiedDate,
+            isReported = uiEntity.isReported,
+            photos = uiEntity.photos,
+            stops = uiEntity.stops.map { routeStopUiMapper.mapToDomain(it) },
+            author = userUiMapper.mapToDomain(uiEntity.author)
         )
     }
 }

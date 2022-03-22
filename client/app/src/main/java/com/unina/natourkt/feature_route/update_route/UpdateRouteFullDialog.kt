@@ -1,24 +1,22 @@
-package com.unina.natourkt.feature_route.rate_route
+package com.unina.natourkt.feature_route.update_route
 
-import android.text.InputFilter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFullDialogFragment
 import com.unina.natourkt.core.presentation.util.*
-import com.unina.natourkt.core.util.Difficulty
-import com.unina.natourkt.databinding.DialogRateRouteBinding
+import com.unina.natourkt.databinding.DialogUpdateRouteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RateRouteFullDialog : BaseFullDialogFragment<DialogRateRouteBinding, RateRouteViewModel>() {
+class UpdateRouteFullDialog :
+    BaseFullDialogFragment<DialogUpdateRouteBinding, UpdateRouteViewModel>() {
 
-    private val viewModel: RateRouteViewModel by viewModels()
+    private val viewModel: UpdateRouteViewModel by viewModels()
 
-    override fun getViewBinding() = DialogRateRouteBinding.inflate(layoutInflater)
+    override fun getViewBinding() = DialogUpdateRouteBinding.inflate(layoutInflater)
     override fun getVM() = viewModel
 
     override fun setupUi() {
@@ -28,7 +26,7 @@ class RateRouteFullDialog : BaseFullDialogFragment<DialogRateRouteBinding, RateR
     override fun setListeners() = with(binding) {
         toolbar.setNavigationOnClickListener {
             showHelperDialog(
-                title = R.string.cancel_rate_dialog,
+                title = R.string.cancel_update_route_dialog,
                 message = R.string.cancel_insertion_message,
                 icon = R.drawable.ic_warning_generic_24,
                 positive = R.string.yes_action_dialog,
@@ -38,41 +36,29 @@ class RateRouteFullDialog : BaseFullDialogFragment<DialogRateRouteBinding, RateR
             }
         }
 
-        durationTextField.editText?.apply {
-            filters = arrayOf<InputFilter>(DurationFilter(1, 16))
-        }
-
-        sendRatingButton.setOnClickListener {
-            viewModel.onEvent(RateRouteEvent.Upload)
+        updateRouteButton.setOnClickListener {
+            viewModel.onEvent(UpdateRouteEvent.Upload)
         }
     }
 
     override fun setTextChangedListeners() = with(binding) {
         with(viewModel) {
-            durationTextField.updateText {
-                onEvent(RateRouteEvent.EnteredDuration(it))
-            }
-
-            difficultyChipgroup.setOnCheckedStateChangeListener { group, _ ->
-                val checkedDifficulty = when (group.checkedChipId) {
-                    easyChip.id -> Difficulty.EASY
-                    mediumChip.id -> Difficulty.MEDIUM
-                    hardChip.id -> Difficulty.HARD
-                    else -> Difficulty.EASY
-                }
-                onEvent(RateRouteEvent.EnteredDifficulty(checkedDifficulty))
+            descriptionTextField.updateText {
+                onEvent(UpdateRouteEvent.EnteredDescription(it))
             }
         }
     }
 
     override fun collectState() = with(binding) {
         with(viewModel) {
+            descriptionTextField.editText?.setText(uiState.value.newDescription.text)
+
             collectLatestOnLifecycleScope(uiState) {
-                if (it.isInserted) {
+                if (it.isUpdated) {
                     dismiss()
                 }
 
-                sendRatingButton.isEnabled = it.isButtonEnabled
+                updateRouteButton.isEnabled = it.isButtonEnabled
                 progressBar.isVisible = it.isLoading
             }
 

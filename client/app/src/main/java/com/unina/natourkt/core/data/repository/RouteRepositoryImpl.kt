@@ -109,4 +109,15 @@ class RouteRepositoryImpl @Inject constructor(
             val routeResponse = api.getRouteById(id)
             routeApiMapper.mapToDomain(routeResponse)
         }
+
+    override suspend fun deleteRoute(routeId: Long): DataState<Unit> =
+        safeApiCall(IO) {
+            api.deleteRoute(routeId)
+        }
+
+    override suspend fun updateRoute(route: Route): DataState<Unit> =
+        safeApiCall(IO) {
+            val routeRequest = routeApiMapper.mapToDto(route)
+            api.updateRoute(routeRequest.id, routeRequest)
+        }
 }

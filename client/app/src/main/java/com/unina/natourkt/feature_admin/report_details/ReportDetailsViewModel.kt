@@ -1,10 +1,11 @@
-package com.unina.natourkt.feature_post.delete_post
+package com.unina.natourkt.feature_admin.report_details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
-import com.unina.natourkt.core.domain.use_case.post.DeletePostUseCase
+import com.unina.natourkt.core.domain.use_case.report.DeleteReportUseCase
+import com.unina.natourkt.core.presentation.model.ReportItemUi
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
@@ -14,24 +15,24 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
-class DeletePostViewModel @Inject constructor(
-    private val deletePostUseCase: DeletePostUseCase,
+class ReportDetailsViewModel @Inject constructor(
+    private val deleteReportUseCase: DeleteReportUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
-    private val postId = savedState.get<Long>("postToDeleteId")
+    val reportInfo = savedState.get<ReportItemUi>("reportItem")!!
 
-    private val _uiState = MutableStateFlow(DeleteRouteUiState())
+    private val _uiState = MutableStateFlow(ReportDetailsUiState())
     val uiState = _uiState.asStateFlow()
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun deletePost() {
-        deletePostUseCase(postId!!).onEach { result ->
+    fun deleteReport() {
+        deleteReportUseCase(reportInfo.id).onEach { result ->
             when (result) {
                 is DataState.Success -> {
-                    val text = UiText.StringResource(R.string.deleted_post_success)
+                    val text = UiText.StringResource(R.string.report_deleted_success)
                     _eventFlow.emit(UiEvent.ShowToast(text))
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }

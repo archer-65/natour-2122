@@ -30,8 +30,10 @@ class RouteDetailsMapFragment :
     override fun collectState() = with(viewModel) {
         collectLatestOnLifecycleScope(uiState) {
             it.route?.let {
-                val firstStop = it.stops.first()
-                map.moveAndZoomCamera(LatLng(firstStop.latitude, firstStop.longitude))
+                if (it.stops.isNotEmpty()) {
+                    val firstStop = it.stops.first()
+                    map.moveAndZoomCamera(LatLng(firstStop.latitude, firstStop.longitude))
+                }
 
                 it.stops.map { stop ->
                     map.addCustomMarker(

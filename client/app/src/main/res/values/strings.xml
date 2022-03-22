@@ -147,4 +147,10 @@
     <string name="deleted_post_success">Post eliminato con successo!</string>
     <string name="delete_route_dialog_title">Elimina itinerario</string>
     <string name="delete_route_dialog_message">Sei sicuro di voler eliminare questo itinerario?</string>
+    <string name="deleted_route_success">Itinerario eliminato con successo!</string>
+    <string name="report_deleted_success">Segnalazione eliminata con successo!</string>
+    <string name="delete_report_dialog_title">Elimina segnalazione</string>
+    <string name="delete_report_dialog_message">Sei sicuro di voler eliminare questa segnalazione?</string>
+    <string name="cancel_update_route_dialog">Annulla modifica</string>
+    <string name="updated_route">Itinerario aggiornato con successo!</string>
 </resources>

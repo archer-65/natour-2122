@@ -3,10 +3,7 @@ package com.unina.natourkt.core.data.remote.retrofit
 import com.unina.natourkt.core.data.remote.dto.ReportCreationDto
 import com.unina.natourkt.core.data.remote.dto.ReportDto
 import com.unina.natourkt.core.data.remote.dto.route.RouteDto
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ReportApi {
 
@@ -20,4 +17,9 @@ interface ReportApi {
         @Query("page_no") pageNo: Int,
         @Query("page_size") pageSize: Int
     ): List<ReportDto>
+
+    @DELETE("/reports/{id}/delete")
+    suspend fun deleteReport(
+        @Path("id") reportId: Long,
+    )
 }

@@ -14,4 +14,13 @@ class UserUiMapper @Inject constructor() : UiMapper<User, UserUi> {
             photo = domainEntity.profilePhoto
         )
     }
+
+    fun mapToDomain(uiEntity: UserUi): User {
+        return User(
+            id = uiEntity.id,
+            username = uiEntity.username,
+            isAdmin = uiEntity.isAdmin,
+            profilePhoto = uiEntity.photo
+        )
+    }
 }

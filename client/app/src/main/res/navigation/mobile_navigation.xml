@@ -255,9 +255,9 @@
             android:label="fragment_bottom_sheet_filter"
             tools:layout="@layout/fragment_bottom_sheet_filter">
 
-<!--            <action-->
-<!--                android:id="@+id/action_bottomsheet_filter_to_search_route"-->
-<!--                app:destination="@id/navigation_search_route" />-->
+            <!--            <action-->
+            <!--                android:id="@+id/action_bottomsheet_filter_to_search_route"-->
+            <!--                app:destination="@id/navigation_search_route" />-->
 
         </dialog>
 
@@ -274,9 +274,6 @@
         <argument
             android:name="routeId"
             app:argType="long" />
-        <argument
-            android:name="authorId"
-            app:argType="long" />
 
         <fragment
             android:id="@+id/navigation_route_details"
@@ -287,15 +284,15 @@
             <argument
                 android:name="routeId"
                 app:argType="long" />
-            <argument
-                android:name="authorId"
-                app:argType="long" />
             <action
                 android:id="@+id/action_navigation_route_details_to_navigation_dialog_report_route"
                 app:destination="@id/navigation_dialog_report_route" />
             <action
                 android:id="@+id/action_navigation_route_details_to_rateRouteDialogFragment2"
                 app:destination="@id/rateRouteDialogFragment2" />
+            <action
+                android:id="@+id/action_navigation_route_details_to_updateRouteFullDialog2"
+                app:destination="@id/updateRouteFullDialog2" />
 
         </fragment>
 
@@ -303,7 +300,7 @@
             android:id="@+id/navigation_dialog_report_route"
             android:name="com.unina.natourkt.feature_route.report_route.ReportRouteFullDialog"
             android:label="fragment_report_route"
-            tools:layout="@layout/dialog_report_route" >
+            tools:layout="@layout/dialog_report_route">
             <argument
                 android:name="reportedRouteId"
                 app:argType="long" />
@@ -316,7 +313,7 @@
             android:id="@+id/rateRouteDialogFragment2"
             android:name="com.unina.natourkt.feature_route.rate_route.RateRouteFullDialog"
             android:label="dialog_rate_route"
-            tools:layout="@layout/dialog_rate_route" >
+            tools:layout="@layout/dialog_rate_route">
             <argument
                 android:name="ratedRouteId"
                 app:argType="long" />
@@ -324,6 +321,17 @@
         <action
             android:id="@+id/action_global_saveIntoCompilationDialog"
             app:destination="@id/saveIntoCompilationDialog" />
+        <action
+            android:id="@+id/action_global_deleteRouteDialog3"
+            app:destination="@id/deleteRouteDialog3" />
+        <dialog
+            android:id="@+id/updateRouteFullDialog2"
+            android:name="com.unina.natourkt.feature_route.update_route.UpdateRouteFullDialog"
+            android:label="UpdateRouteFullDialog" >
+            <argument
+                android:name="routeToUpdate"
+                app:argType="com.unina.natourkt.core.presentation.model.RouteDetailsUi" />
+        </dialog>
 
     </navigation>
 
@@ -350,7 +358,7 @@
         android:id="@+id/navigation_create_compilation"
         android:name="com.unina.natourkt.feature_compilation.create_compilation.CreateCompilationFragment"
         android:label="fragment_create_compilation"
-        tools:layout="@layout/fragment_create_compilation" >
+        tools:layout="@layout/fragment_create_compilation">
         <action
             android:id="@+id/action_create_compilation_to_profile"
             app:destination="@id/navigation_profile" />
@@ -358,7 +366,7 @@
     <dialog
         android:id="@+id/saveIntoCompilationDialog"
         android:name="com.unina.natourkt.feature_compilation.save_into_compilation.SaveIntoCompilationDialog"
-        android:label="SaveIntoCompilationDialog" >
+        android:label="SaveIntoCompilationDialog">
         <argument
             android:name="routeToSaveId"
             app:argType="long" />
@@ -370,7 +378,7 @@
         android:id="@+id/navigation_chat_list"
         android:name="com.unina.natourkt.feature_chat.chat_list.ChatListFragment"
         android:label="fragment_chat_list"
-        tools:layout="@layout/fragment_chat_list" >
+        tools:layout="@layout/fragment_chat_list">
         <action
             android:id="@+id/action_navigation_chat_list_to_chatFragment"
             app:destination="@id/chatFragment" />
@@ -379,7 +387,7 @@
         android:id="@+id/chatFragment"
         android:name="com.unina.natourkt.feature_chat.chat.ChatFragment"
         android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" >
+        tools:layout="@layout/fragment_chat">
         <argument
             android:name="chatInfo"
             app:argType="com.unina.natourkt.core.presentation.model.ChatItemUi" />
@@ -391,11 +399,15 @@
         android:id="@+id/navigation_admin_board"
         android:name="com.unina.natourkt.feature_admin.admin_board.AdminBoardFragment"
         android:label="fragment_report_board"
-        tools:layout="@layout/fragment_admin_board" />
+        tools:layout="@layout/fragment_admin_board">
+        <action
+            android:id="@+id/action_navigation_admin_board_to_reportDetailsFragment"
+            app:destination="@id/reportDetailsFragment" />
+    </fragment>
     <dialog
         android:id="@+id/reportPostDialog"
         android:name="com.unina.natourkt.feature_post.report_post.ReportPostDialog"
-        android:label="ReportPostDialog" >
+        android:label="ReportPostDialog">
         <argument
             android:name="postToReportId"
             app:argType="long" />
@@ -403,7 +415,7 @@
     <dialog
         android:id="@+id/bottomSheetHomeFragment2"
         android:name="com.unina.natourkt.feature_post.home.BottomSheetHomeFragment"
-        android:label="BottomSheetHomeFragment" >
+        android:label="BottomSheetHomeFragment">
         <argument
             android:name="postForBottomSheet"
             app:argType="com.unina.natourkt.core.presentation.model.PostItemUi" />
@@ -414,8 +426,9 @@
     <dialog
         android:id="@+id/deleteCompilationDialog"
         android:name="com.unina.natourkt.feature_compilation.delete_compilation.DeleteCompilationDialog"
-        android:label="DeleteCompilationDialog" >
-        <argument android:name="compilationToDeleteId"
+        android:label="DeleteCompilationDialog">
+        <argument
+            android:name="compilationToDeleteId"
             app:argType="long" />
         <action
             android:id="@+id/action_deleteCompilationDialog_to_navigation_profile"
@@ -424,7 +437,7 @@
     <dialog
         android:id="@+id/deletePostDialog"
         android:name="com.unina.natourkt.feature_post.delete_post.DeletePostDialog"
-        android:label="DeletePostDialog" >
+        android:label="DeletePostDialog">
         <argument
             android:name="postToDeleteId"
             app:argType="long" />
@@ -432,5 +445,30 @@
             android:id="@+id/action_deletePostDialog_to_navigation_home"
             app:destination="@id/navigation_home" />
     </dialog>
+    <dialog
+        android:id="@+id/deleteRouteDialog3"
+        android:name="com.unina.natourkt.feature_route.delete_route.DeleteRouteDialog"
+        android:label="DeleteRouteDialog">
+        <action
+            android:id="@+id/action_deleteRouteDialog3_to_navigation_routes"
+            app:destination="@id/navigation_routes" />
+        <argument
+            android:name="routeToDeleteId"
+            app:argType="long" />
+    </dialog>
+    <fragment
+        android:id="@+id/reportDetailsFragment"
+        android:name="com.unina.natourkt.feature_admin.report_details.ReportDetailsFragment"
+        android:label="ReportDetailsFragment">
+        <argument
+            android:name="reportItem"
+            app:argType="com.unina.natourkt.core.presentation.model.ReportItemUi" />
+        <action
+            android:id="@+id/action_reportDetailsFragment_to_navigation_route_details_flow2"
+            app:destination="@id/navigation_route_details_flow" />
+        <action
+            android:id="@+id/action_reportDetailsFragment_to_navigation_admin_board"
+            app:destination="@id/navigation_admin_board" />
+    </fragment>
 
 </navigation>

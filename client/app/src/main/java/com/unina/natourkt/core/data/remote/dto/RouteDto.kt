@@ -37,7 +37,7 @@ data class RouteDto(
     val isRouteReported: Boolean,
 
     @SerializedName("route_photos")
-    val photos: List<Photo>,
+    val photos: List<Photo>?,
 
     @SerializedName("route_stops")
     val stops: List<RouteStopDto>,

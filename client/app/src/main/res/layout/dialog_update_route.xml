@@ -18,15 +18,15 @@
             android:layout_height="?attr/actionBarSize"
             app:contentInsetStartWithNavigation="0dp"
             app:navigationIcon="@drawable/ic_baseline_close_24"
-            app:title="Invia una segnalazione">
+            app:title="Modifica itinerario">
 
             <Button
-                android:id="@+id/sendReportButton"
+                android:id="@+id/updateRouteButton"
                 style="@style/Widget.Material3.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="Invia" />
+                android:text="Aggiorna" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -44,10 +44,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/report_route_image"
+                android:id="@+id/update_route_image"
                 android:layout_width="0dp"
                 android:layout_height="220dp"
-                android:src="@drawable/ic_undraw_warning_cyit"
+                android:src="@drawable/ic_undraw_edit_photo_re_ton4"
                 app:layout_constraintBottom_toTopOf="@id/barrier3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -55,38 +55,17 @@
                 app:layout_constraintTop_toTopOf="@+id/guideline34" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reportTitleTextField"
-                style="?attr/textInputOutlinedDenseStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Titolo"
-                app:errorEnabled="true"
-                app:layout_constraintBottom_toTopOf="@+id/descriptionTextField"
-                app:layout_constraintEnd_toStartOf="@+id/guideline36"
-                app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toTopOf="@+id/barrier3"
-                app:layout_constraintVertical_chainStyle="packed">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    tools:ignore="TextContrastCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/descriptionTextField"
                 style="?attr/textInputOutlinedDenseStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:hint="Descrizione"
                 app:errorEnabled="true"
                 app:layout_constraintBottom_toBottomOf="@id/barrier4"
                 app:layout_constraintEnd_toStartOf="@+id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
-                app:layout_constraintTop_toBottomOf="@+id/reportTitleTextField">
+                app:layout_constraintTop_toBottomOf="@+id/barrier3">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -94,7 +73,7 @@
                     android:gravity="top|start"
                     android:inputType="textMultiLine"
                     android:isScrollContainer="true"
-                    android:lines="5"
+                    android:lines="10"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
@@ -107,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="report_route_image"
+                app:constraint_referenced_ids="update_route_image"
                 tools:layout_editor_absoluteX="380dp"
                 tools:layout_editor_absoluteY="464dp" />
 

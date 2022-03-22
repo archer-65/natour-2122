@@ -64,4 +64,15 @@ interface RouteApi {
         @Query("page_no") pageNo: Int,
         @Query("page_size") pageSize: Int
     ): List<RouteDto>
+
+    @PUT("/routes/{id}/update")
+    suspend fun updateRoute(
+        @Path("id") id: Long,
+        @Body updatedRoute: RouteDto
+    )
+
+    @DELETE("/routes/{id}/delete")
+    suspend fun deleteRoute(
+        @Path("id") id: Long,
+    )
 }

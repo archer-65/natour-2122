@@ -132,7 +132,6 @@ class CompilationDetailsFragment :
         val action =
             CompilationDetailsFragmentDirections.actionCompilationDetailsToRouteDetailsFlow(
                 route.id,
-                route.authorId
             )
 
         findNavController().navigate(action)

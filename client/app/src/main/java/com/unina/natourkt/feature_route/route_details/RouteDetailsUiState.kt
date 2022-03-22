@@ -17,8 +17,10 @@ data class RouteDetailsUiState(
 ) {
     val menu: Int?
         get() {
-            return if (loggedUser != null && route?.authorId != null) {
-                if (loggedUser.id == route.authorId) {
+            return if (loggedUser != null && route?.author?.id != null) {
+                if (loggedUser.isAdmin) {
+                    return R.menu.top_bar_admin_route_menu
+                } else if (loggedUser.id == route.author.id) {
                     return R.menu.top_bar_owner_route_menu
                 } else {
                     return R.menu.top_bar_viewer_route_menu
@@ -29,10 +31,10 @@ data class RouteDetailsUiState(
         }
 
     val canRateRoute: Boolean
-        get() = loggedUser?.id != route?.authorId
+        get() = loggedUser?.id != route?.author?.id
 
     val canContactAuthor: Boolean
-        get() = loggedUser?.id != route?.authorId
+        get() = loggedUser?.id != route?.author?.id
 
     val isWarningPresent: Boolean
         get() = route?.modifiedDate != null || route?.isReported == true

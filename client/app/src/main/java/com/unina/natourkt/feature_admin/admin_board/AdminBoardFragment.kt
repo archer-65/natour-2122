@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -104,6 +105,11 @@ class AdminBoardFragment : BaseFragment<FragmentAdminBoardBinding, AdminBoardVie
     }
 
     override fun onItemClick(report: ReportItemUi) {
+        val action = AdminBoardFragmentDirections.actionNavigationAdminBoardToReportDetailsFragment(
+            report
+        )
+
+        findNavController().navigate(action)
     }
 }
 

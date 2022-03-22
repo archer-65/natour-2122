@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Report implements Serializable{
+public class Report implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

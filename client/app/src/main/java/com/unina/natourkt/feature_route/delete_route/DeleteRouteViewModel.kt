@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.use_case.post.DeletePostUseCase
+import com.unina.natourkt.core.domain.use_case.route.DeleteRouteUseCase
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
@@ -15,11 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DeleteRouteViewModel @Inject constructor(
-    private val deletePostUseCase: DeletePostUseCase,
+    private val deleteRouteUseCase: DeleteRouteUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
-    private val postId = savedState.get<Long>("postToDeleteId")
+    private val postId = savedState.get<Long>("routeToDeleteId")
 
     private val _uiState = MutableStateFlow(DeleteRouteUiState())
     val uiState = _uiState.asStateFlow()
@@ -27,11 +28,11 @@ class DeleteRouteViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun sendReport() {
-        deletePostUseCase(postId!!).onEach { result ->
+    fun deleteRoute() {
+        deleteRouteUseCase(postId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {
-                    val text = UiText.StringResource(R.string.deleted_post_success)
+                    val text = UiText.StringResource(R.string.deleted_route_success)
                     _eventFlow.emit(UiEvent.ShowToast(text))
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }

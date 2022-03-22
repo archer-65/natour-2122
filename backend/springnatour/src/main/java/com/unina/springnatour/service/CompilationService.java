@@ -98,7 +98,7 @@ public class CompilationService {
      */
     @Transactional
     public void deleteCompilation(Long id) {
-        compilationRepository.deleteCompilation(id);
+        compilationRepository.deleteCompilationRouteRelation(id);
         compilationRepository.deleteById(id);
     }
 }

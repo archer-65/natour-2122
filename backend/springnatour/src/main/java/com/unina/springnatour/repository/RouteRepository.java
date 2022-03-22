@@ -1,12 +1,13 @@
 package com.unina.springnatour.repository;
 
 import com.unina.springnatour.model.route.Route;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
@@ -43,4 +44,11 @@ public interface RouteRepository extends JpaRepository<Route, Long> {
 
     @Query("select R from Route R join R.compilations C where C.id = :compilationId")
     List<Route> findByCompilation(Long compilationId, Pageable pageDetails);
+
+    @Modifying
+    @Query(
+            value = "delete from route_compilation rc where rc.route_id=:routeId",
+            nativeQuery = true
+    )
+    void deleteRouteCompilationRelation(@Param("routeId") Long routeId);
 }

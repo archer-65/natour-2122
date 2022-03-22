@@ -33,7 +33,7 @@ class DeleteRouteDialog : BaseDialogFragment<DialogDeleteRouteBinding, DeleteRou
     override fun getDialogNegative() = R.string.cancel_dialog
 
     override fun positiveAction() {
-        viewModel.sendReport()
+        viewModel.deleteRoute()
     }
 
     override fun negativeAction() {
@@ -43,7 +43,7 @@ class DeleteRouteDialog : BaseDialogFragment<DialogDeleteRouteBinding, DeleteRou
     override fun collectState() {
         collectLatestOnLifecycleScope(viewModel.uiState) {
             if (it.isDeleted) {
-                findNavController().navigate(R.id.action_deletePostDialog_to_navigation_home)
+                findNavController().navigate(R.id.action_deleteRouteDialog3_to_navigation_routes)
             }
         }
 

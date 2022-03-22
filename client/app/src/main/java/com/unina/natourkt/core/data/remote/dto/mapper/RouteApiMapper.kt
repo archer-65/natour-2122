@@ -24,9 +24,26 @@ class RouteApiMapper @Inject constructor(
                 apiEntity.modifiedDate
             ),
             isReported = apiEntity.isRouteReported,
-            photos = apiEntity.photos.map { it.photo },
+            photos = apiEntity.photos?.map { it.photo } ?: emptyList(),
             stops = apiEntity.stops.map { routeStopApiMapper.mapToDomain(it) },
             author = userApiMapper.mapToDomain(apiEntity.author)
+        )
+    }
+
+    fun mapToDto(domainEntity: Route): RouteDto {
+        return RouteDto(
+            id = domainEntity.id,
+            title = domainEntity.title,
+            description = domainEntity.description,
+            duration = domainEntity.duration,
+            difficulty = domainEntity.difficulty.value,
+            isDisabilityFriendly = domainEntity.disabilityFriendly,
+            creationDate = domainEntity.creationDate.toString(),
+            modifiedDate = null,
+            isRouteReported = domainEntity.isReported,
+            photos = null,
+            stops = domainEntity.stops.map { routeStopApiMapper.mapToDto(it) },
+            author = userApiMapper.mapToDto(domainEntity.author)
         )
     }
 }

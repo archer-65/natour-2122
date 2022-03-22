@@ -31,7 +31,7 @@ class DeletePostDialog : BaseDialogFragment<DialogDeletePostBinding, DeletePostV
     override fun getDialogNegative() = R.string.cancel_dialog
 
     override fun positiveAction() {
-        viewModel.sendReport()
+        viewModel.deletePost()
     }
 
     override fun negativeAction() {

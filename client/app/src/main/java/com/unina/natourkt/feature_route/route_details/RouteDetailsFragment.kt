@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDetailsViewModel>() {
 
     private val viewModel: RouteDetailsViewModel by hiltNavGraphViewModels(R.id.navigation_route_details_flow)
-    private val args: RouteDetailsFragmentArgs by navArgs()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentRouteDetailsBinding.inflate(layoutInflater)
@@ -57,6 +56,7 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
             setOnMenuItemClickListener {
                 onMenuClick(it)
             }
+
         }
     }
 
@@ -97,7 +97,18 @@ class RouteDetailsFragment : BaseFragment<FragmentRouteDetailsBinding, RouteDeta
                 )
                 findNavController().navigate(action)
             }
+            R.id.update_route -> {
+                val action =
+                    RouteDetailsFragmentDirections.actionNavigationRouteDetailsToUpdateRouteFullDialog2(
+                        viewModel.uiState.value.route!!
+                    )
+                findNavController().navigate(action)
+            }
             R.id.delete_route -> {
+                val action = RouteDetailsFragmentDirections.actionGlobalDeleteRouteDialog3(
+                    viewModel.routeId
+                )
+                findNavController().navigate(action)
             }
         }
         return true

@@ -13,4 +13,5 @@ interface ReportRepository {
     suspend fun createReport(report: ReportCreation): DataState<Unit>
 
     fun getReports(): Flow<PagingData<Report>>
+    suspend fun deleteReport(reportId: Long): DataState<Unit>
 }

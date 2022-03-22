@@ -31,4 +31,6 @@ interface RouteRepository {
 
     suspend fun getRouteById(id: Long): DataState<Route>
     fun getCompilationRoutes(compilationId: Long): Flow<PagingData<Route>>
+    suspend fun deleteRoute(routeId: Long): DataState<Unit>
+    suspend fun updateRoute(route: Route): DataState<Unit>
 }

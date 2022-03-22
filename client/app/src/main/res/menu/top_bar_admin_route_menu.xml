@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/save_route"
+        android:contentDescription="Salva itinerario"
+        android:icon="@drawable/ic_outline_bookmark_24"
+        android:title="Salva itinerario"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/update_route"
+        android:contentDescription="Modifica itinerario"
+        android:icon="@drawable/ic_outline_edit_location_alt_24"
+        android:title="Modifica itinerario"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/report_route"
+        android:contentDescription="Segnala itinerario"
+        android:icon="@drawable/ic_baseline_error_outline_24"
+        android:title="Segnala itinerario"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/delete_route"
+        android:contentDescription="Rimuovi itinerario"
+        android:icon="@drawable/ic_outline_delete_24"
+        android:title="Rimuovi itinerario"
+        app:showAsAction="ifRoom" />
+
+</menu>

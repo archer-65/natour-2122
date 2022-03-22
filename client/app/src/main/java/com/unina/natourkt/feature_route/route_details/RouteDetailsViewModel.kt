@@ -58,7 +58,7 @@ class RouteDetailsViewModel @Inject constructor(
     }
 
     private fun getRouteDetails() {
-        getRouteDetailsUseCase(routeId!!).onEach { result ->
+        getRouteDetailsUseCase(routeId).onEach { result ->
             when (result) {
                 is DataState.Success -> {
                     val routeUi = result.data?.let { routeDetailsUiMapper.mapToUi(it) }
@@ -99,25 +99,27 @@ class RouteDetailsViewModel @Inject constructor(
 
     private fun getDirections() {
         val stops = uiState.value.route?.stops?.map { routeStopUiMapper.mapToDomain(it) }
-        getDirectionsUseCase(stops!!).onEach { result ->
-            when (result) {
-                is DataState.Success -> {
-                    val polylines = PolylineOptions()
-                    result.data?.let { polylines.addAll(it.points) }
-                    _uiState.update { it.copy(polylineOptions = polylines) }
+        if (stops!!.isNotEmpty()) {
+            getDirectionsUseCase(stops).onEach { result ->
+                when (result) {
+                    is DataState.Success -> {
+                        val polylines = PolylineOptions()
+                        result.data?.let { polylines.addAll(it.points) }
+                        _uiState.update { it.copy(polylineOptions = polylines) }
+                    }
+                    is DataState.Error -> {
+                        val errorText = UiTextCauseMapper.mapToText(result.error)
+                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                    }
+                    is DataState.Loading -> {}
                 }
-                is DataState.Error -> {
-                    val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
-                }
-                is DataState.Loading -> {}
-            }
-        }.launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
+        }
     }
 
     private fun getTaggedPosts() {
         viewModelScope.launch {
-            _postsFlow = getTaggedPostsUseCase(routeId!!)
+            _postsFlow = getTaggedPostsUseCase(routeId)
                 .map { pagingData ->
                     pagingData.map { post ->
                         val postUi = postGridItemUiMapper.mapToUi(post)

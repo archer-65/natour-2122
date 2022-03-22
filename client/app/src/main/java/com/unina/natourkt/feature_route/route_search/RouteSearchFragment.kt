@@ -111,7 +111,6 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
     override fun onItemClick(route: RouteItemUi) {
         val action = RouteSearchFragmentDirections.actionGlobalNavigationRouteDetails(
             route.id,
-            route.authorId
         )
         findNavController().navigate(action)
     }

@@ -1,7 +1,6 @@
 package com.unina.springnatour.repository;
 
 import com.unina.springnatour.model.Compilation;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -53,5 +52,5 @@ public interface CompilationRepository extends JpaRepository<Compilation, Long> 
             value = "delete from route_compilation rc where rc.compilation_id=:compilationId",
             nativeQuery = true
     )
-    void deleteCompilation(@Param("compilationId") Long compilationId);
+    void deleteCompilationRouteRelation(@Param("compilationId") Long compilationId);
 }

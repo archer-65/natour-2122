@@ -47,4 +47,5 @@ interface AuthRepository {
      * Reset password confirmation
      */
     suspend fun resetPasswordConfirm(password: String, code: String): DataState<Boolean>
+    suspend fun logout(): DataState<Boolean>
 }

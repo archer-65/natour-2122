@@ -153,4 +153,33 @@
     <string name="delete_report_dialog_message">Sei sicuro di voler eliminare questa segnalazione?</string>
     <string name="cancel_update_route_dialog">Annulla modifica</string>
     <string name="updated_route">Itinerario aggiornato con successo!</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string name="action_settings">Impostazioni</string>
+    <string name="pref_key_night" translatable="false">key_night_mode</string>
+    <string name="pref_night_title">Tema</string>
+    <string name="pref_night_summary">Imposta il tema dell\'app</string>
+    <string name="pref_night_dialog">Imposta tema</string>
+    <string name="pref_night_auto" translatable="false">auto</string>
+    <string name="pref_night_on" translatable="false">on</string>
+    <string name="pref_night_off" translatable="false">off</string>
+    <string name="night_mode_auto">Sistema</string>
+    <string name="night_mode_off">Chiaro</string>
+    <string name="night_mode_on">Scuro</string>
+    <string name="pref_key_logout">logout</string>
+
 </resources>

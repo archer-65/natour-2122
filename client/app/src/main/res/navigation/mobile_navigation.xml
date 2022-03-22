@@ -327,7 +327,7 @@
         <dialog
             android:id="@+id/updateRouteFullDialog2"
             android:name="com.unina.natourkt.feature_route.update_route.UpdateRouteFullDialog"
-            android:label="UpdateRouteFullDialog" >
+            android:label="UpdateRouteFullDialog">
             <argument
                 android:name="routeToUpdate"
                 app:argType="com.unina.natourkt.core.presentation.model.RouteDetailsUi" />
@@ -471,4 +471,16 @@
             app:destination="@id/navigation_admin_board" />
     </fragment>
 
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.unina.natourkt.feature_profile.settings.SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_navigation_auth_flow"
+            app:destination="@id/navigation_auth_flow" />
+    </fragment>
+
+    <!--Global action-->
+    <action
+        android:id="@+id/open_settings_fragment"
+        app:destination="@id/settingsFragment" />
 </navigation>

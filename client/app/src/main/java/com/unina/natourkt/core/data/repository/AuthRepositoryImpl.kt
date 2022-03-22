@@ -242,4 +242,16 @@ class AuthRepositoryImpl @Inject constructor(
             DataState.Error(ErrorHandler.handleException(authException))
         }
     }
+
+    override suspend fun logout(): DataState<Boolean> {
+        return try {
+            Amplify.Auth.signOut()
+            Log.i(AMPLIFY, "Logged out")
+
+            DataState.Success(true)
+        } catch (authException: AuthException) {
+            Log.e("LOGOUT ERROR", authException.localizedMessage, authException)
+            DataState.Error(ErrorHandler.handleException(authException))
+        }
+    }
 }

@@ -46,6 +46,8 @@
         <!--        <item name="snackbarStyle">@style/Widget.NaTour.Dark.Snackbar</item>-->
         <!--        <item name="snackbarButtonStyle">@style/Widget.NaTour.Dark.SnackbarButton</item>-->
         <!--        <item name="snackbarTextViewStyle">@style/Widget.NaTour.Dark.SnackbarText</item>-->
+
+        <item name="preferenceTheme">@style/PrefsTheme</item>
     </style>
 
     <style name="TopBarColorElevation">

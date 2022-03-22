@@ -34,4 +34,9 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="PrefsTheme" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="android:layout">@layout/fragment_settings</item>
+        <item name="colorAccent">@color/md_theme_light_primary</item>
+    </style>
+
 </resources>

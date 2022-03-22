@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.adapter.ViewPagerAdapter
@@ -38,6 +39,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()
+    }
+
+    override fun setListeners() {
+        binding.settingsChip.setOnClickListener {
+            findNavController().navigate(R.id.settingsFragment)
+        }
     }
 
     override fun collectState() = with(viewModel) {

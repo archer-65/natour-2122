@@ -77,8 +77,6 @@ class MainActivity : AppCompatActivity() {
                 margin()
             }
         }
-
-//        navView.menu.removeItem(R.id.navigation_home)
     }
 
     /**

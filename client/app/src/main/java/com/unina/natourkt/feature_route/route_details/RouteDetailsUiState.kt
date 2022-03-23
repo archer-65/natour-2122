@@ -20,7 +20,9 @@ data class RouteDetailsUiState(
     val menu: Int?
         get() {
             return if (loggedUser != null && route?.author?.id != null) {
-                if (loggedUser.isAdmin) {
+                if (loggedUser.isAdmin && loggedUser.id == route.author.id) {
+                    return R.menu.top_bar_admin_owner_route_menu
+                } else if (loggedUser.isAdmin) {
                     return R.menu.top_bar_admin_route_menu
                 } else if (loggedUser.id == route.author.id) {
                     return R.menu.top_bar_owner_route_menu

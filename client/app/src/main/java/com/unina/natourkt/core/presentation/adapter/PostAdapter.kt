@@ -44,16 +44,6 @@ class PostAdapter(private val listener: OnItemClickListener) :
                     }
                 }
             }
-
-            binding.options.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val item = getItem(position)
-                    if (item != null) {
-                        listener.onOptionsClick(item, position)
-                    }
-                }
-            }
         }
 
         /**
@@ -82,7 +72,6 @@ class PostAdapter(private val listener: OnItemClickListener) :
 
     interface OnItemClickListener {
         fun onItemClick(post: PostItemUi)
-        fun onOptionsClick(post: PostItemUi, position: Int)
     }
 
     class DiffUtilCallback : DiffUtil.ItemCallback<PostItemUi>() {

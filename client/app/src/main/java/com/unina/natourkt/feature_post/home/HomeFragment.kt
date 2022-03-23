@@ -99,11 +99,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
         )
         findNavController().navigate(action)
     }
-
-    override fun onOptionsClick(post: PostItemUi, position: Int) {
-        val action = HomeFragmentDirections.actionNavigationHomeToBottomSheetHomeFragment2(
-            post
-        )
-        findNavController().navigate(action)
-    }
 }

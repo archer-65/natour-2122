@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_navigation_home_to_reportPostDialog"
             app:destination="@id/reportPostDialog" />
-        <action
-            android:id="@+id/action_navigation_home_to_bottomSheetHomeFragment2"
-            app:destination="@id/bottomSheetHomeFragment2" />
 
     </fragment>
 
@@ -420,20 +417,6 @@
         <argument
             android:name="postToReportId"
             app:argType="long" />
-    </dialog>
-    <dialog
-        android:id="@+id/bottomSheetHomeFragment2"
-        android:name="com.unina.natourkt.feature_post.home.BottomSheetHomeFragment"
-        android:label="BottomSheetHomeFragment">
-        <argument
-            android:name="postForBottomSheet"
-            app:argType="com.unina.natourkt.core.presentation.model.PostItemUi" />
-        <action
-            android:id="@+id/action_bottomSheetHomeFragment2_to_reportPostDialog"
-            app:destination="@id/reportPostDialog" />
-        <action
-            android:id="@+id/action_bottomSheetHomeFragment2_to_chatFragment"
-            app:destination="@id/chatFragment" />
     </dialog>
     <dialog
         android:id="@+id/deleteCompilationDialog"

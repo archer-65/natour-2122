@@ -40,10 +40,6 @@ class ReportPostDialog : BaseDialogFragment<DialogReportPostBinding, ReportPostV
     override fun collectState() {
         collectLatestOnLifecycleScope(viewModel.uiState) {
             if (it.isReported) {
-                if (findNavController().previousBackStackEntry?.destination?.id == R.id.bottomSheetHomeFragment2) {
-                    findNavController().navigateUp()
-                }
-
                 findNavController().navigateUp()
             }
         }

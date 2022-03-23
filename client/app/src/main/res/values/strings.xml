@@ -64,12 +64,12 @@
     <string name="code_resent">Il codice è stato inviato di nuovo.</string>
     <string name="button_confirm_text">Conferma registrazione</string>
     <string name="cover_password">Cover password dimenticata</string>
-    <string name="button_forgot_password_text">Inviami il codice di reset</string>
+    <string name="button_forgot_password_text">Invia codice</string>
     <string name="login_with_google">Accedi con Google</string>
     <string name="login_with_facebook">Accedi con Facebook</string>
     <string name="sign_up_text"> <u>Registrati</u></string>
     <string name="no_account_question">Non hai un account?</string>
-    <string name="button_confirm_reset_text">Conferma il reset</string>
+    <string name="button_confirm_reset_text">Conferma</string>
     <string name="chip_save_text">Salva</string>
     <string name="route_placeholder_text">Itinerario</string>
 

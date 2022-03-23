@@ -81,8 +81,8 @@
             android:src="@drawable/ic_scroll_down_24"
             android:visibility="invisible"
             app:fabCustomSize="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/barrier14"
-            app:layout_constraintEnd_toEndOf="@+id/recycler_chat" />
+            app:layout_constraintBottom_toTopOf="@+id/layout_gchat_chatbox"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_gchat_chatbox"

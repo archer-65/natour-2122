@@ -83,6 +83,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     @com.google.android.material.badge.ExperimentalBadgeUtils
     override fun collectState() = with(binding) {
         val badge = BadgeDrawable.create(requireContext())
+        badge.badgeGravity = BadgeDrawable.TOP_START
         badge.verticalOffset = 40
         badge.horizontalOffset = 40
 
@@ -102,7 +103,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
                 }
 
                 if (it.shouldResetText) binding.editGchatMessage.setText("")
-                if (it.shouldScrollToBottom) binding.recyclerChat.scrollToPosition(0)
             }
         }
     }

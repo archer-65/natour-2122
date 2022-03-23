@@ -39,6 +39,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     override fun setListeners() = with(binding) {
         with(viewModel) {
+            passwordTextField.onEnter { hideKeyboard() }
+
             loginButton.setOnClickListener {
                 onEvent(LoginEvent.Login)
             }

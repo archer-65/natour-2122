@@ -39,6 +39,8 @@ class ForgotPasswordFragment :
 
 
     override fun setListeners() = with(binding) {
+        usernameTextField.onEnter { hideKeyboard() }
+
         sendCodeButton.setOnClickListener {
             viewModel.onEvent(ForgotPasswordEvent.Reset)
         }

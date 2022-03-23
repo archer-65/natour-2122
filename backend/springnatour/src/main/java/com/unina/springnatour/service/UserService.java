@@ -68,11 +68,15 @@ public class UserService {
      * @param id      the identifier of the user
      * @param userDto UserDTO Object, mapped to Entity, or throw Exception
      */
-    public void updateUser(Long id, UserDto userDto) {
-        userRepository.findById(id)
+    public UserDto updateUser(Long id, UserDto userDto) {
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
 
-        userRepository.save(userMapper.toEntity(userDto));
+        User givenUser = userMapper.toEntity(userDto);
+        user.setPhoto(givenUser.getPhoto());
+
+        User savedUser = userRepository.save(user);
+        return userMapper.toDto(savedUser);
     }
 
     /**

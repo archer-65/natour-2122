@@ -14,8 +14,9 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.contract.PlacesContract
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.util.Difficulty
-import com.unina.natourkt.databinding.FragmentBottomSheetFilterBinding
+import com.unina.natourkt.databinding.BottomSheetFilterBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class BottomSheetFilterFragment : BottomSheetDialogFragment() {
+class FilterBottomSheet : BottomSheetDialogFragment() {
 
     /**
      * Activity result launcher for `Places API`
@@ -32,7 +33,7 @@ class BottomSheetFilterFragment : BottomSheetDialogFragment() {
 
     private val viewModel: RouteSearchViewModel by hiltNavGraphViewModels(R.id.navigation_search_flow)
 
-    private var _binding: FragmentBottomSheetFilterBinding? = null
+    private var _binding: BottomSheetFilterBinding? = null
     private val binding
         get() = _binding!!
 
@@ -41,7 +42,7 @@ class BottomSheetFilterFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBottomSheetFilterBinding.inflate(inflater, container, false)
+        _binding = BottomSheetFilterBinding.inflate(inflater, container, false)
         initPlacesSearch()
         return binding.root
     }
@@ -148,31 +149,28 @@ class BottomSheetFilterFragment : BottomSheetDialogFragment() {
     }
 
     private fun collectState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collectLatest {
-                    if (it.place != null) {
-                        binding.areaChip.text = it.place.name
-                        binding.areaChip.isCloseIconVisible = true
-                    } else {
-                        binding.areaChip.text = getString(R.string.choose_position)
-                        binding.areaChip.isCloseIconVisible = false
-                    }
-
-                    binding.areaSlider.isEnabled = it.place != null
-
-                    binding.areaSlider.value = it.distance
-                    binding.radiusTextView.text = it.distance.toInt().toString()
-
-                    bindDuration(it.minDuration, it.maxDuration)
-
-                    bindDifficulty(it.minDifficulty)
-
-                    bindDisability(it.isDisabilityFriendly)
-                }
+        collectLatestOnLifecycleScope(viewModel.uiState) {
+            if (it.place != null) {
+                binding.areaChip.text = it.place.name
+                binding.areaChip.isCloseIconVisible = true
+            } else {
+                binding.areaChip.text = getString(R.string.choose_position)
+                binding.areaChip.isCloseIconVisible = false
             }
+
+            binding.areaSlider.isEnabled = it.place != null
+
+            binding.areaSlider.value = it.distance
+            binding.radiusTextView.text = it.distance.toInt().toString()
+
+            bindDuration(it.minDuration, it.maxDuration)
+
+            bindDifficulty(it.minDifficulty)
+
+            bindDisability(it.isDisabilityFriendly)
         }
     }
+
 
     /**
      * Function to initialize [launcherPlaces] with [registerForActivityResult], replacing

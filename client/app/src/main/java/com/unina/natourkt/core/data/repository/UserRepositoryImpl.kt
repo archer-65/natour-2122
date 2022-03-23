@@ -8,9 +8,13 @@ import com.unina.natourkt.core.data.paging.UsersSource
 import com.unina.natourkt.core.data.remote.retrofit.UserApi
 import com.unina.natourkt.core.data.remote.dto.UserDto
 import com.unina.natourkt.core.data.remote.dto.mapper.UserApiMapper
+import com.unina.natourkt.core.data.util.safeApiCall
 import com.unina.natourkt.core.domain.model.User
 import com.unina.natourkt.core.domain.model.route.Route
+import com.unina.natourkt.core.domain.repository.PreferencesRepository
 import com.unina.natourkt.core.domain.repository.UserRepository
+import com.unina.natourkt.core.util.DataState
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -19,6 +23,7 @@ import javax.inject.Inject
  * responses from [UserApi]
  */
 class UserRepositoryImpl @Inject constructor(
+    private val preferencesRepository: PreferencesRepository,
     private val api: UserApi,
     private val userApiMapper: UserApiMapper
 ) : UserRepository {
@@ -47,4 +52,17 @@ class UserRepositoryImpl @Inject constructor(
             pagingSourceFactory = { UsersSource(api, userApiMapper, query, loggedUserId) }
         ).flow
     }
+
+    override suspend fun updateUser(user: User): DataState<User> =
+        safeApiCall(IO) {
+            val userRequest = userApiMapper.mapToDto(user)
+            val response = api.updateUser(userRequest.id, userRequest)
+
+            val newUser = userApiMapper.mapToDomain(response)
+            val userToSave = newUser.copy(isAdmin = user.isAdmin)
+
+            preferencesRepository.saveUserToDataStore(userToSave)
+
+            return@safeApiCall newUser
+        }
 }

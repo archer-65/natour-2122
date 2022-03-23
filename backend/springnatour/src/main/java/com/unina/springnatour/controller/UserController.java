@@ -99,12 +99,12 @@ public class UserController {
      * @return HTTP Status CREATED after update
      */
     @PutMapping("/users/{id}/update")
-    public ResponseEntity<?> updateUser(@PathVariable Long id,
-                                        @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id,
+                                              @RequestBody UserDto userDto) {
 
-        userService.updateUser(id, userDto);
+        UserDto savedUser = userService.updateUser(id, userDto);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     /**

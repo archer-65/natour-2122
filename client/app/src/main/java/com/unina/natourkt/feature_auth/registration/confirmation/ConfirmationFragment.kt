@@ -40,6 +40,8 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding, Confirmat
 
     override fun setListeners() = with(binding) {
         with(viewModel) {
+            confirmCodeTextField.onEnter { hideKeyboard() }
+
             confirmationButton.setOnClickListener {
                 onEvent(ConfirmationEvent.Confirm(args.userConfirm))
             }

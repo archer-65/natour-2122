@@ -36,6 +36,8 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, Registrat
     }
 
     override fun setListeners() = with(binding) {
+        confirmPasswordTextField.onEnter { hideKeyboard() }
+
         signUpButton.setOnClickListener {
             viewModel.onEvent(RegistrationEvent.Registration)
         }

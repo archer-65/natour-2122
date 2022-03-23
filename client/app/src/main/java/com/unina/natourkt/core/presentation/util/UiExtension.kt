@@ -1,7 +1,11 @@
 package com.unina.natourkt.core.presentation.util
 
+import android.app.Activity
+import android.content.Context
 import android.net.Uri
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
@@ -127,6 +131,28 @@ fun RecyclerView.scrollChat(fab: FloatingActionButton) {
         } else {
             fab.show()
         }
+    }
+}
+
+fun Fragment.hideKeyboard() {
+    view?.let { activity?.hideKeyboard(it) }
+}
+
+fun Activity.hideKeyboard() {
+    hideKeyboard(currentFocus ?: View(this))
+}
+
+fun Context.hideKeyboard(view: View) {
+    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
+fun TextInputLayout.onEnter(execute: () -> Unit) {
+    this.editText?.setOnKeyListener { textView, keyCode, keyEvent ->
+        if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+            execute()
+        }
+        false
     }
 }
 

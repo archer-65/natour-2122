@@ -97,6 +97,9 @@
         <action
             android:id="@+id/action_profile_to_create_compilation"
             app:destination="@id/navigation_create_compilation" />
+        <action
+            android:id="@+id/action_navigation_profile_to_profileBottomSheet"
+            app:destination="@id/profileBottomSheet" />
 
     </fragment>
 
@@ -251,9 +254,9 @@
 
         <dialog
             android:id="@+id/fragment_bottomsheet_filter"
-            android:name="com.unina.natourkt.feature_route.route_search.BottomSheetFilterFragment"
+            android:name="com.unina.natourkt.feature_route.route_search.FilterBottomSheet"
             android:label="fragment_bottom_sheet_filter"
-            tools:layout="@layout/fragment_bottom_sheet_filter">
+            tools:layout="@layout/bottom_sheet_filter">
 
             <!--            <action-->
             <!--                android:id="@+id/action_bottomsheet_filter_to_search_route"-->
@@ -495,4 +498,8 @@
             app:popUpTo="@id/navigation_chat_list"
             app:popUpToInclusive="true" />
     </fragment>
+    <dialog
+        android:id="@+id/profileBottomSheet"
+        android:name="com.unina.natourkt.feature_profile.profile.ProfileBottomSheet"
+        android:label="ProfileBottomSheet" />
 </navigation>

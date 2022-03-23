@@ -33,6 +33,8 @@ class ResetPasswordFragment : BaseFragment<FragmentResetPasswordBinding, ResetPa
     }
 
     override fun setListeners() = with(binding) {
+        confirmPasswordTextField.onEnter { hideKeyboard() }
+
         passwordResetButton.setOnClickListener {
             viewModel.onEvent(ResetPasswordEvent.Reset)
         }

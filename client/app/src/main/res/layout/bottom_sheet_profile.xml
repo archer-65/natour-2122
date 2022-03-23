@@ -10,29 +10,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <Button-->
-<!--            android:id="@+id/private_msg_button"-->
-<!--            style="@style/Widget.Material3.Button.TextButton.Icon"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="15dp"-->
-<!--            android:text="Contatta in privato"-->
-<!--            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"-->
-<!--            android:textColor="?android:textColorPrimary"-->
-<!--            app:icon="@drawable/ic_chat_bubble_outline_24"-->
-<!--            app:iconPadding="33dp"-->
-<!--            app:iconTint="?android:textColorPrimary" />-->
-
         <Button
-            android:id="@+id/report_post_button"
+            android:id="@+id/updateProfilePhotoButton"
             style="@style/Widget.Material3.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:text="Segnala questo post"
+            android:text="Modifica foto profilo"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="?android:textColorPrimary"
+            app:icon="@drawable/ic_outline_edit_24"
+            app:iconPadding="33dp"
+            app:iconTint="?android:textColorPrimary" />
+
+        <Button
+            android:id="@+id/removeProfilePhotoButton"
+            style="@style/Widget.Material3.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="Rimuovi foto profilo"
             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
             android:textColor="?colorError"
-            app:icon="@drawable/ic_baseline_error_outline_24"
+            app:icon="@drawable/ic_outline_delete_24"
             app:iconPadding="33dp"
             app:iconTint="?colorError" />
 

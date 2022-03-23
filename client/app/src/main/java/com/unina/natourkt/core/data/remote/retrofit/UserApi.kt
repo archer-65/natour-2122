@@ -1,8 +1,7 @@
 package com.unina.natourkt.core.data.remote.retrofit
 
 import com.unina.natourkt.core.data.remote.dto.UserDto
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Retrofit interface for [UserDto]
@@ -19,4 +18,10 @@ interface UserApi {
         @Query("page_no") pageNo: Int,
         @Query("page_size") pageSize: Int
     ): List<UserDto>
+
+    @PUT("/users/{id}/update")
+    suspend fun updateUser(
+        @Path("id") userId: Long,
+        @Body userDto: UserDto,
+    ): UserDto
 }

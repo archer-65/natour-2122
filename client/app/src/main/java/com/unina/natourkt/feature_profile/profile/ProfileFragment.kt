@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
@@ -26,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
 
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by activityViewModels()
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentProfileBinding.inflate(layoutInflater)
@@ -44,6 +45,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override fun setListeners() {
         binding.settingsChip.setOnClickListener {
             findNavController().navigate(R.id.settingsFragment)
+        }
+
+        binding.changePhoto.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_profileBottomSheet)
         }
     }
 

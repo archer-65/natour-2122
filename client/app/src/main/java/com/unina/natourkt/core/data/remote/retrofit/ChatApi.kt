@@ -15,6 +15,13 @@ interface ChatApi {
         @Query("page_size") pageSize: Int
     ): List<ChatDto>
 
+    @GET("/chat/search")
+    suspend fun getChatByMembers(
+        @Query("sender_id") firstMemberId: Long,
+        @Query("recipient_id") secondMemberId: Long
+    ): ChatDto
+
+
     @GET("/chats/{id}/messages")
     suspend fun getChatMessages(
         @Path("id") chatId: Long,

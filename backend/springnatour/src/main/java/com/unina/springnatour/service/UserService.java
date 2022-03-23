@@ -6,6 +6,7 @@ import com.unina.springnatour.exception.UserNotFoundException;
 import com.unina.springnatour.model.User;
 import com.unina.springnatour.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,6 +43,12 @@ public class UserService {
      */
     public List<UserDto> getAllUsers() {
         return userMapper.toDto(userRepository.findAll()
+                .stream()
+                .toList());
+    }
+
+    public List<UserDto> getAllUsers(String query, Long userId, Integer pageNo, Integer pageSize) {
+        return userMapper.toDto(userRepository.findByUsernameContainingIgnoreCaseAndIdNot(query, userId, PageRequest.of(pageNo, pageSize))
                 .stream()
                 .toList());
     }

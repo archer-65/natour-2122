@@ -10,4 +10,5 @@ interface ChatRepository {
 
     fun getPersonalChats(userId: Long): Flow<PagingData<Chat>>
     suspend fun getChatMessages(chatId: Long): DataState<List<Message>>
+    suspend fun getChatByMembers(firstMemberId: Long, secondMemberId: Long): DataState<Chat>
 }

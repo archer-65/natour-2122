@@ -7,12 +7,15 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.google.android.gms.maps.model.PolylineOptions
+import com.unina.natourkt.core.domain.model.Chat
+import com.unina.natourkt.core.domain.use_case.chat.GetChatByMembersUseCase
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.domain.use_case.maps.GetDirectionsUseCase
 import com.unina.natourkt.core.domain.use_case.post.GetTaggedPostsUseCase
 import com.unina.natourkt.core.domain.use_case.route.GetRouteDetailsUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
+import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.PostGridItemUi
 import com.unina.natourkt.core.presentation.model.mapper.PostGridItemUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.RouteDetailsUiMapper
@@ -32,6 +35,7 @@ class RouteDetailsViewModel @Inject constructor(
     private val getRouteDetailsUseCase: GetRouteDetailsUseCase,
     private val getDirectionsUseCase: GetDirectionsUseCase,
     private val getTaggedPostsUseCase: GetTaggedPostsUseCase,
+    private val getChatByMembersUseCase: GetChatByMembersUseCase,
     private val routeDetailsUiMapper: RouteDetailsUiMapper,
     private val routeStopUiMapper: RouteStopUiMapper,
     private val postGridItemUiMapper: PostGridItemUiMapper,
@@ -130,5 +134,50 @@ class RouteDetailsViewModel @Inject constructor(
                 }
                 .cachedIn(viewModelScope)
         }
+    }
+
+    fun getChat() {
+        viewModelScope.launch {
+            getChatByMembersUseCase(
+                uiState.value.loggedUser!!.id,
+                uiState.value.route?.author!!.id
+            ).onEach { result ->
+
+                when (result) {
+                    is DataState.Success -> {
+                        val chatUi = result.data?.mapToUi()
+                        _uiState.update { it.copy(isLoading = false, retrievedChat = chatUi) }
+                    }
+                    is DataState.Loading -> {
+                        _uiState.update { it.copy(isLoading = true) }
+                    }
+                    is DataState.Error -> {
+                        _uiState.update { it.copy(isLoading = false) }
+
+                        val text = UiTextCauseMapper.mapToText(result.error)
+                        _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                    }
+                }
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    fun resetChat() {
+        _uiState.update { it.copy(retrievedChat = null) }
+    }
+
+    private fun Chat.mapToUi(): ChatItemUi {
+        val user = if (uiState.value.loggedUser?.id == this.firstMember.id) {
+            this.secondMember
+        } else {
+            this.firstMember
+        }
+
+        return ChatItemUi(
+            chatId = id,
+            otherMemberId = user.id,
+            otherMemberUsername = user.username,
+            otherMemberPhoto = user.profilePhoto ?: "",
+        )
     }
 }

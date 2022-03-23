@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_navigation_post_details_to_deletePostDialog"
             app:destination="@id/deletePostDialog" />
+        <action
+            android:id="@+id/action_navigation_post_details_to_chatFragment"
+            app:destination="@id/chatFragment" />
 
     </fragment>
 
@@ -332,6 +335,9 @@
                 android:name="routeToUpdate"
                 app:argType="com.unina.natourkt.core.presentation.model.RouteDetailsUi" />
         </dialog>
+        <action
+            android:id="@+id/action_global_chatFragment"
+            app:destination="@id/chatFragment" />
 
     </navigation>
 
@@ -382,6 +388,9 @@
         <action
             android:id="@+id/action_navigation_chat_list_to_chatFragment"
             app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_navigation_chat_list_to_chatSearchFragment"
+            app:destination="@id/chatSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -422,6 +431,9 @@
         <action
             android:id="@+id/action_bottomSheetHomeFragment2_to_reportPostDialog"
             app:destination="@id/reportPostDialog" />
+        <action
+            android:id="@+id/action_bottomSheetHomeFragment2_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </dialog>
     <dialog
         android:id="@+id/deleteCompilationDialog"
@@ -473,7 +485,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.unina.natourkt.feature_profile.settings.SettingsFragment" >
+        android:name="com.unina.natourkt.feature_profile.settings.SettingsFragment">
         <action
             android:id="@+id/action_settingsFragment_to_navigation_auth_flow"
             app:destination="@id/navigation_auth_flow" />
@@ -483,4 +495,21 @@
     <action
         android:id="@+id/open_settings_fragment"
         app:destination="@id/settingsFragment" />
+    <fragment
+        android:id="@+id/chatSearchFragment"
+        android:name="com.unina.natourkt.feature_chat.chat_search.ChatSearchFragment"
+        android:label="fragment_chat_search"
+        tools:layout="@layout/fragment_chat_search">
+        <argument
+            android:name="userToExcludeId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_chatSearchFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_chatSearchFragment_to_navigation_chat_list"
+            app:destination="@id/navigation_chat_list"
+            app:popUpTo="@id/navigation_chat_list"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

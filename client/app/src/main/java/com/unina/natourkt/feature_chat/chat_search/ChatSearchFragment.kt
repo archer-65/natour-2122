@@ -1,36 +1,36 @@
-package com.unina.natourkt.feature_route.route_search
+package com.unina.natourkt.feature_chat.chat_search
 
-import android.os.Bundle
-import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentRouteSearchBinding
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
-import com.unina.natourkt.core.presentation.adapter.RouteAdapter
+import com.unina.natourkt.core.presentation.adapter.UserAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.model.RouteItemUi
+import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.databinding.FragmentChatSearchBinding
+import com.unina.natourkt.feature_route.route_details.RouteDetailsFragmentDirections
+import com.unina.natourkt.feature_route.route_search.RouteSearchEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearchViewModel>(),
-    RouteAdapter.OnItemClickListener {
+class ChatSearchFragment : BaseFragment<FragmentChatSearchBinding, ChatSearchViewModel>(),
+    UserAdapter.OnItemCLickListener {
 
-    private val recyclerAdapter = RouteAdapter(this@RouteSearchFragment)
+    private val recyclerAdapter = UserAdapter(this@ChatSearchFragment)
 
-    private val viewModel: RouteSearchViewModel by hiltNavGraphViewModels(R.id.navigation_search_flow)
+    private val viewModel: ChatSearchViewModel by viewModels()
 
+    override fun getViewBinding() = FragmentChatSearchBinding.inflate(layoutInflater)
     override fun getVM() = viewModel
-    override fun getViewBinding() = FragmentRouteSearchBinding.inflate(layoutInflater)
 
     override fun setupUi() {
         binding.topAppBar.setTopMargin()
@@ -38,20 +38,8 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
 
     override fun setListeners() = with(binding) {
 
-        topAppBar.apply {
-            setNavigationOnClickListener {
-                findNavController().navigateUp()
-            }
-
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.filter_search -> {
-                        findNavController().navigate(R.id.action_search_route_to_bottomsheet_filter)
-                        true
-                    }
-                    else -> false
-                }
-            }
+        topAppBar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_chatSearchFragment_to_navigation_chat_list)
         }
 
         binding.search.onActionViewExpanded()
@@ -59,7 +47,7 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    viewModel.onEvent(RouteSearchEvent.EnteredQuery(it))
+                    viewModel.onEvent(ChatSearchEvent.EnteredQuery(it))
                 }
                 return true
             }
@@ -72,8 +60,8 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
 
     override fun initRecycler() {
         with(binding) {
-            recyclerRoutes.apply {
-                layoutManager = LinearLayoutManager(this@RouteSearchFragment.requireContext())
+            recyclerUsers.apply {
+                layoutManager = LinearLayoutManager(this@ChatSearchFragment.requireContext())
                 adapter = initConcatAdapter()
             }
         }
@@ -87,7 +75,7 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
             footerLoadStateAdapter.loadState = loadState.append
             headerLoadStateAdapter.loadState = loadState.refresh
 
-            recyclerRoutes.isVisible = loadState.source.refresh is LoadState.NotLoading
+            recyclerUsers.isVisible = loadState.source.refresh is LoadState.NotLoading
         }
 
         val concatAdapter =
@@ -96,18 +84,25 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
     }
 
     override fun collectState() = with(viewModel) {
-        collectLatestOnLifecycleScope(routeResults) {
+        collectLatestOnLifecycleScope(usersResult) {
             recyclerAdapter.submitData(it)
+        }
+
+        collectLatestOnLifecycleScope(uiState) {
+            binding.progressBar.isVisible = it.isLoading
+
+            if (it.retrievedChat != null) {
+                val action = ChatSearchFragmentDirections.actionChatSearchFragmentToChatFragment(
+                    it.retrievedChat,
+                    loggedUserId
+                )
+                viewModel.resetChat()
+                findNavController().navigate(action)
+            }
         }
     }
 
-    override fun onItemClick(route: RouteItemUi) {
-        val action = RouteSearchFragmentDirections.actionGlobalNavigationRouteDetails(
-            route.id,
-        )
-        findNavController().navigate(action)
-    }
-
-    override fun onSaveClick(route: RouteItemUi) {
+    override fun onItemClick(user: UserUi) {
+        viewModel.getChat(user)
     }
 }

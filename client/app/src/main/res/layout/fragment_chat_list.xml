@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:logo="@drawable/ic_natour_logo"
-            app:menu="@menu/top_bar_main_menu" />
+            app:menu="@menu/top_bar_chat_search" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -68,18 +68,5 @@
             android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/newChatFab"
-        style="?attr/floatingActionButtonSecondaryStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="12dp"
-        android:contentDescription="Avvia chat"
-        android:enabled="true"
-        android:text="Nuova chat"
-        app:fabSize="normal"
-        app:icon="@drawable/ic_new_chat_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

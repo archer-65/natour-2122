@@ -8,6 +8,7 @@ import com.unina.natourkt.core.util.*
 import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.feature_route.route_details.RouteDetailsFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,11 +23,26 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
         topAppBar.setTopMargin()
     }
 
+    override fun setListeners() {
+        binding.chatButton.setOnClickListener {
+            viewModel.getChat()
+        }
+    }
+
     override fun collectState() {
         with(viewModel) {
             collectLatestOnLifecycleScope(uiState) {
                 it.menu?.let { setupToolbar(it) }
                 bindView(it)
+
+                if (it.retrievedChat != null) {
+                    val action = PostDetailsFragmentDirections.actionNavigationPostDetailsToChatFragment(
+                        it.retrievedChat,
+                        it.loggedUser!!.id
+                    )
+                    viewModel.resetChat()
+                    findNavController().navigate(action)
+                }
             }
         }
     }

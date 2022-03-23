@@ -18,6 +18,7 @@ public class UserController {
 
     /**
      * Gets an user
+     *
      * @param id the identifier of the user
      * @return UserDTO
      */
@@ -39,6 +40,7 @@ public class UserController {
 
     /**
      * Gets all the users
+     *
      * @return List of UserDTO
      */
     @GetMapping("/users")
@@ -54,7 +56,30 @@ public class UserController {
     }
 
     /**
+     * Gets all the users
+     *
+     * @return List of UserDTO
+     */
+    @GetMapping("/users/page")
+    public ResponseEntity<List<UserDto>> getAllUsers(
+            @RequestParam(name = "query") String query,
+            @RequestParam(name = "loggedUser") Long userId,
+            @RequestParam(name = "page_no", defaultValue = "0") Integer pageNo,
+            @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize
+    ) {
+
+        List<UserDto> userDtoList = userService.getAllUsers(query, userId, pageNo, pageSize);
+
+        if (!userDtoList.isEmpty()) {
+            return new ResponseEntity<>(userDtoList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
      * Creates a new user
+     *
      * @param userDto the UserDTO Object containing the required fields
      * @return HTTP Status CREATED after insertion
      */
@@ -68,7 +93,8 @@ public class UserController {
 
     /**
      * Updates an existing user
-     * @param id the identifier of the user
+     *
+     * @param id      the identifier of the user
      * @param userDto the UserDTO Object containing updated user
      * @return HTTP Status CREATED after update
      */
@@ -83,6 +109,7 @@ public class UserController {
 
     /**
      * Deletes an existing user
+     *
      * @param id the identifier of the user
      * @return HTTP Status OK after deletion
      */

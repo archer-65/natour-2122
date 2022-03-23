@@ -42,6 +42,15 @@ class ChatRepositoryImpl @Inject constructor(
         ).flow
     }
 
+    override suspend fun getChatByMembers(
+        firstMemberId: Long,
+        secondMemberId: Long
+    ): DataState<Chat> =
+        safeApiCall(IO) {
+            val response = api.getChatByMembers(firstMemberId, secondMemberId)
+            chatApiMapper.mapToDomain(response)
+        }
+
     override suspend fun getChatMessages(chatId: Long): DataState<List<Message>> {
         return safeApiCall(IO) {
             val messagesResult = api.getChatMessages(chatId)

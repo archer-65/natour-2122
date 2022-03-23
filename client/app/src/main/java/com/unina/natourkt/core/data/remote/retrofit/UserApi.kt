@@ -11,4 +11,12 @@ interface UserApi {
 
     @GET("/users/search")
     suspend fun getUserByUUID(@Query("uuid") cognitoId: String): UserDto
+
+    @GET("/users/page")
+    suspend fun getUsersByName(
+        @Query("query") query: String,
+        @Query("loggedUser") userId: Long,
+        @Query("page_no") pageNo: Int,
+        @Query("page_size") pageSize: Int
+    ): List<UserDto>
 }

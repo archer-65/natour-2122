@@ -2,6 +2,7 @@ package com.unina.natourkt.feature_route.route_details
 
 import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.R
+import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.RouteDetailsUi
 import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.presentation.util.UiText
@@ -13,7 +14,8 @@ data class RouteDetailsUiState(
     val isError: Boolean = false,
     val loggedUser: UserUi? = null,
     val route: RouteDetailsUi? = null,
-    val polylineOptions: PolylineOptions = PolylineOptions()
+    val polylineOptions: PolylineOptions = PolylineOptions(),
+    val retrievedChat: ChatItemUi? = null,
 ) {
     val menu: Int?
         get() {

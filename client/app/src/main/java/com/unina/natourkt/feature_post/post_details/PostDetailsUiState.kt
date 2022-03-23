@@ -1,6 +1,7 @@
 package com.unina.natourkt.feature_post.post_details
 
 import com.unina.natourkt.R
+import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.PostDetailsUi
 import com.unina.natourkt.core.presentation.model.UserUi
 
@@ -9,6 +10,7 @@ data class PostDetailsUiState(
     val isError: Boolean = false,
     val loggedUser: UserUi? = null,
     val post: PostDetailsUi? = null,
+    val retrievedChat: ChatItemUi? = null,
 ) {
 
     val menu: Int?

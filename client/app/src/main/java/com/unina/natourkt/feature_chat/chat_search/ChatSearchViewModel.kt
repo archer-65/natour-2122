@@ -1,92 +1,85 @@
-package com.unina.natourkt.feature_post.post_details
+package com.unina.natourkt.feature_chat.chat_search
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.map
 import com.unina.natourkt.core.domain.model.Chat
 import com.unina.natourkt.core.domain.use_case.chat.GetChatByMembersUseCase
-import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
-import com.unina.natourkt.core.domain.use_case.post.GetPostDetailsUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
+import com.unina.natourkt.core.domain.use_case.user.GetUsersUseCase
 import com.unina.natourkt.core.presentation.model.ChatItemUi
-import com.unina.natourkt.core.presentation.model.mapper.PostDetailsUiMapper
+import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
 import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @HiltViewModel
-class PostDetailsViewModel @Inject constructor(
-    private val getPostDetailsUseCase: GetPostDetailsUseCase,
-    private val getUserDataUseCase: GetUserDataUseCase,
+class ChatSearchViewModel @Inject constructor(
+    private val getUsersUseCase: GetUsersUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getChatByMembersUseCase: GetChatByMembersUseCase,
-    private val postDetailsUiMapper: PostDetailsUiMapper,
     private val userUiMapper: UserUiMapper,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
-    private val postId = savedState.get<Long>("postId")
+    val loggedUserId = savedState.get<Long>("userToExcludeId")!!
 
-    private val _uiState = MutableStateFlow(PostDetailsUiState())
-    val uiState: StateFlow<PostDetailsUiState> = _uiState.asStateFlow()
+    private lateinit var _usersResult: Flow<PagingData<UserUi>>
+    val usersResult
+        get() = _usersResult
+
+    private val _uiState = MutableStateFlow(ChatSearchUiState())
+    val uiState = _uiState.asStateFlow()
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
-        getLoggedUser()
-        getPostDetails()
+        getResults()
     }
 
-    private fun getPostDetails() {
-        getPostDetailsUseCase(postId!!).onEach { result ->
-            when (result) {
-                is DataState.Success -> {
-                    val postUi = result.data?.let { postDetailsUiMapper.mapToUi(it) }
-                    val postDetails = postUi?.convertKeys { getUrlFromKeyUseCase(it) }
-
-                    _uiState.update {
-                        it.copy(isLoading = false, isError = false, post = postDetails)
-                    }
-                }
-                is DataState.Error -> {
-                    _uiState.update {
-                        it.copy(isLoading = false, isError = true)
-                    }
-
-                    val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
-                }
-                is DataState.Loading -> {
-                    _uiState.update {
-                        it.copy(isLoading = true, isError = false)
-                    }
-                }
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun getLoggedUser() {
-        viewModelScope.launch {
-            _uiState.update {
-                val userUi = userUiMapper.mapToUi(getUserDataUseCase()!!)
-                it.copy(loggedUser = userUi)
-            }
+    fun onEvent(event: ChatSearchEvent) {
+        when (event) {
+            is ChatSearchEvent.EnteredQuery -> setQuery(event.query)
         }
     }
 
-    fun getChat() {
+    private fun setQuery(query: String) {
+        _uiState.update {
+            it.copy(query = query)
+        }
+    }
+
+    private fun getResults() {
+        _usersResult = _uiState.filter { it.query.isNotBlank() }.flatMapLatest { filter ->
+            getUsersUseCase(filter.query, loggedUserId)
+                .map { pagingData ->
+                    pagingData.map { user ->
+                        val userUi = userUiMapper.mapToUi(user)
+                        userUi.convertKeys {
+                            getUrlFromKeyUseCase(it)
+                        }
+                    }
+                }.cachedIn(viewModelScope)
+        }
+    }
+
+    fun getChat(user: UserUi) {
         viewModelScope.launch {
             getChatByMembersUseCase(
-                uiState.value.loggedUser!!.id,
-                uiState.value.post!!.authorId
+                loggedUserId,
+                user.id
             ).onEach { result ->
-
                 when (result) {
                     is DataState.Success -> {
                         val chatUi = result.data?.mapToUi()
@@ -111,7 +104,7 @@ class PostDetailsViewModel @Inject constructor(
     }
 
     private fun Chat.mapToUi(): ChatItemUi {
-        val user = if (uiState.value.loggedUser?.id == this.firstMember.id) {
+        val user = if (loggedUserId == this.firstMember.id) {
             this.secondMember
         } else {
             this.firstMember

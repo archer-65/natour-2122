@@ -39,12 +39,25 @@ class RouteDetailsInfoFragment :
 
             findNavController().navigate(action)
         }
+
+        binding.chatButton.setOnClickListener {
+            viewModel.getChat()
+        }
     }
 
     override fun collectState() {
         with(viewModel) {
             collectLatestOnLifecycleScope(uiState) {
                 bindView(it)
+
+                if (it.retrievedChat != null) {
+                    val action = RouteDetailsFragmentDirections.actionGlobalChatFragment(
+                        it.retrievedChat,
+                        it.loggedUser!!.id
+                    )
+                    viewModel.resetChat()
+                    findNavController().navigate(action)
+                }
             }
         }
     }

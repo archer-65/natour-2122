@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
@@ -40,6 +41,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
     }
 
     override fun setListeners() {
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         binding.buttonGchatSend.setOnClickListener {
             viewModel.sender()
         }

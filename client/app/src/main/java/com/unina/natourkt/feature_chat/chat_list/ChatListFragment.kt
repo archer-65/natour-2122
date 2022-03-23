@@ -48,9 +48,22 @@ class ChatListFragment : BaseFragment<FragmentChatListBinding, ChatListViewModel
                 recyclerAdapter.refresh()
             }
 
-            newChatFab.setOnClickListener {
+            topAppBar.setOnMenuItemClickListener { item ->
+                onMenuClick(item.itemId)
             }
         }
+    }
+
+    private fun onMenuClick(item: Int): Boolean {
+        when (item) {
+            R.id.search_user -> {
+                val action = ChatListFragmentDirections.actionNavigationChatListToChatSearchFragment(
+                    viewModel.uiState.value.loggedUser!!.id
+                )
+                findNavController().navigate(action)
+            }
+        }
+        return true
     }
 
     override fun initRecycler() {
@@ -58,7 +71,6 @@ class ChatListFragment : BaseFragment<FragmentChatListBinding, ChatListViewModel
             recyclerChats.apply {
                 layoutManager = LinearLayoutManager(this@ChatListFragment.requireContext())
                 adapter = initConcatAdapter()
-                scrollBehavior(newChatFab)
             }
         }
     }

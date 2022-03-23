@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" pages="17">
     <diagram id="DfZXAu3wmzwe0IcZCl70" name="Login/Login social">
-        <mxGraphModel dx="742" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="995" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -1261,7 +1261,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="K2yQ7EhqWp35UC9VLckf" name="Invio messaggio privato">
-        <mxGraphModel dx="742" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="995" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="fft4bcq89FnOge-PBQew-0"/>
                 <mxCell id="fft4bcq89FnOge-PBQew-1" parent="fft4bcq89FnOge-PBQew-0"/>
@@ -1354,7 +1354,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="xROSNZs5d19tF7Bxi82q" name="Ricerca destinatario">
-        <mxGraphModel dx="873" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="995" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="96Bgdog9HBkNn01A_3Tm-0"/>
                 <mxCell id="96Bgdog9HBkNn01A_3Tm-1" parent="96Bgdog9HBkNn01A_3Tm-0"/>

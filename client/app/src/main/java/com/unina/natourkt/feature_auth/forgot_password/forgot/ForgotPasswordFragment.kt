@@ -42,6 +42,7 @@ class ForgotPasswordFragment :
         usernameTextField.onEnter { hideKeyboard() }
 
         sendCodeButton.setOnClickListener {
+            hideKeyboard()
             viewModel.onEvent(ForgotPasswordEvent.Reset)
         }
     }

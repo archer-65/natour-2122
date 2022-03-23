@@ -36,6 +36,7 @@ class ResetPasswordFragment : BaseFragment<FragmentResetPasswordBinding, ResetPa
         confirmPasswordTextField.onEnter { hideKeyboard() }
 
         passwordResetButton.setOnClickListener {
+            hideKeyboard()
             viewModel.onEvent(ResetPasswordEvent.Reset)
         }
     }

@@ -43,10 +43,12 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding, Confirmat
             confirmCodeTextField.onEnter { hideKeyboard() }
 
             confirmationButton.setOnClickListener {
+                hideKeyboard()
                 onEvent(ConfirmationEvent.Confirm(args.userConfirm))
             }
 
             resendCodeButton.setOnClickListener {
+                hideKeyboard()
                 onEvent(ConfirmationEvent.Resend(args.userConfirm))
             }
         }

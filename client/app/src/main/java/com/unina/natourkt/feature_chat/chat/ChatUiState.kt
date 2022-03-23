@@ -12,8 +12,13 @@ data class ChatUiState(
     val messages: List<ChatGenericUi> = emptyList(),
     val newMessagesNumber: Int = 0,
     val messageState: String = "",
+    val shouldScrollToBottom: Boolean = false,
 ) {
 
     val shouldResetBadge: Boolean
         get() = newMessagesNumber == 0
+
+    val shouldResetText: Boolean
+        get() = messageState.isBlank()
+
 }

@@ -42,14 +42,17 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             passwordTextField.onEnter { hideKeyboard() }
 
             loginButton.setOnClickListener {
+                hideKeyboard()
                 onEvent(LoginEvent.Login)
             }
 
             googleButton.setOnClickListener {
+                hideKeyboard()
                 onEvent(LoginEvent.LoginSocial(GOOGLE))
             }
 
             facebookButton.setOnClickListener {
+                hideKeyboard()
                 onEvent(LoginEvent.LoginSocial(FACEBOOK))
             }
 

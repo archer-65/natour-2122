@@ -39,6 +39,7 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding, Registrat
         confirmPasswordTextField.onEnter { hideKeyboard() }
 
         signUpButton.setOnClickListener {
+            hideKeyboard()
             viewModel.onEvent(RegistrationEvent.Registration)
         }
     }

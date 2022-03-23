@@ -7,6 +7,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.unina.natourkt.R
@@ -98,8 +99,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
                     BadgeUtils.detachBadgeDrawable(badge, binding.scrollBottomFab)
                 } else {
                     BadgeUtils.attachBadgeDrawable(badge, binding.scrollBottomFab)
-
                 }
+
+                if (it.shouldResetText) binding.editGchatMessage.setText("")
+                if (it.shouldScrollToBottom) binding.recyclerChat.scrollToPosition(0)
             }
         }
     }

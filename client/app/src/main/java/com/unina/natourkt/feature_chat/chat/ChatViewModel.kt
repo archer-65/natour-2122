@@ -91,6 +91,7 @@ class ChatViewModel @Inject constructor(
             session = client.connect(url = BASE_WS)
             jsonStompSession = session.withJsonConversions()
 
+            _uiState.update { it.copy(shouldScrollToBottom = false) }
             jsonStompSession.use { session ->
                 val header = StompSendHeaders("/natour/chat")
                 session.convertAndSend(
@@ -104,6 +105,7 @@ class ChatViewModel @Inject constructor(
                     MessageCreationDto.serializer()
                 )
             }
+            _uiState.update { it.copy(messageState = "", shouldScrollToBottom = true) }
         }
     }
 

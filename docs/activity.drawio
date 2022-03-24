@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e" pages="17">
     <diagram id="DfZXAu3wmzwe0IcZCl70" name="Login/Login social">
-        <mxGraphModel dx="995" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -158,7 +158,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="7l6BQprPGVEzvf7-SVZ5" name="Ricerca itinerario">
-        <mxGraphModel dx="4099" dy="1558" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="927" pageHeight="1200" math="0" shadow="0">
+        <mxGraphModel dx="2042" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="927" pageHeight="1200" math="0" shadow="0">
             <root>
                 <mxCell id="dLDWb3RigVGhBTeoKTjL-0"/>
                 <mxCell id="dLDWb3RigVGhBTeoKTjL-1" parent="dLDWb3RigVGhBTeoKTjL-0"/>
@@ -339,7 +339,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="QUKzvLeXMS2aJ45x-tr6" name="Aggiungi post">
-        <mxGraphModel dx="3172" dy="1558" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="dUMQv47TxoFAQjfW9hHm-0"/>
                 <mxCell id="dUMQv47TxoFAQjfW9hHm-1" parent="dUMQv47TxoFAQjfW9hHm-0"/>
@@ -473,7 +473,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="TI0PU63D7kY89RuAU9J1" name="Elimina post">
-        <mxGraphModel dx="2884" dy="2516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="1810" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="ry1aEKEoHnwkeTdVPNZ9-0"/>
                 <mxCell id="ry1aEKEoHnwkeTdVPNZ9-1" parent="ry1aEKEoHnwkeTdVPNZ9-0"/>
@@ -528,7 +528,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="jO8LBYwJ7D9gjlDJ1BYu" name="Modifica foto profilo">
-        <mxGraphModel dx="1983" dy="974" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="JYfhbAmIsnzSgSpRyJHz-0"/>
                 <mxCell id="JYfhbAmIsnzSgSpRyJHz-1" parent="JYfhbAmIsnzSgSpRyJHz-0"/>
@@ -640,7 +640,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="U3woQbnmEcNs6vc8NSyr" name="Elimina compilation">
-        <mxGraphModel dx="1586" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="eLq7WyooJLvElDyCS6xM-0"/>
                 <mxCell id="eLq7WyooJLvElDyCS6xM-1" parent="eLq7WyooJLvElDyCS6xM-0"/>
@@ -695,7 +695,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="yGysFVhU8PrHvos9AwSv" name="Aggiungi compilation">
-        <mxGraphModel dx="1983" dy="974" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="7c5-4p31zYj7Gnn7iXuu-0"/>
                 <mxCell id="7c5-4p31zYj7Gnn7iXuu-1" parent="7c5-4p31zYj7Gnn7iXuu-0"/>
@@ -829,7 +829,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="W4JXJfjZq04VhA8QPsCE" name="Elimina itinerario da compilation">
-        <mxGraphModel dx="1866" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="-4TK6eAM7ZrGE6lqiq0_-0"/>
                 <mxCell id="-4TK6eAM7ZrGE6lqiq0_-1" parent="-4TK6eAM7ZrGE6lqiq0_-0"/>
@@ -868,7 +868,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="n6xYRcIXXfSqcWubvp-I" name="Elimina itinerario">
-        <mxGraphModel dx="2266" dy="1113" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="lBjdLyUjNbWqXPNNiDgj-0"/>
                 <mxCell id="lBjdLyUjNbWqXPNNiDgj-1" parent="lBjdLyUjNbWqXPNNiDgj-0"/>
@@ -923,7 +923,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="NcBHEfGkNR4i0R0ypNDn" name="Valutazione itinerario">
-        <mxGraphModel dx="2266" dy="1113" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="dce4TCNAekWjrHnnmxvv-0"/>
                 <mxCell id="dce4TCNAekWjrHnnmxvv-1" parent="dce4TCNAekWjrHnnmxvv-0"/>
@@ -1007,7 +1007,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="a3508p7V0ZJT7zX9BtBM" name="Salvataggio itinerario">
-        <mxGraphModel dx="2266" dy="1113" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="R7O7_TaBTZ-MIQyhQc2i-0"/>
                 <mxCell id="R7O7_TaBTZ-MIQyhQc2i-1" parent="R7O7_TaBTZ-MIQyhQc2i-0"/>
@@ -1062,7 +1062,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="ie_lqh1Fc-xyDNspV9t4" name="Segnalazione itinerario">
-        <mxGraphModel dx="1866" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="cX6v3XSXeTe6_hop3Ryr-0"/>
                 <mxCell id="cX6v3XSXeTe6_hop3Ryr-1" parent="cX6v3XSXeTe6_hop3Ryr-0"/>
@@ -1164,7 +1164,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="jDeAQLCV1aBL3iuT3EMw" name="Contatta autore post">
-        <mxGraphModel dx="1586" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="cU-cEjl7cxG63g0dtqQo-0"/>
                 <mxCell id="cU-cEjl7cxG63g0dtqQo-1" parent="cU-cEjl7cxG63g0dtqQo-0"/>
@@ -1261,7 +1261,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="K2yQ7EhqWp35UC9VLckf" name="Invio messaggio privato">
-        <mxGraphModel dx="995" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="fft4bcq89FnOge-PBQew-0"/>
                 <mxCell id="fft4bcq89FnOge-PBQew-1" parent="fft4bcq89FnOge-PBQew-0"/>
@@ -1316,7 +1316,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="yxLyPpc56REagFeKg81i" name="Logout">
-        <mxGraphModel dx="742" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="XhJrQkpmZrnIFmYCopdh-0"/>
                 <mxCell id="XhJrQkpmZrnIFmYCopdh-1" parent="XhJrQkpmZrnIFmYCopdh-0"/>
@@ -1476,7 +1476,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="SPX_QwjN5VdMeBhzhatV" name="Modifica itinerario">
-        <mxGraphModel dx="742" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="_lnozxxOUH1CIBrQ8gDp-0"/>
                 <mxCell id="_lnozxxOUH1CIBrQ8gDp-1" parent="_lnozxxOUH1CIBrQ8gDp-0"/>
@@ -1523,7 +1523,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="ALaczC5mkR7BzvLYGRh7" name="Aggiungi itinerario">
-        <mxGraphModel dx="2396" dy="4286" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2769" dy="4217" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="TtmnGCqJGLE9cN-NqqPR-0"/>
                 <mxCell id="TtmnGCqJGLE9cN-NqqPR-1" parent="TtmnGCqJGLE9cN-NqqPR-0"/>
@@ -1867,7 +1867,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="Ylbr5xX_-nYyxPoIokil" name="Registrazione">
-        <mxGraphModel dx="742" dy="3117" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="3048" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="6BR2JrZ1X4PfegnLqz2E-0"/>
                 <mxCell id="6BR2JrZ1X4PfegnLqz2E-1" parent="6BR2JrZ1X4PfegnLqz2E-0"/>
@@ -2084,7 +2084,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="OjicfDWePu7qRSOCWhso" name="Cambia password">
-        <mxGraphModel dx="1855" dy="3048" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1115" dy="1810" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="aeTzkYWDi_guNCywprfS-0"/>
                 <mxCell id="aeTzkYWDi_guNCywprfS-1" parent="aeTzkYWDi_guNCywprfS-0"/>

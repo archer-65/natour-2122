@@ -43,6 +43,13 @@ class PostDetailsViewModel @Inject constructor(
         getPostDetails()
     }
 
+    fun onEvent(event: PostDetailsEvent) {
+        when (event) {
+            PostDetailsEvent.ResetChat -> resetChat()
+            PostDetailsEvent.ShowChat -> getChat()
+        }
+    }
+
     private fun getPostDetails() {
         getPostDetailsUseCase(postId!!).onEach { result ->
             when (result) {
@@ -80,7 +87,7 @@ class PostDetailsViewModel @Inject constructor(
         }
     }
 
-    fun getChat() {
+    private fun getChat() {
         viewModelScope.launch {
             getChatByMembersUseCase(
                 uiState.value.loggedUser!!.id,
@@ -106,7 +113,7 @@ class PostDetailsViewModel @Inject constructor(
         }
     }
 
-    fun resetChat() {
+    private fun resetChat() {
         _uiState.update { it.copy(retrievedChat = null) }
     }
 

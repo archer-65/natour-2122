@@ -26,19 +26,10 @@ class CreatePostFragment : BaseFragment<FragmentCreatePostBinding, CreatePostVie
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentCreatePostBinding.inflate(layoutInflater)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setListeners()
-        initRecycler()
-        setTextChangedListeners()
-    }
-
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()
         postFab.setBottomMargin()
     }
-
 
     override fun setListeners() = with(binding) {
         with(viewModel) {

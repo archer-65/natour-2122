@@ -1,5 +1,6 @@
 package com.unina.natourkt.feature_profile.settings
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
@@ -32,10 +33,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
+
         val preference: Preference? = findPreference(getString(R.string.pref_key_night))
         preference?.onPreferenceChangeListener = modeChangeListener
+
         val logoutOption: Preference? = findPreference(getString(R.string.pref_key_logout))
-        logoutOption?.setOnPreferenceClickListener { viewModel.logout(); true }
+        logoutOption?.setOnPreferenceClickListener { viewModel.onEvent(SettingsEvent.OnLogout); true }
     }
 
     private fun collectState() = with(viewModel) {
@@ -57,7 +60,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     updateTheme(AppCompatDelegate.MODE_NIGHT_NO)
                 }
                 else -> {
-                    if (BuildCompat.isAtLeastQ()) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                     } else {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
@@ -67,7 +70,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             return true
         }
     }
-
 
     private fun updateTheme(nightMode: Int): Boolean {
         AppCompatDelegate.setDefaultNightMode(nightMode)

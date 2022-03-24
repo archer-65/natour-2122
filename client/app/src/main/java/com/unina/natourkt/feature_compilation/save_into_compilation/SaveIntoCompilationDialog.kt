@@ -86,6 +86,6 @@ class SaveIntoCompilationDialog :
     }
 
     override fun onCompilationSelection(compilation: CompilationDialogItemUi) {
-        viewModel.saveRouteIntoCompilation(compilation.id)
+        viewModel.onEvent(SaveIntoCompilationEvent.OnSave(compilation.id))
     }
 }

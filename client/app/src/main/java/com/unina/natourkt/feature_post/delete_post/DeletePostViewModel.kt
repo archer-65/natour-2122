@@ -27,7 +27,13 @@ class DeletePostViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun deletePost() {
+    fun onEvent(event: DeletePostEvent) {
+        when (event) {
+            DeletePostEvent.OnDelete -> deletePost()
+        }
+    }
+
+    private fun deletePost() {
         deletePostUseCase(postId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {

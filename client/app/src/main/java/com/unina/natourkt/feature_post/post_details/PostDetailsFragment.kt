@@ -25,7 +25,7 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
 
     override fun setListeners() {
         binding.chatButton.setOnClickListener {
-            viewModel.getChat()
+            viewModel.onEvent(PostDetailsEvent.ShowChat)
         }
     }
 
@@ -36,11 +36,12 @@ class PostDetailsFragment : BaseFragment<FragmentPostDetailsBinding, PostDetails
                 bindView(it)
 
                 if (it.retrievedChat != null) {
-                    val action = PostDetailsFragmentDirections.actionNavigationPostDetailsToChatFragment(
-                        it.retrievedChat,
-                        it.loggedUser!!.id
-                    )
-                    viewModel.resetChat()
+                    val action =
+                        PostDetailsFragmentDirections.actionNavigationPostDetailsToChatFragment(
+                            it.retrievedChat,
+                            it.loggedUser!!.id
+                        )
+                    viewModel.onEvent(PostDetailsEvent.ResetChat)
                     findNavController().navigate(action)
                 }
             }

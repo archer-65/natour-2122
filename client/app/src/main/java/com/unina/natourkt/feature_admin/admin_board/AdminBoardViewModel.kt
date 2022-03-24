@@ -46,7 +46,7 @@ class AdminBoardViewModel @Inject constructor(
         getUser()
     }
 
-    fun getReports() {
+    private fun getReports() {
         viewModelScope.launch {
             _reportsFlow = getReportsUseCase()
                 .map { pagingData ->
@@ -61,7 +61,7 @@ class AdminBoardViewModel @Inject constructor(
         }
     }
 
-    fun getUser() {
+    private fun getUser() {
         viewModelScope.launch {
             _uiState.update {
                 val user = getUserDataUseCase()?.let { userUiMapper.mapToUi(it) }

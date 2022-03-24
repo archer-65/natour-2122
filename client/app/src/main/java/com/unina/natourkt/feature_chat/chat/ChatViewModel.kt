@@ -11,19 +11,19 @@ import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.MessageItemUi
 import com.unina.natourkt.core.presentation.model.MessageType
 import com.unina.natourkt.core.presentation.model.groupIntoMap
+import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.Constants.BASE_WS
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.DateTimeParser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import org.hildan.krossbow.stomp.StompClient
-import org.hildan.krossbow.stomp.StompSession
+import org.hildan.krossbow.stomp.*
 import org.hildan.krossbow.stomp.conversions.kxserialization.StompSessionWithKxSerialization
 import org.hildan.krossbow.stomp.conversions.kxserialization.subscribe
 import org.hildan.krossbow.stomp.conversions.kxserialization.withJsonConversions
 import org.hildan.krossbow.stomp.headers.StompSendHeaders
-import org.hildan.krossbow.stomp.use
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,12 +42,23 @@ class ChatViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ChatUiState(chatInfo = chatInfo!!))
     val uiState = _uiState.asStateFlow()
 
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
+
     init {
         getMessages()
         collector()
     }
 
-    fun getMessages() {
+    fun onEvent(event: ChatEvent) {
+        when (event) {
+            ChatEvent.ReadAll -> setReadMessages()
+            ChatEvent.SendMessage -> sender()
+            is ChatEvent.UpdateMessage -> messageUpdate(event.body)
+        }
+    }
+
+    private fun getMessages() {
         getChatMessagesUseCase(uiState.value.chatInfo.chatId).onEach { result ->
             when (result) {
                 is DataState.Success -> {
@@ -74,75 +85,85 @@ class ChatViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun messageUpdate(message: String) {
+    private fun messageUpdate(message: String) {
         _uiState.update {
             it.copy(messageState = message)
         }
     }
 
-    fun setReadMessages() {
+    private fun setReadMessages() {
         _uiState.update {
             it.copy(newMessagesNumber = 0)
         }
     }
 
-    fun sender() {
+    private fun sender() {
         viewModelScope.launch {
-            session = client.connect(url = BASE_WS)
-            jsonStompSession = session.withJsonConversions()
+            try {
+                session = client.connect(url = BASE_WS)
+                jsonStompSession = session.withJsonConversions()
 
-            _uiState.update { it.copy(shouldScrollToBottom = false) }
-            jsonStompSession.use { session ->
-                val header = StompSendHeaders("/natour/chat")
-                session.convertAndSend(
-                    header,
-                    MessageCreationDto(
-                        chatId = uiState.value.chatInfo.chatId,
-                        recipientId = uiState.value.chatInfo.otherMemberId,
-                        senderId = userId!!,
-                        messageContent = uiState.value.messageState
-                    ),
-                    MessageCreationDto.serializer()
-                )
-            }
-            _uiState.update { it.copy(messageState = "", shouldScrollToBottom = true) }
-        }
-    }
-
-    fun collector() {
-        viewModelScope.launch {
-            session = client.connect(url = BASE_WS)
-            jsonStompSession = session.withJsonConversions()
-
-            val messages: Flow<MessageDto> = jsonStompSession.subscribe(
-                "/user/${userId}/queue/messages",
-                MessageDto.serializer()
-            )
-
-            messages.collect { msg ->
-                val mex = Message(
-                    id = msg.messageId,
-                    content = msg.messageContent,
-                    senderId = msg.senderId,
-                    recipientId = msg.recipientId,
-                    chatId = msg.chatId,
-                    sentOn = DateTimeParser.parseDateTime(msg.sentOn)
-                )
-
-                _uiState.update {
-                    val oldMessages = it.messages.toMutableList()
-                    oldMessages.add(index = 0, element = mex.mapToUi())
-
-                    it.copy(
-                        messages = oldMessages.toList(),
-                        newMessagesNumber = it.newMessagesNumber + 1
+                _uiState.update { it.copy(shouldScrollToBottom = false) }
+                jsonStompSession.use { session ->
+                    val header = StompSendHeaders("/natour/chat")
+                    session.convertAndSend(
+                        header,
+                        MessageCreationDto(
+                            chatId = uiState.value.chatInfo.chatId,
+                            recipientId = uiState.value.chatInfo.otherMemberId,
+                            senderId = userId!!,
+                            messageContent = uiState.value.messageState
+                        ),
+                        MessageCreationDto.serializer()
                     )
                 }
+                _uiState.update { it.copy(messageState = "", shouldScrollToBottom = true) }
+            } catch (stompException: ConnectionException) {
+                val text = UiTextCauseMapper.mapToText(DataState.Cause.NetworkError)
+                _eventFlow.emit(UiEvent.ShowToast(text))
             }
         }
     }
 
-    fun Message.mapToUi(): MessageItemUi {
+    private fun collector() {
+        viewModelScope.launch {
+            try {
+                session = client.connect(url = BASE_WS)
+                jsonStompSession = session.withJsonConversions()
+
+                val messages: Flow<MessageDto> = jsonStompSession.subscribe(
+                    "/user/${userId}/queue/messages",
+                    MessageDto.serializer()
+                )
+
+                messages.collect { msg ->
+                    val mex = Message(
+                        id = msg.messageId,
+                        content = msg.messageContent,
+                        senderId = msg.senderId,
+                        recipientId = msg.recipientId,
+                        chatId = msg.chatId,
+                        sentOn = DateTimeParser.parseDateTime(msg.sentOn)
+                    )
+
+                    _uiState.update {
+                        val oldMessages = it.messages.toMutableList()
+                        oldMessages.add(index = 0, element = mex.mapToUi())
+
+                        it.copy(
+                            messages = oldMessages.toList(),
+                            newMessagesNumber = it.newMessagesNumber + 1
+                        )
+                    }
+                }
+            } catch (stompException: ConnectionException) {
+                val text = UiTextCauseMapper.mapToText(DataState.Cause.NetworkError)
+                _eventFlow.emit(UiEvent.ShowToast(text))
+            }
+        }
+    }
+
+    private fun Message.mapToUi(): MessageItemUi {
         val type = when (this.senderId) {
             userId -> MessageType.TYPE_ME
             else -> MessageType.TYPE_OTHER

@@ -22,7 +22,13 @@ class SettingsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(SettingsUiState())
     val uiState = _uiState.asStateFlow()
 
-    fun logout() {
+    fun onEvent(event: SettingsEvent) {
+        when (event) {
+            SettingsEvent.OnLogout -> logout()
+        }
+    }
+
+    private fun logout() {
         logoutUseCase().onEach { result ->
             when (result) {
                 is DataState.Success -> {
@@ -31,7 +37,6 @@ class SettingsViewModel @Inject constructor(
                 // In case of error, update the error message
                 is DataState.Error -> {
                     _uiState.value = SettingsUiState(isLoading = false)
-
                 }
                 // In case of loading state, isLoading is true
                 is DataState.Loading -> {

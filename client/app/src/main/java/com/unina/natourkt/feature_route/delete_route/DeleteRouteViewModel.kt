@@ -10,6 +10,7 @@ import com.unina.natourkt.core.presentation.util.UiEvent
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
+import com.unina.natourkt.feature_route.delete_route.DeleteRouteEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -28,7 +29,13 @@ class DeleteRouteViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun deleteRoute() {
+    fun onEvent(event: DeleteRouteEvent) {
+        when (event) {
+            DeleteRouteEvent.OnDelete -> deleteRoute()
+        }
+    }
+
+    private fun deleteRoute() {
         deleteRouteUseCase(postId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {

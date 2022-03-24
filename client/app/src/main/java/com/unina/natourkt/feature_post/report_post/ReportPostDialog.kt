@@ -30,7 +30,7 @@ class ReportPostDialog : BaseDialogFragment<DialogReportPostBinding, ReportPostV
     override fun getDialogNegative() = R.string.cancel_dialog
 
     override fun positiveAction() {
-        viewModel.sendReport()
+        viewModel.onEvent(ReportPostEvent.SendReport)
     }
 
     override fun negativeAction() {

@@ -96,13 +96,13 @@ class ChatSearchFragment : BaseFragment<FragmentChatSearchBinding, ChatSearchVie
                     it.retrievedChat,
                     loggedUserId
                 )
-                viewModel.resetChat()
+                viewModel.onEvent(ChatSearchEvent.ResetChat)
                 findNavController().navigate(action)
             }
         }
     }
 
     override fun onItemClick(user: UserUi) {
-        viewModel.getChat(user)
+        viewModel.onEvent(ChatSearchEvent.ShowChat(user.id))
     }
 }

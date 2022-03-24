@@ -1,12 +1,13 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'  // Google Services plugin
+    id 'com.google.firebase.firebase-perf'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
-
     id "kotlinx-serialization"
 }
 
@@ -134,4 +135,12 @@ dependencies {
 
     // GPX
     implementation 'com.github.ticofab:android-gpx-parser:2.2.0'
+
+    // Analytics
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:29.2.1')
+    // Declare the dependency for the Analytics library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx'
 }

@@ -15,6 +15,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.libraries.places.api.Places
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.unina.natourkt.R
 import com.unina.natourkt.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +29,8 @@ import dev.chrisbanes.insetter.applyInsetter
  */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     companion object {
         lateinit var instance: MainActivity
@@ -48,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         instance = this
+        firebaseAnalytics = Firebase.analytics
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

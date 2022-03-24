@@ -7,7 +7,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.model.CompilationCreation
 import com.unina.natourkt.core.domain.use_case.compilation.CreateCompilationUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
@@ -25,7 +25,7 @@ class CreateCompilationViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(CreateCompilationUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: CreateCompilationEvent) {
@@ -66,7 +66,7 @@ class CreateCompilationViewModel @Inject constructor(
                         }
 
                         val text = UiText.StringResource(R.string.compilation_created)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(text))
                     }
                     is DataState.Loading -> _uiState.update {
                         it.copy(isLoading = true)
@@ -77,7 +77,7 @@ class CreateCompilationViewModel @Inject constructor(
                         }
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                 }
             }.launchIn(viewModelScope)

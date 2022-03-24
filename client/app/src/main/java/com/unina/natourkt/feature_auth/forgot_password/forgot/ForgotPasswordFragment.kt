@@ -75,7 +75,7 @@ class ForgotPasswordFragment :
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             requireView(),
                             event.uiText.asString(requireContext()),

@@ -82,7 +82,7 @@ class CreateCompilationFragment :
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             createCompilationFab,
                             event.uiText.asString(requireContext()),

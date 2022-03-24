@@ -4,7 +4,6 @@ import android.text.InputFilter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFullDialogFragment
@@ -78,14 +77,14 @@ class RateRouteFullDialog : BaseFullDialogFragment<DialogRateRouteBinding, RateR
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             requireView(),
                             event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
-                    is UiEvent.ShowToast -> {
+                    is UiEffect.ShowToast -> {
                         Toast.makeText(
                             requireContext(),
                             event.uiText.asString(requireContext()),

@@ -1,7 +1,5 @@
 package com.unina.natourkt.feature_admin.admin_board
 
-import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -76,14 +74,14 @@ class AdminBoardFragment : BaseFragment<FragmentAdminBoardBinding, AdminBoardVie
 
         collectLatestOnLifecycleScope(eventFlow) { event ->
             when (event) {
-                is UiEvent.ShowSnackbar -> {
+                is UiEffect.ShowSnackbar -> {
                     Snackbar.make(
                         requireView(),
                         event.uiText.asString(requireContext()),
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
-                is UiEvent.ShowToast -> {
+                is UiEffect.ShowToast -> {
                     Toast.makeText(
                         requireContext(),
                         event.uiText.asString(requireContext()),

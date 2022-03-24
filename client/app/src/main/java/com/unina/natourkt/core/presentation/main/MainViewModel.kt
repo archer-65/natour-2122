@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.core.domain.model.User
+import com.unina.natourkt.core.domain.use_case.analytics.MainAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.auth.GetAuthStateUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getAuthStateUseCase: GetAuthStateUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
+    private val analyticsUseCase: MainAnalyticsUseCase,
 ) : ViewModel() {
 
     val isUserAuthenticated
@@ -46,5 +48,13 @@ class MainViewModel @Inject constructor(
         val user = getUserDataUseCase()
         Log.i("User", user.toString())
         user
+    }
+
+    fun destinationChanged(destinationId: Int) {
+        analyticsUseCase.destinationChanged(destinationId)
+    }
+
+    fun sessionStarted() {
+        analyticsUseCase.sessionStarted()
     }
 }

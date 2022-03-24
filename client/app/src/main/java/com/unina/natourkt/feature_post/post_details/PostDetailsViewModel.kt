@@ -12,7 +12,7 @@ import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.mapper.PostDetailsUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -35,7 +35,7 @@ class PostDetailsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(PostDetailsUiState())
     val uiState: StateFlow<PostDetailsUiState> = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
@@ -67,7 +67,7 @@ class PostDetailsViewModel @Inject constructor(
                     }
 
                     val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                    _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                 }
                 is DataState.Loading -> {
                     _uiState.update {
@@ -106,7 +106,7 @@ class PostDetailsViewModel @Inject constructor(
                         _uiState.update { it.copy(isLoading = false) }
 
                         val text = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(text))
                     }
                 }
             }.launchIn(viewModelScope)

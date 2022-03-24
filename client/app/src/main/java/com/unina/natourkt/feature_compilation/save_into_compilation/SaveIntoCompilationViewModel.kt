@@ -7,9 +7,8 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.use_case.compilation.AddCompilationRouteUseCase
 import com.unina.natourkt.core.domain.use_case.compilation.GetPersonalCompilationsToAddRoute
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
-import com.unina.natourkt.core.presentation.model.CompilationDialogItemUi
 import com.unina.natourkt.core.presentation.model.mapper.CompilationDialogItemUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
@@ -33,7 +32,7 @@ class SaveIntoCompilationViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(SaveIntoCompilationUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
@@ -71,12 +70,12 @@ class SaveIntoCompilationViewModel @Inject constructor(
         addCompilationRouteUseCase(compilationId, routeId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {
-                    _eventFlow.emit(UiEvent.ShowToast(UiText.StringResource(R.string.route_added_compilation)))
-                    _eventFlow.emit(UiEvent.DismissDialog)
+                    _eventFlow.emit(UiEffect.ShowToast(UiText.StringResource(R.string.route_added_compilation)))
+                    _eventFlow.emit(UiEffect.DismissDialog)
                 }
                 is DataState.Error -> {
                     val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowToast((errorText)))
+                    _eventFlow.emit(UiEffect.ShowToast((errorText)))
                 }
                 is DataState.Loading -> {
                 }

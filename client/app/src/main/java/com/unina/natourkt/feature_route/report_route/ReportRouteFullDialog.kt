@@ -3,7 +3,6 @@ package com.unina.natourkt.feature_route.report_route
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFullDialogFragment
@@ -67,14 +66,14 @@ class ReportRouteFullDialog :
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             requireView(),
                             event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
-                    is UiEvent.ShowToast -> {
+                    is UiEffect.ShowToast -> {
                         Toast.makeText(
                             requireContext(),
                             event.uiText.asString(requireContext()),

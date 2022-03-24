@@ -2,12 +2,10 @@ package com.unina.natourkt.feature_auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.use_case.auth.LoginUseCase
 import com.unina.natourkt.core.presentation.base.validation.isPasswordValid
 import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
-import com.unina.natourkt.core.presentation.util.UiEvent
-import com.unina.natourkt.core.presentation.util.UiText
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,7 +27,7 @@ class LoginViewModel @Inject constructor(
     private val _formState = MutableStateFlow(LoginFormUiState())
     val formState = _formState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: LoginEvent) {
@@ -88,7 +86,7 @@ class LoginViewModel @Inject constructor(
                 _uiState.value = LoginUiState(isLoading = false)
 
                 val errorText = UiTextCauseMapper.mapToText(result.error)
-                _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
             }
             // In case of loading state, isLoading is true
             is DataState.Loading -> {

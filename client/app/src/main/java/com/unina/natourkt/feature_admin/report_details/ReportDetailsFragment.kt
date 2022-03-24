@@ -60,7 +60,7 @@ class ReportDetailsFragment : BaseFragment<FragmentReportDetailsBinding, ReportD
 
             collectLatestOnLifecycleScope(viewModel.eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowToast -> {
+                    is UiEffect.ShowToast -> {
                         Toast.makeText(
                             requireContext(),
                             event.uiText.asString(requireContext()),

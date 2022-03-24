@@ -64,14 +64,14 @@ class UpdateRouteFullDialog :
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             requireView(),
                             event.uiText.asString(requireContext()),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
-                    is UiEvent.ShowToast -> {
+                    is UiEffect.ShowToast -> {
                         Toast.makeText(
                             requireContext(),
                             event.uiText.asString(requireContext()),

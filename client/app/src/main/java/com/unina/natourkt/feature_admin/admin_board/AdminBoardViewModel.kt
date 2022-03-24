@@ -9,10 +9,9 @@ import com.unina.natourkt.core.domain.use_case.report.GetReportsUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.ReportItemUi
-import com.unina.natourkt.core.presentation.model.RouteItemUi
 import com.unina.natourkt.core.presentation.model.mapper.ReportItemUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.feature_route.routes.RoutesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -34,7 +33,7 @@ class AdminBoardViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(AdminBoardUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     private lateinit var _reportsFlow: Flow<PagingData<ReportItemUi>>

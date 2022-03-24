@@ -21,7 +21,7 @@ import com.unina.natourkt.core.presentation.model.mapper.PostGridItemUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.RouteDetailsUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.RouteStopUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -52,7 +52,7 @@ class RouteDetailsViewModel @Inject constructor(
     val postsFlow: Flow<PagingData<PostGridItemUi>>
         get() = _postsFlow
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: RouteDetailsEvent) {
@@ -87,7 +87,7 @@ class RouteDetailsViewModel @Inject constructor(
                     }
 
                     val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                    _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                 }
 
                 is DataState.Loading -> {
@@ -120,7 +120,7 @@ class RouteDetailsViewModel @Inject constructor(
                     }
                     is DataState.Error -> {
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                     is DataState.Loading -> {}
                 }
@@ -162,7 +162,7 @@ class RouteDetailsViewModel @Inject constructor(
                         _uiState.update { it.copy(isLoading = false) }
 
                         val text = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(text))
                     }
                 }
             }.launchIn(viewModelScope)

@@ -5,7 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseDialogFragment
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.asString
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.databinding.DialogReportPostBinding
@@ -46,7 +46,7 @@ class ReportPostDialog : BaseDialogFragment<DialogReportPostBinding, ReportPostV
 
         collectLatestOnLifecycleScope(viewModel.eventFlow) { event ->
             when (event) {
-                is UiEvent.ShowToast -> {
+                is UiEffect.ShowToast -> {
                     Toast.makeText(
                         requireContext(),
                         event.uiText.asString(requireContext()),

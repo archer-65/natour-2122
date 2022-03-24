@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.use_case.compilation.DeleteCompilationUseCase
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
@@ -24,7 +24,7 @@ class DeleteCompilationViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(DeleteCompilationUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: DeleteCompilationEvent) {
@@ -38,7 +38,7 @@ class DeleteCompilationViewModel @Inject constructor(
             when (result) {
                 is DataState.Success -> {
                     val text = UiText.StringResource(R.string.compilation_deleted)
-                    _eventFlow.emit(UiEvent.ShowToast(text))
+                    _eventFlow.emit(UiEffect.ShowToast(text))
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }
                 }
@@ -49,7 +49,7 @@ class DeleteCompilationViewModel @Inject constructor(
                     _uiState.update { it.copy(isLoading = false) }
 
                     val text = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowToast(text))
+                    _eventFlow.emit(UiEffect.ShowToast(text))
                 }
             }
         }.launchIn(viewModelScope)

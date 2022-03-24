@@ -6,7 +6,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.use_case.auth.RegistrationConfirmationUseCase
 import com.unina.natourkt.core.domain.use_case.auth.ResendConfirmationCodeUseCase
 import com.unina.natourkt.core.presentation.base.validation.isCodeValid
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
@@ -29,7 +29,7 @@ class ConfirmationViewModel @Inject constructor(
     private val _formState = MutableStateFlow(ConfirmationFormUiState())
     val formState = _formState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: ConfirmationEvent) {
@@ -54,7 +54,7 @@ class ConfirmationViewModel @Inject constructor(
                             ConfirmationUiState(isConfirmationComplete = result.data ?: false)
 
                         val text = UiText.StringResource(R.string.code_resent)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(text))
                     }
                     // In case of error, update the error message
                     is DataState.Error -> {
@@ -62,7 +62,7 @@ class ConfirmationViewModel @Inject constructor(
                             ConfirmationUiState(isLoading = false)
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                     is DataState.Loading -> {
                         // In case of loading state, isLoading is true
@@ -81,7 +81,7 @@ class ConfirmationViewModel @Inject constructor(
                 // In case of success, update the isCoderResent value
                 is DataState.Success -> {
                     val text = UiText.StringResource(R.string.code_resent)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                    _eventFlow.emit(UiEffect.ShowSnackbar(text))
                 }
                 // In case of error, update the error message
                 is DataState.Error -> {
@@ -89,7 +89,7 @@ class ConfirmationViewModel @Inject constructor(
                         ConfirmationUiState(isLoading = false)
 
                     val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                    _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                 }
                 // In case of loading state, isLoading is true
                 is DataState.Loading -> {

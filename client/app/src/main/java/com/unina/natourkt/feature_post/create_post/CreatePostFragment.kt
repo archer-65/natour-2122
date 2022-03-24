@@ -1,7 +1,5 @@
 package com.unina.natourkt.feature_post.create_post
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -92,7 +90,7 @@ class CreatePostFragment : BaseFragment<FragmentCreatePostBinding, CreatePostVie
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             postFab,
                             event.uiText.asString(requireContext()),

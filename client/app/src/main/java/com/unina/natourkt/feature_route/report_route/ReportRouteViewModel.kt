@@ -7,7 +7,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.model.ReportCreation
 import com.unina.natourkt.core.domain.use_case.report.CreateRouteReportUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
@@ -28,7 +28,7 @@ class ReportRouteViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ReportRouteUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: ReportRouteEvent) {
@@ -61,7 +61,7 @@ class ReportRouteViewModel @Inject constructor(
                         }
 
                         val text = UiText.StringResource(R.string.report_inserted)
-                        _eventFlow.emit(UiEvent.ShowToast(text))
+                        _eventFlow.emit(UiEffect.ShowToast(text))
                     }
                     is DataState.Error -> {
                         _uiState.update {
@@ -69,7 +69,7 @@ class ReportRouteViewModel @Inject constructor(
                         }
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                     is DataState.Loading -> _uiState.update {
                         it.copy(isLoading = true)

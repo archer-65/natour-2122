@@ -2,7 +2,6 @@ package com.unina.natourkt.feature_route.create_route
 
 import android.net.Uri
 import android.util.Log
-import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.PolylineOptions
@@ -12,10 +11,9 @@ import com.unina.natourkt.core.util.toInputStream
 import com.unina.natourkt.core.domain.use_case.maps.GetDirectionsUseCase
 import com.unina.natourkt.core.domain.use_case.route.CreateRouteUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
-import com.unina.natourkt.core.domain.use_case.storage.UploadFilesUseCase
 import com.unina.natourkt.core.presentation.model.RouteStopUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteStopUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.Difficulty
 import com.unina.natourkt.core.util.safeRemove
@@ -25,7 +23,6 @@ import com.unina.natourkt.feature_route.create_route.photos.CreateRoutePhotosUiS
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ticofab.androidgpxparser.parser.GPXParser
 import io.ticofab.androidgpxparser.parser.domain.Gpx
-import io.ticofab.androidgpxparser.parser.domain.Route
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -54,7 +51,7 @@ class CreateRouteViewModel @Inject constructor(
     private val _uiStatePhotos = MutableStateFlow(CreateRoutePhotosUiState())
     val uiStatePhotos = _uiStatePhotos.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: CreateRouteEvent) {
@@ -140,7 +137,7 @@ class CreateRouteViewModel @Inject constructor(
                 }
                 is DataState.Error -> {
                     val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                    _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                 }
                 is DataState.Loading -> {}
             }
@@ -201,7 +198,7 @@ class CreateRouteViewModel @Inject constructor(
                         }
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                 }
             }.launchIn(viewModelScope)

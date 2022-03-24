@@ -11,7 +11,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.adapter.CompilationDialogAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseDialogFragment
 import com.unina.natourkt.core.presentation.model.CompilationDialogItemUi
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.asString
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.databinding.DialogCompilationBinding
@@ -66,15 +66,15 @@ class SaveIntoCompilationDialog :
 
         collectLatestOnLifecycleScope(viewModel.eventFlow) { event ->
             when (event) {
-                is UiEvent.DismissDialog -> dismiss()
-                is UiEvent.ShowSnackbar -> {
+                is UiEffect.DismissDialog -> dismiss()
+                is UiEffect.ShowSnackbar -> {
                     Snackbar.make(
                         requireView(),
                         event.uiText.asString(requireContext()),
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
-                is UiEvent.ShowToast -> {
+                is UiEffect.ShowToast -> {
                     Toast.makeText(
                         requireContext(),
                         event.uiText.asString(requireContext()),

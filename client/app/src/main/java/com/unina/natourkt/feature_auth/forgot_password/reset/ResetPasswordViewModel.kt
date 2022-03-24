@@ -6,10 +6,9 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.domain.use_case.auth.ResetPasswordConfirmUseCase
 import com.unina.natourkt.core.presentation.base.validation.*
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
-import com.unina.natourkt.feature_auth.forgot_password.forgot.ForgotPasswordUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -31,7 +30,7 @@ class ResetPasswordViewModel @Inject constructor(
     private val _formState = MutableStateFlow(ResetPasswordFormUiState())
     val formState = _formState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: ResetPasswordEvent) {
@@ -58,14 +57,14 @@ class ResetPasswordViewModel @Inject constructor(
                             ResetPasswordUiState(isPasswordReset = result.data ?: false)
 
                         val text = UiText.StringResource(R.string.password_reset_success)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(text))
                     }
                     // In case of error, update the error message
                     is DataState.Error -> {
                         _uiState.value = ResetPasswordUiState(isLoading = false)
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                     // In case of loading state, isLoading is true
                     is DataState.Loading -> {

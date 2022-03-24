@@ -13,7 +13,7 @@ import com.unina.natourkt.core.domain.use_case.user.GetUsersUseCase
 import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,7 +41,7 @@ class ChatSearchViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ChatSearchUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
@@ -94,7 +94,7 @@ class ChatSearchViewModel @Inject constructor(
                         _uiState.update { it.copy(isLoading = false) }
 
                         val text = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(text))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(text))
                     }
                 }
             }.launchIn(viewModelScope)

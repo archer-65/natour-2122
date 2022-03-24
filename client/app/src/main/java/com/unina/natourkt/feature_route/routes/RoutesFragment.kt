@@ -1,27 +1,20 @@
 package com.unina.natourkt.feature_route.routes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.core.presentation.adapter.CompilationDialogAdapter
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.RouteAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
-import com.unina.natourkt.core.presentation.model.CompilationDialogItemUi
 import com.unina.natourkt.core.presentation.model.RouteItemUi
 import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.databinding.FragmentRoutesBinding
@@ -119,14 +112,14 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
 
         collectLatestOnLifecycleScope(eventFlow) { event ->
             when (event) {
-                is UiEvent.ShowSnackbar -> {
+                is UiEffect.ShowSnackbar -> {
                     Snackbar.make(
                         binding.newRouteFab,
                         event.uiText.asString(requireContext()),
                         Snackbar.LENGTH_SHORT
                     ).setAnchorView(binding.newRouteFab).show()
                 }
-                is UiEvent.ShowToast -> {
+                is UiEffect.ShowToast -> {
                     Toast.makeText(
                         requireContext(),
                         event.uiText.asString(requireContext()),

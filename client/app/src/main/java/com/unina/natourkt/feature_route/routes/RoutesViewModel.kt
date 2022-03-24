@@ -1,25 +1,17 @@
 package com.unina.natourkt.feature_route.routes
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.unina.natourkt.R
-import com.unina.natourkt.core.domain.use_case.compilation.AddCompilationRouteUseCase
-import com.unina.natourkt.core.domain.use_case.compilation.GetPersonalCompilationsToAddRoute
 import com.unina.natourkt.core.domain.use_case.route.GetRoutesUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.RouteItemUi
-import com.unina.natourkt.core.presentation.model.mapper.CompilationDialogItemUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.RouteItemUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
-import com.unina.natourkt.core.presentation.util.UiText
-import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
-import com.unina.natourkt.core.util.DataState
+import com.unina.natourkt.core.presentation.util.UiEffect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -43,7 +35,7 @@ class RoutesViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RoutesUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     private lateinit var _routesFlow: Flow<PagingData<RouteItemUi>>

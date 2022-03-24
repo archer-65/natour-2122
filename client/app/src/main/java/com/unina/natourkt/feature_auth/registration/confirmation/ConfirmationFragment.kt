@@ -1,7 +1,6 @@
 package com.unina.natourkt.feature_auth.registration.confirmation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
@@ -12,7 +11,6 @@ import com.unina.natourkt.R
 import com.unina.natourkt.databinding.FragmentConfirmationBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.*
-import com.unina.natourkt.feature_auth.registration.signup.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -80,7 +78,7 @@ class ConfirmationFragment : BaseFragment<FragmentConfirmationBinding, Confirmat
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             requireView(),
                             event.uiText.asString(requireContext()),

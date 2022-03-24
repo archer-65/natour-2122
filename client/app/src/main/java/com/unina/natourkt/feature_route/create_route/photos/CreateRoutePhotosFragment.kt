@@ -113,7 +113,7 @@ class CreateRoutePhotosFragment :
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowSnackbar -> {
+                    is UiEffect.ShowSnackbar -> {
                         Snackbar.make(
                             createRouteFab,
                             event.uiText.asString(requireContext()),

@@ -1,14 +1,11 @@
 package com.unina.natourkt.feature_chat.chat
 
-import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.unina.natourkt.R
@@ -95,7 +92,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
 
             collectLatestOnLifecycleScope(eventFlow) { event ->
                 when (event) {
-                    is UiEvent.ShowToast -> {
+                    is UiEffect.ShowToast -> {
                         Toast.makeText(
                             requireContext(),
                             event.uiText.asString(requireContext()),

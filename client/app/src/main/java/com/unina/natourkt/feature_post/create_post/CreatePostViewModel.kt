@@ -11,7 +11,7 @@ import com.unina.natourkt.core.domain.use_case.route.GetRouteTitleUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.presentation.model.RouteTitleUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteTitleUiMapper
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -32,7 +32,7 @@ class CreatePostViewModel @Inject constructor(
     private val _upcomingRoutes = MutableStateFlow(emptyList<RouteTitleUi>())
     val upcomingRoutes = _upcomingRoutes.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: CreatePostEvent) {
@@ -100,7 +100,7 @@ class CreatePostViewModel @Inject constructor(
                         }
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                     is DataState.Loading -> _uiState.update {
                         it.copy(isLoading = true)

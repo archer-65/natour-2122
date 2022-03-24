@@ -7,7 +7,7 @@ import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.model.RatingCreation
 import com.unina.natourkt.core.domain.use_case.rating.RateRouteUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
@@ -29,7 +29,7 @@ class RateRouteViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RateRouteUiState())
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: RateRouteEvent) {
@@ -62,7 +62,7 @@ class RateRouteViewModel @Inject constructor(
                         }
 
                         val text = UiText.StringResource(R.string.rating_inserted)
-                        _eventFlow.emit(UiEvent.ShowToast(text))
+                        _eventFlow.emit(UiEffect.ShowToast(text))
                     }
                     is DataState.Loading -> _uiState.update {
                         it.copy(isLoading = true)
@@ -73,7 +73,7 @@ class RateRouteViewModel @Inject constructor(
                         }
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                 }
             }.launchIn(viewModelScope)

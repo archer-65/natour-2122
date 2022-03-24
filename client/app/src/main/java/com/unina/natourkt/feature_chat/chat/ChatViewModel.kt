@@ -11,7 +11,7 @@ import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.MessageItemUi
 import com.unina.natourkt.core.presentation.model.MessageType
 import com.unina.natourkt.core.presentation.model.groupIntoMap
-import com.unina.natourkt.core.presentation.util.UiEvent
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.Constants.BASE_WS
 import com.unina.natourkt.core.util.DataState
@@ -42,7 +42,7 @@ class ChatViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ChatUiState(chatInfo = chatInfo!!))
     val uiState = _uiState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     init {
@@ -120,7 +120,7 @@ class ChatViewModel @Inject constructor(
                 _uiState.update { it.copy(messageState = "", shouldScrollToBottom = true) }
             } catch (stompException: ConnectionException) {
                 val text = UiTextCauseMapper.mapToText(DataState.Cause.NetworkError)
-                _eventFlow.emit(UiEvent.ShowToast(text))
+                _eventFlow.emit(UiEffect.ShowToast(text))
             }
         }
     }
@@ -158,7 +158,7 @@ class ChatViewModel @Inject constructor(
                 }
             } catch (stompException: ConnectionException) {
                 val text = UiTextCauseMapper.mapToText(DataState.Cause.NetworkError)
-                _eventFlow.emit(UiEvent.ShowToast(text))
+                _eventFlow.emit(UiEffect.ShowToast(text))
             }
         }
     }

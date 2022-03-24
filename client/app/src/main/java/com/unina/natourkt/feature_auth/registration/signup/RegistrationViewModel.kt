@@ -2,14 +2,12 @@ package com.unina.natourkt.feature_auth.registration.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.unina.natourkt.R
 import com.unina.natourkt.core.domain.use_case.auth.RegistrationUseCase
 import com.unina.natourkt.core.presentation.base.validation.equalsOtherString
 import com.unina.natourkt.core.presentation.base.validation.isEmailValid
 import com.unina.natourkt.core.presentation.base.validation.isPasswordValid
 import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
-import com.unina.natourkt.core.presentation.util.UiEvent
-import com.unina.natourkt.core.presentation.util.UiText
+import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
 import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,7 +31,7 @@ class RegistrationViewModel @Inject constructor(
     private val _formState = MutableStateFlow(RegistrationFormUiState())
     val formState = _formState.asStateFlow()
 
-    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: RegistrationEvent) {
@@ -65,7 +63,7 @@ class RegistrationViewModel @Inject constructor(
                         _uiState.value = RegistrationUiState(isLoading = false)
 
                         val errorText = UiTextCauseMapper.mapToText(result.error)
-                        _eventFlow.emit(UiEvent.ShowSnackbar(errorText))
+                        _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
                     }
                     // In case of loading state, isLoading is true
                     is DataState.Loading -> {

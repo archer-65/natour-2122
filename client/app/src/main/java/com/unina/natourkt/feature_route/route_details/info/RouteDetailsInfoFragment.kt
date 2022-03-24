@@ -10,6 +10,7 @@ import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.load
 import com.unina.natourkt.core.presentation.util.setBottomMargin
 import com.unina.natourkt.databinding.FragmentRouteDetailsInfoBinding
+import com.unina.natourkt.feature_route.route_details.RouteDetailsEvent
 import com.unina.natourkt.feature_route.route_details.RouteDetailsFragmentDirections
 import com.unina.natourkt.feature_route.route_details.RouteDetailsUiState
 import com.unina.natourkt.feature_route.route_details.RouteDetailsViewModel
@@ -25,9 +26,7 @@ class RouteDetailsInfoFragment :
     override fun getViewBinding() = FragmentRouteDetailsInfoBinding.inflate(layoutInflater)
 
     override fun setupUi() {
-        super.setupUi()
         binding.rateRouteFab.setBottomMargin()
-        setListeners()
     }
 
     override fun setListeners() {
@@ -41,7 +40,7 @@ class RouteDetailsInfoFragment :
         }
 
         binding.chatButton.setOnClickListener {
-            viewModel.getChat()
+            viewModel.onEvent(RouteDetailsEvent.ShowChat)
         }
     }
 
@@ -55,7 +54,7 @@ class RouteDetailsInfoFragment :
                         it.retrievedChat,
                         it.loggedUser!!.id
                     )
-                    viewModel.resetChat()
+                    viewModel.onEvent(RouteDetailsEvent.ResetChat)
                     findNavController().navigate(action)
                 }
             }

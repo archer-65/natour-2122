@@ -55,6 +55,13 @@ class RouteDetailsViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    fun onEvent(event: RouteDetailsEvent) {
+        when (event) {
+            RouteDetailsEvent.ResetChat -> resetChat()
+            RouteDetailsEvent.ShowChat -> getChat()
+        }
+    }
+
     init {
         getLoggedUser()
         getRouteDetails()
@@ -136,7 +143,7 @@ class RouteDetailsViewModel @Inject constructor(
         }
     }
 
-    fun getChat() {
+    private fun getChat() {
         viewModelScope.launch {
             getChatByMembersUseCase(
                 uiState.value.loggedUser!!.id,
@@ -162,7 +169,7 @@ class RouteDetailsViewModel @Inject constructor(
         }
     }
 
-    fun resetChat() {
+    private fun resetChat() {
         _uiState.update { it.copy(retrievedChat = null) }
     }
 

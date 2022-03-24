@@ -31,7 +31,7 @@ class DeleteCompilationDialog :
     override fun getDialogNegative() = R.string.cancel_dialog
 
     override fun positiveAction() {
-        viewModel.removeCompilation()
+        viewModel.onEvent(DeleteCompilationEvent.OnDelete)
     }
 
     override fun negativeAction() {

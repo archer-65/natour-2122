@@ -11,6 +11,8 @@ import com.unina.natourkt.core.presentation.model.CompilationItemUi
 import com.unina.natourkt.core.presentation.model.mapper.CompilationItemUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,11 +27,8 @@ class ProfileCompilationsViewModel @Inject constructor(
     private val compilationMapper: CompilationItemUiMapper,
 ) : ViewModel() {
 
-    /**
-     * [ProfileCompilationsUiState] with a set of RouteItemUiState
-     */
-    // private val _uiState = MutableStateFlow(PersonalCompilationsUiState())
-    // val uiState: StateFlow<PersonalCompilationsUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(ProfileCompilationsUiState())
+    val uiState = _uiState.asStateFlow()
 
     private lateinit var _compilationsFlow: Flow<PagingData<CompilationItemUi>>
     val compilationsFlow: Flow<PagingData<CompilationItemUi>>

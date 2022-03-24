@@ -21,12 +21,12 @@ class ReportDetailsFragment : BaseFragment<FragmentReportDetailsBinding, ReportD
         binding.topAppBar.setTopMargin()
     }
 
-    override fun setListeners() {
-        binding.topAppBar.setNavigationOnClickListener {
+    override fun setListeners() = with(binding) {
+        topAppBar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
 
-        binding.deleteReportButton.setOnClickListener {
+        deleteReportButton.setOnClickListener {
             showHelperDialog(
                 title = R.string.delete_report_dialog_title,
                 message = R.string.delete_report_dialog_message,
@@ -34,11 +34,11 @@ class ReportDetailsFragment : BaseFragment<FragmentReportDetailsBinding, ReportD
                 positive = R.string.remove_dialog,
                 negative = R.string.cancel_dialog
             ) {
-                viewModel.deleteReport()
+                viewModel.onEvent(ReportDetailsEvent.OnReportDelete)
             }
         }
 
-        binding.gotoRouteButton.setOnClickListener {
+        gotoRouteButton.setOnClickListener {
             val action =
                 ReportDetailsFragmentDirections.actionReportDetailsFragmentToNavigationRouteDetailsFlow2(
                     viewModel.reportInfo.reportedRoute.routeId
@@ -48,25 +48,27 @@ class ReportDetailsFragment : BaseFragment<FragmentReportDetailsBinding, ReportD
     }
 
     override fun collectState() = with(viewModel) {
-        binding.reportTitleTextView.text = reportInfo.title
-        binding.reportDescriptionTextView.text = reportInfo.description
+        with(binding) {
+            reportTitleTextView.text = reportInfo.title
+            reportDescriptionTextView.text = reportInfo.description
 
-        collectLatestOnLifecycleScope(viewModel.uiState) {
-            if (it.isDeleted) {
-                findNavController().navigate(R.id.action_reportDetailsFragment_to_navigation_admin_board)
-            }
-        }
-
-        collectLatestOnLifecycleScope(viewModel.eventFlow) { event ->
-            when (event) {
-                is UiEvent.ShowToast -> {
-                    Toast.makeText(
-                        requireContext(),
-                        event.uiText.asString(requireContext()),
-                        Toast.LENGTH_SHORT
-                    ).show()
+            collectLatestOnLifecycleScope(viewModel.uiState) {
+                if (it.isDeleted) {
+                    findNavController().navigate(R.id.action_reportDetailsFragment_to_navigation_admin_board)
                 }
-                else -> {}
+            }
+
+            collectLatestOnLifecycleScope(viewModel.eventFlow) { event ->
+                when (event) {
+                    is UiEvent.ShowToast -> {
+                        Toast.makeText(
+                            requireContext(),
+                            event.uiText.asString(requireContext()),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    else -> {}
+                }
             }
         }
     }

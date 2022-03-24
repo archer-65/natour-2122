@@ -40,7 +40,13 @@ class SaveIntoCompilationViewModel @Inject constructor(
         getCompilationsToSave()
     }
 
-    fun getCompilationsToSave() {
+    fun onEvent(event: SaveIntoCompilationEvent) {
+        when (event) {
+            is SaveIntoCompilationEvent.OnSave -> saveRouteIntoCompilation(event.compilationId)
+        }
+    }
+
+    private fun getCompilationsToSave() {
         viewModelScope.launch {
             getPersonalCompilationsToAddRoute(userId!!, routeId!!).onEach { result ->
                 when (result) {
@@ -61,29 +67,18 @@ class SaveIntoCompilationViewModel @Inject constructor(
         }
     }
 
-    fun saveRouteIntoCompilation(compilationId: Long) {
+    private fun saveRouteIntoCompilation(compilationId: Long) {
         addCompilationRouteUseCase(compilationId, routeId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {
-//                    _uiState.update {
-//                        it.copy(isLoading = false)
-//                    }
-
                     _eventFlow.emit(UiEvent.ShowToast(UiText.StringResource(R.string.route_added_compilation)))
                     _eventFlow.emit(UiEvent.DismissDialog)
                 }
                 is DataState.Error -> {
-//                    _uiState.update {
-//                        it.copy(isLoading = false)
-//                    }
-
                     val errorText = UiTextCauseMapper.mapToText(result.error)
                     _eventFlow.emit(UiEvent.ShowToast((errorText)))
                 }
                 is DataState.Loading -> {
-//                    _uiState.update {
-//                        it.copy(isLoading = true)
-//                    }
                 }
             }
         }.launchIn(viewModelScope)

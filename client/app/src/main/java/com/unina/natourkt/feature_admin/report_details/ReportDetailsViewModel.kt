@@ -28,7 +28,13 @@ class ReportDetailsViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun deleteReport() {
+    fun onEvent(event: ReportDetailsEvent) {
+        when(event) {
+            ReportDetailsEvent.OnReportDelete -> deleteReport()
+        }
+    }
+
+    private fun deleteReport() {
         deleteReportUseCase(reportInfo.id).onEach { result ->
             when (result) {
                 is DataState.Success -> {

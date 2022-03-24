@@ -81,8 +81,6 @@ class CompilationDetailsFragment :
         recyclerAdapter.addLoadStateListener { loadState ->
             footerLoadStateAdapter.loadState = loadState.append
             headerLoadStateAdapter.loadState = loadState.refresh
-
-            //recyclerCompilationRoutes.isVisible = loadState.source.refresh !is LoadState.Loading
         }
 
         val concatAdapter =
@@ -138,6 +136,6 @@ class CompilationDetailsFragment :
     }
 
     override fun onRemoveClick(route: RouteItemUi, position: Int) {
-        viewModel.deleteRouteFromCompilation(route.id, position)
+        viewModel.onEvent(CompilationDetailsEvent.OnDeleteRouteFromCompilation(route.id, position))
     }
 }

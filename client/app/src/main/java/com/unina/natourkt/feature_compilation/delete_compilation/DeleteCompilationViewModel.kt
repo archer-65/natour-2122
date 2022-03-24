@@ -27,7 +27,13 @@ class DeleteCompilationViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun removeCompilation() {
+    fun onEvent(event: DeleteCompilationEvent) {
+        when (event) {
+            DeleteCompilationEvent.OnDelete -> removeCompilation()
+        }
+    }
+
+    private fun removeCompilation() {
         deleteCompilationUseCase(compilationId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {

@@ -33,7 +33,7 @@ class DeleteRouteDialog : BaseDialogFragment<DialogDeleteRouteBinding, DeleteRou
     override fun getDialogNegative() = R.string.cancel_dialog
 
     override fun positiveAction() {
-        viewModel.deleteRoute()
+        viewModel.onEvent(DeleteRouteEvent.OnDelete)
     }
 
     override fun negativeAction() {

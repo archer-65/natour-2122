@@ -21,9 +21,6 @@ import com.unina.natourkt.feature_profile.profile.posts.ProfilePostsFragment
 import com.unina.natourkt.feature_profile.profile.routes.ProfileRoutesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * Da cambiare in fretta ViewModel!
- */
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
 
@@ -34,7 +31,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupViewPager()
     }
 
@@ -42,12 +38,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         topAppBar.setTopMargin()
     }
 
-    override fun setListeners() {
-        binding.settingsChip.setOnClickListener {
+    override fun setListeners() = with(binding) {
+        settingsChip.setOnClickListener {
             findNavController().navigate(R.id.settingsFragment)
         }
 
-        binding.changePhoto.setOnClickListener {
+        changePhoto.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_profileBottomSheet)
         }
     }

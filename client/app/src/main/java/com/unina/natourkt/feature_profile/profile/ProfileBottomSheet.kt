@@ -46,11 +46,13 @@ class ProfileBottomSheet : BottomSheetDialogFragment() {
     private fun setListeners() = with(binding) {
         with(viewModel) {
             updateProfilePhotoButton.setOnClickListener {
-                pickImageFromGallery { updatePhoto(it) }
+                pickImageFromGallery {
+                    onEvent(ProfileEvent.OnUpdatePhoto(it))
+                }
             }
 
             removeProfilePhotoButton.setOnClickListener {
-                updatePhoto(Uri.EMPTY)
+                onEvent(ProfileEvent.OnUpdatePhoto(Uri.EMPTY))
             }
         }
     }

@@ -28,7 +28,13 @@ class ReportPostViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    fun sendReport() {
+    fun onEvent(event: ReportPostEvent) {
+        when (event) {
+            ReportPostEvent.SendReport -> sendReport()
+        }
+    }
+
+    private fun sendReport() {
         reportPostUseCase(postId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {

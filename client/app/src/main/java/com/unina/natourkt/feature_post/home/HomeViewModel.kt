@@ -10,8 +10,7 @@ import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.PostItemUi
 import com.unina.natourkt.core.presentation.model.mapper.PostItemUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,11 +24,8 @@ class HomeViewModel @Inject constructor(
     private val postItemUiMapper: PostItemUiMapper,
 ) : ViewModel() {
 
-    /**
-     * [HomeUiState], useless, reserved for future usage
-     */
-    // private val _uiState = MutableStateFlow(HomeUiState())
-    // val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(HomeUiState())
+    val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
     private lateinit var _postsFlow: Flow<PagingData<PostItemUi>>
     val postsFlow: Flow<PagingData<PostItemUi>>

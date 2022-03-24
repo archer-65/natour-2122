@@ -33,6 +33,12 @@ class ProfileViewModel @Inject constructor(
         getLoggedUser()
     }
 
+    fun onEvent(event: ProfileEvent) {
+        when (event) {
+            is ProfileEvent.OnUpdatePhoto -> updatePhoto(event.uri)
+        }
+    }
+
     private fun getLoggedUser() {
         viewModelScope.launch {
             _uiState.update {
@@ -44,7 +50,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun updatePhoto(uri: Uri) {
+    private fun updatePhoto(uri: Uri) {
         val user = uiState.value.loggedUser?.copy(photo = uri.toString())
         user?.let {
             updateUserPhotoUseCase(uiMapper.mapToDomain(it)).onEach { result ->

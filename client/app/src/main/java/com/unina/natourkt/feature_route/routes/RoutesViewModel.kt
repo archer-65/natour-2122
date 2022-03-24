@@ -55,7 +55,7 @@ class RoutesViewModel @Inject constructor(
         getUser()
     }
 
-    fun getRoutes() {
+    private fun getRoutes() {
         viewModelScope.launch {
             _routesFlow = getRoutesUseCase()
                 .map { pagingData ->
@@ -70,7 +70,7 @@ class RoutesViewModel @Inject constructor(
         }
     }
 
-    fun getUser() {
+    private fun getUser() {
         viewModelScope.launch {
             _uiState.update {
                 val user = getUserDataUseCase()?.let { userUiMapper.mapToUi(it) }

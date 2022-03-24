@@ -36,7 +36,7 @@ class ChatListViewModel @Inject constructor(
         getChats()
     }
 
-    fun getLoggedUser() {
+    private fun getLoggedUser() {
         viewModelScope.launch {
             getUserDataUseCase()?.let {
                 val userUi = userUiMapper.mapToUi(it).convertKeys {
@@ -49,7 +49,7 @@ class ChatListViewModel @Inject constructor(
         }
     }
 
-    fun getChats() {
+    private fun getChats() {
         viewModelScope.launch {
             _chatsFlow = getPersonalChatsUseCase()
                 .map { pagingData ->
@@ -64,7 +64,7 @@ class ChatListViewModel @Inject constructor(
         }
     }
 
-    fun Chat.mapToUi(): ChatItemUi {
+    private fun Chat.mapToUi(): ChatItemUi {
         val user = if (uiState.value.loggedUser?.id == this.firstMember.id) {
             this.secondMember
         } else {

@@ -47,7 +47,16 @@ class CompilationDetailsViewModel @Inject constructor(
         getCompilationRoutes()
     }
 
-    fun getCompilationRoutes() {
+    fun onEvent(event: CompilationDetailsEvent) {
+        when (event) {
+            is CompilationDetailsEvent.OnDeleteRouteFromCompilation -> deleteRouteFromCompilation(
+                event.routeId,
+                event.position
+            )
+        }
+    }
+
+    private fun getCompilationRoutes() {
         viewModelScope.launch {
             _routesFlow = getCompilationRoutesUseCase(compilation!!.id)
                 .map { pagingData ->
@@ -62,7 +71,7 @@ class CompilationDetailsViewModel @Inject constructor(
         }
     }
 
-    fun deleteRouteFromCompilation(routeId: Long, position: Int) {
+    private fun deleteRouteFromCompilation(routeId: Long, position: Int) {
         removeCompilationRouteUseCase(compilation!!.id, routeId).onEach { result ->
             when (result) {
                 is DataState.Success -> {

@@ -51,6 +51,8 @@ class ChatSearchViewModel @Inject constructor(
     fun onEvent(event: ChatSearchEvent) {
         when (event) {
             is ChatSearchEvent.EnteredQuery -> setQuery(event.query)
+            is ChatSearchEvent.ShowChat -> getChat(event.userId)
+            ChatSearchEvent.ResetChat -> resetChat()
         }
     }
 
@@ -74,11 +76,11 @@ class ChatSearchViewModel @Inject constructor(
         }
     }
 
-    fun getChat(user: UserUi) {
+    private fun getChat(userId: Long) {
         viewModelScope.launch {
             getChatByMembersUseCase(
                 loggedUserId,
-                user.id
+                userId
             ).onEach { result ->
                 when (result) {
                     is DataState.Success -> {
@@ -99,7 +101,7 @@ class ChatSearchViewModel @Inject constructor(
         }
     }
 
-    fun resetChat() {
+    private fun resetChat() {
         _uiState.update { it.copy(retrievedChat = null) }
     }
 

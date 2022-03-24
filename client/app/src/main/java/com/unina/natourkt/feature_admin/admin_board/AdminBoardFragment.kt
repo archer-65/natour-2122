@@ -29,13 +29,6 @@ class AdminBoardFragment : BaseFragment<FragmentAdminBoardBinding, AdminBoardVie
     override fun getViewBinding() = FragmentAdminBoardBinding.inflate(layoutInflater)
     override fun getVM() = viewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setListeners()
-        initRecycler()
-    }
-
     override fun setupUi() {
         binding.topAppBar.setTopMargin()
     }
@@ -77,29 +70,27 @@ class AdminBoardFragment : BaseFragment<FragmentAdminBoardBinding, AdminBoardVie
     }
 
     override fun collectState() = with(viewModel) {
-        with(binding) {
-            collectLatestOnLifecycleScope(reportsFlow) {
-                recyclerAdapter.submitData(it)
-            }
+        collectLatestOnLifecycleScope(reportsFlow) {
+            recyclerAdapter.submitData(it)
+        }
 
-            collectLatestOnLifecycleScope(eventFlow) { event ->
-                when (event) {
-                    is UiEvent.ShowSnackbar -> {
-                        Snackbar.make(
-                            requireView(),
-                            event.uiText.asString(requireContext()),
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
-                    is UiEvent.ShowToast -> {
-                        Toast.makeText(
-                            requireContext(),
-                            event.uiText.asString(requireContext()),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    else -> {}
+        collectLatestOnLifecycleScope(eventFlow) { event ->
+            when (event) {
+                is UiEvent.ShowSnackbar -> {
+                    Snackbar.make(
+                        requireView(),
+                        event.uiText.asString(requireContext()),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
+                is UiEvent.ShowToast -> {
+                    Toast.makeText(
+                        requireContext(),
+                        event.uiText.asString(requireContext()),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {}
             }
         }
     }

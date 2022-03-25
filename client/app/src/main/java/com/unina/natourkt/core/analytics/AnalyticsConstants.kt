@@ -1,5 +1,9 @@
 package com.unina.natourkt.core.analytics
 
+/**
+ * This object contains [Events] representing certain events in the app, each event is represented
+ * by another object which contains constants for the event name or the event name and various parameters
+ */
 object AnalyticsConstants {
     object Events {
         object FirstLaunch {

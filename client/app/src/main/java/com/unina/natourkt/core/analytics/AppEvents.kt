@@ -1,5 +1,8 @@
 package com.unina.natourkt.core.analytics
 
+/**
+ * All kind of AppEvents, each one extending [AnalyticsEvent]
+ */
 object AppEvents {
     object FirstLaunch : AnalyticsEvent(AnalyticsConstants.Events.FirstLaunch.EVENT)
     object SessionStart : AnalyticsEvent(AnalyticsConstants.Events.SessionStart.EVENT)

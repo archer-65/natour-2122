@@ -25,7 +25,7 @@ class ReportsSource @Inject constructor(
             val position = params.key ?: INITIAL_PAGE
 
             val response = api.getReports(position, params.loadSize)
-            Log.i(Constants.ROUTE_MODEL, "$response")
+            Log.i(Constants.REPORT_MODEL, "$response")
 
             LoadResult.Page(
                 data = response.map { dto -> reportApiMapper.mapToDomain(dto) },
@@ -35,11 +35,11 @@ class ReportsSource @Inject constructor(
             )
         } catch (e: IOException) {
             // IOException for network failures.
-            Log.e(Constants.ROUTE_MODEL, e.localizedMessage ?: "Network error retrieving Routes", e)
+            Log.e(Constants.REPORT_MODEL, e.localizedMessage ?: "Network error retrieving Routes", e)
             return LoadResult.Error(e)
         } catch (e: HttpException) {
             // HttpException for any non-2xx HTTP status codes.
-            Log.e(Constants.ROUTE_MODEL, e.localizedMessage ?: "HTTP error retrieving Routes", e)
+            Log.e(Constants.REPORT_MODEL, e.localizedMessage ?: "HTTP error retrieving Routes", e)
             return LoadResult.Error(e)
         }
 

@@ -8,6 +8,7 @@ import com.unina.natourkt.core.data.remote.retrofit.UserApi
 import com.unina.natourkt.core.data.repository.UserRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.core.domain.model.User
 import com.unina.natourkt.core.util.Constants.ROUTE_MODEL
+import com.unina.natourkt.core.util.Constants.USER_MODEL
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
@@ -27,7 +28,7 @@ class UsersSource @Inject constructor(
             val position = params.key ?: INITIAL_PAGE
 
             val response = api.getUsersByName(query, loggedUser, position, params.loadSize)
-            Log.i(ROUTE_MODEL, "$response")
+            Log.i(USER_MODEL, "$response")
 
             LoadResult.Page(
                 data = response.map { dto -> userApiMapper.mapToDomain(dto) },
@@ -37,11 +38,11 @@ class UsersSource @Inject constructor(
             )
         } catch (e: IOException) {
             // IOException for network failures.
-            Log.e(ROUTE_MODEL, e.localizedMessage ?: "Network error retrieving Routes", e)
+            Log.e(USER_MODEL, e.localizedMessage ?: "Network error retrieving Routes", e)
             return LoadResult.Error(e)
         } catch (e: HttpException) {
             // HttpException for any non-2xx HTTP status codes.
-            Log.e(ROUTE_MODEL, e.localizedMessage ?: "HTTP error retrieving Routes", e)
+            Log.e(USER_MODEL, e.localizedMessage ?: "HTTP error retrieving Routes", e)
             return LoadResult.Error(e)
         }
 

@@ -26,7 +26,7 @@ class PersonalChatsSource @Inject constructor(
             val position = params.key ?: INITIAL_PAGE
 
             val response = api.getChatsByUser(userId, position, params.loadSize)
-            Log.i(Constants.ROUTE_MODEL, "$response")
+            Log.i(Constants.CHAT_MODEL, "$response")
 
             LoadResult.Page(
                 data = response.map { dto -> chatApiMapper.mapToDomain(dto) },
@@ -36,11 +36,11 @@ class PersonalChatsSource @Inject constructor(
             )
         } catch (e: IOException) {
             // IOException for network failures.
-            Log.e(Constants.ROUTE_MODEL, e.localizedMessage ?: "Network error retrieving Routes", e)
+            Log.e(Constants.CHAT_MODEL, e.localizedMessage ?: "Network error retrieving Routes", e)
             return LoadResult.Error(e)
         } catch (e: HttpException) {
             // HttpException for any non-2xx HTTP status codes.
-            Log.e(Constants.ROUTE_MODEL, e.localizedMessage ?: "HTTP error retrieving Routes", e)
+            Log.e(Constants.CHAT_MODEL, e.localizedMessage ?: "HTTP error retrieving Routes", e)
             return LoadResult.Error(e)
         }
 

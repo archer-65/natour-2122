@@ -1,6 +1,7 @@
 package com.unina.natourkt.core.analytics
 
 /**
+ * This abstract class represent the standard composition of an event and a list of supported providers
  * @see AnalyticsConstants
  */
 abstract class AnalyticsEvent(

@@ -31,6 +31,7 @@ object Constants {
     const val REGISTRATION_STATE = "Sign Up process"
     const val PASSWORD_RESET = "Password reset process"
 
+    const val USER_MODEL = "User request status"
     const val POST_MODEL = "Post request status"
     const val CHAT_MODEL = "Chat request status"
     const val ROUTE_MODEL = "Route request status"

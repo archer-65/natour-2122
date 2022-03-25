@@ -98,6 +98,8 @@ class AdminBoardFragment : BaseFragment<FragmentAdminBoardBinding, AdminBoardVie
             report
         )
 
+        viewModel.onEvent(AdminBoardEvent.ClickReport)
+
         findNavController().navigate(action)
     }
 }

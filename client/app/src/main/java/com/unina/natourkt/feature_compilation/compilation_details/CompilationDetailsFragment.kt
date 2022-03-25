@@ -132,6 +132,8 @@ class CompilationDetailsFragment :
                 route.id,
             )
 
+        viewModel.onEvent(CompilationDetailsEvent.ClickRoute)
+
         findNavController().navigate(action)
     }
 

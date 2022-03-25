@@ -84,6 +84,9 @@ class ProfileRoutesFragment :
         val action = ProfileFragmentDirections.actionProfileToRouteDetails(
             route.id,
         )
+
+        viewModel.onEvent(ProfileRoutesEvent.ClickRoute)
+
         findNavController().navigate(action)
     }
 

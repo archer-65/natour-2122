@@ -3,6 +3,8 @@ package com.unina.natourkt.feature_auth.registration.confirmation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.auth.RegistrationConfirmationUseCase
 import com.unina.natourkt.core.domain.use_case.auth.ResendConfirmationCodeUseCase
 import com.unina.natourkt.core.presentation.base.validation.isCodeValid
@@ -18,6 +20,7 @@ import javax.inject.Inject
 class ConfirmationViewModel @Inject constructor(
     private val registrationConfirmationUseCase: RegistrationConfirmationUseCase,
     private val resendConfirmationCodeUseCase: ResendConfirmationCodeUseCase,
+    private val analytics: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -53,7 +56,9 @@ class ConfirmationViewModel @Inject constructor(
                         _uiState.value =
                             ConfirmationUiState(isConfirmationComplete = result.data ?: false)
 
-                        val text = UiText.StringResource(R.string.code_resent)
+                        analytics.sendEvent(ActionEvents.SignedUp)
+
+                        val text = UiText.StringResource(R.string.confirmed_account)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))
                     }
                     // In case of error, update the error message

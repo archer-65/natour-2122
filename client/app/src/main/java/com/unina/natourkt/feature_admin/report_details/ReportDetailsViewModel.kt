@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.report.DeleteReportUseCase
 import com.unina.natourkt.core.presentation.model.ReportItemUi
 import com.unina.natourkt.core.presentation.util.UiEffect
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportDetailsViewModel @Inject constructor(
     private val deleteReportUseCase: DeleteReportUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -38,6 +41,8 @@ class ReportDetailsViewModel @Inject constructor(
         deleteReportUseCase(reportInfo.id).onEach { result ->
             when (result) {
                 is DataState.Success -> {
+                    analytics.sendEvent(ActionEvents.DeleteReport)
+
                     val text = UiText.StringResource(R.string.report_deleted_success)
                     _eventFlow.emit(UiEffect.ShowToast(text))
 

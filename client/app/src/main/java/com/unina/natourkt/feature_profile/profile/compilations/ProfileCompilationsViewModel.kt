@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.compilation.GetPersonalCompilationsUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.CompilationItemUi
@@ -24,6 +26,7 @@ import javax.inject.Inject
 class ProfileCompilationsViewModel @Inject constructor(
     private val getPersonalCompilationsUseCase: GetPersonalCompilationsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val compilationMapper: CompilationItemUiMapper,
 ) : ViewModel() {
 
@@ -36,6 +39,12 @@ class ProfileCompilationsViewModel @Inject constructor(
 
     init {
         getPersonalCompilations()
+    }
+
+    fun onEvent(event: ProfileCompilationsEvent) {
+        when (event) {
+            ProfileCompilationsEvent.ClickCompilation -> analytics.sendEvent(ActionEvents.ClickCompilation)
+        }
     }
 
     private fun getPersonalCompilations() {

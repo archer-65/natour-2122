@@ -267,6 +267,9 @@
         <action
             android:id="@+id/action_global_navigation_route_details"
             app:destination="@id/navigation_route_details_flow" />
+        <action
+            android:id="@+id/action_global_saveIntoCompilationDialog2"
+            app:destination="@id/saveIntoCompilationDialog" />
 
     </navigation>
 

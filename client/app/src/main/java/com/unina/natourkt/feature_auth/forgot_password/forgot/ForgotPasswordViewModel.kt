@@ -3,6 +3,8 @@ package com.unina.natourkt.feature_auth.forgot_password.forgot
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.domain.use_case.auth.ResetPasswordRequestUseCase
 import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
@@ -19,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ForgotPasswordViewModel @Inject constructor(
     private val resetPasswordRequestUseCase: ResetPasswordRequestUseCase,
+    private val analytics: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -48,6 +51,8 @@ class ForgotPasswordViewModel @Inject constructor(
                     // In case of success, update the isCodeSent value
                     is DataState.Success -> {
                         _uiState.value = ForgotPasswordUiState(isCodeSent = result.data ?: false)
+
+                        analytics.sendEvent(ActionEvents.ForgotPassword)
 
                         val text = UiText.StringResource(R.string.code_resent_password)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))

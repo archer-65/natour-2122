@@ -2,6 +2,8 @@ package com.unina.natourkt.feature_auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.auth.LoginUseCase
 import com.unina.natourkt.core.presentation.base.validation.isPasswordValid
 import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
@@ -19,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
+    private val analytics: ActionAnalyticsUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -80,6 +83,7 @@ class LoginViewModel @Inject constructor(
             // In case of success, update the isUserLoggedIn value
             is DataState.Success -> {
                 _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)
+                analytics.sendEvent(ActionEvents.LoggedIn)
             }
             // In case of error, update the error message
             is DataState.Error -> {

@@ -3,6 +3,8 @@ package com.unina.natourkt.feature_profile.profile
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.domain.use_case.user.UpdateUserPhotoUseCase
@@ -20,6 +22,7 @@ class ProfileViewModel @Inject constructor(
     private val getUserDataUseCase: GetUserDataUseCase,
     private val updateUserPhotoUseCase: UpdateUserPhotoUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val uiMapper: UserUiMapper
 ) : ViewModel() {
 
@@ -61,6 +64,8 @@ class ProfileViewModel @Inject constructor(
                                 getUrlFromKeyUseCase(it)
                             }
                         }
+
+                        analytics.sendEvent(ActionEvents.ProfilePhotoUpdate)
 
                         _uiState.update { it.copy(loggedUser = userUi, isPhotoUpdated = true) }
                     }

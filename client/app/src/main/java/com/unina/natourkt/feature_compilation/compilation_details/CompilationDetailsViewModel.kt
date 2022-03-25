@@ -7,6 +7,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.compilation.RemoveCompilationRouteUseCase
 import com.unina.natourkt.core.domain.use_case.route.GetCompilationRoutesUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
@@ -26,6 +28,7 @@ import javax.inject.Inject
 class CompilationDetailsViewModel @Inject constructor(
     private val getCompilationRoutesUseCase: GetCompilationRoutesUseCase,
     private val removeCompilationRouteUseCase: RemoveCompilationRouteUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val routeItemUiMapper: RouteItemUiMapper,
     savedState: SavedStateHandle,
@@ -53,6 +56,7 @@ class CompilationDetailsViewModel @Inject constructor(
                 event.routeId,
                 event.position
             )
+            CompilationDetailsEvent.ClickRoute -> analytics.sendEvent(ActionEvents.ClickRoute)
         }
     }
 
@@ -82,6 +86,8 @@ class CompilationDetailsViewModel @Inject constructor(
                             removedPosition = position
                         )
                     }
+
+                    analytics.sendEvent(ActionEvents.RemoveFromCompilation)
 
                     getCompilationRoutes()
 

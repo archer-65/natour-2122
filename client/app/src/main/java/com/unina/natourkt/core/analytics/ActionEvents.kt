@@ -9,6 +9,7 @@ object ActionEvents {
     object ResetPassword : AnalyticsEvent(AnalyticsConstants.Events.Actions.RESET_PASSWORD)
 
     object ClickReport : AnalyticsEvent(AnalyticsConstants.Events.Actions.CLICK_REPORT)
+    object DeleteReport : AnalyticsEvent(AnalyticsConstants.Events.Actions.DELETE_REPORT)
     object UpdateRoute : AnalyticsEvent(AnalyticsConstants.Events.Actions.UPDATE_ROUTE)
 
     object ClickChat : AnalyticsEvent(AnalyticsConstants.Events.Actions.CLICK_CHAT)
@@ -30,6 +31,7 @@ object ActionEvents {
     object CleanMap : AnalyticsEvent(AnalyticsConstants.Events.Actions.MAP_CLEANED)
     object AddMarker : AnalyticsEvent(AnalyticsConstants.Events.Actions.MARKER_ADD)
     object SearchPlace: AnalyticsEvent(AnalyticsConstants.Events.Actions.SEARCHING_PLACE)
+    object SelectGpx: AnalyticsEvent(AnalyticsConstants.Events.Actions.SELECTING_GPX)
     object DeleteRoute: AnalyticsEvent(AnalyticsConstants.Events.Actions.ROUTE_DELETED)
     object RateRoute : AnalyticsEvent(AnalyticsConstants.Events.Actions.ROUTE_RATED)
     object ReportRoute : AnalyticsEvent(AnalyticsConstants.Events.Actions.ROUTE_REPORTED)

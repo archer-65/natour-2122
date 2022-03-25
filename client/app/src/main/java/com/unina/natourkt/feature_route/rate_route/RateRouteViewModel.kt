@@ -4,7 +4,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.RatingCreation
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.rating.RateRouteUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.presentation.util.UiEffect
@@ -21,6 +23,7 @@ import javax.inject.Inject
 class RateRouteViewModel @Inject constructor(
     private val rateRouteUseCase: RateRouteUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -60,6 +63,8 @@ class RateRouteViewModel @Inject constructor(
                         _uiState.update {
                             it.copy(isInserted = true, isLoading = false)
                         }
+
+                        analytics.sendEvent(ActionEvents.RateRoute)
 
                         val text = UiText.StringResource(R.string.rating_inserted)
                         _eventFlow.emit(UiEffect.ShowToast(text))

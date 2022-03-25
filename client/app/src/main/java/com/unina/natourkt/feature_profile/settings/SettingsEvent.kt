@@ -1,5 +1,6 @@
 package com.unina.natourkt.feature_profile.settings
 
 sealed class SettingsEvent {
-    object OnLogout: SettingsEvent()
+    object OnLogout : SettingsEvent()
+    object ThemeChange : SettingsEvent()
 }

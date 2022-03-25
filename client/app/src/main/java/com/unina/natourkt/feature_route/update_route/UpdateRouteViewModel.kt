@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.route.UpdateRouteUseCase
 import com.unina.natourkt.core.presentation.model.RouteDetailsUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteDetailsUiMapper
@@ -20,6 +22,7 @@ import javax.inject.Inject
 class UpdateRouteViewModel @Inject constructor(
     private val updateRouteUseCase: UpdateRouteUseCase,
     private val routeDetailsUiMapper: RouteDetailsUiMapper,
+    private val analytics: ActionAnalyticsUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -55,6 +58,8 @@ class UpdateRouteViewModel @Inject constructor(
                     _uiState.update {
                         it.copy(isUpdated = true, isLoading = false)
                     }
+
+                    analytics.sendEvent(ActionEvents.UpdateRoute)
 
                     val text = UiText.StringResource(R.string.updated_route)
                     _eventFlow.emit(UiEffect.ShowToast(text))

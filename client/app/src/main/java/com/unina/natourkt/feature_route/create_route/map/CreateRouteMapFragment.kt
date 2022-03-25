@@ -60,9 +60,13 @@ class CreateRouteMapFragment :
         when (itemId) {
             R.id.search_place -> {
                 val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
+                viewModel.onEvent(CreateRouteEvent.SearchPlace)
+
                 launcherPlaces.launch(fields)
             }
             R.id.import_gpx -> {
+                viewModel.onEvent(CreateRouteEvent.SelectGpx)
+
                 launcherGpx.launch(Unit)
             }
             R.id.clear_map -> {

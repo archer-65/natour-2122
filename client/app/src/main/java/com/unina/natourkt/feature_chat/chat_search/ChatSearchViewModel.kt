@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.Chat
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.chat.GetChatByMembersUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.domain.use_case.user.GetUsersUseCase
@@ -28,6 +30,7 @@ class ChatSearchViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getChatByMembersUseCase: GetChatByMembersUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val userUiMapper: UserUiMapper,
     savedState: SavedStateHandle
 ) : ViewModel() {
@@ -64,6 +67,7 @@ class ChatSearchViewModel @Inject constructor(
 
     private fun getResults() {
         _usersResult = _uiState.filter { it.query.isNotBlank() }.flatMapLatest { filter ->
+            analytics.sendEvent(ActionEvents.SearchUser)
             getUsersUseCase(filter.query, loggedUserId)
                 .map { pagingData ->
                     pagingData.map { user ->
@@ -85,6 +89,8 @@ class ChatSearchViewModel @Inject constructor(
                 when (result) {
                     is DataState.Success -> {
                         val chatUi = result.data?.mapToUi()
+
+                        analytics.sendEvent(ActionEvents.ClickChat)
                         _uiState.update { it.copy(isLoading = false, retrievedChat = chatUi) }
                     }
                     is DataState.Loading -> {

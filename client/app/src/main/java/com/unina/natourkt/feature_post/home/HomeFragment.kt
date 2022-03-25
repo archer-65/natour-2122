@@ -97,6 +97,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(),
             post.id,
             post.authorId
         )
+
+        viewModel.onEvent(HomeEvent.ClickPost)
+
         findNavController().navigate(action)
     }
 }

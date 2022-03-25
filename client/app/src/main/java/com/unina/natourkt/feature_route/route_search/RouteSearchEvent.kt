@@ -10,4 +10,7 @@ sealed class RouteSearchEvent {
     data class FilterDuration(val minDuration: Int?, val maxDuration: Int?) : RouteSearchEvent()
     data class FilterDifficulty(val difficulty: Difficulty) : RouteSearchEvent()
     data class FilterDisability(val disability: Boolean?) : RouteSearchEvent()
+
+    object SearchPlace : RouteSearchEvent()
+    object ClickRoute : RouteSearchEvent()
 }

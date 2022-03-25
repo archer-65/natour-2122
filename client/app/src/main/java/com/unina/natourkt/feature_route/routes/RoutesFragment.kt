@@ -135,6 +135,9 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
         val action = RoutesFragmentDirections.actionRoutesToRouteDetails(
             route.id,
         )
+
+        viewModel.onEvent(RoutesEvent.ClickRoute)
+
         findNavController().navigate(action)
     }
 

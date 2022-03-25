@@ -87,6 +87,7 @@ object AnalyticsConstants {
 
             // Admin feature
             const val CLICK_REPORT = "admin_managing_report"
+            const val DELETE_REPORT = "admin_deleted_report"
             const val UPDATE_ROUTE = "admin_updating_route"
 
             // Chat feature
@@ -112,6 +113,7 @@ object AnalyticsConstants {
             const val MAP_CLEANED = "user_removed_map_markers"
             const val MARKER_ADD = "user_added_marker"
             const val SEARCHING_PLACE = "user_searching_place"
+            const val SELECTING_GPX = "user_selecting_gpx"
             const val ROUTE_DELETED = "route_deleted"
             const val ROUTE_RATED = "route_rated"
             const val ROUTE_REPORTED = "route_reported"

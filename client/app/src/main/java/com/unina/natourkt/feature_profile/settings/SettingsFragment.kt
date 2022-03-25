@@ -67,6 +67,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     }
                 }
             }
+            viewModel.onEvent(SettingsEvent.ThemeChange)
             return true
         }
     }

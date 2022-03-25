@@ -23,4 +23,7 @@ sealed class CreateRouteEvent {
     // PHOTOS
     data class InsertedPhotos(val photos: List<Uri>) : CreateRouteEvent()
     data class RemovePhoto(val position: Int) : CreateRouteEvent()
+
+    object SearchPlace: CreateRouteEvent()
+    object SelectGpx: CreateRouteEvent()
 }

@@ -105,9 +105,17 @@ class RouteSearchFragment : BaseFragment<FragmentRouteSearchBinding, RouteSearch
         val action = RouteSearchFragmentDirections.actionGlobalNavigationRouteDetails(
             route.id,
         )
+
+        viewModel.onEvent(RouteSearchEvent.ClickRoute)
+
         findNavController().navigate(action)
     }
 
     override fun onSaveClick(route: RouteItemUi) {
+        val action = RouteSearchFragmentDirections.actionGlobalSaveIntoCompilationDialog2(
+            route.id,
+            viewModel.uiState.value.loggedUser!!.id
+        )
+        findNavController().navigate(action)
     }
 }

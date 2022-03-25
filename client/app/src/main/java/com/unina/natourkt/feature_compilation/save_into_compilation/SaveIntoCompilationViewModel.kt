@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.compilation.AddCompilationRouteUseCase
 import com.unina.natourkt.core.domain.use_case.compilation.GetPersonalCompilationsToAddRoute
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
@@ -22,6 +24,7 @@ class SaveIntoCompilationViewModel @Inject constructor(
     private val getPersonalCompilationsToAddRoute: GetPersonalCompilationsToAddRoute,
     private val addCompilationRouteUseCase: AddCompilationRouteUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val compilationDialogItemUiMapper: CompilationDialogItemUiMapper,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -70,6 +73,8 @@ class SaveIntoCompilationViewModel @Inject constructor(
         addCompilationRouteUseCase(compilationId, routeId!!).onEach { result ->
             when (result) {
                 is DataState.Success -> {
+                    analytics.sendEvent(ActionEvents.SaveIntoCompilation)
+
                     _eventFlow.emit(UiEffect.ShowToast(UiText.StringResource(R.string.route_added_compilation)))
                     _eventFlow.emit(UiEffect.DismissDialog)
                 }

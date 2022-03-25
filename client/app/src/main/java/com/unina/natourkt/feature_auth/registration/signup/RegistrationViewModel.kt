@@ -2,6 +2,8 @@ package com.unina.natourkt.feature_auth.registration.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.auth.RegistrationUseCase
 import com.unina.natourkt.core.presentation.base.validation.equalsOtherString
 import com.unina.natourkt.core.presentation.base.validation.isEmailValid
@@ -20,6 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
+    private val analytics: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -57,6 +60,8 @@ class RegistrationViewModel @Inject constructor(
                     is DataState.Success -> {
                         _uiState.value =
                             RegistrationUiState(isSignUpComplete = result.data ?: false)
+
+                        analytics.sendEvent(ActionEvents.SignUpSubmit)
                     }
                     // In case of error, update the error message
                     is DataState.Error -> {

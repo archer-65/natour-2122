@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.post.ReportPostUseCase
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportPostViewModel @Inject constructor(
     private val reportPostUseCase: ReportPostUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -39,6 +42,8 @@ class ReportPostViewModel @Inject constructor(
                 is DataState.Success -> {
                     val text = UiText.StringResource(R.string.post_reported_success)
                     _eventFlow.emit(UiEffect.ShowToast(text))
+
+                    analytics.sendEvent(ActionEvents.ReportPost)
 
                     _uiState.update { it.copy(isLoading = false, isReported = true) }
                 }

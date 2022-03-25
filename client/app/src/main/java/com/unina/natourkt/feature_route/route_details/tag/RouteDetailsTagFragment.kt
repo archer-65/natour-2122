@@ -15,6 +15,7 @@ import com.unina.natourkt.core.presentation.decoration.GridItemDecoration
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.PostGridItemUi
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
+import com.unina.natourkt.feature_route.route_details.RouteDetailsEvent
 import com.unina.natourkt.feature_route.route_details.RouteDetailsFragmentDirections
 import com.unina.natourkt.feature_route.route_details.RouteDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -100,6 +101,9 @@ class RouteDetailsTagFragment :
             post.id,
             post.authorId
         )
+
+        viewModel.onEvent(RouteDetailsEvent.ClickPost)
+
         findNavController().navigate(action)
     }
 }

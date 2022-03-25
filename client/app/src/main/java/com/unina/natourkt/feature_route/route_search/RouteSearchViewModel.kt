@@ -7,14 +7,19 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.google.android.libraries.places.api.model.Place
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.route.GetFilteredRoutesUseCase
+import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.RouteItemUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteItemUiMapper
+import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
 import com.unina.natourkt.core.util.Difficulty
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -22,7 +27,10 @@ import javax.inject.Inject
 class RouteSearchViewModel @Inject constructor(
     private val getFilteredRoutesUseCase: GetFilteredRoutesUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val getUserDataUseCase: GetUserDataUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val routeItemUiMapper: RouteItemUiMapper,
+    private val userUiMapper: UserUiMapper,
 ) : ViewModel() {
 
     private lateinit var _routeResults: Flow<PagingData<RouteItemUi>>
@@ -43,10 +51,14 @@ class RouteSearchViewModel @Inject constructor(
             )
             is RouteSearchEvent.FilterDifficulty -> setDifficulty(event.difficulty)
             is RouteSearchEvent.FilterDisability -> setDisability(event.disability)
+
+            RouteSearchEvent.SearchPlace -> analytics.sendEvent(ActionEvents.SearchPlace)
+            RouteSearchEvent.ClickRoute -> analytics.sendEvent(ActionEvents.ClickRoute)
         }
     }
 
     init {
+        getUser()
         getResults()
     }
 
@@ -88,6 +100,7 @@ class RouteSearchViewModel @Inject constructor(
 
     private fun getResults() {
         _routeResults = _uiState.filter { it.query.isNotBlank() }.flatMapLatest { filter ->
+            analytics.sendEvent(ActionEvents.SearchRoute)
             getFilteredRoutesUseCase(filter.toFilter())
                 .map { pagingData ->
                     pagingData.map { route ->
@@ -97,6 +110,17 @@ class RouteSearchViewModel @Inject constructor(
                         }
                     }
                 }.cachedIn(viewModelScope)
+        }
+    }
+
+    private fun getUser() {
+        viewModelScope.launch {
+            _uiState.update {
+                val user = getUserDataUseCase()
+                val userUi = user?.let { userUiMapper.mapToUi(it) }
+
+                it.copy(loggedUser = userUi)
+            }
         }
     }
 }

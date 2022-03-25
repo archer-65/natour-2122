@@ -7,7 +7,9 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.google.android.gms.maps.model.PolylineOptions
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.Chat
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.chat.GetChatByMembersUseCase
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.domain.use_case.maps.GetDirectionsUseCase
@@ -36,6 +38,7 @@ class RouteDetailsViewModel @Inject constructor(
     private val getDirectionsUseCase: GetDirectionsUseCase,
     private val getTaggedPostsUseCase: GetTaggedPostsUseCase,
     private val getChatByMembersUseCase: GetChatByMembersUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val routeDetailsUiMapper: RouteDetailsUiMapper,
     private val routeStopUiMapper: RouteStopUiMapper,
     private val postGridItemUiMapper: PostGridItemUiMapper,
@@ -59,6 +62,7 @@ class RouteDetailsViewModel @Inject constructor(
         when (event) {
             RouteDetailsEvent.ResetChat -> resetChat()
             RouteDetailsEvent.ShowChat -> getChat()
+            RouteDetailsEvent.ClickPost -> analytics.sendEvent(ActionEvents.ClickPost)
         }
     }
 
@@ -153,6 +157,8 @@ class RouteDetailsViewModel @Inject constructor(
                 when (result) {
                     is DataState.Success -> {
                         val chatUi = result.data?.mapToUi()
+
+                        analytics.sendEvent(ActionEvents.ClickChat)
                         _uiState.update { it.copy(isLoading = false, retrievedChat = chatUi) }
                     }
                     is DataState.Loading -> {

@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.post.GetPostsUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.PostItemUi
@@ -21,6 +23,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getPostsUseCase: GetPostsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val postItemUiMapper: PostItemUiMapper,
 ) : ViewModel() {
 
@@ -33,6 +36,12 @@ class HomeViewModel @Inject constructor(
 
     init {
         getPosts()
+    }
+
+    fun onEvent(event: HomeEvent) {
+        when (event) {
+            HomeEvent.ClickPost -> analytics.sendEvent(ActionEvents.ClickPost)
+        }
     }
 
     private fun getPosts() {

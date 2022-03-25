@@ -4,7 +4,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.ReportCreation
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.report.CreateRouteReportUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.presentation.util.UiEffect
@@ -20,6 +22,7 @@ import javax.inject.Inject
 class ReportRouteViewModel @Inject constructor(
     private val createRouteReportUseCase: CreateRouteReportUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -59,6 +62,8 @@ class ReportRouteViewModel @Inject constructor(
                         _uiState.update {
                             it.copy(isInserted = true, isLoading = false)
                         }
+
+                        analytics.sendEvent(ActionEvents.ReportRoute)
 
                         val text = UiText.StringResource(R.string.report_inserted)
                         _eventFlow.emit(UiEffect.ShowToast(text))

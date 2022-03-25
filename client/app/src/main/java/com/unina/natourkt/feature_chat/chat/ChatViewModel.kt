@@ -3,9 +3,11 @@ package com.unina.natourkt.feature_chat.chat
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.data.remote.dto.MessageCreationDto
 import com.unina.natourkt.core.data.remote.dto.MessageDto
 import com.unina.natourkt.core.domain.model.Message
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.chat.GetChatMessagesUseCase
 import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.MessageItemUi
@@ -29,6 +31,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val getChatMessagesUseCase: GetChatMessagesUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val client: StompClient,
     savedState: SavedStateHandle
 ) : ViewModel() {
@@ -117,6 +120,8 @@ class ChatViewModel @Inject constructor(
                         MessageCreationDto.serializer()
                     )
                 }
+
+                analytics.sendEvent(ActionEvents.SendMessage)
                 _uiState.update { it.copy(messageState = "", shouldScrollToBottom = true) }
             } catch (stompException: ConnectionException) {
                 val text = UiTextCauseMapper.mapToText(DataState.Cause.NetworkError)

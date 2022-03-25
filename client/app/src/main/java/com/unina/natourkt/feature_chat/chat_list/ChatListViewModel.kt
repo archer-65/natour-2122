@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.Chat
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.chat.GetPersonalChatsUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
@@ -21,6 +23,7 @@ class ChatListViewModel @Inject constructor(
     private val getPersonalChatsUseCase: GetPersonalChatsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val userUiMapper: UserUiMapper,
 ) : ViewModel() {
 
@@ -34,6 +37,12 @@ class ChatListViewModel @Inject constructor(
     init {
         getLoggedUser()
         getChats()
+    }
+
+    fun onEvent(event: ChatListEvent) {
+        when (event) {
+            ChatListEvent.ClickChat -> analytics.sendEvent(ActionEvents.ClickChat)
+        }
     }
 
     private fun getLoggedUser() {

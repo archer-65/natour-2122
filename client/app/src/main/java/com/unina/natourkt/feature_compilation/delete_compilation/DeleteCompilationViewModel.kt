@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.compilation.DeleteCompilationUseCase
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DeleteCompilationViewModel @Inject constructor(
     private val deleteCompilationUseCase: DeleteCompilationUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -39,6 +42,8 @@ class DeleteCompilationViewModel @Inject constructor(
                 is DataState.Success -> {
                     val text = UiText.StringResource(R.string.compilation_deleted)
                     _eventFlow.emit(UiEffect.ShowToast(text))
+
+                    analytics.sendEvent(ActionEvents.DeleteCompilation)
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }
                 }

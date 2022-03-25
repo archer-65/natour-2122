@@ -4,7 +4,9 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.CompilationCreation
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.compilation.CreateCompilationUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.presentation.util.UiEffect
@@ -20,6 +22,7 @@ import javax.inject.Inject
 class CreateCompilationViewModel @Inject constructor(
     private val createCompilationUseCase: CreateCompilationUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
+    private val analytics: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CreateCompilationUiState())
@@ -64,6 +67,8 @@ class CreateCompilationViewModel @Inject constructor(
                         _uiState.update {
                             it.copy(inInserted = true, isLoading = false)
                         }
+
+                        analytics.sendEvent(ActionEvents.CreateCompilation)
 
                         val text = UiText.StringResource(R.string.compilation_created)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))

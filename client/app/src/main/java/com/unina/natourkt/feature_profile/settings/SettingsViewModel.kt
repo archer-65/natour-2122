@@ -2,6 +2,8 @@ package com.unina.natourkt.feature_profile.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.auth.LogoutUseCase
 import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val logoutUseCase: LogoutUseCase,
+    private val analytics: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SettingsUiState())
@@ -22,6 +25,7 @@ class SettingsViewModel @Inject constructor(
     fun onEvent(event: SettingsEvent) {
         when (event) {
             SettingsEvent.OnLogout -> logout()
+            SettingsEvent.ThemeChange -> analytics.sendEvent(ActionEvents.ThemeChanged)
         }
     }
 
@@ -30,6 +34,7 @@ class SettingsViewModel @Inject constructor(
             when (result) {
                 is DataState.Success -> {
                     _uiState.value = SettingsUiState(isOperationCompleted = result.data ?: false)
+                    analytics.sendEvent(ActionEvents.LoggedOut)
                 }
                 // In case of error, update the error message
                 is DataState.Error -> {

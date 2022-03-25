@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.post.DeletePostUseCase
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DeletePostViewModel @Inject constructor(
     private val deletePostUseCase: DeletePostUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -39,6 +42,8 @@ class DeletePostViewModel @Inject constructor(
                 is DataState.Success -> {
                     val text = UiText.StringResource(R.string.deleted_post_success)
                     _eventFlow.emit(UiEffect.ShowToast(text))
+
+                    analytics.sendEvent(ActionEvents.DeletePost)
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }
                 }

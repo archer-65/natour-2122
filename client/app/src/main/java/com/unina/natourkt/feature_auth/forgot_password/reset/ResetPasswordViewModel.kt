@@ -3,6 +3,8 @@ package com.unina.natourkt.feature_auth.forgot_password.reset
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.domain.use_case.auth.ResetPasswordConfirmUseCase
 import com.unina.natourkt.core.presentation.base.validation.*
@@ -19,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ResetPasswordViewModel @Inject constructor(
     private val resetPasswordConfirmUseCase: ResetPasswordConfirmUseCase,
+    private val analytics: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -55,6 +58,8 @@ class ResetPasswordViewModel @Inject constructor(
                     is DataState.Success -> {
                         _uiState.value =
                             ResetPasswordUiState(isPasswordReset = result.data ?: false)
+
+                        analytics.sendEvent(ActionEvents.ResetPassword)
 
                         val text = UiText.StringResource(R.string.password_reset_success)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))

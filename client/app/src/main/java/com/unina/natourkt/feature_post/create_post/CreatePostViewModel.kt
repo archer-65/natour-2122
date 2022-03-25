@@ -3,7 +3,9 @@ package com.unina.natourkt.feature_post.create_post
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.PostCreation
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.safeRemove
 import com.unina.natourkt.core.domain.use_case.post.CreatePostUseCase
@@ -23,6 +25,7 @@ class CreatePostViewModel @Inject constructor(
     private val getRouteTitleUseCase: GetRouteTitleUseCase,
     private val createPostUseCase: CreatePostUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val routeTitleUiMapper: RouteTitleUiMapper
 ) : ViewModel() {
 
@@ -91,8 +94,12 @@ class CreatePostViewModel @Inject constructor(
         viewModelScope.launch {
             createPostUseCase(mapForCreation()).onEach { result ->
                 when (result) {
-                    is DataState.Success -> _uiState.update {
-                        it.copy(isInserted = true, isLoading = false)
+                    is DataState.Success -> {
+                        analytics.sendEvent(ActionEvents.CreatePost)
+
+                        _uiState.update {
+                            it.copy(isInserted = true, isLoading = false)
+                        }
                     }
                     is DataState.Error -> {
                         _uiState.update {

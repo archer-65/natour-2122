@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.report.GetReportsUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
@@ -23,6 +25,7 @@ class AdminBoardViewModel @Inject constructor(
     private val getReportsUseCase: GetReportsUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val userUiMapper: UserUiMapper,
     private val reportItemUiMapper: ReportItemUiMapper,
 ) : ViewModel() {
@@ -43,6 +46,12 @@ class AdminBoardViewModel @Inject constructor(
     init {
         getReports()
         getUser()
+    }
+
+    fun onEvent(event: AdminBoardEvent) {
+        when (event) {
+            AdminBoardEvent.ClickReport -> analytics.sendEvent(ActionEvents.ClickReport)
+        }
     }
 
     private fun getReports() {

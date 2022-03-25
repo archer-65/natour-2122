@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.route.GetPersonalRoutesUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.RouteItemUi
@@ -21,6 +23,7 @@ import javax.inject.Inject
 class ProfileRoutesViewModel @Inject constructor(
     private val getPersonalRoutesUseCase: GetPersonalRoutesUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val routeItemUiMapper: RouteItemUiMapper,
 ) : ViewModel() {
 
@@ -36,6 +39,12 @@ class ProfileRoutesViewModel @Inject constructor(
 
     init {
         getPersonalRoutes()
+    }
+
+    fun onEvent(event: ProfileRoutesEvent) {
+        when (event) {
+            ProfileRoutesEvent.ClickRoute -> analytics.sendEvent(ActionEvents.ClickRoute)
+        }
     }
 
     fun getPersonalRoutes() {

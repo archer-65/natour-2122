@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.unina.natourkt.core.analytics.ActionEvents
+import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.post.GetPersonalPostsUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.PostGridItemUi
@@ -21,6 +23,7 @@ import javax.inject.Inject
 class ProfilePostsViewModel @Inject constructor(
     private val getPersonalPostsUseCase: GetPersonalPostsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
+    private val analytics: ActionAnalyticsUseCase,
     private val postGridItemUiMapper: PostGridItemUiMapper
 ) : ViewModel() {
 
@@ -36,6 +39,12 @@ class ProfilePostsViewModel @Inject constructor(
 
     init {
         getPersonalPosts()
+    }
+
+    fun onEvent(event: ProfilePostsEvent) {
+        when (event) {
+            ProfilePostsEvent.ClickPost -> analytics.sendEvent(ActionEvents.ClickPost)
+        }
     }
 
     private fun getPersonalPosts() {

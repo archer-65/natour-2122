@@ -48,11 +48,7 @@ public class UserController {
 
         List<UserDto> userDtoList = userService.getAllUsers();
 
-        if (!userDtoList.isEmpty()) {
-            return new ResponseEntity<>(userDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(userDtoList, HttpStatus.OK);
     }
 
     /**
@@ -70,11 +66,7 @@ public class UserController {
 
         List<UserDto> userDtoList = userService.getAllUsers(query, userId, pageNo, pageSize);
 
-        if (!userDtoList.isEmpty()) {
-            return new ResponseEntity<>(userDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(userDtoList, HttpStatus.OK);
     }
 
     /**

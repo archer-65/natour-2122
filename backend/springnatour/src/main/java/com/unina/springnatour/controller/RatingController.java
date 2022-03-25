@@ -39,11 +39,7 @@ public class RatingController {
 
         List<RatingDto> ratingDtoList = ratingService.getAllRatings();
 
-        if (!ratingDtoList.isEmpty()) {
-            return new ResponseEntity<>(ratingDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(ratingDtoList, HttpStatus.OK);
     }
 
     /**

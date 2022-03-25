@@ -40,11 +40,7 @@ public class ReportController {
 
         List<ReportDto> reportDtoList = reportService.getAllReports();
 
-        if (!reportDtoList.isEmpty()) {
-            return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
     }
 
     /**
@@ -59,11 +55,7 @@ public class ReportController {
 
         List<ReportDto> reportDtoList = reportService.getAllReports(pageNo, pageSize);
 
-        if (!reportDtoList.isEmpty()) {
-            return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
     }
 
     /**

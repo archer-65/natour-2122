@@ -42,11 +42,7 @@ public class PostController {
 
         List<PostDto> postDtoList = postService.getAllPosts();
 
-        if (!postDtoList.isEmpty()) {
-            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
     /**
@@ -59,11 +55,7 @@ public class PostController {
 
         List<PostDto> postDtoList = postService.getAllPosts(pageNo, pageSize);
 
-        if (!postDtoList.isEmpty()) {
-            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
     /**
@@ -77,11 +69,7 @@ public class PostController {
 
         List<PostDto> postDtoList = postService.getAllPostsByUserId(userId);
 
-        if (!postDtoList.isEmpty()) {
-            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
     /**
@@ -98,11 +86,7 @@ public class PostController {
 
         List<PostDto> postDtoList = postService.getAllPostsByUserId(userId, pageNo, pageSize);
 
-        if (!postDtoList.isEmpty()) {
-            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/posts/tag")
@@ -113,11 +97,7 @@ public class PostController {
 
         List<PostDto> postDtoList = postService.getAllPostsByRouteId(routeId, pageNo, pageSize);
 
-        if (!postDtoList.isEmpty()) {
-            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
     /**

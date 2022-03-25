@@ -28,7 +28,7 @@ public class CompilationController {
 
         CompilationDto compilationDto = compilationService.getCompilationById(id);
 
-        return new ResponseEntity<CompilationDto>(compilationDto, HttpStatus.OK);
+        return new ResponseEntity<>(compilationDto, HttpStatus.OK);
     }
 
     /**
@@ -41,11 +41,7 @@ public class CompilationController {
 
         List<CompilationDto> compilationDtoList = compilationService.getAllCompilationsByUserId(userId);
 
-        if (!compilationDtoList.isEmpty()) {
-            return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
     }
 
     /**
@@ -61,11 +57,7 @@ public class CompilationController {
 
         List<CompilationDto> compilationDtoList = compilationService.getAllCompilationsByUserId(userId, pageNo, pageSize);
 
-        if (!compilationDtoList.isEmpty()) {
-            return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/compilations/search_exclude_route")
@@ -76,11 +68,7 @@ public class CompilationController {
 
         List<CompilationDto> compilationDtoList = compilationService.getCompilationsByUserAndRouteNotPresent(userId, routeId);
 
-        if (!compilationDtoList.isEmpty()) {
-            return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(compilationDtoList, HttpStatus.OK);
     }
 
     /**

@@ -44,11 +44,7 @@ public class RouteController {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutes();
 
-        if (!routeDtoList.isEmpty()) {
-            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
     }
 
     /**
@@ -61,11 +57,7 @@ public class RouteController {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutes(pageNo, pageSize);
 
-        if (!routeDtoList.isEmpty()) {
-            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
     }
 
     /**
@@ -79,11 +71,7 @@ public class RouteController {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByUserId(userId);
 
-        if (!routeDtoList.isEmpty()) {
-            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
     }
 
     /**
@@ -100,11 +88,7 @@ public class RouteController {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByUserId(userId, pageNo, pageSize);
 
-        if (!routeDtoList.isEmpty()) {
-            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/routes/compilation")
@@ -115,11 +99,7 @@ public class RouteController {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByCompilationId(compilationId, pageNo, pageSize);
 
-        if (!routeDtoList.isEmpty()) {
-            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
     }
 
     /**
@@ -146,11 +126,7 @@ public class RouteController {
 
         List<RouteDto> routeDtoList = routeService.getAllRoutesByFilter(filter, pageNo, pageSize);
 
-        if (!routeDtoList.isEmpty()) {
-            return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/routes/search_title")
@@ -158,11 +134,7 @@ public class RouteController {
 
         List<RouteTitleDto> routeTitleDtoList = routeService.getRoutesTitleByQuery(query);
 
-        if (!routeTitleDtoList.isEmpty()) {
-            return new ResponseEntity<>(routeTitleDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(routeTitleDtoList, HttpStatus.OK);
     }
 
     /**

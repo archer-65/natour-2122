@@ -82,11 +82,8 @@ public class ChatController {
 
         List<ChatDto> chatDtoList = chatService.getAllChatsByUserId(userId);
 
-        if (!chatDtoList.isEmpty()) {
-            return new ResponseEntity<>(chatDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(chatDtoList, HttpStatus.OK);
+
     }
 
     /**
@@ -103,11 +100,7 @@ public class ChatController {
 
         List<ChatDto> chatDtoList = chatService.getAllChatsByUserId(userId, pageNo, pageSize);
 
-        if (!chatDtoList.isEmpty()) {
-            return new ResponseEntity<>(chatDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(chatDtoList, HttpStatus.OK);
     }
 
     /**
@@ -121,11 +114,7 @@ public class ChatController {
 
         List<MessageDto> messageDtoList = messageService.getAllMessagesByChatId(id);
 
-        if (!messageDtoList.isEmpty()) {
-            return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
     }
 }
 

@@ -6,7 +6,6 @@ import androidx.paging.PagingState
 import com.unina.natourkt.core.data.remote.dto.mapper.ChatApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.ChatApi
 import com.unina.natourkt.core.data.repository.ChatRepositoryImpl
-import com.unina.natourkt.core.data.repository.RouteRepositoryImpl
 import com.unina.natourkt.core.domain.model.Chat
 import com.unina.natourkt.core.util.Constants
 import retrofit2.HttpException

@@ -5,12 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
 import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
-import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.domain.use_case.auth.ResetPasswordConfirmUseCase
-import com.unina.natourkt.core.presentation.base.validation.*
+import com.unina.natourkt.core.presentation.base.validation.equalsOtherString
+import com.unina.natourkt.core.presentation.base.validation.isPasswordValid
+import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -21,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ResetPasswordViewModel @Inject constructor(
     private val resetPasswordConfirmUseCase: ResetPasswordConfirmUseCase,
-    private val analytics: ActionAnalyticsUseCase
+    private val analyticsUseCase: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -59,7 +61,7 @@ class ResetPasswordViewModel @Inject constructor(
                         _uiState.value =
                             ResetPasswordUiState(isPasswordReset = result.data ?: false)
 
-                        analytics.sendEvent(ActionEvents.ResetPassword)
+                        analyticsUseCase.sendEvent(ActionEvents.ResetPassword)
 
                         val text = UiText.StringResource(R.string.password_reset_success)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))

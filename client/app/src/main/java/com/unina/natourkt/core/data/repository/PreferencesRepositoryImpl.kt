@@ -5,12 +5,12 @@ import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import com.unina.natourkt.core.util.Constants.DATASTORE_STATE
-import com.unina.natourkt.core.util.Constants.PREFERENCES
 import com.unina.natourkt.core.domain.model.User
 import com.unina.natourkt.core.domain.repository.PreferencesRepository
-import kotlinx.coroutines.flow.*
-import java.lang.Exception
+import com.unina.natourkt.core.util.Constants.DATASTORE_STATE
+import com.unina.natourkt.core.util.Constants.PREFERENCES
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**
@@ -37,7 +37,7 @@ class PreferencesRepositoryImpl @Inject constructor(
     /**
      * Only edit the datastore with given user
      */
-    override suspend fun saveUserToDataStore(user: User) {
+    override suspend fun saveUserToPreferences(user: User) {
         Log.i(DATASTORE_STATE, "$user")
         context.dataStore.edit {
             it[ID] = user.id
@@ -50,7 +50,7 @@ class PreferencesRepositoryImpl @Inject constructor(
     /**
      * Retrieve the logged user
      */
-    override suspend fun getUserFromDataStore(): User? {
+    override suspend fun getUserFromPreferences(): User? {
         return try {
             context.dataStore.data.map {
                 User(

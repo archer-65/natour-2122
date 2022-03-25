@@ -12,7 +12,8 @@ import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.PostGridItemUi
 import com.unina.natourkt.core.presentation.model.mapper.PostGridItemUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ import javax.inject.Inject
 class ProfilePostsViewModel @Inject constructor(
     private val getPersonalPostsUseCase: GetPersonalPostsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val postGridItemUiMapper: PostGridItemUiMapper
 ) : ViewModel() {
 
@@ -43,7 +44,7 @@ class ProfilePostsViewModel @Inject constructor(
 
     fun onEvent(event: ProfilePostsEvent) {
         when (event) {
-            ProfilePostsEvent.ClickPost -> analytics.sendEvent(ActionEvents.ClickPost)
+            ProfilePostsEvent.ClickPost -> analyticsUseCase.sendEvent(ActionEvents.ClickPost)
         }
     }
 

@@ -23,7 +23,7 @@ class ChatListViewModel @Inject constructor(
     private val getPersonalChatsUseCase: GetPersonalChatsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val userUiMapper: UserUiMapper,
 ) : ViewModel() {
 
@@ -41,7 +41,7 @@ class ChatListViewModel @Inject constructor(
 
     fun onEvent(event: ChatListEvent) {
         when (event) {
-            ChatListEvent.ClickChat -> analytics.sendEvent(ActionEvents.ClickChat)
+            ChatListEvent.ClickChat -> analyticsUseCase.sendEvent(ActionEvents.ClickChat)
         }
     }
 

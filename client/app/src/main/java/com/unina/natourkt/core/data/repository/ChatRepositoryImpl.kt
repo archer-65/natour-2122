@@ -16,12 +16,22 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * This implementation of [ChatRepository] works with a [ChatApi] Retrofit interface
+ * It also contains mappers for model conversions
+ * @see [ChatApiMapper]
+ * @see [MessageApiMapper]
+ */
 class ChatRepositoryImpl @Inject constructor(
     private val api: ChatApi,
     private val chatApiMapper: ChatApiMapper,
     private val messageApiMapper: MessageApiMapper,
 ) : ChatRepository {
 
+    /**
+     * Page size for network requests for this class
+     * NOTE: The first page defaults to pageSize * 3!
+     */
     companion object {
         const val NETWORK_PAGE_SIZE = 10
     }

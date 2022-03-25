@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DeletePostViewModel @Inject constructor(
     private val deletePostUseCase: DeletePostUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -43,7 +43,7 @@ class DeletePostViewModel @Inject constructor(
                     val text = UiText.StringResource(R.string.deleted_post_success)
                     _eventFlow.emit(UiEffect.ShowToast(text))
 
-                    analytics.sendEvent(ActionEvents.DeletePost)
+                    analyticsUseCase.sendEvent(ActionEvents.DeletePost)
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }
                 }

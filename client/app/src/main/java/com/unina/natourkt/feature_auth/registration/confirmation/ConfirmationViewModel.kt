@@ -20,7 +20,7 @@ import javax.inject.Inject
 class ConfirmationViewModel @Inject constructor(
     private val registrationConfirmationUseCase: RegistrationConfirmationUseCase,
     private val resendConfirmationCodeUseCase: ResendConfirmationCodeUseCase,
-    private val analytics: ActionAnalyticsUseCase
+    private val analyticsUseCase: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -56,7 +56,7 @@ class ConfirmationViewModel @Inject constructor(
                         _uiState.value =
                             ConfirmationUiState(isConfirmationComplete = result.data ?: false)
 
-                        analytics.sendEvent(ActionEvents.SignedUp)
+                        analyticsUseCase.sendEvent(ActionEvents.SignedUp)
 
                         val text = UiText.StringResource(R.string.confirmed_account)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))

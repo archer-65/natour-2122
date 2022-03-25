@@ -22,7 +22,7 @@ import javax.inject.Inject
 class CreateCompilationViewModel @Inject constructor(
     private val createCompilationUseCase: CreateCompilationUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
-    private val analytics: ActionAnalyticsUseCase
+    private val analyticsUseCase: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CreateCompilationUiState())
@@ -68,7 +68,7 @@ class CreateCompilationViewModel @Inject constructor(
                             it.copy(inInserted = true, isLoading = false)
                         }
 
-                        analytics.sendEvent(ActionEvents.CreateCompilation)
+                        analyticsUseCase.sendEvent(ActionEvents.CreateCompilation)
 
                         val text = UiText.StringResource(R.string.compilation_created)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))

@@ -22,7 +22,7 @@ class ProfileViewModel @Inject constructor(
     private val getUserDataUseCase: GetUserDataUseCase,
     private val updateUserPhotoUseCase: UpdateUserPhotoUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val uiMapper: UserUiMapper
 ) : ViewModel() {
 
@@ -65,7 +65,7 @@ class ProfileViewModel @Inject constructor(
                             }
                         }
 
-                        analytics.sendEvent(ActionEvents.ProfilePhotoUpdate)
+                        analyticsUseCase.sendEvent(ActionEvents.ProfilePhotoUpdate)
 
                         _uiState.update { it.copy(loggedUser = userUi, isPhotoUpdated = true) }
                     }

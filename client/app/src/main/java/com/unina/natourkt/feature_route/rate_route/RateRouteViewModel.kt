@@ -23,7 +23,7 @@ import javax.inject.Inject
 class RateRouteViewModel @Inject constructor(
     private val rateRouteUseCase: RateRouteUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -64,7 +64,7 @@ class RateRouteViewModel @Inject constructor(
                             it.copy(isInserted = true, isLoading = false)
                         }
 
-                        analytics.sendEvent(ActionEvents.RateRoute)
+                        analyticsUseCase.sendEvent(ActionEvents.RateRoute)
 
                         val text = UiText.StringResource(R.string.rating_inserted)
                         _eventFlow.emit(UiEffect.ShowToast(text))

@@ -1,9 +1,7 @@
 package com.unina.natourkt.feature_post.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,7 +9,6 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentHomeBinding
 import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.PostAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
@@ -19,6 +16,7 @@ import com.unina.natourkt.core.presentation.model.PostItemUi
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.scrollBehavior
 import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

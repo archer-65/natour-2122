@@ -1,7 +1,6 @@
 package com.unina.natourkt.core.presentation.model
 
 import com.unina.natourkt.core.util.DateTimeParser
-import java.lang.IllegalStateException
 
 interface ChatGenericUi {
     val type: MessageType

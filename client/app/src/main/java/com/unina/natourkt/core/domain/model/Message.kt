@@ -1,6 +1,5 @@
 package com.unina.natourkt.core.domain.model
 
-import com.google.gson.annotations.SerializedName
 import java.time.LocalDateTime
 
 data class Message(

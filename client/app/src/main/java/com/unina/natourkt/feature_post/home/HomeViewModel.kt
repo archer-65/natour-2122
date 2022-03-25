@@ -23,7 +23,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getPostsUseCase: GetPostsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val postItemUiMapper: PostItemUiMapper,
 ) : ViewModel() {
 
@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
 
     fun onEvent(event: HomeEvent) {
         when (event) {
-            HomeEvent.ClickPost -> analytics.sendEvent(ActionEvents.ClickPost)
+            HomeEvent.ClickPost -> analyticsUseCase.sendEvent(ActionEvents.ClickPost)
         }
     }
 

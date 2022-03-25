@@ -22,7 +22,7 @@ import javax.inject.Inject
 class ReportRouteViewModel @Inject constructor(
     private val createRouteReportUseCase: CreateRouteReportUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -63,7 +63,7 @@ class ReportRouteViewModel @Inject constructor(
                             it.copy(isInserted = true, isLoading = false)
                         }
 
-                        analytics.sendEvent(ActionEvents.ReportRoute)
+                        analyticsUseCase.sendEvent(ActionEvents.ReportRoute)
 
                         val text = UiText.StringResource(R.string.report_inserted)
                         _eventFlow.emit(UiEffect.ShowToast(text))

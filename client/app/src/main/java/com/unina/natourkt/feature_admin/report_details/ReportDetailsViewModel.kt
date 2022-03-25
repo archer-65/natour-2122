@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportDetailsViewModel @Inject constructor(
     private val deleteReportUseCase: DeleteReportUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -41,7 +41,7 @@ class ReportDetailsViewModel @Inject constructor(
         deleteReportUseCase(reportInfo.id).onEach { result ->
             when (result) {
                 is DataState.Success -> {
-                    analytics.sendEvent(ActionEvents.DeleteReport)
+                    analyticsUseCase.sendEvent(ActionEvents.DeleteReport)
 
                     val text = UiText.StringResource(R.string.report_deleted_success)
                     _eventFlow.emit(UiEffect.ShowToast(text))

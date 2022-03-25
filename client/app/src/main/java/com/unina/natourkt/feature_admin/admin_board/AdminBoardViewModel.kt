@@ -25,7 +25,7 @@ class AdminBoardViewModel @Inject constructor(
     private val getReportsUseCase: GetReportsUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val userUiMapper: UserUiMapper,
     private val reportItemUiMapper: ReportItemUiMapper,
 ) : ViewModel() {
@@ -50,7 +50,7 @@ class AdminBoardViewModel @Inject constructor(
 
     fun onEvent(event: AdminBoardEvent) {
         when (event) {
-            AdminBoardEvent.ClickReport -> analytics.sendEvent(ActionEvents.ClickReport)
+            AdminBoardEvent.ClickReport -> analyticsUseCase.sendEvent(ActionEvents.ClickReport)
         }
     }
 

@@ -2,7 +2,6 @@ package com.unina.natourkt.core.data.remote.retrofit
 
 import com.unina.natourkt.core.data.remote.dto.ReportCreationDto
 import com.unina.natourkt.core.data.remote.dto.ReportDto
-import com.unina.natourkt.core.data.remote.dto.route.RouteDto
 import retrofit2.http.*
 
 interface ReportApi {

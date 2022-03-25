@@ -4,15 +4,20 @@ import android.net.Uri
 import android.util.Log
 import com.amplifyframework.kotlin.core.Amplify
 import com.amplifyframework.storage.StorageException
+import com.unina.natourkt.core.data.remote.dto.mapper.DirectionsApiMapper
+import com.unina.natourkt.core.data.remote.retrofit.MapsApi
+import com.unina.natourkt.core.domain.repository.MapsRepository
 import com.unina.natourkt.core.domain.repository.StorageRepository
-import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.toInputStream
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import java.io.FileNotFoundException
-import java.io.InputStream
 import java.net.URL
 
+/**
+ * This implementation of [StorageRepository] works with a [Amplify.Storage]
+ * @see [Uri.toInputStream]
+ */
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class StorageRepositoryImpl : StorageRepository {
 

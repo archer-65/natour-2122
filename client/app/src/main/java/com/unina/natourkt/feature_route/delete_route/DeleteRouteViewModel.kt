@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DeleteRouteViewModel @Inject constructor(
     private val deleteRouteUseCase: DeleteRouteUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -44,7 +44,7 @@ class DeleteRouteViewModel @Inject constructor(
                     val text = UiText.StringResource(R.string.deleted_route_success)
                     _eventFlow.emit(UiEffect.ShowToast(text))
 
-                    analytics.sendEvent(ActionEvents.DeleteRoute)
+                    analyticsUseCase.sendEvent(ActionEvents.DeleteRoute)
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }
                 }

@@ -2,10 +2,10 @@ package com.unina.natourkt.core.domain.use_case.route
 
 import android.util.Log
 import androidx.paging.PagingData
-import com.unina.natourkt.core.util.Constants.ROUTE_MODEL
 import com.unina.natourkt.core.domain.model.route.Route
 import com.unina.natourkt.core.domain.repository.RouteRepository
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
+import com.unina.natourkt.core.util.Constants.ROUTE_MODEL
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -21,7 +21,6 @@ class GetPersonalRoutesUseCase @Inject constructor(
      * Get [Flow] of [PagingData] for personal [Route]
      */
     suspend operator fun invoke(): Flow<PagingData<Route>> {
-
         val loggedUser = getUserDataUseCase()
 
         Log.i(ROUTE_MODEL, "Getting paginated routes for user...")

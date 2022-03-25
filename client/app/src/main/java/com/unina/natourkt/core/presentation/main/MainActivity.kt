@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         instance = this
-        //firebaseAnalytics = Firebase.analytics
 
         if (savedInstanceState == null) {
             mainViewModel.sessionStarted()

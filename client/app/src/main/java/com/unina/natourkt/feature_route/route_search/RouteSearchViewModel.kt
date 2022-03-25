@@ -1,6 +1,5 @@
 package com.unina.natourkt.feature_route.route_search
 
-import androidx.annotation.IdRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -28,7 +27,7 @@ class RouteSearchViewModel @Inject constructor(
     private val getFilteredRoutesUseCase: GetFilteredRoutesUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val routeItemUiMapper: RouteItemUiMapper,
     private val userUiMapper: UserUiMapper,
 ) : ViewModel() {
@@ -52,8 +51,8 @@ class RouteSearchViewModel @Inject constructor(
             is RouteSearchEvent.FilterDifficulty -> setDifficulty(event.difficulty)
             is RouteSearchEvent.FilterDisability -> setDisability(event.disability)
 
-            RouteSearchEvent.SearchPlace -> analytics.sendEvent(ActionEvents.SearchPlace)
-            RouteSearchEvent.ClickRoute -> analytics.sendEvent(ActionEvents.ClickRoute)
+            RouteSearchEvent.SearchPlace -> analyticsUseCase.sendEvent(ActionEvents.SearchPlace)
+            RouteSearchEvent.ClickRoute -> analyticsUseCase.sendEvent(ActionEvents.ClickRoute)
         }
     }
 
@@ -100,7 +99,7 @@ class RouteSearchViewModel @Inject constructor(
 
     private fun getResults() {
         _routeResults = _uiState.filter { it.query.isNotBlank() }.flatMapLatest { filter ->
-            analytics.sendEvent(ActionEvents.SearchRoute)
+            analyticsUseCase.sendEvent(ActionEvents.SearchRoute)
             getFilteredRoutesUseCase(filter.toFilter())
                 .map { pagingData ->
                     pagingData.map { route ->

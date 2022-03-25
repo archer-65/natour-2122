@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val logoutUseCase: LogoutUseCase,
-    private val analytics: ActionAnalyticsUseCase
+    private val analyticsUseCase: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SettingsUiState())
@@ -25,7 +25,7 @@ class SettingsViewModel @Inject constructor(
     fun onEvent(event: SettingsEvent) {
         when (event) {
             SettingsEvent.OnLogout -> logout()
-            SettingsEvent.ThemeChange -> analytics.sendEvent(ActionEvents.ThemeChanged)
+            SettingsEvent.ThemeChange -> analyticsUseCase.sendEvent(ActionEvents.ThemeChanged)
         }
     }
 
@@ -34,7 +34,7 @@ class SettingsViewModel @Inject constructor(
             when (result) {
                 is DataState.Success -> {
                     _uiState.value = SettingsUiState(isOperationCompleted = result.data ?: false)
-                    analytics.sendEvent(ActionEvents.LoggedOut)
+                    analyticsUseCase.sendEvent(ActionEvents.LoggedOut)
                 }
                 // In case of error, update the error message
                 is DataState.Error -> {

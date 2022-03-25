@@ -5,12 +5,25 @@ import com.unina.natourkt.core.analytics.AnalyticsSender
 import com.unina.natourkt.core.analytics.AppEvents
 import javax.inject.Inject
 
+/**
+ * This UseCase is used by the host activities' ViewModels to send navigation events with
+ * Analytics Provider like `Firebase Analytics` or `Amplitude`.
+ * This implementation, with an injected [AnalyticsSender], is required to reach abstractness
+ * and avoid vendor lock-in.
+ */
 class MainAnalyticsUseCase @Inject constructor(
     private val eventSender: AnalyticsSender
 ) {
 
+    // This variable stores the previous destination reached
     private var prevDestination: Int? = null
 
+    /**
+     * When the destination changes the ViewModel calls this function
+     * If the destinations are the same, it doesn't do anything, else the event is sent.
+     *
+     * Only at the end we store the given [destinationId] in [prevDestination]
+     */
     fun destinationChanged(destinationId: Int) {
         if (destinationId == prevDestination) return
 
@@ -22,13 +35,20 @@ class MainAnalyticsUseCase @Inject constructor(
                 )
             )
         }
+
         prevDestination = destinationId
     }
 
+    /**
+     * This function is called only when the application is started by the user
+     */
     fun sessionStarted() {
         eventSender.sendEvent(AppEvents.SessionStart)
     }
 
+    /**
+     * This is a simple mapper to get the Event's name by [destination]
+     */
     private fun getNavigationDestination(destination: Int): AppEvents.Navigated.NavigationSource =
         when (destination) {
             R.id.navigation_home -> AppEvents.Navigated.NavigationSource.HOME

@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DeleteCompilationViewModel @Inject constructor(
     private val deleteCompilationUseCase: DeleteCompilationUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -43,7 +43,7 @@ class DeleteCompilationViewModel @Inject constructor(
                     val text = UiText.StringResource(R.string.compilation_deleted)
                     _eventFlow.emit(UiEffect.ShowToast(text))
 
-                    analytics.sendEvent(ActionEvents.DeleteCompilation)
+                    analyticsUseCase.sendEvent(ActionEvents.DeleteCompilation)
 
                     _uiState.update { it.copy(isLoading = false, isDeleted = true) }
                 }

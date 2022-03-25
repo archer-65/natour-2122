@@ -22,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
-    private val analytics: ActionAnalyticsUseCase
+    private val analyticsUseCase: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -61,7 +61,7 @@ class RegistrationViewModel @Inject constructor(
                         _uiState.value =
                             RegistrationUiState(isSignUpComplete = result.data ?: false)
 
-                        analytics.sendEvent(ActionEvents.SignUpSubmit)
+                        analyticsUseCase.sendEvent(ActionEvents.SignUpSubmit)
                     }
                     // In case of error, update the error message
                     is DataState.Error -> {

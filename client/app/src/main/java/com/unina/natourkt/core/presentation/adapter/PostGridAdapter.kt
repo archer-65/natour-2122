@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
+import com.unina.natourkt.core.presentation.model.PostGridItemUi
 import com.unina.natourkt.core.util.GlideApp
 import com.unina.natourkt.databinding.PostGridItemBinding
-import com.unina.natourkt.core.presentation.model.PostGridItemUi
 
 /**
  * Implementation of PagingDataAdapter for [PostGridItemUi] (posts on profile and route detail screen)

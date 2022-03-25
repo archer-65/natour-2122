@@ -9,6 +9,11 @@ import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
 import com.amplifyframework.auth.result.step.AuthResetPasswordStep
 import com.amplifyframework.kotlin.core.Amplify
+import com.unina.natourkt.core.data.remote.dto.mapper.UserApiMapper
+import com.unina.natourkt.core.data.remote.retrofit.UserApi
+import com.unina.natourkt.core.domain.repository.AuthRepository
+import com.unina.natourkt.core.domain.repository.PreferencesRepository
+import com.unina.natourkt.core.presentation.main.MainActivity
 import com.unina.natourkt.core.util.Constants.AMPLIFY
 import com.unina.natourkt.core.util.Constants.FACEBOOK
 import com.unina.natourkt.core.util.Constants.GOOGLE
@@ -19,11 +24,6 @@ import com.unina.natourkt.core.util.Constants.REGISTRATION_STATE
 import com.unina.natourkt.core.util.Constants.SERVER_ERROR
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.ErrorHandler
-import com.unina.natourkt.core.data.remote.dto.mapper.UserApiMapper
-import com.unina.natourkt.core.data.remote.retrofit.UserApi
-import com.unina.natourkt.core.domain.repository.AuthRepository
-import com.unina.natourkt.core.domain.repository.PreferencesRepository
-import com.unina.natourkt.core.presentation.main.MainActivity
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
@@ -37,6 +37,9 @@ class AuthRepositoryImpl @Inject constructor(
     private val userApi: UserApi,
 ) : AuthRepository {
 
+    /**
+     * Gets AWS Cognito JWT
+     */
     private fun getToken(): Boolean {
         val groups = ArrayList<String>()
         val GROUP_KEY = "cognito:groups"
@@ -51,10 +54,6 @@ class AuthRepositoryImpl @Inject constructor(
         return groups.contains("admins")
     }
 
-    /**
-     * Fetch authentication session, this function is used only
-     * when the app is started
-     */
     override suspend fun fetchCurrentSession(): Boolean {
         val session = Amplify.Auth.fetchAuthSession()
         Log.i(AMPLIFY, "$session")
@@ -62,9 +61,6 @@ class AuthRepositoryImpl @Inject constructor(
         return session.isSignedIn
     }
 
-    /**
-     * Provides user registration
-     */
     override suspend fun register(
         username: String,
         email: String,
@@ -88,10 +84,6 @@ class AuthRepositoryImpl @Inject constructor(
         DataState.Error(ErrorHandler.handleException(authException))
     }
 
-
-    /**
-     * Provides user confirmation after successful registration
-     */
     override suspend fun confirmRegistration(username: String, code: String): DataState<Boolean> {
         return try {
             val result = Amplify.Auth.confirmSignUp(username, code)
@@ -108,9 +100,6 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    /**
-     * Resend confirmation code
-     */
     override suspend fun resendCode(username: String): DataState<Boolean> {
         return try {
             val result = Amplify.Auth.resendSignUpCode(username)
@@ -127,9 +116,6 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    /**
-     * Provides user login
-     */
     override suspend fun login(username: String, password: String): DataState<Boolean> {
         return try {
             // Try sign in with Amplify
@@ -146,7 +132,7 @@ class AuthRepositoryImpl @Inject constructor(
                 val userFinal = user.copy(isAdmin = isAdmin)
 
                 // Save user data to DataStore Preferences
-                preferencesRepository.saveUserToDataStore(userFinal)
+                preferencesRepository.saveUserToPreferences(userFinal)
                 // Return Success
                 DataState.Success(true)
             } else {
@@ -165,9 +151,6 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    /**
-     * Provides user login with socials
-     */
     override suspend fun login(provider: String): DataState<Boolean> {
         return try {
             val authProvider: AuthProvider =
@@ -190,7 +173,7 @@ class AuthRepositoryImpl @Inject constructor(
                 val userFinal = user.copy(isAdmin = isAdmin)
 
                 // Save user data to DataStore Preferences
-                preferencesRepository.saveUserToDataStore(userFinal)
+                preferencesRepository.saveUserToPreferences(userFinal)
                 // Return Success
                 DataState.Success(true)
             } else {
@@ -209,9 +192,6 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    /**
-     * Reset password request
-     */
     override suspend fun resetPasswordRequest(username: String): DataState<Boolean> {
         return try {
             val result = Amplify.Auth.resetPassword(username)
@@ -228,9 +208,6 @@ class AuthRepositoryImpl @Inject constructor(
         }
     }
 
-    /**
-     * Reset password confirmation
-     */
     override suspend fun resetPasswordConfirm(password: String, code: String): DataState<Boolean> {
         return try {
             Amplify.Auth.confirmResetPassword(password, code)

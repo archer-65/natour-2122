@@ -3,11 +3,11 @@ package com.unina.natourkt.core.data.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.unina.natourkt.core.util.Constants
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.RouteApi
 import com.unina.natourkt.core.data.repository.RouteRepositoryImpl
 import com.unina.natourkt.core.domain.model.route.Route
+import com.unina.natourkt.core.util.Constants
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

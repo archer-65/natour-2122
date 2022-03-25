@@ -8,9 +8,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentConfirmationBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.databinding.FragmentConfirmationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

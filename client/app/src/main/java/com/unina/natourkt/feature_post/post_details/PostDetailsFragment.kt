@@ -4,11 +4,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.unina.natourkt.R
-import com.unina.natourkt.core.util.*
-import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.*
-import com.unina.natourkt.feature_route.route_details.RouteDetailsFragmentDirections
+import com.unina.natourkt.core.util.*
+import com.unina.natourkt.databinding.FragmentPostDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

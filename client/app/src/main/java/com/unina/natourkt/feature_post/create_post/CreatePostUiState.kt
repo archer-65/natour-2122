@@ -1,8 +1,6 @@
 package com.unina.natourkt.feature_post.create_post
 
 import android.net.Uri
-import com.unina.natourkt.core.domain.model.PostCreation
-import com.unina.natourkt.core.domain.model.RouteTitle
 import com.unina.natourkt.core.presentation.model.RouteTitleUi
 import com.unina.natourkt.core.presentation.util.TextFieldState
 

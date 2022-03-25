@@ -1,8 +1,8 @@
 package com.unina.natourkt.core.domain.model.route
 
-import com.unina.natourkt.core.util.Difficulty
 import com.unina.natourkt.core.domain.model.RouteStop
 import com.unina.natourkt.core.domain.model.User
+import com.unina.natourkt.core.util.Difficulty
 import java.time.LocalDateTime
 
 /**

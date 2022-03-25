@@ -5,14 +5,13 @@ import android.view.MenuItem
 import android.view.View
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.unina.natourkt.R
-import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
 import com.unina.natourkt.core.presentation.adapter.ViewPagerAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.setTopMargin
+import com.unina.natourkt.databinding.FragmentRouteDetailsBinding
 import com.unina.natourkt.feature_route.route_details.info.RouteDetailsInfoFragment
 import com.unina.natourkt.feature_route.route_details.map.RouteDetailsMapFragment
 import com.unina.natourkt.feature_route.route_details.tag.RouteDetailsTagFragment

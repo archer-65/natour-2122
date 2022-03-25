@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
+import com.unina.natourkt.core.presentation.model.PostItemUi
 import com.unina.natourkt.core.util.GlideApp
 import com.unina.natourkt.databinding.PostItemBinding
-import com.unina.natourkt.core.presentation.model.PostItemUi
 
 /**
  * Implementation of PagingDataAdapter for [PostItemUi] (posts on home screen)

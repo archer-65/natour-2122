@@ -1,6 +1,5 @@
 package com.unina.natourkt.core.analytics
 
-import android.util.Log
 import com.google.firebase.analytics.FirebaseAnalytics
 import javax.inject.Inject
 

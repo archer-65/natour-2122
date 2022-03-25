@@ -9,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.pickImageFromGallery
-import com.unina.natourkt.databinding.BottomSheetFilterBinding
 import com.unina.natourkt.databinding.BottomSheetProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 

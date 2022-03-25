@@ -1,7 +1,6 @@
 package com.unina.natourkt.feature_route.create_route
 
 import android.net.Uri
-import androidx.annotation.IdRes
 import com.unina.natourkt.core.util.Difficulty
 
 sealed class CreateRouteEvent {

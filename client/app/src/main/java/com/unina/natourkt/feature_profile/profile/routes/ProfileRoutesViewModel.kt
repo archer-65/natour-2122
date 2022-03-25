@@ -12,7 +12,8 @@ import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.RouteItemUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteItemUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ import javax.inject.Inject
 class ProfileRoutesViewModel @Inject constructor(
     private val getPersonalRoutesUseCase: GetPersonalRoutesUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val routeItemUiMapper: RouteItemUiMapper,
 ) : ViewModel() {
 
@@ -43,7 +44,7 @@ class ProfileRoutesViewModel @Inject constructor(
 
     fun onEvent(event: ProfileRoutesEvent) {
         when (event) {
-            ProfileRoutesEvent.ClickRoute -> analytics.sendEvent(ActionEvents.ClickRoute)
+            ProfileRoutesEvent.ClickRoute -> analyticsUseCase.sendEvent(ActionEvents.ClickRoute)
         }
     }
 

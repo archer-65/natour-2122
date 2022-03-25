@@ -1,12 +1,11 @@
 package com.unina.natourkt.core.data.util
 
 import android.util.Log
-import com.amplifyframework.storage.StorageException
+import com.unina.natourkt.core.data.util.NetworkConstants.NETWORK_TIMEOUT
 import com.unina.natourkt.core.util.Constants.NETWORK_ERROR
 import com.unina.natourkt.core.util.Constants.SERVER_ERROR
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.ErrorHandler
-import com.unina.natourkt.core.data.util.NetworkConstants.NETWORK_TIMEOUT
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.withContext

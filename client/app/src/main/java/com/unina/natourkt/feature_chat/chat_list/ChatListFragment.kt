@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
@@ -15,7 +14,6 @@ import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
-import com.unina.natourkt.core.presentation.util.scrollBehavior
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentChatListBinding
 import dagger.hilt.android.AndroidEntryPoint

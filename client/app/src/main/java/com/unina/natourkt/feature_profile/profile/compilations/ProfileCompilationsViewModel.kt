@@ -26,7 +26,7 @@ import javax.inject.Inject
 class ProfileCompilationsViewModel @Inject constructor(
     private val getPersonalCompilationsUseCase: GetPersonalCompilationsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val compilationMapper: CompilationItemUiMapper,
 ) : ViewModel() {
 
@@ -43,7 +43,7 @@ class ProfileCompilationsViewModel @Inject constructor(
 
     fun onEvent(event: ProfileCompilationsEvent) {
         when (event) {
-            ProfileCompilationsEvent.ClickCompilation -> analytics.sendEvent(ActionEvents.ClickCompilation)
+            ProfileCompilationsEvent.ClickCompilation -> analyticsUseCase.sendEvent(ActionEvents.ClickCompilation)
         }
     }
 

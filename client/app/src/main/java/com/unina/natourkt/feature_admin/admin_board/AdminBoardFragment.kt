@@ -12,7 +12,10 @@ import com.unina.natourkt.core.presentation.adapter.ItemLoadStateAdapter
 import com.unina.natourkt.core.presentation.adapter.ReportAdapter
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.model.ReportItemUi
-import com.unina.natourkt.core.presentation.util.*
+import com.unina.natourkt.core.presentation.util.UiEffect
+import com.unina.natourkt.core.presentation.util.asString
+import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
+import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentAdminBoardBinding
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -27,7 +27,7 @@ class RoutesViewModel @Inject constructor(
     private val getRoutesUseCase: GetRoutesUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val userUiMapper: UserUiMapper,
     private val routeItemUiMapper: RouteItemUiMapper,
 ) : ViewModel() {
@@ -52,7 +52,7 @@ class RoutesViewModel @Inject constructor(
 
     fun onEvent(event: RoutesEvent) {
         when (event) {
-            RoutesEvent.ClickRoute -> analytics.sendEvent(ActionEvents.ClickRoute)
+            RoutesEvent.ClickRoute -> analyticsUseCase.sendEvent(ActionEvents.ClickRoute)
         }
     }
 

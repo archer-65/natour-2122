@@ -3,29 +3,34 @@ package com.unina.natourkt.core.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.data.paging.CompilationRouteSource
 import com.unina.natourkt.core.data.paging.FilteredRoutesSource
 import com.unina.natourkt.core.data.paging.PersonalRouteSource
 import com.unina.natourkt.core.data.paging.RoutesSource
+import com.unina.natourkt.core.data.remote.dto.mapper.DirectionsApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteCreationApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteTitleApiMapper
+import com.unina.natourkt.core.data.remote.retrofit.MapsApi
 import com.unina.natourkt.core.data.remote.retrofit.RouteApi
 import com.unina.natourkt.core.data.util.safeApiCall
 import com.unina.natourkt.core.domain.model.Filter
 import com.unina.natourkt.core.domain.model.RouteCreation
 import com.unina.natourkt.core.domain.model.RouteTitle
 import com.unina.natourkt.core.domain.model.route.Route
+import com.unina.natourkt.core.domain.repository.MapsRepository
 import com.unina.natourkt.core.domain.repository.RouteRepository
+import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
- * This implementation of [RouteRepository] contains [Route] related functions for incoming
- * responses from [RouteApi] and uses [RoutesSource] to Paginate with
- * Paging 3 library
+ * This implementation of [RouteRepository] works with a [RouteApi] Retrofit interface
+ * It also contains mapper for model conversions
+ * @see [RouteApiMapper]
+ * @see [RouteTitleApiMapper]
+ * @see [RouteCreationApiMapper]
  */
 class RouteRepositoryImpl @Inject constructor(
     private val api: RouteApi,
@@ -42,9 +47,6 @@ class RouteRepositoryImpl @Inject constructor(
         const val NETWORK_PAGE_SIZE = 10
     }
 
-    /**
-     * This functions return paginated data for [Route] as a flow
-     */
     override fun getRoutes(): Flow<PagingData<Route>> {
         return Pager(
             config = PagingConfig(
@@ -91,7 +93,7 @@ class RouteRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun getRouteTitle(title: String): DataState<List<RouteTitle>> =
+    override suspend fun getRoutesTitles(title: String): DataState<List<RouteTitle>> =
         safeApiCall(IO) {
             val titlesResponse = api.getRouteTitles(title)
             titlesResponse.map { routeTitleApiMapper.mapToDomain(it) }
@@ -104,9 +106,9 @@ class RouteRepositoryImpl @Inject constructor(
             api.createRoute(routeRequest)
         }
 
-    override suspend fun getRouteById(id: Long): DataState<Route> =
+    override suspend fun getRouteById(routeId: Long): DataState<Route> =
         safeApiCall(IO) {
-            val routeResponse = api.getRouteById(id)
+            val routeResponse = api.getRouteById(routeId)
             routeApiMapper.mapToDomain(routeResponse)
         }
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
+import com.unina.natourkt.core.domain.use_case.auth.LoginSocialUseCase
 import com.unina.natourkt.core.domain.use_case.auth.LoginUseCase
 import com.unina.natourkt.core.presentation.base.validation.isPasswordValid
 import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
@@ -15,13 +16,11 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * ViewModel used by [LoginFragment]
- */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val loginSocialUseCase: LoginSocialUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -47,7 +46,6 @@ class LoginViewModel @Inject constructor(
      * @see [LoginUseCase]
      */
     private fun login() {
-        // On every value emitted by the flow
         viewModelScope.launch {
             if (checkFormValidity()) {
                 loginUseCase(
@@ -63,12 +61,12 @@ class LoginViewModel @Inject constructor(
 
     /**
      * Login social function
-     * @see [LoginUseCase]
+     * @see [LoginSocialUseCase]
      */
     private fun login(provider: String) {
         // On every value emitted by the flow
         viewModelScope.launch {
-            loginUseCase(provider).onEach { result ->
+            loginSocialUseCase(provider).onEach { result ->
                 // Util function
                 resultManager(result)
             }.launchIn(viewModelScope)
@@ -80,19 +78,16 @@ class LoginViewModel @Inject constructor(
      */
     private suspend fun resultManager(result: DataState<Boolean>) {
         when (result) {
-            // In case of success, update the isUserLoggedIn value
             is DataState.Success -> {
                 _uiState.value = LoginUiState(isUserLoggedIn = result.data ?: false)
-                analytics.sendEvent(ActionEvents.LoggedIn)
+                analyticsUseCase.sendEvent(ActionEvents.LoggedIn)
             }
-            // In case of error, update the error message
             is DataState.Error -> {
                 _uiState.value = LoginUiState(isLoading = false)
 
                 val errorText = UiTextCauseMapper.mapToText(result.error)
                 _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
             }
-            // In case of loading state, isLoading is true
             is DataState.Loading -> {
                 _uiState.value = LoginUiState(isLoading = true)
             }

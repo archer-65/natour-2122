@@ -1,9 +1,9 @@
 package com.unina.natourkt.core.data.remote.dto.mapper
 
-import com.unina.natourkt.core.util.DateTimeParser
-import com.unina.natourkt.core.util.Difficulty
 import com.unina.natourkt.core.data.remote.dto.route.RouteDto
 import com.unina.natourkt.core.domain.model.route.Route
+import com.unina.natourkt.core.util.DateTimeParser
+import com.unina.natourkt.core.util.Difficulty
 import javax.inject.Inject
 
 class RouteApiMapper @Inject constructor(

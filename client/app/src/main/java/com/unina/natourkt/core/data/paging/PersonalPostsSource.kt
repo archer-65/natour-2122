@@ -3,11 +3,11 @@ package com.unina.natourkt.core.data.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.unina.natourkt.core.util.Constants.POST_MODEL
 import com.unina.natourkt.core.data.remote.dto.mapper.PostApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.PostApi
 import com.unina.natourkt.core.data.repository.PostRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.core.domain.model.Post
+import com.unina.natourkt.core.util.Constants.POST_MODEL
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

@@ -3,7 +3,6 @@ package com.unina.natourkt.core.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.data.paging.PersonalPostSource
 import com.unina.natourkt.core.data.paging.PostSource
 import com.unina.natourkt.core.data.paging.TaggedPostSource
@@ -14,15 +13,11 @@ import com.unina.natourkt.core.data.util.safeApiCall
 import com.unina.natourkt.core.domain.model.Post
 import com.unina.natourkt.core.domain.model.PostCreation
 import com.unina.natourkt.core.domain.repository.PostRepository
+import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-/**
- * This implementation of [PostRepository] contains [Post] related functions for incoming
- * responses from [PostApi] and uses [PostSource] to Paginate with
- * Paging 3 library
- */
 class PostRepositoryImpl @Inject constructor(
     private val api: PostApi,
     private val postApiMapper: PostApiMapper,
@@ -37,9 +32,6 @@ class PostRepositoryImpl @Inject constructor(
         const val NETWORK_PAGE_SIZE = 5
     }
 
-    /**
-     * This functions return paginated data for [Post] as a flow
-     */
     override fun getPosts(): Flow<PagingData<Post>> {
         return Pager(
             config = PagingConfig(

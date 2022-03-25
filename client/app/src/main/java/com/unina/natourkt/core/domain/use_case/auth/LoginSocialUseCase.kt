@@ -9,18 +9,18 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
- * This UseCase provides the classic login way with username and password
+ * This UseCase provides the login with Social Medias like Google and Facebook
  * @see [AuthRepository]
  */
-class LoginUseCase @Inject constructor(
+class LoginSocialUseCase @Inject constructor(
     private val authRepository: AuthRepository,
 ) {
 
-    operator fun invoke(username: String, password: String): Flow<DataState<Boolean>> = flow {
-        Log.i(LOGIN_STATE, "Processing login attempt via username and password...")
+    operator fun invoke(provider: String): Flow<DataState<Boolean>> = flow {
+        Log.i(LOGIN_STATE, "Processing login attempt via ${provider}...")
         emit(DataState.Loading())
 
-        val loginResult = authRepository.login(username, password)
+        val loginResult = authRepository.login(provider)
         emit(loginResult)
     }
 }

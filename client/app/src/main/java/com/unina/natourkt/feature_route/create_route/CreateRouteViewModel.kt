@@ -8,8 +8,6 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.RouteCreation
 import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
-import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.util.toInputStream
 import com.unina.natourkt.core.domain.use_case.maps.GetDirectionsUseCase
 import com.unina.natourkt.core.domain.use_case.route.CreateRouteUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
@@ -17,8 +15,10 @@ import com.unina.natourkt.core.presentation.model.RouteStopUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteStopUiMapper
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.Difficulty
 import com.unina.natourkt.core.util.safeRemove
+import com.unina.natourkt.core.util.toInputStream
 import com.unina.natourkt.feature_route.create_route.info.CreateRouteInfoUiState
 import com.unina.natourkt.feature_route.create_route.map.CreateRouteMapUiState
 import com.unina.natourkt.feature_route.create_route.photos.CreateRoutePhotosUiState
@@ -37,7 +37,7 @@ class CreateRouteViewModel @Inject constructor(
     private val getDirectionsUseCase: GetDirectionsUseCase,
     private val createRouteUseCase: CreateRouteUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val gpxParser: GPXParser,
     private val routeStopUiMapper: RouteStopUiMapper,
 ) : ViewModel() {
@@ -78,8 +78,8 @@ class CreateRouteViewModel @Inject constructor(
             // GENERAL
             is CreateRouteEvent.Upload -> uploadRoute()
 
-            CreateRouteEvent.SearchPlace -> analytics.sendEvent(ActionEvents.SearchPlace)
-            CreateRouteEvent.SelectGpx -> analytics.sendEvent(ActionEvents.SelectGpx)
+            CreateRouteEvent.SearchPlace -> analyticsUseCase.sendEvent(ActionEvents.SearchPlace)
+            CreateRouteEvent.SelectGpx -> analyticsUseCase.sendEvent(ActionEvents.SelectGpx)
         }
     }
 
@@ -114,7 +114,7 @@ class CreateRouteViewModel @Inject constructor(
     }
 
     private fun addStop(latitude: Double, longitude: Double) {
-        analytics.sendEvent(ActionEvents.AddMarker)
+        analyticsUseCase.sendEvent(ActionEvents.AddMarker)
 
         _uiStateMap.update {
             val newStops = it.stops + RouteStopUi(
@@ -129,7 +129,7 @@ class CreateRouteViewModel @Inject constructor(
     }
 
     private fun cleanStops() {
-        analytics.sendEvent(ActionEvents.CleanMap)
+        analyticsUseCase.sendEvent(ActionEvents.CleanMap)
         _uiStateMap.update {
             it.copy(stops = emptyList())
         }
@@ -196,7 +196,7 @@ class CreateRouteViewModel @Inject constructor(
             createRouteUseCase(mapForCreation()).onEach { result ->
                 when (result) {
                     is DataState.Success -> _uiState.update {
-                        analytics.sendEvent(ActionEvents.CreateRoute)
+                        analyticsUseCase.sendEvent(ActionEvents.CreateRoute)
 
                         it.copy(isInserted = true, isLoading = false)
                     }

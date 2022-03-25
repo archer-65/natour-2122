@@ -3,11 +3,11 @@ package com.unina.natourkt.core.data.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.unina.natourkt.core.util.Constants.COMPILATION_MODEL
 import com.unina.natourkt.core.data.remote.dto.mapper.CompilationApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.CompilationApi
 import com.unina.natourkt.core.data.repository.CompilationRepositoryImpl.Companion.NETWORK_PAGE_SIZE
 import com.unina.natourkt.core.domain.model.Compilation
+import com.unina.natourkt.core.util.Constants.COMPILATION_MODEL
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

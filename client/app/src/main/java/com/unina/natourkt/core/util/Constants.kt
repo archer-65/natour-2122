@@ -7,10 +7,7 @@ package com.unina.natourkt.core.util
 object Constants {
 
     // Emulator
-//    const val BASE_URL = "http://10.0.2.2:8080/"
-
-    // Maps API
-    //const val MAPS_URL = "https://maps.googleapis.com/"
+    // const val BASE_URL = "http://10.0.2.2:8080/"
 
     // Local IP
     const val BASE_URL = "http://192.168.1.47:8080/"
@@ -21,21 +18,25 @@ object Constants {
     const val FACEBOOK = "FACEBOOK"
 
     // Log tags
-    const val AMPLIFY = "Amplify Status"
-
-    const val LOGIN_STATE = "Login Process"
-    const val REGISTRATION_STATE = "Sign Up Process"
-    const val PASSWORD_RESET = "Password Reset Process"
-
-    const val DATASTORE_STATE = "Datastore Status"
-
     const val NETWORK_REQUEST = "Network Request Status"
     const val NETWORK_ERROR = "Network Error"
     const val SERVER_ERROR = "Server unreachable"
 
-    const val POST_MODEL = "Post Request Status"
-    const val ROUTE_MODEL = "Route Request Status"
-    const val COMPILATION_MODEL = "Compilation Request Status"
+    const val AMPLIFY = "Amplify Status"
+    const val MAPS = "Maps request"
+    const val DATASTORE_STATE = "Datastore Status"
+    const val STORAGE = "Storage request"
+
+    const val LOGIN_STATE = "Login process"
+    const val REGISTRATION_STATE = "Sign Up process"
+    const val PASSWORD_RESET = "Password reset process"
+
+    const val POST_MODEL = "Post request status"
+    const val CHAT_MODEL = "Chat request status"
+    const val ROUTE_MODEL = "Route request status"
+    const val COMPILATION_MODEL = "Compilation request status"
+    const val RATING_MODEL = "Rating route request status"
+    const val REPORT_MODEL = "Report route request status"
 
     // DATASTORE NAME(S)
     const val PREFERENCES = "DATASTORE_PREF"

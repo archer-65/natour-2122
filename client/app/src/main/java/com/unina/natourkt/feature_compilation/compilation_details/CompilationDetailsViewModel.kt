@@ -28,7 +28,7 @@ import javax.inject.Inject
 class CompilationDetailsViewModel @Inject constructor(
     private val getCompilationRoutesUseCase: GetCompilationRoutesUseCase,
     private val removeCompilationRouteUseCase: RemoveCompilationRouteUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val routeItemUiMapper: RouteItemUiMapper,
     savedState: SavedStateHandle,
@@ -56,7 +56,7 @@ class CompilationDetailsViewModel @Inject constructor(
                 event.routeId,
                 event.position
             )
-            CompilationDetailsEvent.ClickRoute -> analytics.sendEvent(ActionEvents.ClickRoute)
+            CompilationDetailsEvent.ClickRoute -> analyticsUseCase.sendEvent(ActionEvents.ClickRoute)
         }
     }
 
@@ -87,7 +87,7 @@ class CompilationDetailsViewModel @Inject constructor(
                         )
                     }
 
-                    analytics.sendEvent(ActionEvents.RemoveFromCompilation)
+                    analyticsUseCase.sendEvent(ActionEvents.RemoveFromCompilation)
 
                     getCompilationRoutes()
 

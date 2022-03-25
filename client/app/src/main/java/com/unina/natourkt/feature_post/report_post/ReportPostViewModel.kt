@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportPostViewModel @Inject constructor(
     private val reportPostUseCase: ReportPostUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     savedState: SavedStateHandle
 ) : ViewModel() {
 
@@ -43,7 +43,7 @@ class ReportPostViewModel @Inject constructor(
                     val text = UiText.StringResource(R.string.post_reported_success)
                     _eventFlow.emit(UiEffect.ShowToast(text))
 
-                    analytics.sendEvent(ActionEvents.ReportPost)
+                    analyticsUseCase.sendEvent(ActionEvents.ReportPost)
 
                     _uiState.update { it.copy(isLoading = false, isReported = true) }
                 }

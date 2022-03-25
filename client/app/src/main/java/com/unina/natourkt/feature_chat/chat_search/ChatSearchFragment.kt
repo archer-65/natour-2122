@@ -15,8 +15,6 @@ import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.presentation.util.collectLatestOnLifecycleScope
 import com.unina.natourkt.core.presentation.util.setTopMargin
 import com.unina.natourkt.databinding.FragmentChatSearchBinding
-import com.unina.natourkt.feature_route.route_details.RouteDetailsFragmentDirections
-import com.unina.natourkt.feature_route.route_search.RouteSearchEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 

@@ -30,7 +30,7 @@ class ChatSearchViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getChatByMembersUseCase: GetChatByMembersUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val userUiMapper: UserUiMapper,
     savedState: SavedStateHandle
 ) : ViewModel() {
@@ -67,7 +67,7 @@ class ChatSearchViewModel @Inject constructor(
 
     private fun getResults() {
         _usersResult = _uiState.filter { it.query.isNotBlank() }.flatMapLatest { filter ->
-            analytics.sendEvent(ActionEvents.SearchUser)
+            analyticsUseCase.sendEvent(ActionEvents.SearchUser)
             getUsersUseCase(filter.query, loggedUserId)
                 .map { pagingData ->
                     pagingData.map { user ->
@@ -90,7 +90,7 @@ class ChatSearchViewModel @Inject constructor(
                     is DataState.Success -> {
                         val chatUi = result.data?.mapToUi()
 
-                        analytics.sendEvent(ActionEvents.ClickChat)
+                        analyticsUseCase.sendEvent(ActionEvents.ClickChat)
                         _uiState.update { it.copy(isLoading = false, retrievedChat = chatUi) }
                     }
                     is DataState.Loading -> {

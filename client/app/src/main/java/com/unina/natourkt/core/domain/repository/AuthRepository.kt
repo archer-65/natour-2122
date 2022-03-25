@@ -3,7 +3,7 @@ package com.unina.natourkt.core.domain.repository
 import com.unina.natourkt.core.util.DataState
 
 /**
- * Interface for authentication functions
+ * Interface for authentication functions repository
  */
 interface AuthRepository {
 
@@ -47,5 +47,9 @@ interface AuthRepository {
      * Reset password confirmation
      */
     suspend fun resetPasswordConfirm(password: String, code: String): DataState<Boolean>
+
+    /**
+     * Logout user
+     */
     suspend fun logout(): DataState<Boolean>
 }

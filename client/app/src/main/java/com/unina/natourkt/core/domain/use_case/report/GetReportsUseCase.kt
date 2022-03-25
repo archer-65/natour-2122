@@ -8,15 +8,16 @@ import com.unina.natourkt.core.util.Constants
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * This UseCase is used to retrieve all reports
+ * @see [ReportRepository]
+ */
 class GetReportsUseCase @Inject constructor(
     private val reportRepository: ReportRepository,
 ) {
 
-    /**
-     * Get [Flow] of [PagingData] for [Report] model
-     */
     operator fun invoke(): Flow<PagingData<Report>> {
-        Log.i(Constants.ROUTE_MODEL, "Getting paginated reports...")
+        Log.i(Constants.REPORT_MODEL, "Getting reports...")
         return reportRepository.getReports()
     }
 }

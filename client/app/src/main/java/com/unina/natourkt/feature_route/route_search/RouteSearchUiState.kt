@@ -2,7 +2,6 @@ package com.unina.natourkt.feature_route.route_search
 
 import com.google.android.libraries.places.api.model.Place
 import com.unina.natourkt.core.domain.model.Filter
-import com.unina.natourkt.core.domain.model.User
 import com.unina.natourkt.core.presentation.model.UserUi
 import com.unina.natourkt.core.util.Difficulty
 

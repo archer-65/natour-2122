@@ -7,15 +7,15 @@ import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.Chat
 import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
 import com.unina.natourkt.core.domain.use_case.chat.GetChatByMembersUseCase
-import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.post.GetPostDetailsUseCase
+import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
 import com.unina.natourkt.core.domain.use_case.storage.GetUrlFromKeyUseCase
 import com.unina.natourkt.core.presentation.model.ChatItemUi
 import com.unina.natourkt.core.presentation.model.mapper.PostDetailsUiMapper
 import com.unina.natourkt.core.presentation.model.mapper.UserUiMapper
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -27,7 +27,7 @@ class PostDetailsViewModel @Inject constructor(
     private val getUserDataUseCase: GetUserDataUseCase,
     private val getUrlFromKeyUseCase: GetUrlFromKeyUseCase,
     private val getChatByMembersUseCase: GetChatByMembersUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val postDetailsUiMapper: PostDetailsUiMapper,
     private val userUiMapper: UserUiMapper,
     savedState: SavedStateHandle
@@ -101,7 +101,7 @@ class PostDetailsViewModel @Inject constructor(
                     is DataState.Success -> {
                         val chatUi = result.data?.mapToUi()
 
-                        analytics.sendEvent(ActionEvents.ClickChat)
+                        analyticsUseCase.sendEvent(ActionEvents.ClickChat)
                         _uiState.update { it.copy(isLoading = false, retrievedChat = chatUi) }
                     }
                     is DataState.Loading -> {

@@ -6,8 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.model.PostCreation
 import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
-import com.unina.natourkt.core.util.DataState
-import com.unina.natourkt.core.util.safeRemove
 import com.unina.natourkt.core.domain.use_case.post.CreatePostUseCase
 import com.unina.natourkt.core.domain.use_case.route.GetRouteTitleUseCase
 import com.unina.natourkt.core.domain.use_case.settings.GetUserDataUseCase
@@ -15,6 +13,8 @@ import com.unina.natourkt.core.presentation.model.RouteTitleUi
 import com.unina.natourkt.core.presentation.model.mapper.RouteTitleUiMapper
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.DataState
+import com.unina.natourkt.core.util.safeRemove
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -25,7 +25,7 @@ class CreatePostViewModel @Inject constructor(
     private val getRouteTitleUseCase: GetRouteTitleUseCase,
     private val createPostUseCase: CreatePostUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val routeTitleUiMapper: RouteTitleUiMapper
 ) : ViewModel() {
 
@@ -95,7 +95,7 @@ class CreatePostViewModel @Inject constructor(
             createPostUseCase(mapForCreation()).onEach { result ->
                 when (result) {
                     is DataState.Success -> {
-                        analytics.sendEvent(ActionEvents.CreatePost)
+                        analyticsUseCase.sendEvent(ActionEvents.CreatePost)
 
                         _uiState.update {
                             it.copy(isInserted = true, isLoading = false)

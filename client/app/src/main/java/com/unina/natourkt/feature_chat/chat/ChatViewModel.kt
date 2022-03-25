@@ -21,17 +21,20 @@ import com.unina.natourkt.core.util.DateTimeParser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import org.hildan.krossbow.stomp.*
+import org.hildan.krossbow.stomp.ConnectionException
+import org.hildan.krossbow.stomp.StompClient
+import org.hildan.krossbow.stomp.StompSession
 import org.hildan.krossbow.stomp.conversions.kxserialization.StompSessionWithKxSerialization
 import org.hildan.krossbow.stomp.conversions.kxserialization.subscribe
 import org.hildan.krossbow.stomp.conversions.kxserialization.withJsonConversions
 import org.hildan.krossbow.stomp.headers.StompSendHeaders
+import org.hildan.krossbow.stomp.use
 import javax.inject.Inject
 
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val getChatMessagesUseCase: GetChatMessagesUseCase,
-    private val analytics: ActionAnalyticsUseCase,
+    private val analyticsUseCase: ActionAnalyticsUseCase,
     private val client: StompClient,
     savedState: SavedStateHandle
 ) : ViewModel() {
@@ -121,7 +124,7 @@ class ChatViewModel @Inject constructor(
                     )
                 }
 
-                analytics.sendEvent(ActionEvents.SendMessage)
+                analyticsUseCase.sendEvent(ActionEvents.SendMessage)
                 _uiState.update { it.copy(messageState = "", shouldScrollToBottom = true) }
             } catch (stompException: ConnectionException) {
                 val text = UiTextCauseMapper.mapToText(DataState.Cause.NetworkError)

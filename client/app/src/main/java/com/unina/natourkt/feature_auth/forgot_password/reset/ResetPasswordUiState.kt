@@ -1,7 +1,6 @@
 package com.unina.natourkt.feature_auth.forgot_password.reset
 
 import com.unina.natourkt.core.presentation.util.TextFieldState
-import com.unina.natourkt.core.util.DataState
 
 /**
  * UiState used for presentation by [ResetPasswordViewModel]

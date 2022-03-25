@@ -10,8 +10,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.material.snackbar.Snackbar
 import com.unina.natourkt.R
-import com.unina.natourkt.core.presentation.contract.GpxPickerContract
 import com.unina.natourkt.core.presentation.base.fragment.BaseMapFragment
+import com.unina.natourkt.core.presentation.contract.GpxPickerContract
 import com.unina.natourkt.core.presentation.util.*
 import com.unina.natourkt.databinding.FragmentCreateRouteMapBinding
 import com.unina.natourkt.feature_route.create_route.CreateRouteEvent

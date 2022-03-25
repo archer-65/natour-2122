@@ -2,7 +2,6 @@ package com.unina.natourkt.core.presentation.util
 
 import android.text.InputFilter
 import android.text.Spanned
-import java.lang.NumberFormatException
 
 class DurationFilter(private val minValue: Int, private val maxValue: Int) : InputFilter {
 

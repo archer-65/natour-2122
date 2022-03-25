@@ -5,12 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.unina.natourkt.R
 import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.domain.use_case.analytics.ActionAnalyticsUseCase
-import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.domain.use_case.auth.ResetPasswordRequestUseCase
 import com.unina.natourkt.core.presentation.base.validation.isUsernameValid
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiText
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
+import com.unina.natourkt.core.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ForgotPasswordViewModel @Inject constructor(
     private val resetPasswordRequestUseCase: ResetPasswordRequestUseCase,
-    private val analytics: ActionAnalyticsUseCase
+    private val analyticsUseCase: ActionAnalyticsUseCase
 ) : ViewModel() {
 
     /**
@@ -52,7 +52,7 @@ class ForgotPasswordViewModel @Inject constructor(
                     is DataState.Success -> {
                         _uiState.value = ForgotPasswordUiState(isCodeSent = result.data ?: false)
 
-                        analytics.sendEvent(ActionEvents.ForgotPassword)
+                        analyticsUseCase.sendEvent(ActionEvents.ForgotPassword)
 
                         val text = UiText.StringResource(R.string.code_resent_password)
                         _eventFlow.emit(UiEffect.ShowSnackbar(text))

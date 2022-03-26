@@ -1039,7 +1039,104 @@ la segnalazione di un itinerario e la ricerca di un itinerario.
 \newpage
 \section{Documento di Design del sistema}
 \subsection{Analisi dell'architettura e criteri di design}
+\subsubsection{Software deployment}
+L'architettura del software pone le sue fondamenta nel concetto di \textbf{cloud computing}.\\
+Il cloud computing, o computazione cloud, consiste nella distribuzione on-demand di risorse IT, con 
+una tariffazione basata sul consumo.\\\\
+In particolare, si è usufruito dei servizi offerti dalla piattaforma proprietaria del gruppo 
+Amazon \textbf{AWS}, \textbf{Amazon Web Services}.
+AWS, che offre cloud services ideali per creare applicazioni in modo scalabile, flessibile e affidabile, 
+presenta infatti notevoli vantaggi, che sono stati ritenuti adatti al software implementato.\\
 
+La piattaforma AWS è stata scelta, inoltre, per le seguenti caratteristiche:
+\begin{itemize}
+	\item Agilità - la possibilità di aumentare a seconda delle necessià risorse quali servizi infrastrutturali, 
+		  calcolo, storage e database;
+	\item Elasticità - evita l'allocazione anticipata di una quantità maggiore di risorse di quante siano necessarie, 
+		  così da gestire i picchi nei livelli di attività future;
+	\item Distribuzione globale di contenuti - l'infrastruttura AWS offre una copertura globale: fare in modo che le 
+		  applicazioni siano vicino agli utenti finali riduce la latenza e migliora la loro esperienza.\\
+\end{itemize}
+
+
+In particolare, i servizi utilizzati sono stati:
+\begin{itemize}
+	\item \textbf{Cognito} - Amazon Cognito permette di aggiungere strumenti di registrazione degli utenti, accesso 
+		  e controllo degli accessi alle app Web e per dispositivi mobili. Esso supporta l'accesso degli utenti 
+		  tramite l'uso di provider di identità social quali Facebook, Google; tale risorsa è 
+		  stata ritenuta fondamentale anche in termini di sicurezza degli utenti.
+	\item \textbf{EC2} - l'\textbf{Elastic Compute Cloud} (Amazon EC2) fornisce capacità di calcolo scalabile in AWS Cloud. 
+		  Esso offre ambienti di elaborazione virtuale, noti come \textit{istanze}, varie configurazioni di CPU, memoria, 
+		  archiviazione e capacità di rete per le istanza note come \textit{tipi di istanza}. In particolare, la scelta di EC2 
+		  è finalizzata al deploy dell'applicativo Spring, utilizzato per realizzare il Rest Service.
+	\item \textbf{RDS} - Amazon RDS ha permesso la configurazione e l'utilizzo del database relazionale alla base del software prodotto;
+	\item \textbf{S3} - il \textbf{Simple Storage Service} (Amazon S3) permette l'archiviazione di oggetti in modo scalabile; è stato utilizzato 
+		  per conservare in modo permanente file immagine caricati dagli utenti;
+	\item \textbf{Lambda} - AWS Lambda è un servizio di calcolo basato su eventi serverless. È stato utilizzato, all'interno del software, per l'inserimento di un nuovo 
+		  utente nel database in seguito alla registrazione, nella sua integrazione con il servizio \textbf{Cognito}. Tale scelta ha evitato la possibile presenza di inconsistenze tra database e registrazioni effettivamente realizzate: 
+		  Lambda permette infatti di creare dei trigger (in quest caso di \textit{post conferma}) utili a questo scopo.
+\end{itemize}
+Attraverso il framework \textbf{Amplify} è stato possibile realizzare un servizio di autenticazione sicuro (tramite il servizio \textit{Cognito}) e 
+l'archiviazione di file (tramite il servizio \textit{S3}).
+Amplify consente anche di creare back-end o applicativi serverless; nel caso del software realizzato, è stata fatta la scelta di utilizzarlo solo 
+in funzione di alcuni servizi da esso offerti. Questa scelta è stata influenzata anche in seguito alla deprecazione dell'SDK standard AWS per Android.
+
+\subsubsection{Google Maps Platform}
+L'applicazione NaTour si basa fortemente sulla componente geolocalizzata degli itinerari.\\
+Per garantire un'esperienza ottimale da questo punto di vista sono stati utilizzati i servizi 
+della piattaforma Google Maps. \\\\
+La \textbf{Google Maps Platform} è un insieme di API e SDK che permette di integrare Google Maps in applicazioni 
+mobile e di recuperare dati da Google Maps stesso. In particolare, si è usufruito delle seguenti API:
+\begin{itemize}
+	\item MapsAPI - per la visualizzazione interattiva di mappe statiche e dinamiche
+	\item PlacesAPI - per il recupero di informazioni sui posti tramite richieste HTTP;
+	\item DirectionsAPI - per il calcolo del percorso tra diverse tappe; esse utilizzano una richiesta HTTP 
+		  per ritornare le direzioni tra località in formato JSON o XML. 
+		  Le DirectionsAPI, in quanto web service, sono state integrate nel 
+		  Rest Service proprio del software.
+
+\end{itemize}
+
+\subsubsection{Architettura del Rest Service}
+Per la realizzazione del Rest Service è stato utilizzato il framework \textbf{Spring}.\\
+Spring fornisce un'infrastruttura di supporto per lo sviluppo di applicazioni. \\
+L'applicativo è organizzato secondo un'architettura a strati:
+\begin {itemize}
+	\item Presentation layer - strato più esterno, che gestisce la presentazione del contenuto e 
+		  l'interazione con l'utente;
+	\item Business logic layer - strato centrale, che gestisce la logica;
+	\item Data access layer - strato più interno, che gestisce il recupero di dati dalle diverse sorgenti.
+\end{itemize}
+
+Ciascuno di questi strati dipende da quello sottostante per far sì che l'applicazione funzioni. In altre parole,
+lo strato di presentazione comunica con quello della business logic, che a sua volta comunica con lo strato di data 
+access. Ogni strato ha quindi bisogno di questa \textit{dipendenza} per eseguire il proprio compito. \\\\
+
+La scelta è ricaduta sul framework Spring per ottenere un \textit{loose coupling}, ossia un accoppiamento largo. 
+Senza l'utilizzo di Spring, il codice avrebbe potuto causare \textit{tight coupling}, che non è 
+considerato essere una buona pratica di programmazione. Il loose coupling è ideale, in quanto le componenti largamente 
+accoppiate sono indipendenti: ciò implica che, a seguito di possibili cambiamenti futuri, questi non influenzeranno 
+le altre componenti.\\
+
+Al cuore del framework Spring si trova la \textbf{dependency injection}. \\
+La dependency injection è un pattern di programmazione che permette agli sviluppatori 
+di costruire architetture disaccoppiate. Ciò vuol dire che Spring comprende le \textit{annotazioni} 
+poste in capo alle classi; in seguito alla creazione di un'istanza, dunque, il framework si assicura che le istanze siano state 
+create con le opportune dependencies.
+
+In particolare, nello sviluppo del software, è stata utilizzata un'estensione del framework Spring, chiamata \textbf{Spring Boot}.\\
+Spring Boot ha delle caratteristiche specifiche che rendono la gestione dell'applicazione più semplice.\\
+Tra alcune dei vantaggi di scegliere Spring Boot, si ricordano:
+\begin{itemize}
+	\item Creazione di applicazioni Spring stand-alone;
+	\item Dotazione di dependencies "starter" per semplificare la configurazione di build;
+	\item Configurazione automatica di Spring e di librerie di terze parti, ove possibile;
+	\item Nessuna generazione di codice e nessun requisito per la configurazione XML;
+	\item Inclusione di un web server embedded (nello specifico \textit{Apache Tomcat}) senza la necessità di ulteriori configurazioni.
+\end{itemize}
+
+\newpage
+\subsubsection{Diagramma di design del sistema}
 \begin{figure}[!htbp]
 	\centering
 	 \includepdf[pages=1]{./diagrams/sysdesign.pdf}
@@ -1062,6 +1159,16 @@ la segnalazione di un itinerario e la ricerca di un itinerario.
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettaglio_itinerario.svg}
 	\caption{Dettaglio compilation e rimozione itinerario da compilation}
 \end{figure}
+
+\newpage
+\subsubsection{Aggiunta di un itinerario}
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/design_class_diagrams-Crea_itinerario}
+	\caption{Aggiunta di un nuovo itinerario}
+\end{figure}
+
+
 
 \newpage
 \subsection{Diagrammi di sequenza di design}

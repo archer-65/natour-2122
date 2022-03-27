@@ -73,7 +73,7 @@ class UpdateRouteViewModel @Inject constructor(
                     }
 
                     val errorText = UiTextCauseMapper.mapToText(result.error)
-                    _eventFlow.emit(UiEffect.ShowSnackbar(errorText))
+                    _eventFlow.emit(UiEffect.ShowToast(errorText))
                 }
             }
         }.launchIn(viewModelScope)

@@ -110,7 +110,33 @@ la minima cifra considerata nella raccolta dati.\\
 
 \subsection{Valutazione dell'usabilità a priori}
 
+\subsubsection{Contesto d’uso del prodotto}
+La nostra applicazione NaTour sarà utilizzabili grazie ad una connessione 
+internet e GPS, poiché tale app porta l’utente in luoghi distanti dal contesto 
+urbano dovrà fare affidamento sulla propria connessione. 
+Il contesto immaginato per l’utilizzo della nostra applicazione è dare la possibilità ad appassionati di escursionismo di poter accedere in 
+modo semplice e intuitivo ad un’applicazione che contenga itinerari creati e valutati da altri utenti, 
+oppure essere noi i creatori di tali percorsi che verranno poi usufruiti da altri utenti. 
+Invece di impiegare tempo a ricercare itinerari con cui si potrebbe persino non aver un riscontro, 
+basta una semplice ricerca sulla nostra applicazione per trovare itinerari non solo vicini all’utente, 
+ma anche aver la possibilità di creare dei post per tali itinerari, 
+in modo da ottenere un riscontro con altri utenti, 
+oppure di creare compilation di itinerari da avere sempre a disposizione.
+
+\subsubsection{Valutazione dell’usabilità}
+Parte fondamentale nel processo creativo dell’applicazione è sempre capire in che direzione andare per migliorare l’esperienza dei clienti. Per realizzare ciò siamo ricorsi ad alcune tecniche per testare l’usabilità del nostro prodotto. L’approccio da noi adottato richiede di far eseguire dei task a un gruppo di utenti con differenti retroscena. Tali task vengono approcciati con due possibili: 
+	L’utente è stato in grado di compiere il task tramite gli strumenti offertigli dall’app.
+	L’utente non è stato in grado di compiere il task tramite gli strumenti offertigli dall’app.
+Ciò naturalmente deve essere eseguito in maniera completamente autonoma dall’utente senza uscire dall’app. 
+
+
+\newpage
 \subsection{Definizione delle personas}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth, page=1]{./personas/Personas.pdf}
+\end{figure}
+\FloatBarrier
 
 \section{Documento dei Requisiti Software}
 \subsection{Requisiti funzionali}
@@ -138,7 +164,7 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\rowcolor{PineGreen!70}
 		\textbf{Nome} & \textbf{Descrizione}                                                                    \\
 		\hline
-		Accesso       & Il sistema deve consentire ad un utente di poter effettuare l'accesso alla piattaforma. \\
+		Accesso & Il sistema deve consentire ad un utente di poter effettuare l'accesso alla piattaforma avente eseguito precendentemente una registrazione. \\
 		\hline
 	\end{tabular}
 	\caption{RF.2}
@@ -150,9 +176,23 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}           & \textbf{Descrizione}                                                                                             \\
+		\textbf{Nome} & \textbf{Descrizione}                                                                                             \\
 		\hline
 		Reimpostazione password & Il sistema deve consentire ad un utente registrato di poter cambiare la propria password se dimenticata o persa. \\
+		\hline
+	\end{tabular}
+	\caption{RF.3}
+	\label{table:3}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome} & \textbf{Descrizione}                                                                                             \\
+		\hline
+		Uscita dall'account & Il sistema deve consentire ad un utente registrato di poter uscire dal'account con il quale ha eseguito l'accesso. \\
 		\hline
 	\end{tabular}
 	\caption{RF.3}
@@ -184,7 +224,7 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\textbf{Nome}          & \textbf{Descrizione}                                                                                                    \\
 		\hline
 		Inserimento itinerario & Il sistema deve consentire a un utente autenticato di inserire nuovi itinerari (sentieri) in piattaforma. Un sentiero è
-		caratterizzato da un nome, una durata, un livello di difficoltà, un punto di inizio, delle foto (max 5), una descrizione
+		caratterizzato da un nome, una durata (max 16 ore), un livello di difficoltà, un punto di inizio e di fine, delle foto (max 5), una descrizione
 		(opzionale), e un tracciato geografico (opzionale) che lo rappresenta su una mappa. Il tracciato
 		geografico può essere inseribile manualmente (interagendo con una mappa interattiva) oppure
 		tramite file in formato standard GPX.                                                                                                            \\
@@ -202,7 +242,7 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\textbf{Nome}     & \textbf{Descrizione}                                                                                                                                               \\
 		\hline
 		Ricerca itinerari & Il sistema deve consentire a un utente autenticato di effettuare ricerche di itinerari tra quelli presenti in piattaforma, con possibilità di filtrare i risultati
-		per area geografica, per livello di difficoltà, per durata, e per accessibilità ai disabili.                                                                                           \\
+		per area geografica, per livello di difficoltà, per durata e per accessibilità ai disabili.                                                                                           \\
 		\hline
 	\end{tabular}
 	\caption{RF.6}
@@ -219,7 +259,7 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		Valutazione itinerario & Il sistema deve consentire a un utente autenticato di indicare un punteggio di difficoltà e/o un tempo
 		di percorrenza diverso da quello indicato dall’utente che ha inserito il sentiero. In questo caso, il
 		punteggio di difficoltà e il tempo di percorrenza per il sentiero saranno ri-calcolati come la media
-		delle difficoltà/dei tempi indicati.                                                                                            \\
+		delle difficoltà e dei tempi indicati.                                                                                            \\
 		\hline
 	\end{tabular}
 	\caption{RF.7}
@@ -294,8 +334,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\rowcolor{PineGreen!70}
 		\textbf{Nome}    & \textbf{Descrizione}                                                    \\
 		\hline
-		Inserimento post & Il sistema deve consentire a un utente autenticato di inserire un post,
-		caratterizzato da foto (max 5), una descrizione (opzionale) e un itinerario associato.     \\
+		Inserimento post & Il sistema deve consentire a un utente autenticato di inserire un post associato ad un itinerario,
+		caratterizzato da foto (max 5) e una descrizione (opzionale).     \\
 		\hline
 	\end{tabular}
 	\caption{RF.12}
@@ -472,7 +512,7 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 		\hline
 	\end{tabular}
 	\caption{RNF1}
-	\label{table:22}
+	\label{table:23}
 \end{table}
 
 \begin{table}[H]

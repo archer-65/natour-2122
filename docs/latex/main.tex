@@ -1116,7 +1116,7 @@ Spring fornisce un'\textit{infrastruttura di supporto} per lo sviluppo di applic
 
 Ciascuno di questi strati dipende da quello sottostante per far sì che l'applicazione funzioni. In altre parole,
 lo strato di presentazione comunica con quello della business logic, che a sua volta comunica con lo strato di data 
-access. Ogni strato ha quindi bisogno di questa \textit{dipendenza} per eseguire il proprio compito correttamente \\\\
+access. Ogni strato ha quindi bisogno di questa \textit{dipendenza} per eseguire il proprio compito correttamente \\
 
 La scelta di utilizzare il framework Spring è stata fatta in relazione alla volontà di ottenere un \textit{loose coupling}, ossia un accoppiamento largo. 
 Senza l'utilizzo di Spring, ci sarebbe stata la possibilità che il codice avesse potuto causare \textit{tight coupling}, che non è 
@@ -1125,14 +1125,12 @@ accoppiate sono indipendenti: ciò implica che, a seguito di possibili cambiamen
 le altre componenti.\\
 
 Al cuore del framework Spring si trova la \textbf{dependency injection}. \\
-La dependency injection è un pattern di programmazione che permette agli sviluppatori 
-di costruire architetture disaccoppiate. Ciò vuol dire che Spring comprende le \textit{annotazioni} 
-poste in capo alle classi; in seguito alla creazione di un'istanza, dunque, il framework si assicura che le istanze siano state 
-create con le opportune dependencies.
+La dependency injection è un pattern di programmazione che permette agli sviluppatori di costruire architetture disaccoppiate. Ciò vuol dire che Spring comprende le \textit{annotazioni} 
+poste in capo alle classi; in seguito alla creazione di un'istanza, dunque, il framework si assicura che le istanze siano state create con le opportune dependencies. \\\
 
-In particolare, nello sviluppo del software, è stata utilizzata un'estensione del framework Spring, chiamata \textbf{Spring Boot}.\\
+Nello specifico, per l'implementazione del software, è stata utilizzata un'estensione del framework Spring, chiamata \textbf{Spring Boot}.\\
 Spring Boot ha delle caratteristiche specifiche che rendono la gestione dell'applicazione più semplice.\\
-Tra alcune dei vantaggi di scegliere Spring Boot, si ricordano:
+Tra alcuni dei vantaggi che hanno portato alla scelta di Spring Boot, si ricordano:
 \begin{itemize}
 	\item Creazione di applicazioni Spring stand-alone;
 	\item Dotazione di dependencies "starter" per semplificare la configurazione di build;
@@ -1143,48 +1141,52 @@ Tra alcune dei vantaggi di scegliere Spring Boot, si ricordano:
 
 \newpage
 \subsection{Architettura dell’applicativo}
-L’applicativo è stato progettato basandosi sul concetto di \textbf{Clean architecture}. \\
-Tale “clean architecture” è stata realizzata basandosi  sui principi enunciati, nell’omonimo libro,  
-da Robert C. Martin, in seguito alla lettura dello stesso. \\
-L’idea chiave è quella di usare il principio di inversione di dipendenza per porre dei boundaries tra componenti di alto livello e componenti di basso livello. 
+L'intera architettura del software è stata progettata seguendo le linee guida della cosiddetta \textbf{Clean Architecture}. \\
+Il concetto di architettura \textit{pulita} si basa sui principi enunciati da Robert C. Martin nel libro "Clean Architecture".
+In seguito alle informazioni acquisite dalla lettura del libro, infatti, questo approccio è stato ritenuto quello più valido.\\
+L’idea chiave è quella di utilizzare il principio di inversione di dipendenza per porre dei boundaries tra componenti di alto livello e componenti di basso livello. 
 Ciò crea un’architettura \textit{plug-in}, 
-che conferisce al sistema un’elevata flessibilità e manutebilità. \\
-Un’architettura \textit{pulita} inizia da un codice \textit{pulito}. Per far sì che le classi siano pulite, è 
-necessario che lo siano anche le componenti, e dalle componenti pulite deriva un sistema pulito. \\
-Il concetto di \textit{clean code} sfruttato nell’implementazione del software segue i 
-principi \textbf{SOLID}. Tali principi sono stati applicati in modo da ottimizzare l’architettura 
-e ciascuna delle sue componenti, che risultano dunque essere caratterizzate dal:
+che conferisce al sistema un’elevata flessibilità e un'elevata manutenibilità. \\
+Un’architettura \textit{pulita} inizia da un codice \textit{pulito}. Classi pulite derivano da componenti pulite, che, a loro volta, determinano un \textit{sistema pulito}.\\
+È stato quindi ritenuto di fondamentale importanza applicare i principi della Clean Architecture e del Clean Code in maniera uniforme e costante, nell'implementazione di qualsiasi componente.\\
+
+Il concetto di \textit{Clean Code} sfruttato nello sviluppo del software segue i principi \textbf{SOLID}. \\ 
+Tali principi sono stati applicati in modo da ottimizzare l’architettura e ciascuna delle sue componenti, le quali risultano dunque essere caratterizzate dal:
 \begin{itemize}
-	\item \textbf{Single responsability principle} – una classe dovrebbe avere uno ed un solo motivo per 
-		cambiare;
-	\item \textbf{Open-closed principle} – una classe dovrebbe essere aperta all’estensione ma chiusa 
-		alle modifiche;
-	\item \textbf{Liskov’s substitution principle} – gli oggetti di un programma dovrebbero essere rimpiazzabili 
-		  con istanze dei propri sottotipi senza alterare la correttezza del programma stesso;
-	\item \textbf{Interface segregation principle} – più interfacce client-spefici sono meglio di un’unica 
-		interfaccia general-purpose;
-	\item Dependency inversion principle – 
+	\item \textbf{Single responsability principle} – una classe dovrebbe avere uno ed un solo motivo per cambiare;
+	\item \textbf{Open-closed principle} – una classe dovrebbe essere aperta all’estensione ma chiusa alle modifiche;
+	\item \textbf{Liskov’s substitution principle} – gli oggetti di un programma dovrebbero essere sostituibili con istanze dei propri sottotipi senza alterare la correttezza del programma stesso;
+	\item \textbf{Interface segregation principle} – più interfacce client-spefic sono meglio di un’unica interfaccia general-purpose;
+	\item \textbf{Dependency inversion principle}\footnote{
+	Il principio di inversione di dipendenza è stato applicato, in particolare, in relazione agli UseCase (nel Domain Layer): la loro indipendenza dagli altri moduli fa in modo che essi possano dipendere 
+	solo da \textit{astrazioni} dei loro strati.} 
+	– i moduli di alto livello non dovrebbero dipendere da moduli di basso livello; entrambi dovrebbero dipendere da \textit{astrazioni}.
 \end{itemize}
-Il concetto di Clean architecture si basa sulla modularità dell’architettura stessa. \\
+
+Il concetto di Clean Architecture si basa sulla \textit{modularità} dell’architettura stessa. \\
 Nel caso della progettazione del software prodotto è stata seguita una suddivisione del seguente tipo:
 \begin{itemize}
 	\item Presentation layer – responsabile della presentazione a schermo e della gestione delle 
 		interazioni degli utenti;
 	\item Domain layer – rappresentazione formale del dominio applicativo
 	\item Data layer – contenitore delle implementazioni delle sorgenti di dati e dei repository, 
-		che coordinano i dati provenienti da esse.
+		i quali coordinano i dati provenienti da esse.
 \end{itemize}
 
 È bene sottolineare, però, che nell'effettiva implementazione dell'applicativo non è
-stato pedissequamente seguito lo schema appena proposto. È stato adottato, invece, un approccio 
-per funzionalità, risultato nell'applicazione del concetto di \textbf{Screaming architecture.}
-Essa permette, ad un solo sguardo, di comprendere esattamente la struttura del cuore del codice implementato: 
-la suddivisione nei diversi package "urla" al lettore l'approccio utizzato, che risulta dunque chiaro e compresibile.
+stato pedissequamente seguito lo schema appena proposto. \\ 
+È stato ritenuto più opportuno adottare un approccio \textit{per funzionalità}; ciò è risultato nell'applicazione del concetto di \textbf{Screaming Architecture.} \\
+L'espressione "Screaming Architecture" è stata coniata dal sopracitato Robert C. Martin; essa viene utilizzata nelle situazioni in cui, 
+rivolgendo un solo sguardo ad un progetto, si riesce ad avere un'idea di base su cosa esso faccia e su cosa riguardi. \\
+Da ciò deriva la possibilità di comprendere esattamente la struttura al cuore del codice implementato: 
+la suddivisione nei diversi package "urla" al lettore l'approccio utilizzato, che risulta dunque chiaro e compresibile già a primo impatto.\\
+
+La Clean Architecture non preclude, però, la possibilità di adattare all'applicativo un proprio design pattern architetturale. \\
+Come descritto nella sezione successiva, tale approccio è stato ritenuto adatto alle esigenze di implementazione.
 
 \newpage
 \subsubsection{Pattern architetturali}
-La Clean Architecture non preclude, però, la possibilità di adattare all'architettura dell'applicativo un proprio 
-design pattern architetturale. Quest'ultima potrebbe infatti essere definita come \textit{ibrida}: ciò è dovuto alla 
+Quest'ultima potrebbe infatti essere definita come \textit{ibrida}: ciò è dovuto alla 
 \textit{fusione} di due pattern architetturali differenti utilizzati nella progettazione. \\
 Tali pattern sono \textbf{MVVM} e \textbf{MVI}; quest'ultimo è stato utilizzato per ovviare ai problemi 
 sofferti dal primo. Procediamo ad un'analisi più dettagliata. \\

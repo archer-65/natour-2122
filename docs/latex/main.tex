@@ -1075,10 +1075,20 @@ la segnalazione di un itinerario e la ricerca di un itinerario.
 \end{figure}
 \FloatBarrier
 
-
 \newpage
 \section{Documento di Design del sistema}
 \subsection{Analisi dell'architettura e criteri di design}
+\subsubsection{Diagramma di design del sistema}
+In questa sezione viene presentato un diagramma realizzato con lo scopo di rappresentare la struttura generale dell'architettura realizzata; in esso sono stati 
+messi in evidenza i servizi di cui si è usufruito nello sviluppo del software. \\ 
+Le specifiche di ciascuna scelta implementativa sono 
+dettagliate nelle sezioni successive.
+\begin{figure}[!htbp]
+	\centering
+	 \includepdf[pages=1]{./diagrams/sysdesign.pdf}
+\end{figure}
+
+\newpage
 \subsubsection{Software deployment}
 L'architettura del software realizzato pone le sue fondamenta nel concetto di \textbf{cloud computing}.\\
 Il cloud computing, o computazione cloud, consiste nella distribuzione on-demand di risorse IT, con 
@@ -1145,8 +1155,8 @@ L'esperienza utente con le funzionalità sopracitate è stata supportata dall'ut
 		  Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.
 \end{itemize}
 
-\subsubsection{Architettura del Rest Service}
-Nella realizzazione del Rest Service è stato scelto di utilizzare il framework \textbf{Spring}. \\
+\subsubsection{Architettura del REST Service}
+Nella realizzazione del REST Service è stato scelto di utilizzare il framework \textbf{Spring}. \\
 Spring fornisce un'\textit{infrastruttura di supporto} per lo sviluppo di applicazioni: esso prevede una \textit{modularizzazione} dell'architettura come segue:
 \begin {itemize}
 	\item Presentation layer - strato più esterno, che gestisce la presentazione del contenuto e l'interazione con l'utente;
@@ -1180,6 +1190,13 @@ Tra alcuni dei vantaggi che hanno portato alla scelta di Spring Boot, si ricorda
 \end{itemize}
 
 \newpage
+Di seguito viene presentato un diagramma che dettaglia la struttura e il funzionamento del REST Service.
+\begin{figure}[!htbp]
+	\centering
+	 \includepdf[pages=1]{./diagrams/spring.pdf}
+\end{figure}
+
+\newpage
 \subsection{Architettura dell’applicativo}
 L'intera architettura del software è stata progettata seguendo le linee guida della cosiddetta \textbf{Clean Architecture}. \\
 Il concetto di architettura \textit{pulita} si basa sui principi enunciati da Robert C. Martin nel libro "Clean Architecture".
@@ -1190,13 +1207,19 @@ che conferisce al sistema un’elevata flessibilità e un'elevata manutenibilit�
 Un’architettura \textit{pulita} inizia da un codice \textit{pulito}. Classi pulite derivano da componenti pulite, che, a loro volta, determinano un \textit{sistema pulito}.\\
 È stato quindi ritenuto di fondamentale importanza applicare i principi della Clean Architecture e del Clean Code in maniera uniforme e costante, nell'implementazione di qualsiasi componente.\\
 
+\begin{figure}[!htbp]
+	\centering
+	 \includegraphics[width=\textwidth]{./diagrams/cleanarchitecture.png}
+	 \caption{Clean Architecture}
+\end{figure}
+
 Il concetto di \textit{Clean Code} sfruttato nello sviluppo del software segue i principi \textbf{SOLID}. \\ 
 Tali principi sono stati applicati in modo da ottimizzare l’architettura e ciascuna delle sue componenti, le quali risultano dunque essere caratterizzate dal:
 \begin{itemize}
 	\item \textbf{Single responsability principle} – una classe dovrebbe avere uno ed un solo motivo per cambiare;
 	\item \textbf{Open-closed principle} – una classe dovrebbe essere aperta all’estensione ma chiusa alle modifiche;
 	\item \textbf{Liskov’s substitution principle} – gli oggetti di un programma dovrebbero essere sostituibili con istanze dei propri sottotipi senza alterare la correttezza del programma stesso;
-	\item \textbf{Interface segregation principle} – più interfacce client-spefic sono meglio di un’unica interfaccia general-purpose;
+	\item \textbf{Interface segregation principle} – più interfacce client-specific sono meglio di un’unica interfaccia general-purpose;
 	\item \textbf{Dependency inversion principle}\footnote{
 	Il principio di inversione di dipendenza è stato applicato, in particolare, in relazione agli UseCase (nel Domain Layer): la loro indipendenza dagli altri moduli fa in modo che essi possano dipendere 
 	solo da \textit{astrazioni} dei loro strati.} 
@@ -1215,19 +1238,35 @@ Nel caso della progettazione del software prodotto è stata seguita una suddivis
 
 È bene sottolineare, però, che nell'effettiva implementazione dell'applicativo non è
 stato pedissequamente seguito lo schema appena proposto. \\ 
-È stato ritenuto più opportuno adottare un approccio \textit{per funzionalità}; ciò è risultato nell'applicazione del concetto di \textbf{Screaming Architecture.} \\
+È stato ritenuto più opportuno adottare un approccio \textit{per funzionalità}; ciò è risultato nell'applicazione del concetto di \textbf{Screaming Architecture.} Di seguito ne 
+è mostrato un esempio di implementazione, tratto dal software stesso. \\
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics{./diagrams/design/screaming.png}
+\end{figure}
+\FloatBarrier
 L'espressione "Screaming Architecture" è stata coniata dal sopracitato Robert C. Martin; essa viene utilizzata nelle situazioni in cui, 
 rivolgendo un solo sguardo ad un progetto, si riesce ad avere un'idea di base su cosa esso faccia e su cosa riguardi. \\
 Da ciò deriva la possibilità di comprendere esattamente la struttura al cuore del codice implementato: 
-la suddivisione nei diversi package "urla" al lettore l'approccio utilizzato, che risulta dunque chiaro e compresibile già a primo impatto.\\
+la suddivisione nei diversi package "urla" al lettore l'approccio utilizzato, che risulta dunque chiaro e comprensibile già a primo impatto.\\
+
 
 La Clean Architecture non preclude, però, la possibilità di adattare all'applicativo un proprio design pattern architetturale. \\
 Come descritto nella sezione successiva, tale approccio è stato ritenuto adatto alle esigenze di implementazione.
 
 \newpage
+\subsubsection{Diagramma di design dell'applicativo}
+In questa sezione viene presentato un diagramma realizzato con lo scopo di rappresentare la struttura generale dell'applicativo. \\ 
+Le specifiche di ciascuna scelta implementativa sono dettagliate nelle sezioni successive.
+\begin{figure}[!htbp]
+	\centering
+	 \includepdf[pages=1, height=17cm]{./diagrams/android.pdf}
+\end{figure}
+
+\newpage
 \subsubsection{Pattern architetturali}
-Quest'ultima potrebbe infatti essere definita come \textit{ibrida}: ciò è dovuto alla 
-\textit{fusione} di due pattern architetturali differenti utilizzati nella progettazione. \\
+Il design pattern architetturale potrebbe essere definito come \textit{ibrido}: ciò è dovuto alla 
+\textit{fusione} di due pattern differenti utilizzati nella progettazione. \\
 Tali pattern sono \textbf{MVVM} e \textbf{MVI}; quest'ultimo è stato utilizzato per ovviare ai problemi 
 sofferti dal primo. Procediamo ad un'analisi più dettagliata. \\
 
@@ -1241,28 +1280,34 @@ Esso è organizzato secondo tre strati:
 	\item ViewModel - definisce una sorta di ponte tra i due modelli sopracitati.
 \end{itemize}
 
-Il modello MVVM, per quanto affermato, pone però alcune problematiche, quali ad esempio 
-la difficoltà di riusabilità sia per le views che per i view model, la complicata comunicazione tra le 
-componenti ecc. \\
+Il modello MVVM, per quanto affermato, pone però alcune problematiche, quali ad esempio:
+\begin{itemize}
+	\item la difficoltà di riusabilità sia per le View che per i ViewModel;
+	\item la registrazione a molteplici observables nello stesso ViewModel, che ne aumenta le relative responsabilità;
+	\item View e ViewModel possono essere soggetti ad avere un coupling stretto.
+\end{itemize}
 
 A questo scopo, è stata realizzata un'integrazione con il modello MVI. \\
 
 \textbf{MVI} sta per Model-View-Intent. Si tratta di uno dei pattern architetturali più nuovi per applicazioni Android. 
 \begin{itemize}
-	\item Model - rappresenta uno stato. I model dovrebbero essere immutabili, in modo da 
+	\item Model - rappresenta uno stato. I Model dovrebbero essere immutabili, in modo da 
 		  assicurare un flow di dati unidirezionale con gli altri strati;
-	\item View - rappresenta le view, che possono essere implementati in activity o fragment
+	\item View - rappresenta le View, che possono essere implementate in Activity o Fragment
 	\item Intent - rappresenta un'intenzione o una volontà di eseguire un'azione, sia dell'utente 
-		  che dell'app stessa.
+		  che dell'app stessa. Gli Intent si traducono in \textit{Event} ed \textit{Effect}.
 \end{itemize}
 
+L'integrazione dei due pattern architetturali sopracitati culmina nella nascita di un nuovo pattern, chiamato \textbf{UDF}. \\
 
 \newpage
-\subsubsection{Diagramma di design del sistema}
-\begin{figure}[!htbp]
-	\centering
-	 \includepdf[pages=1]{./diagrams/sysdesign.pdf}
-\end{figure}
+\subsection{Dettagli ulteriori scelte implementative}
+
+
+
+
+
+
 
 \newpage
 \subsection{Diagramma delle classi di design}

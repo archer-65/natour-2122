@@ -85,7 +85,7 @@ la visualizzazione di una homepage con post riguardanti diversi itinerari.\\
 Particolare attenzione è riservata alla sicurezza degli utenti, i quali possono segnalare contenuti inappropriati o informazioni inesatte.
 
 \subsection{Individuazione del target degli utenti}
-NaTour21 si configura come community in cui chiunque può intraprendere la passione per l'escursionismo e condividerla.\\\\
+NaTour21 si configura come community in cui chiunque può intraprendere la passione per l'escursionismo e condividerla.\\
 Ciononostante, è stato possibile individuare un target di utenti ben definito grazie ai dati
 statistici\footnote{Fonte: \href{http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI}{sito ufficiale Istat}.} raccolti
 nell'anno 2020 dall'ISTAT, Istituto Nazionale di Statistica.\\\\
@@ -110,34 +110,102 @@ la minima cifra considerata nella raccolta dati.\\
 
 \subsection{Valutazione dell'usabilità a priori}
 
-\subsubsection{Contesto d’uso del prodotto}
-La nostra applicazione NaTour sarà utilizzabili grazie ad una connessione 
-internet e GPS, poiché tale app porta l’utente in luoghi distanti dal contesto 
-urbano dovrà fare affidamento sulla propria connessione. 
-Il contesto immaginato per l’utilizzo della nostra applicazione è dare la possibilità ad appassionati di escursionismo di poter accedere in 
-modo semplice e intuitivo ad un’applicazione che contenga itinerari creati e valutati da altri utenti, 
-oppure essere noi i creatori di tali percorsi che verranno poi usufruiti da altri utenti. 
-Invece di impiegare tempo a ricercare itinerari con cui si potrebbe persino non aver un riscontro, 
-basta una semplice ricerca sulla nostra applicazione per trovare itinerari non solo vicini all’utente, 
-ma anche aver la possibilità di creare dei post per tali itinerari, 
-in modo da ottenere un riscontro con altri utenti, 
-oppure di creare compilation di itinerari da avere sempre a disposizione.
+\subsubsection{Definizione delle Personas}
+Le \textit{Personas} sono veri e propri identikit, creati sulla base di ricerche, che rappresentano un particolare
+gruppo di potenziali clienti. Delineare le caratteristiche di questi clienti permette di conoscere e comprendere
+bisogni, paure, obiettivi e motivazioni degli utenti.
+Saranno questi identikit a consentire lo sviluppo di una \textbf{UX} piacevole, funzionale ed elegante.
 
-\subsubsection{Valutazione dell’usabilità}
-Parte fondamentale nel processo creativo dell’applicazione è sempre capire in che direzione andare per migliorare l’esperienza dei clienti. Per realizzare ciò siamo ricorsi ad alcune tecniche per testare l’usabilità del nostro prodotto. L’approccio da noi adottato richiede di far eseguire dei task a un gruppo di utenti con differenti retroscena. Tali task vengono approcciati con due possibili: 
-	L’utente è stato in grado di compiere il task tramite gli strumenti offertigli dall’app.
-	L’utente non è stato in grado di compiere il task tramite gli strumenti offertigli dall’app.
-Ciò naturalmente deve essere eseguito in maniera completamente autonoma dall’utente senza uscire dall’app. 
-
-
-\newpage
-\subsection{Definizione delle personas}
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width=\textwidth, page=1]{./personas/Personas.pdf}
+	\includegraphics[width=\textwidth]{./personas/personas-kumar.pdf}
+\end{figure}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./personas/personas-cheng.pdf}
+\end{figure}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./personas/personas-bianchi.pdf}
+\end{figure}
+
+\newpage
+
+% \subsubsection{Contesto d’uso del prodotto}
+% La nostra applicazione NaTour sarà utilizzabili grazie ad una connessione
+% internet e GPS, poiché tale app porta l’utente in luoghi distanti dal contesto
+% urbano dovrà fare affidamento sulla propria connessione.
+% Il contesto immaginato per l’utilizzo dell applicazione è dare la possibilità ad appassionati di escursionismo di poter accedere in
+% modo semplice e intuitivo ad un’applicazione che contenga itinerari creati e valutati da altri utenti,
+% oppure essere noi i creatori di tali percorsi che verranno poi usufruiti da altri utenti.
+% Invece di impiegare tempo a ricercare itinerari con cui si potrebbe persino non aver un riscontro,
+% basta una semplice ricerca sulla nostra applicazione per trovare itinerari non solo vicini all’utente,
+% ma anche aver la possibilità di creare dei post per tali itinerari,
+% in modo da ottenere un riscontro con altri utenti,
+% oppure di creare compilation di itinerari da avere sempre a disposizione.
+
+\subsubsection{Progettazione dell'esperienza utente}
+Attraverso una fase di \textbf{Brainstorming} sono state generate idee per sfruttare le opportunità e risolvere i problemi emersi durante la creazione delle Personas.
+Sono state raccolte idee e i suggerimenti dei componenti del team di progettazione, raccogliendo anche le proposte più banali, così da valutare tutte le possibilità.
+Una volta raccolte le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE}, nello specifico, \textit{Figma}.\\
+
+Periodicamente ogni protitipo è stato discusso e creato coinvolgendo tutti i membri, svolgendo le seguenti analisi:
+\begin{itemize}
+	\item Facilità di navigazione;
+	\item Tempo di reperimento dei contenuti;
+	\item Coerenza nella creazione di nuovi contenuti.
+\end{itemize}
+
+Progettare l'interazione tra utenti e prodotto è una materia complicata e spesso anche dispendiosa.
+Esiste però un modo, molto utilizzato in \textbf{UX Design}, per andare a ridurre al minimo possibile questi test utente: la valutazione euristica. \\
+
+Le Euristiche di Nielsen sono il cardine dell'esperienza utente realizzata. \\
+È stata posta particolare attenzione allo \textit{stato del sistema}, specialmente agli stati di caricamento e di errore,
+dando eventualmente suggerimenti e feedback all'utente. \\
+Nella maggior parte dei casi gli errori sono stati prevenuti, non è possibile procedere con una determinata operazione se non si soddisfano
+dei requisiti. \\
+Le funzionalità più comuni sono rese disponibili sotto nomi ben noti, creando una corrispondenza tra il sistema e il mondo reale. \\
+L'interfaccia non presenta limitazioni, non viene mai imposto all'utente di effettuare una determinata operazione non desiderata,
+eccezion fatta per operazioni \textit{distruttive}, che richiedono una conferma.
+Tale interfaccia è estremamente minimalista, i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione e
+posizionamento strategico delle informazioni. \\
+L'ambiente è totalmente isolato, consistente, l'interfaccia non attraversa mai cambi di layout estremi, migliorando la velocità d'apprendimento degli utenti. \\
+
+Prima di raffinare l'esperienza utente è stato necessario coinvolgere un ristretto bacino d'utenza per ottenere riscontri esterni
+rispetto al contesto di prototipazione e sviluppo.
+
+\newpage
+
+\subsubsection{Definizione di uno stile di design}
+Per raffinare l'esperienza utente è stata ritenuta una buona pratica affidarsi ad uno specifico \textbf{UI Design System}.
+La scelta è stata effettuata tra diversi sistemi concorrenti, ricadendo su
+\textbf{Material}\footnote{Material è un design system creato da Google per facilitare lo sviluppo di UX di altissima qualità per Android, iOS, Flutter, e Web-App.}.
+
+\FloatBarrier
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[height=7cm]{usability/material3.jpg}
 \end{figure}
 \FloatBarrier
 
+Material Design si ispira al mondo fisico, includendo riflessi e ombre. Tipografie, griglie, spazi e colori creano gerarchie finalizzate a rendere l'utilizzatore totalmente immerso.
+Gli effetti di movimento mirano a focalizzare l'attenzione generando continuità spaziale attraverso feedback e transizioni.
+Le componenti sono altamente dinamiche, si trasformano e organizzano l'ambiente in base alle interazioni, generando altre trasformazioni.\\
+Le componenti Material sono blocchi interattivi che formano l'interfaccia utente.
+Queste includono stati built-in system per comunicare focus, selezione, attivazione, errore, hovering, pressione, trascinamento, e disabilitazione. \\\\
+Ogni componente copre delle necessità, tra queste troviamo:
+\begin{itemize}
+	\item \textbf{Esposizione} - Piazzare ed organizzare contenuti correlati usando componenti come \textit{card} e \textit{liste};
+	\item \textbf{Navigazione} - Consentire agli utenti di muoversi nel prodotto finito utilizzando \textit{drawer} o \textit{tabs};
+	\item \textbf{Azioni} - Consentire agli utenti di eseguire task utilizzando componenti di alto rilievo, come i \textit{floating action button};
+	\item \textbf{Input} - Consentire agli utenti di inserire informazioni o selezionare tra un certo numero di opzioni, questo attraverso \textit{campi di testo} dinamici e \textit{chips};
+	\item \textbf{Comunicazione} - Avvertire gli utenti attraverso \textit{snackbar}, \textit{toast} e \textit{dialog}.
+\end{itemize}
+
+
+\newpage
 \section{Documento dei Requisiti Software}
 \subsection{Requisiti funzionali}
 In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazione NaTour21, cioè le funzionalità richieste dai commissionanti.
@@ -154,7 +222,6 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\hline
 	\end{tabular}
 	\caption{RF.1}
-	\label{table:1}
 \end{table}
 
 \begin{table}[H]
@@ -162,13 +229,13 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome} & \textbf{Descrizione}                                                                    \\
+		\textbf{Nome} & \textbf{Descrizione}                                                                                                                       \\
 		\hline
-		Accesso & Il sistema deve consentire ad un utente di poter effettuare l'accesso alla piattaforma avente eseguito precendentemente una registrazione. \\
+		Accesso       & Il sistema deve consentire ad un utente di poter effettuare l'accesso alla piattaforma avente eseguito precendentemente una registrazione. \\
 		\hline
 	\end{tabular}
 	\caption{RF.2}
-	\label{table:2}
+
 \end{table}
 
 \begin{table}[H]
@@ -176,13 +243,13 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome} & \textbf{Descrizione}                                                                                             \\
+		\textbf{Nome}           & \textbf{Descrizione}                                                                                                \\
 		\hline
-		Reimpostazione password & Il sistema deve consentire ad un utente registrato di poter cambiare la propria password se dimenticata o persa. \\
+		Reimpostazione password & Il sistema deve consentire ad un utente registrato di poter reimpostare la propria password se dimenticata o persa. \\
 		\hline
 	\end{tabular}
 	\caption{RF.3}
-	\label{table:3}
+
 \end{table}
 
 \begin{table}[H]
@@ -190,13 +257,13 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome} & \textbf{Descrizione}                                                                                             \\
+		\textbf{Nome}       & \textbf{Descrizione}                                                                                               \\
 		\hline
 		Uscita dall'account & Il sistema deve consentire ad un utente registrato di poter uscire dal'account con il quale ha eseguito l'accesso. \\
 		\hline
 	\end{tabular}
-	\caption{RF.3}
-	\label{table:3}
+	\caption{RF.4}
+
 \end{table}
 
 
@@ -212,8 +279,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		dettagli degli itinerari pubblicati e i post ad essi associati.                                  \\
 		\hline
 	\end{tabular}
-	\caption{RF.4}
-	\label{table:4}
+	\caption{RF.5}
+
 \end{table}
 
 \begin{table}[H]
@@ -230,8 +297,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		tramite file in formato standard GPX.                                                                                                            \\
 		\hline
 	\end{tabular}
-	\caption{RF.5}
-	\label{table:5}
+	\caption{RF.6}
+
 \end{table}
 
 \begin{table}[H]
@@ -242,11 +309,11 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\textbf{Nome}     & \textbf{Descrizione}                                                                                                                                               \\
 		\hline
 		Ricerca itinerari & Il sistema deve consentire a un utente autenticato di effettuare ricerche di itinerari tra quelli presenti in piattaforma, con possibilità di filtrare i risultati
-		per area geografica, per livello di difficoltà, per durata e per accessibilità ai disabili.                                                                                           \\
+		per area geografica (compresa in un raggio espresso in km scelto dall'utente), per livello di difficoltà, per durata e per accessibilità ai disabili.                                  \\
 		\hline
 	\end{tabular}
-	\caption{RF.6}
-	\label{table:6}
+	\caption{RF.7}
+
 \end{table}
 
 \begin{table}[H]
@@ -259,11 +326,11 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		Valutazione itinerario & Il sistema deve consentire a un utente autenticato di indicare un punteggio di difficoltà e/o un tempo
 		di percorrenza diverso da quello indicato dall’utente che ha inserito il sentiero. In questo caso, il
 		punteggio di difficoltà e il tempo di percorrenza per il sentiero saranno ri-calcolati come la media
-		delle difficoltà e dei tempi indicati.                                                                                            \\
+		delle difficoltà e dei tempi indicati.                                                                                          \\
 		\hline
 	\end{tabular}
-	\caption{RF.7}
-	\label{table:7}
+	\caption{RF.8}
+
 \end{table}
 
 \begin{table}[H]
@@ -277,8 +344,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		nelle proprie compilation personalizzate.                                                            \\
 		\hline
 	\end{tabular}
-	\caption{RF.8}
-	\label{table:8}
+	\caption{RF.9}
+
 \end{table}
 
 \begin{table}[H]
@@ -292,8 +359,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		le quali informazioni potrebbero non essere corrette e/o aggiornate.                                      \\
 		\hline
 	\end{tabular}
-	\caption{RF.9}
-	\label{table:9}
+	\caption{RF.10}
+
 \end{table}
 
 \begin{table}[H]
@@ -307,8 +374,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		è l'autore.                                                                                             \\
 		\hline
 	\end{tabular}
-	\caption{RF.10}
-	\label{table:10}
+	\caption{RF.11}
+
 \end{table}
 
 \subsubsection{Interazione con un post}
@@ -323,8 +390,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		i dettagli di un post.                                                                    \\
 		\hline
 	\end{tabular}
-	\caption{RF.11}
-	\label{table:11}
+	\caption{RF.12}
+
 \end{table}
 
 \begin{table}[H]
@@ -332,14 +399,14 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}    & \textbf{Descrizione}                                                    \\
+		\textbf{Nome}    & \textbf{Descrizione}                                                                               \\
 		\hline
 		Inserimento post & Il sistema deve consentire a un utente autenticato di inserire un post associato ad un itinerario,
-		caratterizzato da foto (max 5) e una descrizione (opzionale).     \\
+		caratterizzato da foto (max 5) e una descrizione (opzionale).                                                         \\
 		\hline
 	\end{tabular}
-	\caption{RF.12}
-	\label{table:12}
+	\caption{RF.13}
+
 \end{table}
 
 
@@ -354,8 +421,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		inappropriate.                                                                                          \\
 		\hline
 	\end{tabular}
-	\caption{RF.13}
-	\label{table:13}
+	\caption{RF.14}
+
 \end{table}
 
 \begin{table}[H]
@@ -369,8 +436,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		è l'autore.                                                                                  \\
 		\hline
 	\end{tabular}
-	\caption{RF.14}
-	\label{table:14}
+	\caption{RF.15}
+
 \end{table}
 
 \subsubsection{Gestione dati personali e conversazioni private}
@@ -385,8 +452,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		egli potrà visitare i contenuti inseriti ed eliminarli. Inoltre potrà cambiare la foto profilo.  \\
 		\hline
 	\end{tabular}
-	\caption{RF.15}
-	\label{table:15}
+	\caption{RF.16}
+
 \end{table}
 
 \begin{table}[H]
@@ -400,8 +467,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		È possibile avviare la conversazione a partire dai contenuti pubblicati. Inoltre è possibile ricercare un destinatario.         \\
 		\hline
 	\end{tabular}
-	\caption{RF.16}
-	\label{table:16}
+	\caption{RF.17}
+
 \end{table}
 
 \subsubsection{Interazione con una compilation}
@@ -413,11 +480,11 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\textbf{Nome}         & \textbf{Descrizione}                                                                                    \\
 		\hline
 		Creazione compilation & Il sistema deve consentire a un utente autenticato di creare delle \textit{compilation personalizzate},
-		caratterizzate da un titolo e da una descrizione.                                                                               \\
+		caratterizzate da un titolo, una foto e da una descrizione.                                                                     \\
 		\hline
 	\end{tabular}
-	\caption{RF.17}
-	\label{table:17}
+	\caption{RF.18}
+
 \end{table}
 
 \begin{table}[H]
@@ -431,8 +498,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		compilation personalizzate                                                                         \\
 		\hline
 	\end{tabular}
-	\caption{RF.18}
-	\label{table:18}
+	\caption{RF.19}
+
 \end{table}
 
 \begin{table}[H]
@@ -446,8 +513,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		delle proprie compilation.                                                                                  \\
 		\hline
 	\end{tabular}
-	\caption{RF.19}
-	\label{table:19}
+	\caption{RF.20}
+
 \end{table}
 
 
@@ -458,12 +525,12 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		\rowcolor{PineGreen!70}
 		\textbf{Nome}                       & \textbf{Descrizione}                                                          \\
 		\hline
-		Rimozione itinerario da compilation & Il sistema deve consentire a un utente autenticato di eliminare gli itinerari
-		che compongono le proprie compilation personalizzate                                                                \\
+		Rimozione itinerario da compilation & Il sistema deve consentire a un utente autenticato di rimuovere gli itinerari
+		dalle proprie compilation personalizzate.                                                                           \\
 		\hline
 	\end{tabular}
-	\caption{RF.20}
-	\label{table:20}
+	\caption{RF.21}
+
 \end{table}
 
 \subsubsection{Requisiti amministratore}
@@ -478,8 +545,8 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		la lista di segnalazioni inviate.                                                                                                  \\
 		\hline
 	\end{tabular}
-	\caption{RF.21}
-	\label{table:21}
+	\caption{RF.22}
+
 \end{table}
 
 \begin{table}[H]
@@ -493,12 +560,12 @@ In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazi
 		rimuovere un itinerario segnalato.                                                                                               \\
 		\hline
 	\end{tabular}
-	\caption{RF.22}
-	\label{table:22}
+	\caption{RF.23}
 \end{table}
 
+\newpage
 \subsection{Requisiti non funzionali}
-Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applicazione, ovvero tutti i vincoli sui servizi offerti dal sistema.
+Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applicazione, ovvero tutti i vincoli sui servizi offerti dal sistema .
 
 \begin{table}[H]
 	\centering
@@ -512,7 +579,77 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 		\hline
 	\end{tabular}
 	\caption{RNF1}
-	\label{table:23}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome} & \textbf{Descrizione}                                                                           \\
+		\hline
+		Prestazioni   & Il sistema deve essere operativo entro 3 secondi dall'avvio e, inoltre, non deve ostacolare in
+		alcun modo gli input dell'utente (e.g. presentando dei rallentamenti).                                         \\
+		\hline
+	\end{tabular}
+	\caption{RNF2}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome} & \textbf{Descrizione}                                                                                             \\
+		\hline
+		Reattività    & Il sistema dovrebbe essere responsivo, sia nei confronti degli input da parte dell'utente, sia
+		in caso di interruzioni esterne con alta priorità (e.g. chiamate in arrivo).
+		Considerando il caso delle interruzioni: il sistema deve essere in grado di salvare il proprio stato e ripresentarlo all'utente. \\
+		\hline
+	\end{tabular}
+	\caption{RNF3}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome} & \textbf{Descrizione}                                                                              \\
+		\hline
+		Usabilità     & L'applicazione dovrebbe presentare una \textbf{UX} semplice, che renda il flusso delle operazioni
+		comprensibile, anche ad utenti meno esperti.                                                                      \\
+		\hline
+	\end{tabular}
+	\caption{RNF4}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome} & \textbf{Descrizione}                                                                              \\
+		\hline
+		Usabilità     & L'applicazione dovrebbe presentare una \textbf{UX} semplice, che renda il flusso delle operazioni
+		comprensibile, anche ad utenti meno esperti.                                                                      \\
+		\hline
+	\end{tabular}
+	\caption{RNF4}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome} & \textbf{Descrizione}                                                                              \\
+		\hline
+		Sicurezza     & Il sistema deve essere sicuro, con dati criptati e protetti da attacchi esterni.
+		Nel caso dell'autenticazione per i client, verrà salvato un token (nello specifico \textbf{JWT}) sul dispositivo. \\
+		\hline
+	\end{tabular}
+	\caption{RNF5}
 \end{table}
 
 \begin{table}[H]
@@ -523,41 +660,10 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 		\textbf{Nome}      & \textbf{Descrizione}                                            \\
 		\hline
 		Sicurezza password & Il sistema non consente di inserire password che non contengano
-		almeno 6 caratteri, di cui un carattere maiuscolo e un numero.                       \\
+		almeno 8 caratteri.                                                                  \\
 		\hline
 	\end{tabular}
-	\caption{RNF2}
-	\label{table:24}
-\end{table}
-
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
-		\hline
-		\rowcolor{PineGreen!70}
-		\textbf{Nome}                      & \textbf{Descrizione}                                       \\
-		\hline
-		Singola valutazione per itinerario & Il sistema non consente di inserire più di una valutazione
-		per itinerario.                                                                                 \\
-		\hline
-	\end{tabular}
-	\caption{RNF3}
-	\label{table:25}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
-		\hline
-		\rowcolor{PineGreen!70}
-		\textbf{Nome}                  & \textbf{Descrizione}                                                    \\
-		\hline
-		Segnalazione unica per un post & Il sistema non consente di inviare più di una segnalazione per un post. \\
-		\hline
-	\end{tabular}
-	\caption{RNF4}
-	\label{table:26}
+	\caption{RNF6}
 \end{table}
 
 \begin{table}[H]
@@ -570,12 +676,10 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 		Numero massimo di foto & Il sistema non consente di inserire più di 5 foto per itinerario o post. \\
 		\hline
 	\end{tabular}
-	\caption{RNF5}
-	\label{table:27}
+	\caption{RNF7}
 \end{table}
 
 \newpage
-
 \subsection{Requisiti di dominio}
 Infine, questa sezione conterrà i requisiti \textit{di dominio} dell'applicazione, ovvero tutti i vincoli generali a cui l'applicativo
 deve attenersi. \\
@@ -592,7 +696,7 @@ deve attenersi. \\
 		\hline
 	\end{tabular}
 	\caption{RD1}
-	\label{table:28}
+
 \end{table}
 
 \begin{table}[H]
@@ -607,7 +711,7 @@ deve attenersi. \\
 		\hline
 	\end{tabular}
 	\caption{RD2}
-	\label{table:29}
+
 \end{table}
 
 \newpage
@@ -1079,67 +1183,69 @@ la segnalazione di un itinerario e la ricerca di un itinerario.
 \section{Documento di Design del sistema}
 \subsection{Analisi dell'architettura e criteri di design}
 \subsubsection{Diagramma di design del sistema}
-In questa sezione viene presentato un diagramma realizzato con lo scopo di rappresentare la struttura generale dell'architettura realizzata; in esso sono stati 
-messi in evidenza i servizi di cui si è usufruito nello sviluppo del software. \\ 
-Le specifiche di ciascuna scelta implementativa sono 
+In questa sezione viene presentato un diagramma realizzato con lo scopo di 
+rappresentare la struttura generale dell'architettura di sistema realizzata; 
+in esso sono stati messi in evidenza i servizi di cui si è usufruito nello sviluppo del software. \\
+Le specifiche di ciascuna scelta implementativa sono
 dettagliate nelle sezioni successive.
 \begin{figure}[!htbp]
 	\centering
-	 \includepdf[pages=1]{./diagrams/sysdesign.pdf}
+	\includegraphics[width=\textwidth]{./diagrams/sysdesign.pdf}
+	\caption{Diagramma del sistema}
 \end{figure}
 
 \newpage
 \subsubsection{Software deployment}
 L'architettura del software realizzato pone le sue fondamenta nel concetto di \textbf{cloud computing}.\\
-Il cloud computing, o computazione cloud, consiste nella distribuzione on-demand di risorse IT, con 
+Il cloud computing, o computazione cloud, consiste nella distribuzione on-demand di risorse IT, con
 una tariffazione basata sul consumo.\\\\
-Tra i diversi provider, è stato scelto di usufruire dei servizi offerti dalla piattaforma proprietaria del gruppo 
+Tra i diversi provider, è stato scelto di usufruire dei servizi offerti dalla piattaforma proprietaria del gruppo
 Amazon \textbf{AWS}, \textbf{Amazon Web Services}.
-AWS offre infatti cloud services ideali per creare applicazioni in modo scalabile, flessibile e affidabile; esso 
+AWS offre infatti cloud services ideali per creare applicazioni in modo scalabile, flessibile e affidabile; esso
 presenta inoltre notevoli vantaggi, ritenuti come caratteristiche desiderabili per la progettazione di qualunque software.\\
 
 La scelta della piattaforma AWS è stata compiuta, inoltre, per le seguenti qualità:
 \begin{itemize}
-	\item \textbf{Agilità} - la possibilità di aumentare a seconda delle necessità risorse quali servizi infrastrutturali, 
-		  calcolo, storage e database;
-	\item \textbf{Elasticità} - la possibilità di evitare l'allocazione anticipata di una quantità maggiore di risorse di 
-			quante siano necessarie, così da gestire i picchi nei livelli di attività future;
-	\item \textbf{Distribuzione globale di contenuti} - l'infrastruttura AWS offre una copertura globale: fare in modo che le 
-		  applicazioni siano vicino agli utenti finali riduce la latenza e migliora la loro esperienza.\\
+	\item \textbf{Agilità} - la possibilità di aumentare a seconda delle necessità risorse quali servizi infrastrutturali,
+	      calcolo, storage e database;
+	\item \textbf{Elasticità} - la possibilità di evitare l'allocazione anticipata di una quantità maggiore di risorse di
+	      quante siano necessarie, così da gestire i picchi nei livelli di attività future;
+	\item \textbf{Distribuzione globale di contenuti} - l'infrastruttura AWS offre una copertura globale: fare in modo che le
+	      applicazioni siano vicino agli utenti finali riduce la latenza e migliora la loro esperienza.\\
 \end{itemize}
 
 
 AWS offre una grande varietà di servizi; ciascuno di essi va incontro a una specifica necessità dello sviluppatore. \\
 Nello sviluppo del software, per implementare determinate funzionalità si è scelto di ricorrere all'utilizzo dei seguenti servizi:
 \begin{itemize}
-	\item \textbf{Cognito} - Amazon Cognito permette di aggiungere strumenti di registrazione degli utenti, accesso 
-		  e controllo degli accessi alle app Web e per dispositivi mobili. Esso supporta l'accesso degli utenti 
-		  tramite l'uso di provider di identità social quali Facebook, Google. 
-		  Tale risorsa è stata sfruttata realtivamente all'autenticazione utente, tenendo particolarmente in considerazione 
-		  l'alto fattore di sicurezza che essa conferisce;
-	\item \textbf{EC2} - l'\textbf{Elastic Compute Cloud} (Amazon EC2) fornisce capacità di calcolo scalabile in AWS Cloud. 
-		  Esso offre ambienti di elaborazione virtuale, noti come \textit{istanze}, varie configurazioni di CPU, memoria, 
-		  archiviazione e capacità di rete per le istanza note come \textit{tipi di istanza}. 
-		  La scelta di tale servizio è stata finalizzata al deploy dell'applicativo Spring, nella realizzazione del Rest Service.
+	\item \textbf{Cognito} - Amazon Cognito permette di aggiungere strumenti di registrazione degli utenti, accesso
+	      e controllo degli accessi alle app Web e per dispositivi mobili. Esso supporta l'accesso degli utenti
+	      tramite l'uso di provider di identità social quali Facebook, Google.
+	      Tale risorsa è stata sfruttata realtivamente all'autenticazione utente, tenendo particolarmente in considerazione
+	      l'alto fattore di sicurezza che essa conferisce;
+	\item \textbf{EC2} - l'\textbf{Elastic Compute Cloud} (Amazon EC2) fornisce capacità di calcolo scalabile in AWS Cloud.
+	      Esso offre ambienti di elaborazione virtuale, noti come \textit{istanze}, varie configurazioni di CPU, memoria,
+	      archiviazione e capacità di rete per le istanza note come \textit{tipi di istanza}.
+	      La scelta di tale servizio è stata finalizzata al deploy dell'applicativo Spring, nella realizzazione del Rest Service.
 	\item \textbf{RDS} - Amazon RDS ha permesso la configurazione e l'utilizzo del database relazionale alla base del software prodotto;
-	\item \textbf{S3} - il \textbf{Simple Storage Service} (Amazon S3) permette l'archiviazione di oggetti in modo scalabile. 
-		  Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
-	\item \textbf{Lambda} - AWS Lambda è un servizio di calcolo basato su eventi serverless. 
-		  La scelta del servizio Lambda è stata incentivata dalla sua possibilità di integrazione con il servizio \textbf{Cognito}, e dettata 
-		  dalla volontà di conferire \textit{consistenza} al pool utenti del sistema.
-		  Nello specifico, si è sfruttata la possibilità offerta dal servizio di creare dei \textit{trigger} (in particolare trigger di \textit{post conferma}), al fine di 
-		  evitare - in seguito al processo di registrazione - la possibile presenza di inconsistenze tra database e registrazioni effettivamente portate a termine.
+	\item \textbf{S3} - il \textbf{Simple Storage Service} (Amazon S3) permette l'archiviazione di oggetti in modo scalabile.
+	      Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
+	\item \textbf{Lambda} - AWS Lambda è un servizio di calcolo basato su eventi serverless.
+	      La scelta del servizio Lambda è stata incentivata dalla sua possibilità di integrazione con il servizio \textbf{Cognito}, e dettata
+	      dalla volontà di conferire \textit{consistenza} al pool utenti del sistema.
+	      Nello specifico, si è sfruttata la possibilità offerta dal servizio di creare dei \textit{trigger} (in particolare trigger di \textit{post conferma}), al fine di
+	      evitare - in seguito al processo di registrazione - la possibile presenza di inconsistenze tra database e registrazioni effettivamente portate a termine.
 \end{itemize}
 
 Si è ritenuto inoltre fondamentale l'utilizzo del framework \textbf{Amplify}.\\
 In particolare, Amplify è stato impiegato per realizzare:
-\begin{itemize} 
+\begin{itemize}
 	\item Un servizio di autenticazione particolarmente sicuro tramite, come citato, il servizio \textit{Cognito};
 	\item L'archiviazione di file (nella prima versione del software solo di file immagine) tramite il servizio \textit{S3}.
 \end{itemize}
 
-È importante specificare che il framework Amplify consente anche di creare back-end o applicativi serverless. Ciononostante, si sottolinea che 
-nella realizzazione del software è stata fatta la scelta di utilizzarlo \textit{solo} in funzione dei servizi da essi offerti, soprattutto in relazione alla deprecazione 
+È importante specificare che il framework Amplify consente anche di creare back-end o applicativi serverless. Ciononostante, si sottolinea che
+nella realizzazione del software è stata fatta la scelta di utilizzarlo \textit{solo} in funzione dei servizi da essi offerti, soprattutto in relazione alla deprecazione
 dell'SDK standard AWS per Android.
 
 \subsubsection{Google Maps Platform}
@@ -1151,31 +1257,31 @@ L'esperienza utente con le funzionalità sopracitate è stata supportata dall'ut
 \begin{itemize}
 	\item MapsAPI - per la visualizzazione interattiva di mappe statiche e dinamiche;
 	\item PlacesAPI - per il recupero di informazioni sui posti tramite richieste HTTP;
-	\item DirectionsAPI - per il calcolo del percorso tra diverse tappe; utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML. 
-		  Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.
+	\item DirectionsAPI - per il calcolo del percorso tra diverse tappe; utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML.
+	      Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.
 \end{itemize}
 
 \subsubsection{Architettura del REST Service}
 Nella realizzazione del REST Service è stato scelto di utilizzare il framework \textbf{Spring}. \\
 Spring fornisce un'\textit{infrastruttura di supporto} per lo sviluppo di applicazioni: esso prevede una \textit{modularizzazione} dell'architettura come segue:
 \begin {itemize}
-	\item Presentation layer - strato più esterno, che gestisce la presentazione del contenuto e l'interazione con l'utente;
-	\item Business logic layer - strato centrale, che gestisce la logica;
-	\item Data access layer - strato più interno, che gestisce il recupero di dati dalle diverse sorgenti.
+\item Presentation layer - strato più esterno, che gestisce la presentazione del contenuto e l'interazione con l'utente;
+\item Business logic layer - strato centrale, che gestisce la logica;
+\item Data access layer - strato più interno, che gestisce il recupero di dati dalle diverse sorgenti.
 \end{itemize}
 
 Ciascuno di questi strati dipende da quello sottostante per far sì che l'applicazione funzioni. In altre parole,
-lo strato di presentazione comunica con quello della business logic, che a sua volta comunica con lo strato di data 
+lo strato di presentazione comunica con quello della business logic, che a sua volta comunica con lo strato di data
 access. Ogni strato ha quindi bisogno di questa \textit{dipendenza} per eseguire il proprio compito correttamente \\
 
-La scelta di utilizzare il framework Spring è stata fatta in relazione alla volontà di ottenere un \textit{loose coupling}, ossia un accoppiamento largo. 
-Senza l'utilizzo di Spring, ci sarebbe stata la possibilità che il codice avesse potuto causare \textit{tight coupling}, che non è 
-considerato essere una buona pratica di programmazione. Il loose coupling è ideale, in quanto le componenti largamente 
-accoppiate sono indipendenti: ciò implica che, a seguito di possibili cambiamenti futuri, questi non influenzeranno 
+La scelta di utilizzare il framework Spring è stata fatta in relazione alla volontà di ottenere un \textit{loose coupling}, ossia un accoppiamento largo.
+Senza l'utilizzo di Spring, ci sarebbe stata la possibilità che il codice avesse potuto causare \textit{tight coupling}, che non è
+considerato essere una buona pratica di programmazione. Il loose coupling è ideale, in quanto le componenti largamente
+accoppiate sono indipendenti: ciò implica che, a seguito di possibili cambiamenti futuri, questi non influenzeranno
 le altre componenti.\\
 
 Al cuore del framework Spring si trova la \textbf{dependency injection}. \\
-La dependency injection è un pattern di programmazione che permette agli sviluppatori di costruire architetture disaccoppiate. Ciò vuol dire che Spring comprende le \textit{annotazioni} 
+La dependency injection è un pattern di programmazione che permette agli sviluppatori di costruire architetture disaccoppiate. Ciò vuol dire che Spring comprende le \textit{annotazioni}
 poste in capo alle classi; in seguito alla creazione di un'istanza, dunque, il framework si assicura che le istanze siano state create con le opportune dependencies. \\\
 
 Nello specifico, per l'implementazione del software, è stata utilizzata un'estensione del framework Spring, chiamata \textbf{Spring Boot}.\\
@@ -1193,7 +1299,8 @@ Tra alcuni dei vantaggi che hanno portato alla scelta di Spring Boot, si ricorda
 Di seguito viene presentato un diagramma che dettaglia la struttura e il funzionamento del REST Service.
 \begin{figure}[!htbp]
 	\centering
-	 \includepdf[pages=1]{./diagrams/spring.pdf}
+	\includegraphics[width=\textwidth]{./diagrams/spring.pdf}
+	\caption{REST + WS Service realizzato con Spring Boot}
 \end{figure}
 
 \newpage
@@ -1201,19 +1308,19 @@ Di seguito viene presentato un diagramma che dettaglia la struttura e il funzion
 L'intera architettura del software è stata progettata seguendo le linee guida della cosiddetta \textbf{Clean Architecture}. \\
 Il concetto di architettura \textit{pulita} si basa sui principi enunciati da Robert C. Martin nel libro "Clean Architecture".
 In seguito alle informazioni acquisite dalla lettura del libro, infatti, questo approccio è stato ritenuto quello più valido.\\
-L’idea chiave è quella di utilizzare il principio di inversione di dipendenza per porre dei boundaries tra componenti di alto livello e componenti di basso livello. 
-Ciò crea un’architettura \textit{plug-in}, 
+L’idea chiave è quella di utilizzare il principio di inversione di dipendenza per porre dei boundaries tra componenti di alto livello e componenti di basso livello.
+Ciò crea un’architettura \textit{plug-in},
 che conferisce al sistema un’elevata flessibilità e un'elevata manutenibilità. \\
 Un’architettura \textit{pulita} inizia da un codice \textit{pulito}. Classi pulite derivano da componenti pulite, che, a loro volta, determinano un \textit{sistema pulito}.\\
 È stato quindi ritenuto di fondamentale importanza applicare i principi della Clean Architecture e del Clean Code in maniera uniforme e costante, nell'implementazione di qualsiasi componente.\\
 
 \begin{figure}[!htbp]
 	\centering
-	 \includegraphics[width=\textwidth]{./diagrams/cleanarchitecture.png}
-	 \caption{Clean Architecture}
+	\includegraphics[width=\textwidth]{./diagrams/cleanarchitecture.png}
+	\caption{Clean Architecture}
 \end{figure}
 
-Il concetto di \textit{Clean Code} sfruttato nello sviluppo del software segue i principi \textbf{SOLID}. \\ 
+Il concetto di \textit{Clean Code} sfruttato nello sviluppo del software segue i principi \textbf{SOLID}. \\
 Tali principi sono stati applicati in modo da ottimizzare l’architettura e ciascuna delle sue componenti, le quali risultano dunque essere caratterizzate dal:
 \begin{itemize}
 	\item \textbf{Single responsability principle} – una classe dovrebbe avere uno ed un solo motivo per cambiare;
@@ -1221,33 +1328,33 @@ Tali principi sono stati applicati in modo da ottimizzare l’architettura e cia
 	\item \textbf{Liskov’s substitution principle} – gli oggetti di un programma dovrebbero essere sostituibili con istanze dei propri sottotipi senza alterare la correttezza del programma stesso;
 	\item \textbf{Interface segregation principle} – più interfacce client-specific sono meglio di un’unica interfaccia general-purpose;
 	\item \textbf{Dependency inversion principle}\footnote{
-	Il principio di inversione di dipendenza è stato applicato, in particolare, in relazione agli UseCase (nel Domain Layer): la loro indipendenza dagli altri moduli fa in modo che essi possano dipendere 
-	solo da \textit{astrazioni} dei loro strati.} 
-	– i moduli di alto livello non dovrebbero dipendere da moduli di basso livello; entrambi dovrebbero dipendere da \textit{astrazioni}.
+		      Il principio di inversione di dipendenza è stato applicato, in particolare, in relazione agli UseCase (nel Domain Layer): la loro indipendenza dagli altri moduli fa in modo che essi possano dipendere
+		      solo da \textit{astrazioni} dei loro strati.}
+	      – i moduli di alto livello non dovrebbero dipendere da moduli di basso livello; entrambi dovrebbero dipendere da \textit{astrazioni}.
 \end{itemize}
 
 Il concetto di Clean Architecture si basa sulla \textit{modularità} dell’architettura stessa. \\
 Nel caso della progettazione del software prodotto è stata seguita una suddivisione del seguente tipo:
 \begin{itemize}
-	\item Presentation layer – responsabile della presentazione a schermo e della gestione delle 
-		interazioni degli utenti;
+	\item Presentation layer – responsabile della presentazione a schermo e della gestione delle
+	      interazioni degli utenti;
 	\item Domain layer – rappresentazione formale del dominio applicativo
-	\item Data layer – contenitore delle implementazioni delle sorgenti di dati e dei repository, 
-		i quali coordinano i dati provenienti da esse.
+	\item Data layer – contenitore delle implementazioni delle sorgenti di dati e dei repository,
+	      i quali coordinano i dati provenienti da esse.
 \end{itemize}
 
 È bene sottolineare, però, che nell'effettiva implementazione dell'applicativo non è
-stato pedissequamente seguito lo schema appena proposto. \\ 
-È stato ritenuto più opportuno adottare un approccio \textit{per funzionalità}; ciò è risultato nell'applicazione del concetto di \textbf{Screaming Architecture.} Di seguito ne 
+stato pedissequamente seguito lo schema appena proposto. \\
+È stato ritenuto più opportuno adottare un approccio \textit{per funzionalità}; ciò è risultato nell'applicazione del concetto di \textbf{Screaming Architecture.} Di seguito ne
 è mostrato un esempio di implementazione, tratto dal software stesso. \\
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics{./diagrams/design/screaming.png}
 \end{figure}
 \FloatBarrier
-L'espressione "Screaming Architecture" è stata coniata dal sopracitato Robert C. Martin; essa viene utilizzata nelle situazioni in cui, 
+L'espressione "Screaming Architecture" è stata coniata dal sopracitato Robert C. Martin; essa viene utilizzata nelle situazioni in cui,
 rivolgendo un solo sguardo ad un progetto, si riesce ad avere un'idea di base su cosa esso faccia e su cosa riguardi. \\
-Da ciò deriva la possibilità di comprendere esattamente la struttura al cuore del codice implementato: 
+Da ciò deriva la possibilità di comprendere esattamente la struttura al cuore del codice implementato:
 la suddivisione nei diversi package "urla" al lettore l'approccio utilizzato, che risulta dunque chiaro e comprensibile già a primo impatto.\\
 
 
@@ -1255,23 +1362,65 @@ La Clean Architecture non preclude, però, la possibilità di adattare all'appli
 Come descritto nella sezione successiva, tale approccio è stato ritenuto adatto alle esigenze di implementazione.
 
 \newpage
+
+\subsection{Le scelte implementative}
+\subsubsection{Applicazioni mobile native e ibride}
+Un’applicazione mobile nativa è un’applicazione software sviluppata per funzionare su uno specifico tipo di dispositivo o piattaforma.
+Le app native consentono performance migliori, un’esecuzione veloce e un alto grado di precisione. Nonostance ciò, sono noti diversi problemi:
+\begin{itemize}
+	\item Le app native richiedono codice sorgente \textit{esclusivo}, poiché ogni dispositivo deve avere la sua versione specifica dell’app;
+	\item Richiede un costo maggiore, e sono richiesti più sviluppatori per creare e gestire il codice per ogni piattaforma;
+	\item È richiesto molto tempo per la creazione differenziata per i diversi sistemi operativi in ogni aggiornamento delle funzionalità.
+\end{itemize}
+
+Un’app ibrida combina gli elementi di applicazioni web e native, i linguaggi utilizzati fanno parte di tecnologie web come HTML, CSS e JavaScript.
+\begin{itemize}
+	\item Hanno un’interfaccia utente multipiattaforma;
+	\item Possono essere sviluppate più velocemente e richiedono meno costi di sviluppo e manutenzione;
+	\item Non hanno bisogno di codice sorgente specifico.
+	\item Penalizzano la UX in alcuni casi.
+\end{itemize}
+
+La scelta stata è influenzata da diversi fattori. Tra i requisiti del sistema sono richieste prestazioni di buon livello, e il target
+di clienti è particolarmente esigente.
+È stato adottato un approccio nativo, precisamente su sistema operativo \textbf{Android}, scegliendo \textbf{Kotlin} come linguaggio di programmazione.
+
+\subsubsection{Perchè Kotlin}
+Java detiene da anni un ruolo chiave nello sviluppo di applicazioni, tuttavia alcuni requisiti \textit{platform-dependant} 
+possono rendere tedioso l'utilizzo di tale linguaggio. Esistono altri linguaggi che operano sulla JVM, tra questi Kotlin ha guadagnato
+molti punti a favore nello sviluppo di applicazioni native Android. \\
+
+Tra i vantaggi di Kotlin c'è sicuramente la concisione attraverso l'inferenza di tipi, lo \textit{smart-cast} e le \textit{data class}: 
+potendo risolvere lo stesso problema in meno righe di codice ne giovano leggibilità e manutenibilità. \\
+Il type system di Kotlin mira ad eliminare le \textit{NullPointerException}, garantendo controlli a tempo di compilazione e offrendo
+operatori di \textit{null-safety}.
+
+Tra le funzionalità più interessanti volte a migliorare la produttività dello sviluppatore ritroviamo una forte integrazione del paradigma di
+programmazione funzionale, oltre alla possibilità di creare funzioni particolari note come \textit{estensioni}, che consentono l'aggiunta
+di nuovi metodi a classi pre-esistenti. 
+
+Inoltre Kotlin non preclude la possibilità di utilizzare codice Java, ma questa possibilità è bi-direzionale: Java e Kotlin possono coesistere
+all'interno dello stesso progetto.
+
+\newpage
+
 \subsubsection{Diagramma di design dell'applicativo}
-In questa sezione viene presentato un diagramma realizzato con lo scopo di rappresentare la struttura generale dell'applicativo. \\ 
+In questa sezione viene presentato un diagramma realizzato con lo scopo di rappresentare la struttura generale dell'applicativo. \\
 Le specifiche di ciascuna scelta implementativa sono dettagliate nelle sezioni successive.
 \begin{figure}[!htbp]
 	\centering
-	 \includepdf[pages=1, height=17cm]{./diagrams/android.pdf}
+	\includepdf[pages=1, height=17cm]{./diagrams/android.pdf}
 \end{figure}
 
 \newpage
-\subsubsection{Pattern architetturali}
-Il design pattern architetturale potrebbe essere definito come \textit{ibrido}: ciò è dovuto alla 
+\subsubsection{Pattern architetturale utilizzato}
+Il design pattern architetturale potrebbe essere definito come \textit{ibrido}: ciò è dovuto alla
 \textit{fusione} di due pattern differenti utilizzati nella progettazione. \\
-Tali pattern sono \textbf{MVVM} e \textbf{MVI}; quest'ultimo è stato utilizzato per ovviare ai problemi 
+Tali pattern sono \textbf{MVVM} e \textbf{MVI}; quest'ultimo è stato utilizzato per ovviare ai problemi
 sofferti dal primo. Procediamo ad un'analisi più dettagliata. \\
 
-\textbf{MVVM} è un'architettura del tipo Model-View-ViewModel che evita l'accoppiamento stretto 
-tra ciascuna componente. Più nello specifico, in questo tipo di architettura, i figli non hanno un 
+\textbf{MVVM} è un'architettura del tipo Model-View-ViewModel che evita l'accoppiamento stretto
+tra ciascuna componente. Più nello specifico, in questo tipo di architettura, i figli non hanno un
 riferimento diiretto al padre, ma hanno solo riferimenti tramite \textit{observables}.\\
 Esso è organizzato secondo tre strati:
 \begin{itemize}
@@ -1287,27 +1436,25 @@ Il modello MVVM, per quanto affermato, pone però alcune problematiche, quali ad
 	\item View e ViewModel possono essere soggetti ad avere un coupling stretto.
 \end{itemize}
 
-A questo scopo, è stata realizzata un'integrazione con il modello MVI. \\
+A questo scopo, è stata realizzata un'integrazione con il modello MVI, la cui differenza principale si risolve nell'assenza
+della moltitudine di observables citati in precedenza. \\
 
-\textbf{MVI} sta per Model-View-Intent. Si tratta di uno dei pattern architetturali più nuovi per applicazioni Android. 
+\textbf{MVI} sta per Model-View-Intent. Si tratta di uno dei pattern architetturali più recenti per applicazioni Android.
 \begin{itemize}
-	\item Model - rappresenta uno stato. I Model dovrebbero essere immutabili, in modo da 
-		  assicurare un flow di dati unidirezionale con gli altri strati;
+	\item Model - rappresenta uno stato. I Model dovrebbero essere immutabili, in modo da
+	      assicurare un flow di dati unidirezionale con gli altri strati;
 	\item View - rappresenta le View, che possono essere implementate in Activity o Fragment
-	\item Intent - rappresenta un'intenzione o una volontà di eseguire un'azione, sia dell'utente 
-		  che dell'app stessa. Gli Intent si traducono in \textit{Event} ed \textit{Effect}.
+	\item Intent - rappresenta un'intenzione o una volontà di eseguire un'azione, sia dell'utente
+	      che dell'app stessa. Gli Intent si traducono in \textit{Event} ed \textit{Effect}.
 \end{itemize}
 
-L'integrazione dei due pattern architetturali sopracitati culmina nella nascita di un nuovo pattern, chiamato \textbf{UDF}. \\
-
-\newpage
-\subsection{Dettagli ulteriori scelte implementative}
-
-
-
-
-
-
+L'integrazione dei due pattern architetturali sopracitati culmina nella nascita di un nuovo pattern, chiamato \textbf{UDF} dagli sviluppatori Android.\\
+In sintesi:
+\begin{itemize}
+	\item Presenza di \textit{StateHolder}, necessari per ogni ViewModel nella maggior parte dei casi, non necessariamente unici;
+	\item Richiamo alle macchine di stato e agli \textbf{Statechart} definiti in precedenza;
+	\item \textit{Event} e \textit{Effect}, che si interpongono tra View e ViewModel.
+\end{itemize} 
 
 \newpage
 \subsection{Diagramma delle classi di design}
@@ -1346,6 +1493,22 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 
 \newpage
 \section{Definizione di un piano di testing e valutazione sul campo dell'usabilità}
+
+\subsection{Valutazione dell'usabilità}
+Parte fondamentale nel processo creativo dell’applicazione è sempre capire in che direzione andare per migliorare l’esperienza dei clienti.
+Per realizzare ciò siamo ricorsi ad alcune tecniche per testare l’usabilità del nostro prodotto.
+L’approccio da noi adottato richiede di far eseguire dei task a un gruppo di utenti con differenti retroscena. \\
+
+Tali task possono avere un riscontro differente a seconda dell'utente:
+\begin{itemize}
+	\item L’utente è stato in grado di compiere il task tramite gli strumenti offerti dall’app.
+	\item L’utente non è stato in grado di compiere il task tramite gli strumenti offerti dall’app.
+	\item L'utente è stato in grado di compire il task, ma ha trovato difficoltà oppure trova l'interfaccia poco intuitiva.
+\end{itemize}
+
+Verranno fornite solo indicazioni di base, il sistema dovrebbe essere intuitivo, in caso di una percentuale di riscontri altamente
+negativa il sistema sarà modificato.
+
 
 
 \end{document}

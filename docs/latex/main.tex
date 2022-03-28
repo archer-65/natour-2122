@@ -111,10 +111,17 @@ la minima cifra considerata nella raccolta dati.\\
 \subsection{Valutazione dell'usabilità a priori}
 
 \subsubsection{Definizione delle Personas}
-Le \textit{Personas} sono veri e propri identikit, creati sulla base di ricerche, che rappresentano un particolare
-gruppo di potenziali clienti. Delineare le caratteristiche di questi clienti permette di conoscere e comprendere
-bisogni, paure, obiettivi e motivazioni degli utenti.
-Saranno questi identikit a consentire lo sviluppo di una \textbf{UX} piacevole, funzionale ed elegante.
+Uno dei principali obiettivi dello sviluppo dell'applicativo è stato quello di \textit{conoscere i potenziali utenti} 
+e di delineare dei loro probabili comportamenti, al fine di garantire all'intero target di utenza la migliore esperienza 
+possibile. \\
+Si è ritenuto dunque opportuno elaborare dei profili ideali e immaginari: conoscendo caratteristiche e comportamenti del destinatario 
+di un prodotto, la progettazione di quest'ultimo risulta notevolmente più efficiente. \\
+Oltre a creare semplicemente un'ottima user experience, dunque, si è prestata una particolare attenzione ad utilizzare un approccio \textit{customer-centered}. \\
+I profili elaborati prendono il nome di \textbf{personas}. \\
+Le \textit{personas} sono veri e propri identikit, creati sulla base di ricerche, che rappresentano un particolare
+gruppo di clienti che potrebbero utilizzare un prodotto. Delineare le caratteristiche di tali clienti permette di conoscere e comprendere i 
+loro bisogni, obiettivi, paure e motivazioni.\\
+Proprio questi identikit, in conclusione, hanno contruibito allo sviluppo di una \textbf{UX} piacevole, funzionale ed elegante.
 
 \begin{figure}[!htbp]
 	\centering
@@ -147,33 +154,45 @@ Saranno questi identikit a consentire lo sviluppo di una \textbf{UX} piacevole, 
 % oppure di creare compilation di itinerari da avere sempre a disposizione.
 
 \subsubsection{Progettazione dell'esperienza utente}
-Attraverso una fase di \textbf{Brainstorming} sono state generate idee per sfruttare le opportunità e risolvere i problemi emersi durante la creazione delle Personas.
-Sono state raccolte idee e i suggerimenti dei componenti del team di progettazione, raccogliendo anche le proposte più banali, così da valutare tutte le possibilità.
-Una volta raccolte le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE}, nello specifico, \textit{Figma}.\\
+Attraverso una fase di \textbf{brainstorming} sono state generate idee per sfruttare le opportunità e risolvere i problemi emersi durante la creazione delle \textit{personas}.
+La raccolta di opinioni e suggerimenti dei componenti del team di progettazione ha analizzato anche le proposte più semplici ed intuitive: è stato ritenuto importante, infatti, valutare ogni 
+possibilità nata dal processo creativo. \\
+Una volta approfondite le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE}; nello specifico, la scelta di quest'ultimo è ricaduta su \textit{Figma}.\\
 
-Periodicamente ogni protitipo è stato discusso e creato coinvolgendo tutti i membri, svolgendo le seguenti analisi:
+Periodicamente ogni prototipo è stato discusso e rielaborato, in un processo coinvolgente tutti i membri del team e avente come oggetto, in particolare, le seguenti analisi:
 \begin{itemize}
 	\item Facilità di navigazione;
 	\item Tempo di reperimento dei contenuti;
 	\item Coerenza nella creazione di nuovi contenuti.
 \end{itemize}
 
-Progettare l'interazione tra utenti e prodotto è una materia complicata e spesso anche dispendiosa.
-Esiste però un modo, molto utilizzato in \textbf{UX Design}, per andare a ridurre al minimo possibile questi test utente: la valutazione euristica. \\
+Progettare l'interazione tra utenti e prodotto è un processo complicato e spesso anche dispendioso. \\
+Una possibile soluzione a questo problema, però, esiste: si tratta di un metodo molto utilizzato in 
+\textbf{UX Design}, avente lo scopo di ridurre al minimo i test utente. Tale processo è noto come \textit{valutazione euristica}. \\
 
-Le Euristiche di Nielsen sono il cardine dell'esperienza utente realizzata. \\
-È stata posta particolare attenzione allo \textit{stato del sistema}, specialmente agli stati di caricamento e di errore,
-dando eventualmente suggerimenti e feedback all'utente. \\
-Nella maggior parte dei casi gli errori sono stati prevenuti, non è possibile procedere con una determinata operazione se non si soddisfano
-dei requisiti. \\
-Le funzionalità più comuni sono rese disponibili sotto nomi ben noti, creando una corrispondenza tra il sistema e il mondo reale. \\
-L'interfaccia non presenta limitazioni, non viene mai imposto all'utente di effettuare una determinata operazione non desiderata,
-eccezion fatta per operazioni \textit{distruttive}, che richiedono una conferma.
-Tale interfaccia è estremamente minimalista, i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione e
-posizionamento strategico delle informazioni. \\
-L'ambiente è totalmente isolato, consistente, l'interfaccia non attraversa mai cambi di layout estremi, migliorando la velocità d'apprendimento degli utenti. \\
+Le \textbf{Euristiche di Nielsen} sono il cardine dell'esperienza utente ideata. \\
+Il focus di quest'analisi è stato rivolto verso lo \textit{stato del sistema}, con particolare attenzione agli stati di \textit{caricamento} e di \textit{errore}; 
+si è ritenuto opportuno, in queste condizioni, fornire all'utente dei feedback. \\
+Per quanto riguarda le situazioni di errore è stata adottata una politica di \textit{problem avoidance} piuttosto che di \textit{problem solving}: ciò non implica, 
+ovviamente, che le circostanze di errore non siano state gestite o degnate della giusta attenzione. Si è preferito, però, concentrarsi sul \textit{prevenire} gli errori. 
+Ove possibile, infatti, sono stati posti dei "limiti": grazie alla loro presenza, non sarebbe possibile procedere con l'utilizzo di una particolare funzionalità se 
+i requisiti necessari per un corretto funzionamento di quest'ultima non fossero rispettati. \\
+Le funzionalità più "comuni", in quanto di prassi nel mondo del social networking, si trovano sotto nomi ben noti: una delle motivazioni di questa scelta è stata sicuramente la volontà di 
+creare una corrispondenza tra il sistema e il mondo reale. La motivazione principale, però, è stata la volontà di ottenere una sorta di \textit{continuità} nell'utilizzo del prodotto: sfruttando convenzioni ormai 
+consolidate nell'esperienza utente, è stato ritenuto naturale e improntato a una migliore comprensione del funzionamento dell'applicativo sfruttare i meccanismi 
+ e comportamenti - che per un utente abituale risultano involontari - che entrano in gioco nell'utilizzo di un'applicativo informatico. \\
+L'interfaccia non presenta limitazioni; l'utente non viene mai posto in condizione di dover visualizzare funzionalità o componenti indesiderate. 
+È stato ritenuto però necessario stabilire delle eccezioni, relative esclusivamente ad operazioni \textit{distruttive}, che potrebbero causare modifiche permanenti ed irreversibili 
+ai contenuti inseriti. Tali operazioni presentano dunque la necessità di essere confermate prima di essere portate a termine: risulta, anche qui, chiara la volontà di evitare 
+situazioni di disagio causate da meri errori dell'utente.\\
+L'interfaccia realizzata per il software risulta essere estremamente minimalista; i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione ed un 
+posizionamento strategico delle informazioni. \\ 
+Le scelte di design sono dunque improntate a creare un ambiente visivo semplice e di immediata comprensione. 
+Ci si trova in presenza di un ambiente totalmente isolato, in cui le diverse schermate sono caratterizzate da una forte 
+\textbf{consistenza}. Per \textit{consistenza} si intende il mantenimento di una linea generale di presentazione di contenuti attraverso 
+l'intero applicativo: le diverse interfacce non presentano mai cambi di layout estremi, garantendo una maggiore velocità d'apprendimento agli utenti. \\
 
-Prima di raffinare l'esperienza utente è stato necessario coinvolgere un ristretto bacino d'utenza per ottenere riscontri esterni
+Prima di raffinare l'esperienza utente è stato ritenuto necessario coinvolgere un ristretto bacino d'utenza per ottenere riscontri esterni
 rispetto al contesto di prototipazione e sviluppo.
 
 \newpage

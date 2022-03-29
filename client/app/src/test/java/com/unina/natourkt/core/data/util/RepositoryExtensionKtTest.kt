@@ -34,7 +34,7 @@ class RepositoryExtensionKtTest {
     fun `when the lambda function returns without error after a network call, it should emit success with generic type data corresponding to the one given as parameter`() =
         runTest {
             val lambdaExpected = "This is a dumb test"
-            val result = retrofitSafeCall(dispatcher) { lambdaExpected }
+            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { lambdaExpected }
 
             assertThat(lambdaExpected, equalTo(result.data))
         }
@@ -42,7 +42,7 @@ class RepositoryExtensionKtTest {
     @Test
     fun `when the TimeoutCancellationException is thrown it should emit Timeout Error`() {
         runTest {
-            val result = retrofitSafeCall(dispatcher) { withTimeout(0L) {} }
+            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = -1L) { }
 
             assertThat(DataState.Cause.Timeout, equalTo(result.error))
         }
@@ -51,7 +51,7 @@ class RepositoryExtensionKtTest {
     @Test
     fun `when an IOException is thrown in the lambda, it should emit Network Error`() {
         runTest {
-            val result = retrofitSafeCall(dispatcher) { throw IOException() }
+            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { throw IOException() }
 
             assertThat(DataState.Cause.NetworkError, equalTo(result.error))
         }
@@ -64,7 +64,7 @@ class RepositoryExtensionKtTest {
                 "{\"Error!!!\" [\"Impossible to process\"]}".toResponseBody("application/json".toMediaTypeOrNull())
 
             val result =
-                retrofitSafeCall(dispatcher) {
+                retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) {
                     throw HttpException(
                         Response.error<Any>(
                             422,

@@ -34,11 +34,12 @@ import java.io.IOException
 
 suspend fun <T> retrofitSafeCall(
     dispatcher: CoroutineDispatcher,
-    apiCall: suspend () -> T
+    timeout: Long = NETWORK_TIMEOUT,
+    apiCall: suspend () -> T,
 ): DataState<T> {
     return withContext(dispatcher) {
         try {
-            withTimeout(NETWORK_TIMEOUT) {
+            withTimeout(timeout) {
                 DataState.Success(apiCall.invoke())
             }
         } catch (timeoutException: TimeoutCancellationException) {

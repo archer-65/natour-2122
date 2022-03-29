@@ -45,8 +45,8 @@ class GetChatByMembersUseCaseTest {
     @Test
     fun `when the given IDs are minus or equal to zero, it should return NotAcceptable as last flow value`() =
         runTest {
-            firstMember = User(-1, "marietto", false, null)
-            secondMember = User(2, "bianca", true, null)
+            firstMember = User(-1, "marietto", false, "")
+            secondMember = User(2, "bianca", true, "")
 
             val result = getChatByMembers(firstMember.id, secondMember.id).last()
             assertThat(result.error, equalTo(DataState.Cause.NotAcceptable))
@@ -55,7 +55,7 @@ class GetChatByMembersUseCaseTest {
     @Test
     fun `when the given IDs are equal, it should return BadRequest as last flow value`() =
         runTest {
-            firstMember = User(2, "marietto", false, null)
+            firstMember = User(2, "marietto", false, "")
             secondMember = firstMember
 
             val result = getChatByMembers(firstMember.id, secondMember.id).last()
@@ -65,7 +65,7 @@ class GetChatByMembersUseCaseTest {
     @Test
     fun `when the IDs are good to go, the result data should be a Chat entity`() {
         runTest {
-            firstMember = User(2, "marietto", false, null)
+            firstMember = User(2, "marietto", false, "")
             secondMember = User(3, "mattia", isAdmin = false, "")
             dummyChat = Chat(34, LocalDate.now(), firstMember, secondMember)
 
@@ -82,9 +82,9 @@ class GetChatByMembersUseCaseTest {
     @Test
     fun `when the IDs are good to go but the chat is not found, the result error should be a NotFound`() {
         runTest {
-            firstMember = User(2, "marietto", false, null)
-            secondMember = User(3, "mattia", isAdmin = false, "")
-            brokenUser = User(5, "bianca", true, null)
+            firstMember = User(2, "marietto", false, "")
+            secondMember = User(3, "mattia", false, "")
+            brokenUser = User(5, "bianca", true, "")
             dummyChat = Chat(34, LocalDate.now(), firstMember, brokenUser)
 
             val request = repository.getChatByMembers(firstMember.id, secondMember.id)

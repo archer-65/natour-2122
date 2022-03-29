@@ -22,7 +22,7 @@ class RegistrationUseCase @Inject constructor(
         emit(DataState.Loading())
 
         val isValid = formValidator(username, email, password)
-        if (isValid is DataState.Error) {
+        if (!isValid) {
             return@flow
         }
 
@@ -30,16 +30,16 @@ class RegistrationUseCase @Inject constructor(
         emit(signUpResult)
     }
 
-    fun formValidator(username: String, email: String, password: String): DataState<Unit> {
+    fun formValidator(username: String, email: String, password: String): Boolean {
         if (username.contains(" ") || username.isBlank()) {
-            return DataState.Error(DataState.Cause.InvalidUsername)
+            return false
         }
         if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {
-            return DataState.Error(DataState.Cause.InvalidEmail)
+            return false
         }
         if (password.length < 8) {
-            return DataState.Error(DataState.Cause.InvalidPassword)
+            return false
         }
-        return DataState.Success(Unit)
+        return true
     }
 }

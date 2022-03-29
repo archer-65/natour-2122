@@ -19,7 +19,8 @@ import java.io.IOException
  *
  * NOTE: This class has been modified multiple times due to requirements!
  * This convenience method meant to be a shortcut for direct calls to retrofit interface methods.
- * To avoid boilerplate code everywhere, a dispatcher is injected as parameter, while the second parameter is
+ * To avoid boilerplate code everywhere, a dispatcher is injected as parameter, the second one is a value that
+ * expresses the maximum request time, while the third parameter is
  * a lambda function taking every kind and number of parameters and returning any kind of type INCLUDED in the [DataState]
  * wrapper utility
  *
@@ -40,7 +41,8 @@ suspend fun <T> retrofitSafeCall(
     return withContext(dispatcher) {
         try {
             withTimeout(timeout) {
-                DataState.Success(apiCall.invoke())
+                val call = apiCall.invoke()
+                DataState.Success(call)
             }
         } catch (timeoutException: TimeoutCancellationException) {
             Log.e(NETWORK_ERROR, timeoutException.localizedMessage, timeoutException)

@@ -24,35 +24,35 @@ internal class RegistrationUseCaseTest {
     }
 
     @Test
-    fun `when the given username contains a white space or is blank, it should return InvalidUsername`() {
+    fun `when the given username contains a white space or is blank`() {
         val result = registrationUseCase.formValidator(
             username = "k s",
             email = "ksa@gmail.com",
             password = "facocero"
         )
 
-        assertThat(result.error, equalTo(DataState.Cause.InvalidUsername))
+        assertThat(false, equalTo(result))
     }
 
     @Test
-    fun `when the given email doesn't respect the classic email pattern, it should return InvalidEmail`() {
+    fun `when the given email doesn't respect the classic email pattern`() {
         val result = registrationUseCase.formValidator(
             username = "acsioadi",
             email = "ksagmail.com",
             password = "facocero"
         )
 
-        assertThat(result.error, equalTo(DataState.Cause.InvalidEmail))
+        assertThat(false, equalTo(result))
     }
 
     @Test
-    fun `when the given password has length minus than 8 characters, it should return InvalidPassword`() {
+    fun `when the given password has length minus than 8 characters`() {
         val result = registrationUseCase.formValidator(
             username = "acsioadi",
             email = "ksa@gmail.com",
             password = "facoceo"
         )
 
-        assertThat(result.error, equalTo(DataState.Cause.InvalidPassword))
+        assertThat(false, equalTo(result))
     }
 }

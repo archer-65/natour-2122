@@ -4,13 +4,10 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.core.data.paging.UsersSource
-import com.unina.natourkt.core.data.remote.dto.mapper.DirectionsApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.UserApiMapper
-import com.unina.natourkt.core.data.remote.retrofit.MapsApi
 import com.unina.natourkt.core.data.remote.retrofit.UserApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.User
-import com.unina.natourkt.core.domain.repository.MapsRepository
 import com.unina.natourkt.core.domain.repository.PreferencesRepository
 import com.unina.natourkt.core.domain.repository.UserRepository
 import com.unina.natourkt.core.util.DataState
@@ -55,7 +52,7 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateUser(user: User): DataState<User> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val userRequest = userApiMapper.mapToDto(user)
             val response = api.updateUser(userRequest.id, userRequest)
 
@@ -64,6 +61,6 @@ class UserRepositoryImpl @Inject constructor(
 
             preferencesRepository.saveUserToPreferences(userToSave)
 
-            return@safeApiCall newUser
+            return@retrofitSafeCall newUser
         }
 }

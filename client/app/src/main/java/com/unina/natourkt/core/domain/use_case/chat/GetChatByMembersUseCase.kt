@@ -19,12 +19,27 @@ class GetChatByMembersUseCase @Inject constructor(
 
     operator fun invoke(firstMemberId: Long, secondMemberId: Long): Flow<DataState<Chat>> = flow {
         emit(DataState.Loading())
-        Log.i(
-            Constants.CHAT_MODEL,
-            "Getting messages for chat with users: ${firstMemberId} and ${secondMemberId}..."
-        )
+
+        if (firstMemberId <= 0L || secondMemberId <= 0L) {
+            emit(DataState.Error(DataState.Cause.NotAcceptable))
+            return@flow
+        }
+        if (firstMemberId == secondMemberId) {
+            emit(DataState.Error(DataState.Cause.BadRequest))
+            return@flow
+        }
 
         val result = chatRepository.getChatByMembers(firstMemberId, secondMemberId)
-        emit(result)
+        val chat = result.data
+
+        if (
+            (chat?.firstMember?.id == firstMemberId && chat.secondMember.id == secondMemberId)
+            ||
+            (chat?.firstMember?.id == secondMemberId && chat.secondMember.id == firstMemberId)
+        ) {
+            emit(result)
+        } else {
+            emit(DataState.Error(DataState.Cause.NotFound))
+        }
     }
 }

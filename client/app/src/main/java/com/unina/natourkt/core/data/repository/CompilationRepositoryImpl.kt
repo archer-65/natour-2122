@@ -6,12 +6,10 @@ import androidx.paging.PagingData
 import com.unina.natourkt.core.data.paging.PersonalCompilationSource
 import com.unina.natourkt.core.data.remote.dto.mapper.CompilationApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.CompilationCreationApiMapper
-import com.unina.natourkt.core.data.remote.retrofit.ChatApi
 import com.unina.natourkt.core.data.remote.retrofit.CompilationApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.Compilation
 import com.unina.natourkt.core.domain.model.CompilationCreation
-import com.unina.natourkt.core.domain.repository.ChatRepository
 import com.unina.natourkt.core.domain.repository.CompilationRepository
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers.IO
@@ -58,14 +56,14 @@ class CompilationRepositoryImpl @Inject constructor(
         userId: Long,
         routeId: Long
     ): DataState<List<Compilation>> {
-        return safeApiCall(IO) {
+        return retrofitSafeCall(IO) {
             val compilationResponse = api.getCompilationsByUserAndRouteNotPresent(userId, routeId)
             compilationResponse.map { compilationApiMapper.mapToDomain(it) }
         }
     }
 
     override suspend fun createCompilation(compilation: CompilationCreation): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val compilationRequest = compilationCreationApiMapper.mapToDto(compilation)
             api.createCompilation(compilationRequest)
         }
@@ -74,7 +72,7 @@ class CompilationRepositoryImpl @Inject constructor(
         compilationId: Long,
         routeId: Long
     ): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             api.addRouteToCompilation(compilationId, routeId)
         }
 
@@ -82,14 +80,14 @@ class CompilationRepositoryImpl @Inject constructor(
         compilationId: Long,
         routeId: Long
     ): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             api.removeRouteFromCompilation(compilationId, routeId)
         }
 
     override suspend fun removeCompilation(
         compilationId: Long,
     ): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             api.removeCompilation(compilationId)
         }
 }

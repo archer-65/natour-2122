@@ -2,7 +2,7 @@ package com.unina.natourkt.core.data.repository
 
 import com.unina.natourkt.core.data.remote.dto.mapper.DirectionsApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.MapsApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.DirectionsPolyline
 import com.unina.natourkt.core.domain.model.DirectionsRequest
 import com.unina.natourkt.core.domain.repository.MapsRepository
@@ -24,7 +24,7 @@ class MapsRepositoryImpl @Inject constructor(
         directionsRequest: DirectionsRequest
     ): DataState<DirectionsPolyline> {
 
-        return safeApiCall(IO) {
+        return retrofitSafeCall(IO) {
             val directionsResponse = api.getDirections(
                 origin = directionsRequest.origin,
                 destination = directionsRequest.destination,

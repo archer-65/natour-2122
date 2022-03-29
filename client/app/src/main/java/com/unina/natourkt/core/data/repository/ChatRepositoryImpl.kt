@@ -7,7 +7,7 @@ import com.unina.natourkt.core.data.paging.PersonalChatsSource
 import com.unina.natourkt.core.data.remote.dto.mapper.ChatApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.MessageApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.ChatApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.Chat
 import com.unina.natourkt.core.domain.model.Message
 import com.unina.natourkt.core.domain.repository.ChatRepository
@@ -56,13 +56,13 @@ class ChatRepositoryImpl @Inject constructor(
         firstMemberId: Long,
         secondMemberId: Long
     ): DataState<Chat> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val response = api.getChatByMembers(firstMemberId, secondMemberId)
             chatApiMapper.mapToDomain(response)
         }
 
     override suspend fun getChatMessages(chatId: Long): DataState<List<Message>> {
-        return safeApiCall(IO) {
+        return retrofitSafeCall(IO) {
             val messagesResult = api.getChatMessages(chatId)
             messagesResult.map { messageApiMapper.mapToDomain(it) }
         }

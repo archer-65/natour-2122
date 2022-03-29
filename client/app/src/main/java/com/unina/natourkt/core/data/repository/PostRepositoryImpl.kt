@@ -9,7 +9,7 @@ import com.unina.natourkt.core.data.paging.TaggedPostSource
 import com.unina.natourkt.core.data.remote.dto.mapper.PostApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.PostCreationApiMapper
 import com.unina.natourkt.core.data.remote.retrofit.PostApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.Post
 import com.unina.natourkt.core.domain.model.PostCreation
 import com.unina.natourkt.core.domain.repository.PostRepository
@@ -63,24 +63,24 @@ class PostRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getPostDetails(id: Long): DataState<Post> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val postResponse = api.getPostById(id)
             postApiMapper.mapToDomain(postResponse)
         }
 
     override suspend fun createPost(post: PostCreation): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val postRequest = postCreationApiMapper.mapToDto(post)
             api.createPost(postRequest)
         }
 
     override suspend fun reportPost(postId: Long): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             api.reportPost(postId)
         }
 
     override suspend fun deletePost(postId: Long): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             api.deletePost(postId)
         }
 }

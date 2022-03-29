@@ -4,15 +4,12 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.unina.natourkt.core.data.paging.ReportsSource
-import com.unina.natourkt.core.data.remote.dto.mapper.DirectionsApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.ReportApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.ReportCreationApiMapper
-import com.unina.natourkt.core.data.remote.retrofit.MapsApi
 import com.unina.natourkt.core.data.remote.retrofit.ReportApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.Report
 import com.unina.natourkt.core.domain.model.ReportCreation
-import com.unina.natourkt.core.domain.repository.MapsRepository
 import com.unina.natourkt.core.domain.repository.ReportRepository
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers.IO
@@ -40,7 +37,7 @@ class ReportRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createReport(report: ReportCreation): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val reportRequest = reportCreationApiMapper.mapToDto(report)
             api.createReport(reportRequest)
         }
@@ -56,7 +53,7 @@ class ReportRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteReport(reportId: Long): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             api.deleteReport(reportId)
         }
 }

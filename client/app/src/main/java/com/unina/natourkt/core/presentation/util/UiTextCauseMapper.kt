@@ -36,9 +36,12 @@ class UiTextCauseMapper {
 
                 // Other
                 DataState.Cause.SomethingWentWrong -> UiText.unknownError()
-                
+
                 DataState.Cause.FileError -> UiText.StringResource(R.string.file_not_valid)
                 DataState.Cause.StorageError -> UiText.StringResource(R.string.storage_error)
+                else -> {
+                    UiText.unknownError()
+                }
             }
         }
     }

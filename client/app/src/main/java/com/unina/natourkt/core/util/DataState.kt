@@ -42,6 +42,8 @@ sealed class DataState<T>(
     sealed class Cause {
         object UserNotFound : Cause()
         object UserNotConfirmed : Cause()
+        object InvalidUsername: Cause()
+        object InvalidEmail: Cause()
         object InvalidPassword : Cause()
         object InvalidCredentials : Cause()
         object UsernameExists : Cause()
@@ -53,6 +55,7 @@ sealed class DataState<T>(
         object AuthGeneric : Cause()
         object DataCorrupted : Cause()
         object NetworkError : Cause()
+        object HTTPGeneric: Cause()
         object Timeout : Cause()
         object Unauthorized : Cause()
         object InternalServerError : Cause()

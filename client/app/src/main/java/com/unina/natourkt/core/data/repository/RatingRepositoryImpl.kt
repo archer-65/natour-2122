@@ -1,12 +1,9 @@
 package com.unina.natourkt.core.data.repository
 
-import com.unina.natourkt.core.data.remote.dto.mapper.DirectionsApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RatingCreationApiMapper
-import com.unina.natourkt.core.data.remote.retrofit.MapsApi
 import com.unina.natourkt.core.data.remote.retrofit.RatingApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.RatingCreation
-import com.unina.natourkt.core.domain.repository.MapsRepository
 import com.unina.natourkt.core.domain.repository.RatingRepository
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +20,7 @@ class RatingRepositoryImpl @Inject constructor(
 ) : RatingRepository {
 
     override suspend fun createRating(rating: RatingCreation): DataState<Unit> =
-        safeApiCall(Dispatchers.IO) {
+        retrofitSafeCall(Dispatchers.IO) {
             val ratingRequest = ratingCreationApiMapper.mapToDto(rating)
             api.createRating(ratingRequest)
         }

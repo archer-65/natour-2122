@@ -43,8 +43,12 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(preferencesRepository: PreferencesRepository, api: UserApi, userApiMapper: UserApiMapper): UserRepository {
-        return UserRepositoryImpl(preferencesRepository, api, userApiMapper)
+    fun provideUserRepository(
+        preferencesRepository: PreferencesRepository,
+        api: UserApi,
+        userApiMapper: UserApiMapper
+    ): UserRepository {
+        return UserRepositoryImpl(api, preferencesRepository, userApiMapper)
     }
 
     @Provides

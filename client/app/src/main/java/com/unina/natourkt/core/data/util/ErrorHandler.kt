@@ -62,7 +62,7 @@ private fun getErrorType(code: Int): DataState.Cause {
         ErrorCodes.NotAcceptable.code -> DataState.Cause.NotAcceptable
         ErrorCodes.ServiceUnavailable.code -> DataState.Cause.ServiceUnavailable
         ErrorCodes.Forbidden.code -> DataState.Cause.Forbidden
-        else -> DataState.Cause.SomethingWentWrong
+        else -> DataState.Cause.HTTPGeneric
     }
 }
 

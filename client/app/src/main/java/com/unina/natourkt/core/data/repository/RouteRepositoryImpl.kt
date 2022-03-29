@@ -7,18 +7,15 @@ import com.unina.natourkt.core.data.paging.CompilationRouteSource
 import com.unina.natourkt.core.data.paging.FilteredRoutesSource
 import com.unina.natourkt.core.data.paging.PersonalRouteSource
 import com.unina.natourkt.core.data.paging.RoutesSource
-import com.unina.natourkt.core.data.remote.dto.mapper.DirectionsApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteCreationApiMapper
 import com.unina.natourkt.core.data.remote.dto.mapper.RouteTitleApiMapper
-import com.unina.natourkt.core.data.remote.retrofit.MapsApi
 import com.unina.natourkt.core.data.remote.retrofit.RouteApi
-import com.unina.natourkt.core.data.util.safeApiCall
+import com.unina.natourkt.core.data.util.retrofitSafeCall
 import com.unina.natourkt.core.domain.model.Filter
 import com.unina.natourkt.core.domain.model.RouteCreation
 import com.unina.natourkt.core.domain.model.RouteTitle
 import com.unina.natourkt.core.domain.model.route.Route
-import com.unina.natourkt.core.domain.repository.MapsRepository
 import com.unina.natourkt.core.domain.repository.RouteRepository
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.Dispatchers.IO
@@ -94,31 +91,31 @@ class RouteRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getRoutesTitles(title: String): DataState<List<RouteTitle>> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val titlesResponse = api.getRouteTitles(title)
             titlesResponse.map { routeTitleApiMapper.mapToDomain(it) }
         }
 
 
     override suspend fun createRoute(route: RouteCreation): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val routeRequest = routeCreationApiMapper.mapToDto(route)
             api.createRoute(routeRequest)
         }
 
     override suspend fun getRouteById(routeId: Long): DataState<Route> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val routeResponse = api.getRouteById(routeId)
             routeApiMapper.mapToDomain(routeResponse)
         }
 
     override suspend fun deleteRoute(routeId: Long): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             api.deleteRoute(routeId)
         }
 
     override suspend fun updateRoute(route: Route): DataState<Unit> =
-        safeApiCall(IO) {
+        retrofitSafeCall(IO) {
             val routeRequest = routeApiMapper.mapToDto(route)
             api.updateRoute(routeRequest.id, routeRequest)
         }

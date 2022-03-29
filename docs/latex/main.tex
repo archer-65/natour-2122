@@ -989,7 +989,6 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 
 \newpage
 \subsection{Classi, oggetti e relazioni di analisi}
-
 \subsubsection{Autenticazione}
 \begin{figure}[!htbp]
 	\centering
@@ -1156,7 +1155,7 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \subsubsection{Funzionalità riservate agli amministratori}
 \begin{figure}[!htpb]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Aggiorna_foto_profilo.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/modifica_adm_itinerario.svg}
 	\caption{Modifica itinerario}
 \end{figure}
 \FloatBarrier
@@ -1645,35 +1644,265 @@ In sintesi:
 
 \newpage
 \subsection{Diagramma delle classi di design}
-
 \subsubsection{Autenticazione}
 \begin{figure}[!htbp]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/login.svg}
-	\caption{Login e Login con social}
+	\caption{Login e login con social}
 \end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/registrazione.svg}
+	\caption{Registrazione}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/conferma_registrazione.svg}
+	\caption{Conferma registrazione}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/password_dimenticata.svg}
+	\caption{Password dimenticata}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/nuova_password_(dopo_dimenticata).svg}
+	\caption{Reimposta password dopo la richiesta}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/logout.svg}
+	\caption{Logout}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Interazione con un itinerario}
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/visualizza_itinerari_recenti.svg}
+	\caption{Itinerari più recenti}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/crea_itinerario.svg}
+	\caption{Aggiunta itinerario}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_itinerario.svg}
+	\caption{Dettagli itinerario}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/ricerca_itinerario.svg}
+	\caption{Ricerca itinerario}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/valuta_itinerario.svg}
+	\caption{Valutazione itinerario}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/segnala_itinerario.svg}
+	\caption{Segnalazione itinerario}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/elimina_itinerario.svg}
+	\caption{Eliminazione itinerario}
+\end{figure}
+\FloatBarrier
 
 \newpage
+
+\subsubsection{Interazione con un post}
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/home_(post_recenti).svg}
+	\caption{Post più recenti}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/crea_post.svg}
+	\caption{Aggiunta post}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_post.svg}
+	\caption{Dettagli post}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/segnala_post.svg}
+	\caption{Segnalazione post}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/elimina_post.svg}
+	\caption{Eliminazione post}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
 \subsubsection{Interazione con una compilation}
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettaglio_itinerario.svg}
-	\caption{Dettaglio compilation e rimozione itinerario da compilation}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/visualizza_compilation_personali.svg}
+	\caption{Visualizza compilation personali}
 \end{figure}
+\FloatBarrier
 
-\newpage
-\subsubsection{Aggiunta di un itinerario}
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/design_class_diagrams-Crea_itinerario}
-	\caption{Aggiunta di un nuovo itinerario}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/crea_compilation.svg}
+	\caption{Aggiunta compilation}
 \end{figure}
+\FloatBarrier
 
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_compilation.svg}
+	\caption{Dettagli compilation e rimozione itinerario da compilation}
+\end{figure}
+\FloatBarrier
 
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/aggiungi_itinerario_a_compilation.svg}
+	\caption{Aggiunta itinerario a compilation}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/elimina_compilation.svg}
+	\caption{Eliminazione compilation}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
+\subsubsection{Interazione con altri utenti}
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/lista_chat.svg}
+	\caption{Lista conversazioni}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/chat_privata.svg}
+	\caption{Conversazione privata}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/ricerca_destinatario_messaggio.svg}
+	\caption{Ricerca destinatario messaggio}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
+\subsubsection{Gestione profilo}
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/modifica_foto_profilo.svg}
+	\caption{Modifica foto profilo}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/post_personali.svg}
+	\caption{Post personali}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/visualizza_itinerari_personali.svg}
+	\caption{Itinerari personali}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
+\subsubsection{Amministratore}
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/lista_segnalazioni.svg}
+	\caption{Lista segnalazione}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_segnalazione_+_elimina_segnalazione.svg}
+	\caption{Dettagli segnalazione e eliminazione segnalazione}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/aggiorna_itinerario.svg}
+	\caption{Modifica itinerario}
+\end{figure}
+\FloatBarrier
 
 \newpage
 \subsection{Diagrammi di sequenza di design}
 Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso significativi.
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/sequence-invia_messaggio.svg}
+	\caption{Invio messaggio}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/sequence-modifica_itinerario.svg}
+	\caption{Modifica itinerario (amministratore)}
+\end{figure}
+\FloatBarrier
 
 \newpage
 \subsection{Definizione delle gerarchie funzionali}

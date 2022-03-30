@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-30T15:08:01.388Z" agent="5.0 (Windows)" etag="3NkqCSVRZKLz5FQIACLV" version="17.3.0" type="github" pages="7">
+<mxfile host="app.diagrams.net" modified="2022-03-30T15:10:31.866Z" agent="5.0 (Windows)" etag="k1Sv1rbthj33WKQ4UpQV" version="17.3.0" type="github" pages="7">
   <diagram id="qczy4szZoJ-dXBy7eCR8" name="Page-1">
     <mxGraphModel dx="1262" dy="675" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1000" math="0" shadow="0">
       <root>
@@ -430,24 +430,39 @@
           <mxGeometry x="-411" y="520" width="170" height="70" as="geometry" />
         </mxCell>
         <mxCell id="XJwVIXTmzipemH6ciXKP-5" value="Ricerca destinatario messaggio" style="ellipse;whiteSpace=wrap;html=1;fillColor=#CCE8E7;strokeColor=#006A6A;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
-          <mxGeometry x="-413" y="600" width="170" height="70" as="geometry" />
+          <mxGeometry x="-411" y="600" width="170" height="70" as="geometry" />
         </mxCell>
         <mxCell id="PV0Y0JGR-1BFf_9Rntem-1" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;strokeColor=#006A6A;" parent="RA_Lw5pRIug5276kbM9S-1" source="PV0Y0JGR-1BFf_9Rntem-0" target="XJwVIXTmzipemH6ciXKP-2" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-510" y="520" />
+              <mxPoint x="-510" y="395" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="PV0Y0JGR-1BFf_9Rntem-2" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;strokeColor=#006A6A;" parent="RA_Lw5pRIug5276kbM9S-1" source="PV0Y0JGR-1BFf_9Rntem-0" target="XJwVIXTmzipemH6ciXKP-3" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-510" y="520" />
+              <mxPoint x="-510" y="475" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="PV0Y0JGR-1BFf_9Rntem-5" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Roboto;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto;endArrow=none;endFill=0;strokeColor=#006A6A;" parent="RA_Lw5pRIug5276kbM9S-1" source="PV0Y0JGR-1BFf_9Rntem-0" target="XJwVIXTmzipemH6ciXKP-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-502" y="520" />
-              <mxPoint x="-502" y="635" />
+              <mxPoint x="-510" y="520" />
+              <mxPoint x="-510" y="635" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="glRwn5g0sTdowDy6CovN-0" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;rounded=1;strokeColor=#006A6A;" edge="1" parent="RA_Lw5pRIug5276kbM9S-1" source="PV0Y0JGR-1BFf_9Rntem-0" target="XJwVIXTmzipemH6ciXKP-4">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-510" y="520" />
+              <mxPoint x="-510" y="555" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="PV0Y0JGR-1BFf_9Rntem-0" value="Utente registrato" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFCCCC;fontFamily=Fira Sans;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DFira%2BSans;" parent="RA_Lw5pRIug5276kbM9S-1" vertex="1">
           <mxGeometry x="-621" y="490" width="30" height="60" as="geometry" />

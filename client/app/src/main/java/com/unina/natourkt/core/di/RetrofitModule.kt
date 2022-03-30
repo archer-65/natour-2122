@@ -1,7 +1,8 @@
 package com.unina.natourkt.core.di
 
+import android.content.res.Resources
+import com.unina.natourkt.BuildConfig
 import com.unina.natourkt.core.data.remote.retrofit.*
-import com.unina.natourkt.core.util.Constants.BASE_URL
 import com.unina.natourkt.core.util.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
@@ -35,7 +36,7 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

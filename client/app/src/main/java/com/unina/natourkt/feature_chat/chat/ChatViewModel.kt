@@ -3,6 +3,7 @@ package com.unina.natourkt.feature_chat.chat
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.unina.natourkt.BuildConfig
 import com.unina.natourkt.core.analytics.ActionEvents
 import com.unina.natourkt.core.data.remote.dto.MessageCreationDto
 import com.unina.natourkt.core.data.remote.dto.MessageDto
@@ -15,7 +16,6 @@ import com.unina.natourkt.core.presentation.model.MessageType
 import com.unina.natourkt.core.presentation.model.groupIntoMap
 import com.unina.natourkt.core.presentation.util.UiEffect
 import com.unina.natourkt.core.presentation.util.UiTextCauseMapper
-import com.unina.natourkt.core.util.Constants.BASE_WS
 import com.unina.natourkt.core.util.DataState
 import com.unina.natourkt.core.util.DateTimeParser
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -106,7 +106,7 @@ class ChatViewModel @Inject constructor(
     private fun sender() {
         viewModelScope.launch {
             try {
-                session = client.connect(url = BASE_WS)
+                session = client.connect(url = BuildConfig.API_WS_URL)
                 jsonStompSession = session.withJsonConversions()
 
                 _uiState.update { it.copy(shouldScrollToBottom = false) }
@@ -136,7 +136,7 @@ class ChatViewModel @Inject constructor(
     private fun collector() {
         viewModelScope.launch {
             try {
-                session = client.connect(url = BASE_WS)
+                session = client.connect(url = BuildConfig.API_WS_URL)
                 jsonStompSession = session.withJsonConversions()
 
                 val messages: Flow<MessageDto> = jsonStompSession.subscribe(

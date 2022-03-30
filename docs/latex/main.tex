@@ -73,7 +73,7 @@ di rendere la permanenza nella community piacevole per tutti.
 
 \subsection{Presentazione dell'idea progettuale}
 
-L'applicazione "NaTour21" nasce in seguito all'esigenza di uno spazio virtuale dove poter condividere la passione per l'escursionismo.\\
+L'applicazione \textbf{NaTour21} nasce in seguito all'esigenza di uno spazio virtuale dove poter condividere la passione per l'escursionismo.\\
 Creare una community di escursionisti, esperti o meno, ha lo scopo di rendere le esperienze individuali degli utenti più sicure e informate,
 oltre a promuovere la condivisione di contenuti personali.\\\\
 NaTour21 mette a disposizione degli utenti registrati diverse funzionalità.\\
@@ -176,7 +176,7 @@ Una possibile soluzione a questo problema, però, esiste: si tratta di un metodo
 \textbf{UX Design}, avente lo scopo di ridurre al minimo i test utente. Tale processo è noto come \textit{valutazione euristica}. \\
 
 Le \textbf{Euristiche di Nielsen} sono il cardine dell'esperienza utente ideata. \\
-Il focus di quest'analisi è stato rivolto verso lo \textit{stato del sistema}, con particolare attenzione agli stati di \textit{caricamento} e di \textit{errore}; 
+Il focus dell'analisi è stato rivolto verso lo \textit{stato del sistema}, con particolare attenzione agli stati di \textit{caricamento} e di \textit{errore}; 
 si è ritenuto opportuno, in queste condizioni, fornire all'utente dei feedback. \\
 Per quanto riguarda le situazioni di errore è stata adottata una politica di \textit{problem avoidance} piuttosto che di \textit{problem solving}: ciò non implica, 
 ovviamente, che le circostanze di errore non siano state gestite o degnate della giusta attenzione. Si è preferito, però, concentrarsi sul \textit{prevenire} gli errori. 
@@ -188,7 +188,7 @@ consolidate nell'esperienza utente, è stato ritenuto naturale e improntato a un
  e comportamenti - che per un utente abituale risultano involontari - che entrano in gioco nell'utilizzo di un'applicativo informatico. \\
 L'interfaccia non presenta limitazioni; l'utente non viene mai posto in condizione di dover visualizzare funzionalità o componenti indesiderate. 
 È stato ritenuto però necessario stabilire delle eccezioni, relative esclusivamente ad operazioni \textit{distruttive}, che potrebbero causare modifiche permanenti ed irreversibili 
-ai contenuti inseriti. Tali operazioni presentano dunque la necessità di essere confermate prima di essere portate a termine: risulta, anche qui, chiara la volontà di evitare 
+ai contenuti inseriti. Tali operazioni presentano dunque la necessità di essere confermate prima di essere portate a termine: risulta chiara, anche qui, la volontà di evitare 
 situazioni di disagio causate da meri errori dell'utente.\\
 L'interfaccia realizzata per il software risulta essere estremamente minimalista; i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione ed un 
 posizionamento strategico delle informazioni. \\ 
@@ -244,7 +244,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 		\rowcolor{PineGreen!70}
 		\textbf{Nome} & \textbf{Descrizione}                                                                                                                                      \\
 		\hline
-		Registrazione & Il sistema deve consentire ad un utente di potersi registrare indicando e-mail e password, oppure utilizzando account di terze parti (Google o Facebook). \\
+		Registrazione & Il sistema deve consentire a un utente di potersi registrare indicando e-mail, username e password, oppure utilizzando account di terze parti (Google o Facebook). \\
 		\hline
 	\end{tabular}
 	\caption{RF.1}
@@ -257,7 +257,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 		\rowcolor{PineGreen!70}
 		\textbf{Nome} & \textbf{Descrizione}                                                                                                                       \\
 		\hline
-		Accesso       & Il sistema deve consentire ad un utente di poter effettuare l'accesso alla piattaforma avendo eseguito precendentemente una registrazione. \\
+		Accesso       & Il sistema deve consentire a un utente registrato di poter effettuare l'accesso alla piattaforma avendo eseguito precendentemente una registrazione. \\
 		\hline
 	\end{tabular}
 	\caption{RF.2}
@@ -271,7 +271,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 		\rowcolor{PineGreen!70}
 		\textbf{Nome}           & \textbf{Descrizione}                                                                                                \\
 		\hline
-		Reimpostazione password & Il sistema deve consentire ad un utente registrato di poter reimpostare la propria password se dimenticata o persa. \\
+		Reimpostazione password & Il sistema deve consentire a un utente registrato di poter reimpostare la propria password se dimenticata o persa. \\
 		\hline
 	\end{tabular}
 	\caption{RF.3}
@@ -285,7 +285,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 		\rowcolor{PineGreen!70}
 		\textbf{Nome}       & \textbf{Descrizione}                                                                                               \\
 		\hline
-		Uscita dall'account & Il sistema deve consentire ad un utente registrato di poter uscire dal'account con il quale ha eseguito l'accesso. \\
+		Uscita dall'account & Il sistema deve consentire a un utente autenticato di poter uscire dall'account con il quale ha eseguito l'accesso. \\
 		\hline
 	\end{tabular}
 	\caption{RF.4}
@@ -521,7 +521,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 		\textbf{Nome}         & \textbf{Descrizione}                                                       \\
 		\hline
 		Rimozione compilation & Il sistema deve consentire a un utente autenticato di eliminare le proprie
-		compilation personalizzate                                                                         \\
+		compilation personalizzate.                                                                      \\
 		\hline
 	\end{tabular}
 	\caption{RF.19}
@@ -559,11 +559,13 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 
 \end{table}
 
-\subsubsection{Requisiti amministratore}\footnote{È importante sottolineare che un amministratore è un utente semplice con particolari privilegi: 
+\subsubsection{Requisiti amministratore}
+Il seguente insieme di funzionalità è ridotto ad un gruppo ristretto di utenti: gli amministratori.\footnote{È importante sottolineare che un amministratore è un utente semplice con particolari privilegi: 
 un amministratore potrà, dunque, usufruire di tutte le funzionalità riservate agli 
 utenti. Non vale, però, il viceversa: gli utenti "semplici" non avranno alcun potere 
 sui contenuti pubblicati da altri utenti, se non la possibilità di segnalarli agli 
 amministratori.}
+
 \begin{table}[H]
 	\centering
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
@@ -595,7 +597,7 @@ amministratori.}
 
 \newpage
 \subsection{Requisiti non funzionali}
-Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applicazione, ovvero tutti i vincoli sui servizi offerti dal sistema .
+Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applicazione, ovvero tutti i vincoli sui servizi offerti dal sistema.
 
 \begin{table}[H]
 	\centering
@@ -648,7 +650,7 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 		\textbf{Nome} & \textbf{Descrizione}                                                                              \\
 		\hline
 		Usabilità     & L'applicazione deve presentare una \textbf{UX} semplice, che renda il flusso delle operazioni
-		comprensibile, anche ad utenti meno esperti.                                                                      \\
+		comprensibile anche ad utenti meno esperti.                                                                      \\
 		\hline
 	\end{tabular}
 	\caption{RNF4}
@@ -802,13 +804,14 @@ tra loro in packages.
 
 \newpage
 \subsection{Tabelle di Cockburn dei casi d'uso}
-Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dell'UCD.
+Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'uso significativi dello Use Case Diagram.
 
 \subsubsection{Inserisce un itinerario}
 
 \def\arraystretch{1.5}
 \begin{tabularx}{\linewidth}{| l | p{1cm} | p{4cm} | X | X|}
 	\hline
+	\rowcolor{PineGreen!70}
 	\textbf{USE CASE \#1}         & \multicolumn{4} {l|}{\textbf{Inserisce un itinerario}}                                                                                                                                                                                                                                                                                                                                                                                                      \\
 	\hline Goal in Context        & \multicolumn{4}{>{\hsize=\dimexpr 4\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{L’utente vuole inserire un itinerario in piattaforma}                                                                                                                                                                                                                                                                                                                      \\
 
@@ -828,13 +831,13 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 	\multicolumn{4}{l|}{Google Maps}                                                                                                                                                                                                                                                                                                                                                                                                                                                            \\
 
 	\hline Trigger                & \multicolumn{4}{>{\hsize=\dimexpr 4\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{                                                                                                                                                                                                                                                                                                                                                                           %
-	L’utente preme il Floating Action Button “newRouteFab” nella schermata “RoutesUI”  }                                                                                                                                                                                                                                                                                                                                                                                                        \\
+	L’utente preme il Floating Action Button “Nuovo itinerario” nella schermata “RoutesUI”  }                                                                                                                                                                                                                                                                                                                                                                                                        \\
 
 	\hline
 	\multirow{2}{*}{}
 	                              & Step                                                                                                                                   & Utente registrato                                                                                                                                                    & Sistema                                             & Google Maps                                                                           \\
 
-	\cline{2-5}                   & 1                                                                                                                                      & Preme il Floating Action Button “newRouteFab” nella schermata “RoutesUI”
+	\cline{2-5}                   & 1                                                                                                                                      & Preme il Floating Action Button “Nuovo itinerario” nella schermata “RoutesUI”
 	                              &                                                                                                                                        &                                                                                                                                                                                                                                                                                                                    \\
 
 	\cline{2-5}                   & 2                                                                                                                                      &                                                                                                                                                                      & Mostra la schermata “CreateRouteInfoUI”             &                                                                                       \\
@@ -843,7 +846,7 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 
 	\cline{2-5}                   & 4                                                                                                                                      & Preme il Floating Action Button “nextFab”                                                                                                                            &                                                     &                                                                                       \\
 
-	\cline{2-5}                   & 5                                                                                                                                      &                                                                                                                                                                      & Mostra la schermata “NewRouteMapUI”                 &                                                                                       \\
+	\cline{2-5}                   & 5                                                                                                                                      &                                                                                                                                                                      & Mostra la schermata “CreateRouteMapUI”              &                                                                                       \\
 
 	\cline{2-5}                   & 6                                                                                                                                      & Preme sull’icona di ricerca                                                                                                                                          &                                                     &                                                                                       \\
 
@@ -855,9 +858,9 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 
 	\cline{2-5}                   & 10                                                                                                                                     & Preme il Floating Action Button “nextFab”                                                                                                                            &                                                     &                                                                                       \\
 
-	\cline{2-5}                   & 11                                                                                                                                     &                                                                                                                                                                      & Mostra la schermata “NewRoutePhotosUI”              &                                                                                       \\
+	\cline{2-5}                   & 11                                                                                                                                     &                                                                                                                                                                      & Mostra la schermata “CreateRoutePhotosUI”           &                                                                                       \\
 
-	\cline{2-5}                   & 12                                                                                                                                     & Preme il bottone insertPhotoButton                                                                                                                                   &                                                     &                                                                                       \\
+	\cline{2-5}                   & 12                                                                                                                                     & Preme il bottone "Seleziona foto"                                                                                                                                   &                                                     &                                                                                       \\
 
 	\cline{2-5}                   & 13                                                                                                                                     &                                                                                                                                                                      & Mostra il photo picker per la selezione delle foto  &                                                                                       \\
 
@@ -865,9 +868,9 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 
 	\cline{2-5}                   & 15                                                                                                                                     & Preme il bottone “Fatto”                                                                                                                                             &                                                     &                                                                                       \\
 
-	\cline{2-5}                   & 16                                                                                                                                     &                                                                                                                                                                      & Mostra la schermata “NewRoutePhotosUI”              &                                                                                       \\
+	\cline{2-5}                   & 16                                                                                                                                     &                                                                                                                                                                      & Mostra la schermata “CreateRoutePhotosUI”              &                                                                                       \\
 
-	\cline{2-5}                   & 17                                                                                                                                     & Preme il Floating Action Button “confirmRouteFab”                                                                                                                    &                                                     &                                                                                       \\
+	\cline{2-5}                   & 17                                                                                                                                     & Preme il Floating Action Button “Inserisci itinerario”                                                                                                                    &                                                     &                                                                                       \\
 
 	\hline
 	\multirow{2}{*}{\shortstack[l]{EXTENSION \#1                                                                                                                                                                                                                                                                                                                                                                                                                                                \\ Inserimento mappa \\ con file GPX}}
@@ -879,7 +882,7 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 
 	\cline{2-5}                   & 11.1                                                                                                                                   & Seleziona il file GPX                                                                                                                                                &                                                     &                                                                                       \\
 
-	\cline{2-5}                   & 12.1                                                                                                                                   &                                                                                                                                                                      & Mostra la schermata "NewRouteMapUI" aggiornata      &                                                                                       \\
+	\cline{2-5}                   & 12.1                                                                                                                                   &                                                                                                                                                                      & Mostra la schermata "CreateRouteMapUI" aggiornata      &                                                                                       \\
 
 	\hline
 \end{tabularx}
@@ -891,7 +894,7 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 \def\arraystretch{1.5}
 \begin{tabularx}{\linewidth}{|l| p{1cm} | p{4cm} | X |}
 	\hline
-
+	\rowcolor{PineGreen!70}
 	\textbf{USE CASE \#2}         & \multicolumn{3} {l|}{\textbf{Segnala un itinerario}}                                                                                                                                                        \\
 
 	\hline
@@ -907,28 +910,28 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 	\multicolumn{3}{l|}{L’utente riesce a segnalare l’itinerario correttamente}                                                                                                                                                                 \\
 
 	\hline Failed End Conditions  &
-	\multicolumn{3}{l|}{L’utente non riesce a segnalare l’itinerari}                                                                                                                                                                            \\
+	\multicolumn{3}{l|}{L’utente non riesce a segnalare l’itinerario}                                                                                                                                                                            \\
 
 	\hline Primary Actor          &
 	\multicolumn{3}{l|}{Utente registrato}                                                                                                                                                                                                      \\
 
 	\hline Trigger                &
 	\multicolumn{3}{>{\hsize=\dimexpr 3\hsize+3\tabcolsep+2\arrayrulewidth\relax}X|}
-	{L’utente preme sul pulsante di segnalazione nella schermata di dettaglio di un itinerario}                                                                                                                                                 \\
+	{L’utente preme sull'icona di segnalazione nella schermata di dettaglio di un itinerario}                                                                                                                                                 \\
 
 	\hline
 	\multirow{2}{*}{}
 	                              & Step                                                 & Utente registrato                                                 & Sistema                                                                          \\
 
-	\cline{2-4}                   & 1                                                    & Preme il pulsante di segnalazione nella schermata “ReportRouteUI” &                                                                                  \\
+	\cline{2-4}                   & 1                                                    & Preme l'icona di segnalazione nella schermata “RouteDetailsUI” &                                                                                  \\
 
 	\cline{2-4}                   & 2                                                    &                                                                   & Mostra la full dialog “ReportRouteFullDialog”                                    \\
 
-	\cline{2-4}                   & 3                                                    & Inserisce un nome e una descrizione per la segnalazione           &                                                                                  \\
+	\cline{2-4}                   & 3                                                    & Inserisce un titolo e una descrizione per la segnalazione           &                                                                                  \\
 
-	\cline{2-4}                   & 4                                                    & Preme il bottone “Fatto”                                          &                                                                                  \\
+	\cline{2-4}                   & 4                                                    & Preme il bottone “Invia”                                          &                                                                                  \\
 
-	\cline{2-4}                   & 5                                                    &                                                                   & Mostra la schermata “RouteUI” e una snackbar di segnalazione andata a buon fine,
+	\cline{2-4}                   & 5                                                    &                                                                   & Mostra la schermata “RouteDetailsUI” con un toast contenente un messaggio di segnalazione andata a buon fine,
 	aggiungendo all’itinerario un warning (se non è già presente) per possibili informazioni inesatte                                                                                                                                           \\
 
 	\hline

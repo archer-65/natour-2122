@@ -95,6 +95,7 @@
                 android:text="Descrizione"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
                 app:layout_constraintBottom_toTopOf="@+id/reportDescriptionTextView"
+                app:layout_constraintEnd_toEndOf="@id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@+id/barrier15"
                 app:layout_constraintVertical_bias="0.0" />
@@ -107,6 +108,7 @@
                 android:text="Descrizione del problema"
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                 app:layout_constraintBottom_toBottomOf="@id/barrier4"
+                app:layout_constraintEnd_toEndOf="@id/guideline36"
                 app:layout_constraintStart_toStartOf="@+id/guideline35"
                 app:layout_constraintTop_toBottomOf="@+id/reportDescriptionLabel" />
 

@@ -116,7 +116,7 @@
             <action
                 android:id="@+id/action_login_to_home"
                 app:destination="@id/navigation_home"
-                app:popUpTo="@id/navigation_auth_flow"
+                app:popUpTo="@id/navigation_home"
                 app:popUpToInclusive="true" />
             <action
                 android:id="@+id/action_login_to_registration"
@@ -477,7 +477,9 @@
         android:name="com.unina.natourkt.feature_profile.settings.SettingsFragment">
         <action
             android:id="@+id/action_settingsFragment_to_navigation_auth_flow"
-            app:destination="@id/navigation_auth_flow" />
+            app:destination="@id/navigation_auth_flow"
+            app:popUpTo="@id/navigation_auth_flow"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <!--Global action-->

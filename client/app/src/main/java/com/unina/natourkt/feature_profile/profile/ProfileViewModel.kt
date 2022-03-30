@@ -32,17 +32,13 @@ class ProfileViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEffect>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    init {
-        getLoggedUser()
-    }
-
     fun onEvent(event: ProfileEvent) {
         when (event) {
             is ProfileEvent.OnUpdatePhoto -> updatePhoto(event.uri)
         }
     }
 
-    private fun getLoggedUser() {
+    fun getLoggedUser() {
         viewModelScope.launch {
             _uiState.update {
                 val userUi = uiMapper.mapToUi(getUserDataUseCase()!!).convertKeys {

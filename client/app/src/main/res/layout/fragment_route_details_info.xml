@@ -14,7 +14,7 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/routeImageSlider"
             android:layout_width="match_parent"
-            android:layout_height="303dp"
+            android:layout_height="240dp"
             app:iss_placeholder="@android:color/transparent"
             app:iss_selected_dot="@drawable/selected_dot"
             app:iss_unselected_dot="@drawable/unselected_dot"

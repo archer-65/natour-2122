@@ -33,6 +33,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         setupViewPager()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getLoggedUser()
+    }
+
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()
     }

@@ -50,7 +50,7 @@ class CreatePostFragment : BaseFragment<FragmentCreatePostBinding, CreatePostVie
                     LinearLayoutManager(
                         this@CreatePostFragment.requireContext(),
                         LinearLayoutManager.HORIZONTAL,
-                        true,
+                        false,
                     )
                 adapter = recyclerAdapter
             }

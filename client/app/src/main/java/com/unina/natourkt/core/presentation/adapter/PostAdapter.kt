@@ -10,6 +10,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.model.PostItemUi
+import com.unina.natourkt.core.presentation.util.loadWithGlide
 import com.unina.natourkt.core.util.GlideApp
 import com.unina.natourkt.databinding.PostItemBinding
 
@@ -58,10 +59,11 @@ class PostAdapter(private val listener: OnItemClickListener) :
                 description.text = post.description
 
                 // If the user photo is present, then load with Glide
-                GlideApp.with(this.root)
-                    .load(post.authorPhoto)
-                    .fallback(R.drawable.ic_avatar_icon)
-                    .into(authorPhoto)
+//                GlideApp.with(this.root)
+//                    .load(post.authorPhoto)
+//                    .fallback(R.drawable.ic_avatar_icon)
+//                    .into(authorPhoto)
+                authorPhoto.loadWithGlide(post.authorPhoto, R.drawable.ic_avatar_icon)
 
                 // Load photos in the slider
                 val imageList = post.photos.map { SlideModel(it) }

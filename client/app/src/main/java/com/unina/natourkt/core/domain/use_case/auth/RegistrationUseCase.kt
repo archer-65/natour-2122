@@ -31,7 +31,7 @@ class RegistrationUseCase @Inject constructor(
     }
 
     fun formValidator(username: String, email: String, password: String): Boolean {
-        if (username.contains(" ") || username.isBlank()) {
+        if (username.contains(" ") || username.length < 3) {
             return false
         }
         if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {

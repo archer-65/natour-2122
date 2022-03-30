@@ -2,6 +2,7 @@ package com.unina.natourkt.feature_route.create_route.info
 
 import android.os.Bundle
 import android.text.InputFilter
+import android.util.Log
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -41,15 +42,6 @@ class CreateRouteInfoFragment :
             filters = arrayOf<InputFilter>(DurationFilter(1, 16))
         }
 
-        disabilityFriendlySwitch.setOnCheckedChangeListener { _, state ->
-            when (state) {
-                true -> disabilityFriendlyTextviewSub.text =
-                    getString(R.string.disability_access)
-                else -> disabilityFriendlyTextviewSub.text =
-                    getString(R.string.disability_access_denied)
-            }
-        }
-
         topAppBar.setNavigationOnClickListener {
             showHelperDialog(
                 title = R.string.cancel_insertion,
@@ -78,6 +70,13 @@ class CreateRouteInfoFragment :
             }
 
             disabilityFriendlySwitch.setOnCheckedChangeListener { switch, _ ->
+                when (switch.isChecked) {
+                    true -> disabilityFriendlyTextviewSub.text =
+                        getString(R.string.disability_access)
+                    else -> disabilityFriendlyTextviewSub.text =
+                        getString(R.string.disability_access_denied)
+                }
+
                 onEvent(CreateRouteEvent.EnteredDisability(switch.isChecked))
             }
 

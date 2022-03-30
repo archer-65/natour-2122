@@ -34,7 +34,7 @@ class RetrofitHelperExtension {
     }
 
     @Test
-    fun `PATH 1 - when the TimeoutCancellationException is thrown due to short timeout value or this timeout is exceeded, it should emit Timeout Error`() {
+    fun `PATH 1 - when the TimeoutCancellationException is thrown due to timeout less than or equal to 0, it should emit Timeout Error`() {
         runTest {
             val result = retrofitSafeCall(dispatcher = dispatcher, timeout = -1L) { }
 
@@ -46,7 +46,7 @@ class RetrofitHelperExtension {
     fun `PATH 2 - when the lambda function returns without error after a network call, it should emit success with generic type data corresponding to the one given as parameter`() =
         runTest {
             val lambdaExpected = "String to expect due to no operation by lambda"
-            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { lambdaExpected }
+            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { lambdaExpected } // NOTE: We are already passing the expected value to this lambda, the variable is not important for this test!
 
             assertThat(lambdaExpected, equalTo(result.data))
         }
@@ -55,7 +55,7 @@ class RetrofitHelperExtension {
     @Test
     fun `PATH 3 - when the TimeoutCancellationException is thrown due request expiration, it should emit Timeout Error`() {
         runTest {
-            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 2L) { delay(2L) }
+            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 2L) { delay(2L) }  // Delay for time = timeout, so we can trigger timeout exceeded
 
             assertThat(DataState.Cause.Timeout, equalTo(result.error))
         }
@@ -65,7 +65,7 @@ class RetrofitHelperExtension {
     fun `PATH 4 - when an IOException is thrown in the lambda, it should emit Network Error`() {
         runTest {
             val result =
-                retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { throw IOException() }
+                retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { throw IOException() } // Directly throws the "desired" exception
 
             assertThat(DataState.Cause.NetworkError, equalTo(result.error))
         }
@@ -75,11 +75,11 @@ class RetrofitHelperExtension {
     fun `PATH 5 - when an HTTPException is thrown in the lambda, it should emit HTTPGeneric`() {
         runTest {
             val body =
-                "{\"Request not processable\"]}".toResponseBody("application/json".toMediaType())
+                "{\"Request not processable\"]}".toResponseBody("application/json".toMediaType())   // The body is required for HttpException
 
             val result =
                 retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) {
-                    throw HttpException(
+                    throw HttpException(    // / Directly throws the "desired" exception
                         Response.error<Any>(
                             422,
                             body

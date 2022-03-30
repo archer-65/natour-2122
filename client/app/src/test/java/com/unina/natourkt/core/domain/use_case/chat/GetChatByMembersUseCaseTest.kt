@@ -69,12 +69,12 @@ class GetChatByMembersUseCaseTest {
             secondMember = User(3, "mattia", isAdmin = false, "")
             dummyChat = Chat(34, LocalDate.now(), firstMember, secondMember)
 
-            val request = repository.getChatByMembers(firstMember.id, secondMember.id)
-            whenever(request).thenReturn(DataState.Success(dummyChat))
+            val request = repository.getChatByMembers(firstMember.id, secondMember.id)  // Make the request through repository dependency
+            whenever(request).thenReturn(DataState.Success(dummyChat))  // Mockito allows the return of default values when a method is executed
 
             val result = getChatByMembers(firstMember.id, secondMember.id).last()
 
-            verify(repository).getChatByMembers(firstMember.id, secondMember.id)
+            verify(repository).getChatByMembers(firstMember.id, secondMember.id)    // Helps to ensure that the method is executed ONLY one time
             assertThat(result.data, equalTo(dummyChat))
         }
     }
@@ -87,12 +87,12 @@ class GetChatByMembersUseCaseTest {
             brokenUser = User(5, "bianca", true, "")
             dummyChat = Chat(34, LocalDate.now(), firstMember, brokenUser)
 
-            val request = repository.getChatByMembers(firstMember.id, secondMember.id)
-            whenever(request).thenReturn(DataState.Success(dummyChat))
+            val request = repository.getChatByMembers(firstMember.id, secondMember.id)  // Make the request through repository dependency
+            whenever(request).thenReturn(DataState.Success(dummyChat))  // Mockito allows the return of default values when a method is executed
 
             val result = getChatByMembers(firstMember.id, secondMember.id).last()
 
-            verify(repository).getChatByMembers(firstMember.id, secondMember.id)
+            verify(repository).getChatByMembers(firstMember.id, secondMember.id)    // Helps to ensure that the method is executed ONLY one time
             assertThat(result.error, equalTo(DataState.Cause.NotFound))
         }
     }

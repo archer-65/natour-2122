@@ -58,7 +58,7 @@ class RegistrationUseCaseTest {
     }
 
     @Test
-    fun `WECT 4 - Two consecutive points before top-level domain, username with length greater than or equal to 3, password with length greater than or equal to 8`() {
+    fun `WECT 4 - Two consecutive dots before top-level domain, username with length greater than or equal to 3, password with length greater than or equal to 8`() {
         val result = registrationUseCase.formValidator(
             email = "martin.fowler@tdd..us",
             username = "mfowler",
@@ -69,10 +69,10 @@ class RegistrationUseCaseTest {
     }
 
     @Test
-    fun `WECT 5 - One point after @, username with length less than 3, password with length greater than or equal to 8`() {
+    fun `WECT 5 - One dot after @, username with length less than 3, password with length greater than or equal to 8`() {
         val result = registrationUseCase.formValidator(
             email = "kentbeck@.yahoo.com",
-            username = "ken",
+            username = "kn",
             password = "refactoring-man"
         )
 
@@ -80,11 +80,11 @@ class RegistrationUseCaseTest {
     }
 
     @Test
-    fun `WECT 6 - One point before @, username with length greater than or equal to 3, password with length less than 8`() {
+    fun `WECT 6 - One dot before @, username with spaces, password with greater than or equal to 8`() {
         val result = registrationUseCase.formValidator(
             email = "robertc.martin.@clean.code",
-            username = "cc",
-            password = "unclebob-deathmarchphase"
+            username = "uncle bob",
+            password = "deathmarchphase"
         )
 
         assertFalse(result)

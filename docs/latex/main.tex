@@ -11,6 +11,7 @@
 \usepackage{ltablex}
 \usepackage{longtable}
 \usepackage{graphicx}
+\usepackage{chngpage}
 %\usepackage{hyperref}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{listings}
@@ -1028,6 +1029,8 @@ La segnalazione di un itinerario avviene tramite una full dialog, a seguito del 
 	\end{minipage}
 \end{figure}
 
+\newpage
+
 \subsection{Valutazione dell'usabilità a priori}
 Una parte fondamentale del processo creativo alla base dello sviluppo di un'applicazione è capire la direzione da seguire per migliorare l’esperienza dei clienti.
 Al fine di rendere la user experience quanto più piacevole possibile si è ricorso alla messa in pratica di alcune tecniche, con il fine di testare l’usabilità del prodotto.
@@ -1058,6 +1061,39 @@ negativa, il sistema sarà rielaborato alla luce dei feedback utente.
 	\item  \textbf{Modifica immagine profilo} \\
 	      Ti sei appena registrato all'applicazione, ma il tuo profilo è completamente spoglio: così hai deciso di modificare l’immagine del tuo profilo. Spostati nella sezione profilo e modifica la tua foto.
 \end{enumerate}
+
+\newpage
+
+\subsubsection{Risultati ottenuti dallo svolgimento dei task}
+È stato preferibile selezionare i possibili clienti secondo serie di parametri quali:
+\begin{itemize}
+	\item \textbf{Competenza tecnologica}: per favorire un'analisi migliore dell'intuitività fornita dalla UX;
+	\item \textbf{Posizione lavorativa}: per spaziare tra background di carriera diversi, che potrebbero influire sull'esperienza con UX simili a quella progettata;
+\end{itemize}
+Di seguito è presente una tabella di utenti che hanno collaborato allo svolgimento dei task:
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./usability/task_users.png}
+	\caption{Tabella utenti scelti}
+\end{figure}
+\FloatBarrier
+
+Di seguito i risultati ottenuti dallo svolgimento dei task:
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./usability/task_table.png}
+	\caption{Tabella risultati}
+\end{figure}
+\FloatBarrier
+
+Da come si può notare la creazione dell'itinerario è risultata difficoltosa per alcuni utenti, infatti è stato
+richiesto un aiuto da parte loro in sede di prova.
+È stato ritenuto opportuno modificare leggermente la UX della creazione itinerario, ponendo in rilievo le azioni
+principali attraverso una scelta di colori migliore.
+
+In percentuale, i risultati del test sono stati positivi, ulteriori cambiamenti nei prototipi non hanno comunque stravolto
+i precedenti.
+
 
 \newpage
 \subsection{Prototipazione funzionale via statechart dell'interfaccia grafica}
@@ -1151,12 +1187,16 @@ Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Cont
 \end{figure}
 \FloatBarrier
 
+\newpage
+
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Dettagli_itinerario.svg}
 	\caption{Dettagli itinerario}
 \end{figure}
 \FloatBarrier
+
+\newpage
 
 \begin{figure}[!htpb]
 	\centering
@@ -1165,6 +1205,8 @@ Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Cont
 \end{figure}
 \FloatBarrier
 
+\newpage
+
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Ricerca_itinerario.svg}
@@ -1172,12 +1214,16 @@ Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Cont
 \end{figure}
 \FloatBarrier
 
+\newpage
+
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Segnala_itinerario.svg}
 	\caption{Segnalazione itinerario}
 \end{figure}
 \FloatBarrier
+
+\newpage
 
 \begin{figure}[!htpb]
 	\centering
@@ -1195,6 +1241,8 @@ Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Cont
 	\caption{Aggiunta post}
 \end{figure}
 \FloatBarrier
+
+\newpage
 
 \begin{figure}[!htpb]
 	\centering
@@ -1227,12 +1275,16 @@ Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Cont
 \end{figure}
 \FloatBarrier
 
+\newpage
+
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Dettaglio_compilation_+_Elimina_itinerario_da_compilation.svg}
 	\caption{Dettagli compilation e rimozione itinerario da compilation}
 \end{figure}
 \FloatBarrier
+
+\newpage
 
 \begin{figure}[!htpb]
 	\centering
@@ -1241,6 +1293,7 @@ Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Cont
 \end{figure}
 \FloatBarrier
 
+\newpage
 
 \begin{figure}[!htpb]
 	\centering
@@ -1282,6 +1335,8 @@ Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Cont
 	\caption{Modifica itinerario}
 \end{figure}
 \FloatBarrier
+
+\newpage
 
 \begin{figure}[!htpb]
 	\centering
@@ -2032,6 +2087,8 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 \end{figure}
 \FloatBarrier
 
+\newpage
+
 \begin{figure}[!htbp]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/sequence-modifica_itinerario.svg}
@@ -2041,10 +2098,26 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 
 \newpage
 \subsection{Definizione delle gerarchie funzionali}
+\begin{figure}[!ht]
+	\begin{adjustwidth}{-\oddsidemargin-1in}{-\rightmargin}
+		\centering
+		\includegraphics[width=\paperwidth]{./mockup/Gerarchie-funz.pdf}
+	\end{adjustwidth}
+\end{figure}
 
 \newpage
-\section{Codice xUnit per testing di 3 metodi}
-\subsection{Metodo \textit{formValidator} - black-box}
+
+\section{Definizione di un piano di testing e valutazione sul campo dell’usabilità.}
+
+\subsection{Codice xUnit per testing di 3 metodi}
+In questa sezione saranno trattati dei casi di test per 3 metodi non banali,
+adottando strategie specifiche per ognuno di questi.
+È bene precisare che - per effettuare alcuni test - è stato necessario utilizzare il framework open-source \textbf{Mockito},
+che consente la creazione di \textit{test double} (informalmente detti \textit{mock}). \\
+Mockito ha permesso di rimpiazzare le dipendenze delle classi dove sono presenti 2 dei 3 metodi sotto test, evitando
+la creazione di implementazioni fittizie per le dipendenze.
+
+\subsubsection{Metodo \textit{formValidator}}
 Il metodo \textit{formValidator} permette di validare gli input di un form di registrazione,
 di cui viene escluso il campo di conferma password perchè verificato a priori. \\
 Il metodo richiede tre parametri:
@@ -2055,11 +2128,10 @@ Il metodo richiede tre parametri:
 \end{itemize}
 
 Per il metodo è stata adottata una strategia \textbf{black-box}.
-Di seguito le classi di equivalenza identificate.
-
+Di seguito le classi di equivalenza identificate:
 \begin{table}[H]
 	\centering
-	\begin{tabular}{ |p{2cm}|p{5cm}|p{9cm}| }
+	\begin{tabularx}{\textwidth}{ |c|c|c| }
 		\hline
 		\rowcolor{PineGreen!70}
 		\textbf{Nome CE} & \textbf{Parametro} & \textbf{Valore}                                               \\
@@ -2086,20 +2158,41 @@ Di seguito le classi di equivalenza identificate.
 		\hline
 		CE11             & Password           & Meno di 8 caratteri (non valido)                              \\
 		\hline
-	\end{tabular}
+	\end{tabularx}
+	\caption{Classi di equivalenza individuate per \textit{formValidator}}
+\end{table}
+
+Nello specifico è stato adottato un approccio \textbf{WECT}, scelto in quanto, non essendovi
+correlazioni tra i parametri forniti, la copertura offerta è stata ritenuta sufficiente. \\
+La minima copertura fornita da \textbf{WECT} in questo caso è vantaggiosa, è stato infatti possibile evitare
+tutte le combinazioni possibili, ottimizzando il numero di test per questo metodo. \\
+Sono stati quindi individuati sei metodi di test:
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth}{ |c|c|c|c|c| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{ID Test} & \textbf{Email}             & \textbf{Username} & \textbf{Password}     & \textbf{Output} \\
+		\hline
+		WECT 1           & mattia@rossi.org           & kotlin            & coroutines            & true            \\
+		\hline
+		WECT 2           & mari-o.\%o@live.it          & torvalds4ever     & redhatlinuxenterprise & true            \\
+		\hline
+		WECT 3           & bianca@@unina.com          & bc                & ingsw                 & false           \\
+		\hline
+		WECT 4           & martin.fowler@tdd..us       & mfowler           & domaindrivendesign    & false           \\
+		\hline
+		WECT 5           & kentbeck@.yahoo.com        & kn                & refactoring-man       & false           \\
+		\hline
+		WECT 6           & robertc.martin.@clean.code & uncle bob         & deathmarchphase       & false           \\
+		\hline
+	\end{tabularx}
 	\caption{RF.12}
 \end{table}
 
-Nello specifico è stato adottato un approccio \textbf{WECT}, ritenuto sufficiente in quanto non essendovi
-correlazioni tra i parametri forniti. \\
-La minima copertura fornita da \textbf{WECT} in questo caso è vantaggiosa, è stato infatti possibile evitare
-tutte le combinazioni possibili, ottimizzando il numero di test per questo metodo.
-\newpage
 
-Sono stati quindi individuati sei metodi di test:
 \lstinputlisting[language=Kotlin]{./code/RegistrationUseCaseTest.kt}
 
-I test sono stati eseguiti con successo.\\
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\linewidth]{./code/WECT-result}
@@ -2108,19 +2201,42 @@ I test sono stati eseguiti con successo.\\
 
 \newpage
 
-\subsection{Metodo \textit{getChatMyMembersUseCase} - white-box}
+\subsubsection{Metodo \textit{getChatMyMembersUseCase}}
 
-Il metodo \textit{getChatMyMembersUseCase} - che in realtà è implementato attraverso l'override dell'operatore \textit{invoke()} -
-ha due parametri: gli id di due utenti registrati.
+Il metodo \textit{getChatByMembersUseCase} - che è in realtà implementato attraverso l'override dell'operatore \textit{invoke()}
+della class \textit{GetChatByMembersUseCase} - ha due parametri: gli id di due utenti registrati.
+Questo metodo permette il recupero di un'oggetto \textbf{Chat}, dati gli id degli utenti che la compongono, e il suo controllo.\\
+L'implementazione utilizza le Coroutines di Kotlin, di conseguenza rende possibile \textit{l'emissione di valori} al suo observer in qualsiasi
+momento.
+\begin{itemize}
+	\item Se gli id non sono validi, il metodo emette \textit{DataState.Cause.NotAcceptable} e poi ritorna;
+	\item Se gli id corrispondono, il metodo emette \textit{DataState.Cause.BadRequest} e poi ritorna;
+	\item Una volta effettuata la chiamata al metodo presente nella dipendenza \textbf{ChatRepository}, viene 
+				effettuato un ulteriore controllo dell'oggetto recuperato, più precisamente sugli id dei "membri" dell'oggetto di tipo
+				\textbf{Chat}. Se gli id corrispondono il metodo emette l'oggetto ottenuto sotto forma di \textit{DataState.Success},
+				altrimenti emette \textit{DataState.Cause.NotFound}.\footnote{In questo caso il ritorno è implicito}
+\end{itemize}
 
-È stata adottata una strategia white-box, nello specifico con branch coverage,
-anche a causa della natura dell'implementazione: altamente dipendente dalle API del linguaggio di programmazione utilizzato.
+È stata adottata una strategia white-box, nello specifico con branch coverage, per assicurare che tutti i branch siano testati.
+La scelta deriva anche dalla natura dell'implementazione, dipendente dalle API del linguaggio di programmazione utilizzato.
+
+I cammini possibili sono:
+\begin{itemize}
+	\item \textbf{PATH 1} - 1, 2, 3, 4
+	\item \textbf{PATH 2} - 1, 2, 5, 6, 7
+	\item \textbf{PATH 3} - 1, 2, 5, 8, 9, 10, 11
+	\item \textbf{PATH 4} - 1, 2, 5, 8, 9, 10, 12 
+\end{itemize}
+
+Analizzati i cammini è stata individuata una lista di possibili input, utilizzando Mockito per testare il metodo sulla base
+del valore ritornato dalla dipendenza (predefinito, per prescindere dall'implementazione, visto che si tratta di uno Unit Test).
 
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{code/chat-whitebox.pdf}
 	\caption{CFG del metodo \textit{getChatByMembersUseCase}}
 \end{figure}
+\FloatBarrier
 
 \lstinputlisting[language=Kotlin]{./code/GetChatByMembersUseCaseTest.kt}
 
@@ -2132,24 +2248,45 @@ anche a causa della natura dell'implementazione: altamente dipendente dalle API 
 
 \newpage
 
-\subsection{Metodo \textit{retrofitSafeCall} - white-box} 
+\subsubsection{Metodo \textit{retrofitSafeCall}}
 
 Il metodo \textit{retrofitSafeCall} è il fulcro delle richieste HTTP effettutate dall'applicativo, è stato ritenuto
-uno dei metodi più interessanti e particolari da testare data l'enorme riduzione di codice \textit{boilerplate} ottenuta.
-Il metodo ha come parametri: 
+uno dei metodi più interessanti e particolari da testare data la notevole riduzione di codice \textit{boilerplate} ottenuta.
+Il metodo ha come parametri:
 \begin{itemize}
 	\item Un attributo di tipo \textbf{CoroutineDispatcher}: \textit{dispatcher}, utilizzato all'interno delle \textit{Coroutines};
 	\item Un attributo di tipo \textbf{Long}: \textit{timeout}, per indicare un tempo massimo di timeout per la richiesta effettuata;
 	\item L'ultimo attributo in realtà è una funzione lambda sospensiva, che restituisce un tipo generico \textit{T}
 \end{itemize}
 
-È stata adottata una strategia white-box, nello specifico con branch coverage.
+I valori di ritorno dovrebbero essere contenuti nell'oggetto \textit{DataState}, questi dipendono da:
+\begin{itemize}
+	\item Timeout fornito in input: un timeout minore o uguale a zero potrebbe tirare un'eccezione prima del previsto;
+																	qualora non fosse così, la lambda fornita potrebbe comunque far scattare il timeout;
+	\item Condizioni di errore della chiamata a funzione.
+\end{itemize}
+
+È stata adottata una strategia white-box, nello specifico con branch coverage, per assicurare che tutti i branch siano testati.
+Rispetto al precedente metodo l'individuazione dei branch è più sottile, questo è dovuto alla presenza del blocco \textit{try-catch}.
+
+I cammini possibili sono:
+\begin{itemize}
+	\item \textbf{PATH 1} - 1, 2, 5
+	\item \textbf{PATH 2} - 1, 2, 3, 4
+	\item \textbf{PATH 3} - 1, 2, 3, 5
+	\item \textbf{PATH 4} - 1, 2, 3, 6
+	\item \textbf{PATH 5} - 1, 2, 3, 7
+\end{itemize}
+
+Analizzati i cammini è stata individuata una lista di possibili input, utilizzando Mockito per testare il metodo sulla base
+del valore ritornato dalla dipendenza (predefinito, per prescindere dall'implementazione, visto che si tratta di uno Unit Test).
 
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{code/retrofit-whitebox.pdf}
 	\caption{CFG del metodo \textit{retrofitSafeCall}}
 \end{figure}
+\FloatBarrier
 
 \lstinputlisting[language=Kotlin]{./code/RetrofitHelperExtension.kt}
 
@@ -2159,7 +2296,8 @@ Il metodo ha come parametri:
 	\caption{Risultati dei test sul metodo \textit{retrofitSafeCall}}
 \end{figure}
 
-\section{Valutazione dell'usabilità sul campo}
+\newpage
+\subsection{Valutazione dell'usabilità sul campo}
 
 
 \end{document}

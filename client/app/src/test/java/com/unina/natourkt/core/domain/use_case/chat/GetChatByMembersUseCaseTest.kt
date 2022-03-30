@@ -43,7 +43,7 @@ class GetChatByMembersUseCaseTest {
     }
 
     @Test
-    fun `when the given IDs are minus or equal to zero, it should return NotAcceptable as last flow value`() =
+    fun `PATH 1 - when the given IDs are minus or equal to zero, it should return NotAcceptable as last flow value`() =
         runTest {
             firstMember = User(-1, "marietto", false, "")
             secondMember = User(2, "bianca", true, "")
@@ -53,7 +53,7 @@ class GetChatByMembersUseCaseTest {
         }
 
     @Test
-    fun `when the given IDs are equal, it should return BadRequest as last flow value`() =
+    fun `PATH 2 - when the given IDs are equal, it should return BadRequest as last flow value`() =
         runTest {
             firstMember = User(2, "marietto", false, "")
             secondMember = firstMember
@@ -63,7 +63,7 @@ class GetChatByMembersUseCaseTest {
         }
 
     @Test
-    fun `when the IDs are good to go, the result data should be a Chat entity`() {
+    fun `PATH 3 - when the IDs are good to go, the result data should be a Chat entity`() {
         runTest {
             firstMember = User(2, "marietto", false, "")
             secondMember = User(3, "mattia", isAdmin = false, "")
@@ -80,7 +80,7 @@ class GetChatByMembersUseCaseTest {
     }
 
     @Test
-    fun `when the IDs are good to go but the chat is not found, the result error should be a NotFound`() {
+    fun `PATH 4 - when the IDs are good to go but the chat is not found, the result error should be a NotFound`() {
         runTest {
             firstMember = User(2, "marietto", false, "")
             secondMember = User(3, "mattia", false, "")

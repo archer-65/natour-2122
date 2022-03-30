@@ -2,6 +2,7 @@ package com.unina.natourkt.core.data.util
 
 import com.unina.natourkt.core.util.DataState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
@@ -9,6 +10,7 @@ import kotlinx.coroutines.withTimeout
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
+import okhttp3.internal.wait
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual.equalTo
 import org.junit.Before
@@ -32,16 +34,7 @@ class RetrofitHelperExtension {
     }
 
     @Test
-    fun `when the lambda function returns without error after a network call, it should emit success with generic type data corresponding to the one given as parameter`() =
-        runTest {
-            val lambdaExpected = "This is a dumb test"
-            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { lambdaExpected }
-
-            assertThat(lambdaExpected, equalTo(result.data))
-        }
-
-    @Test
-    fun `when the TimeoutCancellationException is thrown due to short timeout value or this timeout is exceeded, it should emit Timeout Error`() {
+    fun `PATH 1 - when the TimeoutCancellationException is thrown due to short timeout value or this timeout is exceeded, it should emit Timeout Error`() {
         runTest {
             val result = retrofitSafeCall(dispatcher = dispatcher, timeout = -1L) { }
 
@@ -50,16 +43,36 @@ class RetrofitHelperExtension {
     }
 
     @Test
-    fun `when an IOException is thrown in the lambda, it should emit Network Error`() {
+    fun `PATH 2 - when the lambda function returns without error after a network call, it should emit success with generic type data corresponding to the one given as parameter`() =
         runTest {
-            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { throw IOException() }
+            val lambdaExpected = "String to expect due to no operation by lambda"
+            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { lambdaExpected }
+
+            assertThat(lambdaExpected, equalTo(result.data))
+        }
+
+
+    @Test
+    fun `PATH 3 - when the TimeoutCancellationException is thrown due request expiration, it should emit Timeout Error`() {
+        runTest {
+            val result = retrofitSafeCall(dispatcher = dispatcher, timeout = 2L) { delay(2L) }
+
+            assertThat(DataState.Cause.Timeout, equalTo(result.error))
+        }
+    }
+
+    @Test
+    fun `PATH 4 - when an IOException is thrown in the lambda, it should emit Network Error`() {
+        runTest {
+            val result =
+                retrofitSafeCall(dispatcher = dispatcher, timeout = 5L) { throw IOException() }
 
             assertThat(DataState.Cause.NetworkError, equalTo(result.error))
         }
     }
 
     @Test
-    fun `when an HTTPException is thrown in the lambda, it should emit HTTPGeneric`() {
+    fun `PATH 5 - when an HTTPException is thrown in the lambda, it should emit HTTPGeneric`() {
         runTest {
             val body =
                 "{\"Request not processable\"]}".toResponseBody("application/json".toMediaType())

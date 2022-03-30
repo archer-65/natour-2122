@@ -12,6 +12,31 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 %\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\lstset{
+    numbers=left,
+    breaklines=true,
+    tabsize=2,
+    basicstyle=\ttfamily,
+}
+
+\lstdefinelanguage{Kotlin}{
+  comment=[l]{//},
+  commentstyle={\color{gray}\ttfamily},
+  emph={filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println},
+  emphstyle={\color{OrangeRed}},
+  identifierstyle=\color{black},
+  keywords={!in, !is, abstract, actual, annotation, as, as?, break, by, catch, class, companion, const, constructor, continue, crossinline, data, delegate, do, dynamic, else, enum, expect, external, false, field, file, final, finally, for, fun, get, if, import, in, infix, init, inline, inner, interface, internal, is, lateinit, noinline, null, object, open, operator, out, override, package, param, private, property, protected, public, receiveris, reified, return, return@, sealed, set, setparam, super, suspend, tailrec, this, throw, true, try, typealias, typeof, val, var, vararg, when, where, while},
+  keywordstyle={\color{NavyBlue}\bfseries},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+  ndkeywords={@RunWith, @InjectMocks, @Mock, @Before, @Test, @Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing},
+  ndkeywordstyle={\color{BurntOrange}\bfseries},
+  sensitive=true,
+  stringstyle={\color{ForestGreen}\ttfamily},
+}
 
 \hypersetup{
     colorlinks=true,
@@ -112,7 +137,7 @@ la minima cifra considerata nella raccolta dati.\\
 
 \subsection{Requisiti funzionali}
 In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazione NaTour21, cioè le funzionalità offerte.
-Le funzionalità richieste sono presenti nella loro totalità; inoltre, è stato ritenuto opportuno inserire alcune funzionalità non 
+Le funzionalità richieste sono presenti nella loro totalità; inoltre, è stato ritenuto opportuno inserire alcune funzionalità non
 esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per qualsiasi applicativo di questo tipo.
 
 \subsubsection{Autenticazione}
@@ -121,7 +146,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome} & \textbf{Descrizione}                                                                                                                                      \\
+		\textbf{Nome} & \textbf{Descrizione}                                                                                                                                               \\
 		\hline
 		Registrazione & Il sistema deve consentire a un utente di potersi registrare indicando e-mail, username e password, oppure utilizzando account di terze parti (Google o Facebook). \\
 		\hline
@@ -134,7 +159,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome} & \textbf{Descrizione}                                                                                                                       \\
+		\textbf{Nome} & \textbf{Descrizione}                                                                                                                                 \\
 		\hline
 		Accesso       & Il sistema deve consentire a un utente registrato di poter effettuare l'accesso alla piattaforma avendo eseguito precendentemente una registrazione. \\
 		\hline
@@ -148,7 +173,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}           & \textbf{Descrizione}                                                                                                \\
+		\textbf{Nome}           & \textbf{Descrizione}                                                                                               \\
 		\hline
 		Reimpostazione password & Il sistema deve consentire a un utente registrato di poter reimpostare la propria password se dimenticata o persa. \\
 		\hline
@@ -162,7 +187,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}       & \textbf{Descrizione}                                                                                               \\
+		\textbf{Nome}       & \textbf{Descrizione}                                                                                                \\
 		\hline
 		Uscita dall'account & Il sistema deve consentire a un utente autenticato di poter uscire dall'account con il quale ha eseguito l'accesso. \\
 		\hline
@@ -178,10 +203,10 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}             & \textbf{Descrizione}                                                 \\
+		\textbf{Nome}             & \textbf{Descrizione}                                                    \\
 		\hline
 		Visualizzazione itinerari & Il sistema deve consentire a un utente autenticato di visualizzare i
-		dettagli degli itinerari pubblicati (tra cui la sua posizione su mappa) e i post ad essi associati.                                  \\
+		dettagli degli itinerari pubblicati (tra cui la sua posizione su mappa) e i post ad essi associati. \\
 		\hline
 	\end{tabular}
 	\caption{RF.5}
@@ -351,10 +376,10 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}    & \textbf{Descrizione}                                                          \\
+		\textbf{Nome}    & \textbf{Descrizione}                                                                    \\
 		\hline
-		Gestione profilo & Il sistema deve consentire a un utente autenticato di gestire il suo profilo, 
-		quindi di visualizzare i contenuti inseriti ed eliminarli. Inoltre è possibile modificare la foto profilo.  \\
+		Gestione profilo & Il sistema deve consentire a un utente autenticato di gestire il suo profilo,
+		quindi di visualizzare i contenuti inseriti ed eliminarli. Inoltre è possibile modificare la foto profilo. \\
 		\hline
 	\end{tabular}
 	\caption{RF.16}
@@ -366,10 +391,10 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}                  & \textbf{Descrizione}                                                                           \\
+		\textbf{Nome}                  & \textbf{Descrizione}                                                                            \\
 		\hline
 		Gestione conversazioni private & Il sistema deve consentire a un utente autenticato lo scambio di informazioni con altri utenti.
-		È possibile avviare la conversazione a partire dai contenuti pubblicati. Inoltre è possibile ricercare un destinatario.         \\
+		È possibile avviare la conversazione a partire dai contenuti pubblicati. Inoltre è possibile ricercare un destinatario.          \\
 		\hline
 	\end{tabular}
 	\caption{RF.17}
@@ -400,7 +425,7 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 		\textbf{Nome}         & \textbf{Descrizione}                                                       \\
 		\hline
 		Rimozione compilation & Il sistema deve consentire a un utente autenticato di eliminare le proprie
-		compilation personalizzate.                                                                      \\
+		compilation personalizzate.                                                                        \\
 		\hline
 	\end{tabular}
 	\caption{RF.19}
@@ -439,21 +464,21 @@ esplicitamente richieste, ma ritenute dal team di sviluppo come desiderabili per
 \end{table}
 
 \subsubsection{Requisiti amministratore}
-Il seguente insieme di funzionalità è ridotto ad un gruppo ristretto di utenti: gli amministratori.\footnote{È importante sottolineare che un amministratore è un utente semplice con particolari privilegi: 
-un amministratore potrà, dunque, usufruire di tutte le funzionalità riservate agli 
-utenti. Non vale, però, il viceversa: gli utenti "semplici" non avranno alcun potere 
-sui contenuti pubblicati da altri utenti, se non la possibilità di segnalarli agli 
-amministratori.}
+Il seguente insieme di funzionalità è ridotto ad un gruppo ristretto di utenti: gli amministratori.\footnote{È importante sottolineare che un amministratore è un utente semplice con particolari privilegi:
+	un amministratore potrà, dunque, usufruire di tutte le funzionalità riservate agli
+	utenti. Non vale, però, il viceversa: gli utenti "semplici" non avranno alcun potere
+	sui contenuti pubblicati da altri utenti, se non la possibilità di segnalarli agli
+	amministratori.}
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}                & \textbf{Descrizione}                                                                                \\
+		\textbf{Nome}                & \textbf{Descrizione}                                                                                 \\
 		\hline
 		Visualizzazione segnalazioni & Il sistema deve consentire a un utente autenticato con i privilegi di amministratore di visualizzare
-		la lista di segnalazioni inviate.                                                                                                  \\
+		la lista di segnalazioni inviate.                                                                                                   \\
 		\hline
 	\end{tabular}
 	\caption{RF.22}
@@ -465,10 +490,10 @@ amministratori.}
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}              & \textbf{Descrizione}                                                                                \\
+		\textbf{Nome}              & \textbf{Descrizione}                                                                                 \\
 		\hline
 		Amministrazione itinerario & Il sistema deve consentire a un utente autenticato con i privilegi di amministratore di modificare o
-		rimuovere un itinerario segnalato.                                                                                               \\
+		rimuovere un itinerario segnalato.                                                                                                \\
 		\hline
 	\end{tabular}
 	\caption{RF.23}
@@ -526,10 +551,10 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome} & \textbf{Descrizione}                                                                              \\
+		\textbf{Nome} & \textbf{Descrizione}                                                                          \\
 		\hline
 		Usabilità     & L'applicazione deve presentare una \textbf{UX} semplice, che renda il flusso delle operazioni
-		comprensibile anche ad utenti meno esperti.                                                                      \\
+		comprensibile anche ad utenti meno esperti.                                                                   \\
 		\hline
 	\end{tabular}
 	\caption{RNF4}
@@ -554,10 +579,10 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}      & \textbf{Descrizione}                                            \\
+		\textbf{Nome}      & \textbf{Descrizione}                                                   \\
 		\hline
 		Sicurezza password & Il sistema non deve consentire di inserire password che non contengano
-		almeno 8 caratteri.                                                                  \\
+		almeno 8 caratteri.                                                                         \\
 		\hline
 	\end{tabular}
 	\caption{RNF6}
@@ -568,7 +593,7 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Nome}          & \textbf{Descrizione}                                                     \\
+		\textbf{Nome}          & \textbf{Descrizione}                                                            \\
 		\hline
 		Numero massimo di foto & Il sistema non deve consentire di inserire più di 5 foto per itinerario o post. \\
 		\hline
@@ -710,7 +735,7 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 	\multicolumn{4}{l|}{Google Maps}                                                                                                                                                                                                                                                                                                                                                                                                                                                            \\
 
 	\hline Trigger                & \multicolumn{4}{>{\hsize=\dimexpr 4\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{                                                                                                                                                                                                                                                                                                                                                                           %
-	L’utente preme il Floating Action Button “Nuovo itinerario” nella schermata “RoutesUI”  }                                                                                                                                                                                                                                                                                                                                                                                                        \\
+	L’utente preme il Floating Action Button “Nuovo itinerario” nella schermata “RoutesUI”  }                                                                                                                                                                                                                                                                                                                                                                                                   \\
 
 	\hline
 	\multirow{2}{*}{}
@@ -739,7 +764,7 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 
 	\cline{2-5}                   & 11                                                                                                                                     &                                                                                                                                                                      & Mostra la schermata “CreateRoutePhotosUI”           &                                                                                       \\
 
-	\cline{2-5}                   & 12                                                                                                                                     & Preme il bottone "Seleziona foto"                                                                                                                                   &                                                     &                                                                                       \\
+	\cline{2-5}                   & 12                                                                                                                                     & Preme il bottone "Seleziona foto"                                                                                                                                    &                                                     &                                                                                       \\
 
 	\cline{2-5}                   & 13                                                                                                                                     &                                                                                                                                                                      & Mostra il photo picker per la selezione delle foto  &                                                                                       \\
 
@@ -747,9 +772,9 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 
 	\cline{2-5}                   & 15                                                                                                                                     & Preme il bottone “Fatto”                                                                                                                                             &                                                     &                                                                                       \\
 
-	\cline{2-5}                   & 16                                                                                                                                     &                                                                                                                                                                      & Mostra la schermata “CreateRoutePhotosUI”              &                                                                                       \\
+	\cline{2-5}                   & 16                                                                                                                                     &                                                                                                                                                                      & Mostra la schermata “CreateRoutePhotosUI”           &                                                                                       \\
 
-	\cline{2-5}                   & 17                                                                                                                                     & Preme il Floating Action Button “Inserisci itinerario”                                                                                                                    &                                                     &                                                                                       \\
+	\cline{2-5}                   & 17                                                                                                                                     & Preme il Floating Action Button “Inserisci itinerario”                                                                                                               &                                                     &                                                                                       \\
 
 	\hline
 	\multirow{2}{*}{\shortstack[l]{EXTENSION \#1                                                                                                                                                                                                                                                                                                                                                                                                                                                \\ Inserimento mappa \\ con file GPX}}
@@ -761,7 +786,7 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 
 	\cline{2-5}                   & 11.1                                                                                                                                   & Seleziona il file GPX                                                                                                                                                &                                                     &                                                                                       \\
 
-	\cline{2-5}                   & 12.1                                                                                                                                   &                                                                                                                                                                      & Mostra la schermata "CreateRouteMapUI" aggiornata      &                                                                                       \\
+	\cline{2-5}                   & 12.1                                                                                                                                   &                                                                                                                                                                      & Mostra la schermata "CreateRouteMapUI" aggiornata   &                                                                                       \\
 
 	\hline
 \end{tabularx}
@@ -774,58 +799,58 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 \begin{tabularx}{\linewidth}{|l| p{1cm} | p{4cm} | X |}
 	\hline
 	\rowcolor{PineGreen!70}
-	\textbf{USE CASE \#2}         & \multicolumn{3} {l|}{\textbf{Segnala un itinerario}}                                                                                                                                                        \\
+	\textbf{USE CASE \#2}         & \multicolumn{3} {l|}{\textbf{Segnala un itinerario}}                                                                                                                                                                                  \\
 
 	\hline
 	Goal in Context               &
 	\multicolumn{3}{>{\hsize=\dimexpr 3\hsize+3\tabcolsep+2\arrayrulewidth\relax}X|}
-	{L’utente vuole segnalare un itinerario per informazioni inesatte o non accurate}                                                                                                                                                           \\
+	{L’utente vuole segnalare un itinerario per informazioni inesatte o non accurate}                                                                                                                                                                                     \\
 
 	\hline
 	Preconditions                 &
-	\multicolumn{3}{l|}{L’utente è autenticato}                                                                                                                                                                                                 \\
+	\multicolumn{3}{l|}{L’utente è autenticato}                                                                                                                                                                                                                           \\
 
 	\hline Success End Conditions &
-	\multicolumn{3}{l|}{L’utente riesce a segnalare l’itinerario correttamente}                                                                                                                                                                 \\
+	\multicolumn{3}{l|}{L’utente riesce a segnalare l’itinerario correttamente}                                                                                                                                                                                           \\
 
 	\hline Failed End Conditions  &
-	\multicolumn{3}{l|}{L’utente non riesce a segnalare l’itinerario}                                                                                                                                                                            \\
+	\multicolumn{3}{l|}{L’utente non riesce a segnalare l’itinerario}                                                                                                                                                                                                     \\
 
 	\hline Primary Actor          &
-	\multicolumn{3}{l|}{Utente registrato}                                                                                                                                                                                                      \\
+	\multicolumn{3}{l|}{Utente registrato}                                                                                                                                                                                                                                \\
 
 	\hline Trigger                &
 	\multicolumn{3}{>{\hsize=\dimexpr 3\hsize+3\tabcolsep+2\arrayrulewidth\relax}X|}
-	{L’utente preme sull'icona di segnalazione nella schermata di dettaglio di un itinerario}                                                                                                                                                 \\
+	{L’utente preme sull'icona di segnalazione nella schermata di dettaglio di un itinerario}                                                                                                                                                                             \\
 
 	\hline
 	\multirow{2}{*}{}
-	                              & Step                                                 & Utente registrato                                                 & Sistema                                                                          \\
+	                              & Step                                                 & Utente registrato                                              & Sistema                                                                                                       \\
 
-	\cline{2-4}                   & 1                                                    & Preme l'icona di segnalazione nella schermata “RouteDetailsUI” &                                                                                  \\
+	\cline{2-4}                   & 1                                                    & Preme l'icona di segnalazione nella schermata “RouteDetailsUI” &                                                                                                               \\
 
-	\cline{2-4}                   & 2                                                    &                                                                   & Mostra la full dialog “ReportRouteFullDialog”                                    \\
+	\cline{2-4}                   & 2                                                    &                                                                & Mostra la full dialog “ReportRouteFullDialog”                                                                 \\
 
-	\cline{2-4}                   & 3                                                    & Inserisce un titolo e una descrizione per la segnalazione           &                                                                                  \\
+	\cline{2-4}                   & 3                                                    & Inserisce un titolo e una descrizione per la segnalazione      &                                                                                                               \\
 
-	\cline{2-4}                   & 4                                                    & Preme il bottone “Invia”                                          &                                                                                  \\
+	\cline{2-4}                   & 4                                                    & Preme il bottone “Invia”                                       &                                                                                                               \\
 
-	\cline{2-4}                   & 5                                                    &                                                                   & Mostra la schermata “RouteDetailsUI” con un toast contenente un messaggio di segnalazione andata a buon fine,
-	aggiungendo all’itinerario un warning (se non è già presente) per possibili informazioni inesatte                                                                                                                                           \\
+	\cline{2-4}                   & 5                                                    &                                                                & Mostra la schermata “RouteDetailsUI” con un toast contenente un messaggio di segnalazione andata a buon fine,
+	aggiungendo all’itinerario un warning (se non è già presente) per possibili informazioni inesatte                                                                                                                                                                     \\
 
 	\hline
 \end{tabularx}
 
 \subsection{UX Design}
 \subsubsection{Definizione delle Personas}
-Uno dei principali obiettivi dello sviluppo dell'applicativo è stato quello di \textit{conoscere i potenziali utenti} 
-e di delineare dei loro probabili comportamenti, al fine di garantire all'intero target di utenza la migliore esperienza 
+Uno dei principali obiettivi dello sviluppo dell'applicativo è stato quello di \textit{conoscere i potenziali utenti}
+e di delineare dei loro probabili comportamenti, al fine di garantire all'intero target di utenza la migliore esperienza
 possibile. \\
-Si è ritenuto dunque opportuno elaborare dei profili ideali e immaginari: conoscendo caratteristiche e comportamenti del destinatario 
+Si è ritenuto dunque opportuno elaborare dei profili ideali e immaginari: conoscendo caratteristiche e comportamenti del destinatario
 di un prodotto, la progettazione di quest'ultimo risulta notevolmente più efficiente. \\
 Oltre a creare semplicemente un'ottima user experience, dunque, si è prestata una particolare attenzione ad utilizzare un approccio \textit{customer-centered}. \\
 I profili elaborati prendono il nome di \textbf{personas}. Le \textit{personas} sono veri e propri identikit, creati sulla base di ricerche, che rappresentano un particolare
-gruppo di clienti che potrebbero utilizzare un prodotto. Delineare le caratteristiche di tali clienti permette di conoscere e comprendere i 
+gruppo di clienti che potrebbero utilizzare un prodotto. Delineare le caratteristiche di tali clienti permette di conoscere e comprendere i
 loro bisogni, obiettivi, paure e motivazioni.\\
 Proprio questi identikit, in conclusione, hanno contruibito allo sviluppo di una \textbf{UX} piacevole, funzionale ed elegante. Di seguito sono mostrati tre di questi profili elaborati. \\
 
@@ -847,13 +872,13 @@ Modellando dei potenziali utenti è possibile comprendere quelli che potrebbero 
 	\includegraphics[width=\textwidth]{./personas/personas-bianchi.pdf}
 \end{figure}
 
-Come si può notare dai precedenti modelli, non ci si è concentrati soltanto su probabili \textit{skills} degli utenti, ma anche sul loro 
+Come si può notare dai precedenti modelli, non ci si è concentrati soltanto su probabili \textit{skills} degli utenti, ma anche sul loro
 temperamento: si ritiene fondamentale, infatti, adattare l'esperienza utente in modo che possa risultare piacevole a tutte le diverse personalità.
 
 \newpage
 \subsubsection{Prototipazione dell'esperienza utente}
 Attraverso una fase di \textbf{brainstorming} sono state generate idee per sfruttare le opportunità e risolvere i problemi emersi durante la creazione delle \textit{personas}.
-La raccolta di opinioni e suggerimenti dei componenti del team di progettazione ha analizzato anche le proposte più semplici ed intuitive: è stato ritenuto importante, infatti, valutare ogni 
+La raccolta di opinioni e suggerimenti dei componenti del team di progettazione ha analizzato anche le proposte più semplici ed intuitive: è stato ritenuto importante, infatti, valutare ogni
 possibilità nata dal processo creativo. \\
 Una volta approfondite le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE}; nello specifico, la scelta di quest'ultimo è ricaduta su \textit{Figma}.\\
 
@@ -865,29 +890,29 @@ Periodicamente ogni prototipo è stato discusso e rielaborato, in un processo co
 \end{itemize}
 
 Progettare l'interazione tra utenti e prodotto è un processo complicato e spesso anche dispendioso. \\
-Una possibile soluzione a questo problema, però, esiste: si tratta di un metodo molto utilizzato in 
+Una possibile soluzione a questo problema, però, esiste: si tratta di un metodo molto utilizzato in
 \textbf{UX Design}, avente lo scopo di ridurre al minimo i test utente. Tale processo è noto come \textit{valutazione euristica}. \\
 
 Le \textbf{Euristiche di Nielsen} sono il cardine dell'esperienza utente ideata. \\
-Il focus dell'analisi è stato rivolto verso lo \textit{stato del sistema}, con particolare attenzione agli stati di \textit{caricamento} e di \textit{errore}; 
+Il focus dell'analisi è stato rivolto verso lo \textit{stato del sistema}, con particolare attenzione agli stati di \textit{caricamento} e di \textit{errore};
 si è ritenuto opportuno, in queste condizioni, fornire all'utente dei feedback. \\
-Per quanto riguarda le situazioni di errore è stata adottata una politica di \textit{problem avoidance} piuttosto che di \textit{problem solving}: ciò non implica, 
-ovviamente, che le circostanze di errore non siano state gestite o degnate della giusta attenzione. Si è preferito, però, concentrarsi sul \textit{prevenire} gli errori. 
-Ove possibile, infatti, sono stati posti dei "limiti": grazie alla loro presenza, non sarebbe possibile procedere con l'utilizzo di una particolare funzionalità se 
+Per quanto riguarda le situazioni di errore è stata adottata una politica di \textit{problem avoidance} piuttosto che di \textit{problem solving}: ciò non implica,
+ovviamente, che le circostanze di errore non siano state gestite o degnate della giusta attenzione. Si è preferito, però, concentrarsi sul \textit{prevenire} gli errori.
+Ove possibile, infatti, sono stati posti dei "limiti": grazie alla loro presenza, non sarebbe possibile procedere con l'utilizzo di una particolare funzionalità se
 i requisiti necessari per un corretto funzionamento di quest'ultima non fossero rispettati. \\
-Le funzionalità più "comuni", in quanto di prassi nel mondo del social networking, si trovano sotto nomi ben noti: una delle motivazioni di questa scelta è stata sicuramente la volontà di 
-creare una corrispondenza tra il sistema e il mondo reale. La motivazione principale, però, è stata la volontà di ottenere una sorta di \textit{continuità} nell'utilizzo del prodotto: sfruttando convenzioni ormai 
-consolidate nell'esperienza utente, è stato ritenuto naturale e improntato a una migliore comprensione del funzionamento dell'applicativo sfruttare i meccanismi 
- e comportamenti - che per un utente abituale risultano involontari - che entrano in gioco nell'utilizzo di un'applicativo informatico. \\
-L'interfaccia non presenta limitazioni; l'utente non viene mai posto in condizione di dover visualizzare funzionalità o componenti indesiderate. 
-È stato ritenuto però necessario stabilire delle eccezioni, relative esclusivamente ad operazioni \textit{distruttive}, che potrebbero causare modifiche permanenti ed irreversibili 
-ai contenuti inseriti. Tali operazioni presentano dunque la necessità di essere confermate prima di essere portate a termine: risulta chiara, anche qui, la volontà di evitare 
+Le funzionalità più "comuni", in quanto di prassi nel mondo del social networking, si trovano sotto nomi ben noti: una delle motivazioni di questa scelta è stata sicuramente la volontà di
+creare una corrispondenza tra il sistema e il mondo reale. La motivazione principale, però, è stata la volontà di ottenere una sorta di \textit{continuità} nell'utilizzo del prodotto: sfruttando convenzioni ormai
+consolidate nell'esperienza utente, è stato ritenuto naturale e improntato a una migliore comprensione del funzionamento dell'applicativo sfruttare i meccanismi
+e comportamenti - che per un utente abituale risultano involontari - che entrano in gioco nell'utilizzo di un'applicativo informatico. \\
+L'interfaccia non presenta limitazioni; l'utente non viene mai posto in condizione di dover visualizzare funzionalità o componenti indesiderate.
+È stato ritenuto però necessario stabilire delle eccezioni, relative esclusivamente ad operazioni \textit{distruttive}, che potrebbero causare modifiche permanenti ed irreversibili
+ai contenuti inseriti. Tali operazioni presentano dunque la necessità di essere confermate prima di essere portate a termine: risulta chiara, anche qui, la volontà di evitare
 situazioni di disagio causate da meri errori dell'utente.\\
-L'interfaccia realizzata per il software risulta essere estremamente minimalista; i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione ed un 
-posizionamento strategico delle informazioni. \\ 
-Le scelte di design sono dunque improntate a creare un ambiente visivo semplice e di immediata comprensione. 
-Ci si trova in presenza di un ambiente totalmente isolato, in cui le diverse schermate sono caratterizzate da una forte 
-\textbf{consistenza}. Per \textit{consistenza} si intende il mantenimento di una linea generale di presentazione di contenuti attraverso 
+L'interfaccia realizzata per il software risulta essere estremamente minimalista; i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione ed un
+posizionamento strategico delle informazioni. \\
+Le scelte di design sono dunque improntate a creare un ambiente visivo semplice e di immediata comprensione.
+Ci si trova in presenza di un ambiente totalmente isolato, in cui le diverse schermate sono caratterizzate da una forte
+\textbf{consistenza}. Per \textit{consistenza} si intende il mantenimento di una linea generale di presentazione di contenuti attraverso
 l'intero applicativo: le diverse interfacce non presentano mai cambi di layout estremi, garantendo una maggiore velocità d'apprendimento agli utenti. \\
 
 Prima di raffinare l'esperienza utente è stato ritenuto necessario coinvolgere un ristretto bacino d'utenza per ottenere riscontri esterni
@@ -947,8 +972,8 @@ Sono presentati i Mock-Up che rappresentano un inserimento fittizio, con scopo i
 \end{figure}
 
 \newpage
-Il processo di inserimento della mappa può avvenire sia interagendo con la mappa interattiva sia importando 
-un file GPX dall'apposito menu. In entrambi i casi è possibile ricercare una posizione per visualizzarla sulla mappa 
+Il processo di inserimento della mappa può avvenire sia interagendo con la mappa interattiva sia importando
+un file GPX dall'apposito menu. In entrambi i casi è possibile ricercare una posizione per visualizzarla sulla mappa
 ed eventualmente apporre i marker; inoltre è possibile eliminare i marker inseriti.
 
 \begin{figure}[htbp]
@@ -965,8 +990,8 @@ ed eventualmente apporre i marker; inoltre è possibile eliminare i marker inser
 \end{figure}
 
 \newpage
-L'inserimento delle foto per l'itinerario usufruisce di un photo picker esterno, il quale rimanda ad una schermata di sistema 
-che consente la selezione di più foto, fino a un massimo di 5. Una volta effettuata la selezione desiderata, le foto appariranno 
+L'inserimento delle foto per l'itinerario usufruisce di un photo picker esterno, il quale rimanda ad una schermata di sistema
+che consente la selezione di più foto, fino a un massimo di 5. Una volta effettuata la selezione desiderata, le foto appariranno
 nella schermata precedente con la possibilità di eliminarle.
 \begin{figure}[htbp]
 	\centering
@@ -981,10 +1006,10 @@ nella schermata precedente con la possibilità di eliminarle.
 	\end{minipage}
 \end{figure}
 
-È importante sottolineare che - per ridurre al minimo i possibili errori nell'inserimento - le \textit{affordance} 
+È importante sottolineare che - per ridurre al minimo i possibili errori nell'inserimento - le \textit{affordance}
 che consentono la navigazione tra le diverse fasi dell'inserimento restano disattivate fino all'inserimento di input adeguati.\\
 
-Una caratteristica di particolare rilevanza è il \textit{salvataggio dello stato} dell'inserimento tra le schermate: sarà quindi 
+Una caratteristica di particolare rilevanza è il \textit{salvataggio dello stato} dell'inserimento tra le schermate: sarà quindi
 possibile navigare tra di esse senza perdere i dati inseriti. \\
 
 \newpage
@@ -1021,22 +1046,22 @@ negativa, il sistema sarà rielaborato alla luce dei feedback utente.
 \subsubsection{Definizione dei task utente}
 \begin{enumerate}
 	\item \textbf{Creazione itinerario} \\
-	Hai deciso di aggiungere un nuovo itinerario all’interno della piattaforma: a questo scopo 
-	dovrai andare nella sezione degli itinerari e cliccare sul bottone di creazione. Nelle schermate successive dovrai inserire le informazioni, la mappa e le foto del nuovo itinerario.
+	      Hai deciso di aggiungere un nuovo itinerario all’interno della piattaforma: a questo scopo
+	      dovrai andare nella sezione degli itinerari e cliccare sul bottone di creazione. Nelle schermate successive dovrai inserire le informazioni, la mappa e le foto del nuovo itinerario.
 	\item \textbf{Aggiunta itinerario ad una compilation} \\
-	Hai trovato un itinerario interessante che hai scelto di inserire all’interno di una compilation. Seleziona l’icona di salvataggio per poi decidere in quale compilation inserirlo.
+	      Hai trovato un itinerario interessante che hai scelto di inserire all’interno di una compilation. Seleziona l’icona di salvataggio per poi decidere in quale compilation inserirlo.
 	\item \textbf{Segnalazione itinerario} \\
-	Hai trovato un itinerario con informazioni errate, così hai deciso di segnalarlo agli amministratori. Dalla schermata dell’itinerario in questione clicca sull'icona di segnalazione e 
-	scegli un titolo e una descrizione per la segnalazione da inviare.
+	      Hai trovato un itinerario con informazioni errate, così hai deciso di segnalarlo agli amministratori. Dalla schermata dell’itinerario in questione clicca sull'icona di segnalazione e
+	      scegli un titolo e una descrizione per la segnalazione da inviare.
 	\item \textbf{Contatto con autore itinerario} \\
-	Hai trovato un itinerario ma hai dei dubbi riguardo ad esso, così hai deciso di contattare l’utente che l’ha creato. Dalla schermata dell’itinerario clicca l'icona di messaggio privato per visualizzare la chat.
+	      Hai trovato un itinerario ma hai dei dubbi riguardo ad esso, così hai deciso di contattare l’utente che l’ha creato. Dalla schermata dell’itinerario clicca l'icona di messaggio privato per visualizzare la chat.
 	\item  \textbf{Modifica immagine profilo} \\
-	Ti sei appena registrato all'applicazione, ma il tuo profilo è completamente spoglio: così hai deciso di modificare l’immagine del tuo profilo. Spostati nella sezione profilo e modifica la tua foto.
+	      Ti sei appena registrato all'applicazione, ma il tuo profilo è completamente spoglio: così hai deciso di modificare l’immagine del tuo profilo. Spostati nella sezione profilo e modifica la tua foto.
 \end{enumerate}
 
 \newpage
 \subsection{Prototipazione funzionale via statechart dell'interfaccia grafica}
-In questa sezione sono riportati gli statechart relativi ai due 
+In questa sezione sono riportati gli statechart relativi ai due
 casi d'uso significativi dettagliati nella sottosezione precedente.
 
 \begin{figure}[!htbp]
@@ -1049,7 +1074,7 @@ casi d'uso significativi dettagliati nella sottosezione precedente.
 
 \newpage
 \subsubsection{Inserimento itinerario}
-Per garantire una maggiore leggibilità, data l'estensione di questo statechart, 
+Per garantire una maggiore leggibilità, data l'estensione di questo statechart,
 si è fatta la scelta di rappresentarlo tramite regioni interne, riportate poi per intero.
 \begin{figure}[!htbp]
 	\centering
@@ -1474,8 +1499,8 @@ la segnalazione di un itinerario e la ricerca di un itinerario.
 \section{Documento di Design del sistema}
 \subsection{Analisi dell'architettura e criteri di design}
 \subsubsection{Diagramma di design del sistema}
-In questa sezione viene presentato un diagramma realizzato con lo scopo di 
-rappresentare la struttura generale dell'architettura di sistema realizzata; 
+In questa sezione viene presentato un diagramma realizzato con lo scopo di
+rappresentare la struttura generale dell'architettura di sistema realizzata;
 in esso sono stati messi in evidenza i servizi di cui si è usufruito nello sviluppo del software. \\
 Le specifiche di ciascuna scelta implementativa sono
 dettagliate nelle sezioni successive.
@@ -1677,22 +1702,22 @@ di clienti è particolarmente esigente.
 È stato adottato un approccio nativo, precisamente su sistema operativo \textbf{Android}, scegliendo \textbf{Kotlin} come linguaggio di programmazione.
 
 \subsubsection{Perchè Kotlin?}
-Java detiene da anni un ruolo chiave nello sviluppo di applicazioni, tuttavia alcuni requisiti \textit{platform-dependant} 
+Java detiene da anni un ruolo chiave nello sviluppo di applicazioni, tuttavia alcuni requisiti \textit{platform-dependant}
 possono rendere tedioso l'utilizzo di questo linguaggio. Esistono altri linguaggi che operano sulla JVM: tra questi, Kotlin ha guadagnato
 molti punti a favore nello sviluppo di applicazioni native Android. \\
 
 Kotlin presenta molti vantaggi; tra essi si sottolineano:
 \begin{itemize}
-	\item Elevata \textbf{concisione}, raggiunta attraverso l'inferenza di tipi, lo \textit{smart-cast} e le \textit{data class}: 
-			tali fattori conferiscono al codice una maggiore le leggibilità e manutenibilità. Ciò avviene anche in relazione al fatto che - sfruttando queste 
-			tecnologie - il codice necessario per l'implementazione di una feature risulta essere di un numero di righe di gran lunga minore rispetto allo stesso codice sviluppato in Java; \\
+	\item Elevata \textbf{concisione}, raggiunta attraverso l'inferenza di tipi, lo \textit{smart-cast} e le \textit{data class}:
+	      tali fattori conferiscono al codice una maggiore le leggibilità e manutenibilità. Ciò avviene anche in relazione al fatto che - sfruttando queste
+	      tecnologie - il codice necessario per l'implementazione di una feature risulta essere di un numero di righe di gran lunga minore rispetto allo stesso codice sviluppato in Java; \\
 	\item Il type system di Kotlin mira ad eliminare le \textit{NullPointerException}, garantendo controlli a tempo di compilazione e offrendo
-			operatori di \textit{null-safety}.
+	      operatori di \textit{null-safety}.
 \end{itemize}
 
 Tra le funzionalità più interessanti volte a migliorare la produttività dello sviluppatore è presenta una forte integrazione del paradigma di
 programmazione funzionale, oltre alla possibilità di creare particolari funzioni note come \textit{estensioni}, che consentono l'aggiunta
-di nuovi metodi a classi pre-esistenti. 
+di nuovi metodi a classi pre-esistenti.
 
 Inoltre, Kotlin non preclude la possibilità di utilizzare codice Java, ma questa possibilità è bi-direzionale: Java e Kotlin possono coesistere
 all'interno dello stesso progetto. \\
@@ -1751,7 +1776,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 	\item Presenza di \textit{StateHolder}, necessari per ogni ViewModel nella maggior parte dei casi e non necessariamente unici;
 	\item Richiamo alle macchine di stato e agli \textbf{Statechart} definiti in precedenza;
 	\item \textit{Event} e \textit{Effect}, che si interpongono tra View e ViewModel.
-\end{itemize} 
+\end{itemize}
 
 \newpage
 \subsection{Diagramma delle classi di design}
@@ -2018,22 +2043,123 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 \subsection{Definizione delle gerarchie funzionali}
 
 \newpage
-\section{Definizione di un piano di testing e valutazione sul campo dell'usabilità}
-\subsection{Testing}
+\section{Codice xUnit per testing di 3 metodi}
+\subsection{Metodo \textit{formValidator} - black-box}
+Il metodo \textit{formValidator} permette di validare gli input di un form di registrazione,
+di cui viene escluso il campo di conferma password perchè verificato a priori. \\
+Il metodo richiede tre parametri:
+\begin{itemize}
+	\item \textbf{E-mail}: identifica un indirizzo email inserito;
+	\item \textbf{Username}: identifica uno username inserito;
+	\item \textbf{Password}: identifica la password inserita;
+\end{itemize}
+
+Per il metodo è stata adottata una strategia \textbf{black-box}.
+Di seguito le classi di equivalenza identificate.
+
 \begin{table}[H]
 	\centering
-	\begin{tabular}{ |X|X|X| }
+	\begin{tabular}{ |p{2cm}|p{5cm}|p{9cm}| }
 		\hline
 		\rowcolor{PineGreen!70}
-		\textbf{Classe di equivalenza}        & \textbf{Parametro}          &\textbf{Valore}                           \\
+		\textbf{Nome CE} & \textbf{Parametro} & \textbf{Valore}                                               \\
 		\hline
-		Visualizzazione post 				  & Il sistema deve consentire a un utente autenticato di visualizzare i dettagli di un post.   &    \\
+		CE1              & E-mail             & Pattern \texttt{prefix@example.net} (valido)                  \\
+		\hline
+		CE2              & E-mail             & Prefisso con caratteri speciali \texttt{+.\_\%-} (valido)     \\
+		\hline
+		CE3              & E-mail             & Più di una \texttt{@} (non valido)                            \\
+		\hline
+		CE4              & E-mail             & Due punti consecutivi prima del top-level domain (non valido) \\
+		\hline
+		CE5              & E-mail             & Punto dopo \texttt{@} (non valido)                            \\
+		\hline
+		CE6              & E-mail             & Punto prima di \texttt{@} (non valido)                        \\
+		\hline
+		CE7              & Username           & Contiene spazi (non valido)                                   \\
+		\hline
+		CE8              & Username           & Almeno 3 caratteri (valido)                                   \\
+		\hline
+		CE9              & Username           & Meno di 3 caratteri (non valido)                              \\
+		\hline
+		CE10             & Password           & Almeno 8 caratteri (valido)                                   \\
+		\hline
+		CE11             & Password           & Meno di 8 caratteri (non valido)                              \\
+		\hline
 	\end{tabular}
 	\caption{RF.12}
 \end{table}
 
+Nello specifico è stato adottato un approccio \textbf{WECT}, ritenuto sufficiente in quanto non essendovi
+correlazioni tra i parametri forniti. \\
+La minima copertura fornita da \textbf{WECT} in questo caso è vantaggiosa, è stato infatti possibile evitare
+tutte le combinazioni possibili, ottimizzando il numero di test per questo metodo.
+\newpage
 
-\subsection{Valutazione dell'usabilità sul campo}
+Sono stati quindi individuati sei metodi di test:
+\lstinputlisting[language=Kotlin]{./code/RegistrationUseCaseTest.kt}
+
+I test sono stati eseguiti con successo.\\
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\linewidth]{./code/WECT-result}
+	\caption{Risultati dei test sul metodo \textit{formValidator}}
+\end{figure}
+
+\newpage
+
+\subsection{Metodo \textit{getChatMyMembersUseCase} - white-box}
+
+Il metodo \textit{getChatMyMembersUseCase} - che in realtà è implementato attraverso l'override dell'operatore \textit{invoke()} -
+ha due parametri: gli id di due utenti registrati.
+
+È stata adottata una strategia white-box, nello specifico con branch coverage,
+anche a causa della natura dell'implementazione: altamente dipendente dalle API del linguaggio di programmazione utilizzato.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{code/chat-whitebox.pdf}
+	\caption{CFG del metodo \textit{getChatByMembersUseCase}}
+\end{figure}
+
+\lstinputlisting[language=Kotlin]{./code/GetChatByMembersUseCaseTest.kt}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{code/WHITEBOX-chat.png}
+	\caption{Risultati dei test sul metodo \textit{getChatByMembersUseCase}}
+\end{figure}
+
+\newpage
+
+\subsection{Metodo \textit{retrofitSafeCall} - white-box} 
+
+Il metodo \textit{retrofitSafeCall} è il fulcro delle richieste HTTP effettutate dall'applicativo, è stato ritenuto
+uno dei metodi più interessanti e particolari da testare data l'enorme riduzione di codice \textit{boilerplate} ottenuta.
+Il metodo ha come parametri: 
+\begin{itemize}
+	\item Un attributo di tipo \textbf{CoroutineDispatcher}: \textit{dispatcher}, utilizzato all'interno delle \textit{Coroutines};
+	\item Un attributo di tipo \textbf{Long}: \textit{timeout}, per indicare un tempo massimo di timeout per la richiesta effettuata;
+	\item L'ultimo attributo in realtà è una funzione lambda sospensiva, che restituisce un tipo generico \textit{T}
+\end{itemize}
+
+È stata adottata una strategia white-box, nello specifico con branch coverage.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{code/retrofit-whitebox.pdf}
+	\caption{CFG del metodo \textit{retrofitSafeCall}}
+\end{figure}
+
+\lstinputlisting[language=Kotlin]{./code/RetrofitHelperExtension.kt}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{code/WHITEBOX-retro.png}
+	\caption{Risultati dei test sul metodo \textit{retrofitSafeCall}}
+\end{figure}
+
+\section{Valutazione dell'usabilità sul campo}
 
 
 \end{document}

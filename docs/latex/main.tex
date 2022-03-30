@@ -1065,12 +1065,13 @@ negativa, il sistema sarà rielaborato alla luce dei feedback utente.
 \newpage
 
 \subsubsection{Risultati ottenuti dallo svolgimento dei task}
-È stato preferibile selezionare i possibili clienti secondo serie di parametri quali:
+Nella scelta degli utenti ai quali somministrare i task si è tenuto in considerazione di parametri quali:
 \begin{itemize}
-	\item \textbf{Competenza tecnologica}: per favorire un'analisi migliore dell'intuitività fornita dalla UX;
-	\item \textbf{Posizione lavorativa}: per spaziare tra background di carriera diversi, che potrebbero influire sull'esperienza con UX simili a quella progettata;
+	\item \textbf{Competenza tecnologica} - per favorire un'analisi migliore dell'intuitività della UX si è preferito coinvolgere utenti abituati alle esperienze di social networking in entità diverse;
+	\item \textbf{Età} - si è scelto di considerare diverse fasce di età, con lo scopo di andare oltre le innate capacità della generazione più giovane e dei "nativi digitali".
 \end{itemize}
-Di seguito è presente una tabella di utenti che hanno collaborato allo svolgimento dei task:
+
+Sono elencati di seguito gli utenti che hanno partecipato allo svolgimento dei task, e le loro caratteristiche:
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./usability/task_users.png}
@@ -1078,7 +1079,7 @@ Di seguito è presente una tabella di utenti che hanno collaborato allo svolgime
 \end{figure}
 \FloatBarrier
 
-Di seguito i risultati ottenuti dallo svolgimento dei task:
+I risultati ottenuti dallo svolgimento dei task possono essere così schematizzati:
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./usability/task_table.png}
@@ -1086,13 +1087,15 @@ Di seguito i risultati ottenuti dallo svolgimento dei task:
 \end{figure}
 \FloatBarrier
 
-Da come si può notare la creazione dell'itinerario è risultata difficoltosa per alcuni utenti, infatti è stato
-richiesto un aiuto da parte loro in sede di prova.
-È stato ritenuto opportuno modificare leggermente la UX della creazione itinerario, ponendo in rilievo le azioni
-principali attraverso una scelta di colori migliore.
+I risultati hanno mostrato che l'operazione meno intuitiva è stata 
+la creazione di un itinerario. Si è ritenuto necessario che gli utenti in difficoltà fossero, 
+in sede di prova, aiutati con ulteriori indicazioni. \\
+Alla luce di questa problematica è stato dunque ritenuto opportuno modificare i prototipi relativi al 
+task in questione, ponendo in rilievo le azioni principali attraverso una scelta di colori migliore.\\
 
-In percentuale, i risultati del test sono stati positivi, ulteriori cambiamenti nei prototipi non hanno comunque stravolto
-i precedenti.
+In generale, i risultati del test hanno mostrato ottimi risultati.  \\ 
+Gli ulteriori cambiamenti nei prototipi, ove necessari, non hanno determinato modifiche drastiche nei 
+prototipi di partenza.
 
 
 \newpage
@@ -1955,7 +1958,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/segnala_post.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/segnala_postt.svg}
 	\caption{Segnalazione post}
 \end{figure}
 \FloatBarrier
@@ -2110,8 +2113,7 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 \section{Definizione di un piano di testing e valutazione sul campo dell’usabilità.}
 
 \subsection{Codice xUnit per testing di 3 metodi}
-In questa sezione saranno trattati dei casi di test per 3 metodi non banali,
-adottando strategie specifiche per ognuno di questi.
+In questa sezione sono esposti dei casi di test per 3 metodi non banali: per ciascuno di essi sono state adottate strategie specifiche.
 È bene precisare che - per effettuare alcuni test - è stato necessario utilizzare il framework open-source \textbf{Mockito},
 che consente la creazione di \textit{test double} (informalmente detti \textit{mock}). \\
 Mockito ha permesso di rimpiazzare le dipendenze delle classi dove sono presenti 2 dei 3 metodi sotto test, evitando
@@ -2127,8 +2129,8 @@ Il metodo richiede tre parametri:
 	\item \textbf{Password}: identifica la password inserita;
 \end{itemize}
 
-Per il metodo è stata adottata una strategia \textbf{black-box}.
-Di seguito le classi di equivalenza identificate:
+È stata adottata in questo caso una strategia di testing \textbf{black-box}.
+Di seguito sono riportate le classi di equivalenza identificate:
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{\textwidth}{ |c|c|c| }
@@ -2162,10 +2164,14 @@ Di seguito le classi di equivalenza identificate:
 	\caption{Classi di equivalenza individuate per \textit{formValidator}}
 \end{table}
 
-Nello specifico è stato adottato un approccio \textbf{WECT}, scelto in quanto, non essendovi
-correlazioni tra i parametri forniti, la copertura offerta è stata ritenuta sufficiente. \\
-La minima copertura fornita da \textbf{WECT} in questo caso è vantaggiosa, è stato infatti possibile evitare
-tutte le combinazioni possibili, ottimizzando il numero di test per questo metodo. \\
+Nello specifico, è stata effettuata la scelta di adottare un approccio \textbf{WECT}.
+Non esistendo ancora - essendo in fase di registrazione - un'effettiva correlazione tra i parametri presi in ingresso 
+dal metodo, è stato sufficiente verificare la validità degli stessi. \\
+La minima copertura fornita da \textbf{WECT} in questo caso è vantaggiosa; 
+evitando di prendere in considerazione tutte le combinazioni di parametri esistenti, è stato possibile ottimizzare 
+il numero di test pur non rinunciando ad una copertura adeguata. \\
+
+
 Sono stati quindi individuati sei metodi di test:
 \begin{table}[H]
 	\centering
@@ -2190,6 +2196,7 @@ Sono stati quindi individuati sei metodi di test:
 	\caption{RF.12}
 \end{table}
 
+Di seguito è riportato il codice dei casi di test, con relativi output.
 
 \lstinputlisting[language=Kotlin]{./code/RegistrationUseCaseTest.kt}
 
@@ -2203,22 +2210,22 @@ Sono stati quindi individuati sei metodi di test:
 
 \subsubsection{Metodo \textit{getChatMyMembersUseCase}}
 
-Il metodo \textit{getChatByMembersUseCase} - che è in realtà implementato attraverso l'override dell'operatore \textit{invoke()}
+Il metodo \textit{getChatByMembersUseCase} - implementato in realtà  attraverso l'override dell'operatore \textit{invoke()}
 della class \textit{GetChatByMembersUseCase} - ha due parametri: gli id di due utenti registrati.
-Questo metodo permette il recupero di un'oggetto \textbf{Chat}, dati gli id degli utenti che la compongono, e il suo controllo.\\
-L'implementazione utilizza le Coroutines di Kotlin, di conseguenza rende possibile \textit{l'emissione di valori} al suo observer in qualsiasi
+Questo metodo permette il recupero di un'oggetto \textbf{Chat} dati gli id degli utenti che la costituiscono, e ne controlla la validità. \\
+L'implementazione utilizza le Coroutines di Kotlin; di conseguenza è resa possibile \textit{l'emissione di valori} al suo observer in qualsiasi
 momento.
 \begin{itemize}
-	\item Se gli id non sono validi, il metodo emette \textit{DataState.Cause.NotAcceptable} e poi ritorna;
-	\item Se gli id corrispondono, il metodo emette \textit{DataState.Cause.BadRequest} e poi ritorna;
-	\item Una volta effettuata la chiamata al metodo presente nella dipendenza \textbf{ChatRepository}, viene 
-				effettuato un ulteriore controllo dell'oggetto recuperato, più precisamente sugli id dei "membri" dell'oggetto di tipo
+	\item Se gli id non sono validi, il metodo emette \textit{DataState.Cause.NotAcceptable} e poi ritorna.
+	\item Se gli id corrispondono, il metodo emette \textit{DataState.Cause.BadRequest} e poi ritorna.
+	\item Una volta effettuata la chiamata al metodo presente nella dipendenza \textbf{ChatRepository} viene 
+				effettuato un ulteriore controllo sull'oggetto recuperato, più precisamente sugli id dei "membri" dell'oggetto di tipo
 				\textbf{Chat}. Se gli id corrispondono il metodo emette l'oggetto ottenuto sotto forma di \textit{DataState.Success},
-				altrimenti emette \textit{DataState.Cause.NotFound}.\footnote{In questo caso il ritorno è implicito}
+				altrimenti emette \textit{DataState.Cause.NotFound}.\footnote{In questo caso il ritorno è implicito.}
 \end{itemize}
 
-È stata adottata una strategia white-box, nello specifico con branch coverage, per assicurare che tutti i branch siano testati.
-La scelta deriva anche dalla natura dell'implementazione, dipendente dalle API del linguaggio di programmazione utilizzato.
+È stata qui adottata una strategia di testing white-box, nello specifico con branch coverage, per assicurare che tutti i branch fossero testati.
+Tale scelta deriva anche dalla natura dell'implementazione, dipendente dalle API del linguaggio di programmazione utilizzato.
 
 I cammini possibili sono:
 \begin{itemize}
@@ -2228,9 +2235,11 @@ I cammini possibili sono:
 	\item \textbf{PATH 4} - 1, 2, 5, 8, 9, 10, 12 
 \end{itemize}
 
-Analizzati i cammini è stata individuata una lista di possibili input, utilizzando Mockito per testare il metodo sulla base
-del valore ritornato dalla dipendenza (predefinito, per prescindere dall'implementazione, visto che si tratta di uno Unit Test).
+Una volta analizzati i cammini è stata individuata una lista di possibili input. 
+Ciò è stato possibile utilizzando Mockito per testare il metodo sulla base del valore ritornato dalla dipendenza. In particolare, è stato utilizzato un valore predefinito per prescindere dall'implementazione, trattandosi di uno Unit Test.
 
+\newpage
+Di seguito sono riportati il CFG, il codice ed i risultati dei test sul metodo.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{code/chat-whitebox.pdf}
@@ -2250,24 +2259,24 @@ del valore ritornato dalla dipendenza (predefinito, per prescindere dall'impleme
 
 \subsubsection{Metodo \textit{retrofitSafeCall}}
 
-Il metodo \textit{retrofitSafeCall} è il fulcro delle richieste HTTP effettutate dall'applicativo, è stato ritenuto
+Il metodo \textit{retrofitSafeCall} è il fulcro delle richieste HTTP effettutate dall'applicativo. Esso è stato ritenuto
 uno dei metodi più interessanti e particolari da testare data la notevole riduzione di codice \textit{boilerplate} ottenuta.
 Il metodo ha come parametri:
 \begin{itemize}
 	\item Un attributo di tipo \textbf{CoroutineDispatcher}: \textit{dispatcher}, utilizzato all'interno delle \textit{Coroutines};
 	\item Un attributo di tipo \textbf{Long}: \textit{timeout}, per indicare un tempo massimo di timeout per la richiesta effettuata;
-	\item L'ultimo attributo in realtà è una funzione lambda sospensiva, che restituisce un tipo generico \textit{T}
+	\item L'ultimo attributo in realtà è una funzione lambda sospensiva, che restituisce un tipo generico \textit{T}.
 \end{itemize}
 
-I valori di ritorno dovrebbero essere contenuti nell'oggetto \textit{DataState}, questi dipendono da:
+I valori di ritorno dovrebbero essere contenuti nell'oggetto \textit{DataState}, i quali dipendono da:
 \begin{itemize}
 	\item Timeout fornito in input: un timeout minore o uguale a zero potrebbe tirare un'eccezione prima del previsto;
 																	qualora non fosse così, la lambda fornita potrebbe comunque far scattare il timeout;
 	\item Condizioni di errore della chiamata a funzione.
 \end{itemize}
 
-È stata adottata una strategia white-box, nello specifico con branch coverage, per assicurare che tutti i branch siano testati.
-Rispetto al precedente metodo l'individuazione dei branch è più sottile, questo è dovuto alla presenza del blocco \textit{try-catch}.
+È stata adottata una strategia di testing white-box, nello specifico con branch coverage, per assicurare che tutti i branch fossero testati.
+Rispetto al metodo precedente l'individuazione dei branch è più sottile, a causa della presenza del blocco \textit{try-catch}.
 
 I cammini possibili sono:
 \begin{itemize}
@@ -2278,9 +2287,11 @@ I cammini possibili sono:
 	\item \textbf{PATH 5} - 1, 2, 3, 7
 \end{itemize}
 
-Analizzati i cammini è stata individuata una lista di possibili input, utilizzando Mockito per testare il metodo sulla base
-del valore ritornato dalla dipendenza (predefinito, per prescindere dall'implementazione, visto che si tratta di uno Unit Test).
+Una volta analizzati i cammini è stata individuata una lista di possibili input. 
+Ciò è stato possibile utilizzando Mockito per testare il metodo sulla base del valore ritornato dalla dipendenza. In particolare, è stato utilizzato un valore predefinito per prescindere dall'implementazione, trattandosi di uno Unit Test.
 
+\newpage
+Di seguito sono riportati il CFG, il codice ed i risultati dei test sul metodo.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{code/retrofit-whitebox.pdf}

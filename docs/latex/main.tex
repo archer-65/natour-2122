@@ -10,6 +10,7 @@
 %\usepackage[T1]{fontenc}
 \usepackage{ltablex}
 \usepackage{longtable}
+\usepackage{graphicx}
 %\usepackage{hyperref}
 
 \hypersetup{
@@ -48,8 +49,9 @@
 \toc %Crea Table of Contents
 
 %------------ Corpo del documento ----------------
-
-\section{Descrizione del progetto}
+\newpage
+\section{Documento dei Requisiti Software}
+\subsection{Descrizione del progetto}
 NaTour21 è un sistema complesso e distribuito finalizzato ad offrire un moderno social network multipiattaforma per appassionati di escursioni.\\
 
 Il sistema consiste in:
@@ -108,129 +110,6 @@ Le regioni del Nord Italia sembrano essere state le preferite per visite giornal
 \texttt{6200}), seguite immediatamente da quelle del centro-Sud. Il Molise, invece, non risulta aver raggiunto
 la minima cifra considerata nella raccolta dati.\\
 
-\subsection{Valutazione dell'usabilità a priori}
-
-\subsubsection{Definizione delle Personas}
-Uno dei principali obiettivi dello sviluppo dell'applicativo è stato quello di \textit{conoscere i potenziali utenti} 
-e di delineare dei loro probabili comportamenti, al fine di garantire all'intero target di utenza la migliore esperienza 
-possibile. \\
-Si è ritenuto dunque opportuno elaborare dei profili ideali e immaginari: conoscendo caratteristiche e comportamenti del destinatario 
-di un prodotto, la progettazione di quest'ultimo risulta notevolmente più efficiente. \\
-Oltre a creare semplicemente un'ottima user experience, dunque, si è prestata una particolare attenzione ad utilizzare un approccio \textit{customer-centered}. \\
-I profili elaborati prendono il nome di \textbf{personas}. Le \textit{personas} sono veri e propri identikit, creati sulla base di ricerche, che rappresentano un particolare
-gruppo di clienti che potrebbero utilizzare un prodotto. Delineare le caratteristiche di tali clienti permette di conoscere e comprendere i 
-loro bisogni, obiettivi, paure e motivazioni.\\
-Proprio questi identikit, in conclusione, hanno contruibito allo sviluppo di una \textbf{UX} piacevole, funzionale ed elegante. Di seguito sono mostrati tre di questi profili elaborati. \\
-
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=\textwidth]{./personas/personas-kumar.pdf}
-\end{figure}
-
-È stato scelto di differenziare le caratteristiche delle personalità prese in analisi, in modo da coprire una maggiore fetta di utenza.
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=\textwidth]{./personas/personas-cheng.pdf}
-\end{figure}
-
-\newpage
-Modellando dei potenziali utenti è possibile comprendere quelli che potrebbero essere i punti critici del prodotto.
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width=\textwidth]{./personas/personas-bianchi.pdf}
-\end{figure}
-
-Come si può notare dai precedenti modelli, non ci si è concentrati soltanto su probabili \textit{skills} degli utenti, ma anche sul loro 
-temperamento: si ritiene fondamentale, infatti, adattare l'esperienza utente in modo che possa risultare piacevole a tutte le diverse personalità.
-
-\newpage
-
-% \subsubsection{Contesto d’uso del prodotto}
-% La nostra applicazione NaTour sarà utilizzabili grazie ad una connessione
-% internet e GPS, poiché tale app porta l’utente in luoghi distanti dal contesto
-% urbano dovrà fare affidamento sulla propria connessione.
-% Il contesto immaginato per l’utilizzo dell applicazione è dare la possibilità ad appassionati di escursionismo di poter accedere in
-% modo semplice e intuitivo ad un’applicazione che contenga itinerari creati e valutati da altri utenti,
-% oppure essere noi i creatori di tali percorsi che verranno poi usufruiti da altri utenti.
-% Invece di impiegare tempo a ricercare itinerari con cui si potrebbe persino non aver un riscontro,
-% basta una semplice ricerca sulla nostra applicazione per trovare itinerari non solo vicini all’utente,
-% ma anche aver la possibilità di creare dei post per tali itinerari,
-% in modo da ottenere un riscontro con altri utenti,
-% oppure di creare compilation di itinerari da avere sempre a disposizione.
-
-\subsubsection{Progettazione dell'esperienza utente}
-Attraverso una fase di \textbf{brainstorming} sono state generate idee per sfruttare le opportunità e risolvere i problemi emersi durante la creazione delle \textit{personas}.
-La raccolta di opinioni e suggerimenti dei componenti del team di progettazione ha analizzato anche le proposte più semplici ed intuitive: è stato ritenuto importante, infatti, valutare ogni 
-possibilità nata dal processo creativo. \\
-Una volta approfondite le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE}; nello specifico, la scelta di quest'ultimo è ricaduta su \textit{Figma}.\\
-
-Periodicamente ogni prototipo è stato discusso e rielaborato, in un processo coinvolgente tutti i membri del team e avente come oggetto, in particolare, le seguenti analisi:
-\begin{itemize}
-	\item Facilità di navigazione;
-	\item Tempo di reperimento dei contenuti;
-	\item Coerenza nella creazione di nuovi contenuti.
-\end{itemize}
-
-Progettare l'interazione tra utenti e prodotto è un processo complicato e spesso anche dispendioso. \\
-Una possibile soluzione a questo problema, però, esiste: si tratta di un metodo molto utilizzato in 
-\textbf{UX Design}, avente lo scopo di ridurre al minimo i test utente. Tale processo è noto come \textit{valutazione euristica}. \\
-
-Le \textbf{Euristiche di Nielsen} sono il cardine dell'esperienza utente ideata. \\
-Il focus dell'analisi è stato rivolto verso lo \textit{stato del sistema}, con particolare attenzione agli stati di \textit{caricamento} e di \textit{errore}; 
-si è ritenuto opportuno, in queste condizioni, fornire all'utente dei feedback. \\
-Per quanto riguarda le situazioni di errore è stata adottata una politica di \textit{problem avoidance} piuttosto che di \textit{problem solving}: ciò non implica, 
-ovviamente, che le circostanze di errore non siano state gestite o degnate della giusta attenzione. Si è preferito, però, concentrarsi sul \textit{prevenire} gli errori. 
-Ove possibile, infatti, sono stati posti dei "limiti": grazie alla loro presenza, non sarebbe possibile procedere con l'utilizzo di una particolare funzionalità se 
-i requisiti necessari per un corretto funzionamento di quest'ultima non fossero rispettati. \\
-Le funzionalità più "comuni", in quanto di prassi nel mondo del social networking, si trovano sotto nomi ben noti: una delle motivazioni di questa scelta è stata sicuramente la volontà di 
-creare una corrispondenza tra il sistema e il mondo reale. La motivazione principale, però, è stata la volontà di ottenere una sorta di \textit{continuità} nell'utilizzo del prodotto: sfruttando convenzioni ormai 
-consolidate nell'esperienza utente, è stato ritenuto naturale e improntato a una migliore comprensione del funzionamento dell'applicativo sfruttare i meccanismi 
- e comportamenti - che per un utente abituale risultano involontari - che entrano in gioco nell'utilizzo di un'applicativo informatico. \\
-L'interfaccia non presenta limitazioni; l'utente non viene mai posto in condizione di dover visualizzare funzionalità o componenti indesiderate. 
-È stato ritenuto però necessario stabilire delle eccezioni, relative esclusivamente ad operazioni \textit{distruttive}, che potrebbero causare modifiche permanenti ed irreversibili 
-ai contenuti inseriti. Tali operazioni presentano dunque la necessità di essere confermate prima di essere portate a termine: risulta chiara, anche qui, la volontà di evitare 
-situazioni di disagio causate da meri errori dell'utente.\\
-L'interfaccia realizzata per il software risulta essere estremamente minimalista; i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione ed un 
-posizionamento strategico delle informazioni. \\ 
-Le scelte di design sono dunque improntate a creare un ambiente visivo semplice e di immediata comprensione. 
-Ci si trova in presenza di un ambiente totalmente isolato, in cui le diverse schermate sono caratterizzate da una forte 
-\textbf{consistenza}. Per \textit{consistenza} si intende il mantenimento di una linea generale di presentazione di contenuti attraverso 
-l'intero applicativo: le diverse interfacce non presentano mai cambi di layout estremi, garantendo una maggiore velocità d'apprendimento agli utenti. \\
-
-Prima di raffinare l'esperienza utente è stato ritenuto necessario coinvolgere un ristretto bacino d'utenza per ottenere riscontri esterni
-rispetto al contesto di prototipazione e sviluppo.
-
-\newpage
-
-\subsubsection{Definizione di uno stile di design}
-Per raffinare l'esperienza utente è stato ritenuto un buon approccio quello di affidarsi ad uno specifico \textbf{UI Design System}.
-La scelta è stata effettuata tra diversi sistemi concorrenti, ricadendo infine su
-\textbf{Material}\footnote{Material è un design system creato da Google per facilitare lo sviluppo di UX di altissima qualità per Android, iOS, Flutter, e Web-App.}.
-
-\FloatBarrier
-\begin{figure}[htbp!]
-	\centering
-	\includegraphics[height=7cm]{usability/material3.jpg}
-\end{figure}
-\FloatBarrier
-
-Material Design si ispira al mondo fisico, includendo riflessi e ombre. Tipografie, griglie, spazi e colori creano gerarchie finalizzate a rendere l'utilizzatore totalmente immerso.
-Gli effetti di movimento mirano a focalizzare l'attenzione generando continuità spaziale attraverso feedback e transizioni.
-Le componenti sono altamente dinamiche, si trasformano e organizzano l'ambiente in base alle interazioni, generando altre trasformazioni.\\
-Le componenti Material sono blocchi interattivi che formano l'interfaccia utente.
-Queste includono stati built-in system per comunicare focus, selezione, attivazione, errore, hovering, pressione, trascinamento, e disabilitazione. \\\\
-Ogni componente è realizzata avendo specifiche caratteristiche e finalità, tra le quali:
-\begin{itemize}
-	\item \textbf{Esposizione} - Piazzare ed organizzare contenuti correlati usando componenti come \textit{card} e \textit{liste};
-	\item \textbf{Navigazione} - Consentire agli utenti di muoversi nel prodotto finito utilizzando \textit{drawer} o \textit{tabs};
-	\item \textbf{Azioni} - Consentire agli utenti di eseguire task utilizzando componenti di alto rilievo, come i \textit{floating action button};
-	\item \textbf{Input} - Consentire agli utenti di inserire informazioni o selezionare tra un certo numero di opzioni, attraverso \textit{campi di testo dinamici} e \textit{chips};
-	\item \textbf{Comunicazione} - Dare informazioni agli utenti attraverso \textit{snackbar}, \textit{toast} e \textit{dialog}.
-\end{itemize}
-
-
-\newpage
-\section{Documento dei Requisiti Software}
 \subsection{Requisiti funzionali}
 In questa sezione saranno esposti i requisiti \textit{funzionali} dell'applicazione NaTour21, cioè le funzionalità offerte.
 Le funzionalità richieste sono presenti nella loro totalità; inoltre, è stato ritenuto opportuno inserire alcune funzionalità non 
@@ -736,7 +615,7 @@ deve attenersi. \\
 
 \newpage
 \subsection{Modellazione dei Casi d'Uso}
-In questa sezione sarà riportato il diagramma Use Case per l'applicazione.\\
+In questa sezione è riportato il diagramma Use Case per l'applicazione.\\
 Per garantire una maggiore leggibilità e data la molteplicità di funzioni garantite
 dal sistema, si è fatta la scelta di raggruppare le funzioni logicamente legate
 tra loro in packages.
@@ -937,14 +816,228 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 	\hline
 \end{tabularx}
 
+\subsection{UX Design}
+\subsubsection{Definizione delle Personas}
+Uno dei principali obiettivi dello sviluppo dell'applicativo è stato quello di \textit{conoscere i potenziali utenti} 
+e di delineare dei loro probabili comportamenti, al fine di garantire all'intero target di utenza la migliore esperienza 
+possibile. \\
+Si è ritenuto dunque opportuno elaborare dei profili ideali e immaginari: conoscendo caratteristiche e comportamenti del destinatario 
+di un prodotto, la progettazione di quest'ultimo risulta notevolmente più efficiente. \\
+Oltre a creare semplicemente un'ottima user experience, dunque, si è prestata una particolare attenzione ad utilizzare un approccio \textit{customer-centered}. \\
+I profili elaborati prendono il nome di \textbf{personas}. Le \textit{personas} sono veri e propri identikit, creati sulla base di ricerche, che rappresentano un particolare
+gruppo di clienti che potrebbero utilizzare un prodotto. Delineare le caratteristiche di tali clienti permette di conoscere e comprendere i 
+loro bisogni, obiettivi, paure e motivazioni.\\
+Proprio questi identikit, in conclusione, hanno contruibito allo sviluppo di una \textbf{UX} piacevole, funzionale ed elegante. Di seguito sono mostrati tre di questi profili elaborati. \\
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./personas/personas-kumar.pdf}
+\end{figure}
+
+È stato scelto di differenziare le caratteristiche delle personalità prese in analisi, in modo da coprire una maggiore fetta di utenza.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./personas/personas-cheng.pdf}
+\end{figure}
+
+\newpage
+Modellando dei potenziali utenti è possibile comprendere quelli che potrebbero essere i punti critici del prodotto.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./personas/personas-bianchi.pdf}
+\end{figure}
+
+Come si può notare dai precedenti modelli, non ci si è concentrati soltanto su probabili \textit{skills} degli utenti, ma anche sul loro 
+temperamento: si ritiene fondamentale, infatti, adattare l'esperienza utente in modo che possa risultare piacevole a tutte le diverse personalità.
+
+\newpage
+\subsubsection{Prototipazione dell'esperienza utente}
+Attraverso una fase di \textbf{brainstorming} sono state generate idee per sfruttare le opportunità e risolvere i problemi emersi durante la creazione delle \textit{personas}.
+La raccolta di opinioni e suggerimenti dei componenti del team di progettazione ha analizzato anche le proposte più semplici ed intuitive: è stato ritenuto importante, infatti, valutare ogni 
+possibilità nata dal processo creativo. \\
+Una volta approfondite le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE}; nello specifico, la scelta di quest'ultimo è ricaduta su \textit{Figma}.\\
+
+Periodicamente ogni prototipo è stato discusso e rielaborato, in un processo coinvolgente tutti i membri del team e avente come oggetto, in particolare, le seguenti analisi:
+\begin{itemize}
+	\item Facilità di navigazione;
+	\item Tempo di reperimento dei contenuti;
+	\item Coerenza nella creazione di nuovi contenuti.
+\end{itemize}
+
+Progettare l'interazione tra utenti e prodotto è un processo complicato e spesso anche dispendioso. \\
+Una possibile soluzione a questo problema, però, esiste: si tratta di un metodo molto utilizzato in 
+\textbf{UX Design}, avente lo scopo di ridurre al minimo i test utente. Tale processo è noto come \textit{valutazione euristica}. \\
+
+Le \textbf{Euristiche di Nielsen} sono il cardine dell'esperienza utente ideata. \\
+Il focus dell'analisi è stato rivolto verso lo \textit{stato del sistema}, con particolare attenzione agli stati di \textit{caricamento} e di \textit{errore}; 
+si è ritenuto opportuno, in queste condizioni, fornire all'utente dei feedback. \\
+Per quanto riguarda le situazioni di errore è stata adottata una politica di \textit{problem avoidance} piuttosto che di \textit{problem solving}: ciò non implica, 
+ovviamente, che le circostanze di errore non siano state gestite o degnate della giusta attenzione. Si è preferito, però, concentrarsi sul \textit{prevenire} gli errori. 
+Ove possibile, infatti, sono stati posti dei "limiti": grazie alla loro presenza, non sarebbe possibile procedere con l'utilizzo di una particolare funzionalità se 
+i requisiti necessari per un corretto funzionamento di quest'ultima non fossero rispettati. \\
+Le funzionalità più "comuni", in quanto di prassi nel mondo del social networking, si trovano sotto nomi ben noti: una delle motivazioni di questa scelta è stata sicuramente la volontà di 
+creare una corrispondenza tra il sistema e il mondo reale. La motivazione principale, però, è stata la volontà di ottenere una sorta di \textit{continuità} nell'utilizzo del prodotto: sfruttando convenzioni ormai 
+consolidate nell'esperienza utente, è stato ritenuto naturale e improntato a una migliore comprensione del funzionamento dell'applicativo sfruttare i meccanismi 
+ e comportamenti - che per un utente abituale risultano involontari - che entrano in gioco nell'utilizzo di un'applicativo informatico. \\
+L'interfaccia non presenta limitazioni; l'utente non viene mai posto in condizione di dover visualizzare funzionalità o componenti indesiderate. 
+È stato ritenuto però necessario stabilire delle eccezioni, relative esclusivamente ad operazioni \textit{distruttive}, che potrebbero causare modifiche permanenti ed irreversibili 
+ai contenuti inseriti. Tali operazioni presentano dunque la necessità di essere confermate prima di essere portate a termine: risulta chiara, anche qui, la volontà di evitare 
+situazioni di disagio causate da meri errori dell'utente.\\
+L'interfaccia realizzata per il software risulta essere estremamente minimalista; i contenuti più importanti sono posti in risalto attraverso sfumature, colori, elevazione ed un 
+posizionamento strategico delle informazioni. \\ 
+Le scelte di design sono dunque improntate a creare un ambiente visivo semplice e di immediata comprensione. 
+Ci si trova in presenza di un ambiente totalmente isolato, in cui le diverse schermate sono caratterizzate da una forte 
+\textbf{consistenza}. Per \textit{consistenza} si intende il mantenimento di una linea generale di presentazione di contenuti attraverso 
+l'intero applicativo: le diverse interfacce non presentano mai cambi di layout estremi, garantendo una maggiore velocità d'apprendimento agli utenti. \\
+
+Prima di raffinare l'esperienza utente è stato ritenuto necessario coinvolgere un ristretto bacino d'utenza per ottenere riscontri esterni
+rispetto al contesto di prototipazione e sviluppo.
+
+\newpage
+\subsubsection{Definizione di uno stile di design}
+Per raffinare l'esperienza utente è stato ritenuto un buon approccio quello di affidarsi ad uno specifico \textbf{UI Design System}.
+La scelta è stata effettuata tra diversi sistemi concorrenti, ricadendo infine su
+\textbf{Material}\footnote{Material è un design system creato da Google per facilitare lo sviluppo di UX di altissima qualità per Android, iOS, Flutter, e Web-App.}.
+
+\FloatBarrier
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[height=7cm]{usability/material3.jpg}
+\end{figure}
+\FloatBarrier
+
+Material Design si ispira al mondo fisico, includendo riflessi e ombre. Tipografie, griglie, spazi e colori creano gerarchie finalizzate a rendere l'utilizzatore totalmente immerso.
+Gli effetti di movimento mirano a focalizzare l'attenzione generando continuità spaziale attraverso feedback e transizioni.
+Le componenti sono altamente dinamiche, si trasformano e organizzano l'ambiente in base alle interazioni, generando altre trasformazioni.\\
+Le componenti Material sono blocchi interattivi che formano l'interfaccia utente.
+Queste includono stati built-in system per comunicare focus, selezione, attivazione, errore, hovering, pressione, trascinamento, e disabilitazione. \\\\
+Ogni componente è realizzata avendo specifiche caratteristiche e finalità, tra le quali:
+\begin{itemize}
+	\item \textbf{Esposizione} - Piazzare ed organizzare contenuti correlati usando componenti come \textit{card} e \textit{liste};
+	\item \textbf{Navigazione} - Consentire agli utenti di muoversi nel prodotto finito utilizzando \textit{drawer} o \textit{tabs};
+	\item \textbf{Azioni} - Consentire agli utenti di eseguire task utilizzando componenti di alto rilievo, come i \textit{floating action button};
+	\item \textbf{Input} - Consentire agli utenti di inserire informazioni o selezionare tra un certo numero di opzioni, attraverso \textit{campi di testo dinamici} e \textit{chips};
+	\item \textbf{Comunicazione} - Dare informazioni agli utenti attraverso \textit{snackbar}, \textit{toast} e \textit{dialog}.
+\end{itemize}
+
 \newpage
 \subsection{Mock-Up dell'applicazione}
-Vengono ora mostrati i Mock-Up dei casi d'uso significativi dettagliati nella sottosezione precedente.\\
-Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente.
+Vengono ora mostrati i Mock-Up dei casi d'uso significativi dettagliati nella sottosezione precedente.
+\subsubsection{Inserimento itinerario}
+Il processo di inserimento di un itinerario consiste in tre fasi:
+\begin{itemize}
+	\item Inserimento informazioni sull'itinerario;
+	\item Inserimento mappa itinerario;
+	\item Inserimento foto itinerario.
+\end{itemize}
 
+Sono presentati i Mock-Up che rappresentano un inserimento fittizio, con scopo illustrativo.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/CreateRouteInfoUi-empty.pdf}}
+		\caption{Inserimento informazioni - form vuoto}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/CreateRouteInfoUi.pdf}}
+		\caption{Inserimento informazioni - compilato}
+	\end{minipage}
+\end{figure}
+
+\newpage
+Il processo di inserimento della mappa può avvenire sia interagendo con la mappa interattiva sia importando 
+un file GPX dall'apposito menu. In entrambi i casi è possibile ricercare una posizione per visualizzarla sulla mappa 
+ed eventualmente apporre i marker; inoltre è possibile eliminare i marker inseriti.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/CreateRouteMapUi.pdf}}
+		\caption{Inserimento mappa}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/CreateRouteMapUI-menu.pdf}}
+		\caption{Inserimento mappa - menu}
+	\end{minipage}
+\end{figure}
+
+\newpage
+L'inserimento delle foto per l'itinerario usufruisce di un photo picker esterno, il quale rimanda ad una schermata di sistema 
+che consente la selezione di più foto, fino a un massimo di 5. Una volta effettuata la selezione desiderata, le foto appariranno 
+nella schermata precedente con la possibilità di eliminarle.
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/CreateRoutePhotosUi.pdf}}
+		\caption{Inserimento foto}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/CreateRoutePhotosUi_withphotos.pdf}}
+		\caption{Inserimento foto - foto inserite}
+	\end{minipage}
+\end{figure}
+
+È importante sottolineare che - per ridurre al minimo i possibili errori nell'inserimento - le \textit{affordance} 
+che consentono la navigazione tra le diverse fasi dell'inserimento restano disattivate fino all'inserimento di input adeguati.\\
+
+Una caratteristica di particolare rilevanza è il \textit{salvataggio dello stato} dell'inserimento tra le schermate: sarà quindi 
+possibile navigare tra di esse senza perdere i dati inseriti. \\
+
+\newpage
+\subsubsection{Segnalazione itinerario}
+La segnalazione di un itinerario avviene tramite una full dialog, a seguito del riempimento dell'apposito form.
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/ReportRouteUi-empty.pdf}}
+		\caption{Segnalazione - form vuoto}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.4\textwidth}
+		\resizebox{\textwidth}{!}{\includegraphics{./mockup/ReportRouteUi.pdf}}
+		\caption{Segnalazione - compilato}
+	\end{minipage}
+\end{figure}
+
+\subsection{Valutazione dell'usabilità a priori}
+Una parte fondamentale del processo creativo alla base dello sviluppo di un'applicazione è capire la direzione da seguire per migliorare l’esperienza dei clienti.
+Al fine di rendere la user experience quanto più piacevole possibile si è ricorso alla messa in pratica di alcune tecniche, con il fine di testare l’usabilità del prodotto.
+L’approccio adottato richiede l'esecuzione di alcun task ad un gruppo di utenti con differenti retroscena. \\
+
+Tali task possono avere un riscontro differente a seconda dell'utente:
+\begin{itemize}
+	\item L’utente è stato in grado di compiere il task tramite gli strumenti offerti dall’app;
+	\item L’utente non è stato in grado di compiere il task tramite gli strumenti offerti dall’app;
+	\item L'utente è stato in grado di compiere il task, ma ha trovato difficoltà oppure trova l'interfaccia poco intuitiva.
+\end{itemize}
+
+Verranno fornite solo indicazioni di base: il sistema dovrebbe essere intuitivo. In caso di una percentuale di riscontri altamente
+negativa, il sistema sarà rielaborato alla luce dei feedback utente.
+
+\subsubsection{Definizione dei task utente}
+\begin{enumerate}
+	\item \textbf{Creazione itinerario} \\
+	Hai deciso di aggiungere un nuovo itinerario all’interno della piattaforma: a questo scopo 
+	dovrai andare nella sezione degli itinerari e cliccare sul bottone di creazione. Nelle schermate successive dovrai inserire le informazioni, la mappa e le foto del nuovo itinerario.
+	\item \textbf{Aggiunta itinerario ad una compilation} \\
+	Hai trovato un itinerario interessante che hai scelto di inserire all’interno di una compilation. Seleziona l’icona di salvataggio per poi decidere in quale compilation inserirlo.
+	\item \textbf{Segnalazione itinerario} \\
+	Hai trovato un itinerario con informazioni errate, così hai deciso di segnalarlo agli amministratori. Dalla schermata dell’itinerario in questione clicca sull'icona di segnalazione e 
+	scegli un titolo e una descrizione per la segnalazione da inviare.
+	\item \textbf{Contatto con autore itinerario} \\
+	Hai trovato un itinerario ma hai dei dubbi riguardo ad esso, così hai deciso di contattare l’utente che l’ha creato. Dalla schermata dell’itinerario clicca l'icona di messaggio privato per visualizzare la chat.
+	\item  \textbf{Modifica immagine profilo} \\
+	Ti sei appena registrato all'applicazione, ma il tuo profilo è completamente spoglio: così hai deciso di modificare l’immagine del tuo profilo. Spostati nella sezione profilo e modifica la tua foto.
+\end{enumerate}
 
 \newpage
 \subsection{Prototipazione funzionale via statechart dell'interfaccia grafica}
+In questa sezione sono riportati gli statechart relativi ai due 
+casi d'uso significativi dettagliati nella sottosezione precedente.
 
 \begin{figure}[!htbp]
 	\subsubsection{Segnalazione itinerario}
@@ -956,6 +1049,8 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 
 \newpage
 \subsubsection{Inserimento itinerario}
+Per garantire una maggiore leggibilità, data l'estensione di questo statechart, 
+si è fatta la scelta di rappresentarlo tramite regioni interne, riportate poi per intero.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth, page=2]{./diagrams/statechart.pdf}
@@ -964,7 +1059,6 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \FloatBarrier
 
 \newpage
-\subsubsection{Inserimento dettagli itinerario}
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth, page=3]{./diagrams/statechart.pdf}
@@ -973,7 +1067,6 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \FloatBarrier
 
 \newpage
-\subsubsection{Inserimento mappa itinerario}
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth, page=4]{./diagrams/statechart.pdf}
@@ -982,7 +1075,6 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \FloatBarrier
 
 \newpage
-\subsubsection{Inserimento foto itinerario}
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth, page=5]{./diagrams/statechart.pdf}
@@ -992,6 +1084,8 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 
 \newpage
 \subsection{Classi, oggetti e relazioni di analisi}
+Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Control Boundary}, un pattern architetturale \textit{use-case driven}.
+
 \subsubsection{Autenticazione}
 \begin{figure}[!htbp]
 	\centering
@@ -1014,6 +1108,7 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \end{figure}
 \FloatBarrier
 
+\newpage
 \begin{figure}[!htbp]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Logout.svg}
@@ -1194,7 +1289,6 @@ la segnalazione di un itinerario e la ricerca di un itinerario.
 
 \newpage
 \subsection{Diagrammi di attività}
-
 \subsubsection{Autenticazione}
 \begin{figure}[!htbp]
 	\centering
@@ -1671,7 +1765,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/registrazione.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/registrazionee.svg}
 	\caption{Registrazione}
 \end{figure}
 \FloatBarrier
@@ -1685,7 +1779,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/password_dimenticata.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/password_dimenticataa.svg}
 	\caption{Password dimenticata}
 \end{figure}
 \FloatBarrier
@@ -1699,7 +1793,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/logout.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/logoutt.svg}
 	\caption{Logout}
 \end{figure}
 \FloatBarrier
@@ -1721,35 +1815,35 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_itinerario.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_itinerarioo.svg}
 	\caption{Dettagli itinerario}
 \end{figure}
 \FloatBarrier
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/ricerca_itinerario.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/ricerca_itinerarioo.svg}
 	\caption{Ricerca itinerario}
 \end{figure}
 \FloatBarrier
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/valuta_itinerario.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/valuta_itinerarioo.svg}
 	\caption{Valutazione itinerario}
 \end{figure}
 \FloatBarrier
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/segnala_itinerario.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/segnala_itinerarioo.svg}
 	\caption{Segnalazione itinerario}
 \end{figure}
 \FloatBarrier
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/elimina_itinerario.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/elimina_itinerarioo.svg}
 	\caption{Eliminazione itinerario}
 \end{figure}
 \FloatBarrier
@@ -1760,21 +1854,21 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/home_(post_recenti).svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/home.svg}
 	\caption{Post più recenti}
 \end{figure}
 \FloatBarrier
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/crea_post.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/crea_postt.svg}
 	\caption{Aggiunta post}
 \end{figure}
 \FloatBarrier
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_post.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/dettagli_postt.svg}
 	\caption{Dettagli post}
 \end{figure}
 \FloatBarrier
@@ -1805,7 +1899,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/crea_compilation.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/crea_compilationn.svg}
 	\caption{Aggiunta compilation}
 \end{figure}
 \FloatBarrier
@@ -1849,7 +1943,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/ricerca_destinatario_messaggio.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/ricerca_destinatario_messaggioo.svg}
 	\caption{Ricerca destinatario messaggio}
 \end{figure}
 \FloatBarrier
@@ -1925,20 +2019,21 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 
 \newpage
 \section{Definizione di un piano di testing e valutazione sul campo dell'usabilità}
+\subsection{Testing}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |X|X|X| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Classe di equivalenza}        & \textbf{Parametro}          &\textbf{Valore}                           \\
+		\hline
+		Visualizzazione post 				  & Il sistema deve consentire a un utente autenticato di visualizzare i dettagli di un post.   &    \\
+	\end{tabular}
+	\caption{RF.12}
+\end{table}
 
-\subsection{Valutazione dell'usabilità}
-Una parte fondamentale del processo creativo alla base dello sviluppo di un'applicazione è capire la direzione da seguire per migliorare l’esperienza dei clienti.
-Al fine di rendere la user experience quanto più piacevole possibile si è ricorso alla messa in pratica di alcune tecniche, con il fine di testare l’usabilità del prodotto.
-L’approccio adottato richiede l'esecuzione di alcun task ad un gruppo di utenti con differenti retroscena. \\
 
-Tali task possono avere un riscontro differente a seconda dell'utente:
-\begin{itemize}
-	\item L’utente è stato in grado di compiere il task tramite gli strumenti offerti dall’app;
-	\item L’utente non è stato in grado di compiere il task tramite gli strumenti offerti dall’app;
-	\item L'utente è stato in grado di compiere il task, ma ha trovato difficoltà oppure trova l'interfaccia poco intuitiva.
-\end{itemize}
+\subsection{Valutazione dell'usabilità sul campo}
 
-Verranno fornite solo indicazioni di base: il sistema dovrebbe essere intuitivo. In caso di una percentuale di riscontri altamente
-negativa, il sistema sarà rielaborato alla luce dei feedback utente.
 
 \end{document}

@@ -1038,7 +1038,7 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Elimina_Itinerario.svg}
-	\caption{Eliminazione itinerario personale - Elimina itinerario altrui (admin)}
+	\caption{Eliminazione itinerario personale - Eliminazione itinerario altrui (admin)}
 \end{figure}
 \FloatBarrier
 
@@ -1052,7 +1052,7 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Segnala_itinerario.svg}
-	\caption{Segnala itinerario}
+	\caption{Segnalazione itinerario}
 \end{figure}
 \FloatBarrier
 
@@ -1114,7 +1114,7 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Salva_itinerario_in_compilation.svg}
-	\caption{Salva itinerario in compilation}
+	\caption{Salvataggio itinerario in compilation}
 \end{figure}
 \FloatBarrier
 
@@ -1146,7 +1146,7 @@ Sarà specificato per ogni Mock-Up il tipo e la funzionalità di ogni componente
 \begin{figure}[!htpb]
 	\centering
 	\includesvg[width=\textwidth, height=21cm]{./diagrams/ecb/Aggiorna_foto_profilo.svg}
-	\caption{Aggiorna foto profilo}
+	\caption{Aggiornamento foto profilo}
 \end{figure}
 \FloatBarrier
 
@@ -1552,14 +1552,14 @@ Come descritto nella sezione successiva, tale approccio è stato ritenuto adatto
 \subsection{Le scelte implementative}
 \subsubsection{Applicazioni mobile native e ibride}
 Un’applicazione mobile nativa è un’applicazione software sviluppata per funzionare su uno specifico tipo di dispositivo o piattaforma.
-Le app native consentono performance migliori, un’esecuzione veloce e un alto grado di precisione. Nonostance ciò, sono noti diversi problemi:
+Le app native consentono performance migliori, un’esecuzione veloce e un alto grado di precisione. Ciononostante, esse presentano alcune problematiche:
 \begin{itemize}
 	\item Le app native richiedono codice sorgente \textit{esclusivo}, poiché ogni dispositivo deve avere la sua versione specifica dell’app;
-	\item Richiede un costo maggiore, e sono richiesti più sviluppatori per creare e gestire il codice per ogni piattaforma;
+	\item Richiedono un costo maggiore, e sono richiesti più sviluppatori per creare e gestire il codice per ogni piattaforma;
 	\item È richiesto molto tempo per la creazione differenziata per i diversi sistemi operativi in ogni aggiornamento delle funzionalità.
 \end{itemize}
 
-Un’app ibrida combina gli elementi di applicazioni web e native, i linguaggi utilizzati fanno parte di tecnologie web come HTML, CSS e JavaScript.
+Le app ibride combinano gli elementi di applicazioni web e native; i linguaggi utilizzati fanno parte di tecnologie web come HTML, CSS e JavaScript.
 \begin{itemize}
 	\item Hanno un’interfaccia utente multipiattaforma;
 	\item Possono essere sviluppate più velocemente e richiedono meno costi di sviluppo e manutenzione;
@@ -1571,22 +1571,28 @@ La scelta stata è influenzata da diversi fattori. Tra i requisiti del sistema s
 di clienti è particolarmente esigente.
 È stato adottato un approccio nativo, precisamente su sistema operativo \textbf{Android}, scegliendo \textbf{Kotlin} come linguaggio di programmazione.
 
-\subsubsection{Perchè Kotlin}
+\subsubsection{Perchè Kotlin?}
 Java detiene da anni un ruolo chiave nello sviluppo di applicazioni, tuttavia alcuni requisiti \textit{platform-dependant} 
-possono rendere tedioso l'utilizzo di tale linguaggio. Esistono altri linguaggi che operano sulla JVM, tra questi Kotlin ha guadagnato
+possono rendere tedioso l'utilizzo di questo linguaggio. Esistono altri linguaggi che operano sulla JVM: tra questi, Kotlin ha guadagnato
 molti punti a favore nello sviluppo di applicazioni native Android. \\
 
-Tra i vantaggi di Kotlin c'è sicuramente la concisione attraverso l'inferenza di tipi, lo \textit{smart-cast} e le \textit{data class}: 
-potendo risolvere lo stesso problema in meno righe di codice ne giovano leggibilità e manutenibilità. \\
-Il type system di Kotlin mira ad eliminare le \textit{NullPointerException}, garantendo controlli a tempo di compilazione e offrendo
-operatori di \textit{null-safety}.
+Kotlin presenta molti vantaggi; tra essi si sottolineano:
+\begin{itemize}
+	\item Elevata \textbf{concisione}, raggiunta attraverso l'inferenza di tipi, lo \textit{smart-cast} e le \textit{data class}: 
+			tali fattori conferiscono al codice una maggiore le leggibilità e manutenibilità. Ciò avviene anche in relazione al fatto che - sfruttando queste 
+			tecnologie - il codice necessario per l'implementazione di una feature risulta essere di un numero di righe di gran lunga minore rispetto allo stesso codice sviluppato in Java; \\
+	\item Il type system di Kotlin mira ad eliminare le \textit{NullPointerException}, garantendo controlli a tempo di compilazione e offrendo
+			operatori di \textit{null-safety}.
+\end{itemize}
 
-Tra le funzionalità più interessanti volte a migliorare la produttività dello sviluppatore ritroviamo una forte integrazione del paradigma di
-programmazione funzionale, oltre alla possibilità di creare funzioni particolari note come \textit{estensioni}, che consentono l'aggiunta
+Tra le funzionalità più interessanti volte a migliorare la produttività dello sviluppatore è presenta una forte integrazione del paradigma di
+programmazione funzionale, oltre alla possibilità di creare particolari funzioni note come \textit{estensioni}, che consentono l'aggiunta
 di nuovi metodi a classi pre-esistenti. 
 
-Inoltre Kotlin non preclude la possibilità di utilizzare codice Java, ma questa possibilità è bi-direzionale: Java e Kotlin possono coesistere
-all'interno dello stesso progetto.
+Inoltre, Kotlin non preclude la possibilità di utilizzare codice Java, ma questa possibilità è bi-direzionale: Java e Kotlin possono coesistere
+all'interno dello stesso progetto. \\
+
+Alla luce delle informazioni fornite, Kotlin è stato ritenuto poter essere un valido alleato nello sviluppo dell'applicativo.
 
 \newpage
 
@@ -1634,10 +1640,10 @@ della moltitudine di observables citati in precedenza. \\
 	      che dell'app stessa. Gli Intent si traducono in \textit{Event} ed \textit{Effect}.
 \end{itemize}
 
-L'integrazione dei due pattern architetturali sopracitati culmina nella nascita di un nuovo pattern, chiamato \textbf{UDF} dagli sviluppatori Android.\\
-In sintesi:
+L'integrazione dei due pattern architetturali sopracitati culmina nella nascita di un nuovo pattern, chiamato dagli sviluppatori Android \textbf{UDF}.\\
+Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 \begin{itemize}
-	\item Presenza di \textit{StateHolder}, necessari per ogni ViewModel nella maggior parte dei casi, non necessariamente unici;
+	\item Presenza di \textit{StateHolder}, necessari per ogni ViewModel nella maggior parte dei casi e non necessariamente unici;
 	\item Richiamo alle macchine di stato e agli \textbf{Statechart} definiti in precedenza;
 	\item \textit{Event} e \textit{Effect}, che si interpongono tra View e ViewModel.
 \end{itemize} 
@@ -1815,7 +1821,6 @@ In sintesi:
 \FloatBarrier
 
 \newpage
-
 \subsubsection{Interazione con altri utenti}
 \begin{figure}[!htbp]
 	\centering
@@ -1911,20 +1916,18 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 \section{Definizione di un piano di testing e valutazione sul campo dell'usabilità}
 
 \subsection{Valutazione dell'usabilità}
-Parte fondamentale nel processo creativo dell’applicazione è sempre capire in che direzione andare per migliorare l’esperienza dei clienti.
-Per realizzare ciò siamo ricorsi ad alcune tecniche per testare l’usabilità del nostro prodotto.
-L’approccio da noi adottato richiede di far eseguire dei task a un gruppo di utenti con differenti retroscena. \\
+Una parte fondamentale del processo creativo alla base dello sviluppo di un'applicazione è capire la direzione da seguire per migliorare l’esperienza dei clienti.
+Al fine di rendere la user experience quanto più piacevole possibile si è ricorso alla messa in pratica di alcune tecniche, con il fine di testare l’usabilità del prodotto.
+L’approccio adottato richiede l'esecuzione di alcun task ad un gruppo di utenti con differenti retroscena. \\
 
 Tali task possono avere un riscontro differente a seconda dell'utente:
 \begin{itemize}
-	\item L’utente è stato in grado di compiere il task tramite gli strumenti offerti dall’app.
-	\item L’utente non è stato in grado di compiere il task tramite gli strumenti offerti dall’app.
-	\item L'utente è stato in grado di compire il task, ma ha trovato difficoltà oppure trova l'interfaccia poco intuitiva.
+	\item L’utente è stato in grado di compiere il task tramite gli strumenti offerti dall’app;
+	\item L’utente non è stato in grado di compiere il task tramite gli strumenti offerti dall’app;
+	\item L'utente è stato in grado di compiere il task, ma ha trovato difficoltà oppure trova l'interfaccia poco intuitiva.
 \end{itemize}
 
-Verranno fornite solo indicazioni di base, il sistema dovrebbe essere intuitivo, in caso di una percentuale di riscontri altamente
-negativa il sistema sarà modificato.
-
-
+Verranno fornite solo indicazioni di base: il sistema dovrebbe essere intuitivo. In caso di una percentuale di riscontri altamente
+negativa, il sistema sarà rielaborato alla luce dei feedback utente.
 
 \end{document}

@@ -14,11 +14,6 @@
             app:summary="@string/pref_night_summary"
             app:title="@string/pref_night_title" />
 
-        <Preference
-            android:icon="@drawable/ic_outline_info_24"
-            android:summary="Dai uno sguardo alla storia di NaTour"
-            app:title="Crediti" />
-
     </PreferenceCategory>
 
     <PreferenceCategory app:title="Sessione">

@@ -30,8 +30,4 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAnalytics(): FirebaseAnalytics = Firebase.analytics
-
-//    @Provides
-//    @Singleton
-//    fun provideSender() = AnalyticsSender(Firebase.analytics)
 }

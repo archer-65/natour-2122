@@ -28,8 +28,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var firebaseAnalytics: FirebaseAnalytics
-
     companion object {
         lateinit var instance: MainActivity
             private set

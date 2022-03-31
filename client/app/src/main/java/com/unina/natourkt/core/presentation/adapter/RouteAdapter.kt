@@ -85,7 +85,6 @@ class RouteAdapter(private val listener: OnItemClickListener) :
     interface OnItemClickListener {
         fun onItemClick(route: RouteItemUi)
         fun onSaveClick(route: RouteItemUi)
-        //fun onOptionsClick(post: PostItemUiState, position: Int)
     }
 
     class DiffUtilCallback : DiffUtil.ItemCallback<RouteItemUi>() {

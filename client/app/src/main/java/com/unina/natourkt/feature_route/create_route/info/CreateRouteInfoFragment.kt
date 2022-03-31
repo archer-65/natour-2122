@@ -1,12 +1,9 @@
 package com.unina.natourkt.feature_route.create_route.info
 
-import android.os.Bundle
 import android.text.InputFilter
-import android.util.Log
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialContainerTransform
 import com.unina.natourkt.R
 import com.unina.natourkt.core.presentation.base.fragment.BaseFragment
 import com.unina.natourkt.core.presentation.util.*
@@ -22,11 +19,6 @@ class CreateRouteInfoFragment :
 
     override fun getVM() = viewModel
     override fun getViewBinding() = FragmentCreateRouteInfoBinding.inflate(layoutInflater)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = MaterialContainerTransform()
-    }
 
     override fun setupUi() = with(binding) {
         topAppBar.setTopMargin()

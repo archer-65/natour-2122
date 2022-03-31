@@ -47,6 +47,18 @@ class CreateCompilationFragment :
                     onEvent(CreateCompilationEvent.InsertedPhoto(it))
                 }
             }
+
+            topAppBar.setNavigationOnClickListener {
+                showHelperDialog(
+                    title = R.string.cancel_insertion,
+                    message = R.string.cancel_insertion_message,
+                    icon = R.drawable.ic_warning_generic_24,
+                    positive = R.string.yes_action_dialog,
+                    negative = R.string.no_action_dialog
+                ) {
+                    findNavController().navigateUp()
+                }
+            }
         }
     }
 

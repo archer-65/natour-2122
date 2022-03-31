@@ -73,7 +73,6 @@
         android:contentDescription="Nuovo itinerario"
         android:enabled="true"
         android:text="Nuovo itinerario"
-        android:transitionName="transitionNewRouteFab"
         app:fabSize="normal"
         app:icon="@drawable/ic_outline_add_location_24" />
 

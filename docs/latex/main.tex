@@ -171,10 +171,10 @@ NaTour21 è un sistema complesso e distribuito finalizzato ad offrire un moderno
 
 Il sistema consiste in:
 \begin{itemize}
-	\item un Back-End sicuro, performante e scalabile;
+	\item un back-End sicuro, performante e scalabile;
 	\item un client mobile attraverso cui gli
-	      utenti possono fruire delle funzionalità del sistema in modo intuitivo, rapido e piacevole;
-	\item un client mobile attraverso cui gli amministratori possono gestire i contenuti inseriti in piattaforma.\\
+	      utenti possono fruire delle funzionalità del sistema in modo intuitivo, rapido e piacevole. 
+		  Gli amministratori, invece, possono anche gestire i contenuti inseriti in piattaforma.\\
 \end{itemize}
 
 NaTour21 ha lo scopo di creare una community sicura e affidabile dove condividere la propria passione per l'escursionismo.\\
@@ -582,11 +582,40 @@ Il seguente insieme di funzionalità è ridotto ad un gruppo ristretto di utenti
 		\rowcolor{PineGreen!70}
 		\textbf{Nome}              & \textbf{Descrizione}                                                                                 \\
 		\hline
+		Visualizzazione dettaglio segnalazione & Il sistema deve consentire a un utente autenticato con i privilegi di amministratore 
+		di visualizzare i dettagli di una singola segnalazione.                                                                                              \\
+		\hline
+	\end{tabular}
+	\caption{RF.23}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome}              & \textbf{Descrizione}                                                                                 \\
+		\hline
+		Eliminazione segnalazione & Il sistema deve consentire a un utente autenticato con i privilegi di amministratore 
+		di eliminare una segnalazione.                                                                                              \\
+		\hline
+	\end{tabular}
+	\caption{RF.24}
+\end{table}
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ |p{5cm}|p{10.3cm}| }
+		\hline
+		\rowcolor{PineGreen!70}
+		\textbf{Nome}              & \textbf{Descrizione}                                                                                 \\
+		\hline
 		Amministrazione itinerario & Il sistema deve consentire a un utente autenticato con i privilegi di amministratore di modificare o
 		rimuovere un itinerario segnalato.                                                                                                \\
 		\hline
 	\end{tabular}
-	\caption{RF.23}
+	\caption{RF.25}
 \end{table}
 
 \newpage
@@ -1028,7 +1057,7 @@ Le componenti Material sono blocchi interattivi che formano l'interfaccia utente
 Queste includono stati built-in system per comunicare focus, selezione, attivazione, errore, hovering, pressione, trascinamento, e disabilitazione. \\\\
 Ogni componente è realizzata avendo specifiche caratteristiche e finalità, tra le quali:
 \begin{itemize}
-	\item \textbf{Esposizione} - Piazzare ed organizzare contenuti correlati usando componenti come \textit{card} e \textit{liste};
+	\item \textbf{Esposizione} - Posizionare ed organizzare contenuti correlati usando componenti come \textit{card} e \textit{liste};
 	\item \textbf{Navigazione} - Consentire agli utenti di muoversi nel prodotto finito utilizzando \textit{drawer} o \textit{tabs};
 	\item \textbf{Azioni} - Consentire agli utenti di eseguire task utilizzando componenti di alto rilievo, come i \textit{floating action button};
 	\item \textbf{Input} - Consentire agli utenti di inserire informazioni o selezionare tra un certo numero di opzioni, attraverso \textit{campi di testo dinamici} e \textit{chips};
@@ -1684,12 +1713,12 @@ Nello sviluppo del software, per implementare determinate funzionalità si è sc
 	\item \textbf{Cognito} - Amazon Cognito permette di aggiungere strumenti di registrazione degli utenti, accesso
 	      e controllo degli accessi alle app Web e per dispositivi mobili. Esso supporta l'accesso degli utenti
 	      tramite l'uso di provider di identità social quali Facebook, Google.
-	      Tale risorsa è stata sfruttata realtivamente all'autenticazione utente, tenendo particolarmente in considerazione
+	      Tale risorsa è stata sfruttata relativamente all'autenticazione utente, tenendo particolarmente in considerazione
 	      l'alto fattore di sicurezza che essa conferisce;
 	\item \textbf{EC2} - l'\textbf{Elastic Compute Cloud} (Amazon EC2) fornisce capacità di calcolo scalabile in AWS Cloud.
 	      Esso offre ambienti di elaborazione virtuale, noti come \textit{istanze}, varie configurazioni di CPU, memoria,
 	      archiviazione e capacità di rete per le istanza note come \textit{tipi di istanza}.
-	      La scelta di tale servizio è stata finalizzata al \Gls{deploy} dell'applicativo Spring, nella realizzazione del \Gls{REST} Service.
+	      La scelta di tale servizio è stata finalizzata al \gls{deploy} dell'applicativo Spring, nella realizzazione del \Gls{REST} Service.
 	\item \textbf{RDS} - Amazon RDS ha permesso la configurazione e l'utilizzo del database relazionale alla base del software prodotto;
 	\item \textbf{S3} - il \textbf{Simple Storage Service} (Amazon S3) permette l'archiviazione di oggetti in modo scalabile.
 	      Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
@@ -1735,16 +1764,16 @@ Spring fornisce un'\textit{infrastruttura di supporto} per lo sviluppo di applic
 
 Ciascuno di questi strati dipende da quello sottostante per far sì che l'applicazione funzioni. In altre parole,
 lo strato di presentazione comunica con quello della business logic, che a sua volta comunica con lo strato di data
-access. Ogni strato ha quindi bisogno di questa \textit{dipendenza} per eseguire il proprio compito correttamente \\
+access. Ogni strato ha quindi bisogno di questa \textit{dipendenza} per eseguire il proprio compito correttamente. \\
 
 La scelta di utilizzare il framework Spring è stata fatta in relazione alla volontà di ottenere un \textit{loose coupling}, ossia un accoppiamento largo.
-Senza l'utilizzo di Spring, ci sarebbe stata la possibilità che il codice avesse potuto causare \textit{tight coupling}, che non è
+Senza l'utilizzo di Spring, ci sarebbe stata la possibilità che il codice causasse \textit{tight coupling}, che non è
 considerato essere una buona pratica di programmazione. Il loose coupling è ideale, in quanto le componenti largamente
 accoppiate sono indipendenti: ciò implica che, a seguito di possibili cambiamenti futuri, questi non influenzeranno
 le altre componenti.\\
 
 Al cuore del framework Spring si trova la \textbf{dependency injection}. \\
-La dependency injection è un pattern di programmazione che permette agli sviluppatori di costruire architetture disaccoppiate. Ciò vuol dire che Spring comprende le \textit{annotazioni}
+La dependency injection è un pattern di programmazione che permette agli sviluppatori di costruire architetture disaccoppiate. In questo caso, Spring comprende le \textit{annotazioni}
 poste in capo alle classi; in seguito alla creazione di un'istanza, dunque, il framework si assicura che le istanze siano state create con le opportune dependencies. \\\
 
 Nello specifico, per l'implementazione del software, è stata utilizzata un'estensione del framework Spring, chiamata \textbf{Spring Boot}.\\
@@ -1857,7 +1886,7 @@ Kotlin presenta molti vantaggi; tra essi si sottolineano:
 \begin{itemize}
 	\item Elevata \textbf{concisione}, raggiunta attraverso l'inferenza di tipi, lo \textit{smart-cast} e le \textit{data class}:
 	      tali fattori conferiscono al codice una maggiore le leggibilità e manutenibilità. Ciò avviene anche in relazione al fatto che - sfruttando queste
-	      tecnologie - il codice necessario per l'implementazione di una feature risulta essere di un numero di righe di gran lunga minore rispetto allo stesso codice sviluppato in Java; \\
+	      tecnologie - il codice necessario per l'implementazione di una feature risulta essere di un numero di righe di gran lunga minore rispetto allo stesso codice sviluppato in Java;
 	\item Il type system di Kotlin mira ad eliminare le \textit{NullPointerException}, garantendo controlli a tempo di compilazione e offrendo
 	      operatori di \textit{null-safety}.
 \end{itemize}
@@ -1888,9 +1917,9 @@ Il design pattern architetturale potrebbe essere definito come \textit{ibrido}: 
 Tali pattern sono \textbf{MVVM} e \textbf{MVI}; quest'ultimo è stato utilizzato per ovviare ai problemi
 sofferti dal primo. Procediamo ad un'analisi più dettagliata. \\
 
-\textbf{MVVM} è un'architettura del tipo Model-View-ViewModel che evita l'accoppiamento stretto
+\textbf{MVVM} sta per Model-View-ViewModel: essa evita l'accoppiamento stretto
 tra ciascuna componente. Più nello specifico, in questo tipo di architettura, i figli non hanno un
-riferimento diiretto al padre, ma hanno solo riferimenti tramite \textit{observables}.\\
+riferimento diretto al padre, ma hanno solo riferimenti tramite \textit{observables}.\\
 Esso è organizzato secondo tre strati:
 \begin{itemize}
 	\item Model - rappresenta i dati e la business logic dell'applicazione;
@@ -1906,13 +1935,13 @@ Il modello MVVM, per quanto affermato, pone però alcune problematiche, quali ad
 \end{itemize}
 
 A questo scopo, è stata realizzata un'integrazione con il modello MVI, la cui differenza principale si risolve nell'assenza
-della moltitudine di observables citati in precedenza. \\
+della moltitudine di observables citata in precedenza. \\
 
 \textbf{MVI} sta per Model-View-Intent. Si tratta di uno dei pattern architetturali più recenti per applicazioni Android.
 \begin{itemize}
 	\item Model - rappresenta uno stato. I Model dovrebbero essere immutabili, in modo da
 	      assicurare un flow di dati unidirezionale con gli altri strati;
-	\item View - rappresenta le View, che possono essere implementate in Activity o Fragment
+	\item View - rappresenta le View, che possono essere implementate in Activity o Fragment;
 	\item Intent - rappresenta un'intenzione o una volontà di eseguire un'azione, sia dell'utente
 	      che dell'app stessa. Gli Intent si traducono in \textit{Event} ed \textit{Effect}.
 \end{itemize}
@@ -2348,7 +2377,7 @@ Di seguito sono riportati il \Gls{CFG}, il codice ed i risultati dei test sul me
 
 \subsubsection{Metodo \textit{retrofitSafeCall}}
 
-Il metodo \textit{retrofitSafeCall} è il fulcro delle richieste HTTP effettutate dall'applicativo. Esso è stato ritenuto
+Il metodo \textit{retrofitSafeCall} è il fulcro delle richieste HTTP effettuate dall'applicativo. Esso è stato ritenuto
 uno dei metodi più interessanti e particolari da testare data la notevole riduzione di codice \textit{boilerplate} ottenuta.
 Il metodo ha come parametri:
 \begin{itemize}
@@ -2431,7 +2460,7 @@ maggiore attenzione sarà riservata al resto delle funzionalità utilizzate. \\
 Come si nota dai tracciamenti, sono state sfruttate sia operazioni legate alla ricerca di itinerari che all'utilizzo 
 della chat privata, oltre alle usuali funzioni di autenticazione.
 
-Da questa prima analisi è emerso un largo utilizzato della ricerca che, oltre agli itinerari, ha coinvolto anche 
+Da questa prima analisi è emerso un largo utilizzo della ricerca che, oltre agli itinerari, ha coinvolto anche 
 gli utenti, per usufruire delle funzionalità di messaggistica.
 \begin{figure}[!htbp]
 	\centering
@@ -2450,6 +2479,8 @@ così come la possibilità di valutare questi ultimi.
 	\caption{Sessione di debug 2}
 \end{figure}
 \FloatBarrier
+
+\newpage
 
 Nella seguente sessione, inoltre, gli eventi principali hanno riguardato l'aggiunta a compilation di 
 un itinerario, la segnalazione di itinerari e post e l'interazione dell'utente con la chat.
@@ -2473,7 +2504,7 @@ Dopo una prima prova di usabilità, è stato ritenuto opportuno evidenziare il c
 \FloatBarrier
 
 È bene notare che gli eventi generati non comprendono tutte le prove effettuate durante l'analisi.
-Questo è dovuto agli strumenti utilizzati che non consentono una statistica \textit{totale} in tempo reale.
+Questo è dovuto al fatto che gli strumenti utilizzati non consentano una statistica \textit{totale} in tempo reale.
 Si evince che, in media, è stata molto apprezzata la possibilità di conversare con altri utenti
 e la ricerca con filtraggio degli itinerari.
 \begin{figure}[!htbp]
@@ -2572,14 +2603,14 @@ effettuate alle API sviluppate.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/success-performance.png}
-	\caption{Percentuale di successo del REST Service - fase di Deploy}
+	\caption{Percentuale di successo del REST Service - fase di deploy}
 \end{figure}
 \FloatBarrier
 
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/success-performance.png}
-	\caption{Percentuale di successo del REST Service - fase di Deploy}
+	\caption{Percentuale di successo del REST Service - fase di deploy}
 \end{figure}
 \FloatBarrier
 

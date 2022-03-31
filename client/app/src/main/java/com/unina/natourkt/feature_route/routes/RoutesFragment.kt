@@ -53,13 +53,7 @@ class RoutesFragment : BaseFragment<FragmentRoutesBinding, RoutesViewModel>(),
             }
 
             newRouteFab.setOnClickListener {
-                val extras = FragmentNavigatorExtras(newRouteFab to "transitionNewRouteFab")
-                findNavController().navigate(
-                    R.id.action_routes_to_create_route_flow,
-                    null,
-                    null,
-                    extras
-                )
+                findNavController().navigate(R.id.action_routes_to_create_route_flow)
             }
 
             topAppBar.setOnMenuItemClickListener {

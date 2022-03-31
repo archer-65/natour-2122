@@ -87,7 +87,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>() {
                     BadgeUtils.attachBadgeDrawable(badge, binding.scrollBottomFab)
                 }
 
-                if (it.shouldResetText) binding.editGchatMessage.setText("")
+                if (it.shouldResetText) {
+                    binding.editGchatMessage.setText("")
+                    hideKeyboard()
+                }
             }
 
             collectLatestOnLifecycleScope(eventFlow) { event ->

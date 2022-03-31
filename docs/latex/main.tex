@@ -83,14 +83,14 @@
 	per costruire applicazioni e siti web. Il Design System permette ai team di progettazione e di sviluppo di costruire prodotti migliori e in modo più veloce, grazie alla possibilità di creare design riusabile e quindi scalabile.}
 }
 
-\newglossaryentry{Use-case driven}
+\newglossaryentry{use-case driven}
 {
     name=Use-case driven,
     description={Tecnica di modellazione nel processo di analisi dello sviluppo software. 
 	Rende l'architettura del sistema modellata sulle esigenze degli utenti.}
 }
 
-\newglossaryentry{Deploy}
+\newglossaryentry{deploy}
 {
     name=Deploy,
     description={Distribuzione o rilascio al cliente, con relativa installazione, configurazione e messa in funzione o esercizio, di una applicazione o di un sistema software.}
@@ -116,9 +116,9 @@
     description={Architettura logica di supporto sul quale un software può essere progettato e realizzato, spesso facilitandone lo sviluppo da parte del programmatore.}
 }
 
-\newglossaryentry{Open source}
+\newglossaryentry{open-source}
 {
-    name=Open source,
+    name=Open-source,
     description={Tipo di software libero da vincoli di copyright o di altra natura.}
 }
 
@@ -643,7 +643,7 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 		\rowcolor{PineGreen!70}
 		\textbf{Nome} & \textbf{Descrizione}                                                                          \\
 		\hline
-		Usabilità     & L'applicazione deve presentare una \textbf{UX} semplice, che renda il flusso delle operazioni
+		Usabilità     & L'applicazione deve presentare una \Gls{UX} semplice, che renda il flusso delle operazioni
 		comprensibile anche ad utenti meno esperti.                                                                   \\
 		\hline
 	\end{tabular}
@@ -658,7 +658,7 @@ Questa sezione conterrà invece i requisiti \textit{non funzionali} dell'applica
 		\textbf{Nome} & \textbf{Descrizione}                                                                              \\
 		\hline
 		Sicurezza     & Il sistema deve essere sicuro, con dati criptati e protetti da attacchi esterni.
-		Nel caso dell'autenticazione per i client, verrà salvato un token (nello specifico \textbf{JWT}) sul dispositivo. \\
+		Nel caso dell'autenticazione per i client, verrà salvato un token (nello specifico \textbf{\Gls{JWT}}) sul dispositivo. \\
 		\hline
 	\end{tabular}
 	\caption{RNF5}
@@ -931,7 +931,7 @@ Sono presentate in questa sezione le tabelle di Cockburn relative a due casi d'u
 	\hline
 \end{tabularx}
 
-\subsection{UX Design}
+\subsection{\Gls{UX} Design}
 \subsubsection{Definizione delle Personas}
 Uno dei principali obiettivi dello sviluppo dell'applicativo è stato quello di \textit{conoscere i potenziali utenti}
 e di delineare dei loro probabili comportamenti, al fine di garantire all'intero target di utenza la migliore esperienza
@@ -970,7 +970,7 @@ temperamento: si ritiene fondamentale, infatti, adattare l'esperienza utente in 
 Attraverso una fase di \textbf{brainstorming} sono state generate idee per sfruttare le opportunità e risolvere i problemi emersi durante la creazione delle \textit{personas}.
 La raccolta di opinioni e suggerimenti dei componenti del team di progettazione ha analizzato anche le proposte più semplici ed intuitive: è stato ritenuto importante, infatti, valutare ogni
 possibilità nata dal processo creativo. \\
-Una volta approfondite le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE}; nello specifico, la scelta di quest'ultimo è ricaduta su \textit{Figma}.\\
+Una volta approfondite le proposte, è stato deciso di realizzare dei prototipi dinamici con un tool di \textbf{CASE\Gls{CASE}}; nello specifico, la scelta di quest'ultimo è ricaduta su \textit{Figma}.\\
 
 Periodicamente ogni prototipo è stato discusso e rielaborato, in un processo coinvolgente tutti i membri del team e avente come oggetto, in particolare, le seguenti analisi:
 \begin{itemize}
@@ -1010,7 +1010,7 @@ rispetto al contesto di prototipazione e sviluppo.
 
 \newpage
 \subsubsection{Definizione di uno stile di design}
-Per raffinare l'esperienza utente è stato ritenuto un buon approccio quello di affidarsi ad uno specifico \textbf{UI Design System}.
+Per raffinare l'esperienza utente è stato ritenuto un buon approccio quello di affidarsi ad uno specifico \textbf{UI Design System\Gls{UI Design System}}.
 La scelta è stata effettuata tra diversi sistemi concorrenti, ricadendo infine su
 \textbf{Material}\footnote{Material è un design system creato da Google per facilitare lo sviluppo di UX di altissima qualità per Android, iOS, Flutter, e Web-App.}.
 
@@ -1237,7 +1237,7 @@ si è fatta la scelta di rappresentarlo tramite regioni interne, riportate poi p
 
 \newpage
 \subsection{Classi, oggetti e relazioni di analisi}
-Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Control Boundary}, un pattern architetturale \textit{use-case driven}.
+Nella sezione seguente sono riportati i diagrammi di analisi \textbf{Entity Control Boundary}, un pattern architetturale \textit{use-case driven\Gls{use-case driven}}.
 
 \subsubsection{Autenticazione}
 \begin{figure}[!htbp]
@@ -1689,7 +1689,7 @@ Nello sviluppo del software, per implementare determinate funzionalità si è sc
 	\item \textbf{EC2} - l'\textbf{Elastic Compute Cloud} (Amazon EC2) fornisce capacità di calcolo scalabile in AWS Cloud.
 	      Esso offre ambienti di elaborazione virtuale, noti come \textit{istanze}, varie configurazioni di CPU, memoria,
 	      archiviazione e capacità di rete per le istanza note come \textit{tipi di istanza}.
-	      La scelta di tale servizio è stata finalizzata al deploy dell'applicativo Spring, nella realizzazione del Rest Service.
+	      La scelta di tale servizio è stata finalizzata al \Gls{deploy} dell'applicativo Spring, nella realizzazione del Rest Service.
 	\item \textbf{RDS} - Amazon RDS ha permesso la configurazione e l'utilizzo del database relazionale alla base del software prodotto;
 	\item \textbf{S3} - il \textbf{Simple Storage Service} (Amazon S3) permette l'archiviazione di oggetti in modo scalabile.
 	      Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
@@ -2203,7 +2203,7 @@ Sono di seguito presentati i diagrammi di sequenza di design per due casi d'uso 
 
 \subsection{Codice xUnit per testing di 3 metodi}
 In questa sezione sono esposti dei casi di test per 3 metodi non banali: per ciascuno di essi sono state adottate strategie specifiche.
-È bene precisare che - per effettuare alcuni test - è stato necessario utilizzare il framework open-source \textbf{Mockito},
+È bene precisare che - per effettuare alcuni test - è stato necessario utilizzare il framework open-source\Gls \textbf{Mockito\Gls{Mockito}},
 che consente la creazione di \textit{test double} (informalmente detti \textit{mock}). \\
 Mockito ha permesso di rimpiazzare le dipendenze delle classi dove sono presenti 2 dei 3 metodi sotto test, evitando
 la creazione di implementazioni fittizie per le dipendenze.

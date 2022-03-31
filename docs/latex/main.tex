@@ -2329,8 +2329,8 @@ con il servizio di report di crash \textit{Crashlytics} e il servizio di monitor
 	\item \textbf{Performance} - servizio utilizzato per avere un \textit{insight} delle caratteristiche prestazionali dell'app, anche attraverso metriche personalizzate.
 \end{itemize}
 
-È bene specificare che non saranno analizzati gli eventi di navigazione, in quanto
-ritenuti poco utili ai fini dell'usabilità. \\\\
+È bene specificare che non saranno analizzati gli eventi di navigazione,
+in quanto ritenuti poco utili ai fini dell'usabilità. \\\\
 Le fasi di analisi sono state definite come segue:
 \begin{enumerate}
 	\item Analisi con lo strumento di debug;
@@ -2355,6 +2355,7 @@ gli utenti, per usufruire delle funzionalità di messaggistica.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/debug-mario.png}
+	\caption{Sessione di debug 1}
 \end{figure}
 \FloatBarrier
 
@@ -2365,6 +2366,7 @@ così come la possibilità di valutare questi ultimi.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/debug-emu1.png}
+	\caption{Sessione di debug 2}
 \end{figure}
 \FloatBarrier
 
@@ -2373,6 +2375,7 @@ un itinerario, la segnalazione di itinerari e post e l'interazione dell'utente c
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/debug-emu2.png}
+	\caption{Sessione di debug 3}
 \end{figure}
 \FloatBarrier
 
@@ -2384,27 +2387,27 @@ Dopo una prima prova di usabilità, è stato ritenuto opportuno evidenziare il c
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/eventi-totali.png}
+	\caption{Lista di tutti gli eventi}
 \end{figure}
 \FloatBarrier
 
 È bene notare che gli eventi generati non comprendono tutte le prove effettuate durante l'analisi.
 Questo è dovuto agli strumenti utilizzati che non consentono una statistica \textit{totale} in tempo reale.
-Nonostante ciò si evince che, in media, è stata molto apprezzata la possibilità di conversare con altri utenti
+Si evince che, in media, è stata molto apprezzata la possibilità di conversare con altri utenti
 e la ricerca con filtraggio degli itinerari.
-
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/utenti-eventi-grafico.png}
+	\caption{Conteggio eventi per utente}
 \end{figure}
 \FloatBarrier
-
-\newpage
 
 Nonostante il leggero incremento di sessioni le funzionalità preferite sembrano
 non cambiare affatto.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/utenti-eventi-grafico2.png}
+	\caption{Conteggio eventi per utente - dopo l'incremento di utenti}
 \end{figure}
 \FloatBarrier
 
@@ -2455,13 +2458,56 @@ effettuate alle API sviluppate.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/start-app.png}
+	\caption{Tempo di avvio dell'app}
 \end{figure}
 \FloatBarrier
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/rendering-performance.png}
+	\caption{Tempo di rendering dell'interfaccia utente}
+\end{figure}
+\FloatBarrier
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/identity-performance.png}
+	\caption{Tempo di risposta per le autenticazioni}
+\end{figure}
+\FloatBarrier
 
-% Tenendo in considerazione budget e tempi impiegati per lo sviluppo, sono stati ottenuti
-% ottimi risultati. Gli utenti che hanno collaborato si 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/maps-performance.png}
+	\caption{Tempo di risposta per richieste inerenti alle mappe}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/response-performance-aws.png}
+	\caption{Tempo di risposta del REST Service}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/success-performance.png}
+	\caption{Percentuale di successo del REST Service - fase di Deploy}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/success-performance.png}
+	\caption{Percentuale di successo del REST Service - fase di Deploy}
+\end{figure}
+\FloatBarrier
+
+Tenendo in considerazione budget e tempi impiegati per lo sviluppo, sono stati ottenuti
+ottimi risultati.
+
+\newpage
 
 \printglossary
 

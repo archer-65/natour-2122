@@ -53,6 +53,7 @@
 \title{Documentazione IngSW} %Titolo
 
 \makeglossaries
+
 \newglossaryentry{latex}
 {
     name=latex,
@@ -2328,6 +2329,18 @@ con il servizio di report di crash \textit{Crashlytics} e il servizio di monitor
 	\item \textbf{Performance} - servizio utilizzato per avere un \textit{insight} delle caratteristiche prestazionali dell'app, anche attraverso metriche personalizzate.
 \end{itemize}
 
+È bene specificare che non saranno analizzati gli eventi di navigazione, in quanto
+ritenuti poco utili ai fini dell'usabilità. \\\\
+Le fasi di analisi sono state definite come segue:
+\begin{enumerate}
+	\item Analisi con lo strumento di debug;
+	\item Fidelizzazione degli utenti e rapporto con gli eventi;
+	\item Analisi di stabilità e correzione errori;
+	\item Analisi delle performance di sistema.
+\end{enumerate}
+
+\newpage
+
 \subsubsection{Analisi della debug view}
 In questa sezione è dettagliata una fase preliminare di analisi, 
 affrontata con la collaborazione degli utenti e finalizzata ad ottenere informazioni 
@@ -2337,12 +2350,18 @@ maggiore attenzione sarà riservata al resto delle funzionalità utilizzate. \\
 Come si nota dai tracciamenti, sono state sfruttate sia operazioni legate alla ricerca di itinerari che all'utilizzo 
 della chat privata, oltre alle usuali funzioni di autenticazione.
 
+Da questa prima analisi è emerso un largo utilizzato della ricerca che, oltre agli itinerari, ha coinvolto anche 
+gli utenti, per usufruire delle funzionalità di messaggistica.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/debug-mario.png}
 \end{figure}
 \FloatBarrier
 
+\newpage
+
+Da come si può notare, la fruizione del dettaglio per gli itinerari è stata apprezzata,
+così come la possibilità di valutare questi ultimi.
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/debug-emu1.png}
@@ -2357,7 +2376,93 @@ un itinerario, la segnalazione di itinerari e post e l'interazione dell'utente c
 \end{figure}
 \FloatBarrier
 
+\newpage
 
-\printglossary[type=\acronymtype]
+\subsubsection{Frequenza degli eventi per utente}
+Dopo una prima prova di usabilità, è stato ritenuto opportuno evidenziare il conteggio eventi per utente.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/eventi-totali.png}
+\end{figure}
+\FloatBarrier
+
+È bene notare che gli eventi generati non comprendono tutte le prove effettuate durante l'analisi.
+Questo è dovuto agli strumenti utilizzati che non consentono una statistica \textit{totale} in tempo reale.
+Nonostante ciò si evince che, in media, è stata molto apprezzata la possibilità di conversare con altri utenti
+e la ricerca con filtraggio degli itinerari.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/utenti-eventi-grafico.png}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
+Nonostante il leggero incremento di sessioni le funzionalità preferite sembrano
+non cambiare affatto.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/utenti-eventi-grafico2.png}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics{./analytics/attivita-utenti.png}
+	\caption{Incremento delle attività utente nel tempo}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/durata-media-coinvolgimento.png}
+	\caption{Durata media del coinvolgimento utente}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
+\subsubsection{Stabilità e correzione errori}
+Durante le precedenti fasi sono emersi dettagli per quanto concerne la stabilità dell'app:
+in particolare sono stati evidenziati degli errori (non gravi) e un arresto anomalo, poi risolto
+attraverso una revisione del prodotto.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/arresti-anomali.png}
+	\caption{Arresti anomali}
+\end{figure}
+\FloatBarrier
+
+La percentuale di arresti anomali è inficiata da quel singolo arresto, considerato
+il numero di utenti coinvolti
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/senza-arresti.png}
+	\caption{Statistiche di sessioni senza arresti}
+\end{figure}
+\FloatBarrier
+
+\newpage
+
+\subsubsection{Analisi delle performance}
+In quest'ultima sezione sono presenti metriche relative alle performance, anche tra le componenti
+dell'intero sistema.
+Sono stati analizzati tempi di risposta e una percentuale di successo per le richieste di rete
+effettuate alle API sviluppate.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/start-app.png}
+\end{figure}
+\FloatBarrier
+
+
+
+% Tenendo in considerazione budget e tempi impiegati per lo sviluppo, sono stati ottenuti
+% ottimi risultati. Gli utenti che hanno collaborato si 
+
+\printglossary
 
 \end{document}

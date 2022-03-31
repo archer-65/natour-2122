@@ -32,26 +32,9 @@ segnalazioni di inesattezza mostrano un warning nella schermata di dettaglio rel
 vengono mostrate nella schermata di dettaglio di un sentiero.
   - Un amministratore può:
     - Arbitrariamente rimuovere o modificare itinerari inseriti dagli utenti. In
-questo caso, la schermata di dettaglio degli itinerari modificati mostrano un warning che informa gli
+questo caso, la schermata di dettaglio degli itinerari modificati mostra un warning che informa gli
 utenti della modifica e della data in cui è avvenuta.  
 
-## TODO Tecnologie
-  ### IDE
-  [Android Studio](https://developer.android.com/studio), per realizzare l'applicativo Android, come linguaggio è stato scelto [Java](https://www.java.com/it/).
-
-  ### AWS
-  [AWS](aws.amazon.com) insieme a [Amplify](https://aws.amazon.com/it/amplify/) per i servizi Cloud, tra questi:
-  - [RDS](https://aws.amazon.com/it/rds/) per il database;
-  - [Lambda](https://aws.amazon.com/it/lambda/) per calcolo su eventi serverless;
-  - [S3](https://aws.amazon.com/it/s3/) per archiviare oggetti;
-  - [Cognito](https://aws.amazon.com/it/cognito/) per lo user pool;
-  - [API Gateway](https://aws.amazon.com/it/api-gateway/) per gestire le API.
-  
-## TODO Architettura e Librerie utilizzate
-  
-## Versionamento  
-  Abbiamo utilizzato [Git](https://git-scm.com/) come VCS e il [GitHub](https://github.com/) come suo Forge.
-  
 ## Autori
   - **Bianca Giada Chehade** 
     - Matricola: N86003209

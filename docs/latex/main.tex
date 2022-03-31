@@ -54,10 +54,91 @@
 
 \makeglossaries
 
-\newglossaryentry{latex}
+\newglossaryentry{UX}
 {
-    name=latex,
-    description={LaTeX (short for Lamport TeX) is a document preparation system. The user has to think about only the content to put in the document and the software will take care of the formatting. }
+    name=UX,
+    description={Termine utilizzato per definire la relazione tra una persona e un prodotto, un servizio, o un sistema. 
+	Il termine presuppone un approccio olistico: cerca di comprendere tutto ciò che ruota attorno all'interazione di un utente con un prodotto.}
+}
+
+\newglossaryentry{JWT}
+{
+    name=JWT,
+    description={JSON Web Token - standard Internet proposto per la creazione di dati con firma opzionale e/o crittografia 
+	opzionale il cui payload contiene JSON che asserisce un certo numero di attestazioni. I token 
+	vengono firmati utilizzando un segreto privato o una chiave pubblica/privata.}
+}
+
+\newglossaryentry{CASE}
+{
+    name=CASE,
+    description={Gli strumenti C.A.S.E. (acronimo di Computer-Aided Software Engineering, ovvero sviluppo 
+	del software assistito dal computer) sono quelli che supportano lo sviluppo del software attraverso interfacce grafiche (shell) e visuali e librerie di funzionalità. }
+}
+
+\newglossaryentry{UI Design System}
+{
+    name=UI Design System,
+    description={Raccolta di componenti che possono essere assemblati insieme 
+	per costruire applicazioni e siti web. Il Design System permette ai team di progettazione e di sviluppo di costruire prodotti migliori e in modo più veloce, grazie alla possibilità di creare design riusabile e quindi scalabile.}
+}
+
+\newglossaryentry{Use-case driven}
+{
+    name=Use-case driven,
+    description={Tecnica di modellazione nel processo di analisi dello sviluppo software. 
+	Rende l'architettura del sistema modellata sulle esigenze degli utenti.}
+}
+
+\newglossaryentry{Deploy}
+{
+    name=Deploy,
+    description={Distribuzione o rilascio al cliente, con relativa installazione, configurazione e messa in funzione o esercizio, di una applicazione o di un sistema software.}
+}
+
+\newglossaryentry{REST}
+{
+    name=REST,
+    description={L'acronimo REST sta per "Representational State Transfer" e si riferisce a uno stile architetturale 
+	per sistemi distruibuiti. Rappresenta un sistema di trasmissione di dati basato su HTTP.}
+}
+
+\newglossaryentry{UDF}
+{
+    name=UDF,
+    description={L'acronimo UDF (Unidirectional Data Flow) è un design pattern dove gli stati fluiscono verso le componenti 
+	inferiori e gli eventi verso quelle superiori.}
+}
+
+\newglossaryentry{Framework}
+{
+    name=Framework,
+    description={Architettura logica di supporto sul quale un software può essere progettato e realizzato, spesso facilitandone lo sviluppo da parte del programmatore.}
+}
+
+\newglossaryentry{Open source}
+{
+    name=Open source,
+    description={Tipo di software libero da vincoli di copyright o di altra natura.}
+}
+
+\newglossaryentry{Mockito}
+{
+    name=Mockito,
+    description={Framework di testing open source per Java. 
+	Permette la creazione di oggetti test double in unit test automatizzati.}
+}
+
+\newglossaryentry{WECT}
+{
+    name=WECT,
+    description={Weak Equivalence Class Testing.}
+}
+
+\newglossaryentry{CFG}
+{
+    name=CFG,
+    description={Control Flow Graph.}
 }
 
 \begin{document}
@@ -2011,7 +2092,7 @@ Alcune delle caratteristiche di UDF possono essere così sintetizzate:
 
 \begin{figure}[!htbp]
 	\centering
-	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/elimina_compilation.svg}
+	\includesvg[width=\textwidth, height=21cm]{./diagrams/design/elimina_compilationn.svg}
 	\caption{Eliminazione compilation}
 \end{figure}
 \FloatBarrier
@@ -2428,8 +2509,8 @@ non cambiare affatto.
 \newpage
 
 \subsubsection{Stabilità e correzione errori}
-Durante le precedenti fasi sono emersi dettagli per quanto concerne la stabilità dell'app:
-in particolare sono stati evidenziati degli errori (non gravi) e un arresto anomalo, poi risolto
+Durante le fasi precedenti sono emersi alcuni dettagli per quanto concerne la stabilità dell'app:
+in particolare sono stati evidenziati degli errori (non gravi) e un arresto anomalo, successivamente risolti
 attraverso una revisione del prodotto.
 \begin{figure}[!htbp]
 	\centering
@@ -2438,9 +2519,8 @@ attraverso una revisione del prodotto.
 \end{figure}
 \FloatBarrier
 
-La percentuale di arresti anomali è inficiata da quel singolo arresto, considerato
-il numero di utenti coinvolti
-\begin{figure}[!htbp]
+La percentuale di sessioni senza arresti anomali è stata inficiata dal singolo arresto sopracitato.
+\begin{figure}[!htbp]	
 	\centering
 	\includegraphics[width=\textwidth]{./analytics/senza-arresti.png}
 	\caption{Statistiche di sessioni senza arresti}
@@ -2450,9 +2530,8 @@ il numero di utenti coinvolti
 \newpage
 
 \subsubsection{Analisi delle performance}
-In quest'ultima sezione sono presenti metriche relative alle performance, anche tra le componenti
-dell'intero sistema.
-Sono stati analizzati tempi di risposta e una percentuale di successo per le richieste di rete
+In quest'ultima sezione sono presenti metriche relative alle performance dell'intero sistema.
+I risultati delle analisi sono stati i diversi tempi di risposta dei servizi, del client e la percentuale di successo per le richieste di rete
 effettuate alle API sviluppate.
 
 \begin{figure}[!htbp]

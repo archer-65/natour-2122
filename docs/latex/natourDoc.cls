@@ -20,6 +20,7 @@
 %\fancyheadoffset{1cm}
 %\setlength{\headheight}{2cm}
 \RequirePackage{url}
+\RequirePackage[toc]{glossaries}
 \RequirePackage[hidelinks]{hyperref}%Per l'inserimento di legende sotto le immagini
 \RequirePackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry} %Configurazione pagina
 \addtolength{\wpXoffset}{0cm}

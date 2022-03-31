@@ -52,6 +52,13 @@
 
 \title{Documentazione IngSW} %Titolo
 
+\makeglossaries
+\newglossaryentry{latex}
+{
+    name=latex,
+    description={LaTeX (short for Lamport TeX) is a document preparation system. The user has to think about only the content to put in the document and the software will take care of the formatting. }
+}
+
 \begin{document}
 
 %----------- Informazioni --------------------
@@ -2309,6 +2316,48 @@ Di seguito sono riportati il CFG, il codice ed i risultati dei test sul metodo.
 
 \newpage
 \subsection{Valutazione dell'usabilità sul campo}
+Una volta terminato il prodotto software si è proseguito con la valutazione dell'usabilità sul campo. \\
+Sono stati adoperati - con questo fine - i servizi offerti dalla piattaforma \textbf{Firebase}, e, nello specifico i 
+log ottenuti con strumenti di logging come \textit{Analytics}. Quest'ultimo è stato utilizzato anche nella sua integrazione 
+con il servizio di report di crash \textit{Crashlytics} e il servizio di monitoraggio delle prestazioni \textit{Performance}.
 
+\begin{itemize}
+	\item \textbf{Analytics} -  servizio finalizzato all'elaborazione di vari tipi di statistiche riguardanti, ad esempio, la durata della sessione e la provenienza della visita. 
+								Nello specifico, si è usufruito di Analytics per il tracciamento di eventi, per comprendere al meglio esigenze e preferenze degli utenti;
+	\item \textbf{Crashlytics} - reporter di crash di ausilio nel tracciamento e nella risoluzione di problemi di stabilità dell'app; 
+	\item \textbf{Performance} - servizio utilizzato per avere un \textit{insight} delle caratteristiche prestazionali dell'app, anche attraverso metriche personalizzate.
+\end{itemize}
+
+\subsubsection{Analisi della debug view}
+In questa sezione è dettagliata una fase preliminare di analisi, 
+affrontata con la collaborazione degli utenti e finalizzata ad ottenere informazioni 
+in tempo reale sul funzionamento dell'applicativo. \\
+Le operazioni forse più frequenti sono quelle di navigazione tra le componenti principali; per un'analisi più accurata, 
+maggiore attenzione sarà riservata al resto delle funzionalità utilizzate. \\
+Come si nota dai tracciamenti, sono state sfruttate sia operazioni legate alla ricerca di itinerari che all'utilizzo 
+della chat privata, oltre alle usuali funzioni di autenticazione.
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/debug-mario.png}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/debug-emu1.png}
+\end{figure}
+\FloatBarrier
+
+Nella seguente sessione, inoltre, gli eventi principali hanno riguardato l'aggiunta a compilation di 
+un itinerario, la segnalazione di itinerari e post e l'interazione dell'utente con la chat.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=\textwidth]{./analytics/debug-emu2.png}
+\end{figure}
+\FloatBarrier
+
+
+\printglossary[type=\acronymtype]
 
 \end{document}

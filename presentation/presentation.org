@@ -1,44 +1,82 @@
-#+TITLE: NaTour21 - Let's go 
+#+TITLE: NaTour21 - Let's go
+#+OPTIONS: toc:nil author:nil timestamp:nil
 #+AUTHOR: Mario Liguori - Bianca Giada Chehade - Mattia Rossi
 
 * Target utenti - statistiche
+In seguito all’analisi delle informazioni [[http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI][statistiche]] sull’escursionismo italiano è stato individuato un preciso target utenti. Attorno ad esso è stato possibile costruire la migliore esperienza utente possibile, basata sulle abitudini e sulle attitudini del bacino di utenza rilevato. Il software si pone come uno degli obiettivi principali, infatti, un'adeguata facilità di utilizzo, per andare incontro ai bisogni della più grande possibile fetta di utenti.
 
-- Riassunto analisi effettuata
-- Tabella (?)
+* NaTour in breve
+** Funzionalità offerte
+- Autenticazione tramite social (Google e Facebook)
+- Visualizzazione e creazione di itinerari e relativi post
+- Filtraggio degli itinerari in base a:
+  - Difficoltà, durata, accessibilità ai disabili
+  - Località e posizione geografica con raggio in km
+- Conversazioni private con altri utenti
 
-* Funzionalità offerte
+** Requisiti
+È necessario essere in possesso di:
+- Account NaTour
+- Accesso Internet
+- GPS
 
-- Cosa fa l'app
-- Come funziona
-- Cosa occorre
 
-* Architettura del sistema
 
-** Overview
 
-- Immagine sistema completo (se possibile)
+* Backend
 
-** Backend
+** Servizi AWS
 
-*** Servizi Cloud
+- Cognito: Servizio di tipologia PaaS, sfruttato per l'autenticazione utente. Utilizza [[https://oauth.net/2/][OAuth2]] per la delega degli accessi tramite identità federate.
+- EC2: Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server.
+- RDS: Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL) per la persistenza dei dati.
+- S3: Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile. Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
+- Lambda: La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pull di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.
 
-- Servizi AWS
-- Servizi GCloud
+** Google Maps Platform
+
+- MapsAPI: per la visualizzazione interattiva di mappe statiche e dinamiche;
+- PlacesAPI: per il recupero di informazioni sui posti tramite richieste HTTP;
+- DirectionsAPI: per il calcolo del percorso tra diverse tappe; utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML. Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.
+
+** Spring
+
+Framework Java che fa largo uso della riflessione e dell'inversione di
+controllo (IoC). Tramite annotazioni permette di ridurre codice boilerplate, si adatta al pattern MVC.
+- È scalabile
+- È portabile
+- È estensibile attraverso l'utilizzo di moduli dedicati a funzionalità specifiche
+- Si integra con molte librerie terze
+- Ideale per creare REST API
 
 *** Spring Boot
 
-- Perchè?
-
-** Client
-
-*** Architettura
-
-- Architettura scelta (Clean MVVM+MVI)
-- Perchè nativa e non ibrida
+Estensione del framework Spring che facilita la gestione delle dipendenze necessarie:
+- Presenza di dipendenze *starter*
+- non si necessita di una configurazione XML
+- Web server embedded (Apache Tomcat)
   
-*** Linguaggio scelto
+* Client
 
-- Kotlin, perchè?
+** Applicazione nativa o ibrida?
+
+Considerato il target di clienti particolarmente esigente e la priorità data alle prestazioni è stato scelto di sviluppare un client mobile nativo, vista anche la richiesta iniziale della sola app per Android.
+
+
+
+** Architettura
+
+Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate dalla Clean Architecture di Robert C. Martin.
+Attenendosi soprattutto ai principi SOLID, il codice è particolarmente prone ad espansioni ed aggiunta di nuovi moduli, strizzando l'occhio alla retrocompatibilità. Questo approccio si è rivelato fondamentale per evitare una forte dipendenza dalle librerie native di Android. 
+
+  
+** Linguaggio scelto
+
+È stato scelto Kotlin come linguaggio OO per due principali motivi:
+1. Lo sviluppo di librerie Android è incentrato sempre di più sulle funzionalità offerte da Kotlin. 
+2. Sintassi snella e di facile apprendimento oltre che presenza di meccanismi di sicurezza volti a ridurre gli errori da parte dei programmatori.
+
+Si rende noto che Java e Kotlin possono coesistere all'interno dello stesso progetto!
 
 * Strumenti di testing
 

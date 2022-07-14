@@ -29,132 +29,164 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide"><h1 class="title">NaTour21 - Let's go</h1><p class="subtitle"></p>
-<h2 class="author">Mario Liguori - Bianca Giada Chehade - Mattia Rossi</h2><p class="date">Created: 2022-07-14 Thu 18:26</p>
+
 </section>
-<section id="sec-table-of-contents"><div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#/slide-orgd5f9c0e">1. Target utenti - statistiche</a></li>
-<li><a href="#/slide-orgb08d4c9">2. Funzionalità offerte</a></li>
-<li><a href="#/slide-org7a269dc">3. Architettura del sistema</a>
-<ul>
-<li><a href="#/slide-org47fcf9b">3.1. Overview</a></li>
-<li><a href="#/slide-orgf8e363e">3.2. Backend</a>
-<ul>
-<li><a href="#/slide-org285fd77">3.2.1. Servizi Cloud</a></li>
-<li><a href="#/slide-org170a3c1">3.2.2. Spring Boot</a></li>
-</ul>
-</li>
-<li><a href="#/slide-org70bc94f">3.3. Client</a>
-<ul>
-<li><a href="#/slide-org0ad1e81">3.3.1. Architettura</a></li>
-<li><a href="#/slide-org4ee4ddd">3.3.2. Linguaggio scelto</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#/slide-org21f8218">4. Strumenti di testing</a>
-<ul>
-<li><a href="#/slide-orgf1f0afd">4.1. Firebase</a></li>
-</ul>
-</li>
-<li><a href="#/slide-orgc063cba">5. Fine</a></li>
-</ul>
-</div>
+
+<section>
+<section id="slide-org28865dd">
+<h2 id="org28865dd"><span class="section-number-2">1.</span> Target utenti - statistiche</h2>
+<p>
+In seguito all’analisi delle informazioni <a href="http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI">statistiche</a> sull’escursionismo italiano è stato individuato un preciso target utenti. Attorno ad esso è stato possibile costruire la migliore esperienza utente possibile, basata sulle abitudini e sulle attitudini del bacino di utenza rilevato. Il software si pone come uno degli obiettivi principali, infatti, un'adeguata facilità di utilizzo, per andare incontro ai bisogni della più grande possibile fetta di utenti.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orged7a91a">
+<h2 id="orged7a91a"><span class="section-number-2">2.</span> NaTour in breve</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 </section>
-
-<section>
-<section id="slide-orgd5f9c0e">
-<h2 id="orgd5f9c0e"><span class="section-number-2">1.</span> Target utenti - statistiche</h2>
+<section id="slide-orgb7fbbb0">
+<h3 id="orgb7fbbb0"><span class="section-number-3">2.1.</span> Funzionalità offerte</h3>
 <ul>
-<li>Riassunto analisi effettuata</li>
-<li>Tabella (?)</li>
+<li>Autenticazione tramite social (Google e Facebook)</li>
+<li>Visualizzazione e creazione di itinerari e relativi post</li>
+<li>Filtraggio degli itinerari in base a:
+<ul>
+<li>Difficoltà, durata, accessibilità ai disabili</li>
+<li>Località e posizione geografica con raggio in km</li>
+
+</ul></li>
+<li>Conversazioni private con altri utenti</li>
 
 </ul>
 
 </section>
-</section>
-<section>
-<section id="slide-orgb08d4c9">
-<h2 id="orgb08d4c9"><span class="section-number-2">2.</span> Funzionalità offerte</h2>
+<section id="slide-org16d6be2">
+<h3 id="org16d6be2"><span class="section-number-3">2.2.</span> Requisiti</h3>
+<p>
+È necessario essere in possesso di:
+</p>
 <ul>
-<li>Cosa fa l'app</li>
-<li>Come funziona</li>
-<li>Cosa occorre</li>
+<li>Account NaTour</li>
+<li>Accesso Internet</li>
+<li>GPS</li>
 
 </ul>
 
+
+
+
 </section>
 </section>
 <section>
-<section id="slide-org7a269dc">
-<h2 id="org7a269dc"><span class="section-number-2">3.</span> Architettura del sistema</h2>
+<section id="slide-org14cf660">
+<h2 id="org14cf660"><span class="section-number-2">3.</span> Backend</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 </section>
-<section id="slide-org47fcf9b">
-<h3 id="org47fcf9b"><span class="section-number-3">3.1.</span> Overview</h3>
+<section id="slide-org7d24f94">
+<h3 id="org7d24f94"><span class="section-number-3">3.1.</span> Servizi AWS</h3>
 <ul>
-<li>Immagine sistema completo (se possibile)</li>
+<li>Cognito: Servizio di tipologia PaaS, sfruttato per l'autenticazione utente. Utilizza <a href="https://oauth.net/2/">OAuth2</a> per la delega degli accessi tramite identità federate.</li>
+<li>EC2: Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server.</li>
+<li>RDS: Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL) per la persistenza dei dati.</li>
+<li>S3: Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile. Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;</li>
+<li>Lambda: La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pull di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.</li>
 
 </ul>
 
 </section>
-<section id="slide-orgf8e363e">
-<h3 id="orgf8e363e"><span class="section-number-3">3.2.</span> Backend</h3>
-<div class="outline-text-3" id="text-3-2">
-</div>
-</section>
-<section id="slide-org285fd77">
-<h4 id="org285fd77"><span class="section-number-4">3.2.1.</span> Servizi Cloud</h4>
+<section id="slide-org5594d1b">
+<h3 id="org5594d1b"><span class="section-number-3">3.2.</span> Google Maps Platform</h3>
 <ul>
-<li>Servizi AWS</li>
-<li>Servizi GCloud</li>
+<li>MapsAPI: per la visualizzazione interattiva di mappe statiche e dinamiche;</li>
+<li>PlacesAPI: per il recupero di informazioni sui posti tramite richieste HTTP;</li>
+<li>DirectionsAPI: per il calcolo del percorso tra diverse tappe; utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML. Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.</li>
 
 </ul>
 
 </section>
-<section id="slide-org170a3c1">
-<h4 id="org170a3c1"><span class="section-number-4">3.2.2.</span> Spring Boot</h4>
+<section id="slide-orgdb54265">
+<h3 id="orgdb54265"><span class="section-number-3">3.3.</span> Spring</h3>
+<p>
+Framework Java che fa largo uso della riflessione e dell'inversione di
+controllo (IoC). Tramite annotazioni permette di ridurre codice boilerplate, si adatta al pattern MVC.
+</p>
 <ul>
-<li>Perchè?</li>
+<li>È scalabile</li>
+<li>È portabile</li>
+<li>È estensibile attraverso l'utilizzo di moduli dedicati a funzionalità specifiche</li>
+<li>Si integra con molte librerie terze</li>
+<li>Ideale per creare REST API</li>
 
 </ul>
 
 </section>
-<section id="slide-org70bc94f">
-<h3 id="org70bc94f"><span class="section-number-3">3.3.</span> Client</h3>
-<div class="outline-text-3" id="text-3-3">
-</div>
-</section>
-<section id="slide-org0ad1e81">
-<h4 id="org0ad1e81"><span class="section-number-4">3.3.1.</span> Architettura</h4>
+<section id="slide-org604dca3">
+<h4 id="org604dca3"><span class="section-number-4">3.3.1.</span> Spring Boot</h4>
+<p>
+Estensione del framework Spring che facilita la gestione delle dipendenze necessarie:
+</p>
 <ul>
-<li>Architettura scelta (Clean MVVM+MVI)</li>
-<li>Perchè nativa e non ibrida</li>
-
-</ul>
-
-</section>
-<section id="slide-org4ee4ddd">
-<h4 id="org4ee4ddd"><span class="section-number-4">3.3.2.</span> Linguaggio scelto</h4>
-<ul>
-<li>Kotlin, perchè?</li>
+<li>Presenza di dipendenze <b>starter</b></li>
+<li>non si necessita di una configurazione XML</li>
+<li>Web server embedded (Apache Tomcat)</li>
 
 </ul>
 
 </section>
 </section>
 <section>
-<section id="slide-org21f8218">
-<h2 id="org21f8218"><span class="section-number-2">4.</span> Strumenti di testing</h2>
+<section id="slide-org4fab6a2">
+<h2 id="org4fab6a2"><span class="section-number-2">4.</span> Client</h2>
 <div class="outline-text-2" id="text-4">
 </div>
 </section>
-<section id="slide-orgf1f0afd">
-<h3 id="orgf1f0afd"><span class="section-number-3">4.1.</span> Firebase</h3>
+<section id="slide-org99f6b51">
+<h3 id="org99f6b51"><span class="section-number-3">4.1.</span> Applicazione nativa o ibrida?</h3>
+<p>
+Considerato il target di clienti particolarmente esigente e la priorità data alle prestazioni è stato scelto di sviluppare un client mobile nativo, vista anche la richiesta iniziale della sola app per Android.
+</p>
+
+
+
+</section>
+<section id="slide-orgfef2ce6">
+<h3 id="orgfef2ce6"><span class="section-number-3">4.2.</span> Architettura</h3>
+<p>
+Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate dalla Clean Architecture di Robert C. Martin.
+Attenendosi soprattutto ai principi SOLID, il codice è particolarmente prone ad espansioni ed aggiunta di nuovi moduli, strizzando l'occhio alla retrocompatibilità. Questo approccio si è rivelato fondamentale per evitare una forte dipendenza dalle librerie native di Android. 
+</p>
+
+
+</section>
+<section id="slide-org94e82d5">
+<h3 id="org94e82d5"><span class="section-number-3">4.3.</span> Linguaggio scelto</h3>
+<p>
+È stato scelto Kotlin come linguaggio OO per due principali motivi:
+</p>
+<ol>
+<li>Lo sviluppo di librerie Android è incentrato sempre di più sulle funzionalità offerte da Kotlin.</li>
+<li>Sintassi snella e di facile apprendimento oltre che presenza di meccanismi di sicurezza volti a ridurre gli errori da parte dei programmatori.</li>
+
+</ol>
+
+<p>
+Si rende noto che Java e Kotlin possono coesistere all'interno dello stesso progetto!
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org40fdf44">
+<h2 id="org40fdf44"><span class="section-number-2">5.</span> Strumenti di testing</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+</section>
+<section id="slide-orgb5f0c17">
+<h3 id="orgb5f0c17"><span class="section-number-3">5.1.</span> Firebase</h3>
 <ul>
 <li>Analytics</li>
 <li>Crashlytics</li>
@@ -165,8 +197,8 @@
 </section>
 </section>
 <section>
-<section id="slide-orgc063cba">
-<h2 id="orgc063cba"><span class="section-number-2">5.</span> Fine</h2>
+<section id="slide-org1a08923">
+<h2 id="org1a08923"><span class="section-number-2">6.</span> Fine</h2>
 <ul>
 <li>E fot e tre sciem</li>
 

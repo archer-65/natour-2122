@@ -1,0 +1,53 @@
+#+TITLE: NaTour21 - Let's go 
+#+AUTHOR: Mario Liguori - Bianca Giada Chehade - Mattia Rossi
+
+* Target utenti - statistiche
+
+- Riassunto analisi effettuata
+- Tabella (?)
+
+* Funzionalità offerte
+
+- Cosa fa l'app
+- Come funziona
+- Cosa occorre
+
+* Architettura del sistema
+
+** Overview
+
+- Immagine sistema completo (se possibile)
+
+** Backend
+
+*** Servizi Cloud
+
+- Servizi AWS
+- Servizi GCloud
+
+*** Spring Boot
+
+- Perchè?
+
+** Client
+
+*** Architettura
+
+- Architettura scelta (Clean MVVM+MVI)
+- Perchè nativa e non ibrida
+  
+*** Linguaggio scelto
+
+- Kotlin, perchè?
+
+* Strumenti di testing
+
+** Firebase
+
+- Analytics
+- Crashlytics
+- Performance
+
+* Fine
+
+- E fot e tre sciem

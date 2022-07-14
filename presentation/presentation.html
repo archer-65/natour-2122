@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>NaTour21 - Let's go</title>
+<meta name="author" content="Mario Liguori - Bianca Giada Chehade - Mattia Rossi"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">NaTour21 - Let's go</h1><p class="subtitle"></p>
+<h2 class="author">Mario Liguori - Bianca Giada Chehade - Mattia Rossi</h2><p class="date">Created: 2022-07-14 Thu 18:26</p>
+</section>
+<section id="sec-table-of-contents"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-orgd5f9c0e">1. Target utenti - statistiche</a></li>
+<li><a href="#/slide-orgb08d4c9">2. Funzionalità offerte</a></li>
+<li><a href="#/slide-org7a269dc">3. Architettura del sistema</a>
+<ul>
+<li><a href="#/slide-org47fcf9b">3.1. Overview</a></li>
+<li><a href="#/slide-orgf8e363e">3.2. Backend</a>
+<ul>
+<li><a href="#/slide-org285fd77">3.2.1. Servizi Cloud</a></li>
+<li><a href="#/slide-org170a3c1">3.2.2. Spring Boot</a></li>
+</ul>
+</li>
+<li><a href="#/slide-org70bc94f">3.3. Client</a>
+<ul>
+<li><a href="#/slide-org0ad1e81">3.3.1. Architettura</a></li>
+<li><a href="#/slide-org4ee4ddd">3.3.2. Linguaggio scelto</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#/slide-org21f8218">4. Strumenti di testing</a>
+<ul>
+<li><a href="#/slide-orgf1f0afd">4.1. Firebase</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgc063cba">5. Fine</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-orgd5f9c0e">
+<h2 id="orgd5f9c0e"><span class="section-number-2">1.</span> Target utenti - statistiche</h2>
+<ul>
+<li>Riassunto analisi effettuata</li>
+<li>Tabella (?)</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb08d4c9">
+<h2 id="orgb08d4c9"><span class="section-number-2">2.</span> Funzionalità offerte</h2>
+<ul>
+<li>Cosa fa l'app</li>
+<li>Come funziona</li>
+<li>Cosa occorre</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org7a269dc">
+<h2 id="org7a269dc"><span class="section-number-2">3.</span> Architettura del sistema</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+</section>
+<section id="slide-org47fcf9b">
+<h3 id="org47fcf9b"><span class="section-number-3">3.1.</span> Overview</h3>
+<ul>
+<li>Immagine sistema completo (se possibile)</li>
+
+</ul>
+
+</section>
+<section id="slide-orgf8e363e">
+<h3 id="orgf8e363e"><span class="section-number-3">3.2.</span> Backend</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+</section>
+<section id="slide-org285fd77">
+<h4 id="org285fd77"><span class="section-number-4">3.2.1.</span> Servizi Cloud</h4>
+<ul>
+<li>Servizi AWS</li>
+<li>Servizi GCloud</li>
+
+</ul>
+
+</section>
+<section id="slide-org170a3c1">
+<h4 id="org170a3c1"><span class="section-number-4">3.2.2.</span> Spring Boot</h4>
+<ul>
+<li>Perchè?</li>
+
+</ul>
+
+</section>
+<section id="slide-org70bc94f">
+<h3 id="org70bc94f"><span class="section-number-3">3.3.</span> Client</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+</section>
+<section id="slide-org0ad1e81">
+<h4 id="org0ad1e81"><span class="section-number-4">3.3.1.</span> Architettura</h4>
+<ul>
+<li>Architettura scelta (Clean MVVM+MVI)</li>
+<li>Perchè nativa e non ibrida</li>
+
+</ul>
+
+</section>
+<section id="slide-org4ee4ddd">
+<h4 id="org4ee4ddd"><span class="section-number-4">3.3.2.</span> Linguaggio scelto</h4>
+<ul>
+<li>Kotlin, perchè?</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org21f8218">
+<h2 id="org21f8218"><span class="section-number-2">4.</span> Strumenti di testing</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+</section>
+<section id="slide-orgf1f0afd">
+<h3 id="orgf1f0afd"><span class="section-number-3">4.1.</span> Firebase</h3>
+<ul>
+<li>Analytics</li>
+<li>Crashlytics</li>
+<li>Performance</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc063cba">
+<h2 id="orgc063cba"><span class="section-number-2">5.</span> Fine</h2>
+<ul>
+<li>E fot e tre sciem</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+
+</script>
+</body>
+</html>

@@ -2,83 +2,206 @@
 #+OPTIONS: toc:nil author:nil timestamp:nil
 #+AUTHOR: Mario Liguori - Bianca Giada Chehade - Mattia Rossi
 
+#+REVEAL_EPILOGUE: <a class="uni-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Visita il nostro dipartimento"> <img src="federico.svg"></a> <a class="app-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Il nostro logo"> <img src="natour_logo.svg"></a>
+
+#+REVEAL_THEME: solarized
+#+REVEAL_EXTRA_CSS: css/demo.css
+
+#+REVEAL_PLUGINS: (markdown highlight zoom notes)
+#+REVEAL_INIT_OPTIONS: plugins: [RevealMenu], slideNumber:"c/t"
+
+#+REVEAL_EXTRA_INITIAL_JS: menu: {side: 'left', width: 'normal', numbers: true, titleSelector: 'h1, h2, h3, h4, h5, h6', useTextContentForMissingTitles: true, hideMissingTitles: false, markers: true, custom: false, themes: false, themesPath: 'dist/theme/', transitions: true, openButton: true, openSlideNumber: true, keyboard: true, sticky: false, autoOpen: true, delayInit: false, openOnInit: false, loadIcons: true}, backgroundTransition: 'zoom', hash: true, mouseWheel: false, width: 1920, height: 1080
+
 * Target utenti - statistiche
+
 In seguito all’analisi delle informazioni [[http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI][statistiche]] sull’escursionismo italiano è stato individuato un preciso target utenti. Attorno ad esso è stato possibile costruire la migliore esperienza utente possibile, basata sulle abitudini e sulle attitudini del bacino di utenza rilevato. Il software si pone come uno degli obiettivi principali, infatti, un'adeguata facilità di utilizzo, per andare incontro ai bisogni della più grande possibile fetta di utenti.
 
+#+ATTR_HTML: :width 40% :height 40%
+[[./target.svg]]
+
+
 * NaTour in breve
+
+#+ATTR_HTML: :width 35% :height 35%
+[[./mockup-example.svg]]
+
+
 ** Funzionalità offerte
-- Autenticazione tramite social (Google e Facebook)
-- Visualizzazione e creazione di itinerari e relativi post
-- Filtraggio degli itinerari in base a:
-  - Difficoltà, durata, accessibilità ai disabili
-  - Località e posizione geografica con raggio in km
-- Conversazioni private con altri utenti
+NaTour offre tutte le funzionalità basilari necessarie a una piattaforma social, risultando estremamente familiare agli utenti. Tra queste ritroviamo:
 
+#+ATTR_REVEAL: :frag (appear)
+- Autenticazione tramite social (Google e Facebook);
+- Visualizzazione e creazione di itinerari e relativi post;
+- Ricerca e filtraggio degli itinerari in base a:
+  - Difficoltà, durata, accessibilità ai disabili;
+  - Posizione geografica, con raggio in km;
+- Conversazioni private con altri utenti.
+
+  
 ** Requisiti
-È necessario essere in possesso di:
-- Account NaTour
-- Accesso Internet
-- GPS
+Talvolta è si ha il bisogno di consultare una mappa, o visualizzare delle indicazioni per un certo tragitto, per questo è necessario essere in possesso di:
+
+#+ATTR_REVEAL: :frag (appear)
+- Account NaTour;
+- Accesso a internet;
+- Permessi di accesso alla posizione.
+  
+#+ATTR_HTML: :width 35% :height 35%
+[[./lost.svg]]
 
 
+* Architettura
+
+Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate dalla Clean Architecture, creata da Robert C. Martin (Uncle Bob) nel 2012.
+
+Attenendosi soprattutto ai principi SOLID (applicabili a qualsiasi linguaggio OO), il codice è particolarmente prone ad espansioni ed aggiunta di nuovi moduli, strizzando l'occhio alla retrocompatibilità. Questo approccio si è rivelato fondamentale per evitare una forte dipendenza dalle librerie native di Android. 
+
+#+ATTR_HTML: :width 80% :height 80%
+[[./bob-clean.svg]]
 
 
-* Backend
+* Servizi AWS
 
-** Servizi AWS
+#+ATTR_HTML: :width 40% :height 40%
+[[./aws.png]]
 
-- Cognito: Servizio di tipologia PaaS, sfruttato per l'autenticazione utente. Utilizza [[https://oauth.net/2/][OAuth2]] per la delega degli accessi tramite identità federate.
-- EC2: Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server.
-- RDS: Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL) per la persistenza dei dati.
-- S3: Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile. Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
-- Lambda: La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pull di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.
 
-** Google Maps Platform
+** AWS Cognito
+Cognito è un servizio di tipologia PaaS, sfruttato per l'autenticazione utente. Utilizza [[https://oauth.net/2/][OAuth2]] per la delega degli accessi tramite identità federate.
+Presenta integrazione con altri servizi, che permette la gestione delle politiche di accesso alle risorse fornite da questi ultimi.
 
+#+ATTR_HTML: :width 20% :height 20%
+[[./cognito.svg]]
+
+
+** AWS EC2
+Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale, compatibile con [[https://aws.amazon.com/it/autoscaling/][AWS Autoscaling]]. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server LTS, OS scelto per limitare l'utilizzo superfluo di risorse dell'istanza. L'accesso all'istanza virtuale è effettuato tramite SSH, quando necessario.
+
+#+ATTR_HTML: :width 20% :height 20%
+[[./ec2.svg]]
+
+
+** AWS RDS
+Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL/MariaDB) per la persistenza dei dati. Questo servizio fornisce capacità ridimensionabili efficiente, automatizzando task tipiche di amministrazione hardware e software, oltre ai backup.
+
+#+ATTR_HTML: :width 20% :height 20%
+[[./rds.svg]]
+
+
+** AWS S3
+Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile, sicuro e veloce. La classe di archiviazione S3 è progettata per offrire una durabilità dei dati pari al 99,99999999999% (eleven 9s) degli oggetti per un determinato anno, che equivale a una perdita di oggetti media dello 0,00000000001%! Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
+
+#+ATTR_HTML: :width 20% :height 20%
+[[./s3.svg]]
+
+
+** AWS Lambda
+La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pool di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.
+
+#+ATTR_HTML: :width 20% :height 20%
+[[./lambda.svg]]
+
+  
+* Google Maps Platform
+
+#+ATTR_REVEAL: :frag (appear)
 - MapsAPI: per la visualizzazione interattiva di mappe statiche e dinamiche;
 - PlacesAPI: per il recupero di informazioni sui posti tramite richieste HTTP;
-- DirectionsAPI: per il calcolo del percorso tra diverse tappe; utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML. Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.
+- DirectionsAPI: per il calcolo del percorso tra diverse tappe:
+  - Utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML.
+  - Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.
 
-** Spring
+#+ATTR_HTML: :width 20% :height 20%
+[[./mapsapi.png]]
+
+
+* Spring
 
 Framework Java che fa largo uso della riflessione e dell'inversione di
 controllo (IoC). Tramite annotazioni permette di ridurre codice boilerplate, si adatta al pattern MVC.
-- È scalabile
-- È portabile
-- È estensibile attraverso l'utilizzo di moduli dedicati a funzionalità specifiche
-- Si integra con molte librerie terze
-- Ideale per creare REST API
 
-*** Spring Boot
+#+ATTR_REVEAL: :frag (appear)
+- È scalabile;
+- È portabile, grazie a Java;
+- È estensibile attraverso l'utilizzo di moduli dedicati a funzionalità specifiche;
+- Si integra con molte librerie terze;
+- Ideale per creare REST API.
+
+#+ATTR_HTML: :width 20% :height 20%
+[[./spring-logo.png]]
+
+  
+** Spring Boot
 
 Estensione del framework Spring che facilita la gestione delle dipendenze necessarie:
-- Presenza di dipendenze *starter*
-- non si necessita di una configurazione XML
-- Web server embedded (Apache Tomcat)
-  
+
+#+ATTR_REVEAL: :frag (appear)
+- Presenza di dipendenze *starter*;
+- Non si necessita di una configurazione XML;
+- Web server embedded (Apache Tomcat).
+
+#+ATTR_HTML: :width 50% :height 50%
+[[./spring-boot.svg]]
+
+
 * Client
+
 
 ** Applicazione nativa o ibrida?
 
 Considerato il target di clienti particolarmente esigente e la priorità data alle prestazioni è stato scelto di sviluppare un client mobile nativo, vista anche la richiesta iniziale della sola app per Android.
 
+| Nativa                                        | Ibrida                                     |
+|-----------------------------------------------+--------------------------------------------|
+| Performance ottime                            | Più lenta                                  |
+| Costosa da sviluppare, specialmente su più OS | Manutenibili, singola codebase             |
+| Utilizzo di SDK dedicati                      | Linguaggi web e framework multipiattaforma |
 
 
-** Architettura
+#+ATTR_HTML: :width 40% :height 40%
+[[./hybrid-native.jpg]]
 
-Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate dalla Clean Architecture di Robert C. Martin.
-Attenendosi soprattutto ai principi SOLID, il codice è particolarmente prone ad espansioni ed aggiunta di nuovi moduli, strizzando l'occhio alla retrocompatibilità. Questo approccio si è rivelato fondamentale per evitare una forte dipendenza dalle librerie native di Android. 
 
-  
 ** Linguaggio scelto
 
-È stato scelto Kotlin come linguaggio OO per due principali motivi:
-1. Lo sviluppo di librerie Android è incentrato sempre di più sulle funzionalità offerte da Kotlin. 
-2. Sintassi snella e di facile apprendimento oltre che presenza di meccanismi di sicurezza volti a ridurre gli errori da parte dei programmatori.
+*Premessa*: Java e Kotlin possono coesistere all'interno dello stesso progetto!
 
-Si rende noto che Java e Kotlin possono coesistere all'interno dello stesso progetto!
+#+ATTR_REVEAL: :frag (appear)
+È stato scelto Kotlin come linguaggio OO per quattro principali motivi:
 
+#+ATTR_REVEAL: :frag (appear)
+1. Lo sviluppo di librerie Android è ad oggi incentrato sempre di più sulle funzionalità offerte da Kotlin;
+2. Sintassi snella e di facile apprendimento;
+3. Presenza di meccanismi di sicurezza volti a ridurre gli errori da parte dei programmatori;
+4. Estensibilità di classi pre-esistenti, ma senza effettuare modifiche alle librerie, in pieno stile *open-closed* (la O di SOLID).
+
+#+ATTR_HTML: :width 15% :height 15%
+[[./kotlin.png]]
+
+** Pattern scelto
+
+Sono stati "fusi" due pattern , ovvero *MVVM* e *MVI*, per rimediare ad alcune lacune.
+I problemi individuati col primo pattern si riassumono in:
+
+#+ATTR_REVEAL: :frag (appear)
+- Difficoltà di riusabilità sia per le View che per i ViewModel;
+- Registrazione a molteplici observables nello stesso ViewModel;
+- View e ViewModel possono essere soggetti ad avere un coupling stretto.
+
+#+ATTR_REVEAL: :frag (appear)
+L’integrazione dei due pattern architetturali sopracitati culmina nella nascita di un
+nuovo pattern, chiamato dagli sviluppatori Android [[https://developer.android.com/topic/architecture][UDF (Unidirectional Data Flow)]] :
+
+#+ATTR_REVEAL: :frag (appear)
+- Presenza di StateHolder, necessari per ogni ViewModel nella maggior parte dei casi;
+- Richiamo alle macchine di stato e agli Statechart;
+- Event e Effect, che si interpongono tra View e ViewModel.
+
+#+ATTR_HTML: :width 30% :height 30%
+[[./udf.png]]
+  
 * Strumenti di testing
+
 
 ** Firebase
 
@@ -86,6 +209,9 @@ Si rende noto che Java e Kotlin possono coesistere all'interno dello stesso prog
 - Crashlytics
 - Performance
 
+  
 * Fine
 
-- E fot e tre sciem
+#+begin_export html
+<script src="plugin/menu/menu.js"></script>
+#+end_export

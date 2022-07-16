@@ -11,9 +11,10 @@
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/moon.css" id="theme"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/solarized.css" id="theme"/>
 
-
+<link rel="stylesheet" href="css/demo.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/lib/css/zenburn.css"/>
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
@@ -33,160 +34,369 @@
 </section>
 
 <section>
-<section id="slide-org28865dd">
-<h2 id="org28865dd"><span class="section-number-2">1.</span> Target utenti - statistiche</h2>
+<section id="slide-orgc5a4233">
+<h2 id="orgc5a4233"><span class="section-number-2">1.</span> Target utenti - statistiche</h2>
 <p>
 In seguito all’analisi delle informazioni <a href="http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI">statistiche</a> sull’escursionismo italiano è stato individuato un preciso target utenti. Attorno ad esso è stato possibile costruire la migliore esperienza utente possibile, basata sulle abitudini e sulle attitudini del bacino di utenza rilevato. Il software si pone come uno degli obiettivi principali, infatti, un'adeguata facilità di utilizzo, per andare incontro ai bisogni della più grande possibile fetta di utenti.
 </p>
 
+
+<div id="org610fe28" class="figure">
+<p><img src="./target.svg" alt="target.svg" class="org-svg" width="40%" height="40%" />
+</p>
+</div>
+
+
 </section>
 </section>
 <section>
-<section id="slide-orged7a91a">
-<h2 id="orged7a91a"><span class="section-number-2">2.</span> NaTour in breve</h2>
-<div class="outline-text-2" id="text-2">
+<section id="slide-org6cd1962">
+<h2 id="org6cd1962"><span class="section-number-2">2.</span> NaTour in breve</h2>
+
+<div id="orgeb3c7c7" class="figure">
+<p><img src="./mockup-example.svg" alt="mockup-example.svg" class="org-svg" width="35%" height="35%" />
+</p>
 </div>
+
+
 </section>
-<section id="slide-orgb7fbbb0">
-<h3 id="orgb7fbbb0"><span class="section-number-3">2.1.</span> Funzionalità offerte</h3>
+<section id="slide-orgdae1e7c">
+<h3 id="orgdae1e7c"><span class="section-number-3">2.1.</span> Funzionalità offerte</h3>
+<p>
+NaTour offre tutte le funzionalità basilari necessarie a una piattaforma social, risultando estremamente familiare agli utenti. Tra queste ritroviamo:
+</p>
+
 <ul>
-<li>Autenticazione tramite social (Google e Facebook)</li>
-<li>Visualizzazione e creazione di itinerari e relativi post</li>
-<li>Filtraggio degli itinerari in base a:
+<li class="fragment appear">Autenticazione tramite social (Google e Facebook);</li>
+<li class="fragment appear">Visualizzazione e creazione di itinerari e relativi post;</li>
+<li class="fragment appear">Ricerca e filtraggio degli itinerari in base a:
 <ul>
-<li>Difficoltà, durata, accessibilità ai disabili</li>
-<li>Località e posizione geografica con raggio in km</li>
+<li>Difficoltà, durata, accessibilità ai disabili;</li>
+<li>Posizione geografica, con raggio in km;</li>
 
 </ul></li>
-<li>Conversazioni private con altri utenti</li>
+<li class="fragment appear">Conversazioni private con altri utenti.</li>
 
 </ul>
+
 
 </section>
-<section id="slide-org16d6be2">
-<h3 id="org16d6be2"><span class="section-number-3">2.2.</span> Requisiti</h3>
+<section id="slide-orgd812d70">
+<h3 id="orgd812d70"><span class="section-number-3">2.2.</span> Requisiti</h3>
 <p>
-È necessario essere in possesso di:
+Talvolta è si ha il bisogno di consultare una mappa, o visualizzare delle indicazioni per un certo tragitto, per questo è necessario essere in possesso di:
 </p>
+
 <ul>
-<li>Account NaTour</li>
-<li>Accesso Internet</li>
-<li>GPS</li>
+<li class="fragment appear">Account NaTour;</li>
+<li class="fragment appear">Accesso a internet;</li>
+<li class="fragment appear">Permessi di accesso alla posizione.</li>
 
 </ul>
 
 
+<div id="orgaebc138" class="figure">
+<p><img src="./lost.svg" alt="lost.svg" class="org-svg" width="35%" height="35%" />
+</p>
+</div>
 
 
 </section>
 </section>
 <section>
-<section id="slide-org14cf660">
-<h2 id="org14cf660"><span class="section-number-2">3.</span> Backend</h2>
-<div class="outline-text-2" id="text-3">
+<section id="slide-orgbb9fbb2">
+<h2 id="orgbb9fbb2"><span class="section-number-2">3.</span> Architettura</h2>
+<p>
+Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate dalla Clean Architecture, creata da Robert C. Martin (Uncle Bob) nel 2012.
+</p>
+
+<p>
+Attenendosi soprattutto ai principi SOLID (applicabili a qualsiasi linguaggio OO), il codice è particolarmente prone ad espansioni ed aggiunta di nuovi moduli, strizzando l'occhio alla retrocompatibilità. Questo approccio si è rivelato fondamentale per evitare una forte dipendenza dalle librerie native di Android. 
+</p>
+
+
+<div id="org5c37442" class="figure">
+<p><img src="./bob-clean.svg" alt="bob-clean.svg" class="org-svg" width="80%" height="80%" />
+</p>
 </div>
+
+
 </section>
-<section id="slide-org7d24f94">
-<h3 id="org7d24f94"><span class="section-number-3">3.1.</span> Servizi AWS</h3>
+</section>
+<section>
+<section id="slide-org385b7bf">
+<h2 id="org385b7bf"><span class="section-number-2">4.</span> Servizi AWS</h2>
+
+<div id="org3ef4e29" class="figure">
+<p><img src="./aws.png" alt="aws.png" width="40%" height="40%" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-orgf98a4a4">
+<h3 id="orgf98a4a4"><span class="section-number-3">4.1.</span> AWS Cognito</h3>
+<p>
+Cognito è un servizio di tipologia PaaS, sfruttato per l'autenticazione utente. Utilizza <a href="https://oauth.net/2/">OAuth2</a> per la delega degli accessi tramite identità federate.
+Presenta integrazione con altri servizi, che permette la gestione delle politiche di accesso alle risorse fornite da questi ultimi.
+</p>
+
+
+<div id="org9e8cbd7" class="figure">
+<p><img src="./cognito.svg" alt="cognito.svg" class="org-svg" width="20%" height="20%" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-orgb9813aa">
+<h3 id="orgb9813aa"><span class="section-number-3">4.2.</span> AWS EC2</h3>
+<p>
+Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale, compatibile con <a href="https://aws.amazon.com/it/autoscaling/">AWS Autoscaling</a>. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server LTS, OS scelto per limitare l'utilizzo superfluo di risorse dell'istanza. L'accesso all'istanza virtuale è effettuato tramite SSH, quando necessario.
+</p>
+
+
+<div id="orgdf161df" class="figure">
+<p><img src="./ec2.svg" alt="ec2.svg" class="org-svg" width="20%" height="20%" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-org51c8811">
+<h3 id="org51c8811"><span class="section-number-3">4.3.</span> AWS RDS</h3>
+<p>
+Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL/MariaDB) per la persistenza dei dati. Questo servizio fornisce capacità ridimensionabili efficiente, automatizzando task tipiche di amministrazione hardware e software, oltre ai backup.
+</p>
+
+
+<div id="org85f98e6" class="figure">
+<p><img src="./rds.svg" alt="rds.svg" class="org-svg" width="20%" height="20%" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-org875854b">
+<h3 id="org875854b"><span class="section-number-3">4.4.</span> AWS S3</h3>
+<p>
+Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile, sicuro e veloce. La classe di archiviazione S3 è progettata per offrire una durabilità dei dati pari al 99,99999999999% (eleven 9s) degli oggetti per un determinato anno, che equivale a una perdita di oggetti media dello 0,00000000001%! Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
+</p>
+
+
+<div id="org0f4490f" class="figure">
+<p><img src="./s3.svg" alt="s3.svg" class="org-svg" width="20%" height="20%" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-org9d9abd6">
+<h3 id="org9d9abd6"><span class="section-number-3">4.5.</span> AWS Lambda</h3>
+<p>
+La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pool di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.
+</p>
+
+
+<div id="org92d1704" class="figure">
+<p><img src="./lambda.svg" alt="lambda.svg" class="org-svg" width="20%" height="20%" />
+</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org461e1d2">
+<h2 id="org461e1d2"><span class="section-number-2">5.</span> Google Maps Platform</h2>
 <ul>
-<li>Cognito: Servizio di tipologia PaaS, sfruttato per l'autenticazione utente. Utilizza <a href="https://oauth.net/2/">OAuth2</a> per la delega degli accessi tramite identità federate.</li>
-<li>EC2: Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server.</li>
-<li>RDS: Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL) per la persistenza dei dati.</li>
-<li>S3: Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile. Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;</li>
-<li>Lambda: La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pull di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.</li>
+<li class="fragment appear">MapsAPI: per la visualizzazione interattiva di mappe statiche e dinamiche;</li>
+<li class="fragment appear">PlacesAPI: per il recupero di informazioni sui posti tramite richieste HTTP;</li>
+<li class="fragment appear">DirectionsAPI: per il calcolo del percorso tra diverse tappe:
+<ul>
+<li>Utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML.</li>
+<li>Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.</li>
+
+</ul></li>
 
 </ul>
 
-</section>
-<section id="slide-org5594d1b">
-<h3 id="org5594d1b"><span class="section-number-3">3.2.</span> Google Maps Platform</h3>
-<ul>
-<li>MapsAPI: per la visualizzazione interattiva di mappe statiche e dinamiche;</li>
-<li>PlacesAPI: per il recupero di informazioni sui posti tramite richieste HTTP;</li>
-<li>DirectionsAPI: per il calcolo del percorso tra diverse tappe; utilizzano una richiesta HTTP per ritornare le direzioni tra località in formato JSON o XML. Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.</li>
 
-</ul>
+<div id="orgf054bdf" class="figure">
+<p><img src="./mapsapi.png" alt="mapsapi.png" width="20%" height="20%" />
+</p>
+</div>
+
 
 </section>
-<section id="slide-orgdb54265">
-<h3 id="orgdb54265"><span class="section-number-3">3.3.</span> Spring</h3>
+</section>
+<section>
+<section id="slide-org22e2c81">
+<h2 id="org22e2c81"><span class="section-number-2">6.</span> Spring</h2>
 <p>
 Framework Java che fa largo uso della riflessione e dell'inversione di
 controllo (IoC). Tramite annotazioni permette di ridurre codice boilerplate, si adatta al pattern MVC.
 </p>
+
 <ul>
-<li>È scalabile</li>
-<li>È portabile</li>
-<li>È estensibile attraverso l'utilizzo di moduli dedicati a funzionalità specifiche</li>
-<li>Si integra con molte librerie terze</li>
-<li>Ideale per creare REST API</li>
+<li class="fragment appear">È scalabile;</li>
+<li class="fragment appear">È portabile, grazie a Java;</li>
+<li class="fragment appear">È estensibile attraverso l'utilizzo di moduli dedicati a funzionalità specifiche;</li>
+<li class="fragment appear">Si integra con molte librerie terze;</li>
+<li class="fragment appear">Ideale per creare REST API.</li>
 
 </ul>
 
+
+<div id="orgf04900a" class="figure">
+<p><img src="./spring-logo.png" alt="spring-logo.png" width="20%" height="20%" />
+</p>
+</div>
+
+
 </section>
-<section id="slide-org604dca3">
-<h4 id="org604dca3"><span class="section-number-4">3.3.1.</span> Spring Boot</h4>
+<section id="slide-orgab5e771">
+<h3 id="orgab5e771"><span class="section-number-3">6.1.</span> Spring Boot</h3>
 <p>
 Estensione del framework Spring che facilita la gestione delle dipendenze necessarie:
 </p>
+
 <ul>
-<li>Presenza di dipendenze <b>starter</b></li>
-<li>non si necessita di una configurazione XML</li>
-<li>Web server embedded (Apache Tomcat)</li>
+<li class="fragment appear">Presenza di dipendenze <b>starter</b>;</li>
+<li class="fragment appear">Non si necessita di una configurazione XML;</li>
+<li class="fragment appear">Web server embedded (Apache Tomcat).</li>
 
 </ul>
+
+
+<div id="org3366ce6" class="figure">
+<p><img src="./spring-boot.svg" alt="spring-boot.svg" class="org-svg" width="50%" height="50%" />
+</p>
+</div>
+
 
 </section>
 </section>
 <section>
-<section id="slide-org4fab6a2">
-<h2 id="org4fab6a2"><span class="section-number-2">4.</span> Client</h2>
-<div class="outline-text-2" id="text-4">
+<section id="slide-org8f5ad99">
+<h2 id="org8f5ad99"><span class="section-number-2">7.</span> Client</h2>
+<div class="outline-text-2" id="text-7">
 </div>
 </section>
-<section id="slide-org99f6b51">
-<h3 id="org99f6b51"><span class="section-number-3">4.1.</span> Applicazione nativa o ibrida?</h3>
+<section id="slide-org3c3276e">
+<h3 id="org3c3276e"><span class="section-number-3">7.1.</span> Applicazione nativa o ibrida?</h3>
 <p>
 Considerato il target di clienti particolarmente esigente e la priorità data alle prestazioni è stato scelto di sviluppare un client mobile nativo, vista anche la richiesta iniziale della sola app per Android.
 </p>
 
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Nativa</th>
+<th scope="col" class="org-left">Ibrida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Performance ottime</td>
+<td class="org-left">Più lenta</td>
+</tr>
+
+<tr>
+<td class="org-left">Costosa da sviluppare, specialmente su più OS</td>
+<td class="org-left">Manutenibili, singola codebase</td>
+</tr>
+
+<tr>
+<td class="org-left">Utilizzo di SDK dedicati</td>
+<td class="org-left">Linguaggi web e framework multipiattaforma</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<div id="org2329f1b" class="figure">
+<p><img src="./hybrid-native.jpg" alt="hybrid-native.jpg" width="40%" height="40%" />
+</p>
+</div>
 
 
 </section>
-<section id="slide-orgfef2ce6">
-<h3 id="orgfef2ce6"><span class="section-number-3">4.2.</span> Architettura</h3>
+<section id="slide-orgc15c742">
+<h3 id="orgc15c742"><span class="section-number-3">7.2.</span> Linguaggio scelto</h3>
 <p>
-Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate dalla Clean Architecture di Robert C. Martin.
-Attenendosi soprattutto ai principi SOLID, il codice è particolarmente prone ad espansioni ed aggiunta di nuovi moduli, strizzando l'occhio alla retrocompatibilità. Questo approccio si è rivelato fondamentale per evitare una forte dipendenza dalle librerie native di Android. 
+<b>Premessa</b>: Java e Kotlin possono coesistere all'interno dello stesso progetto!
 </p>
 
-
-</section>
-<section id="slide-org94e82d5">
-<h3 id="org94e82d5"><span class="section-number-3">4.3.</span> Linguaggio scelto</h3>
-<p>
-È stato scelto Kotlin come linguaggio OO per due principali motivi:
+<p class="fragment (appear)">
+È stato scelto Kotlin come linguaggio OO per quattro principali motivi:
 </p>
+
 <ol>
-<li>Lo sviluppo di librerie Android è incentrato sempre di più sulle funzionalità offerte da Kotlin.</li>
-<li>Sintassi snella e di facile apprendimento oltre che presenza di meccanismi di sicurezza volti a ridurre gli errori da parte dei programmatori.</li>
+<li class="fragment appear">Lo sviluppo di librerie Android è ad oggi incentrato sempre di più sulle funzionalità offerte da Kotlin;</li>
+<li class="fragment appear">Sintassi snella e di facile apprendimento;</li>
+<li class="fragment appear">Presenza di meccanismi di sicurezza volti a ridurre gli errori da parte dei programmatori;</li>
+<li class="fragment appear">Estensibilità di classi pre-esistenti, ma senza effettuare modifiche alle librerie, in pieno stile <b>open-closed</b> (la O di SOLID).</li>
 
 </ol>
 
-<p>
-Si rende noto che Java e Kotlin possono coesistere all'interno dello stesso progetto!
+
+<div id="orga48b28d" class="figure">
+<p><img src="./kotlin.png" alt="kotlin.png" width="15%" height="15%" />
 </p>
+</div>
+
+</section>
+<section id="slide-org8cd8385">
+<h3 id="org8cd8385"><span class="section-number-3">7.3.</span> Pattern scelto</h3>
+<p>
+Sono stati "fusi" due pattern , ovvero <b>MVVM</b> e <b>MVI</b>, per rimediare ad alcune lacune.
+I problemi individuati col primo pattern si riassumono in:
+</p>
+
+<ul>
+<li class="fragment appear">Difficoltà di riusabilità sia per le View che per i ViewModel;</li>
+<li class="fragment appear">Registrazione a molteplici observables nello stesso ViewModel;</li>
+<li class="fragment appear">View e ViewModel possono essere soggetti ad avere un coupling stretto.</li>
+
+</ul>
+
+<p class="fragment (appear)">
+L’integrazione dei due pattern architetturali sopracitati culmina nella nascita di un
+nuovo pattern, chiamato dagli sviluppatori Android <a href="https://developer.android.com/topic/architecture" class="fragment (appear)">UDF (Unidirectional Data Flow)</a> :
+</p>
+
+<ul>
+<li class="fragment appear">Presenza di StateHolder, necessari per ogni ViewModel nella maggior parte dei casi;</li>
+<li class="fragment appear">Richiamo alle macchine di stato e agli Statechart;</li>
+<li class="fragment appear">Event e Effect, che si interpongono tra View e ViewModel.</li>
+
+</ul>
+
+
+<div id="org6b9d08d" class="figure">
+<p><img src="./udf.png" alt="udf.png" width="30%" height="30%" />
+</p>
+</div>
 
 </section>
 </section>
 <section>
-<section id="slide-org40fdf44">
-<h2 id="org40fdf44"><span class="section-number-2">5.</span> Strumenti di testing</h2>
-<div class="outline-text-2" id="text-5">
+<section id="slide-org0766ce5">
+<h2 id="org0766ce5"><span class="section-number-2">8.</span> Strumenti di testing</h2>
+<div class="outline-text-2" id="text-8">
 </div>
 </section>
-<section id="slide-orgb5f0c17">
-<h3 id="orgb5f0c17"><span class="section-number-3">5.1.</span> Firebase</h3>
+<section id="slide-org89fa524">
+<h3 id="org89fa524"><span class="section-number-3">8.1.</span> Firebase</h3>
 <ul>
 <li>Analytics</li>
 <li>Crashlytics</li>
@@ -194,18 +404,17 @@ Si rende noto che Java e Kotlin possono coesistere all'interno dello stesso prog
 
 </ul>
 
+
 </section>
 </section>
 <section>
-<section id="slide-org1a08923">
-<h2 id="org1a08923"><span class="section-number-2">6.</span> Fine</h2>
-<ul>
-<li>E fot e tre sciem</li>
-
-</ul>
+<section id="slide-orgcab777c">
+<h2 id="orgcab777c"><span class="section-number-2">9.</span> Fine</h2>
+<script src="plugin/menu/menu.js"></script>
 </section>
 </section>
 </div>
+<a class="uni-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Visita il nostro dipartimento"> <img src="federico.svg"></a> <a class="app-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Il nostro logo"> <img src="natour_logo.svg"></a>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
 
@@ -213,11 +422,14 @@ Si rende noto che Java e Kotlin possono coesistere all'interno dello stesso prog
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
+plugins: [RevealMenu], slideNumber:"c/t",
+menu: {side: 'left', width: 'normal', numbers: true, titleSelector: 'h1, h2, h3, h4, h5, h6', useTextContentForMissingTitles: true, hideMissingTitles: false, markers: true, custom: false, themes: false, themesPath: 'dist/theme/', transitions: true, openButton: true, openSlideNumber: true, keyboard: true, sticky: false, autoOpen: true, delayInit: false, openOnInit: false, loadIcons: true}, backgroundTransition: 'zoom', hash: true, mouseWheel: false, width: 1920, height: 1080,
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
  { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
  { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
  { src: 'https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 

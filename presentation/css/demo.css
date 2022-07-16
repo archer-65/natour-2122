@@ -1,0 +1,36 @@
+a.uni-corner {
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 15px;
+  width: clamp(110px, 8vmax, 110px);
+  line-height: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+a.uni-corner.bottom {
+    top: auto;
+    bottom: -5px;
+}
+
+a.uni-corner:hover {
+    color: white;
+}
+
+a.app-corner {
+  position: absolute;
+  z-index: 1;
+  top: -55px;
+  right: -45px;
+  width: clamp(200px, 8vmax, 200px);
+  line-height: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+a.app-corner.bottom {
+    top: auto;
+    bottom: -5px;
+}
+
+a.app-corner:hover {
+    color: white; }

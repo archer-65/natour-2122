@@ -52,14 +52,14 @@
 
 
 <section>
-<section id="slide-org7f6963b">
-<h2 id="org7f6963b">Target utenti - statistiche</h2>
+<section id="slide-orgefcad6f">
+<h2 id="orgefcad6f">Target utenti - statistiche</h2>
 <p>
 In seguito all’analisi delle informazioni <a href="http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI">statistiche</a> sull’escursionismo italiano è stato individuato un preciso target utenti. Attorno ad esso è stato possibile costruire la migliore esperienza utente possibile, basata sulle abitudini e sulle attitudini del bacino di utenza rilevato. Il software si pone come uno degli obiettivi principali, infatti, un'adeguata facilità di utilizzo, per andare incontro ai bisogni della più grande possibile fetta di utenti.
 </p>
 
 
-<div id="org3d7c271" class="figure">
+<div id="org05b748e" class="figure">
 <p><img src="./img/target.svg" alt="target.svg" class="org-svg" width="40%" height="40%" />
 </p>
 </div>
@@ -68,18 +68,18 @@ In seguito all’analisi delle informazioni <a href="http://dati.istat.it/Index.
 </section>
 </section>
 <section>
-<section id="slide-orgbb44689">
-<h2 id="orgbb44689">NaTour in breve</h2>
+<section id="slide-org1d3c195">
+<h2 id="org1d3c195">NaTour in breve</h2>
 
-<div id="orgd372bc0" class="figure">
+<div id="org89496d1" class="figure">
 <p><img src="./img/mockup-example.svg" alt="mockup-example.svg" class="org-svg" width="35%" height="35%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-orgb3cc894">
-<h3 id="orgb3cc894">Funzionalità offerte</h3>
+<section id="slide-orgce2df15">
+<h3 id="orgce2df15">Funzionalità offerte</h3>
 <p>
 NaTour offre tutte le funzionalità basilari necessarie a una piattaforma social, risultando estremamente familiare agli utenti. Tra queste ritroviamo:
 </p>
@@ -99,8 +99,8 @@ NaTour offre tutte le funzionalità basilari necessarie a una piattaforma social
 
 
 </section>
-<section id="slide-orgfb0e718">
-<h3 id="orgfb0e718">Requisiti</h3>
+<section id="slide-org635f288">
+<h3 id="org635f288">Requisiti</h3>
 <p>
 Talvolta è si ha il bisogno di consultare una mappa, o visualizzare delle indicazioni per un certo tragitto, per questo è necessario essere in possesso di:
 </p>
@@ -113,7 +113,7 @@ Talvolta è si ha il bisogno di consultare una mappa, o visualizzare delle indic
 </ul>
 
 
-<div id="org57bf79f" class="figure">
+<div id="org5159be7" class="figure">
 <p><img src="./img/lost.svg" alt="lost.svg" class="org-svg" width="35%" height="35%" />
 </p>
 </div>
@@ -122,8 +122,8 @@ Talvolta è si ha il bisogno di consultare una mappa, o visualizzare delle indic
 </section>
 </section>
 <section>
-<section id="slide-orgbcbdcf2">
-<h2 id="orgbcbdcf2">Architettura</h2>
+<section id="slide-orgc39fd1d">
+<h2 id="orgc39fd1d">Architettura</h2>
 <p>
 Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate dalla Clean Architecture, creata da Robert C. Martin (Uncle Bob) nel 2012.
 </p>
@@ -133,7 +133,7 @@ Attenendosi soprattutto ai principi SOLID (applicabili a qualsiasi linguaggio OO
 </p>
 
 
-<div id="org749c35b" class="figure">
+<div id="org65a522a" class="figure">
 <p><img src="./img/bob-clean.svg" alt="bob-clean.svg" class="org-svg" width="80%" height="80%" />
 </p>
 </div>
@@ -142,81 +142,81 @@ Attenendosi soprattutto ai principi SOLID (applicabili a qualsiasi linguaggio OO
 </section>
 </section>
 <section>
-<section id="slide-org20d6113">
-<h2 id="org20d6113">Servizi AWS</h2>
+<section id="slide-orga03418c">
+<h2 id="orga03418c">Servizi AWS</h2>
 
-<div id="orgdfa5520" class="figure">
+<div id="org2a8b56a" class="figure">
 <p><img src="./img/aws.png" alt="aws.png" width="40%" height="40%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org8388cf9">
-<h3 id="org8388cf9">AWS Cognito</h3>
+<section id="slide-orgf966001">
+<h3 id="orgf966001">AWS Cognito</h3>
 <p>
 Cognito è un servizio di tipologia PaaS, sfruttato per l'autenticazione utente. Utilizza <a href="https://oauth.net/2/">OAuth2</a> per la delega degli accessi tramite identità federate.
 Presenta integrazione con altri servizi, che permette la gestione delle politiche di accesso alle risorse fornite da questi ultimi.
 </p>
 
 
-<div id="org03da2c4" class="figure">
+<div id="org2cebc6f" class="figure">
 <p><img src="./img/cognito.svg" alt="cognito.svg" class="org-svg" width="20%" height="20%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-orgeacaf42">
-<h3 id="orgeacaf42">AWS EC2</h3>
+<section id="slide-org58c5003">
+<h3 id="org58c5003">AWS EC2</h3>
 <p>
 Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale, compatibile con <a href="https://aws.amazon.com/it/autoscaling/">AWS Autoscaling</a>. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server LTS, OS scelto per limitare l'utilizzo superfluo di risorse dell'istanza. L'accesso all'istanza virtuale è effettuato tramite SSH, quando necessario.
 </p>
 
 
-<div id="orga802b70" class="figure">
+<div id="org851171a" class="figure">
 <p><img src="./img/ec2.svg" alt="ec2.svg" class="org-svg" width="20%" height="20%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-orgf8d1ff0">
-<h3 id="orgf8d1ff0">AWS RDS</h3>
+<section id="slide-orgdab8a5b">
+<h3 id="orgdab8a5b">AWS RDS</h3>
 <p>
 Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL/MariaDB) per la persistenza dei dati. Questo servizio fornisce capacità ridimensionabili efficiente, automatizzando task tipiche di amministrazione hardware e software, oltre ai backup.
 </p>
 
 
-<div id="org0ed6d7d" class="figure">
+<div id="org0e33ce5" class="figure">
 <p><img src="./img/rds.svg" alt="rds.svg" class="org-svg" width="20%" height="20%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org201790c">
-<h3 id="org201790c">AWS S3</h3>
+<section id="slide-orga104df0">
+<h3 id="orga104df0">AWS S3</h3>
 <p>
 Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile, sicuro e veloce. La classe di archiviazione S3 è progettata per offrire una durabilità dei dati pari al 99,99999999999% (eleven 9s) degli oggetti per un determinato anno, che equivale a una perdita di oggetti media dello 0,00000000001%! Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
 </p>
 
 
-<div id="org16e7f3c" class="figure">
+<div id="orgfeeb864" class="figure">
 <p><img src="./img/s3.svg" alt="s3.svg" class="org-svg" width="20%" height="20%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org1087ea2">
-<h3 id="org1087ea2">AWS Lambda</h3>
+<section id="slide-org80aaca2">
+<h3 id="org80aaca2">AWS Lambda</h3>
 <p>
 La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pool di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.
 </p>
 
 
-<div id="org32b7e28" class="figure">
+<div id="orgba10ad9" class="figure">
 <p><img src="./img/lambda.svg" alt="lambda.svg" class="org-svg" width="20%" height="20%" />
 </p>
 </div>
@@ -225,8 +225,8 @@ La scelta di questo servizio è stata dettata dalla necessità di fornire consis
 </section>
 </section>
 <section>
-<section id="slide-org34356b2">
-<h2 id="org34356b2">Google Maps Platform</h2>
+<section id="slide-orgd940777">
+<h2 id="orgd940777">Google Maps Platform</h2>
 <ul>
 <li class="fragment appear">MapsAPI: per la visualizzazione interattiva di mappe statiche e dinamiche;</li>
 <li class="fragment appear">PlacesAPI: per il recupero di informazioni sui posti tramite richieste HTTP;</li>
@@ -240,7 +240,7 @@ La scelta di questo servizio è stata dettata dalla necessità di fornire consis
 </ul>
 
 
-<div id="orgfac2291" class="figure">
+<div id="orga1597db" class="figure">
 <p><img src="./img/mapsapi.png" alt="mapsapi.png" width="20%" height="20%" />
 </p>
 </div>
@@ -249,8 +249,8 @@ La scelta di questo servizio è stata dettata dalla necessità di fornire consis
 </section>
 </section>
 <section>
-<section id="slide-org23c6db9">
-<h2 id="org23c6db9">Spring</h2>
+<section id="slide-orged41cce">
+<h2 id="orged41cce">Spring</h2>
 <p>
 Framework Java che fa largo uso della riflessione e dell'inversione di
 controllo (IoC). Tramite annotazioni permette di ridurre codice boilerplate, si adatta al pattern MVC.
@@ -266,15 +266,15 @@ controllo (IoC). Tramite annotazioni permette di ridurre codice boilerplate, si 
 </ul>
 
 
-<div id="org4075310" class="figure">
+<div id="orgc5c4d8c" class="figure">
 <p><img src="./img/spring-logo.png" alt="spring-logo.png" width="20%" height="20%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-orgfca2970">
-<h3 id="orgfca2970">Spring Boot</h3>
+<section id="slide-orgab22e29">
+<h3 id="orgab22e29">Spring Boot</h3>
 <p>
 Estensione del framework Spring che facilita la gestione delle dipendenze necessarie:
 </p>
@@ -287,7 +287,7 @@ Estensione del framework Spring che facilita la gestione delle dipendenze necess
 </ul>
 
 
-<div id="org569e1b7" class="figure">
+<div id="org87a3703" class="figure">
 <p><img src="./img/spring-boot.svg" alt="spring-boot.svg" class="org-svg" width="50%" height="50%" />
 </p>
 </div>
@@ -296,13 +296,18 @@ Estensione del framework Spring che facilita la gestione delle dipendenze necess
 </section>
 </section>
 <section>
-<section id="slide-org1dc4a3e">
-<h2 id="org1dc4a3e">Client</h2>
-<div class="outline-text-2" id="text-org1dc4a3e">
+<section id="slide-org0e08eb9">
+<h2 id="org0e08eb9">Client</h2>
+
+<div id="org654fcd3" class="figure">
+<p><img src="./img/android-eat-apple.png" alt="android-eat-apple.png" width="20%" height="20%" />
+</p>
 </div>
+
+
 </section>
-<section id="slide-org9dfee9a">
-<h3 id="org9dfee9a">Applicazione nativa o ibrida?</h3>
+<section id="slide-org400cd89">
+<h3 id="org400cd89">Applicazione nativa o ibrida?</h3>
 <p>
 Considerato il target di clienti particolarmente esigente e la priorità data alle prestazioni è stato scelto di sviluppare un client mobile nativo, vista anche la richiesta iniziale della sola app per Android.
 </p>
@@ -341,15 +346,15 @@ Considerato il target di clienti particolarmente esigente e la priorità data al
 
 
 
-<div id="orge7151d3" class="figure">
+<div id="orga4a3f51" class="figure">
 <p><img src="./img/hybrid-native.jpg" alt="hybrid-native.jpg" width="40%" height="40%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org8bb5206">
-<h3 id="org8bb5206">Linguaggio scelto</h3>
+<section id="slide-org8eec9f5">
+<h3 id="org8eec9f5">Linguaggio scelto</h3>
 <p>
 <b>Premessa</b>: Java e Kotlin possono coesistere all'interno dello stesso progetto!
 </p>
@@ -367,15 +372,15 @@ Considerato il target di clienti particolarmente esigente e la priorità data al
 </ol>
 
 
-<div id="orgd05db2e" class="figure">
+<div id="org3f2b12a" class="figure">
 <p><img src="./img/kotlin.png" alt="kotlin.png" width="15%" height="15%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org977fa07">
-<h3 id="org977fa07">Pattern scelto</h3>
+<section id="slide-org669d67e">
+<h3 id="org669d67e">Pattern scelto</h3>
 <p>
 Sono stati "fusi" due pattern , ovvero <b>MVVM</b> e <b>MVI</b>, per rimediare ad alcune lacune.
 I problemi individuati col primo pattern si riassumono in:
@@ -401,7 +406,7 @@ nuovo pattern, chiamato dagli sviluppatori Android <a href="https://developer.an
 </ul>
 
 
-<div id="orgbd2ad53" class="figure">
+<div id="org0fcb47c" class="figure">
 <p><img src="./img/udf.png" alt="udf.png" width="30%" height="30%" />
 </p>
 </div>
@@ -410,52 +415,52 @@ nuovo pattern, chiamato dagli sviluppatori Android <a href="https://developer.an
 </section>
 </section>
 <section>
-<section id="slide-org96526fd">
-<h2 id="org96526fd">Strumenti di supporto all'usabilità sul campo</h2>
+<section id="slide-org5466632">
+<h2 id="org5466632">Strumenti di supporto all'usabilità sul campo</h2>
 
-<div id="org1978d4a" class="figure">
+<div id="orgd771145" class="figure">
 <p><img src="./img/gcloud.png" alt="gcloud.png" width="40%" height="40%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org5445068">
-<h3 id="org5445068">Firebase Analytics</h3>
+<section id="slide-orgf3cd3ce">
+<h3 id="orgf3cd3ce">Firebase Analytics</h3>
 <p>
 Firebase Analytics è un servizio finalizzato all’elaborazione di vari tipi di statistiche riguardanti, ad esempio, la durata della sessione e la provenienza della visita. Nello specifico, si è usufruito di Analytics per il tracciamento di eventi, per comprendere al meglio esigenze e preferenze degli utenti durante l'utilizzo dell'app.
 </p>
 
 
-<div id="orga58f8d8" class="figure">
+<div id="org0357572" class="figure">
 <p><img src="./img/firebase-analytics.png" alt="firebase-analytics.png" width="60%" height="60%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org27f4da7">
-<h3 id="org27f4da7">Firebase Crashlytics</h3>
+<section id="slide-orgfb47622">
+<h3 id="orgfb47622">Firebase Crashlytics</h3>
 <p>
 Firebase Crashlytics è un utile reporter di crash, di ausilio nel tracciamento e nella risoluzione di problemi di stabilità dell'app. Trattandosi di un reporter automatico, l'utente non è tenuto a riportare i crash manualmente, migliorando leggermente l'UX.
 </p>
 
 
-<div id="org13e1192" class="figure">
+<div id="orgee83f44" class="figure">
 <p><img src="./img/firebase-crash.png" alt="firebase-crash.png" width="40%" height="40%" />
 </p>
 </div>
 
 
 </section>
-<section id="slide-org7b18196">
-<h3 id="org7b18196">Firebase Performance</h3>
+<section id="slide-org232ed91">
+<h3 id="org232ed91">Firebase Performance</h3>
 <p>
 Firebase Performance, infine, è un servizio utilizzato per avere un insight delle caratteristiche prestazionali dell’app, anche attraverso metriche personalizzate.
 </p>
 
 
-<div id="orgd0f0fe5" class="figure">
+<div id="org925cc5d" class="figure">
 <p><img src="./img/performance.png" alt="performance.png" width="45%" height="45%" />
 </p>
 </div>
@@ -464,8 +469,8 @@ Firebase Performance, infine, è un servizio utilizzato per avere un insight del
 </section>
 </section>
 <section>
-<section id="slide-orgfae7d97">
-<h2 id="orgfae7d97">Meet the team</h2>
+<section id="slide-orgfdff15b">
+<h2 id="orgfdff15b">Meet the team</h2>
 <div class="git-row">
   <div class="git-column">
     <p>

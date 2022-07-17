@@ -170,6 +170,9 @@ Estensione del framework Spring che facilita la gestione delle dipendenze necess
 
 * Client
 
+#+ATTR_HTML: :width 20% :height 20%
+[[./img/android-eat-apple.png]]
+
 
 ** Applicazione nativa o ibrida?
 

@@ -1,29 +1,53 @@
-#+TITLE: NaTour21 - Let's go
-#+OPTIONS: toc:nil author:nil timestamp:nil
-#+AUTHOR: Mario Liguori - Bianca Giada Chehade - Mattia Rossi
+#+TITLE: NaTour21
+#+OPTIONS: toc:nil timestamp:nil author:nil title:nil num:nil reveal_title_slide:nil
+#+AUTHOR: Liguori Mario - Chehade Bianca Giada - Rossi Mattia
 
-#+REVEAL_EPILOGUE: <a class="uni-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Visita il nostro dipartimento"> <img src="federico.svg"></a> <a class="app-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Il nostro logo"> <img src="natour_logo.svg"></a>
+:REVEAL_PROPERTIES:
+#+REVEAL_EPILOGUE: <a class="uni-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Visita il nostro dipartimento"> <img src="img/federico.svg"></a> <a class="app-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Il nostro logo"> <img src="img/dieti.png"></a>
 
 #+REVEAL_THEME: solarized
-#+REVEAL_EXTRA_CSS: css/demo.css
+#+REVEAL_EXTRA_CSS: css/theme.css
+#+REVEAL_EXTRA_CSS: css/base-theme.css
 
 #+REVEAL_PLUGINS: (markdown highlight zoom notes)
 #+REVEAL_INIT_OPTIONS: plugins: [RevealMenu], slideNumber:"c/t"
 
 #+REVEAL_EXTRA_INITIAL_JS: menu: {side: 'left', width: 'normal', numbers: true, titleSelector: 'h1, h2, h3, h4, h5, h6', useTextContentForMissingTitles: true, hideMissingTitles: false, markers: true, custom: false, themes: false, themesPath: 'dist/theme/', transitions: true, openButton: true, openSlideNumber: true, keyboard: true, sticky: false, autoOpen: true, delayInit: false, openOnInit: false, loadIcons: true}, backgroundTransition: 'zoom', hash: true, mouseWheel: false, width: 1920, height: 1080
+:END:
+
+#+BEGIN_EXPORT html
+
+<section id="sec-title-slide" data-background="background.jpg">
+  <h1 id="sec-title">
+    <span class="menu-title" style="display: none">NaTour21</span>
+    <a href="https://github.com/archer-65/natour-2122">
+      <img src="img/natour-title.svg" alt="NaTour" width="33%" align="top"/>
+    </a>
+  </h1>
+
+  <br>
+  
+  <!-- <h2 class="subtitle">Enjoy your trip!</h2> -->
+
+  <h2 class="author">
+    Liguori Mario - Chehade Bianca Giada - Rossi Mattia
+  </h2>
+</section>
+#+END_EXPORT
+
 
 * Target utenti - statistiche
 
 In seguito all’analisi delle informazioni [[http://dati.istat.it/Index.aspx?DataSetCode=DCCV_ESC_CAPI][statistiche]] sull’escursionismo italiano è stato individuato un preciso target utenti. Attorno ad esso è stato possibile costruire la migliore esperienza utente possibile, basata sulle abitudini e sulle attitudini del bacino di utenza rilevato. Il software si pone come uno degli obiettivi principali, infatti, un'adeguata facilità di utilizzo, per andare incontro ai bisogni della più grande possibile fetta di utenti.
 
 #+ATTR_HTML: :width 40% :height 40%
-[[./target.svg]]
+[[./img/target.svg]]
 
 
 * NaTour in breve
 
 #+ATTR_HTML: :width 35% :height 35%
-[[./mockup-example.svg]]
+[[./img/mockup-example.svg]]
 
 
 ** Funzionalità offerte
@@ -47,7 +71,7 @@ Talvolta è si ha il bisogno di consultare una mappa, o visualizzare delle indic
 - Permessi di accesso alla posizione.
   
 #+ATTR_HTML: :width 35% :height 35%
-[[./lost.svg]]
+[[./img/lost.svg]]
 
 
 * Architettura
@@ -57,13 +81,13 @@ Per uno sviluppo pulito ed efficiente sono state seguite le linee guida dettate 
 Attenendosi soprattutto ai principi SOLID (applicabili a qualsiasi linguaggio OO), il codice è particolarmente prone ad espansioni ed aggiunta di nuovi moduli, strizzando l'occhio alla retrocompatibilità. Questo approccio si è rivelato fondamentale per evitare una forte dipendenza dalle librerie native di Android. 
 
 #+ATTR_HTML: :width 80% :height 80%
-[[./bob-clean.svg]]
+[[./img/bob-clean.svg]]
 
 
 * Servizi AWS
 
 #+ATTR_HTML: :width 40% :height 40%
-[[./aws.png]]
+[[./img/aws.png]]
 
 
 ** AWS Cognito
@@ -71,35 +95,35 @@ Cognito è un servizio di tipologia PaaS, sfruttato per l'autenticazione utente.
 Presenta integrazione con altri servizi, che permette la gestione delle politiche di accesso alle risorse fornite da questi ultimi.
 
 #+ATTR_HTML: :width 20% :height 20%
-[[./cognito.svg]]
+[[./img/cognito.svg]]
 
 
 ** AWS EC2
 Servizio di tipologia IaaS che offre ambienti di elaborazione virtuale, compatibile con [[https://aws.amazon.com/it/autoscaling/][AWS Autoscaling]]. Questo servizio è stato utilizzato per il deploy del servizio REST, in esecuzione su Ubuntu Server LTS, OS scelto per limitare l'utilizzo superfluo di risorse dell'istanza. L'accesso all'istanza virtuale è effettuato tramite SSH, quando necessario.
 
 #+ATTR_HTML: :width 20% :height 20%
-[[./ec2.svg]]
+[[./img/ec2.svg]]
 
 
 ** AWS RDS
 Amazon RDS ha permesso la configurazione e l’utilizzo del database relazionale (MySQL/MariaDB) per la persistenza dei dati. Questo servizio fornisce capacità ridimensionabili efficiente, automatizzando task tipiche di amministrazione hardware e software, oltre ai backup.
 
 #+ATTR_HTML: :width 20% :height 20%
-[[./rds.svg]]
+[[./img/rds.svg]]
 
 
 ** AWS S3
 Il Simple Storage Service (Amazon S3) permette l’archiviazione di oggetti in modo scalabile, sicuro e veloce. La classe di archiviazione S3 è progettata per offrire una durabilità dei dati pari al 99,99999999999% (eleven 9s) degli oggetti per un determinato anno, che equivale a una perdita di oggetti media dello 0,00000000001%! Esso è stato adoperato in merito alla preservazione permanente dei file immagine caricati dagli utenti;
 
 #+ATTR_HTML: :width 20% :height 20%
-[[./s3.svg]]
+[[./img/s3.svg]]
 
 
 ** AWS Lambda
 La scelta di questo servizio è stata dettata dalla necessità di fornire consistenza al pool di utenti su Cognito. Tramite l'utilizzo di un trigger post-conferma non possono esserci discrepanze tra pool e database.
 
 #+ATTR_HTML: :width 20% :height 20%
-[[./lambda.svg]]
+[[./img/lambda.svg]]
 
   
 * Google Maps Platform
@@ -112,7 +136,7 @@ La scelta di questo servizio è stata dettata dalla necessità di fornire consis
   - Le DirectionsAPI, in quanto web service, sono state integrate nel Rest Service proprio del software.
 
 #+ATTR_HTML: :width 20% :height 20%
-[[./mapsapi.png]]
+[[./img/mapsapi.png]]
 
 
 * Spring
@@ -128,7 +152,7 @@ controllo (IoC). Tramite annotazioni permette di ridurre codice boilerplate, si 
 - Ideale per creare REST API.
 
 #+ATTR_HTML: :width 20% :height 20%
-[[./spring-logo.png]]
+[[./img/spring-logo.png]]
 
   
 ** Spring Boot
@@ -141,7 +165,7 @@ Estensione del framework Spring che facilita la gestione delle dipendenze necess
 - Web server embedded (Apache Tomcat).
 
 #+ATTR_HTML: :width 50% :height 50%
-[[./spring-boot.svg]]
+[[./img/spring-boot.svg]]
 
 
 * Client
@@ -159,7 +183,7 @@ Considerato il target di clienti particolarmente esigente e la priorità data al
 
 
 #+ATTR_HTML: :width 40% :height 40%
-[[./hybrid-native.jpg]]
+[[./img/hybrid-native.jpg]]
 
 
 ** Linguaggio scelto
@@ -176,7 +200,8 @@ Considerato il target di clienti particolarmente esigente e la priorità data al
 4. Estensibilità di classi pre-esistenti, ma senza effettuare modifiche alle librerie, in pieno stile *open-closed* (la O di SOLID).
 
 #+ATTR_HTML: :width 15% :height 15%
-[[./kotlin.png]]
+[[./img/kotlin.png]]
+
 
 ** Pattern scelto
 
@@ -198,19 +223,60 @@ nuovo pattern, chiamato dagli sviluppatori Android [[https://developer.android.c
 - Event e Effect, che si interpongono tra View e ViewModel.
 
 #+ATTR_HTML: :width 30% :height 30%
-[[./udf.png]]
+[[./img/udf.png]]
+
+
+* Strumenti di supporto all'usabilità sul campo
+
+#+ATTR_HTML: :width 40% :height 40%
+[[./img/gcloud.png]]
+
+
+** Firebase Analytics
+
+Firebase Analytics è un servizio finalizzato all’elaborazione di vari tipi di statistiche riguardanti, ad esempio, la durata della sessione e la provenienza della visita. Nello specifico, si è usufruito di Analytics per il tracciamento di eventi, per comprendere al meglio esigenze e preferenze degli utenti durante l'utilizzo dell'app.
+
+#+ATTR_HTML: :width 60% :height 60%
+[[./img/firebase-analytics.png]]
   
-* Strumenti di testing
 
+** Firebase Crashlytics
 
-** Firebase
+Firebase Crashlytics è un utile reporter di crash, di ausilio nel tracciamento e nella risoluzione di problemi di stabilità dell'app. Trattandosi di un reporter automatico, l'utente non è tenuto a riportare i crash manualmente, migliorando leggermente l'UX.
 
-- Analytics
-- Crashlytics
-- Performance
-
+#+ATTR_HTML: :width 40% :height 40%
+[[./img/firebase-crash.png]]
   
-* Fine
+
+** Firebase Performance
+
+Firebase Performance, infine, è un servizio utilizzato per avere un insight delle caratteristiche prestazionali dell’app, anche attraverso metriche personalizzate.
+
+#+ATTR_HTML: :width 45% :height 45%
+[[./img/performance.png]]
+
+
+* Meet the team
+
+#+begin_export html
+<div class="git-row">
+  <div class="git-column">
+    <p>
+      <img class= "circular" src="mario-git.png" alt="archer-65" width="35%" align="center"/> <br>Liguori Mario <br><a href="https://github.com/archer-65">@archer-65</a>
+    </p>
+  </div>
+  <div class="git-column">
+    <p>
+      <img class="circular" src="bianca-git.png" alt="archer-65" width="35%" align="center"/> <br>Chehade Bianca Giada <br><a href="https://github.com/ctrl-zzz">@ctrl-zzz</a>
+    </p>
+  </div>
+  <div class="git-column">
+    <p>
+      <img class="circular" src="mattia-git.png" alt="archer-65" width="35%" align="center"/> <br>Rossi Mattia <br><a href="https://github.com/Random-Leviathan890">@Random-Leviathan890</a>
+    </p>
+  </div>
+</div> 
+#+end_export
 
 #+begin_export html
 <script src="plugin/menu/menu.js"></script>

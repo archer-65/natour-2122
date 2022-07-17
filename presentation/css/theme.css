@@ -20,8 +20,8 @@ a.uni-corner:hover {
 a.app-corner {
   position: absolute;
   z-index: 1;
-  top: -55px;
-  right: -45px;
+  top: -5px;
+  right: 5px;
   width: clamp(200px, 8vmax, 200px);
   line-height: 0;
   color: rgba(255, 255, 255, 0.5);
@@ -34,3 +34,14 @@ a.app-corner.bottom {
 
 a.app-corner:hover {
     color: white; }
+
+.git-row {
+  display: flex;
+}
+
+.git-column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+.circular { border-radius: 50%; }

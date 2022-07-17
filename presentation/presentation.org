@@ -3,7 +3,7 @@
 #+AUTHOR: Liguori Mario - Chehade Bianca Giada - Rossi Mattia
 
 :REVEAL_PROPERTIES:
-#+REVEAL_EPILOGUE: <a class="uni-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Visita il nostro dipartimento"> <img src="img/federico.svg"></a> <a class="app-corner" href="https://informatica.dieti.unina.it/index.php/it/" target="blank" title="Il nostro logo"> <img src="img/dieti.png"></a>
+#+REVEAL_EPILOGUE: <a class="uni-corner" href="https://www.unina.it/myfedericoii" target="blank" title="Università"> <img src="img/federico.svg"></a> <a class="app-corner" href="https://informatica.dieti.unina.it/" target="blank" title="Visita il nostro dipartimento"> <img src="img/dieti.png"></a>
 
 #+REVEAL_THEME: solarized
 #+REVEAL_EXTRA_CSS: css/theme.css

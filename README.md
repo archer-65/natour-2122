@@ -34,11 +34,3 @@ vengono mostrate nella schermata di dettaglio di un sentiero.
     - Arbitrariamente rimuovere o modificare itinerari inseriti dagli utenti. In
 questo caso, la schermata di dettaglio degli itinerari modificati mostra un warning che informa gli
 utenti della modifica e della data in cui è avvenuta.  
-
-## Autori
-  - **Bianca Giada Chehade** 
-    - Matricola: N86003209
-  - **Mario Liguori**        
-    - Matricola: N86003258
-  - **Mattia Rossi**         
-    - Matricola: N86003211
